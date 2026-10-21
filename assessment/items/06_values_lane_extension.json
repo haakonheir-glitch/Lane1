@@ -1,0 +1,105 @@
+{
+  "module": "values_lane_extension",
+  "instrument": "Lane Values Extension (original, experimental)",
+  "status": "EXPERIMENTAL. Not yet validated.",
+  "license": "Proprietary to Lane.",
+  "why_included": "The O*NET Work Importance Locator assumes an employer (supervisors, company policies). Non-corporate lanes trade on values it cannot see: income upside vs stability, visibility, ownership, location and time freedom, scoreboards.",
+  "response_format": {
+    "type": "forced_q_sort",
+    "stem": "In the work I'd most want, it is important that...",
+    "columns": [
+      {
+        "value": 5
+      },
+      {
+        "value": 4
+      },
+      {
+        "value": 3
+      },
+      {
+        "value": 2
+      },
+      {
+        "value": 1
+      }
+    ],
+    "cards_per_column": [
+      2,
+      2,
+      4,
+      2,
+      2
+    ],
+    "ui": "Quasi-normal forced distribution: 2-2-4-2-2."
+  },
+  "administration": {
+    "order": "Directly after file 05.",
+    "est_minutes": 3
+  },
+  "scoring": {
+    "card_score": "Column number (1-5). Report as a within-person ranking only; forced sorts are ipsative and must not be compared between people as levels."
+  },
+  "items": [
+    {
+      "id": "LV_upside",
+      "value": "upside",
+      "text": "the income has no ceiling, even if it is less certain."
+    },
+    {
+      "id": "LV_stability",
+      "value": "stability",
+      "text": "I know roughly what I will earn every month."
+    },
+    {
+      "id": "LV_visibility",
+      "value": "visibility",
+      "text": "many people know who I am and what I do."
+    },
+    {
+      "id": "LV_mastery",
+      "value": "mastery",
+      "text": "I keep getting measurably better at a hard skill."
+    },
+    {
+      "id": "LV_freedom_time",
+      "value": "freedom_time",
+      "text": "I decide when I work."
+    },
+    {
+      "id": "LV_freedom_place",
+      "value": "freedom_place",
+      "text": "I can work from anywhere."
+    },
+    {
+      "id": "LV_impact_scale",
+      "value": "impact_scale",
+      "text": "my work reaches a very large number of people."
+    },
+    {
+      "id": "LV_ownership",
+      "value": "ownership",
+      "text": "I own what I build."
+    },
+    {
+      "id": "LV_competition",
+      "value": "competition",
+      "text": "there is a clear scoreboard and I can win."
+    },
+    {
+      "id": "LV_craft",
+      "value": "craft",
+      "text": "I make things with my own hands or body."
+    },
+    {
+      "id": "LV_team_mission",
+      "value": "team_mission",
+      "text": "I am part of a team working toward a shared goal."
+    },
+    {
+      "id": "LV_wealth",
+      "value": "wealth",
+      "text": "the work can make me wealthy."
+    }
+  ]
+}

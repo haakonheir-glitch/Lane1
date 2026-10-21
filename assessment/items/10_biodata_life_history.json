@@ -1,0 +1,262 @@
+{
+  "module": "biodata",
+  "instrument": "Lane Life-History (Biodata) Questionnaire (original, experimental)",
+  "status": "EXPERIMENTAL. Biodata items are scored empirically: weights are learned from outcomes, not set in advance. Until the outcome engine has data, use them only as evidence shown to the user ('You have competed at national level') and as features for the model.",
+  "evidence": "Empirically keyed biodata is among the stronger predictors of job performance in the Sackett et al. (2022) revision.",
+  "license": "Proprietary to Lane.",
+  "design_rules": "Ask about past, verifiable-in-principle behaviour, not opinions. Avoid items that proxy protected characteristics (family income, nationality, health).",
+  "administration": {
+    "est_minutes": 8
+  },
+  "free_text_coding": "Code free-text answers with an LLM into the lane taxonomy and store both the raw text and the codes. Show the user the coding and let them correct it.",
+  "items": [
+    {
+      "id": "BIO_earned_money_young",
+      "text": "Before you turned 16, how many times did you earn money on your own initiative (selling things, doing jobs, online projects)?",
+      "type": "single",
+      "options": [
+        "Never",
+        "1-2 times",
+        "3-5 times",
+        "6 or more times"
+      ],
+      "feeds": [
+        "founding_building",
+        "persuasion"
+      ]
+    },
+    {
+      "id": "BIO_sold_to_stranger",
+      "text": "Have you ever sold something to a stranger face to face or over the phone?",
+      "type": "single",
+      "options": [
+        "No",
+        "Once or twice",
+        "Many times",
+        "It has been part of my job"
+      ],
+      "feeds": [
+        "persuasion"
+      ]
+    },
+    {
+      "id": "BIO_competition_level",
+      "text": "What is the highest level you have competed at in any organized sport, game or contest?",
+      "type": "single",
+      "options": [
+        "Never competed",
+        "Club or school",
+        "Regional",
+        "National",
+        "International"
+      ],
+      "feeds": [
+        "competitive_performance"
+      ]
+    },
+    {
+      "id": "BIO_public_creative_work",
+      "text": "What is the largest audience that has seen something you made and published (video, writing, music, art, code)?",
+      "type": "single",
+      "options": [
+        "Never published anything",
+        "Friends and family",
+        "Up to 1,000 people",
+        "1,000-100,000 people",
+        "More than 100,000 people"
+      ],
+      "feeds": [
+        "creator_media"
+      ]
+    },
+    {
+      "id": "BIO_led_group",
+      "text": "How many times have you led a group where others depended on your decisions (captain, club, project, shift)?",
+      "type": "single",
+      "options": [
+        "Never",
+        "Once",
+        "2-4 times",
+        "5 or more times"
+      ],
+      "feeds": [
+        "leadership"
+      ]
+    },
+    {
+      "id": "BIO_chosen_for_responsibility",
+      "text": "How often have teachers, coaches or managers picked you for extra responsibility?",
+      "type": "single",
+      "options": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Often"
+      ],
+      "feeds": [
+        "leadership",
+        "conscientiousness_external"
+      ]
+    },
+    {
+      "id": "BIO_thousand_hours",
+      "text": "Is there an activity you have spent more than about 1,000 hours on outside school or work? Which?",
+      "type": "text",
+      "options": null,
+      "feeds": [
+        "mastery_evidence"
+      ]
+    },
+    {
+      "id": "BIO_self_started_finished",
+      "text": "How many projects have you started that nobody asked you to do, and then finished?",
+      "type": "single",
+      "options": [
+        "None",
+        "1-2",
+        "3-5",
+        "6 or more"
+      ],
+      "feeds": [
+        "self_direction"
+      ]
+    },
+    {
+      "id": "BIO_longest_routine",
+      "text": "What is the longest you have kept up a self-directed practice routine (training, an instrument, a skill)?",
+      "type": "single",
+      "options": [
+        "Never had one",
+        "Under 3 months",
+        "3-12 months",
+        "1-3 years",
+        "More than 3 years"
+      ],
+      "feeds": [
+        "mastery_practice",
+        "long_horizon"
+      ]
+    },
+    {
+      "id": "BIO_taught_others",
+      "text": "Have you taught or coached someone else in a skill, formally or informally?",
+      "type": "single",
+      "options": [
+        "No",
+        "Once or twice",
+        "Regularly"
+      ],
+      "feeds": [
+        "coaching_influence"
+      ]
+    },
+    {
+      "id": "BIO_built_physical",
+      "text": "Have you built or repaired something physical from scratch (furniture, an engine, a structure)?",
+      "type": "single",
+      "options": [
+        "No",
+        "Once",
+        "Several times",
+        "It's a regular hobby or job"
+      ],
+      "feeds": [
+        "craft_making"
+      ]
+    },
+    {
+      "id": "BIO_skill_based_money",
+      "text": "Have you made money from trading, investing, or games of skill? (Answer honestly; there is no right answer.)",
+      "type": "single",
+      "options": [
+        "Never tried",
+        "Tried, lost overall",
+        "Roughly broke even",
+        "Made money overall"
+      ],
+      "feeds": [
+        "strategy_markets"
+      ]
+    },
+    {
+      "id": "BIO_top_subjects",
+      "text": "In which school subjects were you among the best in your class? (Select all that apply.)",
+      "type": "multi",
+      "options": [
+        "Mathematics",
+        "Natural sciences",
+        "Languages and writing",
+        "Social subjects",
+        "Arts and music",
+        "Physical education",
+        "Practical and technical subjects",
+        "None"
+      ],
+      "feeds": [
+        "aptitude_evidence"
+      ]
+    },
+    {
+      "id": "BIO_free_time_age_12_16",
+      "text": "Between ages 12 and 16, what did you spend most of your free time on? (Select up to 3.)",
+      "type": "multi",
+      "options": [
+        "Sports and training",
+        "Video or strategy games",
+        "Making things (art, music, video, writing)",
+        "Building or fixing things",
+        "Reading and learning on my own",
+        "Socialising and organising people",
+        "Earning money",
+        "Outdoors and nature"
+      ],
+      "feeds": [
+        "early_interest"
+      ]
+    },
+    {
+      "id": "BIO_flow_activities",
+      "text": "In which activities do you most often lose track of time? Describe up to three.",
+      "type": "text",
+      "options": null,
+      "feeds": [
+        "flow_evidence"
+      ]
+    },
+    {
+      "id": "BIO_asked_for_more",
+      "text": "In jobs, teams or school, what have people repeatedly asked you to do more of?",
+      "type": "text",
+      "options": null,
+      "feeds": [
+        "external_signal"
+      ]
+    },
+    {
+      "id": "BIO_naturally_good",
+      "text": "What have other people told you that you seem naturally good at?",
+      "type": "text",
+      "options": null,
+      "feeds": [
+        "external_signal"
+      ]
+    },
+    {
+      "id": "BIO_quit_pattern",
+      "text": "Think of things you started and later quit. What was the most common reason?",
+      "type": "single",
+      "options": [
+        "Got bored once it became routine",
+        "Wasn't improving fast enough",
+        "Lost to others and lost interest",
+        "Life got in the way",
+        "Found something I liked more",
+        "I rarely quit things"
+      ],
+      "feeds": [
+        "setback_resilience",
+        "mastery_practice"
+      ]
+    }
+  ]
+}

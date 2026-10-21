@@ -1,330 +1,321 @@
-# Lane — Front-end Plan
+# Lane — Plan v0.3 (assessment package integration)
 
-Status: **built** (phases 1–6) + functional backend · v0.2
+Status: **awaiting approval** · no app code written for this plan yet
 
-Working name "Lane". Front-end only; all data mocked behind a typed data layer.
+Inputs, in priority order:
 
----
-
-## 1. Stack
-
-| Concern | Choice | Notes |
+| Input | Location | Governs |
 |---|---|---|
-| Framework | Next.js 16.x (App Router) | `src/` dir, React Server Components by default, client components only where interactive |
-| Language | TypeScript, `strict: true`, `noUncheckedIndexedAccess` | |
-| Styling | Tailwind CSS 4.x | CSS-first config: tokens live as CSS variables in `globals.css`, exposed to Tailwind via `@theme inline` |
-| Fonts | `geist` package (`GeistSans`, `GeistMono`) | Weights 400 / 500 only |
-| Motion | `framer-motion` | Opacity + ≤8px translate, 150–250ms, ease-out. Respects `prefers-reduced-motion` |
-| Icons | `lucide-react` | `strokeWidth={1.5}`, 16/20px, meaning-bearing only |
-| Charts | Hand-built SVG for everything (see Decisions D3) | |
-| Lint/format | ESLint (next config) + Prettier | |
-| Visual QA | Playwright script → screenshots at 390 / 1440 × light / dark | `scripts/shoot.ts`, output to `.screenshots/` (git-ignored) |
+| Assessment package v0.1 | `./assessment/` (README, BLUEPRINT, battery_manifest, items 01–14, generators) | **Assessment content and scoring**: wins on conflicts |
+| Master prompt | *not attached; see D0* | **Design, routes, components, everything else** |
+| Your integration rules (this request) | — | Overrides both where specific |
+
+Earlier plans (v0.1 front-end, v0.2 backend) are in git history. Sections 2–4 below keep their design system unchanged; only what changes is described.
 
 ---
 
-## 2. Route map
+## 1. Starting point
 
-Two route groups share one root layout (fonts, theme script, tokens).
+The repository already has two states:
 
-```
-src/app/
-├─ layout.tsx                    root: <html data-theme>, fonts, no-flash theme script
-├─ not-found.tsx                 404 (report style: "ERR 404 · No record at this address")
-├─ system/page.tsx               design-system specimen (dev reference, public, noindex)
-│
-├─ (marketing)/                  public — top bar + footer layout
-│  ├─ layout.tsx
-│  ├─ page.tsx                   /          landing
-│  └─ method/page.tsx            /method    the science, with citations
-│
-└─ (app)/                        "authenticated" (mocked) — app shell layout
-   ├─ layout.tsx                 sidebar (≥1024px) / bottom tabs (<1024px) + top bar
-   ├─ start/page.tsx             /start              onboarding, 4 steps (?step=1..4)
-   ├─ assess/page.tsx            /assess             module hub
-   ├─ assess/[module]/page.tsx   /assess/interests | personality | cognitive | values
-   ├─ profile/page.tsx           /profile            lab report
-   ├─ lanes/page.tsx             /lanes              Lane Map (?group=&payoff=&sort=fit|fitxpayoff&lane=<id>)
-   ├─ sprints/page.tsx           /sprints            dashboard
-   ├─ sprints/[id]/page.tsx      /sprints/:id        sprint detail
-   ├─ evidence/page.tsx          /evidence           evidence record
-   └─ settings/page.tsx          /settings
-```
-
-Each app route also gets a `loading.tsx` (hairline shimmer skeleton) in phase 6.
-
-**App shell navigation** (sidebar groups, mono section labels):
-- `PROFILE` — Assessment, Profile
-- `LANES` — Lane Map
-- `EVIDENCE` — Sprints, Evidence Record
-- bottom: user (name + report ID), Settings
-
-Mobile bottom tabs (5): Assess · Profile · Lanes · Sprints · Evidence. Settings reachable from top-bar user button.
-
-`/start` is outside the sidebar experience visually (full-screen, minimal top bar with step counter and exit) — implemented as a nested layout that hides the shell.
-
----
-
-## 3. Folder structure
-
-```
-src/
-├─ app/                          routes (above)
-├─ components/
-│  ├─ ui/                        primitives: Button, Input, Select, Checkbox, Toggle,
-│  │                             SegmentedControl, Accordion, Sheet (side panel), Skeleton,
-│  │                             Rule, Tag, Kbd, VisuallyHidden
-│  ├─ data/                      DataLabel, ScoreBar, ConfidenceBadge, PayoffGlyph,
-│  │                             PayoffCurve, RadarProfile, TraitTable, LineChart,
-│  │                             SegmentedProgress
-│  ├─ report/                    SectionHeader, ReportHeader, LimitationsBox, EmptyState
-│  ├─ lanes/                     LaneRow, LaneList, LaneFilters, LaneDetailPanel
-│  ├─ assess/                    QuestionCard, ProgressBar, ModuleRow, PatternGame
-│  ├─ sprints/                   SprintCard, TaskList, CheckInScale, PerformanceLog
-│  ├─ evidence/                  EvidenceTimeline, ConvictionChart, LaneComparisonTable
-│  ├─ shell/                     Sidebar, BottomTabs, TopBar, ThemeToggle, Wordmark
-│  └─ marketing/                 Hero, ProblemGrid, MethodSequence, LaneIndex, Faq, Footer
-├─ lib/
-│  ├─ types.ts                   domain types (single source of truth)
-│  ├─ data/                      async data-access functions (the API seam)
-│  │  ├─ profile.ts              getProfile(), getUser()
-│  │  ├─ lanes.ts                getLanes(), getLane(id), getLaneMap(opts)
-│  │  ├─ assessment.ts           getModules(), getQuestions(module)
-│  │  ├─ sprints.ts              getSprints(), getSprint(id), getSuggestedSprints()
-│  │  └─ evidence.ts             getEvidence()
-│  ├─ mock/                      raw typed fixtures, only imported by lib/data/*
-│  │  ├─ user.ts  profile.ts  lanes.ts  questions.ts  sprints.ts  evidence.ts
-│  ├─ scoring.ts                 pure functions: relativeFit, fitTimesPayoff, confidence bands
-│  ├─ format.ts                  number/date/ID formatting (tabular, units, ±)
-│  └─ cn.ts                      className join
-(tokens live in src/app/globals.css, next to the root layout)
-```
-
-**API seam:** components import only from `lib/types` and receive data as props. Pages (server components) call `lib/data/*`, which today return mock fixtures wrapped in `Promise.resolve` (with optional artificial latency to exercise `loading.tsx`). Swapping to a real API means rewriting `lib/data/*` bodies only.
-
----
-
-## 4. Domain types (sketch)
-
-```ts
-type Confidence = 'high' | 'med' | 'low';
-type Score = { value: number; ci: [number, number]; median?: number; percentile?: number }; // 0–100
-
-type Riasec = Record<'R'|'I'|'A'|'S'|'E'|'C', Score>;
-type BigFive = Record<'openness'|'conscientiousness'|'extraversion'|'agreeableness'|'neuroticism', Score & { interpretation: string }>;
-type Aptitude = { id: string; label: string; score: Score; unit: string };
-type Value = { id: string; label: string; rank: number; weight: number };
-
-type LaneGroup = 'corporate' | 'independent' | 'performance' | 'craft';
-type PayoffType = 'linear' | 'convex' | 'winner-take-all';
-type Lane = {
-  id: string; name: string; group: LaneGroup; payoff: PayoffType;
-  relativeFit: Score;              // ipsative: vs. the user's own spread
-  payoffPosition: number;          // 0–1, estimated position on curve at realistic skill
-  expectedPayoff: number;          // 0–1, derived from curve(payoffPosition)
-  confidence: Confidence;
-  drivers: { trait: string; contribution: number }[]; // top contributors
-  similarProfiles: { n: number; triedPct: number; continuedPct: number; note: string };
-  sprintTemplateId?: string;
-};
-
-type Sprint = {
-  id: string; laneId: string; title: string; days: number; startedOn: string;
-  status: 'active' | 'completed' | 'suggested';
-  tasks: { day: number; title: string; done: boolean }[];
-  checkIns: { day: number; energy: number; flow: number; continue: number }[]; // 1–7
-  log: { day: number; metric: string; value: number; unit: string }[];
-  outcome?: { performance: Score; improvementRate: number; wantsToContinue: boolean; summary: string };
-};
-
-type EvidenceEvent = { id: string; date: string; kind: 'assessment'|'sprint-start'|'sprint-end'|'check-in'|'outcome'; title: string; detail: string; laneId?: string };
-type ConvictionPoint = { date: string; laneId: string; value: number; ci: [number, number] };
-```
-
----
-
-## 5. Design tokens
-
-### 5.1 Color
-
-Defined as CSS variables on `:root` (light), overridden by `@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { … } }` and `[data-theme="dark"]`. Manual toggle writes `data-theme` + `localStorage`; a blocking inline script in `<head>` applies it before paint.
-
-| Token | Light | Dark | Use |
-|---|---|---|---|
-| `--bg` | `#F7F7F5` | `#0E0F10` | page |
-| `--surface` | `#FFFFFF` | `#16171A` | cards, panels |
-| `--ink` | `#111111` | `#EDEDEA` | primary text |
-| `--ink-2` | `#55575C` | `#A5A7AC` | secondary text |
-| `--ink-3` | **`#6F7176`** ⚠ | **`#8B8D93`** ⚠ | labels, metadata (text) |
-| `--ink-4` | `#8A8C91` | `#6E7076` | non-text graphics only: ticks, axis marks, inactive segments, prior-day lines |
-| `--rule` | `#E3E3DF` | `#26282C` | hairlines |
-| `--rule-strong` | `#C9C9C4` | `#3A3C41` | table heads, active borders |
-| `--accent` | `#2340E8` | `#6B80FF` | primary action, current state, key datum |
-| `--accent-wash` | `#EEF1FE` | `#1A1F3D` | rare accent backgrounds |
-| `--positive` | `#1E7A4C` | `#4CB884` | improvement, completed |
-| `--caution` | **`#8F5A00`** ⚠ | `#D9A441` | low confidence, warnings |
-
-⚠ = changed from the brief to pass WCAG AA — see Decision D1.
-
-Tailwind mapping (`@theme inline`): `bg-bg`, `bg-surface`, `text-ink`, `text-ink-2`, `text-ink-3`, `stroke-ink-4`, `border-rule`, `border-rule-strong`, `text-accent`, `bg-accent`, `bg-accent-wash`, `text-positive`, `text-caution`. Tailwind's default palette is removed (`--color-*: initial`) so no hardcoded colors can slip in.
-
-### 5.2 Typography
-
-`font-sans` = Geist, `font-mono` = Geist Mono. Global `font-variant-numeric: tabular-nums` on `.font-mono` and all data components.
-
-| Utility | Size / LH | Tracking | Weight | Font |
-|---|---|---|---|---|
-| `text-display` | 64 / 68 | −0.03em | 500 | sans |
-| `text-h1` | 44 / 50 | −0.02em | 500 | sans |
-| `text-h2` | 30 / 36 | −0.015em | 500 | sans |
-| `text-h3` | 22 / 28 | −0.01em | 500 | sans |
-| `text-body-l` | 18 / 28 | 0 | 400 | sans |
-| `text-body` | 16 / 24 | 0 | 400 | sans |
-| `text-small` | 14 / 20 | 0 | 400 | sans |
-| `text-label` | 12 / 16 | +0.06em, uppercase | 400/500 | mono |
-
-Mobile step-down (<640px): display 44/50, h1 34/40, h2 26/32. Weights limited to `font-normal` (400) and `font-medium` (500); other weights removed from the theme.
-
-### 5.3 Shape, spacing, layout
-
-- Radius: `rounded-xs` 2px (inputs, buttons), `rounded-sm` 4px (cards), `rounded-full` (avatars only). All other radii removed.
-- Borders: 1px `--rule`. No `box-shadow` utilities except `shadow-hairline` = `0 0 0 1px var(--rule)`.
-- Spacing scale constrained to 4·8·12·16·24·32·48·64·96·128 (Tailwind `--spacing: 4px` base; lint rule/convention: only multiples on that scale).
-- Grid: 12 columns, 24px gutter (16px <640px), outer margin 16 / 32 / 48px. `max-w-content` 1200px, `max-w-reading` 680px.
-- Baseline 4px: all line-heights and component heights are multiples of 4.
-- Focus: `outline: 2px solid var(--accent); outline-offset: 2px` on `:focus-visible`, globally.
-- Motion tokens: `--dur-1 150ms`, `--dur-2 200ms`, `--dur-3 250ms`, `--ease-out cubic-bezier(0.2, 0, 0, 1)`.
-- Skeleton: 1px hairline with a translating `--rule-strong` highlight (no grey blocks).
-
----
-
-## 6. Component inventory
-
-All shown on `/system`, grouped as Foundations → Primitives → Data → Composite.
-
-### Foundations (specimens, not components)
-Color swatches with hex + contrast ratio · type scale · spacing scale · radii · grid overlay · motion demo · focus ring.
-
-### Primitives (`components/ui`)
-| Component | Variants / notes |
+| Branch | Contents |
 |---|---|
-| Button | `primary` (accent fill), `secondary` (ink outline), `ghost`; `size` 40 (default) / 32; optional `mono` label; `asChild` for links; loading state = mono "…" |
-| Input / Textarea / Select | 40px, 2px radius, hairline, label above in `text-label` |
-| Checkbox | 16px square, accent check |
-| SegmentedControl | used for Fit / Fit×payoff toggle and theme; hairline group, active = ink fill |
-| Toggle (switch) | settings only |
-| Accordion | hairline-separated, `+`/`−` in mono, `aria-expanded` |
-| Sheet | right-side panel (desktop 480px; full-screen on mobile), focus trap, Esc to close |
-| Tag | mono label in hairline box |
-| Kbd | key hint for assessment runner |
-| Skeleton | hairline shimmer |
-| Rule | horizontal/vertical hairline, `strong` variant |
+| `main` | v0.1: complete front-end on mock data (design system, `/system`, landing, method, 4-module assessment, profile, lanes, sprints, evidence, settings) |
+| `functional-backend` | v0.2: everything in `main` plus Postgres (Drizzle; PGlite locally), email/password accounts, Lane's own interim item bank, scoring and per-user results |
 
-### Data (`components/data`)
-| Component | Spec |
-|---|---|
-| DataLabel | `LABEL  value unit  ±ci`; layouts `inline` / `stacked`; value in mono tabular |
-| ScoreBar | 4px track (`--rule`), fill (`--ink`, or `--accent` when `emphasis`), CI band as 30%-opacity shaded range, median tick (1×10px `--ink-4`); `aria` as `role="meter"` with value text |
-| ConfidenceBadge | `HIGH`/`MED`/`LOW` mono + 3 segments; low → `--caution` |
-| PayoffGlyph | 48×20 SVG; curves: linear, convex, winner-take-all (flat then near-vertical); 3px dot at user position; `aria-label` describes shape |
-| PayoffCurve | full-size version for detail panel: axes labelled "Skill percentile" / "Relative payoff", user marker with CI whisker, median marker |
-| RadarProfile | hexagon, 3 hairline concentric rings max, axis labels in mono (R I A S E C + full word on hover/legend), user polygon accent stroke + 12% fill, optional CI as dashed outer/inner hull |
-| TraitTable | columns: Trait · Score (mono `78 /100 ±6`) · ScoreBar · Percentile · Interpretation; collapses to stacked rows <640px |
-| LineChart | hand-built SVG: hairline baseline, mono tick labels, accent current series, `--ink-4` prior/other series, optional CI band; responsive via `viewBox` + ResizeObserver |
-| SegmentedProgress | N segments (sprint days), done = ink, today = accent, future = rule |
-
-### Report / layout
-SectionHeader (mono index label e.g. `§ 02 · INTERESTS` + H2 + hairline) · ReportHeader (name, date, report ID, version) · LimitationsBox (`--rule-strong` border) · EmptyState (sentence + one Button).
-
-### Domain composites
-LaneRow · LaneFilters · LaneDetailPanel · QuestionCard · ProgressBar (2px top) · ModuleRow · PatternGame · SprintCard · TaskList · CheckInScale (7 square buttons, radio group semantics, keys 1–7) · PerformanceLog (editable table) · EvidenceTimeline · ConvictionChart · LaneComparisonTable.
-
-### Shell
-Sidebar · BottomTabs · TopBar (title + context action) · ThemeToggle (Light / Dark / System) · Wordmark ("LANE" in mono 500, +0.12em tracking, no logo mark).
+This plan builds on **`functional-backend`** (recommended; see D1 and open question Q1). From that branch:
+- The interim item bank (`src/lib/assessment/items.ts`), its scoring, and the 4-module flow are **replaced** by the package.
+- Accounts, database and sprints are **kept**.
+- Results pages are switched back to mock data, as you instructed.
 
 ---
 
-## 7. Screen notes (key decisions per page)
+## 2. Stack
 
-- **`/` Landing:** 12-col asymmetric — hero copy in cols 1–6, live LaneRow excerpt in cols 8–12 framed as "FIG. 1 — Sample Lane Map, excerpt". Every section opens with a numbered SectionHeader (`§ 01 THE PROBLEM` …) so the page reads like a paper. Lane index: 4 columns (2 on tablet, 1 on mobile), 32+ lanes, mono group headings with counts.
-- **`/method`:** reading-width article, numbered sections, inline superscript citation markers → numbered reference list (author, year, title, journal). References limited to well-established literature (Holland RIASEC; Costa & McCrae; Schmidt & Hunter 1998 on selection validity; Sackett et al. 2022 revisiting it; Nye et al. on interest–performance fit; Ericsson / skill acquisition; Frank & Cook on winner-take-all markets). Wording will reflect that validity estimates are contested, not invent numbers.
-- **`/start`:** one question per screen, H1-size prompt, options as full-width hairline rows with key hints, `?step=` in URL, Enter to continue, back link.
-- **`/assess`:** overall progress (`2 / 4 MODULES · 46%`) + ModuleRows (status, `~12 MIN`, item count, completion bar, action).
-- **`/assess/[module]`:** QuestionCard flow, Likert 1–5 (keys 1–5, ←/→ to move, Enter to confirm/advance, Backspace to go back). `cognitive` module = PatternGame: 3×3 SVG matrix with one missing cell, 4 options, mono countdown `00:24`, neutral feedback ("Recorded. Next item."), never "Correct!/Wrong". Answers held in client state + `sessionStorage`.
-- **`/profile`:** ReportHeader (`REPORT LN-2026-0417-HS`), §01 Summary, §02 Interests, §03 Personality, §04 Aptitudes, §05 Values, §06 What this can and can't tell you.
-- **`/lanes`:** 18–20 lanes. Desktop: list fills content, detail opens as Sheet on the right (list narrows, doesn't overlay, at ≥1280px). State fully in URL params so a lane detail is linkable. Accent reserved for the #1 ranked fit bar and the active row's chevron only.
-- **`/sprints`:** active SprintCard (large, accent on "today"), suggested sprints (3, derived from top lanes without completed sprints), completed list with outcome line.
-- **`/sprints/[id]`:** two columns desktop (tasks left 7 cols; check-in + log + chart right 5 cols), stacked mobile. Today's task row is the screen's single accent element besides the chart line.
-- **`/evidence`:** Body-L headline insight with ConfidenceBadge, timeline (left) with ConvictionChart aligned alongside (right) on desktop; comparison table below.
-- **`/settings`:** plain form sections: Profile · Appearance · Data (export JSON — generates a real download of mock data) · Danger zone (delete account, confirm dialog, mock).
+Unchanged: Next.js 16.4 (App Router) · TypeScript strict · Tailwind 4 (CSS-first tokens) · Geist / Geist Mono · framer-motion · lucide-react · hand-built SVG charts · Drizzle + Postgres (PGlite locally) · Playwright + axe for QA.
+
+Added:
+- **Vitest** as the unit-test runner. It replaces the ad-hoc `tsx` test, because the ported generator suite and the scoring suites need a real runner.
+- **`resolveJsonModule`** imports of `assessment/items/*.json`, so items are bundled at build time.
 
 ---
 
-## 8. Mock data plan
+## 3. Routes
 
-- **User:** Ingrid Halvorsen, 27, Oslo, "working, considering a change", currently in a junior analyst role. Report ID `LN-2026-0417-IH`.
-- **Other names** (similar-profiles notes, testimonials-free — used only in settings/team placeholders if needed): Sindre Bakke, Amara Okafor, Jonas Lindqvist, Mei Tanaka, Lucía Ortega.
-- **Scores:** plausible, internally consistent (high E/A in RIASEC, high extraversion + openness, moderate conscientiousness; verbal > spatial aptitude) so the lane ranking makes sense.
-- **Lanes (20 ranked + 32 in landing index):** e.g. Sales (B2B), Independent content creator, Product management, Recruiting, Coaching, Solo founder (micro-SaaS), Teacher, Consultant, UX research, Marketing, Journalist, Podcast host, Discretionary trader, Data analyst, Software engineer, Electrician, Chef, Professional athlete, Musician / performer, Real-estate agent — each with group, payoff type, CI, confidence, drivers.
-- **Sprints:** 1 active ("10 discovery calls", Sales, day 6 of 14), 2 completed (Independent content: "Publish 5 short videos"; UX research: "Run 4 user interviews"), 3 suggested.
-- **Evidence:** ~14 events across 10 weeks; conviction series per tried lane.
+```
+(marketing)  /                       landing: instrument copy updated (§8 D16)
+             /method                 science page: IPIP, O*NET, Sackett, Johnson … references
+(auth)       /login  /signup
+(onboarding) /start                  4 short steps (master prompt)
+(app)        /assess                 hub: S1–S5 from battery_manifest.json
+             /assess/[session]       S1 … S5 runner (?block=&i= in URL)
+             /assess/invite          informant invite after S2 (see Q3)
+             /profile  /lanes  /sprints  /sprints/[id]  /evidence  /settings
+(public)     /rate/[token]           informant rating form, no account (see Q3)
+             /system                 specimen, now including every item renderer
+api          /api/assess/session/[id]/next      POST  → next render payload
+             /api/assess/session/[id]/respond   POST  ← response + timing, → next payload
+             /api/assess/session/[id]/finish    POST  → effort check result, flags
+             /api/assess/balloon/[trial]/pump   POST  ← pump, → {burst, points}
+             /api/export                         GET   (exists)
+```
 
-All fixtures typed against `lib/types.ts`; dates as ISO strings.
+All assessment endpoints are **route handlers**, as you required. They are the only code that sees answer keys.
 
 ---
 
-## 9. Build phases & definition of done
+## 4. Design system
+
+Unchanged from v0.1: tokens, type scale, 4px baseline, 1px hairlines, one accent, the D1 contrast fixes, quiet motion, and focus rings. Every new component is built only from existing tokens and added to `/system`.
+
+### New components (phase 3)
+
+**Questionnaire renderers** (`components/assess/items/`), one per response format in the package:
+
+| Format | Component | Interaction |
+|---|---|---|
+| `likert5` | `LikertItem` | Existing QuestionCard pattern. Keys 1–5, ↑/↓, Enter, Backspace. "Skip" button (see D9) |
+| `likert7` | `LikertItem` (`points={7}`) | Keys 1–7 |
+| `forced_q_sort` | `QSortBoard` | Desktop: five columns with exact capacity (4×5 or 2-2-4-2-2) and a capacity counter per column. Mobile: the package's two-pass flow (pick the most important, then the least, then sort the middle). Fully keyboard-operable: select a card, then press 1–5 to place it. Drag-and-drop is an enhancement, not the only path |
+| `single` | `SingleChoice` | Hairline rows, keys 1–9 |
+| `multi` | `MultiChoice` | Checkboxes, honours "select up to 3" and "None" exclusivity |
+| `text` | `TextResponse` | Textarea with character count |
+| `number` | `NumberResponse` | Mono input, unit label |
+| `slider_0_100` | `Slider100` | Hairline track, mono readout, arrow keys ±1, PageUp/PageDown ±10, Home/End. **No default value**: the thumb appears on first touch |
+| SJT (file 08) | `SjtItem` | Scenario in Body-L, question, 4–5 options |
+| Creativity (file 09) | `IdeaList` | Timed list entry, one idea per Enter, mono countdown, idea count |
+
+**Cognitive renderers** (`components/assess/tasks/`): one per task type in file 14, each fully styled. Every task follows the package's general rules: an instruction screen, then 2–3 practice items with feedback, then scored items with neutral feedback only (except the learning task).
+
+| Task | Component | Rendering and input |
+|---|---|---|
+| matrix | `MatrixTask` | 3×3 SVG grid, hairline strokes; SHAPES / FILLS (lines = 45° hatch) / count 1–5 on a fixed layout / rotation in 45° steps; 8 options in a 4×2 grid; keys 1–8 |
+| number_series | `SeriesTask` | Five mono numbers, five options; keys 1–5 |
+| letter_series | `SeriesTask` | Same component in letter mode |
+| quant | `QuantTask` | Word problem in Body-L, four mono options, explicit "no calculator" note; keys 1–4 |
+| rotation2d | `RotationTask` | SVG polyomino target plus four options; select exactly two (toggle with 1–4), then confirm |
+| backward_digits | `SpanTask` (digits) | 900 ms per digit, 300 ms gap (SPAN_PROTOCOL); numeric keypad entry on mobile; adaptive length |
+| corsi | `SpanTask` (corsi) | Nine blocks at CORSI_LAYOUT; sequence lights in accent; tap or click to reproduce |
+| symbol_match | `SymbolMatchTask` | Two triplets; F = same / J = different, or two large buttons; 90 s countdown |
+| choice_rt | `ChoiceRtTask` | Four positions; keys D F J K, or tap; random foreperiod from the generator; 60 trials |
+| learning_rate | `LearningTask` | Symbol shown, three keys (1/2/3); correct/incorrect feedback after each trial (the only task with feedback); 6 × 24 trials with a block progress counter |
+| balloon | `BalloonTask` | Hairline circle that grows per pump; Pump / Collect; the server decides bursts (§6.3); running total in mono |
+| delay_discount | `DiscountTask` | Two choice cards ("X kr today" / "1,000 kr in N days"); adaptive, five choices per delay |
+
+**Session chrome:**
+- `SessionIntro`: minutes and what the session unlocks.
+- `EnvironmentCheck` (before S3/S4): three questions, with a "reschedule" path.
+- `EffortCheck` (EFFORT1 at the end of S1, S2, S5).
+- `SessionOutro`: what just unlocked.
+- `InformantInvite` (after S2).
+- `OnetAttribution`: footer block.
+- `LowConfidenceNotice`: shown when a session gets 2 or more data-quality flags; explains why and offers a retake.
+
+---
+
+## 5. Assessment integration
+
+### 5.1 How items are loaded
+
+- `assessment/` stays a read-only copy of the package. Nothing in the app edits it, so a newer package can be dropped in.
+- `src/lib/assessment/bank.ts` (server-only):
+  - imports `assessment/items/*.json` and `battery_manifest.json` statically, so they are bundled at build time with no runtime file reads;
+  - validates each file against a **Zod schema** at import time, so a malformed package fails the build rather than a user's session.
+- **Normalised types**: `LikertItem`, `QSortCard`, `ChoiceItem`, `TextItem`, `NumberItem`, `SliderItem`, `SjtItem`, `IdeaTask` and `CognitiveTaskSpec`, each tagged with:
+  - `module` and source file;
+  - `status`: `validated` | `experimental` (derived from the file's `status` text, plus `status` on individual items for 09 and 11);
+  - `administer`, `key` and `scale` / `facet` / `domain` codes.
+- **Filtering:** `administer: false` items are removed in the loader. NEO028/058/088/118 never reach a session, and Openness is scored from O1–O5.
+- **Validity insertion:** `buildBlock(moduleId)` returns the administration order. It places infrequency and instructed items from file 12 directly after their `insert_after` ids:
+  - INFQ1 after NEO030, INST1 after NEO060, INFQ2 after NEO075, INFQ3 after NEO110 (all in S2);
+  - INFQ4 after DSP_long_horizon_4 (S2);
+  - INST2 after IPC05 (S1).
+- **Inserted items' scale:** each one uses the response scale of its surrounding block.
+- **Order:** IPIP-NEO by `source_number`; O*NET items as listed (option to shuffle within blocks of 6, off by default); file 08 understanding then management.
+- **Sessions:** `sessionPlan(sessionId)` expands `battery_manifest.json` into an ordered list of blocks:
+  - precheck → modules (with embedded validity items) → `after` → `end`;
+  - `13_outcomes_followup:baseline` = all eleven items in `current_work`, `fit_and_wellbeing` and `performance`;
+  - `14_cognitive_battery:<task>` = one task block.
+- **No hard-coded questions:** no question text exists anywhere in `src/` (a lint check greps for it).
+  - All copy comes from the JSON, including stems, option labels, scale anchors and `{name}` substitution for informant items.
+  - The only exception is the generator templates, which are code by design.
+
+### 5.2 Scoring module structure
+
+`src/lib/scoring/`: pure functions with no I/O and no React, each unit-tested with Vitest. One file per item file's `scoring` block:
+
+```
+scoring/
+├─ core.ts            reverse(), meanWithMinimum(), sem(), ci(), diffSE(), isRelativeStrength()
+├─ personality.ts     IPIP-NEO-120: 29 facets (≥3 of 4), 5 domains (O from O1–O5), HH (file 02)
+├─ interests.ts       O*NET IP: raw sums 10–50, like-counts 0–10, Holland code, differentiation, elevation
+├─ interestsExt.ts    file 04 scale means (experimental)
+├─ values.ts          WIL Q-sort: card score = column; value score = Σ × multiplier; validates 4-per-column
+├─ valuesExt.ts       file 06 2-2-4-2-2 sort, within-person ranks only (experimental)
+├─ dispositions.ts    file 07: 10 scales, ≥5 of 6 (experimental)
+├─ sjt.ts             file 08: understanding = keyed; management = provisional keyed (experimental)
+├─ creativity.ts      file 09: fluency (valid-idea count) now; originality/flexibility = pending engine
+├─ biodata.ts         file 10: stores option indices / text; no score (empirical keying later)
+├─ informants.ts      file 11: per-rater domain means, rater weight ×1.5 for "well"/"very well", ≥2 raters
+├─ validity.ts        file 12: infrequency/instructed flags, page time, longstring >12, even-odd r<.30,
+│                     antonym r>−.10 (27 pairs), rapid-guess, effort, decision rule (≥2 flags → low confidence)
+├─ cognitive/         one file per task: matrix, series, quant, rotation (both-correct-no-mirrors),
+│                     span (SPAN_PROTOCOL stop rule), symbolMatch (correct − incorrect), choiceRt,
+│                     learning (fit a + b·log(block) for accuracy and median correct RT),
+│                     balloon (adjusted pumps + post-burst change), discount (AUC 0–1)
+├─ composite.ts       reasoning profile; general ability as percentile band (no IQ)
+├─ relative.ts        BLUEPRINT §7: z-scores → within-person ranking → difference test
+└─ index.ts           scoreSession(sessionId, responses) → SessionScores (one shape for all)
+```
+
+**Generators:**
+- `assessment/generators/generators.ts` is imported as is.
+- `src/lib/assessment/seed.ts` adds `seedFor(userId, taskId, attempt, itemIndex)`:
+  - FNV-1a 32-bit of `${userId}:${taskId}:${attempt}`, mixed with `itemIndex` by a fixed multiplier;
+  - deterministic, so a session can be regenerated server-side and never needs storing.
+- Difficulty comes from each task's `phase1_ladder`.
+
+**Tests:**
+- `assessment/generators/generators.test.ts` is ported to `tests/generators.test.ts` (Vitest wrapper, same checks and seed counts).
+- Seed tests check determinism, that different users get different items, and that a retake changes items.
+- Scoring tests use hand-computed fixtures from the package's rules (examples: a facet with 2 of 4 answered → null; the WIL multiplier maths; the Corsi stop rule; the rotation both-correct rule).
+
+### 5.3 Server / client split for keys
+
+The client receives a **render payload** only. It is produced by `toPublic()` in the route handler:
+
+| Content | Sent to client | Kept on server |
+|---|---|---|
+| Likert / single / multi / text / number / slider | id, text, options, response format | `key` (reverse flag), scale/facet codes, `status` |
+| Validity items | Rendered as ordinary items | Their identity and pass/fail rule |
+| SJT | Scenario, question, options | `key`, `provisional_key_index`, rationale |
+| matrix | 8 cells of the grid and 8 options, in **generator-independent display order** | `answerIndex`, `rules`, difficulty |
+| series / quant | Shown terms or text, options | `answer`, `rule`, level |
+| rotation2d | Target and four option polygons, **pre-transformed** to absolute cells | `mirrored`, `angleDeg`, `answerIndices` |
+| span | The sequence (it *is* the stimulus) | Scoring and adaptive length (the server decides the next length) |
+| symbol_match | Left/right triplets | `same` |
+| choice_rt | Stimulus and foreperiod | — |
+| learning_rate | Symbol per trial, plus a per-trial correct/incorrect response | Mapping is never sent; feedback is computed server-side per batch of 24 (see D12) |
+| balloon | Points per pump | `explosionPoints` (each pump is a POST; the server answers burst or not) |
+| delay_discount | Next question | History and indifference computation |
+
+- **Item identity:** items are identified by an opaque `itemToken` (an HMAC of session + position), not by generator id or seed. The client can't regenerate items.
+- **Marking:** responses are marked in `/respond`. The client is never told right or wrong (except the learning task, and practice items, whose feedback is generated by the server).
+- **Lint guard:** `bank.ts` and `scoring/**` start with `import "server-only"`. An ESLint rule forbids importing them from `"use client"` files.
+
+### 5.4 How session progress is saved
+
+New tables (Drizzle migration). The interim `responses` and `cognitive_responses` tables are dropped:
+
+| Table | Columns | Notes |
+|---|---|---|
+| `assessment_sessions` | id, user_id, session_id (S1–S5), attempt, status (`in_progress` / `completed` / `discarded`), started_at, completed_at, device_class, input_type, viewport, env_check (json), effort, flags (json), confidence (`ok` / `low`) | |
+| `item_responses` | session_row_id, position, item_id, module, value (json), rt_ms, shown_at, answered_at, device_class, input_type, skipped | One row per item, including validity items |
+| `task_trials` | session_row_id, task_id, trial_index, item_seed, payload (json: response, correct, rt_ms, rapid_guess) | Cognitive and behavioural tasks |
+| `session_scores` | session_row_id, scores (json, the `SessionScores` shape), scored_at | |
+| `informant_invites`, `informant_responses` | — | If Q3 = yes |
+
+**Saving and resuming:**
+- Each answer is saved as it is given (`/respond`); nothing is held only in the browser.
+- The current block and item index are in the URL (`?block=&i=`).
+- On reload, `/next` returns the first unanswered position.
+- Cognitive tasks resume at the **next task**, not mid-task. A half-finished timed task restarts with fresh items (attempt + 1), because resuming a timed task mid-way biases it.
+
+**Timing:**
+- `rt_ms` is measured client-side with `performance.now()`, from the moment the item is painted to when the answer is chosen. It is sent with each response.
+- `device_class` comes from pointer and viewport media queries.
+- `input_type` is the event type of the answer (keyboard, mouse or touch).
+
+**At session end:**
+1. `scoring/validity.ts` computes the flags.
+2. `scoreSession` stores scores.
+3. The EFFORT1 answer applies its action: *Partly* offers to redo the rushed block; *No* marks the session `discarded` and asks for a retake later.
+
+The hub (`/assess`) reads `assessment_sessions` for status, minutes and the "unlocked" state.
+
+### 5.5 Experimental content
+
+- **Collected and scored but never shown as scores:** files 04, 06, 07, 08, 09 (PF1, AUD1), 10, and the observer items in 11.
+- **How the user sees it:** a "Collected for research. Not part of your results until validated" line in the session outro, and nothing on results pages.
+- **Enforced in the type:** `SessionScores` marks each scale `visibility: "user" | "hidden"`, and results components only accept `"user"` scales.
+
+### 5.6 O*NET attribution
+
+`OnetAttribution` renders the `required_attribution` string from file 03 verbatim, with a link to https://www.onetcenter.org/license_tools.html and "O*NET®" used as an adjective. It appears in the footer of:
+- the S1 runner;
+- `/profile`, `/lanes` and `/evidence` (all show interest or values results);
+- `/method`.
+
+### 5.7 Results pages (mock, BLUEPRINT §7)
+
+- `src/lib/mock/profile.ts` is rewritten to the **exact `SessionScores`/`ProfileScores` shape** that `scoreSession` outputs: facets, domains, RIASEC sums, WIL values, cognitive composite band, reasoning profile, and validity confidence.
+- Swapping to real scores later is a one-line change in `lib/data`.
+
+**Display rules** (all enforced in shared components):
+- **Intervals:** every score has an interval of ±1.645 × SEM, where SEM = SD·√(1 − r).
+- **Facets:** each facet is shown with its interval, never as a lone number.
+- **Ability:** no IQ number anywhere. General ability is shown as a **percentile band with a 90% interval**; the reasoning profile is shown as relative strengths.
+- **Relative strength** is shown only when |z₁ − z₂| > 1.96 × √(2 − r₁ − r₂). Otherwise the page says "No clear difference".
+- **Norms:** results are labelled "Provisional norms" until Lane has its own norms.
+- **Partial profiles:** if a profile has only S1 + S2, the Lane Map is marked "Partial" with a list of the missing evidence (`minimum_viable_profile`).
+
+---
+
+## 6. Build phases
 
 | Phase | Scope | Done when |
 |---|---|---|
-| **1. Foundation** | scaffold, tokens, fonts, theme script + toggle, all primitives + data components, `/system` | `/system` renders every component in both themes; screenshots reviewed; `tsc` + lint clean. **Pause for your review.** |
-| **2. Marketing** | `/`, `/method`, marketing layout, footer | 390/1440 × light/dark screenshots reviewed |
-| **3. Assessment** | `/start`, `/assess`, `/assess/[module]`, PatternGame | full keyboard pass through one module |
-| **4. Results** | `/profile`, `/lanes` + detail Sheet, filters, sort toggle | URL state round-trips; panel focus-trapped |
-| **5. Sprints & evidence** | `/sprints`, `/sprints/[id]`, `/evidence` | check-ins/log update local state; charts render both themes |
-| **6. Polish** | spacing audit, motion, keyboard, empty states, `loading.tsx` skeletons, 404, Lighthouse a11y ≥95 on every route, no horizontal scroll 360–1920 | audit checklist in README all ticked |
+| 1. Foundation | Audit existing system; add Vitest; add new components to `/system` as they're built | Typecheck, lint, tests green |
+| 2. Marketing | Landing and method copy updated for the real instruments and their references, O*NET attribution, the honest-limits list | Screenshots at 390 / 1440 in both themes reviewed |
+| 3a. Bank and scoring | Loader with Zod schemas, session expansion, validity insertion, all `scoring/*` modules, seed function, ported generator test | Every scoring rule has a passing test; generator suite passes |
+| 3b. Questionnaires | Hub (S1–S5), runner, all 8 response-format renderers plus SJT and IdeaList, route handlers, progress saving, effort/environment checks, flags | S1, S2 and S5 completable end to end by keyboard; reload resumes correctly |
+| 3c. Cognitive | All 12 task renderers (the 11 named plus letter series via SeriesTask), practice items, server-side marking, rapid-guess handling | S3 and S4 completable; no answer key in the client bundle (verified by grepping the built JS) |
+| 4. Results (mock) | Profile, lanes and evidence on the reshaped mock; §7 display rules; partial-map state | Rules enforced by components; screenshots reviewed |
+| 5. Sprints & evidence | Keep existing (mock, per your instruction) | Unchanged pages still pass |
+| 6. Polish | Spacing audit, motion, loading states, 404, axe on every route, overflow 360–1920 | Zero axe violations; no overflow |
 
-After every phase: `npm run build`, run `scripts/shoot.ts` for each new route at 390 & 1440 in both themes, review against §2 of the brief, fix, then continue.
-
----
-
-## 10. Decisions
-
-- **D1 — Contrast fixes to the specified palette.** Measured against WCAG AA (4.5:1 for text):
-  - `#8A8C91` on `#F7F7F5` = **3.14** (fails); dark `#6E7076` on `#16171A` = **3.62** (fails). These are the label/metadata colors, i.e. the smallest text, so it matters.
-  - `--caution #A86A00` on `#F7F7F5` = **4.14** (fails).
-  - Fix: `--ink-3` becomes `#6F7176` light (4.55) / `#8B8D93` dark (5.40); `--caution` light becomes `#8F5A00` (5.39). The original greys are kept as `--ink-4`, used only for non-text graphics (3:1 is the requirement there and they pass). Visual character is essentially unchanged. *Revert if you prefer the exact hexes and accept failing AA.*
-- **D2 — Tailwind v4 CSS-first config.** Tailwind 4 has no `tailwind.config.js` by default; "map into Tailwind" is done with `@theme inline` in `globals.css`. Default palette, radii, shadows and font weights are cleared so only tokens are usable.
-- **D3 — No recharts/visx.** The line charts needed (improvement, conviction) are simple; hand-built SVG keeps them exactly on-token, removes default styling to fight, and keeps the bundle small. Revisit only if interactions (brushing, zoom) are added.
-- **D4 — Dark mode mechanism.** `data-theme` on `<html>` with three-way setting (Light / Dark / System). System follows `prefers-color-scheme`. Inline head script prevents flash. Tailwind `dark:` variant bound to the same selector, though tokens should make `dark:` rarely necessary.
-- **D5 — "Authenticated" is mocked** as a route group with a fixed mock user; no auth UI beyond the shell. `/start` is reachable directly and from the landing CTA.
-- **D6 — Relative fit is ipsative.** Lane fit is computed against the user's own score distribution (z-scored within-person), so a lane can rank #1 even if all raw scores are average. Copy on `/lanes` says so explicitly. "Fit × payoff" multiplies relative fit by the expected payoff at the user's estimated position on that lane's curve; CIs are propagated (roughly) so ranks with overlapping intervals are marked as ties (`=3`).
-- **D7 — Score scale.** All scores 0–100 with 80% intervals shown as `±n`; percentiles labelled `P72`. Medians shown as ticks only where a population reference is meaningful (aptitudes, Big Five), not on relative-fit bars (no population comparison by design).
-- **D8 — Assessment persistence.** Brief says React state + URL params; answers are too large for the URL, so they live in React state mirrored to `sessionStorage` for refresh-safety. Step/question index is in the URL.
-- **D9 — Accent discipline per screen.** Each page spec lists its one accent element; others use ink. Positive/caution are semantic status colors, not accents, and appear only on status data.
-- **D10 — Breakpoints.** `sm 640`, `md 768`, `lg 1024` (sidebar appears), `xl 1280` (lane panel docks beside list). Mobile-first.
-- **D11 — Folder `src/`.** Routes in `src/app`; `/lib` and `/components` from the brief live at `src/lib`, `src/components` (aliased as `@/lib`, `@/components`).
-- **D12 — Citations.** `/method` cites real, well-known works by author/year/title only; no fabricated effect sizes. Where the literature disagrees (e.g. validity of cognitive tests after Sackett et al.), the copy says so.
+QA after every phase is the same as before: build, then screenshots at 390 / 1440 in light and dark, then axe, then an E2E run.
 
 ---
 
-- **D13 — Cache Components off.** The Next 16 template enables `cacheComponents` + `partialPrefetching`. With static mock data they add Suspense/prerender constraints and keep hidden routes mounted (React `<Activity>`), with no benefit. Turned off in `next.config.ts`; revisit when a real API arrives.
-- **D14 — Fit × payoff formula.** `fit × (0.35 + 0.65 × payoff(position))`, so payoff weighs on but never erases fit. Curves: linear `0.18 + 0.72x`, convex `x^2.4`, winner-take-all `x^12` (conceptual shapes, not earnings data).
-- **D15 — Ties are anchored.** A lane ties with the lane *holding* the current rank only if within 2.5 points of it, so ties never chain down the list.
-- **D16 — Neutral game feedback.** The pattern game says "Recorded · 4.2 s" and never right/wrong; telling people would teach the test and change what it measures.
-- **D17 — Accessibility verification.** Lighthouse isn't run in this environment; `npm run a11y` runs axe-core (WCAG 2.1 A/AA incl. contrast) on every route at 390/1440 in both themes instead. It reports zero violations.
+## 7. Decisions
 
-### Backend (v0.2)
+Conflicts and gaps between the two specs, and how this plan resolves them.
 
-- **D18 — Postgres everywhere, zero-setup locally.** Drizzle ORM. With `DATABASE_URL` set: postgres.js (Neon/Vercel in production; `prepare: false` for poolers). Without it: embedded PGlite in `.data/pglite`, migrated on first use. Same SQL migrations for both.
-- **D19 — Own auth, not a framework.** Email + password (bcrypt, cost 12); 30-day DB sessions keyed by a SHA-256 of a random cookie token; `proxy.ts` is only an optimistic redirect, and `requireUser()` runs in every page, action and route. Login errors don't reveal which emails exist.
-- **D20 — Lane's own item bank (user decision).** 36 interest, 40 personality (balanced keying), 16 values items and 3×8 timed game items, written for Lane's lanes. Marked as not yet validated in the report, method page and FAQ. "Validated" removed from all copy.
-- **D21 — Transparent scoring.** Keyed means → 0–100 with 80% intervals (SE from the person's own item spread, floored). Games: % correct with Wilson intervals. No percentiles or medians until 30 people have completed the assessment; no sprint performance percentiles until 10 people ran the same sprint; "others who tried it" needs 10 people. Nothing comparative is shown before it can be computed.
-- **D22 — Server-side marking.** Game answer keys never reach the browser; each item can be answered once.
-- **D23 — Lane model v1 is expert-weighted.** Ipsative feature z-scores × per-lane weights, 20% values term; intervals widen with missing inputs; "athlete" is forced to low confidence (physical ability unmeasured). Intended to be re-fitted on sprint outcomes.
-- **D24 — One active sprint at a time;** 8 hand-written templates plus a generic one-week taste test for other lanes. Conviction = prior (relative fit, weight 1) moved toward sprint evidence (weight 1.5 per completed sprint, proportional while active).
+- **D0 — Master prompt file not received.** Only BLUEPRINT.md, ITEMS_PREVIEW.md and the zip were attached, so `lane-master-prompt.md` is **not** in the project root. This plan uses the master prompt from the start of our conversation (sections 0–8). Upload the file and I'll copy it in and re-check this plan against it.
+- **D1 — Mock results, but a backend exists.** You asked for mock results "until a backend exists"; `functional-backend` already has one. Plan:
+  - **Saved for real:** responses, timing, flags and scores.
+  - **Mock, as you instructed:** results pages. Showing real z-scores honestly needs the norms in D2, which don't exist yet.
+- **D2 — Norms and reliabilities missing.** BLUEPRINT §7's intervals and difference test need, for each scale, a population **mean, SD and reliability r**. The package only gives a range (".63–.88") and says "use published norms", but contains no figures.
+  - The scoring functions take a `psychometrics` table as input.
+  - It ships with **clearly marked placeholder values** (r = .70 for 4-item facets, .80 for domains, mean/SD from the mock), used by the mock only.
+  - Real values must be transcribed from the sources (Johnson 2014 for IPIP-NEO-120; the O*NET IP technical reports) before any real user sees scores. I won't invent them.
+- **D3 — 4 modules → 5 sessions.** The hub uses S1–S5 from `battery_manifest.json` (your rule). The master prompt's module list is replaced. Session order is recommended, not enforced, except that S3 and S4 together unlock ability results.
+- **D4 — "Aptitudes (ScoreBars)" vs "no IQ".** The master prompt's aptitude ScoreBars become a reasoning profile (reasoning / spatial / quantitative / memory / speed) of **relative strengths only**, plus one percentile **band** with a 90% interval for general ability. Choice RT never appears as a headline score (file 14).
+- **D5 — Verbal reasoning not built** (file 14, phase 2). It is excluded from sessions, the reasoning profile and copy. The old mock "Verbal reasoning" aptitude is removed.
+- **D6 — Neutral feedback.** The master prompt says "immediate neutral feedback". The package says no right/wrong on scored items, with feedback on practice items and in the learning task. Both are followed: scored items show "Recorded"; practice and learning trials show correct/incorrect.
+- **D7 — Experimental scales vs BLUEPRINT §8 lane priors.** The priors use experimental constructs (persuasion, setback resilience, visibility comfort and others), but your rule hides experimental scales. Plan: the Lane Map (mock this phase) names only validated constructs as drivers. Experimental scales feed the model only after the pilot. Flagged for the future real Lane Map.
+- **D8 — Rapid-guess rule needs norm medians.** "<25% of the item's median time from the norm sample" has no norm sample yet. Interim rule: a provisional median of 50% of the item's time limit (so the floor is 12.5% of the limit), labelled provisional in `scoring/validity.ts`.
+- **D9 — Skipping.** The scoring rules expect missing answers (facet ≥3 of 4, scale ≥5 of 6), but the master prompt's QuestionCard has no skip. Plan: a quiet "Skip" control on Likert items (not a numbered option). Skips are recorded as `skipped`, and the page-time and longstring checks ignore them.
+- **D10 — Seed formula.** The README says `hash(userId + taskId + attemptNumber)` but gives no hash function and no per-item rule. Plan: FNV-1a 32-bit on the joined string, then `seed + itemIndex × 2654435761 >>> 0` per item, mapped to the task's ladder level.
+- **D11 — Server-held state for adaptive tasks.** Span length, delay-discount questions and balloon bursts are decided by the server, one POST per step. Expected latency is ~50 ms locally; the UI shows no spinner for responses under 150 ms.
+- **D12 — Learning task feedback.** Sending the symbol→key mapping would let someone read it in devtools. Feedback must be immediate, so marking must be immediate too. Plan: send the block's 24 symbols, and have the server return correctness per trial (one POST per trial, which is also where RT is recorded). If measured latency is over 100 ms, fall back to sending the mapping for that block only. That is acceptable because this task has no "right answer" to protect beyond the learning curve itself.
+- **D13 — Informant flow needs public, account-less routes and email.** BLUEPRINT treats informant ratings as core; the master prompt has no screens for them. See Q3.
+- **D14 — Creativity scoring engine.** Semantic distance and LLM scoring need an embedding/LLM service. Plan: store the raw ideas now, compute fluency only, and leave originality and flexibility `pending`. The responses are experimental and hidden anyway, except AUT, which stays unscored until the engine exists.
+- **D15 — Biodata free-text coding by LLM.** Deferred. Raw text is stored and the item is shown as answered.
+- **D16 — Copy changes.**
+  - "Lane's own questions, not validated" (v0.2) is replaced by accurate statements: validated public instruments for the core; experimental Lane extensions collected but not scored for you.
+  - The method page gains the BLUEPRINT references.
+  - The landing hero metadata changes to "5 sessions · ~135 min".
+- **D17 — Session length.** 135 minutes is long. The hub states each session's minutes and what it unlocks, and the master prompt's "~35 min" copy is replaced.
+- **D18 — Sprints and evidence stay mock.** Per your rule, `/sprints` and `/evidence` read `/lib/mock`, even though v0.2 had them wired to the database.
+  - I'll keep the v0.2 wiring behind `lib/data` so it can be switched back.
+  - The sprint "improvement vs your learning rate" comparison (BLUEPRINT §5) becomes possible once S4 data exists, and is noted for later.
+- **D19 — Device class and timed tasks.** Norms are per device class (file 14), so results label the device the session used. Phones are allowed for all tasks, but a notice recommends a keyboard for S3/S4.
 
-## 11. Open questions (non-blocking — defaults above apply)
+## 8. Open questions (I'll use the recommended default unless you say otherwise)
 
-1. Accept D1 contrast adjustments?
-2. Mock user name/city (Ingrid Halvorsen, Oslo) fine?
-3. Should `/system` be excluded from production builds, or kept public as a living style guide (default: kept, `noindex`)?
+1. **Q1 — Base branch.** *Recommended:* build on `functional-backend` (real progress saving in Postgres). *Alternative:* build on `main`, where progress would be stored only in the browser until a backend exists.
+2. **Q2 — Results while mock.** Is it fine that a signed-in user who completes sessions still sees the **sample** profile (clearly labelled "Sample: your results appear once norms are in place")? *Recommended:* yes, per your rule.
+3. **Q3 — Informant ratings in this phase?** *Recommended:* build the invite UI plus the public `/rate/[token]` form now, with copy-the-link sharing (no email sending yet).
+4. **Q4 — Norm and reliability sourcing (D2).** Will you supply the published tables? Otherwise I'll transcribe them from the cited papers and mark each number with its source for you to check.

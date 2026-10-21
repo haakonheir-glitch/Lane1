@@ -1,0 +1,408 @@
+{
+  "module": "interests_riasec",
+  "instrument": "O*NET Interest Profiler Short Form (60 work activities)",
+  "citation": "National Center for O*NET Development. O*NET Interest Profiler Short Form. U.S. Department of Labor, Employment and Training Administration. https://www.onetcenter.org/IP.html",
+  "license": {
+    "summary": "Two options. Verbatim copy: CC BY-ND 4.0. Any modification or extension (including changing the response format from the paper checkbox to a 5-point scale): O*NET Tools Developer License, which requires credit, a link to the license page, and validation of the product. https://www.onetcenter.org/license_tools.html",
+    "required_attribution": "This page includes information from the O*NET Career Exploration Tools by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the O*NET Tools Developer License. O*NET® is a trademark of USDOL/ETA. Lane has modified all or some of this information. USDOL/ETA has not approved, endorsed, or tested these modifications.",
+    "trademark_rule": "Use 'O*NET' only as an adjective ('O*NET Interest Profiler'), never as a noun, verb, plural or possessive. Show the ® symbol.",
+    "action": "Register as a developer: https://www.onetcenter.org/register"
+  },
+  "response_format": {
+    "type": "likert5",
+    "stem": "How much would you like doing this activity? Don't think about the education or training needed, or how much money you would make.",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly dislike"
+      },
+      {
+        "value": 2,
+        "label": "Dislike"
+      },
+      {
+        "value": 3,
+        "label": "Unsure"
+      },
+      {
+        "value": 4,
+        "label": "Like"
+      },
+      {
+        "value": 5,
+        "label": "Strongly like"
+      }
+    ]
+  },
+  "administration": {
+    "order": "As listed (R-I-A-S-E-C interleaved). Randomize within each block of 6 if desired.",
+    "est_minutes": 7
+  },
+  "scoring": {
+    "scale_raw": "Sum of 10 responses per scale (range 10-50). Also store the count of 'Like'+'Strongly like' (0-10), which maps to the official checkbox scoring and the O*NET occupation-matching tables.",
+    "profile": "Holland code = the 3 highest scales. Also compute differentiation (highest minus lowest scale) and elevation (mean of all six). Low differentiation = interests not yet formed; flag it rather than forcing a code.",
+    "occupation_match": "Correlate the user's 6-scale profile with O*NET occupational interest profiles (O*NET database 'Interests' file, CC BY 4.0) for ~900 occupations."
+  },
+  "items": [
+    {
+      "id": "IPR01",
+      "scale": "Realistic",
+      "scale_code": "R",
+      "text": "Build kitchen cabinets"
+    },
+    {
+      "id": "IPI01",
+      "scale": "Investigative",
+      "scale_code": "I",
+      "text": "Develop a new medicine"
+    },
+    {
+      "id": "IPA01",
+      "scale": "Artistic",
+      "scale_code": "A",
+      "text": "Write books or plays"
+    },
+    {
+      "id": "IPS01",
+      "scale": "Social",
+      "scale_code": "S",
+      "text": "Teach an individual an exercise routine"
+    },
+    {
+      "id": "IPE01",
+      "scale": "Enterprising",
+      "scale_code": "E",
+      "text": "Buy and sell stocks and bonds"
+    },
+    {
+      "id": "IPC01",
+      "scale": "Conventional",
+      "scale_code": "C",
+      "text": "Develop a spreadsheet using computer software"
+    },
+    {
+      "id": "IPR02",
+      "scale": "Realistic",
+      "scale_code": "R",
+      "text": "Lay brick or tile"
+    },
+    {
+      "id": "IPI02",
+      "scale": "Investigative",
+      "scale_code": "I",
+      "text": "Study ways to reduce water pollution"
+    },
+    {
+      "id": "IPA02",
+      "scale": "Artistic",
+      "scale_code": "A",
+      "text": "Play a musical instrument"
+    },
+    {
+      "id": "IPS02",
+      "scale": "Social",
+      "scale_code": "S",
+      "text": "Help people with personal or emotional problems"
+    },
+    {
+      "id": "IPE02",
+      "scale": "Enterprising",
+      "scale_code": "E",
+      "text": "Manage a retail store"
+    },
+    {
+      "id": "IPC02",
+      "scale": "Conventional",
+      "scale_code": "C",
+      "text": "Proofread records or forms"
+    },
+    {
+      "id": "IPR03",
+      "scale": "Realistic",
+      "scale_code": "R",
+      "text": "Repair household appliances"
+    },
+    {
+      "id": "IPI03",
+      "scale": "Investigative",
+      "scale_code": "I",
+      "text": "Conduct chemical experiments"
+    },
+    {
+      "id": "IPA03",
+      "scale": "Artistic",
+      "scale_code": "A",
+      "text": "Compose or arrange music"
+    },
+    {
+      "id": "IPS03",
+      "scale": "Social",
+      "scale_code": "S",
+      "text": "Give career guidance to people"
+    },
+    {
+      "id": "IPE03",
+      "scale": "Enterprising",
+      "scale_code": "E",
+      "text": "Operate a beauty salon or barber shop"
+    },
+    {
+      "id": "IPC03",
+      "scale": "Conventional",
+      "scale_code": "C",
+      "text": "Install software across computers on a large network"
+    },
+    {
+      "id": "IPR04",
+      "scale": "Realistic",
+      "scale_code": "R",
+      "text": "Raise fish in a fish hatchery"
+    },
+    {
+      "id": "IPI04",
+      "scale": "Investigative",
+      "scale_code": "I",
+      "text": "Study the movement of planets"
+    },
+    {
+      "id": "IPA04",
+      "scale": "Artistic",
+      "scale_code": "A",
+      "text": "Draw pictures"
+    },
+    {
+      "id": "IPS04",
+      "scale": "Social",
+      "scale_code": "S",
+      "text": "Perform rehabilitation therapy"
+    },
+    {
+      "id": "IPE04",
+      "scale": "Enterprising",
+      "scale_code": "E",
+      "text": "Manage a department within a large company"
+    },
+    {
+      "id": "IPC04",
+      "scale": "Conventional",
+      "scale_code": "C",
+      "text": "Operate a calculator"
+    },
+    {
+      "id": "IPR05",
+      "scale": "Realistic",
+      "scale_code": "R",
+      "text": "Assemble electronic parts"
+    },
+    {
+      "id": "IPI05",
+      "scale": "Investigative",
+      "scale_code": "I",
+      "text": "Examine blood samples using a microscope"
+    },
+    {
+      "id": "IPA05",
+      "scale": "Artistic",
+      "scale_code": "A",
+      "text": "Create special effects for movies"
+    },
+    {
+      "id": "IPS05",
+      "scale": "Social",
+      "scale_code": "S",
+      "text": "Do volunteer work at a non-profit organization"
+    },
+    {
+      "id": "IPE05",
+      "scale": "Enterprising",
+      "scale_code": "E",
+      "text": "Start your own business"
+    },
+    {
+      "id": "IPC05",
+      "scale": "Conventional",
+      "scale_code": "C",
+      "text": "Keep shipping and receiving records"
+    },
+    {
+      "id": "IPR06",
+      "scale": "Realistic",
+      "scale_code": "R",
+      "text": "Drive a truck to deliver packages to offices and homes"
+    },
+    {
+      "id": "IPI06",
+      "scale": "Investigative",
+      "scale_code": "I",
+      "text": "Investigate the cause of a fire"
+    },
+    {
+      "id": "IPA06",
+      "scale": "Artistic",
+      "scale_code": "A",
+      "text": "Paint sets for plays"
+    },
+    {
+      "id": "IPS06",
+      "scale": "Social",
+      "scale_code": "S",
+      "text": "Teach children how to play sports"
+    },
+    {
+      "id": "IPE06",
+      "scale": "Enterprising",
+      "scale_code": "E",
+      "text": "Negotiate business contracts"
+    },
+    {
+      "id": "IPC06",
+      "scale": "Conventional",
+      "scale_code": "C",
+      "text": "Calculate the wages of employees"
+    },
+    {
+      "id": "IPR07",
+      "scale": "Realistic",
+      "scale_code": "R",
+      "text": "Test the quality of parts before shipment"
+    },
+    {
+      "id": "IPI07",
+      "scale": "Investigative",
+      "scale_code": "I",
+      "text": "Develop a way to better predict the weather"
+    },
+    {
+      "id": "IPA07",
+      "scale": "Artistic",
+      "scale_code": "A",
+      "text": "Write scripts for movies or television shows"
+    },
+    {
+      "id": "IPS07",
+      "scale": "Social",
+      "scale_code": "S",
+      "text": "Teach sign language to people who are deaf or hard of hearing"
+    },
+    {
+      "id": "IPE07",
+      "scale": "Enterprising",
+      "scale_code": "E",
+      "text": "Represent a client in a lawsuit"
+    },
+    {
+      "id": "IPC07",
+      "scale": "Conventional",
+      "scale_code": "C",
+      "text": "Inventory supplies using a hand-held computer"
+    },
+    {
+      "id": "IPR08",
+      "scale": "Realistic",
+      "scale_code": "R",
+      "text": "Repair and install locks"
+    },
+    {
+      "id": "IPI08",
+      "scale": "Investigative",
+      "scale_code": "I",
+      "text": "Work in a biology lab"
+    },
+    {
+      "id": "IPA08",
+      "scale": "Artistic",
+      "scale_code": "A",
+      "text": "Perform jazz or tap dance"
+    },
+    {
+      "id": "IPS08",
+      "scale": "Social",
+      "scale_code": "S",
+      "text": "Help conduct a group therapy session"
+    },
+    {
+      "id": "IPE08",
+      "scale": "Enterprising",
+      "scale_code": "E",
+      "text": "Market a new line of clothing"
+    },
+    {
+      "id": "IPC08",
+      "scale": "Conventional",
+      "scale_code": "C",
+      "text": "Record rent payments"
+    },
+    {
+      "id": "IPR09",
+      "scale": "Realistic",
+      "scale_code": "R",
+      "text": "Set up and operate machines to make products"
+    },
+    {
+      "id": "IPI09",
+      "scale": "Investigative",
+      "scale_code": "I",
+      "text": "Invent a replacement for sugar"
+    },
+    {
+      "id": "IPA09",
+      "scale": "Artistic",
+      "scale_code": "A",
+      "text": "Sing in a band"
+    },
+    {
+      "id": "IPS09",
+      "scale": "Social",
+      "scale_code": "S",
+      "text": "Take care of children at a day-care center"
+    },
+    {
+      "id": "IPE09",
+      "scale": "Enterprising",
+      "scale_code": "E",
+      "text": "Sell merchandise at a department store"
+    },
+    {
+      "id": "IPC09",
+      "scale": "Conventional",
+      "scale_code": "C",
+      "text": "Keep inventory records"
+    },
+    {
+      "id": "IPR10",
+      "scale": "Realistic",
+      "scale_code": "R",
+      "text": "Put out forest fires"
+    },
+    {
+      "id": "IPI10",
+      "scale": "Investigative",
+      "scale_code": "I",
+      "text": "Do laboratory tests to identify diseases"
+    },
+    {
+      "id": "IPA10",
+      "scale": "Artistic",
+      "scale_code": "A",
+      "text": "Edit movies"
+    },
+    {
+      "id": "IPS10",
+      "scale": "Social",
+      "scale_code": "S",
+      "text": "Teach a high-school class"
+    },
+    {
+      "id": "IPE10",
+      "scale": "Enterprising",
+      "scale_code": "E",
+      "text": "Manage a clothing store"
+    },
+    {
+      "id": "IPC10",
+      "scale": "Conventional",
+      "scale_code": "C",
+      "text": "Stamp, sort, and distribute mail for an organization"
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "module": "informant_ratings",
+  "instrument": "Mini-IPIP (third-person) + Lane observer items",
+  "citation": "Donnellan, M. B., Oswald, F. L., Baird, B. M., & Lucas, R. E. (2006). The Mini-IPIP scales: Tiny-yet-effective measures of the Big Five factors of personality. Psychological Assessment, 18, 192-203.",
+  "license": "Mini-IPIP items are public domain (IPIP); third-person rewording is permitted. Observer items are original (Lane).",
+  "why_included": "Meta-analyses show ratings by people who know you predict job and academic performance better than self-reports, and add to them (Connelly & Ones, 2010; Oh, Wang & Mount, 2011). This is the single biggest accuracy upgrade available that most competitors skip.",
+  "flow": {
+    "invite": "After the personality session, the user invites 3-5 people who know them well from different contexts (family, friend, teammate/colleague). Each rater gets a link; no account needed.",
+    "minimum": "Aggregate only when >= 2 raters have completed. Report self vs others side by side, never a single blended score.",
+    "privacy": "Individual rater answers are never shown to the user; only the aggregate of 2+ raters. Tell raters this before they start.",
+    "est_minutes_per_rater": 5
+  },
+  "rater_context_items": [
+    {
+      "id": "RC_relation",
+      "text": "How do you know {name}?",
+      "type": "single",
+      "options": [
+        "Family",
+        "Friend",
+        "Partner",
+        "Teammate or classmate",
+        "Colleague or manager",
+        "Other"
+      ]
+    },
+    {
+      "id": "RC_years",
+      "text": "How long have you known {name}?",
+      "type": "single",
+      "options": [
+        "Under 1 year",
+        "1-3 years",
+        "3-10 years",
+        "More than 10 years"
+      ]
+    },
+    {
+      "id": "RC_wellknown",
+      "text": "How well do you know {name}?",
+      "type": "likert5",
+      "options": [
+        "Barely",
+        "Slightly",
+        "Moderately",
+        "Well",
+        "Very well"
+      ]
+    }
+  ],
+  "response_format": {
+    "type": "likert5",
+    "stem": "How accurately does each statement describe {name}, compared with other people of the same sex and roughly the same age?",
+    "options": [
+      {
+        "value": 1,
+        "label": "Very inaccurate"
+      },
+      {
+        "value": 2,
+        "label": "Moderately inaccurate"
+      },
+      {
+        "value": 3,
+        "label": "Neither accurate nor inaccurate"
+      },
+      {
+        "value": 4,
+        "label": "Moderately accurate"
+      },
+      {
+        "value": 5,
+        "label": "Very accurate"
+      }
+    ]
+  },
+  "scoring": {
+    "reverse": "If key == -1, score = 6 - response.",
+    "domain": "Mean of 4 items per domain. Aggregate across raters by mean, weighting raters who report knowing the person 'well' or 'very well' x1.5."
+  },
+  "items": [
+    {
+      "id": "INF01",
+      "domain": "E",
+      "key": 1,
+      "text": "Is the life of the party."
+    },
+    {
+      "id": "INF02",
+      "domain": "A",
+      "key": 1,
+      "text": "Sympathizes with others' feelings."
+    },
+    {
+      "id": "INF03",
+      "domain": "C",
+      "key": 1,
+      "text": "Gets chores done right away."
+    },
+    {
+      "id": "INF04",
+      "domain": "N",
+      "key": 1,
+      "text": "Has frequent mood swings."
+    },
+    {
+      "id": "INF05",
+      "domain": "O",
+      "key": 1,
+      "text": "Has a vivid imagination."
+    },
+    {
+      "id": "INF06",
+      "domain": "E",
+      "key": -1,
+      "text": "Doesn't talk a lot."
+    },
+    {
+      "id": "INF07",
+      "domain": "A",
+      "key": -1,
+      "text": "Is not interested in other people's problems."
+    },
+    {
+      "id": "INF08",
+      "domain": "C",
+      "key": -1,
+      "text": "Often forgets to put things back in their proper place."
+    },
+    {
+      "id": "INF09",
+      "domain": "N",
+      "key": -1,
+      "text": "Is relaxed most of the time."
+    },
+    {
+      "id": "INF10",
+      "domain": "O",
+      "key": -1,
+      "text": "Is not interested in abstract ideas."
+    },
+    {
+      "id": "INF11",
+      "domain": "E",
+      "key": 1,
+      "text": "Talks to a lot of different people at parties."
+    },
+    {
+      "id": "INF12",
+      "domain": "A",
+      "key": 1,
+      "text": "Feels others' emotions."
+    },
+    {
+      "id": "INF13",
+      "domain": "C",
+      "key": 1,
+      "text": "Likes order."
+    },
+    {
+      "id": "INF14",
+      "domain": "N",
+      "key": 1,
+      "text": "Gets upset easily."
+    },
+    {
+      "id": "INF15",
+      "domain": "O",
+      "key": -1,
+      "text": "Has difficulty understanding abstract ideas."
+    },
+    {
+      "id": "INF16",
+      "domain": "E",
+      "key": -1,
+      "text": "Keeps in the background."
+    },
+    {
+      "id": "INF17",
+      "domain": "A",
+      "key": -1,
+      "text": "Is not really interested in others."
+    },
+    {
+      "id": "INF18",
+      "domain": "C",
+      "key": -1,
+      "text": "Makes a mess of things."
+    },
+    {
+      "id": "INF19",
+      "domain": "N",
+      "key": -1,
+      "text": "Seldom feels blue."
+    },
+    {
+      "id": "INF20",
+      "domain": "O",
+      "key": -1,
+      "text": "Does not have a good imagination."
+    },
+    {
+      "id": "OBS_finishes",
+      "scale": "conscientiousness_behaviour",
+      "key": 1,
+      "text": "When {name} commits to something, they finish it.",
+      "status": "experimental"
+    },
+    {
+      "id": "OBS_bounces_back",
+      "scale": "setback_resilience",
+      "key": 1,
+      "text": "{name} bounces back quickly after a setback.",
+      "status": "experimental"
+    },
+    {
+      "id": "OBS_competes",
+      "scale": "competitiveness",
+      "key": 1,
+      "text": "{name} becomes more driven when there is competition.",
+      "status": "experimental"
+    },
+    {
+      "id": "OBS_persuades",
+      "scale": "persuasion",
+      "key": 1,
+      "text": "{name} can get people to agree to things.",
+      "status": "experimental"
+    },
+    {
+      "id": "OBS_self_starts",
+      "scale": "self_direction",
+      "key": 1,
+      "text": "{name} starts things without being asked.",
+      "status": "experimental"
+    },
+    {
+      "id": "OBS_performs",
+      "scale": "visibility_comfort",
+      "key": 1,
+      "text": "{name} is at their best with an audience.",
+      "status": "experimental"
+    },
+    {
+      "id": "OBS_practices",
+      "scale": "mastery_practice",
+      "key": 1,
+      "text": "{name} practises things long after others would stop.",
+      "status": "experimental"
+    },
+    {
+      "id": "OBS_hands",
+      "scale": "physical_embodied",
+      "key": 1,
+      "text": "{name} is good with their hands or body.",
+      "status": "experimental"
+    }
+  ]
+}

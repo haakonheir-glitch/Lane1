@@ -1,0 +1,295 @@
+{
+  "module": "interests_lane_extension",
+  "instrument": "Lane Interest Extension (original, experimental)",
+  "status": "EXPERIMENTAL. Written for Lane. Not yet validated. Do not show these scales to users as scores until the pilot (BLUEPRINT.md §9) confirms reliability >= .75 and a clean factor structure.",
+  "license": "Proprietary to Lane.",
+  "why_included": "O*NET items are drawn from employer-based occupations. Lanes the product exists to map (creator, competitor, trader, founder, independent craft, coach, outdoor) are thinly covered or missing. Same work-activity format as the O*NET items so the two can be co-analysed.",
+  "response_format": {
+    "type": "likert5",
+    "stem": "How much would you like doing this activity? Don't think about the education or training needed, or how much money you would make.",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly dislike"
+      },
+      {
+        "value": 2,
+        "label": "Dislike"
+      },
+      {
+        "value": 3,
+        "label": "Unsure"
+      },
+      {
+        "value": 4,
+        "label": "Like"
+      },
+      {
+        "value": 5,
+        "label": "Strongly like"
+      }
+    ]
+  },
+  "administration": {
+    "order": "Immediately after the O*NET items, interleaved across scales as listed.",
+    "est_minutes": 5
+  },
+  "scoring": {
+    "scale": "Mean of 6 items per scale (1-5).",
+    "riasec_projection": "In the pilot, regress each scale on the six RIASEC scales. Keep the residual as 'what this lane adds beyond RIASEC'. If a scale is >80% explained by RIASEC, drop it."
+  },
+  "items": [
+    {
+      "id": "LI_creator_media_1",
+      "scale": "Content & media",
+      "scale_code": "creator_media",
+      "text": "Film and edit short videos for an online audience"
+    },
+    {
+      "id": "LI_competitive_performance_1",
+      "scale": "Competitive performance",
+      "scale_code": "competitive_performance",
+      "text": "Train every day to compete in a sport"
+    },
+    {
+      "id": "LI_strategy_markets_1",
+      "scale": "Strategy, games & markets",
+      "scale_code": "strategy_markets",
+      "text": "Play poker or another strategy game at a professional level"
+    },
+    {
+      "id": "LI_founding_building_1",
+      "scale": "Founding & building",
+      "scale_code": "founding_building",
+      "text": "Turn an idea into a product people pay for"
+    },
+    {
+      "id": "LI_craft_making_1",
+      "scale": "Craft & making",
+      "scale_code": "craft_making",
+      "text": "Build custom furniture for paying clients"
+    },
+    {
+      "id": "LI_coaching_influence_1",
+      "scale": "Coaching & influence",
+      "scale_code": "coaching_influence",
+      "text": "Coach clients one-on-one toward a fitness goal"
+    },
+    {
+      "id": "LI_outdoor_expedition_1",
+      "scale": "Outdoor & expedition",
+      "scale_code": "outdoor_expedition",
+      "text": "Guide groups on multi-day mountain trips"
+    },
+    {
+      "id": "LI_creator_media_2",
+      "scale": "Content & media",
+      "scale_code": "creator_media",
+      "text": "Grow a following around a topic you know well"
+    },
+    {
+      "id": "LI_competitive_performance_2",
+      "scale": "Competitive performance",
+      "scale_code": "competitive_performance",
+      "text": "Study video of your own performance to find mistakes"
+    },
+    {
+      "id": "LI_strategy_markets_2",
+      "scale": "Strategy, games & markets",
+      "scale_code": "strategy_markets",
+      "text": "Trade financial markets with your own money"
+    },
+    {
+      "id": "LI_founding_building_2",
+      "scale": "Founding & building",
+      "scale_code": "founding_building",
+      "text": "Pitch your idea to investors"
+    },
+    {
+      "id": "LI_craft_making_2",
+      "scale": "Craft & making",
+      "scale_code": "craft_making",
+      "text": "Restore old cars or motorcycles"
+    },
+    {
+      "id": "LI_coaching_influence_2",
+      "scale": "Coaching & influence",
+      "scale_code": "coaching_influence",
+      "text": "Create and sell an online course"
+    },
+    {
+      "id": "LI_outdoor_expedition_2",
+      "scale": "Outdoor & expedition",
+      "scale_code": "outdoor_expedition",
+      "text": "Work on an offshore vessel or platform"
+    },
+    {
+      "id": "LI_creator_media_3",
+      "scale": "Content & media",
+      "scale_code": "creator_media",
+      "text": "Write a weekly newsletter read by thousands of people"
+    },
+    {
+      "id": "LI_competitive_performance_3",
+      "scale": "Competitive performance",
+      "scale_code": "competitive_performance",
+      "text": "Compete in tournaments for prize money"
+    },
+    {
+      "id": "LI_strategy_markets_3",
+      "scale": "Strategy, games & markets",
+      "scale_code": "strategy_markets",
+      "text": "Build a model that predicts sports or market outcomes"
+    },
+    {
+      "id": "LI_founding_building_3",
+      "scale": "Founding & building",
+      "scale_code": "founding_building",
+      "text": "Build a website or app on your own"
+    },
+    {
+      "id": "LI_craft_making_3",
+      "scale": "Craft & making",
+      "scale_code": "craft_making",
+      "text": "Cook on the line in a high-end restaurant"
+    },
+    {
+      "id": "LI_coaching_influence_3",
+      "scale": "Coaching & influence",
+      "scale_code": "coaching_influence",
+      "text": "Run workshops for companies"
+    },
+    {
+      "id": "LI_outdoor_expedition_3",
+      "scale": "Outdoor & expedition",
+      "scale_code": "outdoor_expedition",
+      "text": "Lead wilderness or survival courses"
+    },
+    {
+      "id": "LI_creator_media_4",
+      "scale": "Content & media",
+      "scale_code": "creator_media",
+      "text": "Host a podcast where you interview interesting people"
+    },
+    {
+      "id": "LI_competitive_performance_4",
+      "scale": "Competitive performance",
+      "scale_code": "competitive_performance",
+      "text": "Follow a strict training and diet plan to reach peak form"
+    },
+    {
+      "id": "LI_strategy_markets_4",
+      "scale": "Strategy, games & markets",
+      "scale_code": "strategy_markets",
+      "text": "Study opponents to find patterns you can exploit"
+    },
+    {
+      "id": "LI_founding_building_4",
+      "scale": "Founding & building",
+      "scale_code": "founding_building",
+      "text": "Hire and lead your first employees"
+    },
+    {
+      "id": "LI_craft_making_4",
+      "scale": "Craft & making",
+      "scale_code": "craft_making",
+      "text": "Run your own hair or barber studio"
+    },
+    {
+      "id": "LI_coaching_influence_4",
+      "scale": "Coaching & influence",
+      "scale_code": "coaching_influence",
+      "text": "Help clients change a habit over several months"
+    },
+    {
+      "id": "LI_outdoor_expedition_4",
+      "scale": "Outdoor & expedition",
+      "scale_code": "outdoor_expedition",
+      "text": "Work as a ski or dive instructor"
+    },
+    {
+      "id": "LI_creator_media_5",
+      "scale": "Content & media",
+      "scale_code": "creator_media",
+      "text": "Livestream yourself while you work or play"
+    },
+    {
+      "id": "LI_competitive_performance_5",
+      "scale": "Competitive performance",
+      "scale_code": "competitive_performance",
+      "text": "Perform under pressure in front of a crowd"
+    },
+    {
+      "id": "LI_strategy_markets_5",
+      "scale": "Strategy, games & markets",
+      "scale_code": "strategy_markets",
+      "text": "Make fast decisions with incomplete information"
+    },
+    {
+      "id": "LI_founding_building_5",
+      "scale": "Founding & building",
+      "scale_code": "founding_building",
+      "text": "Find the first customers for a product nobody has heard of"
+    },
+    {
+      "id": "LI_craft_making_5",
+      "scale": "Craft & making",
+      "scale_code": "craft_making",
+      "text": "Design and ink custom tattoos"
+    },
+    {
+      "id": "LI_coaching_influence_5",
+      "scale": "Coaching & influence",
+      "scale_code": "coaching_influence",
+      "text": "Mentor young people starting their careers"
+    },
+    {
+      "id": "LI_outdoor_expedition_5",
+      "scale": "Outdoor & expedition",
+      "scale_code": "outdoor_expedition",
+      "text": "Do field research in remote places"
+    },
+    {
+      "id": "LI_creator_media_6",
+      "scale": "Content & media",
+      "scale_code": "creator_media",
+      "text": "Test different titles and thumbnails to see what gets more views"
+    },
+    {
+      "id": "LI_competitive_performance_6",
+      "scale": "Competitive performance",
+      "scale_code": "competitive_performance",
+      "text": "Coach a team through a full competitive season"
+    },
+    {
+      "id": "LI_strategy_markets_6",
+      "scale": "Strategy, games & markets",
+      "scale_code": "strategy_markets",
+      "text": "Manage a set of high-risk, high-reward bets"
+    },
+    {
+      "id": "LI_founding_building_6",
+      "scale": "Founding & building",
+      "scale_code": "founding_building",
+      "text": "Run your own online store"
+    },
+    {
+      "id": "LI_craft_making_6",
+      "scale": "Craft & making",
+      "scale_code": "craft_making",
+      "text": "Make jewelry or leather goods by hand"
+    },
+    {
+      "id": "LI_coaching_influence_6",
+      "scale": "Coaching & influence",
+      "scale_code": "coaching_influence",
+      "text": "Build and lead an online community around a shared goal"
+    },
+    {
+      "id": "LI_outdoor_expedition_6",
+      "scale": "Outdoor & expedition",
+      "scale_code": "outdoor_expedition",
+      "text": "Work on search-and-rescue missions"
+    }
+  ]
+}

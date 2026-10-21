@@ -1,0 +1,50 @@
+{
+  "battery": "Lane Full Profile v0.1",
+  "total_user_minutes": 135,
+  "principle": "Long, but never in one sitting. Five sessions of 20-30 minutes, each of which unlocks a visible part of the profile. Data quality drops sharply after ~30 minutes of continuous self-report, so splitting is a measurement decision, not just a UX one.",
+  "sessions": [
+    {
+      "id": "S1", "title": "What draws you", "minutes": 22,
+      "modules": ["03_interests_onet_ip_short_form", "04_interests_lane_extension", "05_values_onet_work_importance", "06_values_lane_extension"],
+      "unlocks": "Interest radar (RIASEC) and top work values. Shown immediately: early payoff keeps people going.",
+      "end": "12_validity_checks.self_report_effort"
+    },
+    {
+      "id": "S2", "title": "How you operate", "minutes": 25,
+      "modules": ["01_personality_ipip_neo_120", "02_personality_honesty_humility", "07_lane_dispositions"],
+      "embedded": ["12_validity_checks.infrequency_items", "12_validity_checks.instructed_items"],
+      "unlocks": "Big Five + 30 facets + Honesty-Humility. Lane dispositions stay hidden until validated (pilot).",
+      "after": "Prompt to invite 3-5 informants (11_informant_ratings).",
+      "end": "12_validity_checks.self_report_effort"
+    },
+    {
+      "id": "S3", "title": "Reasoning I", "minutes": 29,
+      "precheck": "14_cognitive_battery.general_rules.environment_check",
+      "modules": ["14_cognitive_battery:matrix", "14_cognitive_battery:number_series", "14_cognitive_battery:letter_series", "14_cognitive_battery:rotation2d", "14_cognitive_battery:backward_digits"],
+      "unlocks": "Nothing yet (ability results need both sessions)."
+    },
+    {
+      "id": "S4", "title": "Reasoning II and choices", "minutes": 29,
+      "precheck": "14_cognitive_battery.general_rules.environment_check",
+      "modules": ["14_cognitive_battery:quant", "14_cognitive_battery:corsi", "14_cognitive_battery:symbol_match", "14_cognitive_battery:choice_rt", "14_cognitive_battery:learning_rate", "14_cognitive_battery:balloon", "14_cognitive_battery:delay_discount"],
+      "unlocks": "Reasoning profile (relative strengths), learning rate, risk and patience profile."
+    },
+    {
+      "id": "S5", "title": "Judgment, ideas and history", "minutes": 30,
+      "modules": ["08_emotional_intelligence_sjt", "09_creativity_tasks", "10_biodata_life_history", "13_outcomes_followup:baseline"],
+      "unlocks": "Full profile + first Lane Map.",
+      "end": "12_validity_checks.self_report_effort"
+    }
+  ],
+  "async": {
+    "informants": {"module": "11_informant_ratings", "minutes_per_rater": 5, "minimum_raters_to_show": 2, "target_raters": 4},
+    "outcomes": {"module": "13_outcomes_followup", "cadence": "every 3 months + every sprint"}
+  },
+  "order_rationale": [
+    "Interests first: enjoyable, low effort, immediate payoff.",
+    "Personality before abilities: ability tests are tiring and a failure experience can colour later self-ratings.",
+    "Cognitive sessions are separate and preceded by an environment check, because noise from a bad testing day is larger than most differences you want to detect.",
+    "Biodata last: by then the user trusts the product enough to answer factual history honestly."
+  ],
+  "minimum_viable_profile": "If a user stops early: S1 + S2 already give interests, values and personality. Mark the Lane Map 'partial' and show which evidence is missing."
+}

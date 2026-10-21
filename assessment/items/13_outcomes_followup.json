@@ -1,0 +1,120 @@
+{
+  "module": "outcomes",
+  "why": "The outcome engine (the moat) needs ground truth: what happened to people with a given profile. Collect at baseline, then every 3 months, and after every sprint.",
+  "status": "Original items. Single items are fine here because they are aggregated across thousands of users, not used to judge one person.",
+  "schedule": {
+    "baseline": "After the last assessment session",
+    "periodic": "Every 3 months by email/push, about 2 minutes",
+    "per_sprint": "Day 0, daily check-ins, and day-final (see sprint spec in the app master prompt)"
+  },
+  "current_work": [
+    {
+      "id": "OUT_status",
+      "text": "What is your main activity right now?",
+      "type": "single",
+      "options": [
+        "Studying",
+        "Employed full-time",
+        "Employed part-time",
+        "Self-employed or founder",
+        "Freelance or creator",
+        "Professional athlete or performer",
+        "Between things",
+        "Other"
+      ]
+    },
+    {
+      "id": "OUT_lane",
+      "text": "Describe what you actually do most days.",
+      "type": "text",
+      "coding": "LLM-coded to the lane taxonomy and to an O*NET-SOC occupation code; user confirms."
+    },
+    {
+      "id": "OUT_months",
+      "text": "How long have you been doing this?",
+      "type": "number",
+      "unit": "months"
+    }
+  ],
+  "fit_and_wellbeing": [
+    {
+      "id": "OUT_sat",
+      "text": "All in all, how satisfied are you with the work you do?",
+      "type": "likert7"
+    },
+    {
+      "id": "OUT_energy",
+      "text": "After a normal workday, how do you usually feel?",
+      "type": "likert7",
+      "anchors": [
+        "Completely drained",
+        "",
+        "",
+        "Neutral",
+        "",
+        "",
+        "Energized"
+      ]
+    },
+    {
+      "id": "OUT_grass",
+      "text": "How often do you think another line of work would suit you much better?",
+      "type": "likert5",
+      "anchors": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Often",
+        "Almost all the time"
+      ],
+      "why": "Directly measures the 'grass is greener' problem the product exists to solve."
+    },
+    {
+      "id": "OUT_conviction",
+      "text": "How sure are you that you are on the right path for you?",
+      "type": "slider_0_100"
+    },
+    {
+      "id": "OUT_stay",
+      "text": "If nothing forced you to change, would you still be doing this in 3 years?",
+      "type": "single",
+      "options": [
+        "Definitely not",
+        "Probably not",
+        "Not sure",
+        "Probably",
+        "Definitely"
+      ]
+    }
+  ],
+  "performance": [
+    {
+      "id": "OUT_rank",
+      "text": "Compared with others doing the same work, where would you place yourself?",
+      "type": "single",
+      "options": [
+        "Bottom 25%",
+        "Below average",
+        "Average",
+        "Above average",
+        "Top 10%"
+      ]
+    },
+    {
+      "id": "OUT_external",
+      "text": "In the last 3 months, have you had any objective signs of doing well (promotion, raise, award, ranking, revenue, audience growth)? Describe.",
+      "type": "text"
+    },
+    {
+      "id": "OUT_income_trend",
+      "text": "Compared with 3 months ago, your income from this work is...",
+      "type": "single",
+      "options": [
+        "Lower",
+        "About the same",
+        "Higher",
+        "Not applicable"
+      ]
+    }
+  ]
+}

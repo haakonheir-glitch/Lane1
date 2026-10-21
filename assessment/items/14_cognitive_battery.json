@@ -1,0 +1,96 @@
+{
+  "module": "cognitive_and_behavioural",
+  "instrument": "Lane Cognitive & Behavioural Battery (procedurally generated)",
+  "status": "Item types follow decades of ability research (matrices, series, rotation, span, processing speed). Every item is generated from a seed by generators/generators.ts, so no proprietary test content is reproduced and items cannot be memorised or looked up. Difficulty parameters are predictions until calibrated with IRT on pilot data.",
+  "license": "Proprietary to Lane (generator code and parameters). The task paradigms are public scientific methods.",
+  "reference_models": {
+    "open_benchmark": "ICAR (International Cognitive Ability Resource; Condon & Revelle, 2014) uses the same item types: matrix reasoning, letter-number series, verbal reasoning and 3D rotation. Use the published ICAR research literature as the benchmark for expected reliability and correlations. ICAR item files are distributed for scientific use, so do not copy them into the product.",
+    "not_used": "Raven's Progressive Matrices, WAIS/Wechsler, Wonderlic, CogAT and other commercial tests. Licensing cost, and their items circulate online."
+  },
+  "general_rules": {
+    "device": "Record device class (phone/tablet/desktop), input type (touch/mouse/keyboard) and viewport for every session. Timed and RT tasks are normed separately per device class.",
+    "environment_check": "Before cognitive sessions ask: quiet place? 25 minutes uninterrupted? Not tired or under the influence? If not, suggest rescheduling. A bad testing day is the largest source of noise in online ability testing.",
+    "practice": "Every task starts with 2-3 untimed practice items with feedback. Practice items are not scored.",
+    "feedback_during_test": "No right/wrong feedback on scored items (except the learning task, where feedback is the point).",
+    "rapid_guess_rule": "Responses faster than 25% of an item's median time are treated as missing, not wrong.",
+    "adaptivity": "Phase 1 (pilot): fixed difficulty ladder for everyone, to calibrate items. Phase 2: computerized adaptive testing with a 2PL IRT model, using the generator parameters as covariates (explanatory IRT), which cuts test length by roughly a third to a half at equal precision."
+  },
+  "tasks": [
+    {
+      "id": "matrix", "construct": "Fluid reasoning (Gf)", "generator": "generateMatrix(seed, activeRules)",
+      "format": "3x3 grid with the last cell missing; choose 1 of 8 options.",
+      "phase1_ladder": [1,1,2,2,2,3,3,3,3,4,4,4], "items": 12, "est_minutes": 10,
+      "why": "The strongest single marker of general reasoning that does not depend on language or schooling. Important because Lane serves Norwegian and English speakers.",
+      "design_note": "Distractors are built by attribute bisection, so every attribute value appears in exactly half the options and the answer cannot be found by picking the most common features. Verified over 8,000 generated items: exactly one valid option every time.",
+      "render": "SVG, hairline strokes, shapes from SHAPES, fill from FILLS (lines = 45° hatch), count = 1-5 copies arranged on a fixed layout, rotation in 45° steps. Circles, squares and hexagons look identical under some 45° rotations, so the generator only lets rotation vary when every shape in the item is a triangle, pentagon or arrow (ROTATION_SAFE_SHAPES). Verified over 8,000 items."
+    },
+    {
+      "id": "number_series", "construct": "Inductive and quantitative reasoning", "generator": "generateNumberSeries(seed, level)",
+      "format": "Five numbers shown; choose the next of 5 options.", "phase1_ladder": [1,1,2,2,3,3,4,4], "items": 8, "est_minutes": 6
+    },
+    {
+      "id": "letter_series", "construct": "Inductive reasoning (verbal-free)", "generator": "generateLetterSeries(seed, level)",
+      "format": "Five letters shown; choose the next of 5 options.", "phase1_ladder": [1,1,2,2,3,3], "items": 6, "est_minutes": 4,
+      "note": "Uses the Latin alphabet A-Z only (not Æ Ø Å), so it works identically in Norwegian and English."
+    },
+    {
+      "id": "quant", "construct": "Applied quantitative reasoning", "generator": "generateQuant(seed, level)",
+      "format": "Short word problem; choose 1 of 4. On-screen calculator NOT allowed.", "phase1_ladder": [1,2,2,3,3,4], "items": 6, "est_minutes": 7,
+      "why": "Templates are taken from lane-relevant situations (sales funnels, audience growth, expected value of a bet). Distractors model typical errors, e.g. forgetting the cost of a bet.",
+      "localization": "Templates are in English with 'kr'. Translate templates (not items) for Norwegian; keep numbers generated."
+    },
+    {
+      "id": "rotation2d", "construct": "Spatial visualization (Gv)", "generator": "generateRotation2D(seed, cellsN)",
+      "format": "Target shape plus 4 rotated options; select the 2 that are the same shape (the other 2 are mirror images).", "phase1_ladder": [5,5,6,6,7,7,8,8], "items": 8, "est_minutes": 5,
+      "scoring": "Item correct only if both correct options and no mirrors are selected (as in the Vandenberg & Kuse rotation test logic).",
+      "phase2": "Add a 3D cube-figure version (three.js render of Shepard-Metzler style figures) once 2D is calibrated; 3D rotation is the stronger predictor for engineering, architecture and surgical lanes."
+    },
+    {
+      "id": "backward_digits", "construct": "Working memory", "generator": "generateBackwardDigits(seed, length) + SPAN_PROTOCOL",
+      "format": "Digits shown one at a time (900 ms); user types them in reverse order.", "items": "adaptive, 6-14 trials", "est_minutes": 4
+    },
+    {
+      "id": "corsi", "construct": "Visuospatial working memory", "generator": "generateCorsi(seed, length) + SPAN_PROTOCOL",
+      "format": "Blocks light up in sequence; user taps them in the same order.", "items": "adaptive, 6-14 trials", "est_minutes": 4
+    },
+    {
+      "id": "symbol_match", "construct": "Processing speed", "generator": "generateSymbolMatchBlock(seed)",
+      "format": "Two triplets of symbols: same set or different? 90 seconds.", "est_minutes": 2,
+      "scoring": "correct - incorrect"
+    },
+    {
+      "id": "choice_rt", "construct": "Perceptual-motor speed", "generator": "generateChoiceRT(seed)",
+      "format": "One of 4 positions lights up; press/tap it as fast as possible. 60 trials.", "est_minutes": 2,
+      "use": "Within-person and same-device comparisons only. Relevant evidence for esports, some sports and trading-style lanes; weak for everything else. Never shown as a headline score."
+    },
+    {
+      "id": "learning_rate", "construct": "Rate of skill acquisition (novel)", "generator": "generateLearningTask(seed)",
+      "format": "Six new symbols map onto three keys. Feedback after every trial. Six blocks of 24 trials.", "est_minutes": 6,
+      "scoring": "Slope of accuracy and of median correct RT across blocks (fit a + b*log(block)). Reported relative to starting level.",
+      "why": "The product's core thesis is that rate of improvement during a sprint is the best evidence of fit. This task gives a baseline learning rate on neutral material so sprint improvement can be compared against it ('you improved at sales calls 2x faster than your general learning rate')."
+    },
+    {
+      "id": "balloon", "construct": "Behavioural risk taking", "generator": "generateBalloonSchedule(seed)",
+      "format": "Pump a balloon to earn points per pump; cash out anytime; it bursts at an unknown point. 30 balloons.", "est_minutes": 5,
+      "scoring": "Adjusted average pumps (non-burst balloons only). Also: change in pumping after a burst (loss reactivity).",
+      "why": "Self-reported risk and actual risk behaviour diverge. Lanes like trading, poker and founding demand calibrated risk, not just high risk."
+    },
+    {
+      "id": "delay_discount", "construct": "Patience / long-horizon choice", "generator": "discountNext(later, delayDays, history)",
+      "format": "'1,000 kr in 30 days or X kr today?' Five adaptive choices per delay; delays 7, 30, 90, 365 days.", "est_minutes": 3,
+      "scoring": "Area under the discounting curve (0-1)."
+    },
+    {
+      "id": "verbal_reasoning", "construct": "Verbal reasoning (Gc)", "generator": "NOT YET IMPLEMENTED",
+      "status": "Phase 2. Verbal items are language-specific and cannot be translated one-to-one. Plan: generate analogy and sentence-logic items with an LLM from a frequency-banded word list per language, then have two native-speaker reviewers approve each item, then calibrate separately in Norwegian and English. Never compare verbal scores across languages.",
+      "est_minutes": 6
+    }
+  ],
+  "composite_scores": {
+    "general_ability": "IRT-scored composite of matrix, number_series, letter_series, quant, rotation2d. Report as a percentile band with 90% interval, not a point IQ.",
+    "reasoning_profile": "Relative strengths within the person: reasoning vs spatial vs quantitative vs memory vs speed. This is what feeds the lane map, not the absolute level alone.",
+    "what_not_to_report": "No 'IQ' number. An online, unproctored, 40-minute battery cannot support it, and the number does more harm than good to how people see themselves."
+  },
+  "total_est_minutes": 68,
+  "split": "Two sessions: Session A = matrix, number_series, letter_series, rotation2d, backward_digits (~29 min). Session B = quant, corsi, symbol_match, choice_rt, learning_rate, balloon, delay_discount (~29 min). Verbal added in phase 2."
+}

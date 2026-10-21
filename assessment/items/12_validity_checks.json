@@ -1,0 +1,69 @@
+{
+  "module": "data_quality",
+  "why": "Careless responding is common in online questionnaires and quietly ruins profiles. Combine direct checks (infrequency and instructed items) with indirect ones (response time, long strings, consistency).",
+  "infrequency_items": {
+    "note": "Same response scale as the surrounding block. The keyed answer is 1 or 2 ('inaccurate'). Original items; keep them mildly plausible in tone so they don't feel like traps.",
+    "items": [
+      {
+        "id": "INFQ1",
+        "text": "Have never used a phone or a computer.",
+        "insert_after": "NEO030",
+        "fail_if_response_gte": 4
+      },
+      {
+        "id": "INFQ2",
+        "text": "Sleep less than one hour every night.",
+        "insert_after": "NEO075",
+        "fail_if_response_gte": 4
+      },
+      {
+        "id": "INFQ3",
+        "text": "Have visited every country in the world.",
+        "insert_after": "NEO110",
+        "fail_if_response_gte": 4
+      },
+      {
+        "id": "INFQ4",
+        "text": "Can run 100 metres in under three seconds.",
+        "insert_after": "DSP_long_horizon_4",
+        "fail_if_response_gte": 4
+      }
+    ]
+  },
+  "instructed_items": {
+    "note": "Use sparingly; more than one per ~50 items irritates people.",
+    "items": [
+      {
+        "id": "INST1",
+        "text": "To show you are reading carefully, choose 'Moderately inaccurate' for this statement.",
+        "insert_after": "NEO060",
+        "pass_if_response_eq": 2
+      },
+      {
+        "id": "INST2",
+        "text": "Please choose 'Like' for this activity.",
+        "insert_after": "IPC05",
+        "pass_if_response_eq": 4
+      }
+    ]
+  },
+  "self_report_effort": {
+    "id": "EFFORT1",
+    "position": "end of each session",
+    "text": "Be honest, it won't count against you: should we use your answers from this session to build your profile?",
+    "options": [
+      "Yes, I answered carefully",
+      "Partly, I rushed some parts",
+      "No, I wasn't really paying attention"
+    ],
+    "action": "'Partly' -> offer to redo the rushed block. 'No' -> discard the session and ask them to retake it later."
+  },
+  "indirect_indices": {
+    "page_time": "Flag a block if median response time < 1.0 s per Likert item (likely not reading).",
+    "longstring": "Flag if the same option is chosen > 12 times in a row in any Likert block.",
+    "even_odd_consistency": "Split each multi-item scale into even and odd items, correlate halves across scales; flag if r < .30.",
+    "psychometric_antonyms": "Use the 27 opposite-content IPIP-NEO pairs (file 01). Flag if the within-person correlation across pairs is > -.10.",
+    "cognitive_rt": "On ability items, flag responses < 25% of the item's median time from the norm sample (rapid guessing). Score those items as missing, not wrong."
+  },
+  "decision_rule": "Two or more flags in a session -> mark the session 'low confidence', show the user why, and offer a retake. Never silently discard data and never shame the user."
+}

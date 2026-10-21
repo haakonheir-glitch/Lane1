@@ -1,0 +1,195 @@
+{
+  "module": "work_values",
+  "instrument": "O*NET Work Importance Locator (20-card Q-sort)",
+  "citation": "U.S. Department of Labor, Employment and Training Administration (2000). O*NET Work Importance Locator, Version 3.0. Retired tool; materials archived at https://www.onetcenter.org/reports/WIL_Archive.html",
+  "license": {
+    "summary": "Covered by the O*NET Career Exploration Tools licenses (CC BY-ND 4.0 verbatim, or O*NET Tools Developer License for modified versions). Same attribution and trademark rules as file 03.",
+    "use_restriction": "The tool's own user agreement says results are for career exploration, planning and counseling only and must not be used for hiring or screening. This matters for any future B2B product: do not reuse this module for employer selection."
+  },
+  "response_format": {
+    "type": "forced_q_sort",
+    "stem": "On my ideal job it is important that...",
+    "columns": [
+      {
+        "value": 5,
+        "label": "Most important"
+      },
+      {
+        "value": 4,
+        "label": ""
+      },
+      {
+        "value": 3,
+        "label": ""
+      },
+      {
+        "value": 2,
+        "label": ""
+      },
+      {
+        "value": 1,
+        "label": "Least important"
+      }
+    ],
+    "cards_per_column": 4,
+    "ui": "Drag cards into five columns; exactly four per column. On mobile: two passes (pick the 4 most important, then the 4 least important, then sort the middle 12 into three groups)."
+  },
+  "administration": {
+    "est_minutes": 6
+  },
+  "scoring": {
+    "card_score": "Column number (1-5).",
+    "value_score": "Sum of card scores for the value, multiplied by its multiplier (equalizes values with different card counts).",
+    "multipliers": {
+      "Achievement": 3,
+      "Independence": 2,
+      "Recognition": 2,
+      "Relationships": 2,
+      "Support": 2,
+      "Working Conditions": 1
+    },
+    "occupation_match": "O*NET database 'Work Values' file gives occupational ratings on the same six values."
+  },
+  "items": [
+    {
+      "id": "WIL_A",
+      "card": "A",
+      "text": "I make use of my abilities.",
+      "value": "Achievement",
+      "need": "Ability Utilization"
+    },
+    {
+      "id": "WIL_B",
+      "card": "B",
+      "text": "I would be treated fairly by the company.",
+      "value": "Support",
+      "need": "Company Policies"
+    },
+    {
+      "id": "WIL_C",
+      "card": "C",
+      "text": "I could be busy all the time.",
+      "value": "Working Conditions",
+      "need": "Activity"
+    },
+    {
+      "id": "WIL_D",
+      "card": "D",
+      "text": "the job would provide an opportunity for advancement.",
+      "value": "Recognition",
+      "need": "Advancement"
+    },
+    {
+      "id": "WIL_E",
+      "card": "E",
+      "text": "I could give directions and instructions to others.",
+      "value": "Recognition",
+      "need": "Authority"
+    },
+    {
+      "id": "WIL_F",
+      "card": "F",
+      "text": "the work could give me a feeling of accomplishment.",
+      "value": "Achievement",
+      "need": "Achievement"
+    },
+    {
+      "id": "WIL_G",
+      "card": "G",
+      "text": "my pay would compare well with that of other workers.",
+      "value": "Working Conditions",
+      "need": "Compensation"
+    },
+    {
+      "id": "WIL_H",
+      "card": "H",
+      "text": "my co-workers would be easy to get along with.",
+      "value": "Relationships",
+      "need": "Co-workers"
+    },
+    {
+      "id": "WIL_I",
+      "card": "I",
+      "text": "I could try out my own ideas.",
+      "value": "Independence",
+      "need": "Creativity"
+    },
+    {
+      "id": "WIL_J",
+      "card": "J",
+      "text": "I could work alone.",
+      "value": "Working Conditions",
+      "need": "Independence (alone)"
+    },
+    {
+      "id": "WIL_K",
+      "card": "K",
+      "text": "I would never be pressured to do things that go against my sense of right and wrong.",
+      "value": "Relationships",
+      "need": "Moral Values"
+    },
+    {
+      "id": "WIL_L",
+      "card": "L",
+      "text": "I could receive recognition for the work I do.",
+      "value": "Recognition",
+      "need": "Recognition"
+    },
+    {
+      "id": "WIL_M",
+      "card": "M",
+      "text": "I could make decisions on my own.",
+      "value": "Independence",
+      "need": "Responsibility"
+    },
+    {
+      "id": "WIL_N",
+      "card": "N",
+      "text": "the job would provide for steady employment.",
+      "value": "Working Conditions",
+      "need": "Security"
+    },
+    {
+      "id": "WIL_O",
+      "card": "O",
+      "text": "I could do things for other people.",
+      "value": "Relationships",
+      "need": "Social Service"
+    },
+    {
+      "id": "WIL_P",
+      "card": "P",
+      "text": "I have supervisors who would back up their workers with management.",
+      "value": "Support",
+      "need": "Supervision, Human Relations"
+    },
+    {
+      "id": "WIL_Q",
+      "card": "Q",
+      "text": "I have supervisors who train their workers well.",
+      "value": "Support",
+      "need": "Supervision, Technical"
+    },
+    {
+      "id": "WIL_R",
+      "card": "R",
+      "text": "I could do something different every day.",
+      "value": "Working Conditions",
+      "need": "Variety"
+    },
+    {
+      "id": "WIL_S",
+      "card": "S",
+      "text": "the job would have good working conditions.",
+      "value": "Working Conditions",
+      "need": "Working Conditions"
+    },
+    {
+      "id": "WIL_T",
+      "card": "T",
+      "text": "I could plan my work with little supervision.",
+      "value": "Independence",
+      "need": "Autonomy"
+    }
+  ]
+}

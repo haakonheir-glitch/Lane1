@@ -1,0 +1,47 @@
+{
+  "module": "creativity",
+  "instrument": "Divergent thinking battery (Alternate Uses Task + two applied tasks)",
+  "status": "AUT is a public paradigm with decades of research. The two applied tasks are original and experimental.",
+  "license": "AUT is a paradigm, not a copyrighted instrument. Prompts below are Lane's own.",
+  "scoring_engine": {
+    "primary": "Semantic distance between prompt and each response (SemDis approach, Beaty & Johnson 2021), using the maximum-associative-distance variant for multi-word answers.",
+    "secondary": "LLM originality rating calibrated against a human-rated sample of >= 300 Lane responses. Report fluency (count of valid ideas), originality (mean of top-2 ideas), and flexibility (number of distinct categories).",
+    "language": "Score in the language the user answered in; do not translate before scoring."
+  },
+  "tasks": [
+    {
+      "id": "AUT1",
+      "type": "alternate_uses",
+      "prompt": "List as many unusual and creative uses for a BRICK as you can.",
+      "seconds": 120,
+      "instructions": "Aim for ideas other people would not think of. Short phrases are fine."
+    },
+    {
+      "id": "AUT2",
+      "type": "alternate_uses",
+      "prompt": "List as many unusual and creative uses for a SHOELACE as you can.",
+      "seconds": 120,
+      "instructions": "Aim for ideas other people would not think of. Short phrases are fine."
+    },
+    {
+      "id": "PF1",
+      "type": "problem_finding",
+      "status": "experimental",
+      "prompt": "Think about a normal visit to a gym. List as many problems, annoyances or unmet needs as you can that someone could build a business around.",
+      "seconds": 150,
+      "why": "Opportunity recognition matters more for founder and creator lanes than generic idea fluency."
+    },
+    {
+      "id": "AUD1",
+      "type": "audience_ideation",
+      "status": "experimental",
+      "prompt": "You have 30 days to get 1,000 people to follow you on any platform, about any topic you know well. List as many specific video or post ideas as you can.",
+      "seconds": 150,
+      "why": "Directly samples the core creative act of the creator lane. Score for originality plus an LLM-rated 'would people click this' usefulness score."
+    }
+  ],
+  "administration": {
+    "est_minutes": 10,
+    "order": "AUT1, AUT2 (warm-up and scoring anchor), then PF1, AUD1."
+  }
+}

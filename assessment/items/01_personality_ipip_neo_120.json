@@ -1,0 +1,1365 @@
+{
+  "module": "personality_big_five_facets",
+  "instrument": "IPIP-NEO-120",
+  "citation": "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory: Development of the IPIP-NEO-120. Journal of Research in Personality, 51, 78-89.",
+  "license": "Public domain (International Personality Item Pool). Any use, commercial included, no permission or fee. https://ipip.ori.org/newPermission.htm",
+  "item_stem_prefix": "I...",
+  "response_format": {
+    "type": "likert5",
+    "stem": "How accurately does each statement describe you? Describe yourself as you generally are now, not as you wish to be, compared with people of your sex and roughly your age.",
+    "options": [
+      {
+        "value": 1,
+        "label": "Very inaccurate"
+      },
+      {
+        "value": 2,
+        "label": "Moderately inaccurate"
+      },
+      {
+        "value": 3,
+        "label": "Neither accurate nor inaccurate"
+      },
+      {
+        "value": 4,
+        "label": "Moderately accurate"
+      },
+      {
+        "value": 5,
+        "label": "Very accurate"
+      }
+    ]
+  },
+  "administration": {
+    "order": "Administer in source_number order (facets are pre-interleaved). Insert validity items from 12_validity_checks.json at the positions given there.",
+    "items_administered": 116,
+    "est_minutes": 14
+  },
+  "scoring": {
+    "reverse": "If key == -1, score = 6 - response.",
+    "facet": "Mean of the 4 keyed responses (1-5). Require >= 3 of 4 answered; else facet = null.",
+    "domain": "Mean of all keyed responses in the domain (Openness uses O1-O5 only).",
+    "norming": "Convert to T-scores against Lane's own norm sample once N >= 1,000 per age band; until then use published IPIP-NEO-120 norms as provisional and label results 'provisional norms'.",
+    "do_not_ipsatize": "Johnson (2014) found that ipsatizing responses for acquiescence lowered validity. Score raw; do relative-to-self ranking only at the score level (see BLUEPRINT.md §7).",
+    "precision_note": "4-item facets have alphas of roughly .63-.88. Show facets with confidence intervals and never as single hard numbers."
+  },
+  "acquiescence_pairs": {
+    "note": "Opposite-content pairs from Johnson (2014) Appendix A. Used as a consistency check, not for re-scoring. Pairs with O6 items are dropped because O6 is not administered.",
+    "pairs": [
+      [
+        "NEO004",
+        "NEO094"
+      ],
+      [
+        "NEO044",
+        "NEO074"
+      ],
+      [
+        "NEO059",
+        "NEO119"
+      ],
+      [
+        "NEO010",
+        "NEO070"
+      ],
+      [
+        "NEO015",
+        "NEO105"
+      ],
+      [
+        "NEO045",
+        "NEO075"
+      ],
+      [
+        "NEO020",
+        "NEO110"
+      ],
+      [
+        "NEO050",
+        "NEO080"
+      ],
+      [
+        "NEO025",
+        "NEO115"
+      ],
+      [
+        "NEO055",
+        "NEO085"
+      ],
+      [
+        "NEO002",
+        "NEO062"
+      ],
+      [
+        "NEO032",
+        "NEO092"
+      ],
+      [
+        "NEO007",
+        "NEO097"
+      ],
+      [
+        "NEO037",
+        "NEO067"
+      ],
+      [
+        "NEO012",
+        "NEO102"
+      ],
+      [
+        "NEO077",
+        "NEO107"
+      ],
+      [
+        "NEO036",
+        "NEO096"
+      ],
+      [
+        "NEO041",
+        "NEO101"
+      ],
+      [
+        "NEO016",
+        "NEO106"
+      ],
+      [
+        "NEO021",
+        "NEO051"
+      ],
+      [
+        "NEO056",
+        "NEO116"
+      ],
+      [
+        "NEO008",
+        "NEO098"
+      ],
+      [
+        "NEO038",
+        "NEO068"
+      ],
+      [
+        "NEO013",
+        "NEO073"
+      ],
+      [
+        "NEO043",
+        "NEO103"
+      ],
+      [
+        "NEO018",
+        "NEO048"
+      ],
+      [
+        "NEO023",
+        "NEO113"
+      ]
+    ]
+  },
+  "items": [
+    {
+      "id": "NEO001",
+      "source_number": 1,
+      "domain": "Neuroticism",
+      "facet_code": "N1",
+      "facet": "Anxiety",
+      "key": 1,
+      "text": "Worry about things.",
+      "administer": true
+    },
+    {
+      "id": "NEO002",
+      "source_number": 2,
+      "domain": "Extraversion",
+      "facet_code": "E1",
+      "facet": "Friendliness",
+      "key": 1,
+      "text": "Make friends easily.",
+      "administer": true
+    },
+    {
+      "id": "NEO003",
+      "source_number": 3,
+      "domain": "Openness",
+      "facet_code": "O1",
+      "facet": "Imagination",
+      "key": 1,
+      "text": "Have a vivid imagination.",
+      "administer": true
+    },
+    {
+      "id": "NEO004",
+      "source_number": 4,
+      "domain": "Agreeableness",
+      "facet_code": "A1",
+      "facet": "Trust",
+      "key": 1,
+      "text": "Trust others.",
+      "administer": true
+    },
+    {
+      "id": "NEO005",
+      "source_number": 5,
+      "domain": "Conscientiousness",
+      "facet_code": "C1",
+      "facet": "Self-efficacy",
+      "key": 1,
+      "text": "Complete tasks successfully.",
+      "administer": true
+    },
+    {
+      "id": "NEO006",
+      "source_number": 6,
+      "domain": "Neuroticism",
+      "facet_code": "N2",
+      "facet": "Anger",
+      "key": 1,
+      "text": "Get angry easily.",
+      "administer": true
+    },
+    {
+      "id": "NEO007",
+      "source_number": 7,
+      "domain": "Extraversion",
+      "facet_code": "E2",
+      "facet": "Gregariousness",
+      "key": 1,
+      "text": "Love large parties.",
+      "administer": true
+    },
+    {
+      "id": "NEO008",
+      "source_number": 8,
+      "domain": "Openness",
+      "facet_code": "O2",
+      "facet": "Artistic interests",
+      "key": 1,
+      "text": "Believe in the importance of art.",
+      "administer": true
+    },
+    {
+      "id": "NEO009",
+      "source_number": 9,
+      "domain": "Agreeableness",
+      "facet_code": "A2",
+      "facet": "Morality",
+      "key": -1,
+      "text": "Use others for my own ends.",
+      "administer": true
+    },
+    {
+      "id": "NEO010",
+      "source_number": 10,
+      "domain": "Conscientiousness",
+      "facet_code": "C2",
+      "facet": "Orderliness",
+      "key": 1,
+      "text": "Like to tidy up.",
+      "administer": true
+    },
+    {
+      "id": "NEO011",
+      "source_number": 11,
+      "domain": "Neuroticism",
+      "facet_code": "N3",
+      "facet": "Depression",
+      "key": 1,
+      "text": "Often feel blue.",
+      "administer": true
+    },
+    {
+      "id": "NEO012",
+      "source_number": 12,
+      "domain": "Extraversion",
+      "facet_code": "E3",
+      "facet": "Assertiveness",
+      "key": 1,
+      "text": "Take charge.",
+      "administer": true
+    },
+    {
+      "id": "NEO013",
+      "source_number": 13,
+      "domain": "Openness",
+      "facet_code": "O3",
+      "facet": "Emotionality",
+      "key": 1,
+      "text": "Experience my emotions intensely.",
+      "administer": true
+    },
+    {
+      "id": "NEO014",
+      "source_number": 14,
+      "domain": "Agreeableness",
+      "facet_code": "A3",
+      "facet": "Altruism",
+      "key": 1,
+      "text": "Love to help others.",
+      "administer": true
+    },
+    {
+      "id": "NEO015",
+      "source_number": 15,
+      "domain": "Conscientiousness",
+      "facet_code": "C3",
+      "facet": "Dutifulness",
+      "key": 1,
+      "text": "Keep my promises.",
+      "administer": true
+    },
+    {
+      "id": "NEO016",
+      "source_number": 16,
+      "domain": "Neuroticism",
+      "facet_code": "N4",
+      "facet": "Self-consciousness",
+      "key": 1,
+      "text": "Find it difficult to approach others.",
+      "administer": true
+    },
+    {
+      "id": "NEO017",
+      "source_number": 17,
+      "domain": "Extraversion",
+      "facet_code": "E4",
+      "facet": "Activity level",
+      "key": 1,
+      "text": "Am always busy.",
+      "administer": true
+    },
+    {
+      "id": "NEO018",
+      "source_number": 18,
+      "domain": "Openness",
+      "facet_code": "O4",
+      "facet": "Adventurousness",
+      "key": 1,
+      "text": "Prefer variety to routine.",
+      "administer": true
+    },
+    {
+      "id": "NEO019",
+      "source_number": 19,
+      "domain": "Agreeableness",
+      "facet_code": "A4",
+      "facet": "Cooperation",
+      "key": -1,
+      "text": "Love a good fight.",
+      "administer": true
+    },
+    {
+      "id": "NEO020",
+      "source_number": 20,
+      "domain": "Conscientiousness",
+      "facet_code": "C4",
+      "facet": "Achievement-striving",
+      "key": 1,
+      "text": "Work hard.",
+      "administer": true
+    },
+    {
+      "id": "NEO021",
+      "source_number": 21,
+      "domain": "Neuroticism",
+      "facet_code": "N5",
+      "facet": "Immoderation",
+      "key": 1,
+      "text": "Go on binges.",
+      "administer": true
+    },
+    {
+      "id": "NEO022",
+      "source_number": 22,
+      "domain": "Extraversion",
+      "facet_code": "E5",
+      "facet": "Excitement-seeking",
+      "key": 1,
+      "text": "Love excitement.",
+      "administer": true
+    },
+    {
+      "id": "NEO023",
+      "source_number": 23,
+      "domain": "Openness",
+      "facet_code": "O5",
+      "facet": "Intellect",
+      "key": 1,
+      "text": "Love to read challenging material.",
+      "administer": true
+    },
+    {
+      "id": "NEO024",
+      "source_number": 24,
+      "domain": "Agreeableness",
+      "facet_code": "A5",
+      "facet": "Modesty",
+      "key": -1,
+      "text": "Believe that I am better than others.",
+      "administer": true
+    },
+    {
+      "id": "NEO025",
+      "source_number": 25,
+      "domain": "Conscientiousness",
+      "facet_code": "C5",
+      "facet": "Self-discipline",
+      "key": 1,
+      "text": "Am always prepared.",
+      "administer": true
+    },
+    {
+      "id": "NEO026",
+      "source_number": 26,
+      "domain": "Neuroticism",
+      "facet_code": "N6",
+      "facet": "Vulnerability",
+      "key": 1,
+      "text": "Panic easily.",
+      "administer": true
+    },
+    {
+      "id": "NEO027",
+      "source_number": 27,
+      "domain": "Extraversion",
+      "facet_code": "E6",
+      "facet": "Cheerfulness",
+      "key": 1,
+      "text": "Radiate joy.",
+      "administer": true
+    },
+    {
+      "id": "NEO028",
+      "source_number": 28,
+      "domain": "Openness",
+      "facet_code": "O6",
+      "facet": "Liberalism",
+      "key": 1,
+      "text": "Tend to vote for liberal political candidates.",
+      "administer": false,
+      "exclusion_reason": "Political and law-and-order content. Irrelevant to work fit, legally risky in any selection-adjacent use, and the weakest facet (alpha .63-.64). Openness domain is scored from O1-O5 (20 items)."
+    },
+    {
+      "id": "NEO029",
+      "source_number": 29,
+      "domain": "Agreeableness",
+      "facet_code": "A6",
+      "facet": "Sympathy",
+      "key": 1,
+      "text": "Sympathize with the homeless.",
+      "administer": true
+    },
+    {
+      "id": "NEO030",
+      "source_number": 30,
+      "domain": "Conscientiousness",
+      "facet_code": "C6",
+      "facet": "Cautiousness",
+      "key": -1,
+      "text": "Jump into things without thinking.",
+      "administer": true
+    },
+    {
+      "id": "NEO031",
+      "source_number": 31,
+      "domain": "Neuroticism",
+      "facet_code": "N1",
+      "facet": "Anxiety",
+      "key": 1,
+      "text": "Fear for the worst.",
+      "administer": true
+    },
+    {
+      "id": "NEO032",
+      "source_number": 32,
+      "domain": "Extraversion",
+      "facet_code": "E1",
+      "facet": "Friendliness",
+      "key": 1,
+      "text": "Feel comfortable around people.",
+      "administer": true
+    },
+    {
+      "id": "NEO033",
+      "source_number": 33,
+      "domain": "Openness",
+      "facet_code": "O1",
+      "facet": "Imagination",
+      "key": 1,
+      "text": "Enjoy wild flights of fantasy.",
+      "administer": true
+    },
+    {
+      "id": "NEO034",
+      "source_number": 34,
+      "domain": "Agreeableness",
+      "facet_code": "A1",
+      "facet": "Trust",
+      "key": 1,
+      "text": "Believe that others have good intentions.",
+      "administer": true
+    },
+    {
+      "id": "NEO035",
+      "source_number": 35,
+      "domain": "Conscientiousness",
+      "facet_code": "C1",
+      "facet": "Self-efficacy",
+      "key": 1,
+      "text": "Excel in what I do.",
+      "administer": true
+    },
+    {
+      "id": "NEO036",
+      "source_number": 36,
+      "domain": "Neuroticism",
+      "facet_code": "N2",
+      "facet": "Anger",
+      "key": 1,
+      "text": "Get irritated easily.",
+      "administer": true
+    },
+    {
+      "id": "NEO037",
+      "source_number": 37,
+      "domain": "Extraversion",
+      "facet_code": "E2",
+      "facet": "Gregariousness",
+      "key": 1,
+      "text": "Talk to a lot of different people at parties.",
+      "administer": true
+    },
+    {
+      "id": "NEO038",
+      "source_number": 38,
+      "domain": "Openness",
+      "facet_code": "O2",
+      "facet": "Artistic interests",
+      "key": 1,
+      "text": "See beauty in things that others might not notice.",
+      "administer": true
+    },
+    {
+      "id": "NEO039",
+      "source_number": 39,
+      "domain": "Agreeableness",
+      "facet_code": "A2",
+      "facet": "Morality",
+      "key": -1,
+      "text": "Cheat to get ahead.",
+      "administer": true
+    },
+    {
+      "id": "NEO040",
+      "source_number": 40,
+      "domain": "Conscientiousness",
+      "facet_code": "C2",
+      "facet": "Orderliness",
+      "key": -1,
+      "text": "Often forget to put things back in their proper place.",
+      "administer": true
+    },
+    {
+      "id": "NEO041",
+      "source_number": 41,
+      "domain": "Neuroticism",
+      "facet_code": "N3",
+      "facet": "Depression",
+      "key": 1,
+      "text": "Dislike myself.",
+      "administer": true
+    },
+    {
+      "id": "NEO042",
+      "source_number": 42,
+      "domain": "Extraversion",
+      "facet_code": "E3",
+      "facet": "Assertiveness",
+      "key": 1,
+      "text": "Try to lead others.",
+      "administer": true
+    },
+    {
+      "id": "NEO043",
+      "source_number": 43,
+      "domain": "Openness",
+      "facet_code": "O3",
+      "facet": "Emotionality",
+      "key": 1,
+      "text": "Feel others' emotions.",
+      "administer": true
+    },
+    {
+      "id": "NEO044",
+      "source_number": 44,
+      "domain": "Agreeableness",
+      "facet_code": "A3",
+      "facet": "Altruism",
+      "key": 1,
+      "text": "Am concerned about others.",
+      "administer": true
+    },
+    {
+      "id": "NEO045",
+      "source_number": 45,
+      "domain": "Conscientiousness",
+      "facet_code": "C3",
+      "facet": "Dutifulness",
+      "key": 1,
+      "text": "Tell the truth.",
+      "administer": true
+    },
+    {
+      "id": "NEO046",
+      "source_number": 46,
+      "domain": "Neuroticism",
+      "facet_code": "N4",
+      "facet": "Self-consciousness",
+      "key": 1,
+      "text": "Am afraid to draw attention to myself.",
+      "administer": true
+    },
+    {
+      "id": "NEO047",
+      "source_number": 47,
+      "domain": "Extraversion",
+      "facet_code": "E4",
+      "facet": "Activity level",
+      "key": 1,
+      "text": "Am always on the go.",
+      "administer": true
+    },
+    {
+      "id": "NEO048",
+      "source_number": 48,
+      "domain": "Openness",
+      "facet_code": "O4",
+      "facet": "Adventurousness",
+      "key": -1,
+      "text": "Prefer to stick with things that I know.",
+      "administer": true
+    },
+    {
+      "id": "NEO049",
+      "source_number": 49,
+      "domain": "Agreeableness",
+      "facet_code": "A4",
+      "facet": "Cooperation",
+      "key": -1,
+      "text": "Yell at people.",
+      "administer": true
+    },
+    {
+      "id": "NEO050",
+      "source_number": 50,
+      "domain": "Conscientiousness",
+      "facet_code": "C4",
+      "facet": "Achievement-striving",
+      "key": 1,
+      "text": "Do more than what's expected of me.",
+      "administer": true
+    },
+    {
+      "id": "NEO051",
+      "source_number": 51,
+      "domain": "Neuroticism",
+      "facet_code": "N5",
+      "facet": "Immoderation",
+      "key": -1,
+      "text": "Rarely overindulge.",
+      "administer": true
+    },
+    {
+      "id": "NEO052",
+      "source_number": 52,
+      "domain": "Extraversion",
+      "facet_code": "E5",
+      "facet": "Excitement-seeking",
+      "key": 1,
+      "text": "Seek adventure.",
+      "administer": true
+    },
+    {
+      "id": "NEO053",
+      "source_number": 53,
+      "domain": "Openness",
+      "facet_code": "O5",
+      "facet": "Intellect",
+      "key": -1,
+      "text": "Avoid philosophical discussions.",
+      "administer": true
+    },
+    {
+      "id": "NEO054",
+      "source_number": 54,
+      "domain": "Agreeableness",
+      "facet_code": "A5",
+      "facet": "Modesty",
+      "key": -1,
+      "text": "Think highly of myself.",
+      "administer": true
+    },
+    {
+      "id": "NEO055",
+      "source_number": 55,
+      "domain": "Conscientiousness",
+      "facet_code": "C5",
+      "facet": "Self-discipline",
+      "key": 1,
+      "text": "Carry out my plans.",
+      "administer": true
+    },
+    {
+      "id": "NEO056",
+      "source_number": 56,
+      "domain": "Neuroticism",
+      "facet_code": "N6",
+      "facet": "Vulnerability",
+      "key": 1,
+      "text": "Become overwhelmed by events.",
+      "administer": true
+    },
+    {
+      "id": "NEO057",
+      "source_number": 57,
+      "domain": "Extraversion",
+      "facet_code": "E6",
+      "facet": "Cheerfulness",
+      "key": 1,
+      "text": "Have a lot of fun.",
+      "administer": true
+    },
+    {
+      "id": "NEO058",
+      "source_number": 58,
+      "domain": "Openness",
+      "facet_code": "O6",
+      "facet": "Liberalism",
+      "key": 1,
+      "text": "Believe that there is no absolute right or wrong.",
+      "administer": false,
+      "exclusion_reason": "Political and law-and-order content. Irrelevant to work fit, legally risky in any selection-adjacent use, and the weakest facet (alpha .63-.64). Openness domain is scored from O1-O5 (20 items)."
+    },
+    {
+      "id": "NEO059",
+      "source_number": 59,
+      "domain": "Agreeableness",
+      "facet_code": "A6",
+      "facet": "Sympathy",
+      "key": 1,
+      "text": "Feel sympathy for those who are worse off than myself.",
+      "administer": true
+    },
+    {
+      "id": "NEO060",
+      "source_number": 60,
+      "domain": "Conscientiousness",
+      "facet_code": "C6",
+      "facet": "Cautiousness",
+      "key": -1,
+      "text": "Make rash decisions.",
+      "administer": true
+    },
+    {
+      "id": "NEO061",
+      "source_number": 61,
+      "domain": "Neuroticism",
+      "facet_code": "N1",
+      "facet": "Anxiety",
+      "key": 1,
+      "text": "Am afraid of many things.",
+      "administer": true
+    },
+    {
+      "id": "NEO062",
+      "source_number": 62,
+      "domain": "Extraversion",
+      "facet_code": "E1",
+      "facet": "Friendliness",
+      "key": -1,
+      "text": "Avoid contacts with others.",
+      "administer": true
+    },
+    {
+      "id": "NEO063",
+      "source_number": 63,
+      "domain": "Openness",
+      "facet_code": "O1",
+      "facet": "Imagination",
+      "key": 1,
+      "text": "Love to daydream.",
+      "administer": true
+    },
+    {
+      "id": "NEO064",
+      "source_number": 64,
+      "domain": "Agreeableness",
+      "facet_code": "A1",
+      "facet": "Trust",
+      "key": 1,
+      "text": "Trust what people say.",
+      "administer": true
+    },
+    {
+      "id": "NEO065",
+      "source_number": 65,
+      "domain": "Conscientiousness",
+      "facet_code": "C1",
+      "facet": "Self-efficacy",
+      "key": 1,
+      "text": "Handle tasks smoothly.",
+      "administer": true
+    },
+    {
+      "id": "NEO066",
+      "source_number": 66,
+      "domain": "Neuroticism",
+      "facet_code": "N2",
+      "facet": "Anger",
+      "key": 1,
+      "text": "Lose my temper.",
+      "administer": true
+    },
+    {
+      "id": "NEO067",
+      "source_number": 67,
+      "domain": "Extraversion",
+      "facet_code": "E2",
+      "facet": "Gregariousness",
+      "key": -1,
+      "text": "Prefer to be alone.",
+      "administer": true
+    },
+    {
+      "id": "NEO068",
+      "source_number": 68,
+      "domain": "Openness",
+      "facet_code": "O2",
+      "facet": "Artistic interests",
+      "key": -1,
+      "text": "Do not like poetry.",
+      "administer": true
+    },
+    {
+      "id": "NEO069",
+      "source_number": 69,
+      "domain": "Agreeableness",
+      "facet_code": "A2",
+      "facet": "Morality",
+      "key": -1,
+      "text": "Take advantage of others.",
+      "administer": true
+    },
+    {
+      "id": "NEO070",
+      "source_number": 70,
+      "domain": "Conscientiousness",
+      "facet_code": "C2",
+      "facet": "Orderliness",
+      "key": -1,
+      "text": "Leave a mess in my room.",
+      "administer": true
+    },
+    {
+      "id": "NEO071",
+      "source_number": 71,
+      "domain": "Neuroticism",
+      "facet_code": "N3",
+      "facet": "Depression",
+      "key": 1,
+      "text": "Am often down in the dumps.",
+      "administer": true
+    },
+    {
+      "id": "NEO072",
+      "source_number": 72,
+      "domain": "Extraversion",
+      "facet_code": "E3",
+      "facet": "Assertiveness",
+      "key": 1,
+      "text": "Take control of things.",
+      "administer": true
+    },
+    {
+      "id": "NEO073",
+      "source_number": 73,
+      "domain": "Openness",
+      "facet_code": "O3",
+      "facet": "Emotionality",
+      "key": -1,
+      "text": "Rarely notice my emotional reactions.",
+      "administer": true
+    },
+    {
+      "id": "NEO074",
+      "source_number": 74,
+      "domain": "Agreeableness",
+      "facet_code": "A3",
+      "facet": "Altruism",
+      "key": -1,
+      "text": "Am indifferent to the feelings of others.",
+      "administer": true
+    },
+    {
+      "id": "NEO075",
+      "source_number": 75,
+      "domain": "Conscientiousness",
+      "facet_code": "C3",
+      "facet": "Dutifulness",
+      "key": -1,
+      "text": "Break rules.",
+      "administer": true
+    },
+    {
+      "id": "NEO076",
+      "source_number": 76,
+      "domain": "Neuroticism",
+      "facet_code": "N4",
+      "facet": "Self-consciousness",
+      "key": 1,
+      "text": "Only feel comfortable with friends.",
+      "administer": true
+    },
+    {
+      "id": "NEO077",
+      "source_number": 77,
+      "domain": "Extraversion",
+      "facet_code": "E4",
+      "facet": "Activity level",
+      "key": 1,
+      "text": "Do a lot in my spare time.",
+      "administer": true
+    },
+    {
+      "id": "NEO078",
+      "source_number": 78,
+      "domain": "Openness",
+      "facet_code": "O4",
+      "facet": "Adventurousness",
+      "key": -1,
+      "text": "Dislike changes.",
+      "administer": true
+    },
+    {
+      "id": "NEO079",
+      "source_number": 79,
+      "domain": "Agreeableness",
+      "facet_code": "A4",
+      "facet": "Cooperation",
+      "key": -1,
+      "text": "Insult people.",
+      "administer": true
+    },
+    {
+      "id": "NEO080",
+      "source_number": 80,
+      "domain": "Conscientiousness",
+      "facet_code": "C4",
+      "facet": "Achievement-striving",
+      "key": -1,
+      "text": "Do just enough work to get by.",
+      "administer": true
+    },
+    {
+      "id": "NEO081",
+      "source_number": 81,
+      "domain": "Neuroticism",
+      "facet_code": "N5",
+      "facet": "Immoderation",
+      "key": -1,
+      "text": "Easily resist temptations.",
+      "administer": true
+    },
+    {
+      "id": "NEO082",
+      "source_number": 82,
+      "domain": "Extraversion",
+      "facet_code": "E5",
+      "facet": "Excitement-seeking",
+      "key": 1,
+      "text": "Enjoy being reckless.",
+      "administer": true
+    },
+    {
+      "id": "NEO083",
+      "source_number": 83,
+      "domain": "Openness",
+      "facet_code": "O5",
+      "facet": "Intellect",
+      "key": -1,
+      "text": "Have difficulty understanding abstract ideas.",
+      "administer": true
+    },
+    {
+      "id": "NEO084",
+      "source_number": 84,
+      "domain": "Agreeableness",
+      "facet_code": "A5",
+      "facet": "Modesty",
+      "key": -1,
+      "text": "Have a high opinion of myself.",
+      "administer": true
+    },
+    {
+      "id": "NEO085",
+      "source_number": 85,
+      "domain": "Conscientiousness",
+      "facet_code": "C5",
+      "facet": "Self-discipline",
+      "key": -1,
+      "text": "Waste my time.",
+      "administer": true
+    },
+    {
+      "id": "NEO086",
+      "source_number": 86,
+      "domain": "Neuroticism",
+      "facet_code": "N6",
+      "facet": "Vulnerability",
+      "key": 1,
+      "text": "Feel that I'm unable to deal with things.",
+      "administer": true
+    },
+    {
+      "id": "NEO087",
+      "source_number": 87,
+      "domain": "Extraversion",
+      "facet_code": "E6",
+      "facet": "Cheerfulness",
+      "key": 1,
+      "text": "Love life.",
+      "administer": true
+    },
+    {
+      "id": "NEO088",
+      "source_number": 88,
+      "domain": "Openness",
+      "facet_code": "O6",
+      "facet": "Liberalism",
+      "key": -1,
+      "text": "Tend to vote for conservative political candidates.",
+      "administer": false,
+      "exclusion_reason": "Political and law-and-order content. Irrelevant to work fit, legally risky in any selection-adjacent use, and the weakest facet (alpha .63-.64). Openness domain is scored from O1-O5 (20 items)."
+    },
+    {
+      "id": "NEO089",
+      "source_number": 89,
+      "domain": "Agreeableness",
+      "facet_code": "A6",
+      "facet": "Sympathy",
+      "key": -1,
+      "text": "Am not interested in other people's problems.",
+      "administer": true
+    },
+    {
+      "id": "NEO090",
+      "source_number": 90,
+      "domain": "Conscientiousness",
+      "facet_code": "C6",
+      "facet": "Cautiousness",
+      "key": -1,
+      "text": "Rush into things.",
+      "administer": true
+    },
+    {
+      "id": "NEO091",
+      "source_number": 91,
+      "domain": "Neuroticism",
+      "facet_code": "N1",
+      "facet": "Anxiety",
+      "key": 1,
+      "text": "Get stressed out easily.",
+      "administer": true
+    },
+    {
+      "id": "NEO092",
+      "source_number": 92,
+      "domain": "Extraversion",
+      "facet_code": "E1",
+      "facet": "Friendliness",
+      "key": -1,
+      "text": "Keep others at a distance.",
+      "administer": true
+    },
+    {
+      "id": "NEO093",
+      "source_number": 93,
+      "domain": "Openness",
+      "facet_code": "O1",
+      "facet": "Imagination",
+      "key": 1,
+      "text": "Like to get lost in thought.",
+      "administer": true
+    },
+    {
+      "id": "NEO094",
+      "source_number": 94,
+      "domain": "Agreeableness",
+      "facet_code": "A1",
+      "facet": "Trust",
+      "key": -1,
+      "text": "Distrust people.",
+      "administer": true
+    },
+    {
+      "id": "NEO095",
+      "source_number": 95,
+      "domain": "Conscientiousness",
+      "facet_code": "C1",
+      "facet": "Self-efficacy",
+      "key": 1,
+      "text": "Know how to get things done.",
+      "administer": true
+    },
+    {
+      "id": "NEO096",
+      "source_number": 96,
+      "domain": "Neuroticism",
+      "facet_code": "N2",
+      "facet": "Anger",
+      "key": -1,
+      "text": "Am not easily annoyed.",
+      "administer": true
+    },
+    {
+      "id": "NEO097",
+      "source_number": 97,
+      "domain": "Extraversion",
+      "facet_code": "E2",
+      "facet": "Gregariousness",
+      "key": -1,
+      "text": "Avoid crowds.",
+      "administer": true
+    },
+    {
+      "id": "NEO098",
+      "source_number": 98,
+      "domain": "Openness",
+      "facet_code": "O2",
+      "facet": "Artistic interests",
+      "key": -1,
+      "text": "Do not enjoy going to art museums.",
+      "administer": true
+    },
+    {
+      "id": "NEO099",
+      "source_number": 99,
+      "domain": "Agreeableness",
+      "facet_code": "A2",
+      "facet": "Morality",
+      "key": -1,
+      "text": "Obstruct others' plans.",
+      "administer": true
+    },
+    {
+      "id": "NEO100",
+      "source_number": 100,
+      "domain": "Conscientiousness",
+      "facet_code": "C2",
+      "facet": "Orderliness",
+      "key": -1,
+      "text": "Leave my belongings around.",
+      "administer": true
+    },
+    {
+      "id": "NEO101",
+      "source_number": 101,
+      "domain": "Neuroticism",
+      "facet_code": "N3",
+      "facet": "Depression",
+      "key": -1,
+      "text": "Feel comfortable with myself.",
+      "administer": true
+    },
+    {
+      "id": "NEO102",
+      "source_number": 102,
+      "domain": "Extraversion",
+      "facet_code": "E3",
+      "facet": "Assertiveness",
+      "key": -1,
+      "text": "Wait for others to lead the way.",
+      "administer": true
+    },
+    {
+      "id": "NEO103",
+      "source_number": 103,
+      "domain": "Openness",
+      "facet_code": "O3",
+      "facet": "Emotionality",
+      "key": -1,
+      "text": "Don't understand people who get emotional.",
+      "administer": true
+    },
+    {
+      "id": "NEO104",
+      "source_number": 104,
+      "domain": "Agreeableness",
+      "facet_code": "A3",
+      "facet": "Altruism",
+      "key": -1,
+      "text": "Take no time for others.",
+      "administer": true
+    },
+    {
+      "id": "NEO105",
+      "source_number": 105,
+      "domain": "Conscientiousness",
+      "facet_code": "C3",
+      "facet": "Dutifulness",
+      "key": -1,
+      "text": "Break my promises.",
+      "administer": true
+    },
+    {
+      "id": "NEO106",
+      "source_number": 106,
+      "domain": "Neuroticism",
+      "facet_code": "N4",
+      "facet": "Self-consciousness",
+      "key": -1,
+      "text": "Am not bothered by difficult social situations.",
+      "administer": true
+    },
+    {
+      "id": "NEO107",
+      "source_number": 107,
+      "domain": "Extraversion",
+      "facet_code": "E4",
+      "facet": "Activity level",
+      "key": -1,
+      "text": "Like to take it easy.",
+      "administer": true
+    },
+    {
+      "id": "NEO108",
+      "source_number": 108,
+      "domain": "Openness",
+      "facet_code": "O4",
+      "facet": "Adventurousness",
+      "key": -1,
+      "text": "Am attached to conventional ways.",
+      "administer": true
+    },
+    {
+      "id": "NEO109",
+      "source_number": 109,
+      "domain": "Agreeableness",
+      "facet_code": "A4",
+      "facet": "Cooperation",
+      "key": -1,
+      "text": "Get back at others.",
+      "administer": true
+    },
+    {
+      "id": "NEO110",
+      "source_number": 110,
+      "domain": "Conscientiousness",
+      "facet_code": "C4",
+      "facet": "Achievement-striving",
+      "key": -1,
+      "text": "Put little time and effort into my work.",
+      "administer": true
+    },
+    {
+      "id": "NEO111",
+      "source_number": 111,
+      "domain": "Neuroticism",
+      "facet_code": "N5",
+      "facet": "Immoderation",
+      "key": -1,
+      "text": "Am able to control my cravings.",
+      "administer": true
+    },
+    {
+      "id": "NEO112",
+      "source_number": 112,
+      "domain": "Extraversion",
+      "facet_code": "E5",
+      "facet": "Excitement-seeking",
+      "key": 1,
+      "text": "Act wild and crazy.",
+      "administer": true
+    },
+    {
+      "id": "NEO113",
+      "source_number": 113,
+      "domain": "Openness",
+      "facet_code": "O5",
+      "facet": "Intellect",
+      "key": -1,
+      "text": "Am not interested in theoretical discussions.",
+      "administer": true
+    },
+    {
+      "id": "NEO114",
+      "source_number": 114,
+      "domain": "Agreeableness",
+      "facet_code": "A5",
+      "facet": "Modesty",
+      "key": -1,
+      "text": "Boast about my virtues.",
+      "administer": true
+    },
+    {
+      "id": "NEO115",
+      "source_number": 115,
+      "domain": "Conscientiousness",
+      "facet_code": "C5",
+      "facet": "Self-discipline",
+      "key": -1,
+      "text": "Have difficulty starting tasks.",
+      "administer": true
+    },
+    {
+      "id": "NEO116",
+      "source_number": 116,
+      "domain": "Neuroticism",
+      "facet_code": "N6",
+      "facet": "Vulnerability",
+      "key": -1,
+      "text": "Remain calm under pressure.",
+      "administer": true
+    },
+    {
+      "id": "NEO117",
+      "source_number": 117,
+      "domain": "Extraversion",
+      "facet_code": "E6",
+      "facet": "Cheerfulness",
+      "key": 1,
+      "text": "Look at the bright side of life.",
+      "administer": true
+    },
+    {
+      "id": "NEO118",
+      "source_number": 118,
+      "domain": "Openness",
+      "facet_code": "O6",
+      "facet": "Liberalism",
+      "key": -1,
+      "text": "Believe that we should be tough on crime.",
+      "administer": false,
+      "exclusion_reason": "Political and law-and-order content. Irrelevant to work fit, legally risky in any selection-adjacent use, and the weakest facet (alpha .63-.64). Openness domain is scored from O1-O5 (20 items)."
+    },
+    {
+      "id": "NEO119",
+      "source_number": 119,
+      "domain": "Agreeableness",
+      "facet_code": "A6",
+      "facet": "Sympathy",
+      "key": -1,
+      "text": "Try not to think about the needy.",
+      "administer": true
+    },
+    {
+      "id": "NEO120",
+      "source_number": 120,
+      "domain": "Conscientiousness",
+      "facet_code": "C6",
+      "facet": "Cautiousness",
+      "key": -1,
+      "text": "Act without thinking.",
+      "administer": true
+    }
+  ]
+}

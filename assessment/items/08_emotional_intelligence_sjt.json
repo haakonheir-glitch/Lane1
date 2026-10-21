@@ -1,0 +1,259 @@
+{
+  "module": "emotional_intelligence",
+  "instrument": "Lane Emotion Understanding and Emotion Management SJT (original, experimental)",
+  "status": "EXPERIMENTAL. Modelled on the ability-EI approach of MacCann & Roberts (2008) but written from scratch, because the STEU/STEM require permission for non-research use. Understanding items are keyed from appraisal theory; management keys are PROVISIONAL and must be replaced by an expert-panel consensus key before results are shown.",
+  "license": "Proprietary to Lane.",
+  "known_weakness": "Management items with an obviously 'nice' answer measure social desirability more than skill. The pilot must add harder items where two options are both reasonable and experts agree on the better one. Target 24+ items per subscale before reporting.",
+  "administration": {
+    "est_minutes": 8,
+    "order": "Understanding items first, then management. One per screen."
+  },
+  "scoring": {
+    "understanding": "1 point per keyed answer.",
+    "management": "Provisional: 1 point for keyed answer. Final: proportion-consensus scoring against an expert panel (n >= 10)."
+  },
+  "understanding_items": [
+    {
+      "id": "EU01",
+      "prompt": "Mia worked for weeks on a proposal. In the board meeting, her manager presents it as his own idea.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Guilt",
+        "Anger",
+        "Fear",
+        "Surprise",
+        "Sadness"
+      ],
+      "key": "Anger",
+      "rationale": "Someone else caused a harm that was unfair and blocked her goal."
+    },
+    {
+      "id": "EU02",
+      "prompt": "Jonas realizes he forgot his sister's birthday, even though she reminded him twice.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Anger",
+        "Relief",
+        "Guilt",
+        "Contempt",
+        "Fear"
+      ],
+      "key": "Guilt",
+      "rationale": "He caused the harm himself and it violates his own standard."
+    },
+    {
+      "id": "EU03",
+      "prompt": "A runner learns that the scan she was dreading shows no injury.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Pride",
+        "Hope",
+        "Joy",
+        "Relief",
+        "Gratitude"
+      ],
+      "key": "Relief",
+      "rationale": "A threatened negative outcome has been removed."
+    },
+    {
+      "id": "EU04",
+      "prompt": "Amir is waiting for results that will decide whether he gets into the programme he wants. The outcome is uncertain and he cannot influence it any more.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Anxiety",
+        "Sadness",
+        "Anger",
+        "Boredom",
+        "Guilt"
+      ],
+      "key": "Anxiety",
+      "rationale": "An important outcome is uncertain and possibly negative, with low control."
+    },
+    {
+      "id": "EU05",
+      "prompt": "A colleague unexpectedly covers a hard shift so that Sara can be at her father's surgery.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Pride",
+        "Guilt",
+        "Gratitude",
+        "Relief",
+        "Surprise"
+      ],
+      "key": "Gratitude",
+      "rationale": "Another person deliberately caused a good outcome for her."
+    },
+    {
+      "id": "EU06",
+      "prompt": "After years of training, Erik wins the regional championship through his own effort.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Relief",
+        "Gratitude",
+        "Hope",
+        "Pride",
+        "Surprise"
+      ],
+      "key": "Pride",
+      "rationale": "A valued positive outcome caused by his own effort."
+    },
+    {
+      "id": "EU07",
+      "prompt": "Lena's partner of many years moves abroad for good, and there is nothing she can do to change it.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Anger",
+        "Fear",
+        "Guilt",
+        "Disgust",
+        "Sadness"
+      ],
+      "key": "Sadness",
+      "rationale": "An irreversible loss that she has no control over."
+    },
+    {
+      "id": "EU08",
+      "prompt": "Nora has been told she is a strong candidate for her dream job. The final decision comes next week.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Pride",
+        "Hope",
+        "Relief",
+        "Joy",
+        "Guilt"
+      ],
+      "key": "Hope",
+      "rationale": "A wanted outcome is possible but not yet certain."
+    },
+    {
+      "id": "EU09",
+      "prompt": "Kristian stumbles through a presentation in front of people whose opinion he values, and sees some of them laugh.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Anger",
+        "Guilt",
+        "Embarrassment",
+        "Fear",
+        "Sadness"
+      ],
+      "key": "Embarrassment",
+      "rationale": "A public slip in front of valued others, without a moral violation."
+    },
+    {
+      "id": "EU10",
+      "prompt": "Ida gets the same report back for the fifth time, each time with small and contradictory changes from her manager.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Sadness",
+        "Frustration",
+        "Guilt",
+        "Fear",
+        "Surprise"
+      ],
+      "key": "Frustration",
+      "rationale": "Her goal is repeatedly blocked by another person, and the obstacle is ongoing."
+    },
+    {
+      "id": "EU11",
+      "prompt": "Marcus learns that a friend who started at the same time just got the promotion Marcus wanted.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Guilt",
+        "Pride",
+        "Relief",
+        "Envy",
+        "Gratitude"
+      ],
+      "key": "Envy",
+      "rationale": "Someone else gained an outcome he wanted for himself."
+    },
+    {
+      "id": "EU12",
+      "prompt": "For months, Siri has done the same simple task every day, using none of her skills.",
+      "question": "What is this person most likely to feel?",
+      "options": [
+        "Anxiety",
+        "Boredom",
+        "Guilt",
+        "Anger",
+        "Shame"
+      ],
+      "key": "Boredom",
+      "rationale": "Low stimulation and no challenge over a long period."
+    }
+  ],
+  "management_items": [
+    {
+      "id": "EM01",
+      "prompt": "Your manager criticizes your work harshly in a team meeting. You think part of the criticism is fair and part is not.",
+      "question": "What is the most effective thing to do?",
+      "options": [
+        "Defend every point on the spot.",
+        "Say nothing and complain to colleagues afterwards.",
+        "Acknowledge the fair points now, and ask for a one-on-one to discuss the rest.",
+        "Start looking for a new job."
+      ],
+      "provisional_key_index": 2
+    },
+    {
+      "id": "EM02",
+      "prompt": "On day 4 of a two-week trial of a new kind of work, things are going badly and you want to quit.",
+      "question": "What is the most effective thing to do?",
+      "options": [
+        "Quit now and try something else.",
+        "Push harder without changing anything.",
+        "Lower the target for the remaining days and track what is working and what isn't.",
+        "Ignore the feeling and stop checking your results."
+      ],
+      "provisional_key_index": 2
+    },
+    {
+      "id": "EM03",
+      "prompt": "A friend is upset after losing a competition they trained a year for.",
+      "question": "What is the most effective thing to do?",
+      "options": [
+        "Point out what they did wrong so they can improve.",
+        "Listen and acknowledge how much it meant to them before talking about next steps.",
+        "Tell them it doesn't really matter.",
+        "Change the subject to cheer them up."
+      ],
+      "provisional_key_index": 1
+    },
+    {
+      "id": "EM04",
+      "prompt": "Someone leaves a harsh public comment on work you shared online.",
+      "question": "What is the most effective thing to do?",
+      "options": [
+        "Reply in the same tone.",
+        "Delete the post.",
+        "Read it, decide whether any of it is useful, and move on.",
+        "Ask friends to respond for you."
+      ],
+      "provisional_key_index": 2
+    },
+    {
+      "id": "EM05",
+      "prompt": "You feel very nervous before an important pitch.",
+      "question": "What is the most effective thing to do?",
+      "options": [
+        "Postpone the pitch.",
+        "Tell yourself not to feel nervous.",
+        "Prepare well and treat the nerves as energy for the performance.",
+        "Avoid thinking about the pitch until you walk in."
+      ],
+      "provisional_key_index": 2
+    },
+    {
+      "id": "EM06",
+      "prompt": "A teammate keeps missing deadlines, which delays your work.",
+      "question": "What is the most effective thing to do?",
+      "options": [
+        "Quietly do their work yourself.",
+        "Report them to your manager straight away.",
+        "Talk to them privately about what is getting in the way and agree on a plan.",
+        "Make pointed comments in team meetings."
+      ],
+      "provisional_key_index": 2
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "module": "personality_honesty_humility",
+  "instrument": "Mini-IPIP6 Honesty-Humility scale",
+  "citation": "Sibley, C. G., et al. (2011). The Mini-IPIP6: Validation and extension of a short measure of the Big-Six factors of personality in New Zealand. New Zealand Journal of Psychology, 40, 142-159.",
+  "license": "Public domain (IPIP). https://ipip.ori.org/MiniIPIP6Key.htm",
+  "why_included": "The sixth HEXACO factor (sincerity, fairness, greed avoidance, modesty). Adds what the Big Five misses on integrity and status/money motivation, which matters for lanes like sales, trading and creator work where incentives can conflict with honesty. Low score is not 'bad': it often tracks status and wealth motivation.",
+  "response_format": {
+    "type": "likert5",
+    "stem": "How accurately does each statement describe you? Describe yourself as you generally are now, not as you wish to be, compared with people of your sex and roughly your age.",
+    "options": [
+      {
+        "value": 1,
+        "label": "Very inaccurate"
+      },
+      {
+        "value": 2,
+        "label": "Moderately inaccurate"
+      },
+      {
+        "value": 3,
+        "label": "Neither accurate nor inaccurate"
+      },
+      {
+        "value": 4,
+        "label": "Moderately accurate"
+      },
+      {
+        "value": 5,
+        "label": "Very accurate"
+      }
+    ]
+  },
+  "administration": {
+    "order": "Interleave into the personality block after item NEO060.",
+    "est_minutes": 1
+  },
+  "scoring": {
+    "reverse": "All four items are negatively keyed: score = 6 - response.",
+    "scale": "Mean of 4 items."
+  },
+  "items": [
+    {
+      "id": "HH01",
+      "key": -1,
+      "text": "Feel entitled to more of everything."
+    },
+    {
+      "id": "HH02",
+      "key": -1,
+      "text": "Deserve more things in life."
+    },
+    {
+      "id": "HH03",
+      "key": -1,
+      "text": "Would like to be seen driving around in a very expensive car."
+    },
+    {
+      "id": "HH04",
+      "key": -1,
+      "text": "Would get a lot of pleasure from owning expensive luxury goods."
+    }
+  ]
+}

@@ -1,0 +1,465 @@
+{
+  "module": "lane_dispositions",
+  "instrument": "Lane Disposition Scales (original, experimental)",
+  "status": "EXPERIMENTAL. 10 scales x 6 items, balanced keying (3+/3-). Validate in pilot: target alpha >= .75, test-retest >= .70 over 4 weeks, and incremental prediction of sprint outcomes beyond Big Five facets. Expect overlap: variance_tolerance with E5/C6, self_direction with C5, setback_resilience with N6. Keep a scale only if it adds beyond its overlapping facet.",
+  "license": "Proprietary to Lane.",
+  "why_included": "These are the traits that separate non-corporate lanes from each other and that the Big Five measure only indirectly: tolerance for income variance, competitiveness, comfort being seen, working without structure, recovering from failure, liking practice, solo vs team, waiting for payoffs, physicality, and selling. Each maps to a concrete lane demand (BLUEPRINT.md §8).",
+  "note_on_risk": "Risk taking is strongly domain-specific (Blais & Weber, 2006). Variance tolerance here is scoped to career and income only. Physical risk is covered by E5 Excitement-seeking; behavioural risk by the balloon task in the cognitive battery.",
+  "item_stem_prefix": "I...",
+  "response_format": {
+    "type": "likert5",
+    "stem": "How accurately does each statement describe you? Describe yourself as you generally are now, not as you wish to be, compared with people of your sex and roughly your age.",
+    "options": [
+      {
+        "value": 1,
+        "label": "Very inaccurate"
+      },
+      {
+        "value": 2,
+        "label": "Moderately inaccurate"
+      },
+      {
+        "value": 3,
+        "label": "Neither accurate nor inaccurate"
+      },
+      {
+        "value": 4,
+        "label": "Moderately accurate"
+      },
+      {
+        "value": 5,
+        "label": "Very accurate"
+      }
+    ]
+  },
+  "administration": {
+    "order": "Separate block after the personality block, items in listed order.",
+    "est_minutes": 8
+  },
+  "scoring": {
+    "reverse": "If key == -1, score = 6 - response.",
+    "scale": "Mean of 6 items; require >= 5 answered."
+  },
+  "items": [
+    {
+      "id": "DSP_variance_tolerance_1",
+      "scale": "Variance tolerance (career and income uncertainty)",
+      "scale_code": "variance_tolerance",
+      "key": 1,
+      "text": "Would take a job with uncertain income if the upside were large."
+    },
+    {
+      "id": "DSP_competitiveness_1",
+      "scale": "Competitiveness",
+      "scale_code": "competitiveness",
+      "key": 1,
+      "text": "Need to know how I rank against others."
+    },
+    {
+      "id": "DSP_visibility_comfort_1",
+      "scale": "Comfort with visibility and audiences",
+      "scale_code": "visibility_comfort",
+      "key": 1,
+      "text": "Enjoy having an audience watch what I do."
+    },
+    {
+      "id": "DSP_self_direction_1",
+      "scale": "Self-direction (low need for external structure)",
+      "scale_code": "self_direction",
+      "key": 1,
+      "text": "Do my best work when nobody sets my schedule."
+    },
+    {
+      "id": "DSP_setback_resilience_1",
+      "scale": "Setback resilience",
+      "scale_code": "setback_resilience",
+      "key": 1,
+      "text": "Keep going after repeated failures."
+    },
+    {
+      "id": "DSP_mastery_practice_1",
+      "scale": "Deliberate-practice orientation",
+      "scale_code": "mastery_practice",
+      "key": 1,
+      "text": "Enjoy repeating a skill until it is exactly right."
+    },
+    {
+      "id": "DSP_team_orientation_1",
+      "scale": "Team vs solo work preference",
+      "scale_code": "team_orientation",
+      "key": 1,
+      "text": "Think best when I work with others in the room."
+    },
+    {
+      "id": "DSP_long_horizon_1",
+      "scale": "Long-horizon motivation",
+      "scale_code": "long_horizon",
+      "key": 1,
+      "text": "Am willing to work for years before seeing a reward."
+    },
+    {
+      "id": "DSP_physical_embodied_1",
+      "scale": "Physical and hands-on orientation",
+      "scale_code": "physical_embodied",
+      "key": 1,
+      "text": "Feel most alive when my body is working hard."
+    },
+    {
+      "id": "DSP_persuasion_1",
+      "scale": "Persuasion and selling orientation",
+      "scale_code": "persuasion",
+      "key": 1,
+      "text": "Enjoy changing someone's mind."
+    },
+    {
+      "id": "DSP_variance_tolerance_2",
+      "scale": "Variance tolerance (career and income uncertainty)",
+      "scale_code": "variance_tolerance",
+      "key": 1,
+      "text": "Can live calmly without knowing what next month will bring financially."
+    },
+    {
+      "id": "DSP_competitiveness_2",
+      "scale": "Competitiveness",
+      "scale_code": "competitiveness",
+      "key": 1,
+      "text": "Play to win, even in casual games."
+    },
+    {
+      "id": "DSP_visibility_comfort_2",
+      "scale": "Comfort with visibility and audiences",
+      "scale_code": "visibility_comfort",
+      "key": 1,
+      "text": "Am comfortable showing my work in public before it is perfect."
+    },
+    {
+      "id": "DSP_self_direction_2",
+      "scale": "Self-direction (low need for external structure)",
+      "scale_code": "self_direction",
+      "key": 1,
+      "text": "Can organize my days without deadlines from anyone else."
+    },
+    {
+      "id": "DSP_setback_resilience_2",
+      "scale": "Setback resilience",
+      "scale_code": "setback_resilience",
+      "key": 1,
+      "text": "Treat rejection as information rather than a verdict on me."
+    },
+    {
+      "id": "DSP_mastery_practice_2",
+      "scale": "Deliberate-practice orientation",
+      "scale_code": "mastery_practice",
+      "key": 1,
+      "text": "Seek out feedback that shows me what I'm doing wrong."
+    },
+    {
+      "id": "DSP_team_orientation_2",
+      "scale": "Team vs solo work preference",
+      "scale_code": "team_orientation",
+      "key": 1,
+      "text": "Get energy from team projects."
+    },
+    {
+      "id": "DSP_long_horizon_2",
+      "scale": "Long-horizon motivation",
+      "scale_code": "long_horizon",
+      "key": 1,
+      "text": "Can stick with a plan whose payoff is far away."
+    },
+    {
+      "id": "DSP_physical_embodied_2",
+      "scale": "Physical and hands-on orientation",
+      "scale_code": "physical_embodied",
+      "key": 1,
+      "text": "Prefer working with my hands to working at a screen."
+    },
+    {
+      "id": "DSP_persuasion_2",
+      "scale": "Persuasion and selling orientation",
+      "scale_code": "persuasion",
+      "key": 1,
+      "text": "Am comfortable asking strangers for something."
+    },
+    {
+      "id": "DSP_variance_tolerance_3",
+      "scale": "Variance tolerance (career and income uncertainty)",
+      "scale_code": "variance_tolerance",
+      "key": 1,
+      "text": "Am drawn to bets where I could lose a lot but win much more."
+    },
+    {
+      "id": "DSP_competitiveness_3",
+      "scale": "Competitiveness",
+      "scale_code": "competitiveness",
+      "key": 1,
+      "text": "Get more motivated when I have a rival."
+    },
+    {
+      "id": "DSP_visibility_comfort_3",
+      "scale": "Comfort with visibility and audiences",
+      "scale_code": "visibility_comfort",
+      "key": 1,
+      "text": "Like being recognized by people I don't know."
+    },
+    {
+      "id": "DSP_self_direction_3",
+      "scale": "Self-direction (low need for external structure)",
+      "scale_code": "self_direction",
+      "key": 1,
+      "text": "Start projects without anyone asking me to."
+    },
+    {
+      "id": "DSP_setback_resilience_3",
+      "scale": "Setback resilience",
+      "scale_code": "setback_resilience",
+      "key": 1,
+      "text": "Go back to a hard skill the day after a bad performance."
+    },
+    {
+      "id": "DSP_mastery_practice_3",
+      "scale": "Deliberate-practice orientation",
+      "scale_code": "mastery_practice",
+      "key": 1,
+      "text": "Track my progress in numbers."
+    },
+    {
+      "id": "DSP_team_orientation_3",
+      "scale": "Team vs solo work preference",
+      "scale_code": "team_orientation",
+      "key": 1,
+      "text": "Prefer shared goals over individual ones."
+    },
+    {
+      "id": "DSP_long_horizon_3",
+      "scale": "Long-horizon motivation",
+      "scale_code": "long_horizon",
+      "key": 1,
+      "text": "Finish the work before I give myself a reward."
+    },
+    {
+      "id": "DSP_physical_embodied_3",
+      "scale": "Physical and hands-on orientation",
+      "scale_code": "physical_embodied",
+      "key": 1,
+      "text": "Train physically even when nobody requires it."
+    },
+    {
+      "id": "DSP_persuasion_3",
+      "scale": "Persuasion and selling orientation",
+      "scale_code": "persuasion",
+      "key": 1,
+      "text": "Can hear 'no' many times in a row without losing energy."
+    },
+    {
+      "id": "DSP_variance_tolerance_4",
+      "scale": "Variance tolerance (career and income uncertainty)",
+      "scale_code": "variance_tolerance",
+      "key": -1,
+      "text": "Need a steady paycheck to feel at ease."
+    },
+    {
+      "id": "DSP_competitiveness_4",
+      "scale": "Competitiveness",
+      "scale_code": "competitiveness",
+      "key": -1,
+      "text": "Lose interest when an activity turns into a competition."
+    },
+    {
+      "id": "DSP_visibility_comfort_4",
+      "scale": "Comfort with visibility and audiences",
+      "scale_code": "visibility_comfort",
+      "key": -1,
+      "text": "Would rather do good work quietly than be seen doing it."
+    },
+    {
+      "id": "DSP_self_direction_4",
+      "scale": "Self-direction (low need for external structure)",
+      "scale_code": "self_direction",
+      "key": -1,
+      "text": "Need clear instructions before I can start."
+    },
+    {
+      "id": "DSP_setback_resilience_4",
+      "scale": "Setback resilience",
+      "scale_code": "setback_resilience",
+      "key": -1,
+      "text": "Give up when progress is slow."
+    },
+    {
+      "id": "DSP_mastery_practice_4",
+      "scale": "Deliberate-practice orientation",
+      "scale_code": "mastery_practice",
+      "key": -1,
+      "text": "Lose interest once I'm reasonably good at something."
+    },
+    {
+      "id": "DSP_team_orientation_4",
+      "scale": "Team vs solo work preference",
+      "scale_code": "team_orientation",
+      "key": -1,
+      "text": "Do my deepest work alone."
+    },
+    {
+      "id": "DSP_long_horizon_4",
+      "scale": "Long-horizon motivation",
+      "scale_code": "long_horizon",
+      "key": -1,
+      "text": "Need to see results quickly to keep going."
+    },
+    {
+      "id": "DSP_physical_embodied_4",
+      "scale": "Physical and hands-on orientation",
+      "scale_code": "physical_embodied",
+      "key": -1,
+      "text": "Find hard physical effort unpleasant."
+    },
+    {
+      "id": "DSP_persuasion_4",
+      "scale": "Persuasion and selling orientation",
+      "scale_code": "persuasion",
+      "key": -1,
+      "text": "Feel uneasy promoting myself or a product."
+    },
+    {
+      "id": "DSP_variance_tolerance_5",
+      "scale": "Variance tolerance (career and income uncertainty)",
+      "scale_code": "variance_tolerance",
+      "key": -1,
+      "text": "Choose the safe option, even when the risky one looks better on paper."
+    },
+    {
+      "id": "DSP_competitiveness_5",
+      "scale": "Competitiveness",
+      "scale_code": "competitiveness",
+      "key": -1,
+      "text": "Don't care who comes out on top."
+    },
+    {
+      "id": "DSP_visibility_comfort_5",
+      "scale": "Comfort with visibility and audiences",
+      "scale_code": "visibility_comfort",
+      "key": -1,
+      "text": "Feel exposed when strangers judge something I have made."
+    },
+    {
+      "id": "DSP_self_direction_5",
+      "scale": "Self-direction (low need for external structure)",
+      "scale_code": "self_direction",
+      "key": -1,
+      "text": "Drift when there are no external deadlines."
+    },
+    {
+      "id": "DSP_setback_resilience_5",
+      "scale": "Setback resilience",
+      "scale_code": "setback_resilience",
+      "key": -1,
+      "text": "Take criticism of my work as criticism of me."
+    },
+    {
+      "id": "DSP_mastery_practice_5",
+      "scale": "Deliberate-practice orientation",
+      "scale_code": "mastery_practice",
+      "key": -1,
+      "text": "Avoid practice that feels repetitive."
+    },
+    {
+      "id": "DSP_team_orientation_5",
+      "scale": "Team vs solo work preference",
+      "scale_code": "team_orientation",
+      "key": -1,
+      "text": "Find that group work slows me down."
+    },
+    {
+      "id": "DSP_long_horizon_5",
+      "scale": "Long-horizon motivation",
+      "scale_code": "long_horizon",
+      "key": -1,
+      "text": "Switch goals when another option looks exciting."
+    },
+    {
+      "id": "DSP_physical_embodied_5",
+      "scale": "Physical and hands-on orientation",
+      "scale_code": "physical_embodied",
+      "key": -1,
+      "text": "Would rather think through a problem than physically do something about it."
+    },
+    {
+      "id": "DSP_persuasion_5",
+      "scale": "Persuasion and selling orientation",
+      "scale_code": "persuasion",
+      "key": -1,
+      "text": "Avoid asking people for favours."
+    },
+    {
+      "id": "DSP_variance_tolerance_6",
+      "scale": "Variance tolerance (career and income uncertainty)",
+      "scale_code": "variance_tolerance",
+      "key": -1,
+      "text": "Lose sleep over money that hasn't arrived yet."
+    },
+    {
+      "id": "DSP_competitiveness_6",
+      "scale": "Competitiveness",
+      "scale_code": "competitiveness",
+      "key": -1,
+      "text": "Feel uncomfortable beating people I know."
+    },
+    {
+      "id": "DSP_visibility_comfort_6",
+      "scale": "Comfort with visibility and audiences",
+      "scale_code": "visibility_comfort",
+      "key": -1,
+      "text": "Avoid being the face of a project."
+    },
+    {
+      "id": "DSP_self_direction_6",
+      "scale": "Self-direction (low need for external structure)",
+      "scale_code": "self_direction",
+      "key": -1,
+      "text": "Prefer someone else to decide what I should work on."
+    },
+    {
+      "id": "DSP_setback_resilience_6",
+      "scale": "Setback resilience",
+      "scale_code": "setback_resilience",
+      "key": -1,
+      "text": "Need early success to stay motivated."
+    },
+    {
+      "id": "DSP_mastery_practice_6",
+      "scale": "Deliberate-practice orientation",
+      "scale_code": "mastery_practice",
+      "key": -1,
+      "text": "Would rather improvise than drill the basics."
+    },
+    {
+      "id": "DSP_team_orientation_6",
+      "scale": "Team vs solo work preference",
+      "scale_code": "team_orientation",
+      "key": -1,
+      "text": "Prefer to be judged on my own output."
+    },
+    {
+      "id": "DSP_long_horizon_6",
+      "scale": "Long-horizon motivation",
+      "scale_code": "long_horizon",
+      "key": -1,
+      "text": "Lose motivation when a goal is more than a year away."
+    },
+    {
+      "id": "DSP_physical_embodied_6",
+      "scale": "Physical and hands-on orientation",
+      "scale_code": "physical_embodied",
+      "key": -1,
+      "text": "Get restless doing physical work for long."
+    },
+    {
+      "id": "DSP_persuasion_6",
+      "scale": "Persuasion and selling orientation",
+      "scale_code": "persuasion",
+      "key": -1,
+      "text": "Dislike negotiating."
+    }
+  ]
+}
