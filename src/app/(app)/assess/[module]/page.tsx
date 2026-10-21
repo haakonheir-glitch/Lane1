@@ -3,24 +3,22 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { AppPage } from "@/components/shell/AppPage";
 import { LikertRunner } from "@/components/assess/LikertRunner";
-import { PatternGame } from "@/components/assess/PatternGame";
+import { CognitiveRunner } from "@/components/assess/CognitiveRunner";
 import { ButtonLink } from "@/components/ui/Button";
 import { Skeleton } from "@/components/ui/Misc";
-import { getModule, getModules, getPatternItems, getQuestions } from "@/lib/data";
+import { getCognitive, getModuleTitle, getQuestions } from "@/lib/data";
+import { likertModules, type LikertModuleId } from "@/lib/assessment/items";
 
-export async function generateStaticParams() {
-  return (await getModules()).map((m) => ({ module: m.id }));
-}
+const INSTRUMENT: Record<string, string> = { interests: "RIASEC · 36 items", personality: "Big Five · 40 items", values: "8 values · 16 items", cognitive: "3 timed tasks" };
 
 export async function generateMetadata({ params }: PageProps<"/assess/[module]">): Promise<Metadata> {
-  const mod = await getModule((await params).module);
-  return { title: mod ? mod.title : "Assessment" };
+  return { title: (await getModuleTitle((await params).module)) ?? "Assessment" };
 }
 
 export default async function ModulePage({ params }: PageProps<"/assess/[module]">) {
   const { module: id } = await params;
-  const mod = await getModule(id);
-  if (!mod) notFound();
+  const title = await getModuleTitle(id);
+  if (!title) notFound();
 
   const exit = (
     <ButtonLink href="/assess" variant="ghost" size="sm">
@@ -28,20 +26,21 @@ export default async function ModulePage({ params }: PageProps<"/assess/[module]
     </ButtonLink>
   );
 
-  if (mod.id === "cognitive") {
-    const items = await getPatternItems();
+  if (id === "cognitive") {
+    const games = await getCognitive();
     return (
-      <AppPage title={mod.title} meta={mod.instrument} action={exit} bleed>
-        <PatternGame items={items} />
+      <AppPage title={title} meta={INSTRUMENT[id]} action={exit} bleed>
+        <CognitiveRunner games={games} />
       </AppPage>
     );
   }
 
-  const questions = await getQuestions(mod.id);
+  if (!(id in likertModules)) notFound();
+  const { questions, answers } = await getQuestions(id as LikertModuleId);
   return (
-    <AppPage title={mod.title} meta={mod.instrument} action={exit} bleed>
+    <AppPage title={title} meta={INSTRUMENT[id]} action={exit} bleed>
       <Suspense fallback={<Skeleton lines={4} className="page py-16" />}>
-        <LikertRunner moduleId={mod.id} title={mod.title} questions={questions} />
+        <LikertRunner moduleId={id} title={title} questions={questions} initialAnswers={answers} />
       </Suspense>
     </AppPage>
   );

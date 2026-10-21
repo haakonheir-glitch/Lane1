@@ -6,11 +6,23 @@ import { mkdirSync } from "node:fs";
 const base = process.argv[2] ?? "http://localhost:3000";
 const routes = process.argv.slice(3).length
   ? process.argv.slice(3)
-  : ["/", "/method", "/system", "/start", "/assess", "/assess/personality", "/assess/cognitive", "/profile", "/lanes", "/lanes?lane=sales-b2b", "/sprints", "/sprints/sp-sales-calls", "/evidence", "/settings", "/nope"];
+  : ["/", "/method", "/system", "/login", "/signup", "/start", "/assess", "/assess/personality", "/assess/cognitive", "/profile", "/lanes", "/lanes?lane=sales-b2b", "/sprints/template-coach-three", "/sprints", "/evidence", "/settings", "/nope"];
 const widths = [390, 1440];
 const themes = ["light", "dark"];
 const out = ".screenshots";
 mkdirSync(out, { recursive: true });
+
+
+// Sign in (demo account from `npm run seed` by default) so app pages render with data.
+async function signIn(ctx) {
+  const page = await ctx.newPage();
+  await page.goto(base + "/login");
+  await page.fill("#email", process.env.LANE_EMAIL ?? "demo@lane.local");
+  await page.fill("#password", process.env.LANE_PASSWORD ?? "lane-demo-2026");
+  await page.click("button[type=submit]");
+  await page.waitForURL((u) => u.pathname !== "/login", { timeout: 60000 });
+  await page.close();
+}
 
 const browser = await chromium.launch(
   process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {},
@@ -20,6 +32,7 @@ for (const theme of themes) {
   for (const width of widths) {
     const ctx = await browser.newContext({ viewport: { width, height: 900 }, colorScheme: theme, reducedMotion: "reduce" });
     await ctx.addInitScript((t) => localStorage.setItem("lane-theme", t), theme);
+    await signIn(ctx);
     const page = await ctx.newPage();
     page.on("pageerror", (e) => problems.push(`pageerror ${width} ${theme}: ${e.message}`));
     page.on("console", (m) => m.type() === "error" && problems.push(`console ${width} ${theme}: ${m.text()}`));

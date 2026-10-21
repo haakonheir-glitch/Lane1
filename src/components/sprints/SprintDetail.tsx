@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useTransition, type FormEvent } from "react";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Field";
@@ -12,15 +12,10 @@ import { CheckInScale } from "./CheckInScale";
 import { addDays, formatDay, pad2 } from "@/lib/format";
 import type { CheckIn, LogEntry, Sprint } from "@/lib/types";
 import { cn } from "@/lib/cn";
+import { derive as deriveChart } from "@/lib/sprints/compute";
+import { saveCheckIn as saveCheckInAction, saveLogEntry, setTaskDone } from "@/app/actions/sprints";
 
-function derive(sprint: Sprint, entry: LogEntry): number | null {
-  const num = entry.values[sprint.chart.numerator];
-  if (num === undefined) return null;
-  if (!sprint.chart.denominator) return num;
-  const den = entry.values[sprint.chart.denominator];
-  if (!den) return null;
-  return Math.round((num / den) * (sprint.chart.scale ?? 1) * 10) / 10;
-}
+const derive = (sprint: Sprint, entry: LogEntry) => deriveChart(sprint.chart, entry);
 
 export function SprintDetail({ sprint }: { sprint: Sprint }) {
   const today = sprint.status === "active" ? (sprint.currentDay ?? 1) : null;
@@ -29,6 +24,9 @@ export function SprintDetail({ sprint }: { sprint: Sprint }) {
   const [log, setLog] = useState<LogEntry[]>(sprint.log);
   const [draft, setDraft] = useState<Record<string, string>>({});
   const [saved, setSaved] = useState(false);
+  const [error, setError] = useState("");
+  const [busy, startBusy] = useTransition();
+  const fail = () => setError("That didn't save. Check your connection and try again.");
 
   const todaysCheckIn = today ? checkIns.find((c) => c.day === today) : undefined;
   const [pending, setPending] = useState<{ energy: number | null; flow: number | null; continue: number | null }>({
@@ -50,8 +48,24 @@ export function SprintDetail({ sprint }: { sprint: Sprint }) {
   function saveCheckIn() {
     if (!today || pending.energy === null || pending.flow === null || pending.continue === null) return;
     const entry: CheckIn = { day: today, energy: pending.energy, flow: pending.flow, continue: pending.continue };
-    setCheckIns((prev) => [...prev.filter((c) => c.day !== today), entry].sort((a, b) => a.day - b.day));
-    setSaved(true);
+    startBusy(async () => {
+      try {
+        await saveCheckInAction(sprint.id, { energy: entry.energy, flow: entry.flow, continue: entry.continue });
+        setCheckIns((prev) => [...prev.filter((c) => c.day !== today), entry].sort((a, b) => a.day - b.day));
+        setSaved(true);
+        setError("");
+      } catch {
+        fail();
+      }
+    });
+  }
+
+  function toggleTask(day: number, checked: boolean) {
+    setTasks((prev) => prev.map((x) => (x.day === day ? { ...x, done: checked } : x)));
+    setTaskDone(sprint.id, day, checked).catch(() => {
+      setTasks((prev) => prev.map((x) => (x.day === day ? { ...x, done: !checked } : x)));
+      fail();
+    });
   }
 
   function addLog(e: FormEvent) {
@@ -63,14 +77,28 @@ export function SprintDetail({ sprint }: { sprint: Sprint }) {
       if (draft[m.key] === undefined || draft[m.key] === "" || !Number.isFinite(v) || v < 0) return;
       values[m.key] = v;
     }
-    setLog((prev) => [...prev.filter((l) => l.day !== today), { day: today, values, note: draft.note || undefined }].sort((a, b) => a.day - b.day));
-    setDraft({});
+    const note = draft.note || undefined;
+    startBusy(async () => {
+      try {
+        await saveLogEntry(sprint.id, { values, note });
+        setLog((prev) => [...prev.filter((l) => l.day !== today), { day: today, values, note }].sort((a, b) => a.day - b.day));
+        setDraft({});
+        setError("");
+      } catch {
+        fail();
+      }
+    });
   }
 
   const draftComplete = sprint.metrics.every((m) => draft[m.key] !== undefined && draft[m.key] !== "");
 
   return (
     <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 [&>*]:min-w-0">
+      {error ? (
+        <p role="alert" className="text-small text-caution lg:col-span-12">
+          {error}
+        </p>
+      ) : null}
       {/* Tasks */}
       <section className="lg:col-span-7" aria-labelledby="tasks-h">
         <SectionHeader index="01" label="Plan" title="Day by day" id="tasks-h" aside={`${done}/${sprint.days} done`} />
@@ -95,11 +123,8 @@ export function SprintDetail({ sprint }: { sprint: Sprint }) {
                   <Checkbox
                     aria-label={`Day ${t.day}: ${t.title}`}
                     checked={t.done}
-                    disabled={sprint.status === "suggested" || (today !== null && t.day > today)}
-                    onChange={(e) => {
-                      const checked = e.currentTarget.checked;
-                      setTasks((prev) => prev.map((x) => (x.day === t.day ? { ...x, done: checked } : x)));
-                    }}
+                    disabled={today === null || t.day > today}
+                    onChange={(e) => toggleTask(t.day, e.currentTarget.checked)}
                   />
                 </span>
                 <div className="min-w-0">
@@ -125,7 +150,7 @@ export function SprintDetail({ sprint }: { sprint: Sprint }) {
               <CheckInScale label="Flow" anchors={["Distracted", "Absorbed"]} value={pending.flow} onChange={(v) => { setPending((p) => ({ ...p, flow: v })); setSaved(false); }} />
               <CheckInScale label="Want to continue" anchors={["Not at all", "Very much"]} value={pending.continue} onChange={(v) => { setPending((p) => ({ ...p, continue: v })); setSaved(false); }} />
               <div className="flex items-center gap-4">
-                <Button variant="secondary" size="sm" onClick={saveCheckIn} disabled={pending.energy === null || pending.flow === null || pending.continue === null}>
+                <Button variant="secondary" size="sm" onClick={saveCheckIn} disabled={busy || pending.energy === null || pending.flow === null || pending.continue === null}>
                   Save check-in
                 </Button>
                 <span className="label text-ink-3" aria-live="polite">
@@ -232,8 +257,8 @@ export function SprintDetail({ sprint }: { sprint: Sprint }) {
               <span className="label text-ink-3">Note</span>
               <Input value={draft.note ?? ""} onChange={(e) => setDraft((d) => ({ ...d, note: e.target.value }))} />
             </label>
-            <Button type="submit" variant="secondary" disabled={!draftComplete}>
-              Add row
+            <Button type="submit" variant="secondary" disabled={busy || !draftComplete}>
+              {log.some((l) => l.day === today) ? "Replace today's row" : "Add row"}
             </Button>
           </form>
         ) : null}

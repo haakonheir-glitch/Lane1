@@ -111,4 +111,6 @@ export const profile: Profile = {
     "It does not read biology. There is no genetic, DNA or brain-chemistry input, and there never will be.",
     "It cannot see circumstances: money, location, health, caring duties or luck. You have to weigh those yourself.",
   ],
+  pending: ["Pattern matrices (cognitive game 3 of 3)"],
+  normN: 1240,
 };

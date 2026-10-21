@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -8,7 +8,7 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { Kbd } from "@/components/ui/Misc";
 import { ProgressBar } from "./ProgressBar";
 import { QuestionCard } from "./QuestionCard";
-import { useAnswers } from "./useAnswers";
+import { resetModule, saveAnswer } from "@/app/actions/assessment";
 import { scaleAnchors, scalePrompt } from "@/lib/copy";
 import type { LikertQuestion } from "@/lib/types";
 
@@ -18,21 +18,38 @@ export function LikertRunner({
   moduleId,
   title,
   questions,
+  initialAnswers,
 }: {
   moduleId: string;
   title: string;
   questions: LikertQuestion[];
+  initialAnswers: Record<string, number>;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
   const reduce = useReducedMotion();
-  const { answers, setAnswer, reset } = useAnswers(moduleId);
+  const [answers, setAnswers] = useState(initialAnswers);
+  const [saveError, setSaveError] = useState(false);
+  const setAnswer = useCallback(
+    (itemId: string, value: number) => {
+      setAnswers((a) => ({ ...a, [itemId]: value }));
+      saveAnswer({ moduleId, itemId, value })
+        .then(() => setSaveError(false))
+        .catch(() => setSaveError(true));
+    },
+    [moduleId],
+  );
+  const reset = useCallback(async () => {
+    await resetModule(moduleId);
+    setAnswers({});
+  }, [moduleId]);
   const advanceTimer = useRef<number | null>(null);
   const headingRef = useRef<HTMLDivElement>(null);
 
   const total = questions.length;
-  const qParam = Number(params.get("q") ?? "1");
+  const firstOpen = Math.max(1, questions.findIndex((q) => initialAnswers[q.id] === undefined) + 1 || questions.length);
+  const qParam = Number(params.get("q") ?? String(firstOpen));
   const done = params.get("q") === "done";
   const index = done ? total : Math.min(total, Math.max(1, Number.isFinite(qParam) ? qParam : 1));
   const question = questions[index - 1];
@@ -153,8 +170,8 @@ export function LikertRunner({
                       </ButtonLink>
                       <Button
                         variant="ghost"
-                        onClick={() => {
-                          reset();
+                        onClick={async () => {
+                          await reset();
                           go(1);
                         }}
                       >
@@ -177,6 +194,12 @@ export function LikertRunner({
             </AnimatePresence>
           </div>
         </div>
+
+        {saveError ? (
+          <p role="alert" className="mx-auto mt-8 w-full max-w-reading text-small text-caution">
+            Your last answer didn&apos;t save. Check your connection, then go back and answer it again.
+          </p>
+        ) : null}
 
         {!done ? (
           <div className="mx-auto mt-12 flex w-full max-w-reading items-center justify-between gap-4 border-t border-rule pt-4">

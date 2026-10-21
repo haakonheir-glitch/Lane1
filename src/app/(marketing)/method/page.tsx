@@ -86,6 +86,13 @@ export default function MethodPage() {
 
           <Section n="02" title="The profile">
             <p>
+              The questions are Lane&apos;s own, written to fit the work in the Lane Map, including independent and
+              performance lanes. They follow well-studied models, but the items themselves are new and not yet
+              validated. Scoring is deliberately simple and transparent: each scale is the average of its answers, with
+              reverse-worded items flipped, reported on 0–100 with an 80% interval. As data comes in we will publish
+              reliability for every scale, and drop or rewrite items that don&apos;t hold up.
+            </p>
+            <p>
               <strong className="font-medium text-ink">Interests</strong> are measured on Holland&apos;s six RIASEC
               dimensions: Realistic, Investigative, Artistic, Social, Enterprising and Conventional.<Cite n={1} /> Interest
               fit relates to both performance and persistence, though the effects are moderate.<Cite n={2} />
@@ -188,8 +195,8 @@ export default function MethodPage() {
           </section>
 
           <div className="mt-16 flex flex-wrap items-center gap-4">
-            <ButtonLink href="/start">Start your profile</ButtonLink>
-            <span className="text-small text-ink-3">About 35 minutes, saved as you go.</span>
+            <ButtonLink href="/signup">Start your profile</ButtonLink>
+            <span className="text-small text-ink-3">About 30 minutes, saved as you go.</span>
           </div>
         </div>
       </article>

@@ -1,11 +1,11 @@
 import Link from "next/link";
-import type { Lane, Sprint } from "@/lib/types";
+import type { Sprint } from "@/lib/types";
 import { ciHalf, fmtSigned } from "@/lib/format";
 import { mean } from "@/lib/scoring";
 import { cn } from "@/lib/cn";
 
 export type ComparisonRow = {
-  lane: Lane;
+  laneName: string;
   sprint: Sprint;
   performance: { value: number; pm: number } | null;
   improvement: number | null;
@@ -13,16 +13,15 @@ export type ComparisonRow = {
   wantsToContinue: boolean | null;
 };
 
-export function buildComparisonRows(sprints: Sprint[], lanes: Lane[]): ComparisonRow[] {
+export function buildComparisonRows(sprints: Sprint[], laneNames: Record<string, string>): ComparisonRow[] {
   return sprints
     .filter((s) => s.status !== "suggested")
     .map((s) => {
-      const lane = lanes.find((l) => l.id === s.laneId)!;
       const lastContinue = s.checkIns[s.checkIns.length - 1]?.continue;
       return {
-        lane,
+        laneName: laneNames[s.laneId] ?? s.laneId,
         sprint: s,
-        performance: s.outcome ? { value: s.outcome.performance.value, pm: ciHalf(s.outcome.performance) } : null,
+        performance: s.outcome?.performance ? { value: s.outcome.performance.value, pm: ciHalf(s.outcome.performance) } : null,
         improvement: s.outcome?.improvementRate ?? null,
         energy: s.outcome?.energyAvg ?? mean(s.checkIns.map((c) => c.energy)),
         wantsToContinue: s.outcome ? s.outcome.wantsToContinue : lastContinue !== undefined ? lastContinue >= 5 : null,
@@ -50,7 +49,7 @@ export function LaneComparisonTable({ rows }: { rows: ComparisonRow[] }) {
             <tr key={r.sprint.id} className="border-b border-rule">
               <th scope="row" className="py-4 pr-4 font-normal">
                 <Link href={`/sprints/${r.sprint.id}`} className="text-body text-ink transition-quiet hover:text-ink-2">
-                  {r.lane.name}
+                  {r.laneName}
                 </Link>
                 <span className="block text-small text-ink-3">{r.sprint.title}</span>
               </th>
@@ -58,18 +57,18 @@ export function LaneComparisonTable({ rows }: { rows: ComparisonRow[] }) {
               <td className="py-4 pr-4 text-right font-mono text-small text-ink">
                 {r.performance ? (
                   <>
-                    {r.performance.value}
+                    P{r.performance.value}
                     <span className="text-label text-ink-3"> ±{r.performance.pm}</span>
                   </>
                 ) : (
-                  <span className="text-ink-3">pending</span>
+                  <span className="text-ink-3">{r.sprint.status === "active" ? "pending" : "needs peers"}</span>
                 )}
               </td>
               <td className={cn("py-4 pr-4 text-right font-mono text-small", r.improvement !== null && r.improvement >= 20 ? "text-positive" : "text-ink")}>
                 {r.improvement !== null ? `${fmtSigned(r.improvement)}%` : <span className="text-ink-3">pending</span>}
               </td>
               <td className="py-4 pr-4 text-right font-mono text-small text-ink">
-                {r.energy.toFixed(1)}
+                {Number.isNaN(r.energy) ? "—" : r.energy.toFixed(1)}
                 <span className="text-label text-ink-3"> /7</span>
               </td>
               <td className="py-4 text-right label text-ink">

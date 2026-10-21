@@ -29,12 +29,15 @@ export function LaneDetailPanel({
   lane,
   sort,
   sprint,
+  planHref,
   onClose,
   headingId,
 }: {
   lane: RankedLane;
   sort: LaneSort;
   sprint?: Sprint;
+  /** Plan page for this lane's sprint template, used when there's no sprint yet. */
+  planHref: string;
   onClose: () => void;
   headingId: string;
 }) {
@@ -43,7 +46,7 @@ export function LaneDetailPanel({
       ? { href: `/sprints/${sprint.id}`, label: "Open active sprint" }
       : sprint?.status === "completed"
         ? { href: `/sprints/${sprint.id}`, label: "View completed sprint" }
-        : { href: sprint ? `/sprints/${sprint.id}` : "/sprints", label: "Start a sprint" };
+        : { href: planHref, label: "Plan a sprint" };
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
@@ -118,14 +121,17 @@ export function LaneDetailPanel({
 
         <section className="mt-8" aria-labelledby={`${headingId}-similar`}>
           <h3 id={`${headingId}-similar`} className="label text-ink-3">
-            What similar profiles did
+            What others who tried it did
           </h3>
           <div className="mt-4 flex flex-col gap-2 border-t border-rule pt-3">
-            <DataLabel label="Similar profiles" value={lane.similar.n.toLocaleString("en-US")} unit="n" />
-            <DataLabel label="Tried a sprint" value={lane.similar.triedPct} unit="%" />
-            <DataLabel label="Continued after" value={lane.similar.continuedPct} unit="%" />
+            <DataLabel label="Completed a sprint" value={lane.similar.n} unit="people" />
+            <DataLabel label="Wanted to continue" value={lane.similar.continuedPct ?? "—"} unit={lane.similar.continuedPct !== null ? "%" : undefined} />
           </div>
-          <p className="mt-3 text-small text-ink-2">{lane.similar.note}</p>
+          <p className="mt-3 text-small text-ink-3">
+            {lane.similar.continuedPct === null
+              ? "Shown once at least 10 people have completed a sprint in this lane."
+              : "Everyone who completed a sprint in this lane, not only profiles like yours."}
+          </p>
         </section>
       </div>
 

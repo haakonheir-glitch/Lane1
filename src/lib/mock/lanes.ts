@@ -16,8 +16,7 @@ export const lanes: Lane[] = [
       { label: "Extraversion", contribution: 0.27 },
       { label: "Low stress reactivity", contribution: 0.15 },
     ],
-    similar: { n: 1240, triedPct: 38, continuedPct: 61, note: "Most who continued moved into account executive roles within a year." },
-    sprintId: "sp-sales-calls",
+    similar: { n: 1240, continuedPct: 61 },
   },
   {
     id: "content",
@@ -34,8 +33,7 @@ export const lanes: Lane[] = [
       { label: "Openness", contribution: 0.26 },
       { label: "Autonomy (value)", contribution: 0.18 },
     ],
-    similar: { n: 980, triedPct: 44, continuedPct: 23, note: "Few continued full-time; many kept it as a side channel feeding another lane." },
-    sprintId: "sp-content-videos",
+    similar: { n: 980, continuedPct: 23 },
   },
   {
     id: "recruiting",
@@ -52,8 +50,7 @@ export const lanes: Lane[] = [
       { label: "Enterprising interest", contribution: 0.28 },
       { label: "Agreeableness", contribution: 0.12 },
     ],
-    similar: { n: 760, triedPct: 21, continuedPct: 48, note: "Half who continued preferred in-house roles over agency." },
-    sprintId: "sp-recruit",
+    similar: { n: 760, continuedPct: 48 },
   },
   {
     id: "coaching",
@@ -70,8 +67,7 @@ export const lanes: Lane[] = [
       { label: "Openness", contribution: 0.17 },
       { label: "Autonomy (value)", contribution: 0.16 },
     ],
-    similar: { n: 540, triedPct: 27, continuedPct: 35, note: "Those who continued usually paired coaching with a niche they already knew." },
-    sprintId: "sp-coach",
+    similar: { n: 540, continuedPct: 35 },
   },
   {
     id: "product",
@@ -88,8 +84,7 @@ export const lanes: Lane[] = [
       { label: "Investigative interest", contribution: 0.19 },
       { label: "Verbal reasoning", contribution: 0.17 },
     ],
-    similar: { n: 1110, triedPct: 31, continuedPct: 52, note: "Transitions were most often internal moves from analyst or sales roles." },
-    sprintId: "sp-product",
+    similar: { n: 1110, continuedPct: 52 },
   },
   {
     id: "founder",
@@ -106,7 +101,7 @@ export const lanes: Lane[] = [
       { label: "Enterprising interest", contribution: 0.25 },
       { label: "Conscientiousness", contribution: -0.12 },
     ],
-    similar: { n: 430, triedPct: 19, continuedPct: 17, note: "Wide spread of outcomes; most kept a salaried role while testing." },
+    similar: { n: 430, continuedPct: 17 },
   },
   {
     id: "consulting",
@@ -123,7 +118,7 @@ export const lanes: Lane[] = [
       { label: "Enterprising interest", contribution: 0.21 },
       { label: "Conventional interest", contribution: -0.1 },
     ],
-    similar: { n: 690, triedPct: 14, continuedPct: 41, note: "Hours were the most common reason given for stopping." },
+    similar: { n: 690, continuedPct: 41 },
   },
   {
     id: "podcast",
@@ -140,7 +135,7 @@ export const lanes: Lane[] = [
       { label: "Artistic interest", contribution: 0.22 },
       { label: "Verbal reasoning", contribution: 0.14 },
     ],
-    similar: { n: 310, triedPct: 22, continuedPct: 14, note: "Small sample. Treat with caution." },
+    similar: { n: 310, continuedPct: 14 },
   },
   {
     id: "marketing",
@@ -157,7 +152,7 @@ export const lanes: Lane[] = [
       { label: "Enterprising interest", contribution: 0.2 },
       { label: "Openness", contribution: 0.15 },
     ],
-    similar: { n: 870, triedPct: 18, continuedPct: 44, note: "Often combined with content work rather than chosen over it." },
+    similar: { n: 870, continuedPct: 44 },
   },
   {
     id: "real-estate",
@@ -174,7 +169,7 @@ export const lanes: Lane[] = [
       { label: "Extraversion", contribution: 0.21 },
       { label: "Security (value)", contribution: -0.11 },
     ],
-    similar: { n: 290, triedPct: 9, continuedPct: 38, note: "Small sample." },
+    similar: { n: 290, continuedPct: 38 },
   },
   {
     id: "ux-research",
@@ -191,8 +186,7 @@ export const lanes: Lane[] = [
       { label: "Social interest", contribution: 0.2 },
       { label: "Variety (value)", contribution: -0.08 },
     ],
-    similar: { n: 520, triedPct: 16, continuedPct: 39, note: "Those who stopped often cited too little direct influence on decisions." },
-    sprintId: "sp-ux-interviews",
+    similar: { n: 520, continuedPct: 39 },
   },
   {
     id: "journalist",
@@ -209,7 +203,7 @@ export const lanes: Lane[] = [
       { label: "Investigative interest", contribution: 0.18 },
       { label: "Security (value)", contribution: -0.14 },
     ],
-    similar: { n: 260, triedPct: 12, continuedPct: 20, note: "Small sample." },
+    similar: { n: 260, continuedPct: 20 },
   },
   {
     id: "trader",
@@ -226,7 +220,7 @@ export const lanes: Lane[] = [
       { label: "Numerical reasoning", contribution: 0.16 },
       { label: "Conventional interest", contribution: -0.13 },
     ],
-    similar: { n: 180, triedPct: 7, continuedPct: 11, note: "Small sample. Short sprints say little about long-run returns." },
+    similar: { n: 180, continuedPct: 11 },
   },
   {
     id: "data-analyst",
@@ -243,7 +237,7 @@ export const lanes: Lane[] = [
       { label: "Conventional interest", contribution: -0.17 },
       { label: "Extraversion", contribution: -0.15 },
     ],
-    similar: { n: 1350, triedPct: 11, continuedPct: 29, note: "Your current role. Evidence here comes from your own work history." },
+    similar: { n: 1350, continuedPct: 29 },
   },
   {
     id: "chef",
@@ -260,7 +254,7 @@ export const lanes: Lane[] = [
       { label: "Realistic interest", contribution: -0.2 },
       { label: "Variety (value)", contribution: 0.08 },
     ],
-    similar: { n: 140, triedPct: 5, continuedPct: 18, note: "Small sample." },
+    similar: { n: 140, continuedPct: 18 },
   },
   {
     id: "performer",
@@ -277,7 +271,7 @@ export const lanes: Lane[] = [
       { label: "Extraversion", contribution: 0.2 },
       { label: "Security (value)", contribution: -0.16 },
     ],
-    similar: { n: 120, triedPct: 6, continuedPct: 9, note: "Small sample." },
+    similar: { n: 120, continuedPct: 9 },
   },
   {
     id: "software",
@@ -294,7 +288,7 @@ export const lanes: Lane[] = [
       { label: "Realistic interest", contribution: -0.18 },
       { label: "Extraversion", contribution: -0.16 },
     ],
-    similar: { n: 1480, triedPct: 8, continuedPct: 22, note: "Those with your profile who continued tended toward client-facing engineering." },
+    similar: { n: 1480, continuedPct: 22 },
   },
   {
     id: "electrician",
@@ -311,7 +305,7 @@ export const lanes: Lane[] = [
       { label: "Conventional interest", contribution: -0.08 },
       { label: "Security (value)", contribution: 0.06 },
     ],
-    similar: { n: 210, triedPct: 3, continuedPct: 27, note: "Small sample." },
+    similar: { n: 210, continuedPct: 27 },
   },
   {
     id: "carpenter",
@@ -328,7 +322,7 @@ export const lanes: Lane[] = [
       { label: "Artistic interest", contribution: 0.07 },
       { label: "Extraversion", contribution: -0.06 },
     ],
-    similar: { n: 170, triedPct: 2, continuedPct: 25, note: "Small sample." },
+    similar: { n: 170, continuedPct: 25 },
   },
   {
     id: "athlete",
@@ -345,7 +339,7 @@ export const lanes: Lane[] = [
       { label: "Realistic interest", contribution: -0.21 },
       { label: "Achievement (value)", contribution: 0.12 },
     ],
-    similar: { n: 60, triedPct: 1, continuedPct: 0, note: "Very small sample. Not meaningful." },
+    similar: { n: 60, continuedPct: 0 },
   },
 ];
 

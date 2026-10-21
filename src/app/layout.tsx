@@ -7,7 +7,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: { default: "Lane — Evidence, not horoscopes", template: "%s · Lane" },
   description:
-    "Find the work you're built for, with evidence. A validated profile, short real-world trials and outcome tracking over time.",
+    "Find the work you're built for, with evidence. A profile, short real-world trials and outcome tracking over time.",
 };
 
 export const viewport: Viewport = {

@@ -1,99 +1,101 @@
-# Lane — front-end
+# Lane
 
-*Evidence, not horoscopes.* Lane helps people find the line of work they're best suited to through a profile, a ranked Lane Map, short real-world trials ("Lane Sprints") and an evidence record. This repository is the complete front-end. There is no backend: all data comes from typed mocks.
+*Evidence, not horoscopes.* Lane helps people find the line of work they're best suited to: a profile from four short assessment modules, a Lane Map ranked against the person's own strengths, short real-world trials ("sprints"), and an evidence record that updates as they go.
 
-## Run it
+Accounts, answers, scores, sprints and evidence are saved to a Postgres database.
 
-Requires Node 20+.
+## Run it on your computer
+
+Requires Node 20.9+.
 
 ```bash
 npm install
-npm run dev          # http://localhost:3000
+npm run dev
 ```
 
-| Script | What it does |
+Open http://localhost:3000 and click **Start** to create an account.
+
+On your computer the app uses a built-in database stored in `.data/pglite`, so there's nothing to set up. Delete that folder to start from an empty database.
+
+### Demo account
+
+To see every screen filled in without taking the assessment yourself:
+
+```bash
+# stop `npm run dev` first (Ctrl+C); the local database allows one process at a time
+npm run seed
+npm run dev
+```
+
+Sign in as **demo@lane.local** / **lane-demo-2026**. Running the seed again resets the demo account.
+
+## Put it online (Vercel + Neon, both have free tiers)
+
+1. **Database.** Create a project at https://neon.tech. Copy the *pooled* connection string (it starts with `postgresql://` and contains `-pooler`).
+2. **Hosting.** At https://vercel.com, choose **Add New → Project** and import the `Lane1` GitHub repository.
+3. Before deploying, open **Environment Variables** and add:
+   - `DATABASE_URL`: the Neon connection string.
+   - `APP_TIMEZONE` *(optional)*: the time zone used for sprint days. The default is `Europe/Oslo`.
+4. Click **Deploy**. The build creates the database tables automatically (`npm run build` runs `scripts/migrate.mjs` first), and every later deploy applies any new migrations.
+
+Your site is then live at the address Vercel shows, and anyone can sign up. To load the demo account into the hosted database, run this once from your computer:
+
+```bash
+DATABASE_URL="postgresql://…" npm run seed -- --force
+```
+
+## How it works
+
+| Area | What happens |
+|---|---|
+| **Accounts** | Email and password (bcrypt-hashed). Sessions are random tokens in an httpOnly cookie, and only a SHA-256 hash of each token is stored in the database. `src/proxy.ts` sends signed-out visitors to `/login`, and every page and action checks the session again on the server. |
+| **Assessment** | Lane's own item bank (`src/lib/assessment/items.ts`): 36 interest items (RIASEC), 40 personality items (Big Five, half reverse-worded), 16 work-value items, and three timed games with 8 items each (verbal analogies, number series, pattern matrices). Answers save as you go. Game answers are marked on the server, and the browser never receives the answer keys. |
+| **Scoring** | `src/lib/assessment/scoring.ts`. Questionnaire scales are the mean of their keyed answers, rescaled to 0–100, with an 80% interval. Games are scored as % correct with an 80% Wilson interval, plus a processing-speed score. Values are ranked weights. Percentiles appear only once 30 people have completed the assessment. |
+| **Lane Map** | `src/lib/assessment/lanes.ts`. Each of the 20 lanes has weights over the measured features. Fit is ipsative: each feature is z-scored against the person's own mean and spread. Values add a 20% term. Intervals widen when inputs are missing. Payoff curves and the tie logic are in `src/lib/scoring.ts`. |
+| **Sprints** | `src/lib/sprints/`. There are 8 hand-written sprint templates, plus a generic one-week "taste test" for every other lane. You can run one sprint at a time. Tasks, daily check-ins and logs are saved, and the close-out asks whether you'd continue. Improvement is the change from the first third of logged days to the last. Performance percentiles need 10 people who have run the same sprint. |
+| **Evidence** | Conviction per lane starts at its relative fit and moves toward sprint evidence (continue 35%, energy 25%, flow 20%, improvement 20%). A completed sprint weighs 1.5× the prior. The timeline is built from your actual records. |
+| **Your data** | Settings → **Export data** downloads everything as JSON. **Delete account** (password required) removes it all immediately. |
+
+The questions are new and not yet validated, and the copy says so. Once there is enough data, reliability can be checked per scale using the export or the database.
+
+## Commands
+
+| Command | What it does |
 |---|---|
 | `npm run dev` | Development server |
-| `npm run build` / `npm start` | Production build / serve |
-| `npm run lint` · `npm run typecheck` | ESLint · TypeScript (strict) |
-| `npm run shoot -- [baseUrl] [routes…]` | Full-page screenshots at 390 and 1440 px, light and dark, into `.screenshots/`. Also reports horizontal overflow and runtime errors. |
-| `npm run a11y -- [baseUrl]` | axe-core WCAG 2.1 A/AA audit (including colour contrast) of every route in both themes |
+| `npm run build` / `npm start` | Apply migrations, build, then serve |
+| `npm test` | Scoring and lane-model checks |
+| `npm run e2e -- [url]` | Browser run-through as a new user: sign up, all modules, sprint, evidence, export, delete |
+| `npm run seed` | Create or reset the demo account |
+| `npm run db:generate` | Create a migration after changing `src/lib/db/schema.ts` |
+| `npm run shoot -- [url]` / `npm run a11y -- [url]` | Screenshots at 390/1440 px in both themes, and an axe WCAG audit. Both sign in as the demo account. |
+| `npm run lint` · `npm run typecheck` | ESLint · TypeScript |
 
-Both QA scripts expect a running server (`npm run build && npm start`). If Playwright's bundled browser isn't installed, point them at a Chromium binary with `PW_CHROMIUM=/path/to/chrome`.
-
-## Routes
-
-| Route | Screen |
-|---|---|
-| `/` | Landing page |
-| `/method` | The science, with references |
-| `/system` | Design-system specimen: every token and component, with a theme toggle |
-| `/start` | Onboarding, 4 steps (`?step=1…4`) |
-| `/assess` | Assessment hub |
-| `/assess/[module]` | Question runner (`interests`, `personality`, `values`) or the pattern-matrix game (`cognitive`). Fully keyboard-driven. |
-| `/profile` | Profile report, laid out like a lab report |
-| `/lanes` | Lane Map. URL state: `?sort=fit-payoff&group=…&payoff=…&lane=<id>` |
-| `/sprints`, `/sprints/[id]` | Sprint dashboard and sprint detail |
-| `/evidence` | Evidence Record |
-| `/settings` | Profile, theme, data export, account deletion |
-
-### Keyboard
-
-- **Question runner:** `1`–`5` answer and move on · `↑` `↓` adjust · `Enter` next · `Backspace` back
-- **Pattern game:** `Enter` start · `1`–`4` choose
-- **Onboarding:** `1`–`5` choose · `Enter` continue
-- **Lane panel (below 1280 px):** focus is trapped in the panel; `Esc` closes it
+The browser scripts use Playwright. If its browser isn't installed, run `npx playwright install chromium`, or point `PW_CHROMIUM` at a Chrome binary.
 
 ## Folder structure
 
 ```
 src/
+├─ proxy.ts                 sends signed-out visitors to /login
 ├─ app/
-│  ├─ globals.css           design tokens (CSS variables) mapped into Tailwind 4 via @theme
-│  ├─ layout.tsx            fonts, no-flash theme script, skip link
-│  ├─ (marketing)/          /, /method        — site header and footer
-│  ├─ (onboarding)/start/   /start            — minimal chrome
-│  ├─ (app)/                app shell (sidebar on desktop, bottom tabs on mobile) and all app routes
-│  ├─ system/               /system specimen page
-│  └─ not-found.tsx         404
-├─ components/
-│  ├─ ui/        Button, Field/Input/Select, Checkbox, SegmentedControl, Accordion, Tag, Kbd, Skeleton, Rule
-│  ├─ data/      DataLabel, ScoreBar, ConfidenceBadge, PayoffGlyph, PayoffCurve, RadarProfile, TraitTable,
-│  │             LineChart, SegmentedProgress  (all charts are hand-built SVG)
-│  ├─ report/    SectionHeader, ReportHeader, LimitationsBox, EmptyState
-│  ├─ lanes/     LaneRow, LaneMap, LaneDetailPanel
-│  ├─ assess/    QuestionCard, LikertRunner, PatternGame, Onboarding, ModuleRow, ProgressBar, useAnswers
-│  ├─ sprints/   SprintCard, SprintDetail, CheckInScale
-│  ├─ evidence/  EvidenceTimeline, ConvictionChart, LaneComparisonTable
-│  ├─ shell/     Sidebar, BottomTabs, TopBar, AppPage, Wordmark, ThemeToggle, SettingsForm
-│  └─ marketing/ SiteHeader, SiteFooter
+│  ├─ (marketing)/          /, /method
+│  ├─ (auth)/               /login, /signup
+│  ├─ (onboarding)/start/   onboarding questions
+│  ├─ (app)/                assess, profile, lanes, sprints, evidence, settings
+│  ├─ actions/              server actions: auth, assessment, sprints, account
+│  ├─ api/export/           JSON data export
+│  └─ system/               design-system specimen (sample data)
+├─ components/              UI components (see /system)
 └─ lib/
-   ├─ types.ts   domain types (the single source of truth)
-   ├─ data/      async data-access functions (the API seam)
-   ├─ mock/      typed fixtures, imported only by lib/data
-   ├─ scoring.ts payoff curves, ranking and tie logic
-   ├─ format.ts  dates, intervals and labels
-   ├─ copy.ts    assessment scale wording
-   └─ hooks/     useMediaQuery, useFocusTrap
-scripts/          shoot.mjs (screenshots + overflow), a11y.mjs (axe audit)
+   ├─ db/                   Drizzle schema + client (Postgres or local PGlite)
+   ├─ auth.ts               sessions, password hashing, requireUser()
+   ├─ data/                 per-user data access for pages; sample.ts feeds the marketing page and /system
+   ├─ assessment/           item bank, scoring, lane model, report text
+   └─ sprints/              sprint templates and evidence maths
+drizzle/                    SQL migrations
+scripts/                    migrate, seed, screenshots, a11y
+tests/                      scoring checks, end-to-end run
 ```
 
-## What is mocked
-
-Everything behind `src/lib/data/index.ts`:
-
-- **User and profile:** Ingrid Halvorsen, Oslo, report `LN-2026-0824-IH`. The app's "today" is fixed at 2026-10-21 so renders are deterministic.
-- **Lane data:** 20 ranked lanes with fit intervals, payoff type, payoff position, drivers and similar-profile stats, plus a 34-lane index for the landing page.
-- **Assessment:** 72 Likert items and 6 rule-generated pattern matrices.
-- **Sprints:** 1 active, 2 completed and 3 suggested, with tasks, check-ins and logs.
-- **Evidence:** events and conviction series.
-- **Not saved:** check-ins, log rows, task ticks and settings changes live in React state only and reset on reload.
-- **Saved:** assessment and onboarding answers persist in `sessionStorage`.
-- **Data export** downloads a real JSON file built from the mocks. **Account deletion** is simulated.
-
-**Swapping in an API:** rewrite the function bodies in `src/lib/data/index.ts` and keep their signatures. Pages are server components that call these functions; components only receive typed props and never import mocks. A ranked Lane Map is computed client-side by `rankLanes()` in `lib/scoring.ts`; a real backend may want to own that instead.
-
-## Notes
-
-- Design decisions, including the contrast changes to the brief's palette, are in [`PLAN.md`](PLAN.md#10-decisions).
-- `AGENTS.md` is generated by Next.js 16 for coding agents and can be ignored.
+Design decisions are recorded in [`PLAN.md`](PLAN.md#10-decisions).

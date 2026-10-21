@@ -7,6 +7,7 @@ function tasks(list: [string, string][], doneThrough = 0): SprintTask[] {
 export const sprints: Sprint[] = [
   {
     id: "sp-sales-calls",
+    templateId: "sp-sales-calls",
     laneId: "sales-b2b",
     title: "Hold 20 discovery conversations",
     brief:
@@ -57,6 +58,7 @@ export const sprints: Sprint[] = [
   },
   {
     id: "sp-content-videos",
+    templateId: "sp-content-videos",
     laneId: "content",
     title: "Publish 5 short videos",
     brief:
@@ -110,6 +112,7 @@ export const sprints: Sprint[] = [
   },
   {
     id: "sp-ux-interviews",
+    templateId: "sp-ux-interviews",
     laneId: "ux-research",
     title: "Run 4 user interviews",
     brief:
@@ -155,6 +158,7 @@ export const sprints: Sprint[] = [
   },
   {
     id: "sp-recruit",
+    templateId: "sp-recruit",
     laneId: "recruiting",
     title: "Source and screen 15 candidates",
     brief: "Find 15 plausible candidates for a real open role a friend's company is hiring for, and run five short screening calls.",
@@ -179,6 +183,7 @@ export const sprints: Sprint[] = [
   },
   {
     id: "sp-coach",
+    templateId: "sp-coach",
     laneId: "coaching",
     title: "Coach three people, three sessions each",
     brief: "Run nine short coaching sessions with three volunteers working toward a concrete goal. Track goal progress and your own energy after each session.",
@@ -200,6 +205,7 @@ export const sprints: Sprint[] = [
   },
   {
     id: "sp-product",
+    templateId: "sp-product",
     laneId: "product",
     title: "Write and test one product spec",
     brief: "Write a one-page spec for a small feature in a product you use, test it with three users and one engineer, and revise it.",

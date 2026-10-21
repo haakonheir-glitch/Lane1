@@ -24,7 +24,7 @@ import { Wordmark } from "@/components/shell/Wordmark";
 import { ThemeToggle } from "@/components/shell/ThemeToggle";
 import { SystemDemos } from "./SystemDemos";
 import { rankLanes } from "@/lib/scoring";
-import { getEvidence, getLanes, getProfile, getSprints } from "@/lib/data";
+import { getSampleEvidence as getEvidence, getSampleLanes as getLanes, getSampleProfile as getProfile, getSampleSprints as getSprints } from "@/lib/data/sample";
 
 export const metadata: Metadata = { title: "Design system", robots: { index: false } };
 
@@ -261,7 +261,7 @@ export default async function SystemPage() {
           </Specimen>
           <div className="mt-12 grid gap-12 lg:grid-cols-2">
             <Specimen name="SprintCard">
-              <SprintCard sprint={active} lane={lanes.find((l) => l.id === active.laneId)} />
+              <SprintCard sprint={active} laneName={lanes.find((l) => l.id === active.laneId)?.name ?? active.laneId} />
             </Specimen>
             <Specimen name="EvidenceTimeline">
               <TimelineLegend />

@@ -56,7 +56,7 @@ function FilterRow<T extends string>({
   );
 }
 
-export function LaneMap({ lanes, sprints }: { lanes: Lane[]; sprints: Sprint[] }) {
+export function LaneMap({ lanes, sprints, templates }: { lanes: Lane[]; sprints: Sprint[]; templates: Record<string, string> }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -108,7 +108,8 @@ export function LaneMap({ lanes, sprints }: { lanes: Lane[]; sprints: Sprint[] }
     <LaneDetailPanel
       lane={selected}
       sort={sort}
-      sprint={sprints.find((s) => s.laneId === selected.id)}
+      sprint={sprints.find((s) => s.laneId === selected.id && s.status !== "suggested")}
+      planHref={`/sprints/template-${templates[selected.id]}`}
       onClose={close}
       headingId={headingId}
     />

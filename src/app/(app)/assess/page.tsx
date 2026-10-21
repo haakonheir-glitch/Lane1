@@ -45,7 +45,7 @@ export default async function AssessPage() {
         </div>
 
         <section className="mt-16" aria-labelledby="modules-h">
-          <SectionHeader index="01" label="Modules" title="What's left" id="modules-h" />
+          <SectionHeader index="01" label="Modules" title={firstOpen ? "What's left" : "All modules complete"} id="modules-h" />
           <ol className="border-t border-rule">
             {modules.map((m, i) => (
               <ModuleRow key={m.id} module={m} index={i + 1} primary={m.id === firstOpen?.id} />

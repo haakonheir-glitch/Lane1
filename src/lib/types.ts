@@ -45,6 +45,10 @@ export type Profile = {
   aptitudes: Aptitude[];
   values: WorkValue[];
   limitations: string[];
+  /** Parts of the assessment not yet complete, in plain words. */
+  pending: string[];
+  /** Population size behind percentiles; percentiles appear only once this reaches the norm threshold. */
+  normN: number;
 };
 
 export type LaneGroup = "corporate" | "independent" | "performance" | "craft";
@@ -65,8 +69,8 @@ export type Lane = {
   payoffPositionCi: [number, number];
   confidence: Confidence;
   drivers: LaneDriver[];
-  similar: { n: number; triedPct: number; continuedPct: number; note: string };
-  sprintId?: string;
+  /** Other people who completed a sprint in this lane, and the share who wanted to continue. */
+  similar: { n: number; continuedPct: number | null };
 };
 
 export type RankedLane = Lane & {
@@ -81,6 +85,8 @@ export type LaneSort = "fit" | "fit-payoff";
 
 export type AssessmentModuleId = "interests" | "personality" | "cognitive" | "values";
 export type ModuleStatus = "complete" | "in-progress" | "not-started";
+
+export type OnboardingAnswers = { ageRange: string | null; situation: string | null; clarityGoal: string | null };
 
 export type AssessmentModule = {
   id: AssessmentModuleId;
@@ -120,9 +126,10 @@ export type LogEntry = { day: number; values: Record<string, number>; note?: str
 export type SprintMetric = { key: string; label: string; unit: string };
 
 export type SprintOutcome = {
-  performance: Score;
-  /** Percentage improvement from first to last third of the sprint. */
-  improvementRate: number;
+  /** Percentile against others who ran the same sprint; null until enough people have. */
+  performance: Score | null;
+  /** Percentage improvement from first to last third of the sprint; null without enough logged days. */
+  improvementRate: number | null;
   energyAvg: number;
   wantsToContinue: boolean;
   summary: string;
@@ -130,6 +137,7 @@ export type SprintOutcome = {
 
 export type Sprint = {
   id: string;
+  templateId: string;
   laneId: string;
   title: string;
   brief: string;

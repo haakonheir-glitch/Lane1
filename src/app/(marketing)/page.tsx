@@ -6,7 +6,7 @@ import { RadarProfile } from "@/components/data/RadarProfile";
 import { TraitTable } from "@/components/data/TraitTable";
 import { groupLabel, pad2 } from "@/lib/format";
 import { rankLanes } from "@/lib/scoring";
-import { getLaneIndex, getLanes, getProfile } from "@/lib/data";
+import { getLaneIndex, getSampleLanes as getLanes, getSampleProfile as getProfile } from "@/lib/data/sample";
 import type { LaneGroup } from "@/lib/types";
 
 const problems = [
@@ -38,11 +38,11 @@ const faq = [
   },
   {
     q: "Is this just another personality test?",
-    a: "The profile uses established, well-studied measures, but it is only the starting point. On its own, a test predicts job outcomes modestly. The point of Lane is the second half: short real-world sprints that produce evidence a questionnaire cannot.",
+    a: "The profile is built on well-studied models of interests and personality, using Lane's own questions, which we are still validating. It is only the starting point: on its own, a test predicts job outcomes modestly. The point of Lane is the second half: short real-world sprints that produce evidence a questionnaire cannot.",
   },
   {
     q: "How long does it take?",
-    a: "The assessment takes about 35 minutes and can be split across sessions. A sprint asks for roughly 30–60 minutes a day for one to three weeks.",
+    a: "The assessment takes about 30 minutes and can be split across sessions. A sprint asks for roughly 30–60 minutes a day for one to two weeks.",
   },
   {
     q: "What does “ranked relative to me” mean?",
@@ -77,13 +77,13 @@ export default async function LandingPage() {
             real-world trials of the best ones, and keeps the record.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <ButtonLink href="/start">Start your profile</ButtonLink>
+            <ButtonLink href="/signup">Start your profile</ButtonLink>
             <ButtonLink href="#method" variant="secondary">
               How it works
             </ButtonLink>
           </div>
           <p className="mt-10 font-mono text-label uppercase text-ink-3">
-            4 modules · ~35 min · {totalIndexed} lanes mapped · no DNA, ever
+            4 modules · ~30 min · {totalIndexed} lanes mapped · no DNA, ever
           </p>
         </div>
 
@@ -263,7 +263,7 @@ export default async function LandingPage() {
       <section className="border-t border-ink pt-12" aria-label="Start">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <p className="max-w-[24ch] text-h2 font-medium text-ink">Evidence, not horoscopes.</p>
-          <ButtonLink href="/start">Start your profile</ButtonLink>
+          <ButtonLink href="/signup">Start your profile</ButtonLink>
         </div>
       </section>
     </div>

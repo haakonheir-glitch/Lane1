@@ -1,6 +1,6 @@
 # Lane — Front-end Plan
 
-Status: **built** (phases 1–6) · v0.1 · 2026-10-21
+Status: **built** (phases 1–6) + functional backend · v0.2
 
 Working name "Lane". Front-end only; all data mocked behind a typed data layer.
 
@@ -312,6 +312,16 @@ After every phase: `npm run build`, run `scripts/shoot.ts` for each new route at
 - **D15 — Ties are anchored.** A lane ties with the lane *holding* the current rank only if within 2.5 points of it, so ties never chain down the list.
 - **D16 — Neutral game feedback.** The pattern game says "Recorded · 4.2 s" and never right/wrong; telling people would teach the test and change what it measures.
 - **D17 — Accessibility verification.** Lighthouse isn't run in this environment; `npm run a11y` runs axe-core (WCAG 2.1 A/AA incl. contrast) on every route at 390/1440 in both themes instead. It reports zero violations.
+
+### Backend (v0.2)
+
+- **D18 — Postgres everywhere, zero-setup locally.** Drizzle ORM. With `DATABASE_URL` set: postgres.js (Neon/Vercel in production; `prepare: false` for poolers). Without it: embedded PGlite in `.data/pglite`, migrated on first use. Same SQL migrations for both.
+- **D19 — Own auth, not a framework.** Email + password (bcrypt, cost 12); 30-day DB sessions keyed by a SHA-256 of a random cookie token; `proxy.ts` is only an optimistic redirect, and `requireUser()` runs in every page, action and route. Login errors don't reveal which emails exist.
+- **D20 — Lane's own item bank (user decision).** 36 interest, 40 personality (balanced keying), 16 values items and 3×8 timed game items, written for Lane's lanes. Marked as not yet validated in the report, method page and FAQ. "Validated" removed from all copy.
+- **D21 — Transparent scoring.** Keyed means → 0–100 with 80% intervals (SE from the person's own item spread, floored). Games: % correct with Wilson intervals. No percentiles or medians until 30 people have completed the assessment; no sprint performance percentiles until 10 people ran the same sprint; "others who tried it" needs 10 people. Nothing comparative is shown before it can be computed.
+- **D22 — Server-side marking.** Game answer keys never reach the browser; each item can be answered once.
+- **D23 — Lane model v1 is expert-weighted.** Ipsative feature z-scores × per-lane weights, 20% values term; intervals widen with missing inputs; "athlete" is forced to low confidence (physical ability unmeasured). Intended to be re-fitted on sprint outcomes.
+- **D24 — One active sprint at a time;** 8 hand-written templates plus a generic one-week taste test for other lanes. Conviction = prior (relative fit, weight 1) moved toward sprint evidence (weight 1.5 per completed sprint, proportional while active).
 
 ## 11. Open questions (non-blocking — defaults above apply)
 

@@ -3,11 +3,11 @@ import { ArrowRight } from "lucide-react";
 import { SegmentedProgress } from "@/components/data/SegmentedProgress";
 import { DataLabel } from "@/components/data/DataLabel";
 import { addDays, formatDay } from "@/lib/format";
-import type { Lane, Sprint } from "@/lib/types";
+import type { Sprint } from "@/lib/types";
 import { cn } from "@/lib/cn";
 
 /** Sprint summary: title, lane, day X of Y, next task, latest check-in. */
-export function SprintCard({ sprint, lane, size = "md" }: { sprint: Sprint; lane?: Lane; size?: "md" | "lg" }) {
+export function SprintCard({ sprint, laneName, size = "md" }: { sprint: Sprint; laneName: string; size?: "md" | "lg" }) {
   const day = sprint.currentDay ?? 0;
   const done = sprint.tasks.filter((t) => t.done).length;
   const next = sprint.tasks.find((t) => !t.done);
@@ -19,7 +19,7 @@ export function SprintCard({ sprint, lane, size = "md" }: { sprint: Sprint; lane
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="label text-ink-3">
-            {lane?.name ?? sprint.laneId}
+            {laneName}
             {sprint.startedOn ? ` · Started ${formatDay(sprint.startedOn)}` : ""}
           </p>
           <h3 className={cn("mt-2 font-medium text-ink", large ? "text-h2" : "text-h3")}>

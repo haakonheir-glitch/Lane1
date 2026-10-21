@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Settings } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
+import { logout } from "@/app/actions/auth";
 import { Wordmark } from "./Wordmark";
 import { navGroups, isActive } from "./nav";
 import { cn } from "@/lib/cn";
@@ -61,6 +62,12 @@ export function Sidebar({ user }: { user: User }) {
           <Settings aria-hidden strokeWidth={1.5} className="size-4" />
           Settings
         </Link>
+        <form action={logout}>
+          <button type="submit" className="flex items-center gap-2 text-small text-ink-2 transition-quiet hover:text-ink">
+            <LogOut aria-hidden strokeWidth={1.5} className="size-4" />
+            Sign out
+          </button>
+        </form>
       </div>
     </aside>
   );
