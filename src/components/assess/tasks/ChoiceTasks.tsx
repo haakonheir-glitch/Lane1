@@ -15,11 +15,15 @@ function OptionGrid({ options, onPick, mono = true, cols }: { options: (string |
           key={i}
           type="button"
           onClick={() => onPick(i)}
-          aria-label={`Option ${i + 1}: ${o}`}
           className="flex h-20 flex-col items-center justify-center gap-2 rounded-xs border border-rule bg-surface transition-quiet hover:border-rule-strong"
         >
-          <span className={cn("text-h3 text-ink", mono && "font-mono")}>{o}</span>
-          <Kbd>{i + 1}</Kbd>
+          <span className={cn("text-h3 text-ink", mono && "font-mono")}>
+            <span className="sr-only">Option {i + 1}: </span>
+            {o}
+          </span>
+          <span aria-hidden>
+            <Kbd>{i + 1}</Kbd>
+          </span>
         </button>
       ))}
     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -27,7 +27,6 @@ import { cn } from "@/lib/cn";
  * in the URL (?i=) so Back works and a reload resumes in place.
  */
 export function SessionRunner({ sessionId, title }: { sessionId: SessionId; title: string }) {
-  const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
   const reduce = useReducedMotion();
@@ -44,9 +43,10 @@ export function SessionRunner({ sessionId, title }: { sessionId: SessionId; titl
       setStep(s);
       setPreview(s.kind === "item" && typeof s.value === "number" ? s.value : undefined);
       shownAt.current = performance.now();
-      if (s.kind !== "done") router.replace(`${pathname}?i=${s.position}`, { scroll: false });
+      // Native history keeps the URL in sync without a server round-trip per answer.
+      if (s.kind !== "done") window.history.replaceState(null, "", `${pathname}?i=${s.position}`);
     },
-    [router, pathname],
+    [pathname],
   );
 
   // Load the step for the URL position (or the first unanswered one).
@@ -211,7 +211,7 @@ function StepView({
   sessionId: SessionId;
   onTaskDone: (s: PublicStep) => void;
 }) {
-  if (step.kind === "done") return <SessionOutro step={step} title={title} sessionId={sessionId} />;
+  if (step.kind === "done") return <SessionOutro step={step} title={title} sessionId={sessionId} onRestart={onTaskDone} />;
   if (step.kind === "env_check") return <EnvCheck questions={step.questions} onAnswer={(v) => answer(v)} />;
   if (step.kind === "task") return <TaskRunner sessionId={sessionId} task={step.task} onDone={onTaskDone} />;
   const f = step.item.format;
@@ -240,15 +240,22 @@ function StepView({
   }
 }
 
-function SessionOutro({ step, title, sessionId }: { step: Extract<PublicStep, { kind: "done" }>; title: string; sessionId: SessionId }) {
-  const router = useRouter();
+function SessionOutro({
+  step,
+  title,
+  sessionId,
+  onRestart,
+}: {
+  step: Extract<PublicStep, { kind: "done" }>;
+  title: string;
+  sessionId: SessionId;
+  onRestart: (s: PublicStep) => void;
+}) {
   const [busy, setBusy] = useState(false);
   async function retake() {
     setBusy(true);
     await api.retake(sessionId);
-    router.replace(`/assess/${sessionId}`);
-    router.refresh();
-    window.location.reload();
+    onRestart((await api.state(sessionId)).step);
   }
   if (step.status === "discarded") {
     return (

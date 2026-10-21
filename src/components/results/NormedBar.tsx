@@ -32,9 +32,12 @@ export function NormedBar({ n, label, emphasis, className }: { n: Normed; label:
 export function NormedFigure({ n }: { n: Normed }) {
   return (
     <span className="font-mono text-small text-ink">
-      T {Math.round(n.t)}
-      <span className="text-label text-ink-3"> ±{Math.round((n.ci[1] - n.ci[0]) / 2)}</span>
-      <span className="ml-3 text-label text-ink-3">
+      <span className="whitespace-nowrap">
+        T {Math.round(n.t)}
+        <span className="text-label text-ink-3"> ±{Math.round((n.ci[1] - n.ci[0]) / 2)}</span>
+      </span>
+      {/* Wraps as a unit on narrow screens, never mid-range. */}
+      <span className="ml-3 inline-block whitespace-nowrap text-label text-ink-3">
         P{n.percentileBand[0]}–{n.percentileBand[1]}
       </span>
     </span>
