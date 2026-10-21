@@ -267,7 +267,11 @@ await p.goto(base + "/settings");
 await p.getByRole("link", { name: /Export data/ }).click();
 const file = await (await dl).path();
 const data = JSON.parse(await (await import("node:fs/promises")).readFile(file!, "utf8"));
-log(`export: ${data.sessions?.length} sessions, ${data.responses?.length} responses, ${data.trials?.length} trials, ${data.scores?.length} scores`);
+type ExportSession = { sessionId: string; responses: unknown[]; trials: unknown[]; scores: unknown };
+const xs = data.sessions as ExportSession[];
+const sum = (f: (x: ExportSession) => number) => xs.reduce((n, x) => n + f(x), 0);
+if (xs.length !== 5 || xs.some((x) => !x.scores)) throw new Error("export: expected 5 scored sessions");
+log(`export: ${xs.length} sessions, ${sum((x) => x.responses.length)} responses, ${sum((x) => x.trials.length)} trials, all scored`);
 
 await b.close();
 if (errors.length) {
