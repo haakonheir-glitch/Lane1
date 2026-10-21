@@ -6,7 +6,7 @@ import { mkdirSync } from "node:fs";
 const base = process.argv[2] ?? "http://localhost:3000";
 const routes = process.argv.slice(3).length
   ? process.argv.slice(3)
-  : ["/", "/method", "/system", "/login", "/signup", "/start", "/assess", "/assess/personality", "/assess/cognitive", "/profile", "/lanes", "/lanes?lane=sales-b2b", "/sprints/template-coach-three", "/sprints", "/evidence", "/settings", "/nope"];
+  : ["/", "/method", "/system", "/login", "/signup", "/start", "/assess", "/assess/S1", "/assess/S2", "/assess/S3", "/profile", "/lanes", "/lanes?lane=sales-b2b", "/sprints/sp-sales-calls", "/sprints", "/evidence", "/settings", "/nope"];
 const widths = [390, 1440];
 const themes = ["light", "dark"];
 const out = ".screenshots";

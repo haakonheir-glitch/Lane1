@@ -14,7 +14,7 @@
     "db:migrate": "node scripts/migrate.mjs",
     "test": "vitest run",
     "seed": "tsx --conditions=react-server scripts/seed.mts",
-    "e2e": "node tests/e2e.mjs"
+    "e2e": "tsx --conditions=react-server tests/e2e.mts"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.11",

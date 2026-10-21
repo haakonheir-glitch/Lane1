@@ -1,6 +1,6 @@
 # Lane
 
-*Evidence, not horoscopes.* Lane helps people find the line of work they're best suited to: a profile from four short assessment modules, a Lane Map ranked against the person's own strengths, short real-world trials ("sprints"), and an evidence record that updates as they go.
+*Evidence, not horoscopes.* Lane helps people find the line of work they're best suited to: a profile from five assessment sessions built on validated public instruments, a Lane Map ranked against the person's own strengths, short real-world trials ("sprints"), and an evidence record that updates as they go.
 
 Accounts, answers, scores, sprints and evidence are saved to a Postgres database.
 
@@ -48,15 +48,14 @@ DATABASE_URL="postgresql://…" npm run seed -- --force
 
 | Area | What happens |
 |---|---|
-| **Accounts** | Email and password (bcrypt-hashed). Sessions are random tokens in an httpOnly cookie, and only a SHA-256 hash of each token is stored in the database. `src/proxy.ts` sends signed-out visitors to `/login`, and every page and action checks the session again on the server. |
-| **Assessment** | Lane's own item bank (`src/lib/assessment/items.ts`): 36 interest items (RIASEC), 40 personality items (Big Five, half reverse-worded), 16 work-value items, and three timed games with 8 items each (verbal analogies, number series, pattern matrices). Answers save as you go. Game answers are marked on the server, and the browser never receives the answer keys. |
-| **Scoring** | `src/lib/assessment/scoring.ts`. Questionnaire scales are the mean of their keyed answers, rescaled to 0–100, with an 80% interval. Games are scored as % correct with an 80% Wilson interval, plus a processing-speed score. Values are ranked weights. Percentiles appear only once 30 people have completed the assessment. |
-| **Lane Map** | `src/lib/assessment/lanes.ts`. Each of the 20 lanes has weights over the measured features. Fit is ipsative: each feature is z-scored against the person's own mean and spread. Values add a 20% term. Intervals widen when inputs are missing. Payoff curves and the tie logic are in `src/lib/scoring.ts`. |
-| **Sprints** | `src/lib/sprints/`. There are 8 hand-written sprint templates, plus a generic one-week "taste test" for every other lane. You can run one sprint at a time. Tasks, daily check-ins and logs are saved, and the close-out asks whether you'd continue. Improvement is the change from the first third of logged days to the last. Performance percentiles need 10 people who have run the same sprint. |
-| **Evidence** | Conviction per lane starts at its relative fit and moves toward sprint evidence (continue 35%, energy 25%, flow 20%, improvement 20%). A completed sprint weighs 1.5× the prior. The timeline is built from your actual records. |
-| **Your data** | Settings → **Export data** downloads everything as JSON. **Delete account** (password required) removes it all immediately. |
-
-The questions are new and not yet validated, and the copy says so. Once there is enough data, reliability can be checked per scale using the export or the database.
+| **Accounts** | Email and password (bcrypt-hashed). Sessions are random tokens in an httpOnly cookie, and only a SHA-256 hash of each token is stored in the database. `src/proxy.ts` sends signed-out visitors to `/login`, and every page and route checks the session again on the server. |
+| **Assessment content** | The assessment package in `assessment/` (unchanged): BLUEPRINT, `battery_manifest.json` and item files 01–14. `src/lib/bank/` validates every file with Zod and builds sessions S1–S5 from the manifest: items with `administer: false` are left out, and validity items are inserted at their positions. No question is written in the app's code. |
+| **Sessions** | `/assess` lists S1–S5 with minutes and what each unlocks. Each answer is saved as it is given, with its response time (from paint to answer), device class and input type. Reload resumes in place. A timed task that was interrupted restarts with fresh items. |
+| **Cognitive tasks** | 12 generated tasks (matrices, number and letter series, quantitative, 2D rotation, backward digits, Corsi, symbol match, choice RT, learning rate, balloon, delay discounting). Items come from `assessment/generators/generators.ts` with a per-user seed (`src/lib/bank/seed.ts`). Answer keys, explosion points and the learning mapping stay on the server (`src/lib/assess/tasks.ts`); the browser gets render data only. |
+| **Scoring** | Pure, tested functions in `src/lib/scoring/`: IPIP-NEO-120 facets and domains, Honesty-Humility, O*NET® Interest Profiler sums and Holland code, Work Importance Locator, cognitive accuracy, span, speed, learning, risk and patience, validity flags and confidence, and the BLUEPRINT §7 maths (90% intervals, the relative-strength test). Lane's experimental scales are scored but marked hidden. |
+| **Results** | **Sample for now.** `/profile` and `/lanes` show a sample profile, computed by running a persona's answers through the real scoring code. Real results need the published norms and reliabilities in `src/lib/scoring/psychometrics.ts`, which are not transcribed yet (see PLAN D24). Your own answers and scores are saved and included in the export. |
+| **Sprints, evidence** | Sample data for now; interactions on the sprint page aren't saved. |
+| **Your data** | Settings → **Export data** downloads your sessions, answers, task trials and scores as JSON. **Delete account** (password required) removes everything immediately. |
 
 ## Commands
 
@@ -64,9 +63,9 @@ The questions are new and not yet validated, and the copy says so. Once there is
 |---|---|
 | `npm run dev` | Development server |
 | `npm run build` / `npm start` | Apply migrations, build, then serve |
-| `npm test` | Scoring and lane-model checks |
-| `npm run e2e -- [url]` | Browser run-through as a new user: sign up, all modules, sprint, evidence, export, delete |
-| `npm run seed` | Create or reset the demo account |
+| `npm test` | Item-bank, scoring and generator tests (Vitest) |
+| `npm run e2e -- [url]` | Browser run-through as a new user: sign up, all five sessions (every question format and task), app pages, export. Takes about 15 minutes because the timed tasks run in real time. |
+| `npm run seed` | Create or reset the demo account (S1 and S2 completed) |
 | `npm run db:generate` | Create a migration after changing `src/lib/db/schema.ts` |
 | `npm run shoot -- [url]` / `npm run a11y -- [url]` | Screenshots at 390/1440 px in both themes, and an axe WCAG audit. Both sign in as the demo account. |
 | `npm run lint` · `npm run typecheck` | ESLint · TypeScript |
@@ -76,26 +75,29 @@ The browser scripts use Playwright. If its browser isn't installed, run `npx pla
 ## Folder structure
 
 ```
+assessment/                 the assessment package, as delivered (items, manifest, generators)
 src/
 ├─ proxy.ts                 sends signed-out visitors to /login
 ├─ app/
 │  ├─ (marketing)/          /, /method
 │  ├─ (auth)/               /login, /signup
 │  ├─ (onboarding)/start/   onboarding questions
-│  ├─ (app)/                assess, profile, lanes, sprints, evidence, settings
-│  ├─ actions/              server actions: auth, assessment, sprints, account
+│  ├─ (app)/                assess, assess/[session], profile, lanes, sprints, evidence, settings
+│  ├─ api/assess/[session]/ state, answer, task, retake (route handlers)
 │  ├─ api/export/           JSON data export
-│  └─ system/               design-system specimen (sample data)
-├─ components/              UI components (see /system)
+│  └─ system/               design-system specimens
+├─ components/              UI components (see /system); assess/items and assess/tasks are the renderers
 └─ lib/
+   ├─ bank/                 package loader, Zod schemas, session plans, seeds, client payload types
+   ├─ assess/               session service and task engine (server only)
+   ├─ scoring/              pure scoring functions
    ├─ db/                   Drizzle schema + client (Postgres or local PGlite)
    ├─ auth.ts               sessions, password hashing, requireUser()
-   ├─ data/                 per-user data access for pages; sample.ts feeds the marketing page and /system
-   ├─ assessment/           item bank, scoring, lane model, report text
-   └─ sprints/              sprint templates and evidence maths
+   ├─ data/                 data access for pages (real sessions; sample results)
+   └─ mock/                 sample profile, lanes, sprints, evidence
 drizzle/                    SQL migrations
 scripts/                    migrate, seed, screenshots, a11y
-tests/                      scoring checks, end-to-end run
+tests/                      Vitest suites, end-to-end run
 ```
 
-Design decisions are recorded in [`PLAN.md`](PLAN.md#10-decisions).
+Design decisions are recorded in [`PLAN.md`](PLAN.md) (sections 7 and 9).

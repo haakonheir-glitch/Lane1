@@ -161,7 +161,7 @@ export function SessionRunner({ sessionId, title }: { sessionId: SessionId; titl
                 transition={{ duration: 0.16, ease: [0.2, 0, 0, 1] }}
               >
                 {step.kind === "item" && step.block.stem && step.item.format.type !== "forced_q_sort" ? <p className="mb-6 text-small text-ink-3">{step.block.stem}</p> : null}
-                <StepView step={step} preview={preview} setPreview={setPreview} answer={answer} sessionId={sessionId} onTaskDone={show} />
+                <StepView step={step} title={title} preview={preview} setPreview={setPreview} answer={answer} sessionId={sessionId} onTaskDone={show} />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -196,6 +196,7 @@ export function SessionRunner({ sessionId, title }: { sessionId: SessionId; titl
 
 function StepView({
   step,
+  title,
   preview,
   setPreview,
   answer,
@@ -203,13 +204,14 @@ function StepView({
   onTaskDone,
 }: {
   step: PublicStep;
+  title: string;
   preview: number | undefined;
   setPreview: (v: number) => void;
   answer: (v: unknown, skipped?: boolean) => void;
   sessionId: SessionId;
   onTaskDone: (s: PublicStep) => void;
 }) {
-  if (step.kind === "done") return <SessionOutro step={step} sessionId={sessionId} />;
+  if (step.kind === "done") return <SessionOutro step={step} title={title} sessionId={sessionId} />;
   if (step.kind === "env_check") return <EnvCheck questions={step.questions} onAnswer={(v) => answer(v)} />;
   if (step.kind === "task") return <TaskRunner sessionId={sessionId} task={step.task} onDone={onTaskDone} />;
   const f = step.item.format;
@@ -238,7 +240,7 @@ function StepView({
   }
 }
 
-function SessionOutro({ step, sessionId }: { step: Extract<PublicStep, { kind: "done" }>; sessionId: SessionId }) {
+function SessionOutro({ step, title, sessionId }: { step: Extract<PublicStep, { kind: "done" }>; title: string; sessionId: SessionId }) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   async function retake() {
@@ -268,7 +270,10 @@ function SessionOutro({ step, sessionId }: { step: Extract<PublicStep, { kind: "
   return (
     <div>
       <p className="label text-positive">Session recorded</p>
-      <h2 className="mt-6 text-h1 font-medium text-ink">{step.unlocks}</h2>
+      <h2 className="mt-6 text-h1 font-medium text-ink">{title} is done.</h2>
+      <p className="mt-4 text-body-l text-ink-2">
+        <span className="text-ink">Unlocks:</span> {step.unlocks}
+      </p>
       {step.confidence === "low" ? (
         <div className="mt-6 rounded-sm border border-caution/50 bg-surface p-4">
           <p className="label text-caution">Low confidence</p>

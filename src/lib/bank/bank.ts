@@ -343,7 +343,8 @@ export function sessionPlan(id: SessionId): SessionPlan {
   }
   for (const m of s.modules) blocks.push(blockFor(m));
   if (s.end) blocks.push({ id: "effort", kind: "effort", module: MOD.val, title: "One last question", status: "validated", items: [effortItem] });
-  return { id: s.id, title: s.title, minutes: s.minutes, unlocks: s.unlocks, blocks };
+  // The manifest's `unlocks` is one sentence for the person, then a design rationale for us; show the first.
+  return { id: s.id, title: s.title, minutes: s.minutes, unlocks: s.unlocks.split(/(?<=\.)\s/)[0]!, blocks };
 }
 
 export const SESSION_IDS: SessionId[] = ["S1", "S2", "S3", "S4", "S5"];
