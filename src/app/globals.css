@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Tokens
+   Light is the default. Dark applies via prefers-color-scheme unless the user
+   forced light, or via [data-theme="dark"] (manual toggle).
+   --------------------------------------------------------------------------- */
+
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --ink: #111111;
+  --ink-2: #55575c;
+  --ink-3: #6f7176; /* text-safe (AA) — see PLAN.md D1 */
+  --ink-4: #8a8c91; /* graphics only */
+  --rule: #e3e3df;
+  --rule-strong: #c9c9c4;
+  --accent: #2340e8;
+  --accent-ink: #ffffff;
+  --accent-wash: #eef1fe;
+  --positive: #1e7a4c;
+  --caution: #8f5a00; /* text-safe (AA) — see PLAN.md D1 */
+
+  --dur-1: 150ms;
+  --dur-2: 200ms;
+  --dur-3: 250ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Responsive type: mobile values, stepped up at 640px */
+  --fs-display: 44px;
+  --lh-display: 48px;
+  --fs-h1: 34px;
+  --lh-h1: 40px;
+  --fs-h2: 26px;
+  --lh-h2: 32px;
+
+  color-scheme: light;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --fs-display: 64px;
+    --lh-display: 68px;
+    --fs-h1: 44px;
+    --lh-h1: 50px;
+    --fs-h2: 30px;
+    --lh-h2: 36px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e0f10;
+    --surface: #16171a;
+    --ink: #ededea;
+    --ink-2: #a5a7ac;
+    --ink-3: #8b8d93;
+    --ink-4: #6e7076;
+    --rule: #26282c;
+    --rule-strong: #3a3c41;
+    --accent: #6b80ff;
+    --accent-ink: #0e0f10;
+    --accent-wash: #1a1f3d;
+    --positive: #4cb884;
+    --caution: #d9a441;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e0f10;
+  --surface: #16171a;
+  --ink: #ededea;
+  --ink-2: #a5a7ac;
+  --ink-3: #8b8d93;
+  --ink-4: #6e7076;
+  --rule: #26282c;
+  --rule-strong: #3a3c41;
+  --accent: #6b80ff;
+  --accent-ink: #0e0f10;
+  --accent-wash: #1a1f3d;
+  --positive: #4cb884;
+  --caution: #d9a441;
+  color-scheme: dark;
+}
+
+/* ---------------------------------------------------------------------------
+   Tailwind theme — defaults cleared so only tokens are usable.
+   --------------------------------------------------------------------------- */
+
+@theme {
+  --color-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --font-weight-*: initial;
+  --text-*: initial;
+  --blur-*: initial;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+
+  --container-reading: 680px;
+  --container-content: 1200px;
+
+  --tracking-label: 0.06em;
+  --tracking-mark: 0.14em;
+
+  --text-body-l: 18px;
+  --text-body-l--line-height: 28px;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-small: 14px;
+  --text-small--line-height: 20px;
+  --text-label: 12px;
+  --text-label--line-height: 16px;
+  --text-label--letter-spacing: 0.06em;
+  --text-h3: 22px;
+  --text-h3--line-height: 28px;
+  --text-h3--letter-spacing: -0.01em;
+
+  --animate-shimmer: shimmer 1.6s var(--ease-out) infinite;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-4: var(--ink-4);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-wash: var(--accent-wash);
+  --color-positive: var(--positive);
+  --color-caution: var(--caution);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --text-display: var(--fs-display);
+  --text-display--line-height: var(--lh-display);
+  --text-display--letter-spacing: -0.03em;
+  --text-h1: var(--fs-h1);
+  --text-h1--line-height: var(--lh-h1);
+  --text-h1--letter-spacing: -0.02em;
+  --text-h2: var(--fs-h2);
+  --text-h2--line-height: var(--lh-h2);
+  --text-h2--letter-spacing: -0.015em;
+
+  --shadow-hairline: 0 0 0 1px var(--rule);
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--accent-wash);
+    color: var(--ink);
+  }
+
+  .font-mono,
+  code,
+  kbd,
+  table,
+  svg text {
+    font-variant-numeric: tabular-nums;
+  }
+
+  svg text {
+    font-family: var(--font-mono);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Mono uppercase label — the report's metadata voice. */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 12-column page grid with responsive gutters. */
+@utility grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 16px;
+  @media (min-width: 640px) {
+    column-gap: 24px;
+  }
+}
+
+/* Outer page margin + max width. */
+@utility page {
+  width: 100%;
+  max-width: calc(1200px + 2 * 48px);
+  margin-inline: auto;
+  padding-inline: 16px;
+  @media (min-width: 640px) {
+    padding-inline: 32px;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 48px;
+  }
+}
+
+@utility transition-quiet {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-duration: var(--dur-1);
+  transition-timing-function: var(--ease-out);
+}
