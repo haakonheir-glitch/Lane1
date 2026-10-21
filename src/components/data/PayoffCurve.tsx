@@ -1,4 +1,4 @@
-import { payoffCurve, payoffLabel } from "@/lib/scoring";
+import { payoffCurve, payoffLabel } from "@/lib/lanes/payoff";
 import type { PayoffType } from "@/lib/types";
 import { curvePath } from "./PayoffGlyph";
 

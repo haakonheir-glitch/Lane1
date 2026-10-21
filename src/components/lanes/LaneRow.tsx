@@ -3,7 +3,7 @@ import { ScoreBar } from "@/components/data/ScoreBar";
 import { PayoffGlyph } from "@/components/data/PayoffGlyph";
 import { ConfidenceBadge } from "@/components/data/ConfidenceBadge";
 import { ciHalf, groupLabel, pad2 } from "@/lib/format";
-import { payoffLabel } from "@/lib/scoring";
+import { payoffLabel } from "@/lib/lanes/payoff";
 import type { RankedLane } from "@/lib/types";
 import { cn } from "@/lib/cn";
 

@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Kbd } from "@/components/ui/Misc";
 import { ProgressBar } from "./ProgressBar";
-import { saveOnboarding } from "@/app/actions/assessment";
+import { saveOnboarding } from "@/app/actions/onboarding";
 import type { OnboardingAnswers } from "@/lib/types";
 import { cn } from "@/lib/cn";
 import { isNavigationError } from "@/lib/action-errors";

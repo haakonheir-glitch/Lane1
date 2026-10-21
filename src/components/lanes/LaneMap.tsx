@@ -8,7 +8,7 @@ import { EmptyState } from "@/components/report/EmptyState";
 import { Button } from "@/components/ui/Button";
 import { LaneRow } from "./LaneRow";
 import { LaneDetailPanel } from "./LaneDetailPanel";
-import { rankLanes, payoffLabel } from "@/lib/scoring";
+import { rankLanes, payoffLabel } from "@/lib/lanes/payoff";
 import { groupLabel } from "@/lib/format";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 import { useFocusTrap } from "@/lib/hooks/useFocusTrap";
@@ -56,7 +56,7 @@ function FilterRow<T extends string>({
   );
 }
 
-export function LaneMap({ lanes, sprints, templates }: { lanes: Lane[]; sprints: Sprint[]; templates: Record<string, string> }) {
+export function LaneMap({ lanes, sprints, sprintFor }: { lanes: Lane[]; sprints: Sprint[]; sprintFor: Record<string, string> }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -109,7 +109,7 @@ export function LaneMap({ lanes, sprints, templates }: { lanes: Lane[]; sprints:
       lane={selected}
       sort={sort}
       sprint={sprints.find((s) => s.laneId === selected.id && s.status !== "suggested")}
-      planHref={`/sprints/template-${templates[selected.id]}`}
+      planHref={sprintFor[selected.id] ? `/sprints/${sprintFor[selected.id]}` : "/sprints"}
       onClose={close}
       headingId={headingId}
     />

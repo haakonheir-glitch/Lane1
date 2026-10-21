@@ -6,7 +6,7 @@ import { ConfidenceBadge } from "@/components/data/ConfidenceBadge";
 import { DataLabel } from "@/components/data/DataLabel";
 import { PayoffCurve } from "@/components/data/PayoffCurve";
 import { ciHalf, groupLabel, pad2 } from "@/lib/format";
-import { payoffDescription, payoffLabel } from "@/lib/scoring";
+import { payoffDescription, payoffLabel } from "@/lib/lanes/payoff";
 import type { LaneSort, RankedLane, Sprint } from "@/lib/types";
 import { cn } from "@/lib/cn";
 

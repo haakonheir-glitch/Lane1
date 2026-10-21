@@ -18,6 +18,19 @@ const references = [
   { id: 8, text: "Frank, R. H., & Cook, P. J. (1995). The Winner-Take-All Society. Free Press." },
   { id: 9, text: "Ibarra, H. (2003). Working Identity: Unconventional Strategies for Reinventing Your Career. Harvard Business School Press." },
   { id: 10, text: "Csikszentmihalyi, M. (1990). Flow: The Psychology of Optimal Experience. Harper & Row." },
+  { id: 11, text: "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory: Development of the IPIP-NEO-120. Journal of Research in Personality, 51, 78–89." },
+  { id: 12, text: "Sibley, C. G., et al. (2011). The Mini-IPIP6: Validation and extension of a short measure of the Big-Six factors of personality in New Zealand. New Zealand Journal of Psychology, 40, 142–159." },
+  { id: 13, text: "National Center for O*NET Development. O*NET® Interest Profiler Short Form; O*NET® Work Importance Locator. U.S. Department of Labor, Employment and Training Administration. https://www.onetcenter.org" },
+  { id: 14, text: "Hoff, K. A., Song, Q. C., Wee, C. J. M., Phan, W. M. J., & Rounds, J. (2020). Interest fit and job satisfaction: A systematic review and meta-analysis. Journal of Vocational Behavior, 123, 103503." },
+  { id: 15, text: "Condon, D. M., & Revelle, W. (2014). The International Cognitive Ability Resource: Development and initial validation of a public-domain measure. Intelligence, 43, 52–64." },
+  { id: 16, text: "Lejuez, C. W., et al. (2002). Evaluation of a behavioral measure of risk taking: The Balloon Analogue Risk Task (BART). Journal of Experimental Psychology: Applied, 8, 75–84." },
+  { id: 17, text: "Blais, A.-R., & Weber, E. U. (2006). A Domain-Specific Risk-Taking (DOSPERT) scale for adult populations. Judgment and Decision Making, 1, 33–47." },
+  { id: 18, text: "Huang, J. L., Curran, P. G., Keeney, J., Poposki, E. M., & DeShon, R. P. (2012). Detecting and deterring insufficient effort responding to surveys. Journal of Business and Psychology, 27, 99–114." },
+  { id: 19, text: "Curran, P. G. (2016). Methods for the detection of carelessly invalid responses in survey data. Journal of Experimental Social Psychology, 66, 4–19." },
+  { id: 20, text: "Connelly, B. S., & Ones, D. S. (2010). An other perspective on personality: Meta-analytic integration of observers' accuracy and predictive validity. Psychological Bulletin, 136, 1092–1122." },
+  { id: 21, text: "Credé, M., Tynan, M. C., & Harms, P. D. (2017). Much ado about grit: A meta-analytic synthesis of the grit literature. Journal of Personality and Social Psychology, 113, 492–511." },
+  { id: 22, text: "MacCann, C., & Roberts, R. D. (2008). New paradigms for assessing emotional intelligence: Theory and data. Emotion, 8, 540–551." },
+  { id: 23, text: "Beaty, R. E., & Johnson, D. R. (2021). Automating creativity assessment with SemDis: An open platform for computing semantic distance. Behavior Research Methods, 53, 757–780." },
 ];
 
 function Cite({ n }: { n: number | number[] }) {
@@ -56,10 +69,20 @@ export default function MethodPage() {
       <aside className="col-span-12 mb-12 lg:sticky lg:top-24 lg:col-span-3 lg:mb-0 lg:self-start">
         <p className="label text-ink-3">Contents</p>
         <ol className="mt-4 flex flex-col gap-2 border-t border-rule pt-4">
-          {["The question", "The profile", "Relative ranking", "Payoff structure", "Sprints", "Evidence", "What we don't do", "References"].map((t, i) => (
+          {[
+            ["01", "The question", "#m-01"],
+            ["02", "The profile", "#m-02"],
+            ["02b", "Norms and intervals", "#norms"],
+            ["03", "Relative ranking", "#m-03"],
+            ["04", "Payoff structure", "#m-04"],
+            ["05", "Sprints", "#m-05"],
+            ["06", "Evidence", "#m-06"],
+            ["07", "What we don't do", "#m-07"],
+            ["08", "References", "#references"],
+          ].map(([n, t, href]) => (
             <li key={t}>
-              <a href={i === 7 ? "#references" : `#m-${String(i + 1).padStart(2, "0")}`} className="grid grid-cols-[28px_1fr] text-small text-ink-2 transition-quiet hover:text-ink">
-                <span className="font-mono text-ink-3">{String(i + 1).padStart(2, "0")}</span>
+              <a href={href} className="grid grid-cols-[36px_1fr] text-small text-ink-2 transition-quiet hover:text-ink">
+                <span className="font-mono text-ink-3">{n}</span>
                 {t}
               </a>
             </li>
@@ -86,35 +109,73 @@ export default function MethodPage() {
 
           <Section n="02" title="The profile">
             <p>
-              The questions are Lane&apos;s own, written to fit the work in the Lane Map, including independent and
-              performance lanes. They follow well-studied models, but the items themselves are new and not yet
-              validated. Scoring is deliberately simple and transparent: each scale is the average of its answers, with
-              reverse-worded items flipped, reported on 0–100 with an 80% interval. As data comes in we will publish
-              reliability for every scale, and drop or rewrite items that don&apos;t hold up.
+              Five sessions of 20–30 minutes, about 135 minutes in total. Data quality drops after roughly half an hour of
+              questionnaires, so splitting is a measurement decision, not just a convenience. Each instrument earns its
+              place by measuring something the others miss.
             </p>
             <p>
-              <strong className="font-medium text-ink">Interests</strong> are measured on Holland&apos;s six RIASEC
-              dimensions: Realistic, Investigative, Artistic, Social, Enterprising and Conventional.<Cite n={1} /> Interest
-              fit relates to both performance and persistence, though the effects are moderate.<Cite n={2} />
+              <strong className="font-medium text-ink">Personality</strong> uses the IPIP-NEO-120, the public-domain counterpart
+              of the most researched facet-level inventory: five domains and 30 facets.<Cite n={[3, 11]} /> One facet
+              (political attitudes) is not used: it is irrelevant to work and inappropriate for anything selection-adjacent. A
+              sixth factor, Honesty-Humility, comes from the Mini-IPIP6.<Cite n={12} /> Facets have four items each, so they
+              are shown with wide intervals and never used on their own.<Cite n={11} />
             </p>
             <p>
-              <strong className="font-medium text-ink">Personality</strong> uses the Big Five model.<Cite n={3} />{" "}
-              Conscientiousness is the most consistent personality predictor of job performance across occupations; other
-              traits matter for specific kinds of work.<Cite n={4} />
+              <strong className="font-medium text-ink">Interests and values</strong> use the O*NET® Interest Profiler (60 work
+              activities, Holland&apos;s RIASEC model) and the O*NET® Work Importance Locator, a 20-card sort that stops
+              everything being rated &ldquo;very important&rdquo;.<Cite n={[1, 13]} /> Interest fit predicts satisfaction modestly
+              and career-path satisfaction and performance more strongly.<Cite n={[2, 14]} />
             </p>
             <p>
-              <strong className="font-medium text-ink">Reasoning</strong> is sampled with three short timed games.
-              Classic estimates put cognitive ability among the strongest single predictors of job performance,
-              <Cite n={5} /> but a 2022 re-analysis argued those estimates were inflated by statistical over-correction,
-              and that the true figures are lower.<Cite n={6} /> We use the games as one input among several, not as a
-              ranking of people.
+              <strong className="font-medium text-ink">Reasoning</strong> uses item types from decades of ability research
+              (matrices, number and letter series, word problems, rotation, memory span, processing speed), the same types as the
+              open ICAR battery.<Cite n={15} /> Every item is generated fresh from a seed, so nobody can look up answers and no
+              commercial test is reproduced. Classic estimates put cognitive ability among the strongest predictors of job
+              performance;<Cite n={5} /> a 2022 re-analysis argued those estimates were inflated and the true figures are lower.
+              <Cite n={6} /> There is no IQ number: results are a percentile range and a profile of relative strengths.
             </p>
             <p>
-              <strong className="font-medium text-ink">Work values</strong> (autonomy, security, income and others) are
-              ranked by you. They do not predict ability; they shape which lanes you would want even if you were good at
-              them.
+              <strong className="font-medium text-ink">Behaviour tasks</strong> measure what you do rather than what you say:
+              how fast you learn a new mapping, how you take risks in the balloon task,<Cite n={16} /> and how you trade money
+              now against money later. Risk is domain-specific, so no single &ldquo;risk tolerance&rdquo; number is claimed.
+              <Cite n={17} />
+            </p>
+            <p>
+              <strong className="font-medium text-ink">Data quality</strong> is checked in every session: a few
+              absurd or instructed statements, answer speed, long runs of identical answers, and consistency between opposite
+              statements.<Cite n={[18, 19]} /> Two or more flags mark a session &ldquo;low confidence&rdquo;; you see why and can
+              retake it. Nothing is discarded silently.
+            </p>
+            <p>
+              <strong className="font-medium text-ink">Lane&apos;s own scales</strong> cover what the standard instruments
+              miss for non-corporate lanes: extra interests and values, ten work dispositions (such as variance tolerance and
+              setback resilience), an emotion-judgement test,<Cite n={22} /> idea tasks<Cite n={23} /> and life history. They are
+              experimental. Your answers are collected for the pilot, but these scales are not shown as results until they meet a
+              reliability bar and add something beyond the established scales.<Cite n={21} />
             </p>
           </Section>
+
+          <section id="norms" className="mt-16 scroll-mt-24 border-t border-ink pt-3" aria-labelledby="norms-h">
+            <p className="label text-ink">§ 02b</p>
+            <h2 id="norms-h" className="mt-4 text-h2 font-medium text-ink">
+              Norms, intervals and the sample results
+            </h2>
+            <div className="mt-6 flex flex-col gap-5 text-body-l text-ink-2">
+              <p>
+                A score means something only against a population. Until Lane has its own norm sample (1,000+ people per age
+                band), results are compared with the published norms of each instrument and labelled &ldquo;provisional&rdquo;.
+                Those tables are being transcribed from the original sources. Until they are in, your answers are saved and
+                scored, and the results pages show a clearly labelled sample for a fictional person instead of numbers we
+                can&apos;t yet stand behind.
+              </p>
+              <p>
+                Every score is shown with a 90% interval, worked out from the scale&apos;s reliability. &ldquo;Relative to
+                yourself&rdquo; is computed on normed scores, never on raw answers, and a gap between two of your own scores is
+                called a relative strength only when it is larger than the measurement error of that difference. Otherwise the
+                page says there is no clear difference.
+              </p>
+            </div>
+          </section>
 
           <Section n="03" title="Relative ranking">
             <p>

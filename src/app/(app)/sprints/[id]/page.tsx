@@ -2,23 +2,22 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AppPage } from "@/components/shell/AppPage";
 import { SprintDetail } from "@/components/sprints/SprintDetail";
-import { FinishSprint, StartSprintButton } from "@/components/sprints/SprintActions";
+import { SampleBanner } from "@/components/report/SampleBanner";
 import { ButtonLink } from "@/components/ui/Button";
 import { DataLabel } from "@/components/data/DataLabel";
 import { addDays, ciHalf, fmtSigned, formatDay } from "@/lib/format";
-import { getActiveSprint, getLaneName, getSprint } from "@/lib/data";
+import { getLaneName, getSprint } from "@/lib/data";
 
 export async function generateMetadata({ params }: PageProps<"/sprints/[id]">): Promise<Metadata> {
   const sprint = await getSprint((await params).id);
   return { title: sprint?.title ?? "Sprint" };
 }
 
-export default async function SprintPage({ params, searchParams }: PageProps<"/sprints/[id]">) {
-  const [{ id }, sp] = await Promise.all([params, searchParams]);
+export default async function SprintPage({ params }: PageProps<"/sprints/[id]">) {
+  const { id } = await params;
   const sprint = await getSprint(id);
   if (!sprint) notFound();
   const laneName = getLaneName(sprint.laneId);
-  const active = sprint.status === "suggested" ? await getActiveSprint() : undefined;
 
   const statusLine =
     sprint.status === "active" ? `Day ${sprint.currentDay} of ${sprint.days}` : sprint.status === "completed" ? "Completed" : `Plan · ${sprint.days} days`;
@@ -34,11 +33,7 @@ export default async function SprintPage({ params, searchParams }: PageProps<"/s
       }
     >
       <div className="max-w-content">
-        {sp.notice === "one-at-a-time" ? (
-          <p role="status" className="mb-8 rounded-sm border border-rule-strong bg-surface p-4 text-small text-ink-2">
-            You already have this sprint running. One sprint at a time keeps the evidence clean.
-          </p>
-        ) : null}
+        <SampleBanner what="sprint records" className="mb-10" />
         <p className="label text-ink-3">
           Sprint · {laneName} · {statusLine}
         </p>
@@ -70,18 +65,6 @@ export default async function SprintPage({ params, searchParams }: PageProps<"/s
               {sprint.outcome.energyAvg.toFixed(1)}/7 · CONTINUE {sprint.outcome.wantsToContinue ? "YES" : "NO"}
             </p>
           </section>
-        ) : null}
-
-        {sprint.status === "suggested" ? (
-          <div className="mt-10">
-            <StartSprintButton templateId={sprint.templateId} blockedBy={active ? { id: active.id, title: active.title } : undefined} />
-          </div>
-        ) : null}
-
-        {sprint.status === "active" ? (
-          <div className="mt-10">
-            <FinishSprint sprintId={sprint.id} lastDay={(sprint.currentDay ?? 0) >= sprint.days} />
-          </div>
         ) : null}
 
         <div className="mt-16">

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Sprint } from "@/lib/types";
 import { ciHalf, fmtSigned } from "@/lib/format";
-import { mean } from "@/lib/scoring";
+import { mean } from "@/lib/lanes/payoff";
 import { cn } from "@/lib/cn";
 
 export type ComparisonRow = {

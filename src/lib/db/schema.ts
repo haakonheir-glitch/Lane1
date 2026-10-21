@@ -28,49 +28,72 @@ export const profiles = pgTable("profiles", {
   onboardedAt: timestamp("onboarded_at", { withTimezone: true }),
 });
 
-/** One row per answered Likert item. */
-export const responses = pgTable(
-  "responses",
+/** One run of an assessment session (S1–S5). A retake is a new row with attempt + 1. */
+export const assessmentSessions = pgTable("assessment_sessions", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  sessionId: text("session_id", { enum: ["S1", "S2", "S3", "S4", "S5"] }).notNull(),
+  attempt: integer("attempt").notNull().default(1),
+  status: text("status", { enum: ["in_progress", "completed", "discarded"] }).notNull().default("in_progress"),
+  startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+  completedAt: timestamp("completed_at", { withTimezone: true }),
+  deviceClass: text("device_class"),
+  inputType: text("input_type"),
+  viewport: text("viewport"),
+  effort: integer("effort"),
+  confidence: text("confidence", { enum: ["ok", "low"] }),
+  flags: jsonb("flags").$type<string[]>(),
+});
+
+/** One row per questionnaire step (Likert, choice, text, q-sort, ideas, checks). */
+export const itemResponses = pgTable(
+  "item_responses",
   {
-    userId: uuid("user_id")
+    sessionRowId: uuid("session_row_id")
       .notNull()
-      .references(() => users.id, { onDelete: "cascade" }),
-    moduleId: text("module_id").notNull(),
+      .references(() => assessmentSessions.id, { onDelete: "cascade" }),
+    position: integer("position").notNull(),
     itemId: text("item_id").notNull(),
-    value: integer("value").notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+    module: text("module").notNull(),
+    blockId: text("block_id").notNull(),
+    /** Number, option index(es), text, q-sort map or idea list. null = skipped. */
+    value: jsonb("value"),
+    skipped: boolean("skipped").notNull().default(false),
+    rtMs: integer("rt_ms").notNull(),
+    deviceClass: text("device_class"),
+    inputType: text("input_type"),
+    answeredAt: timestamp("answered_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (t) => [primaryKey({ columns: [t.userId, t.itemId] })],
+  (t) => [primaryKey({ columns: [t.sessionRowId, t.position] })],
 );
 
-/** One row per cognitive game item. `choice` is null when time ran out. */
-export const cognitiveResponses = pgTable(
-  "cognitive_responses",
+/** One row per cognitive/behavioural trial. Items are regenerated from the seed, never stored. */
+export const taskTrials = pgTable(
+  "task_trials",
   {
-    userId: uuid("user_id")
+    sessionRowId: uuid("session_row_id")
       .notNull()
-      .references(() => users.id, { onDelete: "cascade" }),
-    gameId: text("game_id").notNull(),
-    itemId: text("item_id").notNull(),
-    choice: integer("choice"),
-    correct: boolean("correct").notNull(),
-    ms: integer("ms").notNull(),
+      .references(() => assessmentSessions.id, { onDelete: "cascade" }),
+    taskId: text("task_id").notNull(),
+    attempt: integer("attempt").notNull(),
+    trialIndex: integer("trial_index").notNull(),
+    practice: boolean("practice").notNull().default(false),
+    /** { response, correct, rtMs, rapidGuess, … } or { kind: "end" } for the attempt marker. */
+    payload: jsonb("payload").$type<Record<string, unknown>>().notNull(),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (t) => [primaryKey({ columns: [t.userId, t.itemId] })],
+  (t) => [primaryKey({ columns: [t.sessionRowId, t.taskId, t.attempt, t.trialIndex, t.practice] })],
 );
 
-export const moduleCompletions = pgTable(
-  "module_completions",
-  {
-    userId: uuid("user_id")
-      .notNull()
-      .references(() => users.id, { onDelete: "cascade" }),
-    moduleId: text("module_id").notNull(),
-    completedAt: timestamp("completed_at", { withTimezone: true }).notNull().defaultNow(),
-  },
-  (t) => [primaryKey({ columns: [t.userId, t.moduleId] })],
-);
+export const sessionScores = pgTable("session_scores", {
+  sessionRowId: uuid("session_row_id")
+    .primaryKey()
+    .references(() => assessmentSessions.id, { onDelete: "cascade" }),
+  scores: jsonb("scores").notNull(),
+  scoredAt: timestamp("scored_at", { withTimezone: true }).notNull().defaultNow(),
+});
 
 export const sprints = pgTable("sprints", {
   id: uuid("id").primaryKey().defaultRandom(),

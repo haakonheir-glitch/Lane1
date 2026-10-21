@@ -1,4 +1,6 @@
 import type { RiasecDimension } from "@/lib/types";
+
+type Dimension = RiasecDimension & { display?: string };
 import { cn } from "@/lib/cn";
 
 const SIZE = 320;
@@ -19,7 +21,7 @@ export function RadarProfile({
   showCi = true,
   className,
 }: {
-  dimensions: RiasecDimension[];
+  dimensions: Dimension[];
   showCi?: boolean;
   className?: string;
 }) {
@@ -31,7 +33,7 @@ export function RadarProfile({
         viewBox={`0 0 ${SIZE} ${SIZE}`}
         className="mx-auto h-auto w-full max-w-[360px] overflow-visible"
         role="img"
-        aria-label={`Interest profile. ${dimensions.map((d) => `${d.label} ${Math.round(d.score.value)}`).join(", ")}.`}
+        aria-label={`Interest profile. ${dimensions.map((d) => `${d.label} ${d.display ?? Math.round(d.score.value)}`).join(", ")}.`}
       >
         <polygon points={poly([100, 100, 100, 100, 100, 100])} fill="none" className="stroke-rule-strong" />
         <polygon points={poly([50, 50, 50, 50, 50, 50])} fill="none" className="stroke-rule" />
@@ -57,7 +59,7 @@ export function RadarProfile({
           const dy = y < C - 40 ? -4 : y > C + 40 ? 12 : 4;
           return (
             <text key={d.key} x={x} y={y + dy} textAnchor={anchor} fontSize={11} className={d.score.value === top ? "fill-ink" : "fill-ink-3"}>
-              {d.key} {Math.round(d.score.value)}
+              {d.key} {d.display ?? Math.round(d.score.value)}
             </text>
           );
         })}

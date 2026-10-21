@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Field";
@@ -12,10 +12,17 @@ import { CheckInScale } from "./CheckInScale";
 import { addDays, formatDay, pad2 } from "@/lib/format";
 import type { CheckIn, LogEntry, Sprint } from "@/lib/types";
 import { cn } from "@/lib/cn";
-import { derive as deriveChart } from "@/lib/sprints/compute";
-import { saveCheckIn as saveCheckInAction, saveLogEntry, setTaskDone } from "@/app/actions/sprints";
 
-const derive = (sprint: Sprint, entry: LogEntry) => deriveChart(sprint.chart, entry);
+
+/** The improvement-chart value for one log entry. */
+function derive(sprint: Sprint, entry: LogEntry): number | null {
+  const num = entry.values[sprint.chart.numerator];
+  if (num === undefined) return null;
+  if (!sprint.chart.denominator) return num;
+  const den = entry.values[sprint.chart.denominator];
+  if (!den) return null;
+  return Math.round((num / den) * (sprint.chart.scale ?? 1) * 10) / 10;
+}
 
 export function SprintDetail({ sprint }: { sprint: Sprint }) {
   const today = sprint.status === "active" ? (sprint.currentDay ?? 1) : null;
@@ -24,9 +31,7 @@ export function SprintDetail({ sprint }: { sprint: Sprint }) {
   const [log, setLog] = useState<LogEntry[]>(sprint.log);
   const [draft, setDraft] = useState<Record<string, string>>({});
   const [saved, setSaved] = useState(false);
-  const [error, setError] = useState("");
-  const [busy, startBusy] = useTransition();
-  const fail = () => setError("That didn't save. Check your connection and try again.");
+  const busy = false;
 
   const todaysCheckIn = today ? checkIns.find((c) => c.day === today) : undefined;
   const [pending, setPending] = useState<{ energy: number | null; flow: number | null; continue: number | null }>({
@@ -48,24 +53,13 @@ export function SprintDetail({ sprint }: { sprint: Sprint }) {
   function saveCheckIn() {
     if (!today || pending.energy === null || pending.flow === null || pending.continue === null) return;
     const entry: CheckIn = { day: today, energy: pending.energy, flow: pending.flow, continue: pending.continue };
-    startBusy(async () => {
-      try {
-        await saveCheckInAction(sprint.id, { energy: entry.energy, flow: entry.flow, continue: entry.continue });
-        setCheckIns((prev) => [...prev.filter((c) => c.day !== today), entry].sort((a, b) => a.day - b.day));
-        setSaved(true);
-        setError("");
-      } catch {
-        fail();
-      }
-    });
+    // Sample sprint: changes stay in this page (sprints go live together with results, PLAN.md D18).
+    setCheckIns((prev) => [...prev.filter((c) => c.day !== today), entry].sort((a, b) => a.day - b.day));
+    setSaved(true);
   }
 
   function toggleTask(day: number, checked: boolean) {
     setTasks((prev) => prev.map((x) => (x.day === day ? { ...x, done: checked } : x)));
-    setTaskDone(sprint.id, day, checked).catch(() => {
-      setTasks((prev) => prev.map((x) => (x.day === day ? { ...x, done: !checked } : x)));
-      fail();
-    });
   }
 
   function addLog(e: FormEvent) {
@@ -78,27 +72,15 @@ export function SprintDetail({ sprint }: { sprint: Sprint }) {
       values[m.key] = v;
     }
     const note = draft.note || undefined;
-    startBusy(async () => {
-      try {
-        await saveLogEntry(sprint.id, { values, note });
-        setLog((prev) => [...prev.filter((l) => l.day !== today), { day: today, values, note }].sort((a, b) => a.day - b.day));
-        setDraft({});
-        setError("");
-      } catch {
-        fail();
-      }
-    });
+    setLog((prev) => [...prev.filter((l) => l.day !== today), { day: today, values, note }].sort((a, b) => a.day - b.day));
+    setDraft({});
   }
 
   const draftComplete = sprint.metrics.every((m) => draft[m.key] !== undefined && draft[m.key] !== "");
 
   return (
     <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 [&>*]:min-w-0">
-      {error ? (
-        <p role="alert" className="text-small text-caution lg:col-span-12">
-          {error}
-        </p>
-      ) : null}
+
       {/* Tasks */}
       <section className="lg:col-span-7" aria-labelledby="tasks-h">
         <SectionHeader index="01" label="Plan" title="Day by day" id="tasks-h" aside={`${done}/${sprint.days} done`} />

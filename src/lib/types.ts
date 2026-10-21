@@ -27,30 +27,6 @@ export type User = {
 export type RiasecKey = "R" | "I" | "A" | "S" | "E" | "C";
 export type RiasecDimension = { key: RiasecKey; label: string; score: Score };
 
-export type TraitKey = "openness" | "conscientiousness" | "extraversion" | "agreeableness" | "neuroticism";
-export type Trait = { key: TraitKey; label: string; score: Score; interpretation: string };
-
-export type Aptitude = { id: string; label: string; score: Score; note: string; complete: boolean };
-
-export type WorkValue = { id: string; label: string; rank: number; weight: number; description: string };
-
-export type Profile = {
-  userId: string;
-  reportId: string;
-  issuedOn: string;
-  version: string;
-  summary: string[];
-  riasec: RiasecDimension[];
-  traits: Trait[];
-  aptitudes: Aptitude[];
-  values: WorkValue[];
-  limitations: string[];
-  /** Parts of the assessment not yet complete, in plain words. */
-  pending: string[];
-  /** Population size behind percentiles; percentiles appear only once this reaches the norm threshold. */
-  normN: number;
-};
-
 export type LaneGroup = "corporate" | "independent" | "performance" | "craft";
 export type PayoffType = "linear" | "convex" | "winner-take-all";
 
@@ -83,39 +59,7 @@ export type RankedLane = Lane & {
 
 export type LaneSort = "fit" | "fit-payoff";
 
-export type AssessmentModuleId = "interests" | "personality" | "cognitive" | "values";
-export type ModuleStatus = "complete" | "in-progress" | "not-started";
-
 export type OnboardingAnswers = { ageRange: string | null; situation: string | null; clarityGoal: string | null };
-
-export type AssessmentModule = {
-  id: AssessmentModuleId;
-  title: string;
-  instrument: string;
-  description: string;
-  minutes: number;
-  items: number;
-  answered: number;
-  status: ModuleStatus;
-  parts?: { title: string; status: ModuleStatus }[];
-};
-
-export type LikertQuestion = {
-  id: string;
-  prompt: string;
-  /** Left / right anchors for the 1–5 scale. */
-  scale: "agree" | "like" | "important";
-};
-
-export type PatternShape = "circle" | "square" | "triangle" | "diamond";
-export type PatternCell = { shape: PatternShape; count: 1 | 2 | 3; filled: boolean };
-export type PatternItem = {
-  id: string;
-  cells: PatternCell[]; // 8 cells, row-major; the 9th is missing
-  options: PatternCell[];
-  answerIndex: number;
-  seconds: number;
-};
 
 export type SprintStatus = "active" | "completed" | "suggested";
 

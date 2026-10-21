@@ -10,7 +10,15 @@ import { ConfidenceBadge } from "@/components/data/ConfidenceBadge";
 import { PayoffGlyph } from "@/components/data/PayoffGlyph";
 import { PayoffCurve } from "@/components/data/PayoffCurve";
 import { RadarProfile } from "@/components/data/RadarProfile";
-import { TraitTable } from "@/components/data/TraitTable";
+import { ScaleTable } from "@/components/results/ScaleTable";
+import { NormedBar, NormedFigure } from "@/components/results/NormedBar";
+import { RelativeTag } from "@/components/results/RelativeTag";
+import { ReasoningProfile } from "@/components/results/ReasoningProfile";
+import { ItemSpecimens, TaskSpecimens } from "./AssessmentSpecimens";
+import { LIMITATIONS, radarDims } from "@/lib/view/profile";
+import { sessionPlan, environmentQuestions } from "@/lib/bank/bank";
+import { specimenTrials } from "@/lib/assess/tasks";
+import type { PublicStep } from "@/lib/bank/public";
 import { SegmentedProgress } from "@/components/data/SegmentedProgress";
 import { SectionHeader } from "@/components/report/SectionHeader";
 import { LimitationsBox } from "@/components/report/LimitationsBox";
@@ -23,7 +31,7 @@ import { ProgressBar } from "@/components/assess/ProgressBar";
 import { Wordmark } from "@/components/shell/Wordmark";
 import { ThemeToggle } from "@/components/shell/ThemeToggle";
 import { SystemDemos } from "./SystemDemos";
-import { rankLanes } from "@/lib/scoring";
+import { rankLanes } from "@/lib/lanes/payoff";
 import { getSampleEvidence as getEvidence, getSampleLanes as getLanes, getSampleProfile as getProfile, getSampleSprints as getSprints } from "@/lib/data/sample";
 
 export const metadata: Metadata = { title: "Design system", robots: { index: false } };
@@ -79,6 +87,15 @@ export default async function SystemPage() {
   const ranked = rankLanes(lanes, "fit");
   const laneNames = Object.fromEntries(lanes.map((l) => [l.id, l.name]));
   const active = sprints.find((s) => s.status === "active")!;
+  const allItems = (["S1", "S2", "S5"] as const).flatMap((id) => sessionPlan(id).blocks.flatMap((b) => b.items));
+  const find = (pred: (f: string) => boolean) => allItems.find((i) => pred(i.format.type) && !i.validity)!;
+  const asPublic = (i: (typeof allItems)[number]): Extract<PublicStep, { kind: "item" }>["item"] => ({ token: "specimen", text: i.text, format: i.format });
+  const specimenItems = Object.fromEntries(
+    (["likert5", "likert7", "sjt", "single", "multi", "text", "number", "slider_0_100", "forced_q_sort", "ideas"] as const).map((t) => [
+      t === "slider_0_100" ? "slider" : t === "forced_q_sort" ? "qsort" : t,
+      asPublic(find((f) => f === t)),
+    ]),
+  );
 
   return (
     <>
@@ -238,11 +255,27 @@ export default async function SystemPage() {
               </div>
             </Specimen>
             <Specimen name="RadarProfile">
-              <RadarProfile dimensions={profile.riasec} />
+              {profile.interests ? <RadarProfile dimensions={radarDims(profile.interests)} showCi={false} /> : null}
             </Specimen>
           </div>
-          <Specimen name="TraitTable" className="mt-12">
-            <TraitTable traits={profile.traits} />
+          <Specimen name="NormedBar · NormedFigure · RelativeTag" className="mt-12">
+            {profile.personality ? (
+              <div className="flex max-w-reading flex-col gap-3">
+                <NormedFigure n={profile.personality.domains[1]!.normed!} />
+                <NormedBar n={profile.personality.domains[1]!.normed!} label="Example" />
+                <div className="flex gap-2">
+                  <RelativeTag r="strength" />
+                  <RelativeTag r="weakness" />
+                  <RelativeTag r="none" showNone />
+                </div>
+              </div>
+            ) : null}
+          </Specimen>
+          <Specimen name="ScaleTable (domains, open a row for facets)" className="mt-12">
+            {profile.personality ? <ScaleTable domains={profile.personality.domains} facets={profile.personality.facets} extra={profile.personality.honestyHumility} /> : null}
+          </Specimen>
+          <Specimen name="ReasoningProfile" className="mt-12">
+            {profile.reasoning ? <ReasoningProfile reasoning={profile.reasoning} /> : null}
           </Specimen>
           <Specimen name="LineChart · ConvictionChart" className="mt-12">
             <ConvictionChart series={evidence.conviction} laneNames={laneNames} />
@@ -272,9 +305,17 @@ export default async function SystemPage() {
           </div>
         </Block>
 
-        <Block index="07" label="Report" title="Structure and states">
+        <Block index="07" label="Assessment" title="Response formats (real bank items)">
+          <ItemSpecimens items={specimenItems} env={environmentQuestions} />
+        </Block>
+
+        <Block index="08" label="Assessment" title="Cognitive and behavioural tasks (demo seeds)">
+          <TaskSpecimens trials={specimenTrials()} />
+        </Block>
+
+        <Block index="09" label="Report" title="Structure and states">
           <div className="grid gap-12 lg:grid-cols-2">
-            <LimitationsBox title="A profile is a starting hypothesis." items={profile.limitations.slice(0, 3)} />
+            <LimitationsBox title="A profile is a starting hypothesis." items={LIMITATIONS.slice(0, 3)} />
             <div className="flex flex-col gap-10">
               <EmptyState label="Empty state" title="No sprint running." body="Pick one of the suggestions below." action={<Button size="sm">Choose a lane</Button>} />
               <Specimen name="Skeleton · hairline shimmer">

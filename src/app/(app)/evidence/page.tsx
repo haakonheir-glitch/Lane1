@@ -8,14 +8,14 @@ import { EvidenceTimeline, TimelineLegend } from "@/components/evidence/Evidence
 import { ConvictionChart } from "@/components/evidence/ConvictionChart";
 import { LaneComparisonTable, buildComparisonRows } from "@/components/evidence/LaneComparisonTable";
 import { confidenceLabel, formatIsoDot } from "@/lib/format";
-import { getEvidence, getSprints, getToday } from "@/lib/data";
-import { LANE_DEFS } from "@/lib/assessment/lanes";
+import { getEvidence, getLanes, getSprints, getToday } from "@/lib/data";
+import { SampleBanner } from "@/components/report/SampleBanner";
 
 export const metadata: Metadata = { title: "Evidence Record" };
 
 export default async function EvidencePage() {
-  const [evidence, sprints] = await Promise.all([getEvidence(), getSprints()]);
-  const laneNames = Object.fromEntries(LANE_DEFS.map((l) => [l.id, l.name]));
+  const [evidence, sprints, lanes] = await Promise.all([getEvidence(), getSprints(), getLanes()]);
+  const laneNames = Object.fromEntries(lanes.map((l) => [l.id, l.name]));
   const rows = buildComparisonRows(sprints, laneNames);
   const today = getToday();
   const hasSeries = (evidence?.conviction.length ?? 0) > 0 && (evidence?.conviction[0]?.points.length ?? 0) > 1;
@@ -23,6 +23,7 @@ export default async function EvidencePage() {
   return (
     <AppPage title="Evidence Record" meta={`${evidence?.events.length ?? 0} entries · as of ${formatIsoDot(today)}`}>
       <div className="max-w-content">
+        <SampleBanner what="evidence records" className="mb-10" />
         <p className="label text-ink-3">Evidence · Record</p>
         {!evidence ? (
           <div className="mt-8">

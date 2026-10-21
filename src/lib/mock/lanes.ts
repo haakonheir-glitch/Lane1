@@ -14,7 +14,7 @@ export const lanes: Lane[] = [
     drivers: [
       { label: "Enterprising interest", contribution: 0.34 },
       { label: "Extraversion", contribution: 0.27 },
-      { label: "Low stress reactivity", contribution: 0.15 },
+      { label: "Low vulnerability (N6)", contribution: 0.15 },
     ],
     similar: { n: 1240, continuedPct: 61 },
   },
@@ -31,7 +31,7 @@ export const lanes: Lane[] = [
     drivers: [
       { label: "Artistic interest", contribution: 0.29 },
       { label: "Openness", contribution: 0.26 },
-      { label: "Autonomy (value)", contribution: 0.18 },
+      { label: "Independence (value)", contribution: 0.18 },
     ],
     similar: { n: 980, continuedPct: 23 },
   },
@@ -65,7 +65,7 @@ export const lanes: Lane[] = [
     drivers: [
       { label: "Social interest", contribution: 0.33 },
       { label: "Openness", contribution: 0.17 },
-      { label: "Autonomy (value)", contribution: 0.16 },
+      { label: "Independence (value)", contribution: 0.16 },
     ],
     similar: { n: 540, continuedPct: 35 },
   },
@@ -82,7 +82,7 @@ export const lanes: Lane[] = [
     drivers: [
       { label: "Enterprising interest", contribution: 0.24 },
       { label: "Investigative interest", contribution: 0.19 },
-      { label: "Verbal reasoning", contribution: 0.17 },
+      { label: "Reasoning (matrices and series)", contribution: 0.17 },
     ],
     similar: { n: 1110, continuedPct: 52 },
   },
@@ -97,7 +97,7 @@ export const lanes: Lane[] = [
     payoffPositionCi: [0.3, 0.7],
     confidence: "low",
     drivers: [
-      { label: "Autonomy (value)", contribution: 0.27 },
+      { label: "Independence (value)", contribution: 0.27 },
       { label: "Enterprising interest", contribution: 0.25 },
       { label: "Conscientiousness", contribution: -0.12 },
     ],
@@ -114,7 +114,7 @@ export const lanes: Lane[] = [
     payoffPositionCi: [0.46, 0.69],
     confidence: "med",
     drivers: [
-      { label: "Verbal reasoning", contribution: 0.24 },
+      { label: "Reasoning (matrices and series)", contribution: 0.24 },
       { label: "Enterprising interest", contribution: 0.21 },
       { label: "Conventional interest", contribution: -0.1 },
     ],
@@ -133,7 +133,7 @@ export const lanes: Lane[] = [
     drivers: [
       { label: "Extraversion", contribution: 0.31 },
       { label: "Artistic interest", contribution: 0.22 },
-      { label: "Verbal reasoning", contribution: 0.14 },
+      { label: "Reasoning (matrices and series)", contribution: 0.14 },
     ],
     similar: { n: 310, continuedPct: 14 },
   },
@@ -167,7 +167,7 @@ export const lanes: Lane[] = [
     drivers: [
       { label: "Enterprising interest", contribution: 0.3 },
       { label: "Extraversion", contribution: 0.21 },
-      { label: "Security (value)", contribution: -0.11 },
+      { label: "Working conditions (value)", contribution: -0.11 },
     ],
     similar: { n: 290, continuedPct: 38 },
   },
@@ -184,7 +184,7 @@ export const lanes: Lane[] = [
     drivers: [
       { label: "Investigative interest", contribution: 0.26 },
       { label: "Social interest", contribution: 0.2 },
-      { label: "Variety (value)", contribution: -0.08 },
+      { label: "Working conditions (value)", contribution: -0.08 },
     ],
     similar: { n: 520, continuedPct: 39 },
   },
@@ -199,9 +199,9 @@ export const lanes: Lane[] = [
     payoffPositionCi: [0.32, 0.61],
     confidence: "low",
     drivers: [
-      { label: "Verbal reasoning", contribution: 0.27 },
+      { label: "Reasoning (matrices and series)", contribution: 0.27 },
       { label: "Investigative interest", contribution: 0.18 },
-      { label: "Security (value)", contribution: -0.14 },
+      { label: "Working conditions (value)", contribution: -0.14 },
     ],
     similar: { n: 260, continuedPct: 20 },
   },
@@ -216,8 +216,8 @@ export const lanes: Lane[] = [
     payoffPositionCi: [0.22, 0.62],
     confidence: "low",
     drivers: [
-      { label: "Low stress reactivity", contribution: 0.19 },
-      { label: "Numerical reasoning", contribution: 0.16 },
+      { label: "Low vulnerability (N6)", contribution: 0.19 },
+      { label: "Quantitative reasoning", contribution: 0.16 },
       { label: "Conventional interest", contribution: -0.13 },
     ],
     similar: { n: 180, continuedPct: 11 },
@@ -233,7 +233,7 @@ export const lanes: Lane[] = [
     payoffPositionCi: [0.5, 0.69],
     confidence: "high",
     drivers: [
-      { label: "Numerical reasoning", contribution: 0.21 },
+      { label: "Quantitative reasoning", contribution: 0.21 },
       { label: "Conventional interest", contribution: -0.17 },
       { label: "Extraversion", contribution: -0.15 },
     ],
@@ -252,7 +252,7 @@ export const lanes: Lane[] = [
     drivers: [
       { label: "Artistic interest", contribution: 0.18 },
       { label: "Realistic interest", contribution: -0.2 },
-      { label: "Variety (value)", contribution: 0.08 },
+      { label: "Working conditions (value)", contribution: 0.08 },
     ],
     similar: { n: 140, continuedPct: 18 },
   },
@@ -269,7 +269,7 @@ export const lanes: Lane[] = [
     drivers: [
       { label: "Artistic interest", contribution: 0.24 },
       { label: "Extraversion", contribution: 0.2 },
-      { label: "Security (value)", contribution: -0.16 },
+      { label: "Working conditions (value)", contribution: -0.16 },
     ],
     similar: { n: 120, continuedPct: 9 },
   },
@@ -303,7 +303,7 @@ export const lanes: Lane[] = [
     drivers: [
       { label: "Realistic interest", contribution: -0.29 },
       { label: "Conventional interest", contribution: -0.08 },
-      { label: "Security (value)", contribution: 0.06 },
+      { label: "Working conditions (value)", contribution: 0.06 },
     ],
     similar: { n: 210, continuedPct: 27 },
   },
@@ -335,7 +335,7 @@ export const lanes: Lane[] = [
     payoffPositionCi: [0.04, 0.35],
     confidence: "low",
     drivers: [
-      { label: "Not assessed: physical aptitude", contribution: 0 },
+      { label: "Not assessed: physical ability", contribution: 0 },
       { label: "Realistic interest", contribution: -0.21 },
       { label: "Achievement (value)", contribution: 0.12 },
     ],

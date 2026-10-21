@@ -3,9 +3,10 @@ import { Accordion } from "@/components/ui/Accordion";
 import { SectionHeader } from "@/components/report/SectionHeader";
 import { LaneRow } from "@/components/lanes/LaneRow";
 import { RadarProfile } from "@/components/data/RadarProfile";
-import { TraitTable } from "@/components/data/TraitTable";
+import { ScaleTable } from "@/components/results/ScaleTable";
+import { radarDims } from "@/lib/view/profile";
 import { groupLabel, pad2 } from "@/lib/format";
-import { rankLanes } from "@/lib/scoring";
+import { rankLanes } from "@/lib/lanes/payoff";
 import { getLaneIndex, getSampleLanes as getLanes, getSampleProfile as getProfile } from "@/lib/data/sample";
 import type { LaneGroup } from "@/lib/types";
 
@@ -38,11 +39,11 @@ const faq = [
   },
   {
     q: "Is this just another personality test?",
-    a: "The profile is built on well-studied models of interests and personality, using Lane's own questions, which we are still validating. It is only the starting point: on its own, a test predicts job outcomes modestly. The point of Lane is the second half: short real-world sprints that produce evidence a questionnaire cannot.",
+    a: "The core is a set of validated public instruments: the IPIP-NEO-120 personality inventory, the O*NET® Interest Profiler and Work Importance Locator, plus reasoning tasks generated fresh for every person. Lane adds its own experimental questions for lanes those instruments miss; they are collected but not used in your results until a pilot validates them. Even so, a test predicts job outcomes only modestly. The point of Lane is the second half: short real-world sprints that produce evidence a questionnaire cannot.",
   },
   {
     q: "How long does it take?",
-    a: "The assessment takes about 30 minutes and can be split across sessions. A sprint asks for roughly 30–60 minutes a day for one to two weeks.",
+    a: "About 135 minutes in total, split into five sessions of 20–30 minutes, because answers get careless after half an hour. You get part of your profile after each one. A sprint asks for roughly 30–60 minutes a day for one to two weeks.",
   },
   {
     q: "What does “ranked relative to me” mean?",
@@ -83,7 +84,7 @@ export default async function LandingPage() {
             </ButtonLink>
           </div>
           <p className="mt-10 font-mono text-label uppercase text-ink-3">
-            4 modules · ~30 min · {totalIndexed} lanes mapped · no DNA, ever
+            5 sessions · ~135 min in total · {totalIndexed} lanes mapped · no DNA, ever
           </p>
         </div>
 
@@ -234,18 +235,18 @@ export default async function LandingPage() {
         <SectionHeader index="05" label="Sample report" title="Reads like a lab report. Because it is one." id="sample-h" />
         <div className="relative overflow-hidden rounded-sm border border-rule bg-surface">
           <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-rule px-6 py-4">
-            <span className="label text-ink-3">Profile report · {profile.version}</span>
-            <span className="font-mono text-label text-ink-3">{profile.reportId} · SAMPLE</span>
+            <span className="label text-ink-3">Profile report · {profile.scoringVersion}</span>
+            <span className="font-mono text-label text-ink-3">SAMPLE · fictional person</span>
           </div>
           <div className="grid gap-10 p-6 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-4">
-              <p className="label text-ink-3">§ 02 · Interests</p>
-              <RadarProfile dimensions={profile.riasec} className="mt-4" />
+              <p className="label text-ink-3">§ 02 · Interests · O*NET® Interest Profiler</p>
+              {profile.interests ? <RadarProfile dimensions={radarDims(profile.interests)} showCi={false} className="mt-4" /> : null}
             </div>
             <div className="lg:col-span-8">
-              <p className="mb-4 label text-ink-3">§ 03 · Personality</p>
-              <TraitTable traits={profile.traits.slice(0, 3)} caption="Sample personality traits" />
-              <p className="mt-4 label text-ink-3">+ 2 more traits · aptitudes · values · limitations</p>
+              <p className="mb-4 label text-ink-3">§ 04 · Personality · IPIP-NEO-120 · T with 90% interval</p>
+              {profile.personality ? <ScaleTable domains={profile.personality.domains.slice(0, 3)} facets={[]} /> : null}
+              <p className="mt-4 label text-ink-3">+ 2 more domains · 29 facets · values · reasoning profile · limitations</p>
             </div>
           </div>
         </div>
