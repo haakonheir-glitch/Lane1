@@ -224,10 +224,12 @@ async function runSession(sessionId: SessionId) {
     const s = step!;
     if (s.kind === "done") break;
     if (s.kind === "env_check") {
-      const before = turns;
-      for (const g of await p.getByRole("radiogroup").all()) await g.getByRole("radio", { name: "Yes" }).click();
+      // The step can arrive before the check is drawn: wait for every question first.
+      const groups = p.getByRole("radiogroup");
+      await groups.nth(s.questions.length - 1).waitFor();
+      for (const g of await groups.all()) await g.getByRole("radio", { name: "Yes" }).click();
       await p.getByRole("button", { name: "Start" }).click();
-      await until(() => turns > before);
+      await until(() => step!.kind !== "env_check");
     } else if (s.kind === "item") {
       seen.add(s.item.format.type);
       await p.waitForTimeout(450); // a careful respondent; also avoids the rapid-response flag
