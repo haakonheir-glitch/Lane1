@@ -25,9 +25,11 @@ async function create(): Promise<Db> {
     return drizzlePg(client, { schema });
   }
   const { PGlite } = await import("@electric-sql/pglite");
+  // PGLITE_DATA=memory gives a throwaway in-memory database (tests).
+  const inMemory = process.env.PGLITE_DATA === "memory";
   const dir = path.join(process.cwd(), ".data", "pglite");
-  mkdirSync(dir, { recursive: true });
-  const client = new PGlite(dir);
+  if (!inMemory) mkdirSync(dir, { recursive: true });
+  const client = inMemory ? new PGlite() : new PGlite(dir);
   const db = drizzleLite(client, { schema });
   await migrateLite(db, { migrationsFolder: path.join(process.cwd(), "drizzle") });
   // Both drivers expose the same query-builder API; the cast lets callers use one type.

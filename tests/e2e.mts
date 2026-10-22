@@ -210,6 +210,8 @@ async function playTrial(t: NonNullable<TaskTurn["trial"]>) {
   }
 }
 
+let interrupted = false;
+
 async function runSession(sessionId: SessionId) {
   step = null;
   trial = null;
@@ -248,6 +250,17 @@ async function runSession(sessionId: SessionId) {
         await until(() => turns > before, 60_000);
         await p.waitForTimeout(t.practice || t.task === "learning_rate" ? 1300 : t.task === "balloon" ? 900 : 120); // feedback / banked display
         if (++n > 400) throw new Error(`${id}: too many trials`);
+        // Leave the first task of S3 half-way, then come back: it must restart and accept answers.
+        if (sessionId === "S3" && id === "matrix" && n === 4 && !interrupted) {
+          interrupted = true;
+          trial = null;
+          await p.reload();
+          await p.getByText(/^Task · about/).waitFor();
+          await p.getByRole("button", { name: "Start" }).click();
+          await until(() => current() !== null);
+          if (!current()!.practice || current()!.index !== 0) throw new Error("resume: expected a fresh attempt starting at practice item 1");
+          log("S3 · matrix: left half-way and resumed with fresh items");
+        }
       }
       log(`${sessionId} · ${id}: ${n} turns`);
     }

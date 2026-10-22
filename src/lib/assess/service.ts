@@ -85,9 +85,13 @@ async function trialsFor(sessionRowId: string, taskId: string) {
     .orderBy(asc(schema.taskTrials.trialIndex));
 }
 
+/** trialIndex values that mark an attempt's start and end rather than a trial. */
+const START_MARKER = -2;
+const END_MARKER = -1;
+
 /** A task step is complete when its latest attempt has an end marker. */
 function taskDone(trials: { attempt: number; trialIndex: number }[]) {
-  return trials.some((t) => t.trialIndex === -1);
+  return trials.some((t) => t.trialIndex === END_MARKER);
 }
 
 function taskIdOf(step: Step): CognitiveTaskId | null {
@@ -233,9 +237,21 @@ export async function taskTurn(
   if (taskDone(all)) return { trial: null, next: (await sessionState(userId, sessionId)).step };
 
   // A task interrupted mid-way restarts with fresh items (attempt + 1): resuming a timed task biases it.
+  // The new attempt is recorded with a start marker straight away, so the answers that follow are
+  // checked against it rather than against the interrupted attempt.
   let attempt = Math.max(1, ...all.map((t) => t.attempt));
-  if (action.kind === "start" && all.some((t) => t.attempt === attempt)) attempt += 1;
-  const history: StoredTrial[] = all.filter((t) => t.attempt === attempt).map((t) => ({ trialIndex: t.trialIndex, practice: t.practice, payload: t.payload }));
+  const answered = (n: number) => all.some((t) => t.attempt === n && t.trialIndex >= 0);
+  if (action.kind === "start" && answered(attempt)) {
+    attempt += 1;
+    await db
+      .insert(schema.taskTrials)
+      .values({ sessionRowId: row.id, taskId, attempt, trialIndex: START_MARKER, practice: false, payload: { kind: "start" } })
+      .onConflictDoNothing();
+  }
+  // Markers (start, end) aren't trials.
+  const history: StoredTrial[] = all
+    .filter((t) => t.attempt === attempt && t.trialIndex >= 0)
+    .map((t) => ({ trialIndex: t.trialIndex, practice: t.practice, payload: t.payload }));
   const ctx = { userId, taskId, attempt, history, sessionRowId: row.id };
 
   let feedback: TaskTurn["feedback"];
@@ -251,7 +267,7 @@ export async function taskTurn(
   }
   const trial = nextTrial({ ...ctx, history });
   if (trial) return { trial, feedback, balloon };
-  await db.insert(schema.taskTrials).values({ sessionRowId: row.id, taskId, attempt, trialIndex: -1, practice: false, payload: { kind: "end" } }).onConflictDoNothing();
+  await db.insert(schema.taskTrials).values({ sessionRowId: row.id, taskId, attempt, trialIndex: END_MARKER, practice: false, payload: { kind: "end" } }).onConflictDoNothing();
   return { trial: null, feedback, balloon, next: (await sessionState(userId, sessionId)).step };
 }
 
