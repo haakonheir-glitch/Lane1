@@ -300,10 +300,12 @@ if (only.includes("S1") || only.includes("S2")) {
   if (only.includes("S3") && only.includes("S4")) {
     // Reasoning is scored against the provisional difficulty table (PLAN D50).
     await p.getByText("Provisional norms ·").first().waitFor();
+    // The persona answers accuracy items within ~0.2 s: all rapid guesses, which are scored as
+    // missing, so only Memory and Speed (span and speed norms) can have a band.
     const bands = await p.getByText(/^P\d+–\d+$/).count();
-    if (bands < 6) throw new Error(`profile: expected percentile bands for general reasoning and 5 areas, saw ${bands}`);
-    if (await p.getByText("not enough data").count()) throw new Error("profile: a reasoning area has no score");
-    log(`profile: reasoning scored with provisional norms (${bands} percentile bands)`);
+    const empty = await p.getByText("not enough data").count();
+    if (bands !== 2 || empty !== 3) throw new Error(`profile: expected bands for memory and speed only (rapid guesses), saw ${bands} bands and ${empty} empty areas`);
+    log("profile: reasoning scored with provisional norms (memory and speed banded; rapid guesses left out)");
   }
 } else if (ownResults) throw new Error("profile: own results shown before any session was done");
 
