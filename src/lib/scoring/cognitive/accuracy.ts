@@ -5,11 +5,12 @@
  *   50% of the item's time limit (PLAN.md D8). Replace with pilot medians when available.
  * - Timed-out items count as wrong (attempted, no answer).
  * - Score: proportion correct among non-missing items, with a 90% Wilson interval.
- *   This is a raw accuracy, not a norm-referenced ability score (needs IRT calibration).
+ *   This is a raw accuracy. `byLevel` feeds the 3PL ability estimate (cognitive/norms.ts).
  */
 import { Z90 } from "../core";
 
-export type AccuracyTrial = { correct: boolean; timedOut: boolean; rtMs: number; timeLimitSec: number };
+/** `level`: the generator difficulty (activeRules, level or cellsN) the item was drawn at. */
+export type AccuracyTrial = { correct: boolean; timedOut: boolean; rtMs: number; timeLimitSec: number; level?: number };
 
 export const PROVISIONAL_MEDIAN_SHARE = 0.5;
 export const RAPID_GUESS_SHARE = 0.25;
@@ -27,6 +28,8 @@ export type AccuracyScore = {
   proportion: number | null;
   /** 90% Wilson interval for the proportion. */
   ci: [number, number] | null;
+  /** Right/wrong counts per level among scored (non-rapid-guess) trials. */
+  byLevel: { level: number; correct: number; scored: number }[];
 };
 
 export function wilson(k: number, n: number, z = Z90): [number, number] {
@@ -49,6 +52,12 @@ export function scoreAccuracy(trials: AccuracyTrial[]): AccuracyScore {
     rapidGuesses: rapid.length,
     proportion: scored.length ? correct / scored.length : null,
     ci: scored.length ? wilson(correct, scored.length) : null,
+    byLevel: [...new Set(scored.flatMap((t) => (t.level === undefined ? [] : [t.level])))]
+      .sort((a, b) => a - b)
+      .map((level) => {
+        const at = scored.filter((t) => t.level === level);
+        return { level, correct: at.filter((t) => t.correct).length, scored: at.length };
+      }),
   };
 }
 

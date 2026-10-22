@@ -27,8 +27,15 @@ export function ReasoningProfile({ reasoning }: { reasoning: NonNullable<Profile
             </div>
           </>
         ) : (
-          <p className="mt-3 text-small text-ink-2">Shown once the reasoning items are calibrated on Lane&apos;s pilot sample.</p>
+          <p className="mt-3 text-small text-ink-2">Not enough scored items to estimate a range.</p>
         )}
+        {reasoning.norms?.provisional ? (
+          <p className="mt-4 text-small text-ink-2">
+            <span className="label text-ink-3">Provisional norms · </span>
+            Compared with adults 18–35 in Norway, using difficulty estimates made before Lane had pilot data. Ranges may shift once real
+            results are in.
+          </p>
+        ) : null}
         <p className="mt-4 text-small text-ink-3">
           A range, not a single number, and never an IQ score: an online, unproctored test can&apos;t support one, and a single figure says
           more to people about themselves than the evidence warrants.
@@ -42,10 +49,13 @@ export function ReasoningProfile({ reasoning }: { reasoning: NonNullable<Profile
                 <span className="text-body text-ink">{a.label}</span>
                 <RelativeTag r={rel[a.id] ?? "none"} />
               </span>
-              {a.normed ? <NormedFigure n={a.normed} /> : <span className="label text-ink-3">norms pending</span>}
+              {a.normed ? <NormedFigure n={a.normed} /> : <span className="label text-ink-3">not enough data</span>}
             </div>
             {a.normed ? <NormedBar n={a.normed} label={`${a.label} score`} /> : null}
-            <p className="text-small text-ink-3">{a.summary}</p>
+            <p className="text-small text-ink-3">
+              {a.summary}
+              {a.normed && a.normConfidence === "low" ? " · rough estimate" : ""}
+            </p>
           </li>
         ))}
         <li className="pt-3 text-small text-ink-3">

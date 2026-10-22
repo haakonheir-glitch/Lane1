@@ -93,6 +93,7 @@ DATABASE_URL="postgresql://…" npm run seed -- --force
 | `npm run db:generate` | Create a migration after changing `src/lib/db/schema.ts` |
 | `npm run shoot -- [url]` / `npm run a11y -- [url]` | Screenshots at 390/1440 px in both themes, and an axe WCAG audit. Both sign in as the demo account. |
 | `npm run lint` · `npm run typecheck` | ESLint · TypeScript |
+| `npm run calibrate -- --dry-run` / `npm run calibrate` | Offline calibration of reasoning difficulty (PLAN D50). Dry run shows calls and cost; the real run reads `ANTHROPIC_API_KEY` and writes `assessment/calibration/output/`. `--mock` runs without the API. The app only reads the resulting table. |
 
 The browser scripts use Playwright. If its browser isn't installed, run `npx playwright install chromium`, or point `PW_CHROMIUM` at a Chrome binary.
 

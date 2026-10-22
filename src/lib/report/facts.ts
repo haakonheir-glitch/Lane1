@@ -31,6 +31,7 @@ export function buildReportFacts(p: ProfileScores, lanes: ReportLane[], situatio
   const basis = p.norms.status === "provisional" ? "population" : "self";
   const interestTags = p.interests ? relativeOf(p.interests.scales) : {};
   const domainTags = p.personality ? relativeOf(p.personality.domains) : {};
+  const areaTags = p.reasoning ? relativeOf(p.reasoning.areas) : {};
   const facets = (p.personality?.facets ?? []).filter((f) => vs(f) !== null).sort((a, b) => vs(b)! - vs(a)!);
 
   return {
@@ -59,9 +60,16 @@ export function buildReportFacts(p: ProfileScores, lanes: ReportLane[], situatio
       : null,
     reasoning: p.reasoning
       ? {
-          note: "Percent correct is not comparable across tasks (they differ in difficulty) and there are no norms yet, so no area can be called stronger than another.",
-          areas: p.reasoning.areas.map((a) => ({ area: a.label, result: a.summary, vsOwnAverage: a.normed ? r1(a.normed.z) : null })),
-          generalAbilityPercentileBand: p.reasoning.generalAbility?.percentileBand ?? null,
+          basis: "population (provisional)",
+          note: "Reasoning areas are compared with adults 18–35 in Norway using provisional norms: item difficulties and averages were estimated offline by an AI model, using expert-panel methods, before any pilot data exists. Treat percentiles as rough ranges (the 90% band), never as exact ranks. Percent correct is not comparable across tasks; compare areas only through the tags.",
+          areas: p.reasoning.areas.map((a) => ({
+            area: a.label,
+            result: a.summary,
+            percentileBand90: a.normed?.percentileBand ?? null,
+            normConfidence: a.normed ? (a.normConfidence ?? "low") : null,
+            tag: TAG[areaTags[a.id] ?? "none"],
+          })),
+          generalAbilityPercentileBand90: p.reasoning.generalAbility?.percentileBand ?? null,
         }
       : null,
     behaviour: p.behaviour

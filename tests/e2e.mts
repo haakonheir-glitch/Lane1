@@ -292,6 +292,14 @@ if (only.includes("S1") || only.includes("S2")) {
   if (!ownResults) throw new Error("profile: expected the person's own results after S1/S2");
   await p.getByRole("heading", { name: "Your profile, in words" }).waitFor();
   log("profile: own results and the written-report section shown");
+  if (only.includes("S3") && only.includes("S4")) {
+    // Reasoning is scored against the provisional difficulty table (PLAN D50).
+    await p.getByText("Provisional norms ·").first().waitFor();
+    const bands = await p.getByText(/^P\d+–\d+$/).count();
+    if (bands < 6) throw new Error(`profile: expected percentile bands for general reasoning and 5 areas, saw ${bands}`);
+    if (await p.getByText("not enough data").count()) throw new Error("profile: a reasoning area has no score");
+    log(`profile: reasoning scored with provisional norms (${bands} percentile bands)`);
+  }
 } else if (ownResults) throw new Error("profile: own results shown before any session was done");
 
 // Lane Map: onboarding answers show up, filters work client-side, a lane opens, plans exist

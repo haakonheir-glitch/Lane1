@@ -12,8 +12,8 @@ import { getDb, schema } from "../db";
 import { ACQUIESCENCE_PAIRS, LV_SCALE_OF, WIL_MULTIPLIERS, WIL_VALUE_OF, itemIndex, sessionPlan, environmentQuestions, COGNITIVE_TASKS } from "../bank/bank";
 import type { Block, CognitiveTaskId, ResponseFormat, SessionId } from "../bank/types";
 import type { DeviceInfo, PublicBlock, PublicStep, TaskResponse, TaskTurn } from "../bank/public";
-import { nextTrial, respond, discountIndifference, PRACTICE_COUNT, type StoredTrial } from "./tasks";
-import { scoreSession, type SessionData, type SessionScores } from "../scoring/profile";
+import { nextTrial, respond, discountIndifference, levelAt, PRACTICE_COUNT, type StoredTrial } from "./tasks";
+import { SCORING_VERSION, scoreSession, type SessionData, type SessionScores } from "../scoring/profile";
 import { effortAction } from "../scoring/validity";
 import { validateSort } from "../scoring/values";
 import { PSYCHOMETRICS } from "../scoring/psychometrics";
@@ -299,7 +299,12 @@ async function collect(sessionRowId: string): Promise<SessionData> {
       case "letter_series":
       case "quant":
       case "rotation2d":
-        data.accuracy[taskId] = p.map((x) => ({ correct: !!x.correct, timedOut: !!x.timedOut, rtMs: Number(x.rtMs), timeLimitSec: Number(x.timeLimitSec) }) as AccuracyTrial);
+        // Trials stored before the level was recorded get it from the fixed ladder.
+        data.accuracy[taskId] = rows.map((r, i) => {
+          const x = p[i]!;
+          const level = x.level !== undefined ? Number(x.level) : levelAt(taskId, r.trialIndex);
+          return { correct: !!x.correct, timedOut: !!x.timedOut, rtMs: Number(x.rtMs), timeLimitSec: Number(x.timeLimitSec), level } as AccuracyTrial;
+        });
         break;
       case "backward_digits":
       case "corsi":
@@ -325,10 +330,9 @@ async function collect(sessionRowId: string): Promise<SessionData> {
   return data;
 }
 
-async function finalize(sessionRowId: string, userId: string, sessionId: SessionId): Promise<PublicStep> {
-  const db = await getDb();
+async function scoreStored(sessionRowId: string, sessionId: SessionId): Promise<{ scores: SessionScores; data: SessionData }> {
   const data = await collect(sessionRowId);
-  const scores: SessionScores = scoreSession(sessionId, data, {
+  const scores = scoreSession(sessionId, data, {
     items: itemIndex,
     antonymPairs: ACQUIESCENCE_PAIRS as [string, string][],
     wilValueOf: WIL_VALUE_OF,
@@ -336,6 +340,25 @@ async function finalize(sessionRowId: string, userId: string, sessionId: Session
     lvScaleOf: LV_SCALE_OF,
     psychometrics: PSYCHOMETRICS,
   });
+  return { scores, data };
+}
+
+/**
+ * Reasoning sessions scored by an older scoring version are scored again from their stored
+ * trials, so a new difficulty table or scoring rule reaches people who finished earlier.
+ * Only the scores change; the session's status and validity flags stay as recorded.
+ */
+export async function rescoreIfStale(sessionRowId: string, sessionId: SessionId, stored: SessionScores): Promise<SessionScores> {
+  if (stored.version === SCORING_VERSION || (sessionId !== "S3" && sessionId !== "S4")) return stored;
+  const { scores } = await scoreStored(sessionRowId, sessionId);
+  const db = await getDb();
+  await db.update(schema.sessionScores).set({ scores, scoredAt: new Date() }).where(eq(schema.sessionScores.sessionRowId, sessionRowId));
+  return scores;
+}
+
+async function finalize(sessionRowId: string, userId: string, sessionId: SessionId): Promise<PublicStep> {
+  const db = await getDb();
+  const { scores, data } = await scoreStored(sessionRowId, sessionId);
   const effortAnswer = data.responses.find((r) => r.itemId === "EFFORT1")?.value ?? null;
   const action = effortAction(effortAnswer);
   await db.insert(schema.sessionScores).values({ sessionRowId, scores }).onConflictDoUpdate({ target: schema.sessionScores.sessionRowId, set: { scores, scoredAt: new Date() } });

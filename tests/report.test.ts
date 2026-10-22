@@ -81,7 +81,7 @@ describe("writeReport", () => {
   });
 
   it("rejects the report if the rewrite still invents figures", async () => {
-    const { client } = fakeClient(report("Top 87%."), report("Top 91%."));
+    const { client } = fakeClient(report("Top 87%."), report("Top 93%."));
     await expect(writeReport(facts, client)).rejects.toBeInstanceOf(ReportError);
   });
 

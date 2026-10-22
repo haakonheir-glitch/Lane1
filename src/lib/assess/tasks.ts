@@ -20,6 +20,8 @@ export type StoredTrial = { trialIndex: number; practice: boolean; payload: Reco
 export type TaskCtx = { userId: string; taskId: CognitiveTaskId; attempt: number; history: StoredTrial[] };
 
 const ladder = (taskId: string) => COGNITIVE_TASKS.find((t) => t.id === taskId)?.phase1_ladder ?? [];
+/** Difficulty level of scored trial `index` of an accuracy task (fixed ladder, file 14). */
+export const levelAt = (taskId: string, index: number): number | undefined => ladder(taskId)[index];
 const PRACTICE_ACCURACY = 2;
 const PRACTICE_SPAN = 2;
 const PRACTICE_RT = 5;
@@ -224,7 +226,7 @@ export function respond(
     const timedOut = response.kind === "choice" && response.choice === null;
     const limit = practice ? 0 : item.item.timeLimitSec;
     return {
-      store: row({ response, correct, timedOut, timeLimitSec: limit }),
+      store: row({ response, correct, timedOut, timeLimitSec: limit, level: practice ? undefined : levelAt(t, index) }),
       feedback: practice ? { correct } : undefined,
     };
   }

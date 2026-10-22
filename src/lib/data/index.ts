@@ -11,7 +11,7 @@ import { and, eq } from "drizzle-orm";
 import { getDb, schema } from "../db";
 import { requireUser } from "../auth";
 import * as mock from "../mock";
-import { hubStatus } from "../assess/service";
+import { hubStatus, rescoreIfStale } from "../assess/service";
 import { allSessions } from "../bank/bank";
 import { buildProfile, type ProfileScores, type SessionScores } from "../scoring/profile";
 import { addSelfScores } from "../scoring/self";
@@ -116,7 +116,8 @@ export const getMyProfile = cache(async (): Promise<ProfileScores | null> => {
     .where(and(eq(schema.assessmentSessions.userId, u.id), eq(schema.assessmentSessions.status, "completed")));
   const scored: Parameters<typeof buildProfile>[0] = {};
   for (const { s, scores } of rows.sort((a, b) => a.s.attempt - b.s.attempt)) {
-    scored[s.sessionId as SessionId] = { scores: scores as SessionScores, completedAt: (s.completedAt ?? s.startedAt).toISOString() };
+    const current = await rescoreIfStale(s.id, s.sessionId as SessionId, scores as SessionScores);
+    scored[s.sessionId as SessionId] = { scores: current, completedAt: (s.completedAt ?? s.startedAt).toISOString() };
   }
   if (!scored.S1 && !scored.S2) return null;
   return addSelfScores(buildProfile(scored, "pending"));

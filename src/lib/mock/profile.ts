@@ -8,7 +8,6 @@
  */
 import type { User } from "../types";
 import type { Psychometric } from "../scoring/core";
-import { normed } from "../scoring/core";
 import { scorePersonality } from "../scoring/personality";
 import { scoreInterests } from "../scoring/interests";
 import { scoreWil } from "../scoring/values";
@@ -103,10 +102,10 @@ const base = buildProfile(
       scores: session("S3", {
         cognitive: {
           accuracy: {
-            matrix: { correct: 8, scored: 12, rapidGuesses: 0, proportion: 8 / 12, ci: [0.45, 0.83] },
-            number_series: { correct: 6, scored: 8, rapidGuesses: 0, proportion: 0.75, ci: [0.48, 0.91] },
-            letter_series: { correct: 4, scored: 6, rapidGuesses: 0, proportion: 4 / 6, ci: [0.36, 0.87] },
-            rotation2d: { correct: 4, scored: 8, rapidGuesses: 0, proportion: 0.5, ci: [0.26, 0.74] },
+            matrix: { correct: 8, scored: 12, rapidGuesses: 0, proportion: 8 / 12, ci: [0.45, 0.83], byLevel: [{ level: 1, correct: 2, scored: 2 }, { level: 2, correct: 3, scored: 3 }, { level: 3, correct: 2, scored: 4 }, { level: 4, correct: 1, scored: 3 }] },
+            number_series: { correct: 6, scored: 8, rapidGuesses: 0, proportion: 0.75, ci: [0.48, 0.91], byLevel: [{ level: 1, correct: 2, scored: 2 }, { level: 2, correct: 2, scored: 2 }, { level: 3, correct: 1, scored: 2 }, { level: 4, correct: 1, scored: 2 }] },
+            letter_series: { correct: 4, scored: 6, rapidGuesses: 0, proportion: 4 / 6, ci: [0.36, 0.87], byLevel: [{ level: 1, correct: 2, scored: 2 }, { level: 2, correct: 1, scored: 2 }, { level: 3, correct: 1, scored: 2 }] },
+            rotation2d: { correct: 4, scored: 8, rapidGuesses: 0, proportion: 0.5, ci: [0.26, 0.74], byLevel: [{ level: 5, correct: 2, scored: 2 }, { level: 6, correct: 1, scored: 2 }, { level: 7, correct: 1, scored: 2 }, { level: 8, correct: 0, scored: 2 }] },
           },
           span: { backward_digits: { span: 6, correctTrials: 7, trials: 10 } },
         },
@@ -116,7 +115,7 @@ const base = buildProfile(
     S4: {
       scores: session("S4", {
         cognitive: {
-          accuracy: { quant: { correct: 5, scored: 6, rapidGuesses: 0, proportion: 5 / 6, ci: [0.52, 0.96] } },
+          accuracy: { quant: { correct: 5, scored: 6, rapidGuesses: 0, proportion: 5 / 6, ci: [0.52, 0.96], byLevel: [{ level: 1, correct: 1, scored: 1 }, { level: 2, correct: 2, scored: 2 }, { level: 3, correct: 2, scored: 2 }, { level: 4, correct: 0, scored: 1 }] } },
           span: { corsi: { span: 5, correctTrials: 6, trials: 9 } },
           symbolMatch: { score: 41, correct: 45, incorrect: 4, attempted: 49 },
           learning: { perBlock: [], accuracySlope: 0.21, rtSlopeMs: -96, startingAccuracy: 0.46, relativeRate: 0.39 },
@@ -131,17 +130,5 @@ const base = buildProfile(
   "provisional",
 );
 
-/** SAMPLE ONLY: normed reasoning areas and a general-ability band, as calibrated norms will provide. */
-const area = (raw: number, mean: number, sd: number) => normed(raw, { mean, sd, reliability: 0.8 });
-
-export const sampleProfile: ProfileScores = {
-  ...base,
-  reasoning: base.reasoning && {
-    generalAbility: { percentileBand: [55, 81] },
-    areas: base.reasoning.areas.map((a) => ({
-      ...a,
-      normed:
-        a.id === "reasoning" ? area(0.69, 0.6, 0.15) : a.id === "spatial" ? area(0.5, 0.6, 0.18) : a.id === "quantitative" ? area(0.83, 0.55, 0.16) : a.id === "memory" ? area(5.5, 5.2, 1.1) : area(41, 33, 7),
-    })),
-  },
-};
+/** SAMPLE ONLY: reasoning areas are scored from the sample's answers with the same provisional norms as real users. */
+export const sampleProfile: ProfileScores = base;
