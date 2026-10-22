@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.33,
+    "p16": 0.3,
     "p50": 0.55,
-    "p84": 0.74,
+    "p84": 0.78,
     "drivers": [
-      "Simple distribution-of-three on count and fill quickly narrows options to A and D",
-      "Empty cells (count 0) may confuse rule discovery",
-      "Final discrimination between 45° and 135° pentagons is visually subtle (18° difference due to 5-fold symmetry), forcing careful comparison with the other 4-count cells",
-      "Generous 90 s limit allows checking against reference cells"
+      "Three attributes (count, fill, rotation) each follow a distribution-of-three Latin square; count and rotation are coupled, which reduces load once noticed",
+      "Distractor A differs from the key only in rotation, and pentagon rotations of 45° vs 135° are visually subtle (effective 18° difference given 5-fold symmetry)",
+      "Several distractors share two of three correct attributes, forcing full verification rather than partial matching",
+      "90 s is adequate for a familiar matrix format, but careful cross-checking of rotation against the 5-count cells takes time"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1432,
-    "outputTokens": 721
-  }
+    "outputTokens": 818
+  },
+  "promptHash": "a74496fc2630089e"
 }

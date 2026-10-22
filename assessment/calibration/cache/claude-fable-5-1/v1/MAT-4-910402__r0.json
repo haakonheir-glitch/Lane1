@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.38,
-    "p50": 0.64,
-    "p84": 0.85,
+    "p16": 0.33,
+    "p50": 0.6,
+    "p84": 0.82,
     "drivers": [
-      "Three independent attribute rules (count progression, shape Latin square, fill Latin square) must all be tracked, raising working-memory load",
-      "Rotation is bound to shape type (arrows always 180°), but half the options use the unseen 135° arrow rotation as a trap",
-      "Count progression is simple (+1 across each row) and shape/fill distributions are standard Latin-square patterns familiar from matrix tasks",
-      "Distractors differ from the key by exactly one attribute each, punishing partial rule discovery; 105 s is adequate for systematic checking"
+      "Four attributes to track simultaneously (count, shape, fill, rotation) with distractors varying each one",
+      "Count rule is a within-row +1 progression, but row 3 starts at a different value, which can mislead toward column constancy",
+      "Shape and fill follow familiar distribution-of-three rules that are easy to verify",
+      "Rotation is tied to shape (arrows always 180°), a subtle but consistent cue; 135° arrow options are plausible distractors"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1402,
-    "outputTokens": 601
-  }
+    "outputTokens": 699
+  },
+  "promptHash": "62627407d505b30d"
 }

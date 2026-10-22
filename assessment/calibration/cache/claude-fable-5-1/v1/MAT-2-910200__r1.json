@@ -1,18 +1,19 @@
 {
   "value": {
     "p16": 0.55,
-    "p50": 0.8,
-    "p84": 0.93,
+    "p50": 0.78,
+    "p84": 0.92,
     "drivers": [
-      "Two simple distribution-of-three rules (shape, fill) with constant count and rotation",
-      "Half the options have 2 figures and are trivially eliminable, raising effective guess rate",
-      "Remaining distractors share one correct attribute, so both rules must be verified",
-      "75 seconds is ample for a single-figure-per-cell grid"
+      "Two simple distribution-of-three rules (shape and fill), each a familiar Latin-square pattern",
+      "Count and rotation are constant, reducing attributes to track",
+      "Distractors clearly differ on count or fill, making elimination easy once rules are seen",
+      "Generous 75 s time limit for a 3x3 grid with only two varying attributes"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1408,
-    "outputTokens": 343
-  }
+    "outputTokens": 319
+  },
+  "promptHash": "e0f684b1dff225e6"
 }

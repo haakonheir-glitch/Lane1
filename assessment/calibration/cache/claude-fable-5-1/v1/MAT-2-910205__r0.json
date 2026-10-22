@@ -4,15 +4,16 @@
     "p50": 0.82,
     "p84": 0.93,
     "drivers": [
-      "Simple Latin-square permutation of three bound shape/fill combinations; the missing cell is the one combination absent from row 3 and column 3",
-      "Count (3) and rotation are constant across all cells, so no extra rules to track",
-      "Distractors recombine shape and fill in ways never seen in the grid (e.g., solid pentagons, empty arrows), so verifying against any grid cell eliminates them",
+      "Simple Latin-square distribution: each row/column contains the same three shape-fill combinations, so the missing cell is just the one absent from row 3 and column 3",
+      "Shape and fill are perfectly correlated, so only one attribute needs tracking; count and rotation are constant",
+      "Distractors differ on count (5 vs 4) and on shape/fill mismatches, requiring careful checking of all three features but no inference",
       "Generous 75-second limit for a low working-memory-load item"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1417,
-    "outputTokens": 190
-  }
+    "outputTokens": 194
+  },
+  "promptHash": "951168d8a62df46e"
 }

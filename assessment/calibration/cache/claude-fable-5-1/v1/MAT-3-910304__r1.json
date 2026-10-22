@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.5,
-    "p50": 0.76,
-    "p84": 0.91,
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
     "drivers": [
-      "All attributes follow a simple distribution-of-three rule, and count and fill are perfectly coupled, reducing effective load",
-      "Shape attribute must also be tracked; distractor C matches count and fill but not shape",
-      "Constant 135° rotation is an irrelevant feature that may briefly distract",
-      "90-second limit is ample for a three-attribute 3x3 matrix"
+      "Simple distribution-of-three (Latin square) rule on shape and on count/fill, with count and fill perfectly correlated so only two attributes to track",
+      "Rotation is constant across all cells, reducing irrelevant variation",
+      "Eight options with several near-miss distractors sharing one correct attribute (circle or striped or 4) require checking both attributes",
+      "90 seconds is ample for a two-attribute Latin-square item"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1417,
-    "outputTokens": 486
-  }
+    "outputTokens": 456
+  },
+  "promptHash": "4626c6977b4ddd82"
 }

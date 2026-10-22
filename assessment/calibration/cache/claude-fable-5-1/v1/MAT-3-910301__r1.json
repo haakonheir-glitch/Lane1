@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.38,
+    "p16": 0.4,
     "p50": 0.65,
-    "p84": 0.86,
+    "p84": 0.85,
     "drivers": [
-      "Shape/fill follows a simple Latin-square distribution, quickly narrowing options to the two striped-arrow choices",
-      "Rotation rule (−45° per column) must be inferred visually from oblique angles, adding a second attribute to track",
-      "Only one distractor shares the correct shape, so partial rule discovery gives a 50% shot",
-      "90 s is ample for two rules; constant count of 3 removes a distracting dimension"
+      "Shape/fill Latin-square rule is salient and immediately narrows options to two (striped arrows)",
+      "Rotation rule (−45° across each row) requires tracking orientation of pentagons and triangles, which is visually ambiguous",
+      "Remaining distractor B (225°) is a plausible 50/50 if rotation rule not found",
+      "90-second limit is ample for a two-rule matrix"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1423,
-    "outputTokens": 541
-  }
+    "outputTokens": 809
+  },
+  "promptHash": "bb8b106bb856ab36"
 }

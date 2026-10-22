@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.33,
-    "p50": 0.57,
-    "p84": 0.79,
+    "p16": 0.38,
+    "p50": 0.64,
+    "p84": 0.85,
     "drivers": [
-      "Three independent rules to integrate (count decrement, shape Latin square, fill Latin square) plus a rotation attribute that is redundant with shape",
-      "Row 3 count starts at 4 rather than 3, so test-takers who assume rows end in '1' fall for the one-triangle distractors",
-      "Options are tightly matched on count, fill and rotation, making partial-rule solutions likely wrong",
-      "Generous 105 s time limit and verbal-descriptive clarity of attributes ease the load"
+      "Three independent attributes (count, shape, fill) each follow a clear row-wise rule; rotation is confounded with shape so it adds little extra load",
+      "Count in row 3 starts at 5 so the answer (3) conflicts with the column-3 pattern (2,2), making option D a strong distractor for those who reason by column or copy earlier rows",
+      "Distribution-of-three rule for fill and shape is familiar and quick to verify",
+      "Ample time (105 s) and distractors differ on only one attribute each, so partial-rule solvers can still eliminate most options"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1419,
-    "outputTokens": 668
-  }
+    "outputTokens": 684
+  },
+  "promptHash": "bcd07a55f9a359b1"
 }

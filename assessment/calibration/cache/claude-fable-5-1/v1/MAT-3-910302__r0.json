@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.45,
+    "p16": 0.42,
     "p50": 0.68,
-    "p84": 0.86,
+    "p84": 0.87,
     "drivers": [
-      "Latin-square shape/count distribution makes the missing shape type (single triangle) easy to identify",
-      "Rotation progresses by 45° across each row; row 3 pattern mirrors row 1, so 90° is readily inferred",
-      "Empty cells for 'zero pentagons' are confusing and four options are visually identical blanks, which may puzzle lower-ability takers",
-      "Distractors differ only in rotation (90° vs 180°) or shape type, requiring careful attention to orientation"
+      "Shape/count follow a simple Latin-square distribution, quickly narrowing to the two 'two triangles' options",
+      "Rotation rule (+45° across each row) must be inferred; distractor E (180°) catches those who misapply column progression or ignore rotation",
+      "Only two attributes vary and 90 s is ample, keeping load moderate",
+      "Options are visually similar (arrow vs triangle, 1 vs 2), requiring careful checking"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1456,
-    "outputTokens": 795
-  }
+    "outputTokens": 527
+  },
+  "promptHash": "d5454e0ab29192cf"
 }

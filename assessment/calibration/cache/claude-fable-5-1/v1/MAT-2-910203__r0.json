@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.6,
-    "p50": 0.85,
+    "p16": 0.62,
+    "p50": 0.84,
     "p84": 0.95,
     "drivers": [
-      "Simple Latin-square distribution: each row/column contains the same three cell types (3 striped, 1 empty, 4 solid)",
-      "Count and fill are perfectly bundled, so one attribute identifies the answer",
-      "Distractors vary shape (pentagon vs hexagon) and mix count/fill, requiring a careful check but little reasoning",
-      "Generous 75-second limit for a low-load item"
+      "Simple Latin-square distribution of three identical bundles across rows and columns—rule is easy to spot",
+      "Three attributes (count, fill, shape) co-vary perfectly, so one correct bundle is clearly reusable",
+      "Distractors differ subtly (pentagon vs hexagon, 4 vs 5, striped vs solid), requiring careful attribute matching",
+      "Generous 75 s time limit with low working-memory load"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1412,
-    "outputTokens": 169
-  }
+    "outputTokens": 360
+  },
+  "promptHash": "985994b995de6905"
 }

@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.33,
-    "p50": 0.6,
-    "p84": 0.83,
+    "p16": 0.4,
+    "p50": 0.66,
+    "p84": 0.86,
     "drivers": [
-      "Blank cells representing 'zero shapes' are unusual and may confuse inference of the count progression",
-      "Shape type and fill are perfectly coupled (triangle=empty, pentagon=striped, arrow=solid), reducing attributes to track",
-      "Rotation is constant across options, so only count and shape/fill must be resolved",
-      "Distractors systematically vary count, shape and fill, so partial rule discovery still leaves several plausible options"
+      "Count follows a simple +1 progression within rows; shape and fill are bound together as a distribution-of-three, reducing independent rules to track",
+      "Rotation is constant across all options, so one attribute can be ignored",
+      "Distractors vary count (3 vs 5), shape and fill independently, requiring all attributes to be verified",
+      "Text-free, familiar matrix format with generous 105 s limit"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1418,
-    "outputTokens": 836
-  }
+    "outputTokens": 595
+  },
+  "promptHash": "47ed446196de6113"
 }

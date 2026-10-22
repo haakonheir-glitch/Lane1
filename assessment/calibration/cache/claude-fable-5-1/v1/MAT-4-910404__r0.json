@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.33,
-    "p50": 0.58,
-    "p84": 0.8,
+    "p16": 0.4,
+    "p50": 0.65,
+    "p84": 0.85,
     "drivers": [
-      "Blank cells representing 'zero figures' obscure the count progression and shape distribution, requiring an inference that blank = 0",
-      "Three attributes (shape, fill, count) must each be resolved; rotation is non-discriminating across options so it can be ignored",
-      "Shape-fill coupling is consistent (triangles always empty), and row-wise distribution of three makes shape and fill deducible by elimination",
-      "Distractors D and G capture plausible single-attribute errors (count from column reading, fill ignored); 8 options and 105 s give moderate pressure"
+      "Shape and fill co-vary (one effective distribution-of-three rule), reducing the number of independent rules to track",
+      "Count follows a simple +1 progression within rows (1,2,3) with rotation held constant across options, so only two attributes discriminate",
+      "Eight options with systematic shape/fill/count crossings require checking both attributes, inviting errors on count (3 vs 5) or shape-fill pairing",
+      "105 s is generous for a 3-attribute matrix, so time pressure is minor"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1418,
-    "outputTokens": 884
-  }
+    "outputTokens": 660
+  },
+  "promptHash": "47ed446196de6113"
 }

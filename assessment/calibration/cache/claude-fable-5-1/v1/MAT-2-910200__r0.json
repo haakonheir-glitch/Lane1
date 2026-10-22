@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.6,
-    "p50": 0.8,
+    "p16": 0.55,
+    "p50": 0.78,
     "p84": 0.92,
     "drivers": [
-      "Simple distribution-of-three (Latin square) rule on two attributes: shape and fill",
-      "Constant count and rotation; options with 2 figures are quickly eliminated",
-      "Four single-figure distractors require checking both shape and fill rules",
-      "Generous 75 s time limit for a low working-memory-load item"
+      "Simple Latin-square (each shape and each fill once per row/column) – a very familiar matrix rule",
+      "Only two varying attributes to track plus a constant count; low working-memory load",
+      "Distractors differ by count (3 vs 2) or a single attribute, so careless readers can slip",
+      "75 s is ample time; verbal description makes attributes explicit"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1408,
-    "outputTokens": 330
-  }
+    "outputTokens": 384
+  },
+  "promptHash": "e0f684b1dff225e6"
 }

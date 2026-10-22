@@ -4,15 +4,16 @@
     "p50": 0.82,
     "p84": 0.93,
     "drivers": [
-      "Simple Latin-square permutation: each row/column contains the same three figure types, so the missing cell is directly inferable",
-      "Count (4) and rotation are constant, making the number distractors (3) easy to eliminate",
-      "Only one option matches the exact 'striped hexagon' combination, so little fine discrimination is needed",
-      "75 s is ample; main errors from attribute mix-ups (striped vs solid, hexagon vs triangle) or careless clicking"
+      "Simple Latin-square (permutation) rule: each row/column contains the same three shape+fill combos, missing one is directly identifiable",
+      "Constant count (5) and rotation make number/orientation non-informative, reducing load",
+      "Distractors vary count and recombine shape/fill, but only one option matches the exact striped-hexagon combination",
+      "75 seconds is ample for the single-rule inference"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1405,
-    "outputTokens": 187
-  }
+    "outputTokens": 166
+  },
+  "promptHash": "d30a2aa7256af891"
 }

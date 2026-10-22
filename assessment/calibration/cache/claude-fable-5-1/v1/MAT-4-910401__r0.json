@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.38,
-    "p50": 0.64,
-    "p84": 0.84,
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
     "drivers": [
-      "Three independent attributes (count, shape, rotation) must each be resolved; distractors are all one- or two-attribute near misses",
-      "Rules are simple arithmetic progressions (count +1, rotation +45°) and a shape/fill cycle, so each is individually easy to spot",
-      "Zero-count cell appears blank, which can confuse rule discovery for the count attribute",
-      "105 s is adequate but combining three rules under time pressure penalizes lower-ability test-takers"
+      "Three independent attributes (count, shape/fill bundle, rotation) must be tracked, but each follows a simple progression",
+      "Count 3→4→5 and rotation 45→90→135 are transparent sequences in the third row itself",
+      "Distractors with count 1 and triangle shape exploit wrap-around/column confusions; rotation differences of 45° require careful visual check",
+      "Fill is constant across options so it offers no help, forcing shape and angle discrimination"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1402,
-    "outputTokens": 672
-  }
+    "outputTokens": 527
+  },
+  "promptHash": "3ec294e4dbfdcb4f"
 }

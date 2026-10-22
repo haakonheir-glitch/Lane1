@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.72,
-    "p50": 0.9,
-    "p84": 0.96,
+    "p16": 0.6,
+    "p50": 0.82,
+    "p84": 0.93,
     "drivers": [
-      "Single Latin-square rule on number (1,3,4 permuted across rows/columns) with constant shape and fill",
-      "Only one attribute varies in the grid, so working-memory load is minimal",
-      "Distractors differ in shape or fill, making the correct option easy to isolate once count is identified",
-      "Generous 60-second limit for a one-rule item"
+      "Single rule: Latin-square distribution of counts 2/4/5 across rows and columns; shape, fill and rotation constant",
+      "Counting small numbers of circles is easy; missing value 4 found by elimination within the row or column",
+      "Distractors vary shape and fill, which are constant in the grid, making them easy to reject",
+      "60-second limit is ample for an item with one attribute varying"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1433,
-    "outputTokens": 150
-  }
+    "outputTokens": 163
+  },
+  "promptHash": "3fdf3091dc09bd5c"
 }

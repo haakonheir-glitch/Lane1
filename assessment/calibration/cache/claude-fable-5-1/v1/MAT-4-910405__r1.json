@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.33,
-    "p50": 0.57,
+    "p16": 0.3,
+    "p50": 0.55,
     "p84": 0.78,
     "drivers": [
-      "Three independent binary attributes (count, fill, rotation) must all be resolved; options are a full 2x2x2 crossing so partial solutions still fail",
-      "Count decrement and fill distribution-of-three are familiar, easily spotted rules",
-      "Rotation requires a progression inference (90°,45° -> upright) not a value seen in rows 1-2, and rotated triangles are visually subtle",
-      "Empty cell (0 pentagons) in row 2 can confuse, but 105 s is ample for a systematic solver"
+      "Four attributes vary simultaneously (count, shape, fill, rotation) with 3 to be inferred, high working-memory load",
+      "Rules are standard and simple individually (minus-one progression, 45° decrement, distribution of shape/fill), rows are consistent",
+      "Distractors systematically vary count, fill and rotation so a single missed rule yields a wrong option",
+      "Rotation rule requires row-wise progression ending at 'upright' (0°) which differs from the 45° values seen in columns 3 of rows 1-2; 105 s is adequate but not generous"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1398,
-    "outputTokens": 972
-  }
+    "outputTokens": 774
+  },
+  "promptHash": "0567cf8229d8dadd"
 }

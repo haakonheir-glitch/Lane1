@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.66,
-    "p50": 0.83,
-    "p84": 0.93,
+    "p16": 0.72,
+    "p50": 0.88,
+    "p84": 0.95,
     "drivers": [
-      "Single Latin-square rule: each row/column contains the three rotations 90°, 135°, 180°",
-      "Fill and count are constant across the grid, so six of eight distractors are eliminated at a glance",
-      "Only remaining discrimination is 135° vs 90° orientation of a pentagon, which is somewhat subtle due to the pentagon's 72° symmetry",
-      "Generous 60 s limit for a one-rule item"
+      "Single Latin-square rule on rotation (each row/column has 135°, 180°, 90°) with count and fill held constant",
+      "Six of eight distractors change count or fill, which never vary in the grid, so they are eliminated at a glance",
+      "Only one competing option (E) shares count and fill, so the choice reduces to picking the missing rotation",
+      "Pentagon rotations of 90°/135°/180° must be visually discriminated, a minor perceptual demand under 60 s"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1457,
-    "outputTokens": 515
-  }
+    "outputTokens": 505
+  },
+  "promptHash": "ffd4e8ecca96d274"
 }

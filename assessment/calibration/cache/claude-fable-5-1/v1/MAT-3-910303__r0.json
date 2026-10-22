@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.38,
-    "p50": 0.64,
-    "p84": 0.85,
+    "p16": 0.33,
+    "p50": 0.6,
+    "p84": 0.82,
     "drivers": [
-      "Three independent rules (shape and fill distribution-of-three, +45° rotation progression) must all be identified and combined",
-      "Shape and fill rules eliminate 6 of 8 options quickly; final choice hinges on rotation 270° vs 180° (distractor A)",
-      "Rotation step within rows is consistent but row 3 starting angle breaks column-wise pattern, which may confuse",
-      "90 s and clear symbolic descriptions keep time pressure moderate"
+      "Three attributes (shape, fill, rotation) must each be tracked with distinct rules (two distribution-of-three, one +45° progression)",
+      "Rotation progression within rows is less salient than shape/fill distribution; distractor A matches shape and fill but not rotation",
+      "Constant count of 5 and clear distribution rules for shape and fill make narrowing to A/D quick for most",
+      "90 s is adequate; 8 options with close near-misses lowers guessing benefit"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1410,
-    "outputTokens": 628
-  }
+    "outputTokens": 583
+  },
+  "promptHash": "1c8c61c9cc927b9f"
 }

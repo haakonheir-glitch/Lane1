@@ -2,17 +2,18 @@
   "value": {
     "p16": 0.38,
     "p50": 0.64,
-    "p84": 0.85,
+    "p84": 0.84,
     "drivers": [
-      "Three simple, independently verifiable rules (count +1 progression, shape and fill as distribution-of-three) that are familiar matrix rules",
-      "Rotation is tied to shape rather than a separate rule, which can confuse people who try to treat it as an independent attribute",
-      "Distractors systematically vary count, fill and rotation, so each rule must be fully resolved to eliminate options",
-      "Generous 105 s limit relative to the number of attributes to check"
+      "Three independent attributes to resolve (count progression, shape Latin square, fill Latin square) plus rotation tied to shape type",
+      "Rules are standard and regular; rotation is constant per shape across the grid, making the 135° distractors weak",
+      "Eight options systematically crossing count/fill/rotation means partial rule discovery still leaves a 2-4 way choice",
+      "105 s is ample for a 3x3 matrix, so time pressure is modest"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1402,
-    "outputTokens": 614
-  }
+    "outputTokens": 914
+  },
+  "promptHash": "62627407d505b30d"
 }

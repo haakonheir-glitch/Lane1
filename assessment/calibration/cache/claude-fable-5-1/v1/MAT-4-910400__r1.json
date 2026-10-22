@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.3,
-    "p50": 0.55,
-    "p84": 0.78,
+    "p16": 0.33,
+    "p50": 0.6,
+    "p84": 0.83,
     "drivers": [
-      "Three independent attributes (shape, fill, count) each follow clear row/column distribution or progression rules",
-      "Count rule shifts in row 3 (4,3,2 vs 3,2,1), tempting the 'column 3 always has 1' error",
-      "Rotation is tied to shape type, so the 225° distractors are eliminable once noticed",
-      "8 options span all combinations of the three ambiguous attributes, so partial rule discovery still leaves 2-4 candidates"
+      "Three independent rules (count decrement, shading distribution, shape-linked rotation) must all be resolved; distractors target each",
+      "Row 3 count sequence (5,4,3) differs from rows 1-2, so column copying fails and the decrement must be inferred",
+      "Shape is fixed across all options, removing one dimension; distribution rules for shading are familiar",
+      "Generous 105 s limit with verbal-style attribute lists keeps time pressure low"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1419,
-    "outputTokens": 654
-  }
+    "outputTokens": 588
+  },
+  "promptHash": "bcd07a55f9a359b1"
 }

@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.82,
-    "p50": 0.93,
+    "p16": 0.8,
+    "p50": 0.92,
     "p84": 0.97,
     "drivers": [
-      "Single simple rule: count decreases 4-3-2 across every row, rows identical",
-      "Only one attribute varies in the grid; shape and fill constant",
-      "Distractors differ in fill or shape, easy to eliminate",
-      "Generous 60 s limit for a one-step inference"
+      "Rows identical and simple count progression 5-4-3, trivially detectable",
+      "Only one option matches both shape, fill and count; distractors differ on obvious attributes",
+      "Rotation of squares is visually irrelevant, no transformation needed",
+      "Generous 60 s limit for a one-rule item"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1389,
-    "outputTokens": 128
-  }
+    "outputTokens": 135
+  },
+  "promptHash": "73a72859d4f76bb2"
 }

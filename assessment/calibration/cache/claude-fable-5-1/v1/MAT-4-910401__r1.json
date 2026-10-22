@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.3,
-    "p50": 0.55,
-    "p84": 0.78,
+    "p16": 0.33,
+    "p50": 0.6,
+    "p84": 0.83,
     "drivers": [
-      "Count (+1 across rows) and rotation (+45° across rows) progressions are straightforward and eliminate most options",
-      "Shape must be inferred from a cyclic pentagon→arrow→triangle pattern or column-wise 'one of each' rule, which is less obvious",
-      "Empty cell (0 figures) in row 2 obscures the shape pattern and may confuse",
-      "8 options fully crossed on three binary attributes means partial understanding still leaves a 50% chance on the shape dimension"
+      "Three attributes (count, rotation, shape) must each be resolved; options are balanced to lure on each one independently",
+      "Count and rotation follow simple +1 / +45° progressions, visible in two rows and columns, which makes them easy to confirm",
+      "Shape/fill must be seen as a cyclic triad (striped pentagon → empty arrow → solid triangle) rather than a progression; triangle distractors exploit this",
+      "Verbal/schematic presentation and 105 s allow systematic checking, limiting time pressure"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1402,
-    "outputTokens": 1032
-  }
+    "outputTokens": 650
+  },
+  "promptHash": "3ec294e4dbfdcb4f"
 }

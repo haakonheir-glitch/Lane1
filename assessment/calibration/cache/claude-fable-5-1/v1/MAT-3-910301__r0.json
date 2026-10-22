@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.33,
-    "p50": 0.55,
-    "p84": 0.76,
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
     "drivers": [
-      "Shape/fill Latin square is salient and quickly narrows options to two arrow candidates (B vs G)",
-      "Rotation rule (-45° per step within a row) must be inferred from triangles and pentagons whose rotational symmetry makes angles hard to perceive",
-      "Inconsistent rotation across rows/columns invites 50/50 guessing between the two remaining options",
-      "90 s is ample for the shape rule but adds pressure on resolving the rotation ambiguity"
+      "Shape/fill follows a simple Latin-square distribution across rows, quickly narrowing options to two striped-arrow candidates",
+      "Rotation rule (decreasing 45° per cell within each row) must be inferred; row 3 continues cleanly from 135°, 90° to 45°",
+      "Distractor B shares the correct shape and fill but wrong rotation, so careless solvers who skip the rotation rule may err",
+      "Four identical figures per cell add visual clutter but no extra rule load; 90 s is ample"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1423,
-    "outputTokens": 897
-  }
+    "outputTokens": 527
+  },
+  "promptHash": "bb8b106bb856ab36"
 }

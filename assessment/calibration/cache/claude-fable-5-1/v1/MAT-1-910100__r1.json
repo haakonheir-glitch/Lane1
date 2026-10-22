@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.6,
-    "p50": 0.82,
-    "p84": 0.93,
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
     "drivers": [
-      "Single Latin-square rule on rotation only; count and shape constant across grid",
-      "Most distractors differ in shape or count, making them easy to eliminate",
-      "Only one plausible distractor (H) shares count and shape but wrong rotation",
-      "Need to perceive arrow orientation differences (90° vs 135° vs 315°) within 60 s"
+      "Single rule: Latin-square permutation of three rotation values across rows and columns; count and shape constant",
+      "Only three distractor dimensions (count, shape, rotation); only one option has 4 arrows at 90°, so recognizing the missing rotation suffices",
+      "Rotation angles (90°, 135°, 315°) must be visually discriminated, a minor perceptual load",
+      "Generous 60-second limit for a one-rule matrix"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1385,
-    "outputTokens": 150
-  }
+    "outputTokens": 180
+  },
+  "promptHash": "f00dbc243790f175"
 }

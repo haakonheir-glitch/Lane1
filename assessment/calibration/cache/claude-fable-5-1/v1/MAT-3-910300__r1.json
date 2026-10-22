@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.38,
-    "p50": 0.64,
-    "p84": 0.84,
+    "p16": 0.45,
+    "p50": 0.68,
+    "p84": 0.86,
     "drivers": [
-      "Shape and fill are bundled and follow a simple Latin-square distribution, so one rule resolves two attributes",
-      "Rotation follows a +45° progression within each row, requiring a second rule and angle discrimination",
-      "Only one close distractor (E) shares the correct shape/fill, limiting confusion once the Latin square is seen",
-      "Judging rotation of triangles/pentagons precisely (225° vs 270°) is visually demanding under 90 seconds"
+      "Shape and fill are bound together and distributed as a simple Latin square, easy to spot",
+      "Rotation increases by 45° across rows; must be verified since the obvious E distractor shares the correct shape/fill",
+      "Only two options have the right shape+fill, so partial insight yields a 50% chance",
+      "Rotation of triangles by 45° increments can be visually ambiguous, adding some error"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1418,
-    "outputTokens": 525
-  }
+    "outputTokens": 573
+  },
+  "promptHash": "a2e71dd85689b62f"
 }

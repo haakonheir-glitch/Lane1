@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.16,
-    "p50": 0.2,
-    "p84": 0.24,
+    "p16": 0.52,
+    "p50": 0.74,
+    "p84": 0.89,
     "drivers": [
-      "Degenerate item: every grid cell contains 0 figures, so all cells render as blank and the fill/rotation rules are invisible",
-      "Four of the eight options (A, C, F, H) are visually identical blank cells, making the keyed answer indistinguishable from distractors",
-      "Success is essentially guessing; ability only helps in realizing the answer should be a blank cell (narrowing to 4 options, ~0.25)",
-      "Confusing presentation may cause some test-takers to pick a triangle option or run out of time deliberating"
+      "Two simple rules: fill distribution (Latin square) and constant +45° rotation progression within rows",
+      "Half the options (two-figure cells) are trivially eliminable since all grid cells have one figure",
+      "Rotation of a triangle by 45° steps is visually subtle; discriminating 180° vs 315° under time pressure adds some error",
+      "Generous 75 s limit and single-figure cells keep working-memory load low"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1411,
-    "outputTokens": 620
-  }
+    "outputTokens": 459
+  },
+  "promptHash": "c1e8915509c0ef92"
 }

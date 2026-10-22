@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.45,
-    "p50": 0.7,
-    "p84": 0.88,
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
     "drivers": [
-      "Latin-square distribution of shape, count and fill across rows/columns (standard, discoverable rule)",
-      "Count and fill are coupled (1-empty, 3-striped, 4-solid), reducing effective attributes to two",
-      "Close distractors differ in only one attribute (C hexagons, G empty, E single), requiring verification of every attribute",
-      "Constant 135° rotation is an irrelevant feature that may briefly distract; 90 s is ample"
+      "Three simple distribution-of-three (Latin square) rules on shape, count and fill; count and fill are perfectly coupled, reducing working-memory load",
+      "Distractors share two of three attributes with the key (C, G, E), so all three attributes must be verified",
+      "Constant 135° rotation is an irrelevant feature that may briefly distract",
+      "Generous 90 s time limit for an 8-option multiple choice"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1417,
-    "outputTokens": 435
-  }
+    "outputTokens": 455
+  },
+  "promptHash": "4626c6977b4ddd82"
 }

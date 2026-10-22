@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.33,
-    "p50": 0.57,
-    "p84": 0.79,
+    "p16": 0.4,
+    "p50": 0.65,
+    "p84": 0.85,
     "drivers": [
-      "Three independent attribute rules (shape, fill, rotation) must all be resolved; Latin-square distribution of shape and fill is a familiar pattern",
-      "Rotation follows a +45° progression within rows, requiring careful angle discrimination (180° vs 270°) among distractors",
-      "Distractors each differ from the key on only one attribute, so partial rule discovery yields wrong answers",
-      "90 seconds is adequate but visually dense cells (4 rotated figures each) add perceptual load"
+      "Three simultaneous attributes (shape, fill, rotation) with distribution-of-three rules for shape and fill plus a +45° rotation progression within rows",
+      "Distribution rules narrow options to two (A vs D); final discrimination relies only on reading the rotation progression 180→225→270",
+      "Rotation of arrows is visually easy to judge, and 90 s is ample for a 3-rule matrix",
+      "Constant count of 5 is a non-informative feature that may distract some low-ability respondents"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1410,
-    "outputTokens": 624
-  }
+    "outputTokens": 524
+  },
+  "promptHash": "1c8c61c9cc927b9f"
 }

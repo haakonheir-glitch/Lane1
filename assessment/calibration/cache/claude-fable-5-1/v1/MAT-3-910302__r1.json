@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.3,
-    "p50": 0.55,
-    "p84": 0.78,
+    "p16": 0.4,
+    "p50": 0.65,
+    "p84": 0.85,
     "drivers": [
-      "Distribution-of-three for shape/count is a familiar rule once spotted, but blank cells (0 pentagons) obscure the pattern and may confuse",
-      "Rotation increases by 45° across columns, requiring a second rule to pin down 90° vs 180° (E vs F distractor)",
-      "Several options are empty cells (0 count), which may seem plausible given the blanks already in the grid",
-      "90-second limit is adequate but two rules plus odd blank cells raise working-memory load"
+      "Latin-square distribution of shape/count across rows is easily spotted and narrows options to two (E/F)",
+      "Rotation rule (+45° per cell within a row) is consistent and simple, but must be inferred from only two cells in the final row",
+      "Distractor E differs only in rotation (180° vs 90°), and triangle rotations can be visually confusable",
+      "Generous 90-second limit and no fill/texture variation reduce load"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1456,
-    "outputTokens": 594
-  }
+    "outputTokens": 508
+  },
+  "promptHash": "d5454e0ab29192cf"
 }

@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.17,
-    "p50": 0.21,
-    "p84": 0.24,
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
     "drivers": [
-      "Degenerate item: every cell contains 0 figures, so the grid renders as blank and the fill/rotation rules are invisible",
-      "Correct option is visually identical to three other blank distractors (A, F, H), capping accuracy near 25% even with perfect reasoning",
-      "Test-takers may suspect a glitch and pick a visible triangle option, pulling accuracy toward or below chance",
-      "Little ability gradient because success depends on guessing among indistinguishable options rather than rule discovery"
+      "Two simple rules: fill Latin-square across rows and constant +45° rotation step",
+      "Single shape per cell, low working-memory load",
+      "Count distractors (2 triangles) easily eliminated, leaving few plausible options",
+      "Rotation discrimination (315° vs 180°) on a triangle may confuse weaker test-takers"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1411,
-    "outputTokens": 556
-  }
+    "outputTokens": 460
+  },
+  "promptHash": "c1e8915509c0ef92"
 }

@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.85,
-    "p50": 0.94,
+    "p16": 0.8,
+    "p50": 0.92,
     "p84": 0.97,
     "drivers": [
-      "Single simple rule (count decreases 4-3-2 across rows; rows identical) with no hidden attribute changes",
-      "Only one option matches both count and shape/fill, so distractors are easily eliminated",
-      "Generous 60 s limit for a trivial perceptual match",
-      "Residual errors mainly from carelessness or picking count-matching distractor with wrong fill"
+      "Single trivial rule: rows identical, count decreases 5-4-3 across columns",
+      "All three rows identical so answer is directly copied from cells above",
+      "Distractors differ on obvious attributes (fill, shape, count); only one option matches on all",
+      "Rotation of squares is visually irrelevant, minor possible confusion"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1389,
-    "outputTokens": 157
-  }
+    "outputTokens": 143
+  },
+  "promptHash": "73a72859d4f76bb2"
 }

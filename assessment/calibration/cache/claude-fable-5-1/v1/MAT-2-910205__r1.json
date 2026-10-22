@@ -4,15 +4,16 @@
     "p50": 0.82,
     "p84": 0.93,
     "drivers": [
-      "Simple Latin-square (each shape/fill appears once per row and column) with count and rotation held constant",
-      "Shape and fill are perfectly bound (pentagon=empty, triangle=solid, arrow=striped), so only one attribute needs tracking",
-      "Distractors vary count (4 vs 3) and fill, but only one option matches the missing empty pentagon exactly",
-      "Generous 75 s limit for a single easily spotted rule"
+      "Simple Latin-square distribution: each row/column contains one of each shape-fill combo, with constant count and rotation",
+      "Shape and fill are perfectly bundled (pentagon=empty, triangle=solid, arrow=striped), so one rule suffices",
+      "Distractors vary count (5 vs 4) and shape/fill mismatches, requiring attention to both features but easily eliminated",
+      "Generous 75 s limit for a low working-memory item"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1417,
-    "outputTokens": 181
-  }
+    "outputTokens": 185
+  },
+  "promptHash": "951168d8a62df46e"
 }

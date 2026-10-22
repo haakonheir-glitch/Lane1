@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.8,
-    "p50": 0.92,
-    "p84": 0.97,
+    "p16": 0.72,
+    "p50": 0.88,
+    "p84": 0.95,
     "drivers": [
-      "Single rule: Latin-square distribution of fill (empty/striped/solid) across rows and columns, with count and shape constant",
-      "Distractors differ in number of shapes or shape type, which are easily eliminated by matching the grid's constant features",
-      "Only one option (F) has 2 empty circles, so the missing fill value is immediately identifiable",
-      "Generous 60-second limit for a low working-memory task"
+      "Single Latin-square rule on fill (each fill once per row/column), very salient",
+      "Number and shape constant across all cells; distractors differ on obvious features (count, shape)",
+      "Only one option matches all three attributes, so elimination is straightforward",
+      "60 s is ample for a one-rule item"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1403,
-    "outputTokens": 281
-  }
+    "outputTokens": 133
+  },
+  "promptHash": "bf236e92f9f80b5a"
 }

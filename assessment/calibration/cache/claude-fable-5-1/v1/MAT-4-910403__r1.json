@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.33,
+    "p16": 0.35,
     "p50": 0.6,
-    "p84": 0.82,
+    "p84": 0.8,
     "drivers": [
-      "Three independent rules (shape+fill distribution, count progression, rotation progression) must all be resolved; distractors each differ on one attribute so partial solutions fail",
-      "Shape/fill pairing is consistent and salient, making the shape dimension easy to recover",
-      "Rotation rule (decreasing 45° steps toward upright) is subtle and is the only cue separating B from C",
-      "105-second limit is adequate for a 3-rule matrix; verbal description of rotations reduces visual ambiguity"
+      "Three independent attributes to track (count, shape/fill set, rotation), each varied across distractors so partial rule discovery still leaves ambiguity",
+      "Count progression (+1 across rows) and Latin-square shape/fill are salient and easy to spot",
+      "Rotation rule (decreasing 45° across rows) is subtler and 'upright' vs 45° triangles can be confused",
+      "Generous 105 s time limit and all options share the same fill, reducing load"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1383,
-    "outputTokens": 590
-  }
+    "outputTokens": 703
+  },
+  "promptHash": "c8314277d1c727db"
 }

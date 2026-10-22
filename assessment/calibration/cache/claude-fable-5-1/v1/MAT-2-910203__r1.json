@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.6,
-    "p50": 0.82,
+    "p16": 0.55,
+    "p50": 0.8,
     "p84": 0.93,
     "drivers": [
-      "Simple Latin-square distribution: each row/column contains the same three cell types (3 striped, 1 empty, 4 solid), so the missing cell is the one type absent from row 3",
-      "Attributes (count, fill) are bound together in a fixed package, reducing working-memory load",
-      "Distractors with pentagons and mixed count/fill combos are easy to reject once the pattern is seen, but 3-solid and 4-striped hexagons can catch careless responders",
-      "Generous 75-second limit for a single-rule item"
+      "Simple Latin-square (permutation) rule: each row/column contains the same three bundled figure-types (4 striped, 2 empty, 5 solid), so the missing cell is the one not yet present in row 3",
+      "Attributes are bundled (count, shading, shape all co-vary), reducing working-memory load to tracking one composite object",
+      "Distractors require checking count, shading and shape (pentagon vs hexagon) simultaneously; careless matchers may pick a 4-count or striped item with wrong shape",
+      "75 seconds is ample for a single-rule 3x3 matrix"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1412,
-    "outputTokens": 206
-  }
+    "outputTokens": 228
+  },
+  "promptHash": "985994b995de6905"
 }

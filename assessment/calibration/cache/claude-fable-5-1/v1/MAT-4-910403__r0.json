@@ -1,18 +1,19 @@
 {
   "value": {
-    "p16": 0.35,
-    "p50": 0.62,
-    "p84": 0.85,
+    "p16": 0.3,
+    "p50": 0.55,
+    "p84": 0.78,
     "drivers": [
-      "Three independent attributes (shape/fill, count, rotation) must all be resolved; distractors each share two correct attributes so partial rule discovery fails",
-      "Shape-fill Latin square and +1 count progression are salient and quickly inferred",
-      "Rotation rule (-45° across row, 'upright' as end state) is subtler and mixes rotated vs upright labels; easy to miss",
-      "Generous 105 s limit and fill fixed across options reduce load"
+      "Three independent attributes (count progression, shape/texture distribution, rotation sequence) must all be resolved; options are built from the 2×2×2 combinations so partial solutions are trapped",
+      "Count +1 and shape-texture distribution rules are salient and easy to verify",
+      "Rotation rule (decreasing 45° per row, with unfamiliar 'upright' endpoint) is the least obvious and column rotation is inconsistent, creating confusion",
+      "105 s is ample; verbal description aids systematic checking"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1383,
-    "outputTokens": 547
-  }
+    "outputTokens": 690
+  },
+  "promptHash": "c8314277d1c727db"
 }

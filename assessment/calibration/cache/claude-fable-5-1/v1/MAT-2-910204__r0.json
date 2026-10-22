@@ -4,15 +4,16 @@
     "p50": 0.82,
     "p84": 0.93,
     "drivers": [
-      "Simple Latin-square distribution: each row/column contains the same three figure types, so the missing cell is just the one not yet present in row 3",
-      "Number (4) and rotation are constant, so only shape and fill must be tracked",
-      "Distractors vary count and fill, allowing elimination by matching the exact striped-hexagon-4 combination",
-      "Generous 75 s limit and no computation"
+      "Simple Latin-square (distribution of three) rule with shape+fill bound together; count and rotation constant",
+      "Only one option (C) has all attributes matching the missing shape-fill combination, so elimination is easy",
+      "Distractors vary count (4 vs 5) and recombine fill/shape, requiring attention to multiple attributes",
+      "Generous 75s limit; low-ability test-takers may still misread fill or count under time pressure"
     ]
   },
   "model": "claude-fable-5-1",
   "usage": {
     "inputTokens": 1405,
-    "outputTokens": 162
-  }
+    "outputTokens": 179
+  },
+  "promptHash": "d30a2aa7256af891"
 }
