@@ -14,7 +14,9 @@
     "db:migrate": "node scripts/migrate.mjs",
     "test": "vitest run",
     "seed": "tsx --conditions=react-server scripts/seed.mts",
-    "e2e": "tsx --conditions=react-server tests/e2e.mts"
+    "e2e": "tsx --conditions=react-server tests/e2e.mts",
+    "taxonomy:types": "tsx scripts/gen-taxonomy-types.mts",
+    "taxonomy:build": "python3 taxonomy/build/build.py && tsx scripts/gen-taxonomy-types.mts"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.11",

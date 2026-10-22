@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@assessment": path.resolve(__dirname, "assessment"),
+      "@taxonomy": path.resolve(__dirname, "taxonomy"),
       "@": path.resolve(__dirname, "src"),
       // `server-only` throws outside React Server Components; tests run the same code in plain Node.
       "server-only": path.resolve(__dirname, "tests/stubs/server-only.ts"),

@@ -26,6 +26,9 @@
       "@/*": [
         "./src/*"
       ],
+      "@taxonomy/*": [
+        "./taxonomy/*"
+      ],
       "@assessment/*": [
         "./assessment/*"
       ]
