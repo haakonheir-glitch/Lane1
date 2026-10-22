@@ -16,7 +16,8 @@
     "seed": "tsx --conditions=react-server scripts/seed.mts",
     "e2e": "tsx --conditions=react-server tests/e2e.mts",
     "taxonomy:types": "tsx scripts/gen-taxonomy-types.mts",
-    "taxonomy:build": "python3 taxonomy/build/build.py && tsx scripts/gen-taxonomy-types.mts"
+    "taxonomy:build": "python3 taxonomy/build/build.py && tsx scripts/gen-taxonomy-types.mts",
+    "calibrate": "tsx assessment/calibration/calibrate.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.1.0",

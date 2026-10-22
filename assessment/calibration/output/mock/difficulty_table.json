@@ -1,0 +1,351 @@
+{
+  "version": 1,
+  "provisional": true,
+  "mock": true,
+  "model": "mock",
+  "prompt_version": "v1",
+  "date": "2026-10-22",
+  "note": "Provisional norms from expert-style estimates (offline, by a language model), not from human data. 3PL with c fixed: P(θ) = c + (1 − c)/(1 + exp(−a(θ − b))), θ in SD units of the target population (adults 18–35, Norway). Replace with empirical calibration when response data exists.",
+  "items": [
+    {
+      "task": "matrix",
+      "level": 1,
+      "level_name": "activeRules",
+      "a": 1.0586,
+      "b": -2.0168,
+      "c": 0.125,
+      "se_b": 0.0612,
+      "sd_b_within": 0.0551,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "matrix",
+      "level": 2,
+      "level_name": "activeRules",
+      "a": 1.1019,
+      "b": -0.7755,
+      "c": 0.125,
+      "se_b": 0.0443,
+      "sd_b_within": 0.0942,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "matrix",
+      "level": 3,
+      "level_name": "activeRules",
+      "a": 1.1077,
+      "b": 0.0839,
+      "c": 0.125,
+      "se_b": 0.0407,
+      "sd_b_within": 0.1157,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "matrix",
+      "level": 4,
+      "level_name": "activeRules",
+      "a": 1.1175,
+      "b": 1.2626,
+      "c": 0.125,
+      "se_b": 0.0608,
+      "sd_b_within": 0.0891,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "number_series",
+      "level": 1,
+      "level_name": "level",
+      "a": 1.0971,
+      "b": -1.1337,
+      "c": 0.2,
+      "se_b": 0.036,
+      "sd_b_within": 0.1067,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "number_series",
+      "level": 2,
+      "level_name": "level",
+      "a": 0.98,
+      "b": -0.8155,
+      "c": 0.2,
+      "se_b": 0.0336,
+      "sd_b_within": 0.1006,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "number_series",
+      "level": 3,
+      "level_name": "level",
+      "a": 1.1349,
+      "b": -0.0892,
+      "c": 0.2,
+      "se_b": 0.052,
+      "sd_b_within": 0.0892,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "number_series",
+      "level": 4,
+      "level_name": "level",
+      "a": 1.0721,
+      "b": 0.5575,
+      "c": 0.2,
+      "se_b": 0.0316,
+      "sd_b_within": 0.0873,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "letter_series",
+      "level": 1,
+      "level_name": "level",
+      "a": 0.9197,
+      "b": -1.2532,
+      "c": 0.2,
+      "se_b": 0.047,
+      "sd_b_within": 0.0962,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "letter_series",
+      "level": 2,
+      "level_name": "level",
+      "a": 1.0681,
+      "b": -0.2372,
+      "c": 0.2,
+      "se_b": 0.0509,
+      "sd_b_within": 0.0993,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "letter_series",
+      "level": 3,
+      "level_name": "level",
+      "a": 1.0544,
+      "b": 0.1324,
+      "c": 0.2,
+      "se_b": 0.0408,
+      "sd_b_within": 0.0937,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "quant",
+      "level": 1,
+      "level_name": "level",
+      "a": 1.1678,
+      "b": -1.1001,
+      "c": 0.25,
+      "se_b": 0.0357,
+      "sd_b_within": 0.0861,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "quant",
+      "level": 2,
+      "level_name": "level",
+      "a": 1.1427,
+      "b": -0.363,
+      "c": 0.25,
+      "se_b": 0.0662,
+      "sd_b_within": 0.0948,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "quant",
+      "level": 3,
+      "level_name": "level",
+      "a": 1.0019,
+      "b": 0.4187,
+      "c": 0.25,
+      "se_b": 0.0214,
+      "sd_b_within": 0.0904,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "quant",
+      "level": 4,
+      "level_name": "level",
+      "a": 1.1713,
+      "b": 0.6995,
+      "c": 0.25,
+      "se_b": 0.0393,
+      "sd_b_within": 0.0911,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "rotation2d",
+      "level": 5,
+      "level_name": "cellsN",
+      "a": 1.14,
+      "b": -0.4644,
+      "c": 0.1667,
+      "se_b": 0.0348,
+      "sd_b_within": 0.0851,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": [
+        "difficulty adjusted to keep levels in order (b -0.46 → -0.46)"
+      ]
+    },
+    {
+      "task": "rotation2d",
+      "level": 6,
+      "level_name": "cellsN",
+      "a": 1.1137,
+      "b": -0.4644,
+      "c": 0.1667,
+      "se_b": 0.0469,
+      "sd_b_within": 0.1112,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": [
+        "difficulty adjusted to keep levels in order (b -0.47 → -0.46)",
+        "not clearly separated from level 5 (Δb = 0.00, needs > 0.11)"
+      ]
+    },
+    {
+      "task": "rotation2d",
+      "level": 7,
+      "level_name": "cellsN",
+      "a": 1.064,
+      "b": 0.09,
+      "c": 0.1667,
+      "se_b": 0.0228,
+      "sd_b_within": 0.0666,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    },
+    {
+      "task": "rotation2d",
+      "level": 8,
+      "level_name": "cellsN",
+      "a": 1.0366,
+      "b": 0.6553,
+      "c": 0.1667,
+      "se_b": 0.0316,
+      "sd_b_within": 0.0944,
+      "n_calls": 12,
+      "model": "mock",
+      "date": "2026-10-22",
+      "flags": []
+    }
+  ],
+  "norms": [
+    {
+      "task": "backward_digits",
+      "mean": 5.2615,
+      "sd": 1.1974,
+      "confidence": "low",
+      "sources": [
+        "Expert estimate by mock (median of 3 calls)."
+      ],
+      "n_calls": 3,
+      "claude": {
+        "mean": 5.2615,
+        "sd": 1.1974
+      }
+    },
+    {
+      "task": "corsi",
+      "mean": 5.9542,
+      "sd": 1.2554,
+      "confidence": "moderate",
+      "sources": [
+        "Kessels, R. P. C., van Zandvoort, M. J. E., Postma, A., Kappelle, L. J., & de Haan, E. H. F. (2000). The Corsi Block-Tapping Task: standardization and normative data. Applied Neuropsychology, 7(4), 252–258. Healthy adults. Weight 0.7.",
+        "Expert estimate by mock (median of 3 calls), weight 0.3."
+      ],
+      "n_calls": 3,
+      "claude": {
+        "mean": 5.3805,
+        "sd": 1.1513
+      }
+    },
+    {
+      "task": "symbol_match",
+      "mean": 36.6893,
+      "sd": 8.2945,
+      "confidence": "low",
+      "sources": [
+        "Expert estimate by mock (median of 3 calls)."
+      ],
+      "n_calls": 3,
+      "claude": {
+        "mean": 36.6893,
+        "sd": 8.2945
+      }
+    },
+    {
+      "task": "choice_rt",
+      "mean": 493.1987,
+      "sd": 71.6091,
+      "confidence": "low",
+      "sources": [
+        "Expert estimate by mock (median of 3 calls)."
+      ],
+      "n_calls": 3,
+      "claude": {
+        "mean": 493.1987,
+        "sd": 71.6091
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "task": "balloon",
+      "reason": "measures a style (risk taking), not an ability: no higher-is-better norm"
+    },
+    {
+      "task": "delay_discount",
+      "reason": "measures a style (time preference), not an ability: no higher-is-better norm"
+    }
+  ]
+}
