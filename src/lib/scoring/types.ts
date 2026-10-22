@@ -15,5 +15,14 @@ export type ScaleScore = {
   items: number;
   /** Norm-referenced score; null until psychometrics exist for this scale. */
   normed: Normed | null;
+  /** Score relative to the person's own other scales on the same instrument (see scoring/self.ts). */
+  self?: SelfScore | null;
   visibility: Visibility;
 };
+
+/**
+ * A scale compared with the person's own other scales on the same instrument, in SD units of
+ * that person's spread. Needs no population norms. `assumedReliability` is true while the
+ * published reliability isn't transcribed and the BLUEPRINT §7 planning value is used.
+ */
+export type SelfScore = { z: number; ci: [number, number]; reliability: number; assumedReliability: boolean };

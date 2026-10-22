@@ -14,19 +14,24 @@ import { EmptyState } from "@/components/report/EmptyState";
 import { ButtonLink } from "@/components/ui/Button";
 import { formatIsoDot, pad2 } from "@/lib/format";
 import { LIMITATIONS, summarise } from "@/lib/view/profile";
-import { getProfile, getSampleUser } from "@/lib/data";
+import { getProfileView, getSampleUser, getUser } from "@/lib/data";
+import { OwnResultsNote } from "@/components/report/OwnResultsNote";
 
 export const metadata: Metadata = { title: "Profile report" };
 
 export default async function ProfilePage() {
-  const [person, profile] = await Promise.all([getSampleUser(), getProfile()]);
+  const [{ profile, source }, me, sample] = await Promise.all([getProfileView(), getUser(), getSampleUser()]);
+  const own = source === "own";
+  const person = own ? me : sample;
+  // Before population norms exist, scores are relative to the person's own other scores.
+  const normed = profile.norms.status === "provisional";
   const lastSession = profile.sessions.filter((s) => s.completedAt).map((s) => s.completedAt!).sort().pop();
   const lowConfidence = profile.sessions.filter((s) => s.confidence === "low");
 
   return (
     <AppPage
       title="Profile report"
-      meta={`${person.reportId} · sample`}
+      meta={own ? person.reportId : `${person.reportId} · sample`}
       action={
         <ButtonLink href="/lanes" variant="secondary" size="sm">
           Open Lane Map
@@ -34,14 +39,14 @@ export default async function ProfilePage() {
       }
     >
       <article className="max-w-content">
-        <SampleBanner className="mb-10" />
+        {own ? <OwnResultsNote className="mb-10" /> : <SampleBanner className="mb-10" />}
         <ReportHeader
           title={`Profile report · ${profile.scoringVersion}`}
           subject={person.name}
           fields={[
             { label: "Report ID", value: person.reportId },
             { label: "Updated", value: lastSession ? formatIsoDot(lastSession) : "—" },
-            { label: "Norms", value: profile.norms.status === "provisional" ? "Provisional" : "Pending" },
+            { label: "Compared with", value: profile.norms.status === "provisional" ? "Population (provisional norms)" : own ? "Yourself" : "Sample norms" },
             { label: "Holland code", value: profile.interests?.hollandCode ?? "—" },
           ]}
         />
@@ -74,7 +79,7 @@ export default async function ProfilePage() {
         </section>
 
         <section className="mt-20" aria-labelledby="interests-h">
-          <SectionHeader index="02" label="Interests · O*NET® Interest Profiler" title="What kind of work draws you" id="interests-h" aside="Raw 10–50 · T with 90% interval" />
+          <SectionHeader index="02" label="Interests · O*NET® Interest Profiler" title="What kind of work draws you" id="interests-h" aside={normed ? "Raw 10–50 · T with 90% interval" : "Raw 10–50 · compared with your own average"} />
           {profile.interests ? <InterestPanel interests={profile.interests} /> : <EmptyState title="Not done yet." body="Session S1 unlocks this section." action={<ButtonLink href="/assess/S1" size="sm">Start S1</ButtonLink>} />}
         </section>
 
@@ -84,7 +89,7 @@ export default async function ProfilePage() {
         </section>
 
         <section className="mt-20" aria-labelledby="personality-h">
-          <SectionHeader index="04" label="Personality · IPIP-NEO-120 + Honesty-Humility" title="How you tend to work" id="personality-h" aside="Tick = population median · open a row for facets" />
+          <SectionHeader index="04" label="Personality · IPIP-NEO-120 + Honesty-Humility" title="How you tend to work" id="personality-h" aside={normed ? "Tick = population median · open a row for facets" : "Tick = your own average · open a row for facets"} />
           {profile.personality ? (
             <>
               <ScaleTable domains={profile.personality.domains} facets={profile.personality.facets} extra={profile.personality.honestyHumility} />

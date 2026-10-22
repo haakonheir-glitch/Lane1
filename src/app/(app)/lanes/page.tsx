@@ -6,17 +6,18 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Skeleton } from "@/components/ui/Misc";
 import { getLaneMap, getUser } from "@/lib/data";
 import { SampleBanner } from "@/components/report/SampleBanner";
+import { OwnResultsNote } from "@/components/report/OwnResultsNote";
 import { OnetAttribution } from "@/components/report/OnetAttribution";
 
 export const metadata: Metadata = { title: "Lane Map" };
 
 export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
   const { lane } = await searchParams;
-  const [{ rows, vocab, detail }, user] = await Promise.all([getLaneMap(typeof lane === "string" ? lane : null), getUser()]);
+  const [{ rows, vocab, detail, source }, user] = await Promise.all([getLaneMap(typeof lane === "string" ? lane : null), getUser()]);
   return (
     <AppPage
       title="Lane Map"
-      meta={`${rows.length} lanes · ${vocab.families.length} families · sample`}
+      meta={`${rows.length} lanes · ${vocab.families.length} families${source === "sample" ? " · sample" : ""}`}
       action={
         <ButtonLink href="/sprints" variant="secondary" size="sm">
           Sprints
@@ -24,7 +25,7 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
       }
     >
       <div className="max-w-content">
-        <SampleBanner what="Lane Map results" className="mb-10" />
+        {source === "own" ? <OwnResultsNote className="mb-10" /> : <SampleBanner what="Lane Map results" className="mb-10" />}
         <p className="label text-ink-3">Lanes · {user.reportId}</p>
         <h1 className="mt-4 max-w-[20ch] text-h1 font-medium text-ink">Your lanes, compared with each other.</h1>
         <p className="mt-4 max-w-reading text-body-l text-ink-2">

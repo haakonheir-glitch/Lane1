@@ -19,6 +19,7 @@
     "taxonomy:build": "python3 taxonomy/build/build.py && tsx scripts/gen-taxonomy-types.mts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.1.0",
     "@electric-sql/pglite": "^0.5.11",
     "bcryptjs": "^3.0.3",
     "drizzle-orm": "^0.45.4",

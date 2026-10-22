@@ -5,7 +5,7 @@
 import type { Normed } from "../scoring/core";
 import { relativeStrengths, type Relative } from "../scoring/relative";
 import type { ProfileScores } from "../scoring/profile";
-import type { ScaleScore } from "../scoring/types";
+import type { SelfScore } from "../scoring/types";
 import type { InterestScores } from "../scoring/interests";
 
 /** T-scores are drawn on 20–80 (±3 SD) mapped to 0–100 for bars. */
@@ -51,15 +51,24 @@ const DOMAIN_TEXT: Record<string, Record<Band, string>> = {
   },
 };
 
-export function interpret(scaleId: string, n: Normed | null): string {
-  if (!n) return "Interpretation appears once norms are loaded.";
-  return DOMAIN_TEXT[scaleId]?.[band(n)] ?? "";
+export function interpret(scaleId: string, n: Normed | null, self?: SelfScore | null): string {
+  if (n) return DOMAIN_TEXT[scaleId]?.[band(n)] ?? "";
+  // Without norms, only a comparison with the person's own other traits is possible.
+  if (self) return self.ci[0] > 0 ? "Higher than your other traits." : self.ci[1] < 0 ? "Lower than your other traits." : "Around your own average.";
+  return "Interpretation appears once norms are loaded.";
 }
 
-/** BLUEPRINT §7 relative strengths for a set of normed scales; scales without norms get "none". */
-export function relativeOf(scales: { id: string; normed: Normed | null }[]): Record<string, Relative> {
-  const withNorms = scales.filter((s): s is { id: string; normed: Normed } => s.normed !== null);
-  const r = relativeStrengths(withNorms.map((s) => ({ id: s.id, z: s.normed.z, reliability: s.normed.reliability })));
+type Comparable = { id: string; normed: Normed | null; self?: SelfScore | null };
+/** The score used for "relative to yourself" comparisons: population-normed when available, else self-relative. */
+const comparable = (s: Comparable) => (s.normed ? { z: s.normed.z, reliability: s.normed.reliability } : s.self ? { z: s.self.z, reliability: s.self.reliability } : null);
+
+/** BLUEPRINT §7 relative strengths for a set of scales; scales with no comparable score get "none". */
+export function relativeOf(scales: Comparable[]): Record<string, Relative> {
+  const ok = scales.flatMap((s) => {
+    const c = comparable(s);
+    return c ? [{ id: s.id, ...c }] : [];
+  });
+  const r = relativeStrengths(ok);
   return Object.fromEntries(scales.map((s) => [s.id, r[s.id] ?? "none"]));
 }
 
@@ -89,7 +98,7 @@ export function summarise(p: ProfileScores): string[] {
   } else if (i?.lowDifferentiation) {
     out.push("Your interests are fairly even across all six areas. That often means they are still forming; trying lanes will tell you more than this scale can.");
   }
-  const d = p.personality?.domains.filter((x): x is ScaleScore & { normed: Normed } => x.normed !== null) ?? [];
+  const d = p.personality?.domains.filter((x) => x.normed !== null || !!x.self) ?? [];
   if (d.length) {
     const rel = relativeOf(d);
     const strengths = d.filter((x) => rel[x.id] === "strength").map((x) => x.label.toLowerCase());

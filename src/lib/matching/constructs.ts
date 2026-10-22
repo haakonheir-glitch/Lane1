@@ -8,6 +8,7 @@
  */
 import type { ProfileScores } from "../scoring/profile";
 import type { Normed } from "../scoring/core";
+import type { ScaleScore } from "../scoring/types";
 
 export type Resolved = {
   id: string;
@@ -17,8 +18,11 @@ export type Resolved = {
   reliability: number | null;
   /** Plain-language name for reasons, e.g. "assertiveness" or "Enterprising interests". */
   label: string;
-  /** "normed" = against a population; "ipsative" = relative to the person's other values. */
-  basis: "normed" | "ipsative";
+  /**
+   * "normed" = against a population; "self" = relative to the person's other scales on the same
+   * instrument (no norms needed, scoring/self.ts); "ipsative" = the person's forced-sort values.
+   */
+  basis: "normed" | "self" | "ipsative";
 };
 
 export type Unresolved = { id: string; reason: "experimental" | "not_built" | "no_score" | "unknown" };
@@ -28,6 +32,10 @@ export const EXPERIMENTAL_PREFIXES = ["dispositions", "values_ext", "lane_intere
 
 const fromNormed = (id: string, n: Normed | null | undefined, label: string): Resolved | null =>
   n ? { id, z: n.z, reliability: n.reliability, label, basis: "normed" } : null;
+
+/** Population norms when they exist; otherwise the score relative to the person's own scales. */
+const fromScale = (id: string, s: ScaleScore, label: string): Resolved | null =>
+  s.normed ? fromNormed(id, s.normed, label) : s.self ? { id, z: s.self.z, reliability: s.self.reliability, label, basis: "self" } : null;
 
 /** Mean z of several normed areas; reliability = mean reliability (conservative for a composite). */
 function composite(id: string, ns: (Normed | null | undefined)[], label: string): Resolved | null {
@@ -59,11 +67,11 @@ type Resolver = (id: string, p: ProfileScores, key: string) => Resolved | null;
 const RESOLVERS: Record<string, Resolver> = {
   neo: (id, p, key) => {
     const f = p.personality?.facets.find((x) => x.id === key);
-    return f ? fromNormed(id, f.normed, lc(f.label)) : null;
+    return f ? fromScale(id, f, lc(f.label)) : null;
   },
   interests: (id, p, key) => {
     const s = p.interests?.scales.find((x) => x.code === key);
-    return s ? fromNormed(id, s.normed, `${s.label} interests`) : null;
+    return s ? fromScale(id, s, `${s.label} interests`) : null;
   },
   values: (id, p, key) => value(id, p, { independence: "Independence", working_conditions: "Working Conditions", achievement: "Achievement", recognition: "Recognition", relationships: "Relationships", support: "Support" }[key] ?? ""),
   cognitive: (id, p, key) => {

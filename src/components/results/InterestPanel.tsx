@@ -9,6 +9,7 @@ export function InterestPanel({ interests }: { interests: InterestScores }) {
   const rel = relativeOf(interests.scales);
   const ranked = [...interests.scales].sort((a, b) => (b.raw ?? 0) - (a.raw ?? 0));
   const dims = radarDims(interests);
+  const selfMode = !interests.scales.some((s) => s.normed) && interests.scales.some((s) => s.self);
   return (
     <div className="grid gap-12 md:grid-cols-12">
       <div className="md:col-span-6 lg:col-span-5">
@@ -21,7 +22,7 @@ export function InterestPanel({ interests }: { interests: InterestScores }) {
             <tr className="border-b border-rule-strong">
               <th scope="col" className="py-2 label font-normal text-ink-3">Area</th>
               <th scope="col" className="py-2 text-right label font-normal text-ink-3">Raw 10–50</th>
-              <th scope="col" className="py-2 text-right label font-normal text-ink-3">Normed · 90%</th>
+              <th scope="col" className="py-2 text-right label font-normal text-ink-3">{selfMode ? "vs your average" : "Normed · 90%"}</th>
             </tr>
           </thead>
           <tbody>
@@ -35,7 +36,9 @@ export function InterestPanel({ interests }: { interests: InterestScores }) {
                   </span>
                 </th>
                 <td className="py-3 text-right font-mono text-small text-ink">{s.raw === null ? "—" : Math.round(s.raw)}</td>
-                <td className="py-3 text-right">{s.normed ? <NormedFigure n={s.normed} /> : <span className="label text-ink-3">pending</span>}</td>
+                <td className="py-3 text-right">
+                  {s.normed ? <NormedFigure n={s.normed} /> : s.self ? <span className="font-mono text-small text-ink">{`${s.self.z >= 0 ? "+" : "−"}${Math.abs(s.self.z).toFixed(1)}`}</span> : <span className="label text-ink-3">pending</span>}
+                </td>
               </tr>
             ))}
           </tbody>

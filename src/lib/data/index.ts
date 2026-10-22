@@ -1,20 +1,21 @@
 /**
  * Data access — the seam between pages and storage.
  *
- * Real (database):  user, onboarding, assessment progress, export.
- * Sample (/lib/mock): profile results, lanes, sprints, evidence. These stay on sample data until
- *   norms are in place (PLAN.md D1/D2/D18). The sample profile has the exact ProfileScores shape,
- *   so switching getProfile() to real scores is a one-line change.
+ * Real (database):  user, onboarding, assessment progress, the person's own profile and Lane Map
+ *   (scored relative to themselves until population norms exist, PLAN D48), export.
+ * Sample (/lib/mock): the profile shown before S1/S2 are done, sprints, evidence (PLAN D18).
  */
 import "server-only";
 import { cache } from "react";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { getDb, schema } from "../db";
 import { requireUser } from "../auth";
 import * as mock from "../mock";
 import { hubStatus } from "../assess/service";
 import { allSessions } from "../bank/bank";
-import type { ProfileScores } from "../scoring/profile";
+import { buildProfile, type ProfileScores, type SessionScores } from "../scoring/profile";
+import { addSelfScores } from "../scoring/self";
+import type { SessionId } from "../bank/types";
 import type { YearsBand } from "../matching";
 import type { Evidence, OnboardingAnswers, Sprint, User } from "../types";
 import { buildLaneDetail, buildLaneMap, buildLanePlan, laneName, withKind } from "./lanes";
@@ -96,8 +97,35 @@ export async function getSessionMeta(id: string) {
 
 /* -------------------------------------------------------------- sample ---- */
 
-export const getProfile = async (): Promise<ProfileScores> => mock.sampleProfile;
 export const getSampleUser = async (): Promise<User> => mock.user;
+
+/**
+ * The signed-in person's own profile, built from their latest completed attempt of each
+ * session (discarded attempts are skipped), with scores relative to themselves added.
+ * Null until S1 or S2 is complete.
+ */
+export const getMyProfile = cache(async (): Promise<ProfileScores | null> => {
+  const u = await requireUser();
+  const db = await getDb();
+  const rows = await db
+    .select({ s: schema.assessmentSessions, scores: schema.sessionScores.scores })
+    .from(schema.assessmentSessions)
+    .innerJoin(schema.sessionScores, eq(schema.sessionScores.sessionRowId, schema.assessmentSessions.id))
+    .where(and(eq(schema.assessmentSessions.userId, u.id), eq(schema.assessmentSessions.status, "completed")));
+  const scored: Parameters<typeof buildProfile>[0] = {};
+  for (const { s, scores } of rows.sort((a, b) => a.s.attempt - b.s.attempt)) {
+    scored[s.sessionId as SessionId] = { scores: scores as SessionScores, completedAt: (s.completedAt ?? s.startedAt).toISOString() };
+  }
+  if (!scored.S1 && !scored.S2) return null;
+  return addSelfScores(buildProfile(scored, "pending"));
+});
+
+/** The profile pages show: the person's own once they have one, otherwise the labelled sample. */
+export const getProfileView = cache(async (): Promise<{ profile: ProfileScores; source: "own" | "sample" }> => {
+  const own = await getMyProfile();
+  return own ? { profile: own, source: "own" } : { profile: mock.sampleProfile, source: "sample" };
+});
+export const getProfile = async (): Promise<ProfileScores> => (await getProfileView()).profile;
 export const getSprints = async (): Promise<Sprint[]> => mock.sprints.map((s) => withKind(structuredClone(s)));
 export const getSprint = async (id: string): Promise<Sprint | undefined> => (await getSprints()).find((s) => s.id === id);
 export const getEvidence = async (): Promise<Evidence> => structuredClone(mock.evidence);
@@ -105,8 +133,9 @@ export const getLaneName = laneName;
 
 /** Lane Map rows and the open lane's detail, matched against the profile (sample until norms exist). */
 export async function getLaneMap(selected?: string | null) {
-  const [profile, exp, sprints] = await Promise.all([getProfile(), getExperience(), getSprints()]);
+  const [{ profile, source }, exp, sprints] = await Promise.all([getProfileView(), getExperience(), getSprints()]);
   return {
+    source,
     ...buildLaneMap(profile, exp),
     detail: selected ? buildLaneDetail(selected, profile, exp, sprints) : null,
   };

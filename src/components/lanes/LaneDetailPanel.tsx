@@ -114,7 +114,7 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
           ) : null}
           {detail.unscoredTags.length ? (
             <p className="mt-3 text-small text-ink-3">
-              Not counted yet: {detail.unscoredTags.join(", ").toLowerCase()}. The scales behind them are still being validated.
+              Not counted yet: {detail.unscoredTags.join(", ").toLowerCase()}. The scales behind them are still being validated, or need norm tables before they can be compared.
             </p>
           ) : null}
         </section>

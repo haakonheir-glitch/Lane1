@@ -1,6 +1,6 @@
 import type { ScaleScore } from "@/lib/scoring/types";
 import { interpret, relativeOf } from "@/lib/view/profile";
-import { NormedBar, NormedFigure } from "./NormedBar";
+import { NormedBar, NormedFigure, SelfBar, SelfFigure } from "./NormedBar";
 import { RelativeTag } from "./RelativeTag";
 
 /**
@@ -11,10 +11,15 @@ export function ScaleTable({ domains, facets, extra }: { domains: ScaleScore[]; 
   const rel = relativeOf(domains);
   const expandable = facets.length > 0;
   const facetsOf = (d: string) => facets.filter((f) => f.id.startsWith(d[0]!));
+  // Without population norms, scores are shown relative to the person's own other scales.
+  const selfMode = !domains.some((d) => d.normed) && domains.some((d) => d.self);
+  const figure = (x: ScaleScore, small?: boolean) =>
+    x.normed ? <NormedFigure n={x.normed} /> : x.self ? <SelfFigure raw={x.raw} s={x.self} /> : <span className={small ? "font-mono text-label text-ink-3" : "font-mono text-small text-ink-3"}>{x.raw?.toFixed(2) ?? (small ? "not enough answers" : "—")} raw</span>;
+  const bar = (x: ScaleScore, label: string) => (x.normed ? <NormedBar n={x.normed} label={label} /> : x.self ? <SelfBar s={x.self} label={label} /> : <span />);
   return (
     <div className="border-t border-rule-strong">
       <div className="hidden grid-cols-[minmax(0,1.1fr)_150px_minmax(0,1fr)_minmax(0,1.6fr)] gap-x-6 border-b border-rule py-2 md:grid">
-        {["Domain", "Score · 90%", "T 20 — 80", "Interpretation"].map((h) => (
+        {(selfMode ? ["Domain", "vs your average", "Your own range · 90%", "Reading"] : ["Domain", "Score · 90%", "T 20 — 80", "Interpretation"]).map((h) => (
           <span key={h} className="label text-ink-3">
             {h}
           </span>
@@ -28,9 +33,9 @@ export function ScaleTable({ domains, facets, extra }: { domains: ScaleScore[]; 
               <span className="text-body text-ink">{d.label}</span>
               <RelativeTag r={rel[d.id] ?? "none"} />
             </span>
-            {d.normed ? <NormedFigure n={d.normed} /> : <span className="font-mono text-small text-ink-3">{d.raw?.toFixed(2) ?? "—"} raw</span>}
-            {d.normed ? <NormedBar n={d.normed} label={`${d.label} score`} /> : <span />}
-            <span className="text-small text-ink-2">{interpret(d.id, d.normed)}</span>
+            {figure(d)}
+            {bar(d, `${d.label} score`)}
+            <span className="text-small text-ink-2">{interpret(d.id, d.normed, d.self)}</span>
           </summary>
           {expandable ? <ul className="mb-4 ml-0 border-l border-rule pl-4 md:ml-6">
             {facetsOf(d.id).map((f) => (
@@ -39,8 +44,8 @@ export function ScaleTable({ domains, facets, extra }: { domains: ScaleScore[]; 
                   <span className="mr-2 font-mono text-label text-ink-3">{f.id}</span>
                   {f.label}
                 </span>
-                {f.normed ? <NormedFigure n={f.normed} /> : <span className="font-mono text-label text-ink-3">{f.raw?.toFixed(2) ?? "not enough answers"}</span>}
-                {f.normed ? <NormedBar n={f.normed} label={`${f.label} facet score`} /> : <span />}
+                {figure(f, true)}
+                {bar(f, `${f.label} facet score`)}
                 <span className="text-label text-ink-3">{f.answered}/{f.items} answered</span>
               </li>
             ))}
@@ -50,9 +55,9 @@ export function ScaleTable({ domains, facets, extra }: { domains: ScaleScore[]; 
       {extra ? (
         <div className="grid grid-cols-1 gap-x-6 gap-y-2 border-b border-rule py-4 md:grid-cols-[minmax(0,1.1fr)_150px_minmax(0,1fr)_minmax(0,1.6fr)] md:items-center">
           <span className="text-body text-ink md:pl-5">{extra.label}</span>
-          {extra.normed ? <NormedFigure n={extra.normed} /> : <span className="font-mono text-small text-ink-3">{extra.raw?.toFixed(2) ?? "—"} raw</span>}
-          {extra.normed ? <NormedBar n={extra.normed} label={`${extra.label} score`} /> : <span />}
-          <span className="text-small text-ink-2">{interpret(extra.id, extra.normed)}</span>
+          {figure(extra)}
+          {bar(extra, `${extra.label} score`)}
+          <span className="text-small text-ink-2">{extra.normed ? interpret(extra.id, extra.normed) : "A single scale, so it can't be compared with your own other scores; it needs population norms."}</span>
         </div>
       ) : null}
     </div>

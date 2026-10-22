@@ -1,4 +1,5 @@
 import type { Normed } from "@/lib/scoring/core";
+import type { SelfScore } from "@/lib/scoring/types";
 import { tToBar } from "@/lib/view/profile";
 import { cn } from "@/lib/cn";
 
@@ -40,6 +41,45 @@ export function NormedFigure({ n }: { n: Normed }) {
       <span className="ml-3 inline-block whitespace-nowrap text-label text-ink-3">
         P{n.percentileBand[0]}–{n.percentileBand[1]}
       </span>
+    </span>
+  );
+}
+
+const SELF_RANGE = 2; // SD units either side of the person's own average
+const SELF_MIN = -SELF_RANGE;
+
+/**
+ * A score relative to the person's own other scales (no population norms): point and 90%
+ * range on −2…+2 of their own spread, with the centre line at their own average.
+ */
+export function SelfBar({ s, label, className }: { s: SelfScore; label: string; className?: string }) {
+  const x = (v: number) => (Math.min(SELF_RANGE, Math.max(-SELF_RANGE, v)) / SELF_RANGE) * 50 + 50;
+  return (
+    <div
+      role="meter"
+      aria-label={label}
+      aria-valuemin={SELF_MIN}
+      aria-valuemax={SELF_RANGE}
+      aria-valuenow={Math.round(s.z * 10) / 10}
+      aria-valuetext={`${fmtSelf(s.z)} compared with your own average, 90% range ${fmtSelf(s.ci[0])} to ${fmtSelf(s.ci[1])}`}
+      className={cn("relative h-3 w-full", className)}
+    >
+      <div className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-rule" />
+      <div className="absolute top-1/2 h-2 -translate-y-1/2 bg-ink opacity-25" style={{ left: `${x(s.ci[0])}%`, width: `${x(s.ci[1]) - x(s.ci[0])}%` }} />
+      <div className="absolute top-0 h-3 w-0.5 -translate-x-1/2 bg-ink" style={{ left: `${x(s.z)}%` }} />
+      <div className="absolute top-0 h-3 w-px bg-ink-4" style={{ left: "50%" }} title="Your own average" />
+    </div>
+  );
+}
+
+const fmtSelf = (z: number) => `${z >= 0 ? "+" : "−"}${Math.abs(z).toFixed(1)}`;
+
+/** Mono "raw 3.42 · +0.8 vs you" for a self-relative score. */
+export function SelfFigure({ raw, s }: { raw: number | null; s: SelfScore }) {
+  return (
+    <span className="font-mono text-small text-ink">
+      <span className="whitespace-nowrap">{fmtSelf(s.z)}</span>
+      <span className="ml-2 inline-block whitespace-nowrap text-label text-ink-3">raw {raw === null ? "—" : Number.isInteger(raw) ? raw : raw.toFixed(2)}</span>
     </span>
   );
 }
