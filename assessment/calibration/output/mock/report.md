@@ -2,7 +2,7 @@
 
 - Model asked: `mock`; prompt version v1; 2026-10-22
 - Answers served by: `mock` × 240
-- Model calls this run: 0 (cached answers are reused and cost nothing); cost this run: $0.00
+- Model calls this run: 240 (cached answers are reused and cost nothing); cost this run: $0.00
 - Failed calls (dropped after retries): 0
 
 How to read this: for each task and level, **average** is the estimated chance that an average person (50th percentile, θ = 0) gets an item right; **−1 SD** and **+1 SD** are the 16th and 84th percentiles. b is difficulty on that same SD scale (the ability with a 50% chance above guessing); a is how sharply the item separates people. These are provisional estimates, not human data.
@@ -77,25 +77,25 @@ Task: a 3×3 grid of figures follows rules across rows and columns; the bottom-r
 Shapes are drawn in black: 'empty' is an outline, 'striped' is diagonal hatching, 'solid' is filled. Several figures in one cell are laid out side by side.
 
 Grid:
-  Row 1, column 1: 3 solid arrows rotated 90°
-  Row 1, column 2: 3 solid arrows rotated 315°
-  Row 1, column 3: 3 solid arrows rotated 135°
-  Row 2, column 1: 3 solid arrows rotated 135°
-  Row 2, column 2: 3 solid arrows rotated 90°
-  Row 2, column 3: 3 solid arrows rotated 315°
-  Row 3, column 1: 3 solid arrows rotated 315°
-  Row 3, column 2: 3 solid arrows rotated 135°
+  Row 1, column 1: 4 solid arrows rotated 90°
+  Row 1, column 2: 4 solid arrows rotated 315°
+  Row 1, column 3: 4 solid arrows rotated 135°
+  Row 2, column 1: 4 solid arrows rotated 135°
+  Row 2, column 2: 4 solid arrows rotated 90°
+  Row 2, column 3: 4 solid arrows rotated 315°
+  Row 3, column 1: 4 solid arrows rotated 315°
+  Row 3, column 2: 4 solid arrows rotated 135°
   Row 3, column 3: ?  (missing)
 
 Options:
-  A. 3 solid arrows rotated 90°
-  B. 1 solid arrow rotated 135°
-  C. 3 solid pentagons rotated 135°
-  D. 3 solid pentagons rotated 90°
-  E. 1 solid pentagon rotated 90°
-  F. 1 solid arrow rotated 90°
-  G. 1 solid pentagon rotated 135°
-  H. 3 solid arrows rotated 135°
+  A. 4 solid arrows rotated 90°
+  B. 2 solid arrows rotated 135°
+  C. 4 solid pentagons rotated 135°
+  D. 4 solid pentagons rotated 90°
+  E. 2 solid pentagons rotated 90°
+  F. 2 solid arrows rotated 90°
+  G. 2 solid pentagons rotated 135°
+  H. 4 solid arrows rotated 135°
 
 Correct answer: A
 Time limit: 60 seconds (a countdown is visible; unanswered items count as wrong).
@@ -108,25 +108,25 @@ Task: a 3×3 grid of figures follows rules across rows and columns; the bottom-r
 Shapes are drawn in black: 'empty' is an outline, 'striped' is diagonal hatching, 'solid' is filled. Several figures in one cell are laid out side by side.
 
 Grid:
-  Row 1, column 1: 1 striped arrow rotated 90°
-  Row 1, column 2: 1 empty (outline only) triangle rotated 90°
-  Row 1, column 3: 1 solid circle rotated 90°
-  Row 2, column 1: 1 empty (outline only) circle rotated 90°
-  Row 2, column 2: 1 solid arrow rotated 90°
-  Row 2, column 3: 1 striped triangle rotated 90°
-  Row 3, column 1: 1 solid triangle rotated 90°
-  Row 3, column 2: 1 striped circle rotated 90°
+  Row 1, column 1: 2 striped arrows rotated 90°
+  Row 1, column 2: 2 empty (outline only) triangles rotated 90°
+  Row 1, column 3: 2 solid circles rotated 90°
+  Row 2, column 1: 2 empty (outline only) circles rotated 90°
+  Row 2, column 2: 2 solid arrows rotated 90°
+  Row 2, column 3: 2 striped triangles rotated 90°
+  Row 3, column 1: 2 solid triangles rotated 90°
+  Row 3, column 2: 2 striped circles rotated 90°
   Row 3, column 3: ?  (missing)
 
 Options:
-  A. 2 empty (outline only) triangles rotated 90°
-  B. 1 empty (outline only) triangle rotated 90°
-  C. 2 empty (outline only) arrows rotated 90°
-  D. 2 striped arrows rotated 90°
-  E. 1 empty (outline only) arrow rotated 90°
-  F. 2 striped triangles rotated 90°
-  G. 1 striped triangle rotated 90°
-  H. 1 striped arrow rotated 90°
+  A. 3 empty (outline only) triangles rotated 90°
+  B. 2 empty (outline only) triangles rotated 90°
+  C. 3 empty (outline only) arrows rotated 90°
+  D. 3 striped arrows rotated 90°
+  E. 2 empty (outline only) arrows rotated 90°
+  F. 3 striped triangles rotated 90°
+  G. 2 striped triangles rotated 90°
+  H. 2 striped arrows rotated 90°
 
 Correct answer: E
 Time limit: 75 seconds (a countdown is visible; unanswered items count as wrong).
@@ -139,25 +139,25 @@ Task: a 3×3 grid of figures follows rules across rows and columns; the bottom-r
 Shapes are drawn in black: 'empty' is an outline, 'striped' is diagonal hatching, 'solid' is filled. Several figures in one cell are laid out side by side.
 
 Grid:
-  Row 1, column 1: 4 empty (outline only) triangles rotated 135°
-  Row 1, column 2: 4 striped pentagons rotated 180°
-  Row 1, column 3: 4 solid arrows rotated 225°
-  Row 2, column 1: 4 solid arrows rotated 225°
-  Row 2, column 2: 4 empty (outline only) triangles rotated 270°
-  Row 2, column 3: 4 striped pentagons rotated 315°
-  Row 3, column 1: 4 striped pentagons rotated 135°
-  Row 3, column 2: 4 solid arrows rotated 180°
+  Row 1, column 1: 5 empty (outline only) triangles rotated 135°
+  Row 1, column 2: 5 striped pentagons rotated 180°
+  Row 1, column 3: 5 solid arrows rotated 225°
+  Row 2, column 1: 5 solid arrows rotated 225°
+  Row 2, column 2: 5 empty (outline only) triangles rotated 270°
+  Row 2, column 3: 5 striped pentagons rotated 315°
+  Row 3, column 1: 5 striped pentagons rotated 135°
+  Row 3, column 2: 5 solid arrows rotated 180°
   Row 3, column 3: ?  (missing)
 
 Options:
-  A. 4 empty (outline only) pentagons rotated 225°
-  B. 4 solid pentagons rotated 270°
-  C. 4 solid pentagons rotated 225°
-  D. 4 empty (outline only) triangles rotated 225°
-  E. 4 empty (outline only) triangles rotated 270°
-  F. 4 solid triangles rotated 270°
-  G. 4 empty (outline only) pentagons rotated 270°
-  H. 4 solid triangles rotated 225°
+  A. 5 empty (outline only) pentagons rotated 225°
+  B. 5 solid pentagons rotated 270°
+  C. 5 solid pentagons rotated 225°
+  D. 5 empty (outline only) triangles rotated 225°
+  E. 5 empty (outline only) triangles rotated 270°
+  F. 5 solid triangles rotated 270°
+  G. 5 empty (outline only) pentagons rotated 270°
+  H. 5 solid triangles rotated 225°
 
 Correct answer: D
 Time limit: 90 seconds (a countdown is visible; unanswered items count as wrong).
@@ -170,25 +170,25 @@ Task: a 3×3 grid of figures follows rules across rows and columns; the bottom-r
 Shapes are drawn in black: 'empty' is an outline, 'striped' is diagonal hatching, 'solid' is filled. Several figures in one cell are laid out side by side.
 
 Grid:
-  Row 1, column 1: 3 empty (outline only) triangles rotated 45°
-  Row 1, column 2: 2 striped arrows rotated 225°
-  Row 1, column 3: 1 solid pentagon rotated 135°
-  Row 2, column 1: 3 striped pentagons rotated 135°
-  Row 2, column 2: 2 solid triangles rotated 45°
-  Row 2, column 3: 1 empty (outline only) arrow rotated 225°
-  Row 3, column 1: 4 solid arrows rotated 225°
-  Row 3, column 2: 3 empty (outline only) pentagons rotated 135°
+  Row 1, column 1: 4 empty (outline only) triangles rotated 45°
+  Row 1, column 2: 3 striped arrows rotated 225°
+  Row 1, column 3: 2 solid pentagons rotated 135°
+  Row 2, column 1: 4 striped pentagons rotated 135°
+  Row 2, column 2: 3 solid triangles rotated 45°
+  Row 2, column 3: 2 empty (outline only) arrows rotated 225°
+  Row 3, column 1: 5 solid arrows rotated 225°
+  Row 3, column 2: 4 empty (outline only) pentagons rotated 135°
   Row 3, column 3: ?  (missing)
 
 Options:
-  A. 1 empty (outline only) triangle rotated 225°
-  B. 2 empty (outline only) triangles rotated 45°
-  C. 2 striped triangles rotated 45°
-  D. 1 striped triangle rotated 45°
-  E. 2 empty (outline only) triangles rotated 225°
-  F. 2 striped triangles rotated 225°
-  G. 1 striped triangle rotated 225°
-  H. 1 empty (outline only) triangle rotated 45°
+  A. 2 empty (outline only) triangles rotated 225°
+  B. 3 empty (outline only) triangles rotated 45°
+  C. 3 striped triangles rotated 45°
+  D. 2 striped triangles rotated 45°
+  E. 3 empty (outline only) triangles rotated 225°
+  F. 3 striped triangles rotated 225°
+  G. 2 striped triangles rotated 225°
+  H. 2 empty (outline only) triangles rotated 45°
 
 Correct answer: C
 Time limit: 105 seconds (a countdown is visible; unanswered items count as wrong).

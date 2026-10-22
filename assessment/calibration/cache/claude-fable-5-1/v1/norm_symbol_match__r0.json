@@ -8,5 +8,6 @@
   "usage": {
     "inputTokens": 675,
     "outputTokens": 752
-  }
+  },
+  "promptHash": "c712cb5a80bb95eb"
 }

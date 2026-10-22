@@ -12,9 +12,10 @@ const FILL = ["empty (outline only)", "striped", "solid"];
 /** "2 solid triangles rotated 45°" */
 export function describeCell(c: g.Cell): string {
   const shape = g.SHAPES[c.shape]!;
-  const noun = c.count === 1 ? shape : shape === "arrow" ? "arrows" : `${shape}s`;
+  const n = c.count + 1; // count is an index: 0 → 1 figure
+  const noun = n === 1 ? shape : shape === "arrow" ? "arrows" : `${shape}s`;
   const rotation = c.rotation === 0 ? "upright" : `rotated ${c.rotation * 45}°`;
-  return `${c.count} ${FILL[c.fill]} ${noun} ${rotation}`;
+  return `${n} ${FILL[c.fill]} ${noun} ${rotation}`;
 }
 
 const letter = (i: number) => String.fromCharCode(65 + i);

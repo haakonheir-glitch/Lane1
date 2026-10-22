@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { A_RANGE, blendNorm, bootstrapSeB, clampP, fit3pl, fitTask, iqr, isotonic, median, pCorrect, quantile, sdBWithin, type Call } from "@assessment/calibration/fit";
 import { calibrationItems, describeCell } from "@assessment/calibration/render";
-import { CONFIGURATIONS, ITEMS_PER_CONFIG, LITERATURE_ANCHORS } from "@assessment/calibration/config";
+import { CONFIGURATIONS, ITEMS_PER_CONFIG, LITERATURE_ANCHORS, itemSeed } from "@assessment/calibration/config";
+import { generateMatrix } from "@assessment/generators/generators";
 
 /** Probabilities a true 3PL item would produce at θ = −1, 0, +1. */
 const elicit = (a: number, b: number, c: number) => ({ p16: pCorrect(-1, a, b, c), p50: pCorrect(0, a, b, c), p84: pCorrect(1, a, b, c) });
@@ -110,7 +111,17 @@ describe("calibration items", () => {
   });
 
   it("describes matrix cells in words", () => {
-    expect(describeCell({ shape: 2, count: 2, fill: 2, rotation: 1 })).toBe("2 solid triangles rotated 45°");
-    expect(describeCell({ shape: 0, count: 1, fill: 0, rotation: 0 })).toBe("1 empty (outline only) circle upright");
+    expect(describeCell({ shape: 2, count: 1, fill: 2, rotation: 1 })).toBe("2 solid triangles rotated 45°");
+    expect(describeCell({ shape: 0, count: 0, fill: 0, rotation: 0 })).toBe("1 empty (outline only) circle upright");
+  });
+
+  it("count is an index: a cell never shows 0 figures, and no two options look the same", () => {
+    for (const level of [1, 2, 3, 4] as const)
+      for (let i = 0; i < ITEMS_PER_CONFIG; i++) {
+        const m = generateMatrix(itemSeed("matrix", level, i), level);
+        const cells = [...m.grid.filter((c) => c !== null), ...m.options];
+        for (const c of cells) expect(describeCell(c)).not.toMatch(/^0 /);
+        expect(new Set(m.options.map(describeCell)).size).toBe(m.options.length);
+      }
   });
 });

@@ -9,6 +9,7 @@
  * Answers are cached in cache/<model>/<prompt version>/, so an interrupted run resumes for free.
  */
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import Anthropic from "@anthropic-ai/sdk";
@@ -53,7 +54,8 @@ type Job =
   | { kind: "item"; key: string; item: CalibrationItem; repeat: number }
   | { kind: "norm"; key: string; task: NormTask; repeat: number };
 
-type Cached = { value: unknown; model: string; usage: Usage };
+/** promptHash: fingerprint of the exact prompt; an answer to a different prompt is asked again. */
+type Cached = { value: unknown; model: string; usage: Usage; promptHash?: string };
 
 /** Errors that retrying won't fix: stop the whole run instead of burning calls. */
 const fatal = (e: unknown) =>
@@ -90,12 +92,19 @@ async function main() {
     ...NORM_TASKS.flatMap((task) => Array.from({ length: NORM_REPEATS }, (_, repeat) => ({ kind: "norm" as const, key: `norm_${task}__r${repeat}`, task, repeat }))),
   ];
   const cachePath = (j: Job) => join(cacheDir, `${j.key.replace(/[^\w.-]/g, "_")}.json`);
-  const todo = jobs.filter((j) => !existsSync(cachePath(j)));
+  const promptOf = (j: Job) => (j.kind === "item" ? ITEM_SYSTEM() + "\n\n" + itemUserMessage(j.item) : NORM_SYSTEM() + "\n\n" + normUserMessage(j.task));
+  const promptHash = (j: Job) => createHash("sha256").update(promptOf(j)).digest("hex").slice(0, 16);
+  const readCache = (j: Job): Cached | null => {
+    if (!existsSync(cachePath(j))) return null;
+    const c = JSON.parse(readFileSync(cachePath(j), "utf8")) as Cached;
+    return c.promptHash === promptHash(j) ? c : null;
+  };
+  const todo = jobs.filter((j) => !readCache(j));
 
   // Preflight: how many calls, what they might cost, and the hard limit.
   const price = priceOf(args.model, DEFAULT_MODEL);
   const inputTokens = todo.reduce(
-    (s, j) => s + approxTokens(j.kind === "item" ? ITEM_SYSTEM() + itemUserMessage(j.item) : NORM_SYSTEM() + normUserMessage(j.task)),
+    (s, j) => s + approxTokens(promptOf(j)),
     0,
   );
   console.log(`Calibration — model ${modelName}, prompt ${PROMPT_VERSION}`);
@@ -115,7 +124,7 @@ async function main() {
   let done = 0;
   const failures: Failure[] = [];
   const answers = new Map<string, Cached>();
-  for (const j of jobs) if (!todo.includes(j)) answers.set(j.key, JSON.parse(readFileSync(cachePath(j), "utf8")) as Cached);
+  for (const j of jobs) if (!todo.includes(j)) answers.set(j.key, readCache(j)!);
 
   const charge = (a: Answer<unknown>) => {
     const p = priceOf(a.model, args.model);
@@ -139,7 +148,7 @@ async function main() {
           lastError = `invalid answer: ${problem}`;
           continue;
         }
-        const cached: Cached = { value: a.value, model: a.model, usage: a.usage };
+        const cached: Cached = { value: a.value, model: a.model, usage: a.usage, promptHash: promptHash(j) };
         writeFileSync(cachePath(j), JSON.stringify(cached, null, 2) + "\n");
         answers.set(j.key, cached);
         lastError = "";

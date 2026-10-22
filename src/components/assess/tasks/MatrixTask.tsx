@@ -8,8 +8,8 @@ import { Timer } from "./Timer";
 import type { Respond } from "./TaskRunner";
 
 /* Shape, fill and count encodings follow the generator: SHAPES = circle, square, triangle,
-   pentagon, hexagon, arrow; FILLS = empty, lines (45° hatch), solid; count 1–5 on a fixed
-   layout; rotation in 45° steps. Hairline strokes, ink only. */
+   pentagon, hexagon, arrow; FILLS = empty, lines (45° hatch), solid; count is an index, so a
+   cell shows count + 1 figures (1–5) on a fixed layout; rotation in 45° steps. Hairline strokes, ink only. */
 
 const SHAPE_NAMES = ["circle", "square", "triangle", "pentagon", "hexagon", "arrow"];
 const FILL_NAMES = ["empty", "hatched", "solid"];
@@ -46,13 +46,18 @@ function Glyph({ shape, r, fill }: { shape: number; r: number; fill: string }) {
   }
 }
 
+/** Number of figures in a cell: the generator's count is an index (0 → 1 figure). */
+export const figures = (c: PublicCell) => c.count + 1;
+
 export function describeCell(c: PublicCell) {
-  return `${c.count} ${FILL_NAMES[c.fill]} ${SHAPE_NAMES[c.shape]}${c.count > 1 ? "s" : ""}${c.rotation ? `, rotated ${c.rotation * 45}°` : ""}`;
+  const n = figures(c);
+  return `${n} ${FILL_NAMES[c.fill]} ${SHAPE_NAMES[c.shape]}${n > 1 ? "s" : ""}${c.rotation ? `, rotated ${c.rotation * 45}°` : ""}`;
 }
 
 export function CellSvg({ cell, size = 80, hatchId }: { cell: PublicCell; size?: number; hatchId: string }) {
-  const pts = LAYOUT[cell.count] ?? LAYOUT[1]!;
-  const r = (cell.count === 1 ? 0.24 : cell.count === 2 ? 0.17 : cell.count === 5 ? 0.12 : 0.14) * size;
+  const n = figures(cell);
+  const pts = LAYOUT[n] ?? LAYOUT[1]!;
+  const r = (n === 1 ? 0.24 : n === 2 ? 0.17 : n === 5 ? 0.12 : 0.14) * size;
   const fill = cell.fill === 2 ? "currentColor" : cell.fill === 1 ? `url(#${hatchId})` : "none";
   return (
     <>

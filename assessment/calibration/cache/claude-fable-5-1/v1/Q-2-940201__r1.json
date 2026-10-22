@@ -14,5 +14,6 @@
   "usage": {
     "inputTokens": 995,
     "outputTokens": 158
-  }
+  },
+  "promptHash": "87f25cd0e8789870"
 }
