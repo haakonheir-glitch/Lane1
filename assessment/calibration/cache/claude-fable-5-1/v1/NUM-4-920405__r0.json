@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Fibonacci-like additive rule (each term = sum of previous two) is a well-known pattern",
+      "Small numbers, trivial arithmetic",
+      "Distractors (27, 35) catch those trying difference-based rules; 46/50 catch doubling attempts",
+      "Generous 80-second time limit"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 136
+  }
+}

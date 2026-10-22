@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Both correct options are at diagonal 45° rotations, which are harder to match than cardinal rotations",
+      "Mirror distractors shown at clean 90°/180° rotations look superficially similar and lure errors",
+      "Must identify both rotations correctly under a 30-second limit with 4 options to check",
+      "Shape is relatively simple (7 squares, clear asymmetric 'hook' features) which aids discrimination"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1186,
+    "outputTokens": 454
+  }
+}

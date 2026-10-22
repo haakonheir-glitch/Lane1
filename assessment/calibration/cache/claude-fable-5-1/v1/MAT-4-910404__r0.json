@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.58,
+    "p84": 0.8,
+    "drivers": [
+      "Blank cells representing 'zero figures' obscure the count progression and shape distribution, requiring an inference that blank = 0",
+      "Three attributes (shape, fill, count) must each be resolved; rotation is non-discriminating across options so it can be ignored",
+      "Shape-fill coupling is consistent (triangles always empty), and row-wise distribution of three makes shape and fill deducible by elimination",
+      "Distractors D and G capture plausible single-attribute errors (count from column reading, fill ignored); 8 options and 105 s give moderate pressure"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1418,
+    "outputTokens": 884
+  }
+}

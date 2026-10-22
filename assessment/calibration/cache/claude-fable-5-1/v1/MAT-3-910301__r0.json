@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Shape/fill Latin square is salient and quickly narrows options to two arrow candidates (B vs G)",
+      "Rotation rule (-45° per step within a row) must be inferred from triangles and pentagons whose rotational symmetry makes angles hard to perceive",
+      "Inconsistent rotation across rows/columns invites 50/50 guessing between the two remaining options",
+      "90 s is ample for the shape rule but adds pressure on resolving the rotation ambiguity"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1423,
+    "outputTokens": 897
+  }
+}

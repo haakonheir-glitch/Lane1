@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.58,
+    "p84": 0.76,
+    "drivers": [
+      "Simple 5-square P-shape with a single salient notch makes chirality relatively easy to track",
+      "Diagonal (45°/135°/315°) display rotations disrupt grid alignment and add visual noise",
+      "Must correctly classify all four options (two rotations, two mirrors) and select both correct ones; a single mirror confusion fails the item",
+      "30-second limit is adequate for 2D rotation but pressures lower-ability test-takers"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1146,
+    "outputTokens": 498
+  }
+}

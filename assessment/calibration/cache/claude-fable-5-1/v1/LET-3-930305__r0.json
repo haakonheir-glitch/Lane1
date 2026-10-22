@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.52,
+    "p50": 0.77,
+    "p84": 0.92,
+    "drivers": [
+      "Two simple interleaved sequences (+2 forward, -2 backward) are a common, recognizable pattern",
+      "Backward alphabet stepping (Y, W, U) requires a little counting but small steps",
+      "Distractors V and S are plausible for sloppy counting",
+      "75 seconds is ample time; low working-memory load"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 329
+  }
+}

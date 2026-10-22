@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.35,
+    "p50": 0.62,
+    "p84": 0.85,
+    "drivers": [
+      "Three independent attributes (shape/fill, count, rotation) must all be resolved; distractors each share two correct attributes so partial rule discovery fails",
+      "Shape-fill Latin square and +1 count progression are salient and quickly inferred",
+      "Rotation rule (-45° across row, 'upright' as end state) is subtler and mixes rotated vs upright labels; easy to miss",
+      "Generous 105 s limit and fill fixed across options reduce load"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1383,
+    "outputTokens": 547
+  }
+}

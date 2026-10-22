@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.37,
+    "p50": 0.6,
+    "p84": 0.8,
+    "drivers": [
+      "Shape is 180°-symmetric so option A looks identical to the target, making one correct choice trivial",
+      "Mirror discrimination (S vs Z chirality) under rotation is the core difficulty; 45°/135° diagonal rotations add visual noise",
+      "Requires both correct selections within 30 s across 4 options, so partial knowledge still fails",
+      "Simple 6-square elongated shape with few distinctive features is relatively easy to encode"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 554
+  }
+}

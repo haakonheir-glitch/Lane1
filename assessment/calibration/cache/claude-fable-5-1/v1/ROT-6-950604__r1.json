@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.5,
+    "p84": 0.7,
+    "drivers": [
+      "Mirror-image distractors of a chiral staircase shape require true mental rotation rather than feature matching",
+      "One correct option is rotated 135° (diagonal), which is harder to align than cardinal rotations",
+      "Both-correct response format with 30 s limit compounds per-option error",
+      "Shape is small (6 squares) with a clear diagonal structure, aiding chirality judgment for able solvers"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 717
+  }
+}

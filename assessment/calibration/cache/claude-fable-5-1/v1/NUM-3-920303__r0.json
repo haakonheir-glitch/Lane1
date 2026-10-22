@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Alternating +5 / ×2 rule is a common pattern type, quickly spotted once alternation is checked",
+      "Distractor 60 (54+6) and 61 (continuing a +5/+7 misread) tempt those who assume a single additive rule",
+      "Small numbers and easy arithmetic; 70 s is ample",
+      "Requires noticing two interleaved operations, which trips lower-ability examinees"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 170
+  }
+}

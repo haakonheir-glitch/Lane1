@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.88,
+    "p50": 0.96,
+    "p84": 0.98,
+    "drivers": [
+      "Single constant subtraction of 3, immediately visible",
+      "Small numbers, trivial mental arithmetic",
+      "Generous 50-second limit",
+      "Distractors close to answer (79, 81) require only minimal care"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 108
+  }
+}

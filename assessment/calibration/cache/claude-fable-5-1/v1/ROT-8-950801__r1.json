@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Simple asymmetric U-shape with one clear handedness cue (which arm is longer), making mirror detection feasible",
+      "Diagonal 45°/135° rotations increase mental rotation load and uncertainty",
+      "Must select both correct options; errors on either option fail the item",
+      "30-second limit for evaluating 4 rotated options is tight but workable"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 469
+  }
+}

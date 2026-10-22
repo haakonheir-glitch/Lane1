@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Both correct options shown at diagonal angles (225°, 315°), which are harder to mentally align than cardinal rotations",
+      "Mirror-image distractors require tracking chirality of an asymmetric 7-square shape, not just outline",
+      "Must select both correct options with no partial credit, compounding error across two judgements",
+      "30 s limit is moderately tight for four rotation checks; simple grid shape keeps encoding load manageable"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1186,
+    "outputTokens": 428
+  }
+}

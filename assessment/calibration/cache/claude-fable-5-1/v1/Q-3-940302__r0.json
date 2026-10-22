@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.52,
+    "p50": 0.78,
+    "p84": 0.93,
+    "drivers": [
+      "Compound growth over only 2 steps with simple numbers (400→600→900)",
+      "Distractor 810 catches a 50% misapplication; 450 catches additive error (though simple additive gives 800, not offered)",
+      "Generous 120s limit allows checking"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1000,
+    "outputTokens": 122
+  }
+}

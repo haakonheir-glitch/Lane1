@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.8,
+    "p84": 0.93,
+    "drivers": [
+      "Single constant step of +3 in the alphabet, a very common and easily discovered rule",
+      "Requires counting letters forward in the alphabet without errors; alphabet position retrieval is slower for some people",
+      "Distractors V and X are off by one, so miscounting leads to a wrong option",
+      "55 seconds is ample time for one rule check and one forward count"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 973,
+    "outputTokens": 151
+  }
+}

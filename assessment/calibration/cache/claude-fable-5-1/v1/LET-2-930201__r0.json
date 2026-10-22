@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Simple incrementing-difference rule (+1,+2,+3,+4,+5) that is common in practice items",
+      "Requires counting alphabet positions across gaps of up to 5 letters, with risk of off-by-one errors",
+      "Distractor T (repeating +4) catches those who miscount or assume constant step",
+      "65-second limit is ample for the five letter-counts needed"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 361
+  }
+}

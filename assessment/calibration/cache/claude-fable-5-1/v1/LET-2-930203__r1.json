@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Single increasing-difference rule (+1,+2,+3,+4,+5) is a very common, well-practiced pattern",
+      "Requires counting forward 5 letters from N; alphabet-position errors possible under time pressure",
+      "Distractors R and T are adjacent to the correct answer, catching off-by-one counting errors",
+      "65 seconds is ample for this short series"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 157
+  }
+}

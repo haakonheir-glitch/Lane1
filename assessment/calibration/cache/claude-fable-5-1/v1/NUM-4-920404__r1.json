@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Fibonacci-type rule (sum of previous two) is a well-known, commonly encountered pattern",
+      "Small numbers, trivial arithmetic",
+      "Distractors (16, 17) catch people who try difference-based rules or make an off-by-one error",
+      "80 seconds is ample time for a 5-term series"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 139
+  }
+}

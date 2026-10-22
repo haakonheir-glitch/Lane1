@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Single-rule series with increasing differences (+1,+2,+3,+4,+5) is a familiar pattern",
+      "Requires counting positions in the alphabet, which is error-prone without an index, especially N→S (5 steps)",
+      "Distractors R and T sit adjacent to the correct answer, catching off-by-one counting errors",
+      "65 seconds is ample for working the sequence out on paper"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 166
+  }
+}

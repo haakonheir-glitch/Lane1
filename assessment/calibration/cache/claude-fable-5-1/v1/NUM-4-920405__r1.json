@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Fibonacci-style sum-of-two-previous rule is a familiar, commonly taught pattern",
+      "First-difference approach (5,1,6,7) fails, so solvers must switch strategy",
+      "Small numbers keep arithmetic trivial; 80s is ample time",
+      "Distractors like 27 and 35 catch partial or wrong hypotheses"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 336
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Fibonacci-like rule (sum of two previous terms) is a common, recognizable pattern",
+      "Initial 3,6,9 invites a wrong constant +3 or ×3 hypothesis, though neither matches options directly",
+      "Small numbers, trivial arithmetic once rule is found",
+      "Distractors 37/38/41 are near the correct value, punishing approximate reasoning"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 164
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.57,
+    "p84": 0.79,
+    "drivers": [
+      "Three independent rules to integrate (count decrement, shape Latin square, fill Latin square) plus a rotation attribute that is redundant with shape",
+      "Row 3 count starts at 4 rather than 3, so test-takers who assume rows end in '1' fall for the one-triangle distractors",
+      "Options are tightly matched on count, fill and rotation, making partial-rule solutions likely wrong",
+      "Generous 105 s time limit and verbal-descriptive clarity of attributes ease the load"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1419,
+    "outputTokens": 668
+  }
+}

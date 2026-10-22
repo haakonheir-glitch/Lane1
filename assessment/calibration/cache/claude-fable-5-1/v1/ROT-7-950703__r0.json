@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.75,
+    "drivers": [
+      "Mirror distractors differ only by position of one bottom square, requiring careful chirality check",
+      "Correct options are at cardinal rotations (90°, 270°), easier than the diagonal-angle distractors",
+      "Both-correct scoring with 4 options under 30 s raises error chance",
+      "Small 7-square shape keeps working-memory load moderate"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1186,
+    "outputTokens": 478
+  }
+}

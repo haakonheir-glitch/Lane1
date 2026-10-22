@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.52,
+    "p84": 0.74,
+    "drivers": [
+      "Mirror-image distractors require full mental rotation rather than feature matching",
+      "Diagonal (45°/135°/225°) rotations of a grid shape are harder to align mentally",
+      "Both options must be correct, compounding error across two rotation judgments",
+      "30-second limit for four comparisons is tight; 7-square shape is moderately complex but asymmetric enough to give usable cues"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 443
+  }
+}

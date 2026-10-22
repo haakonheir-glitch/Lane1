@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.82,
+    "p84": 0.93,
+    "drivers": [
+      "Simple Latin-square permutation of three bound shape/fill combinations; the missing cell is the one combination absent from row 3 and column 3",
+      "Count (3) and rotation are constant across all cells, so no extra rules to track",
+      "Distractors recombine shape and fill in ways never seen in the grid (e.g., solid pentagons, empty arrows), so verifying against any grid cell eliminates them",
+      "Generous 75-second limit for a low working-memory-load item"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1417,
+    "outputTokens": 190
+  }
+}

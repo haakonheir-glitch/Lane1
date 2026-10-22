@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.62,
+    "p84": 0.84,
+    "drivers": [
+      "Requires knowing expected value concept (0.25×500=125) and then subtracting the cost; two simple steps",
+      "Distractors capture common errors: 125 (forgetting cost), 366 (500−134), −134 (loss case)",
+      "Arithmetic is easy and 140 s is ample",
+      "Guessing floor of 0.25 lifts low-ability performance"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1025,
+    "outputTokens": 156
+  }
+}

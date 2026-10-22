@@ -1,0 +1,12 @@
+{
+  "value": {
+    "mean": 44,
+    "sd": 10,
+    "basis": "Anchored on computerized letter/pattern comparison tasks (Salthouse-style) where young adults respond in ~1.2–1.5 s per 3-item string at ~95% accuracy; the order-free set comparison, symbol pool and unproctored laptop setting slow responses to roughly 1.7–1.9 s, giving ~50 trials in 90 s with ~3 errors, and correct-minus-incorrect scoring inflates the spread relative to a pure count of correct responses."
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 675,
+    "outputTokens": 779
+  }
+}

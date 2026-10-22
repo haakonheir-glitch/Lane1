@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Two interleaved sequences (+5 and -1) must be recognized; alternation is a common but not obvious rule",
+      "Small numbers and trivial arithmetic once the rule is found",
+      "Distractor 36 (repeat) and 34 (overshoot) attract those who misjudge the decrement",
+      "70 seconds is ample time for a 6-term series"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 326
+  }
+}

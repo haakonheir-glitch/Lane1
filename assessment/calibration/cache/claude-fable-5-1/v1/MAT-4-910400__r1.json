@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.55,
+    "p84": 0.78,
+    "drivers": [
+      "Three independent attributes (shape, fill, count) each follow clear row/column distribution or progression rules",
+      "Count rule shifts in row 3 (4,3,2 vs 3,2,1), tempting the 'column 3 always has 1' error",
+      "Rotation is tied to shape type, so the 225° distractors are eliminable once noticed",
+      "8 options span all combinations of the three ambiguous attributes, so partial rule discovery still leaves 2-4 candidates"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1419,
+    "outputTokens": 654
+  }
+}

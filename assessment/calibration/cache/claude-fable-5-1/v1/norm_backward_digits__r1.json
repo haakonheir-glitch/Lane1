@@ -1,0 +1,12 @@
+{
+  "value": {
+    "mean": 5.3,
+    "sd": 1.3,
+    "basis": "WAIS-IV longest backward digit span norms for adults 20–34 are around 5 (SD ~1.2–1.4); visual single-digit presentation with typed recall, a young educated sample, and the unproctored setting (occasional note-taking) nudge the mean slightly upward, while starting at length 3 with a 0 floor and a ceiling at 10 barely affect the distribution."
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 669,
+    "outputTokens": 516
+  }
+}

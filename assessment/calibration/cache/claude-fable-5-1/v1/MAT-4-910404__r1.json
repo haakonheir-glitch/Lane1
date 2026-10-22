@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.6,
+    "p84": 0.83,
+    "drivers": [
+      "Blank cells representing 'zero shapes' are unusual and may confuse inference of the count progression",
+      "Shape type and fill are perfectly coupled (triangle=empty, pentagon=striped, arrow=solid), reducing attributes to track",
+      "Rotation is constant across options, so only count and shape/fill must be resolved",
+      "Distractors systematically vary count, shape and fill, so partial rule discovery still leaves several plausible options"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1418,
+    "outputTokens": 836
+  }
+}

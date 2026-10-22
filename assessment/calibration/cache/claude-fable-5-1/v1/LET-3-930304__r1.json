@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Two interleaved sequences (C,E,G ascending; Y,W,U descending) must be separated",
+      "Step size of 2 is simple, but backward alphabet stepping (Y→W→U) requires mental reversal",
+      "Distractor V (one step back from W) catches those who misjudge step size",
+      "75 seconds is ample for a 5-letter series once the alternating pattern is seen"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 342
+  }
+}

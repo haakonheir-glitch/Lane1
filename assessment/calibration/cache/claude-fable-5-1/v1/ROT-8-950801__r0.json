@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.58,
+    "p84": 0.77,
+    "drivers": [
+      "Chirality discrimination on a nearly symmetric U-shape (arm lengths differ by one square) makes mirror distractors subtle",
+      "Diagonal 45°/135° rotations are harder to align mentally than cardinal rotations",
+      "All-or-nothing scoring over 4 options (two must be identified correctly) compounds per-option error",
+      "Simple 2D shape with only 8 squares and low working-memory load keeps the task tractable within 30 s"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 602
+  }
+}

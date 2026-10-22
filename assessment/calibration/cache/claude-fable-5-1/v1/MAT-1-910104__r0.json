@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.62,
+    "p50": 0.85,
+    "p84": 0.95,
+    "drivers": [
+      "Single rule: Latin-square distribution of shape type across rows/columns; count, fill and rotation are constant",
+      "Only one option (B) matches all constant attributes (2, solid, pentagon) — distractors vary fill and count, easily eliminated",
+      "Clean 3x3 pattern recognizable within 60s; low working-memory load",
+      "Minor risk from misreading the missing shape or option fill under time pressure"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1407,
+    "outputTokens": 173
+  }
+}

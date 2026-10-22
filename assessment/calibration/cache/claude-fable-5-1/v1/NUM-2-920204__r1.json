@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.64,
+    "p84": 0.85,
+    "drivers": [
+      "Second-order rule: differences 2,5,8,11 increase by a constant 3, a familiar pattern",
+      "Small numbers keep the mental arithmetic light within 60 seconds",
+      "Close distractors (43, 46) punish sloppy difference computation",
+      "First difference (2) is small and may obscure the pattern initially"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 334
+  }
+}

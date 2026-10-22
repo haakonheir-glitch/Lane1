@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.42,
+    "p50": 0.68,
+    "p84": 0.88,
+    "drivers": [
+      "Increasing differences (+1,+2,+3,+4,+5) is a familiar, easily discovered rule",
+      "Requires counting letters in alphabet without errors (P+5=U), prone to off-by-one slips",
+      "Distractors T and S catch miscounts or +4 assumptions",
+      "65 seconds is ample for alphabet counting on paper"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 152
+  }
+}

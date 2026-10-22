@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Simple two-step compound growth with easy numbers (200→300→450)",
+      "Distractor 900 catches those who double or misread; 225/405 are weaker lures",
+      "Generous 120s time limit and option to use paper reduce slips"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1000,
+    "outputTokens": 114
+  }
+}

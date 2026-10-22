@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.27,
+    "p50": 0.5,
+    "p84": 0.72,
+    "drivers": [
+      "Four attributes to track (count, shape, fill, rotation) with different rule types, high working-memory load",
+      "Count progression 3-2-1 and shape/fill distribution-of-three are familiar, learnable rules",
+      "Rotation rule (decreasing 45° per row to upright) is the least salient and visually hard with triangles/pentagons; many distractors differ only on rotation or fill",
+      "105 s is adequate for systematic elimination; all options share the correct shape so chance is effectively higher than 1/8"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1398,
+    "outputTokens": 976
+  }
+}

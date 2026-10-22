@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.8,
+    "p84": 0.93,
+    "drivers": [
+      "Fibonacci-type rule (sum of previous two) is widely known and easily discovered",
+      "Small numbers, trivial arithmetic, generous 80 s limit",
+      "Distractors 29 and 32 catch those testing differences +8 or +11 patterns",
+      "Five options give a 0.20 guessing floor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 140
+  }
+}

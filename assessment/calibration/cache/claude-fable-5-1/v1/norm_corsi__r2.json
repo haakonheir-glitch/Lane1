@@ -1,0 +1,12 @@
+{
+  "value": {
+    "mean": 6.1,
+    "sd": 1.2,
+    "basis": "Young-adult forward Corsi span with the Kessels et al. (2000) scoring rule (longest length with ≥1 of 2 correct) is typically ~6.0–6.5 (SD ~1.1–1.4) in lab and PEBL/eCorsi computerized norms; the slightly faster 900/300 ms presentation and unproctored online mouse-click administration are expected to nudge the mean down a tenth or two and inflate variance slightly."
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 657,
+    "outputTokens": 490
+  }
+}

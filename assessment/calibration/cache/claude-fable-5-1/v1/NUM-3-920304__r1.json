@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Alternating two-operation rule (+5, ×3) is a common pattern and recognizable from differences",
+      "Arithmetic is simple (small additions, ×3 on two-digit numbers) and easily verified without calculator",
+      "Close distractors (91, 93, 94) punish sloppy guessing but don't help partial-rule solvers",
+      "70-second limit is adequate but pressure may hurt those who try to find a single operation first"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 329
+  }
+}

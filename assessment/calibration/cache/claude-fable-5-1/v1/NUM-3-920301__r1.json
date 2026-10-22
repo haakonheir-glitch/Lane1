@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.64,
+    "p84": 0.85,
+    "drivers": [
+      "Two interleaved arithmetic sequences (+5 and -2) must be recognized; a common but not immediately obvious pattern",
+      "Small numbers and simple arithmetic once the rule is found",
+      "Distractors 23 and 24 catch people who misjudge the decrement or carry over the +5 pattern",
+      "70-second limit is adequate for exploring one or two hypotheses"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 290
+  }
+}

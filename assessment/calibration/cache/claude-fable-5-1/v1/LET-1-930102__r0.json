@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.92,
+    "p84": 0.97,
+    "drivers": [
+      "Simple +2 alphabet step, very familiar pattern",
+      "Short series with only one rule to detect",
+      "Distractors (K, L, N) catch off-by-one errors but are easy to reject",
+      "Generous 55-second limit relative to task demand"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 971,
+    "outputTokens": 118
+  }
+}

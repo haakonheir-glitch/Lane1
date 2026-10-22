@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.68,
+    "p84": 0.86,
+    "drivers": [
+      "Three-step chain (percent, fraction, multiplication) with small, clean numbers (3% of 300 = 9)",
+      "Fractional number of sales (2.25) is counterintuitive and may cause doubt or rounding errors",
+      "Distractors are close in magnitude (±10%) so sloppy estimation does not suffice",
+      "120 seconds is ample; no-calculator multiplication 2.25 × 11000 is manageable on paper"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1033,
+    "outputTokens": 438
+  }
+}

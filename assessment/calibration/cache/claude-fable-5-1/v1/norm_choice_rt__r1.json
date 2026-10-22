@@ -1,0 +1,12 @@
+{
+  "value": {
+    "mean": 450,
+    "sd": 65,
+    "basis": "Lab four-choice RT with spatially compatible keys in young adults runs ~380-420 ms median; adding ~40-70 ms of browser/keyboard/display latency and unproctored online variability pushes the mean to ~450 ms, with between-person SD around 55-70 ms inflated slightly by device heterogeneity. The short 60-trial block with a median scorer keeps individual estimates fairly stable but leaves little room for fatigue effects."
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 669,
+    "outputTokens": 486
+  }
+}

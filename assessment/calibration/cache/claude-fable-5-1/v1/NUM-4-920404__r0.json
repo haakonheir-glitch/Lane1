@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Fibonacci-like additive rule (each term = sum of two previous) is a well-known, commonly encountered pattern",
+      "Small numbers and trivial arithmetic; 80 s is ample",
+      "Distractors 16 and 17 catch people trying difference-based rules (+2,+1,+3,+4 → next +5/+6 gives 16/17), which draws lower-ability test-takers",
+      "Short series (5 terms) gives limited confirmation, but the Lucas-sequence start 1,3,4,7 is distinctive"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 211
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.62,
+    "p84": 0.84,
+    "drivers": [
+      "Requires knowing expected value concept and subtracting the bet cost (0.25*500 - 53)",
+      "Arithmetic is simple (125 - 53 = 72) with generous 140 s time limit",
+      "Distractor A (125) catches those who forget to subtract the cost; C (-53) catches those confusing worst case with average",
+      "Four options give 25% guessing floor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1024,
+    "outputTokens": 158
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Two simple rules: count increases by one across each row and three shapes distribute Latin-square style",
+      "All grid cells solid, so four empty-fill distractors are quickly eliminated",
+      "Empty cell (0 arrows) in row 2 may confuse the count pattern for weaker reasoners",
+      "Close distractors D (4 pentagons) and B (3 circles) catch those who derive only one of the two rules"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1402,
+    "outputTokens": 654
+  }
+}

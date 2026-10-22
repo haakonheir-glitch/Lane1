@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.28,
+    "p50": 0.48,
+    "p84": 0.7,
+    "drivers": [
+      "Compact, near-symmetric 8-square shape makes mirror images hard to distinguish from rotations",
+      "Three of four options shown at diagonal (45°-step) angles, so squares appear as diamonds and grid alignment cues are lost",
+      "Must identify both correct options (and implicitly reject both mirrors) within 30 s — errors on any single judgment fail the item",
+      "One option at a simple 90° rotation is easy, giving partial anchor; chance rate 1/6 sets the floor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1186,
+    "outputTokens": 581
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Must select both correct options; a single mirror/rotation confusion fails the item",
+      "One correct option is shown at a 45° diagonal rotation, which is harder to mentally align than 90° steps",
+      "Zigzag (S/Z-like) shape has a fairly salient chirality cue, making mirror detection easier than for compact shapes",
+      "30-second limit with four 6-square figures to check is tight for lower-ability test-takers"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 526
+  }
+}

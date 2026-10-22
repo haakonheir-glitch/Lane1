@@ -1,0 +1,12 @@
+{
+  "value": {
+    "mean": 485,
+    "sd": 75,
+    "basis": "Lab 4-choice spatially compatible RT in young adults averages ~400-450 ms (Hick's law, Deary et al. young cohorts); browser/keyboard/display latency adds ~40-70 ms, and only 5 practice trials leaves some early learning in the scored block, nudging the median up slightly. Between-person SD of individual medians in healthy young adults is typically 50-70 ms, inflated somewhat by heterogeneous home hardware."
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 669,
+    "outputTokens": 463
+  }
+}

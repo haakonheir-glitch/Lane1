@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.92,
+    "p84": 0.97,
+    "drivers": [
+      "Simple constant +2 alphabet step, highly familiar pattern",
+      "Short series with no nested or alternating rules",
+      "Only one option (M) fits; distractors are adjacent letters that catch careless counting",
+      "Generous 55 s time limit for a single-step inference"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 971,
+    "outputTokens": 125
+  }
+}

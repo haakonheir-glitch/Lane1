@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Fibonacci-like rule (sum of previous two) is a common, recognizable pattern",
+      "Small numbers keep arithmetic trivial",
+      "Initial 3,6,9 suggests +3 arithmetic sequence, a misleading start that may cost time",
+      "Distractors 37, 38, 41 near the correct answer so guessing by magnitude is weak"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 156
+  }
+}

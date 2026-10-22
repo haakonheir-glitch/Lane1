@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Alternating two-operation rule (+5, ×3) is a common, discoverable pattern with small numbers",
+      "Only two cycles shown before the answer, so the alternation must be inferred from limited evidence",
+      "Distractors are tightly clustered (81–85), so the exact rule must be found; near-miss errors are penalized",
+      "70 seconds is ample once the pattern is spotted; arithmetic is trivial"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 334
+  }
+}

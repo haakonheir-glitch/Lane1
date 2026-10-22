@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.85,
+    "p84": 0.95,
+    "drivers": [
+      "Simple Latin-square distribution: each row/column contains the same three cell types (3 striped, 1 empty, 4 solid)",
+      "Count and fill are perfectly bundled, so one attribute identifies the answer",
+      "Distractors vary shape (pentagon vs hexagon) and mix count/fill, requiring a careful check but little reasoning",
+      "Generous 75-second limit for a low-load item"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1412,
+    "outputTokens": 169
+  }
+}

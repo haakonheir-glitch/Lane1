@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.86,
+    "p50": 0.95,
+    "p84": 0.98,
+    "drivers": [
+      "Single multiplication step (61×2) with trivial arithmetic",
+      "Generous 100-second limit for one operation",
+      "Distractors not very tempting; 244 (×4) only catches careless doubling",
+      "Familiar speed-time-distance template everyone knows"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 993,
+    "outputTokens": 122
+  }
+}

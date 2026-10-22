@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Mirror-image distractors require handedness judgment, not just shape matching",
+      "Diagonal (45°/135°/225°) rotations hinder quick alignment with upright target",
+      "Must identify both correct options with 30 s for four rotated figures",
+      "Shape is simple (bar with one bump), making the asymmetry easy to locate once oriented"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1176,
+    "outputTokens": 414
+  }
+}

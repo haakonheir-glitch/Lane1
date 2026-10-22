@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.8,
+    "p50": 0.93,
+    "p84": 0.97,
+    "drivers": [
+      "Simple constant difference of -4, immediately visible",
+      "Generous 50s time limit for one subtraction step",
+      "Distractors 77 and 76 catch off-by-one errors but are easily rejected with checking"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 106
+  }
+}

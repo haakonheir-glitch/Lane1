@@ -1,0 +1,12 @@
+{
+  "value": {
+    "mean": 6.2,
+    "sd": 1.2,
+    "basis": "Published Corsi forward spans in young adults (Kessels et al. 2000; computerized eCorsi/PsyToolkit variants) average about 6–6.5 with SDs near 1.1–1.3 under the same two-trials-per-length, stop-at-two-failures rule; unproctored online administration and lapses pull the mean slightly down, while the 900/300 ms pacing and 'longest length with one correct' scoring are close to standard and shift little."
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 657,
+    "outputTokens": 435
+  }
+}

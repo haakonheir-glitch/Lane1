@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.82,
+    "p50": 0.95,
+    "p84": 0.98,
+    "drivers": [
+      "Single-step percentage of 100, trivial arithmetic",
+      "Distractors (160, 40, 72) are implausible for most test-takers",
+      "Generous 80 s time limit relative to demand",
+      "Only risk is careless misread or clicking error"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 995,
+    "outputTokens": 117
+  }
+}

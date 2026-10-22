@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.42,
+    "p50": 0.68,
+    "p84": 0.88,
+    "drivers": [
+      "Alternating interleaved series (+5 and -2) is a common, discoverable pattern",
+      "Short series with only two cycles gives limited confirmation of the rule",
+      "Distractors 23 and 24 are close to the correct answer, punishing imprecise rule inference",
+      "70-second limit is ample for the arithmetic once the alternation is spotted"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 150
+  }
+}

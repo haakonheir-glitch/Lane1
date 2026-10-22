@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Differences double (2,4,8,16) — a very common, familiar pattern",
+      "Small numbers, little arithmetic load, generous 80s limit",
+      "Distractor 68 (pure doubling of 34) attracts hasty responders",
+      "Only one rule to discover, no secondary interleaving"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 240
+  }
+}

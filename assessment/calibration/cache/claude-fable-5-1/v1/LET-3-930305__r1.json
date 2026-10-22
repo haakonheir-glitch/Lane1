@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Two interleaved sequences (C,E,G ascending; Y,W,? descending) must be recognized rather than a single rule",
+      "Letter-position arithmetic is small (+2/-2 steps) and the reverse alphabet end is familiar (Y, W, U)",
+      "Distractors V and H capture off-by-one errors and single-sequence continuation",
+      "75 seconds is ample; low working-memory load once alternation is noticed"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 325
+  }
+}

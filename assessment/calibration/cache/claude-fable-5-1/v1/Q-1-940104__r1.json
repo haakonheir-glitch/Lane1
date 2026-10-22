@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.93,
+    "p84": 0.98,
+    "drivers": [
+      "Single-step 10% discount on a round number (50 → 45) is highly familiar everyday arithmetic",
+      "Distractors are weak: 90 (confusing percent with price) and 50 (no change) are easy to reject; 41 catches only arithmetic slips",
+      "Generous 80-second limit removes time pressure",
+      "Low-ability test-takers may still subtract 10 kr instead of 10% but that yields 40, not an offered option, nudging them back to correct reasoning"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 995,
+    "outputTokens": 193
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Two interleaved simple arithmetic series (+5 and -1), a very common and recognizable pattern",
+      "Small numbers, trivial arithmetic, generous 70-second limit",
+      "Distractors 36 and 34 are close and tempt those who misjudge the decrement or assume repetition",
+      "Interleaving still requires the insight to split the series, which lower-ability test-takers may miss"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 306
+  }
+}

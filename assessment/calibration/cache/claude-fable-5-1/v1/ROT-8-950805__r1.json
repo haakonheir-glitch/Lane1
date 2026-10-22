@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.5,
+    "p84": 0.72,
+    "drivers": [
+      "Two options shown at diagonal (45°-step) rotations, which are much harder to mentally align with a square grid",
+      "Mirror-image distractors differ only by the side of a small 2-square protrusion relative to the single bottom square, requiring careful handedness check",
+      "Must verify all 4 options and select exactly both correct ones within 30 s, so partial knowledge yields no credit",
+      "Shape is small (8 squares) and has a long axis that helps anchor orientation quickly"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1201,
+    "outputTokens": 436
+  }
+}

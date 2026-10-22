@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Simple chained percentages: 2% of 300 = 6, 1/4 of 6 = 1.5 sales — non-integer intermediate can confuse",
+      "Multiplying 1.5 × 15000 is straightforward with paper",
+      "Distractors (11250, 45000) catch factor-of-2 errors from mishandling the 1 in 4 step",
+      "Generous 120 s limit for three short arithmetic steps"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1033,
+    "outputTokens": 175
+  }
+}

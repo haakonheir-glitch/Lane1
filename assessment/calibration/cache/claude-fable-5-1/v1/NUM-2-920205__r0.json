@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.8,
+    "p84": 0.93,
+    "drivers": [
+      "Single simple geometric rule (×3) that is easy to spot from the first terms",
+      "Final multiplication 324×3 without calculator is a small arithmetic step within 60s",
+      "Near-miss distractors 970 and 973 punish sloppy mental arithmetic",
+      "Distractors 540 (additive) and 1458 (one step too far) catch rule misidentification"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 983,
+    "outputTokens": 157
+  }
+}

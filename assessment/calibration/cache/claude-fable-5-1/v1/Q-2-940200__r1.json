@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Inverse proportion (work-rate) requires recognizing that fewer people means more time; 4×24=96 person-hours ÷ 3 = 32 is a short two-step computation",
+      "Distractor 29 catches additive reasoning (24+5) and 64 catches doubling errors, but no option corresponds to the direct-proportion error (18), reducing the most common trap",
+      "100 seconds is ample for the arithmetic; chance rate 0.25 sets the floor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 998,
+    "outputTokens": 191
+  }
+}

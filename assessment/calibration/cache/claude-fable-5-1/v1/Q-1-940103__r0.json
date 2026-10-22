@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.86,
+    "p50": 0.95,
+    "p84": 0.98,
+    "drivers": [
+      "Single-step 10% of 100 computation, trivially easy numbers",
+      "Distractors (180, 45, 81) are implausible and easy to reject",
+      "Generous 80-second time limit",
+      "Minor risk from careless misreading or clicking error"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 995,
+    "outputTokens": 117
+  }
+}

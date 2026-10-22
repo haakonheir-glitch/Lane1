@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.42,
+    "p50": 0.68,
+    "p84": 0.88,
+    "drivers": [
+      "Second-order differences (2,5,8,11 → +3) is a common, learnable pattern",
+      "Small numbers keep arithmetic easy within 60 seconds",
+      "Distractors 46, 49, 50 are close to the correct value and catch off-by-one errors in the difference sequence",
+      "Requires computing differences twice, a modest working-memory load for lower-ability test-takers"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 161
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Mirror-image distractors require true rotation, not feature matching",
+      "Both correct options must be selected, compounding error",
+      "Correct options are at orthogonal angles (90°/270°), easier to verify than diagonals",
+      "30 s limit for four comparisons of a 7-square shape is tight"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1186,
+    "outputTokens": 489
+  }
+}

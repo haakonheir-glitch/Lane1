@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.82,
+    "p84": 0.93,
+    "drivers": [
+      "Simple Latin-square distribution: each row/column contains the same three cell types (3 striped, 1 empty, 4 solid), so the missing cell is the one type absent from row 3",
+      "Attributes (count, fill) are bound together in a fixed package, reducing working-memory load",
+      "Distractors with pentagons and mixed count/fill combos are easy to reject once the pattern is seen, but 3-solid and 4-striped hexagons can catch careless responders",
+      "Generous 75-second limit for a single-rule item"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1412,
+    "outputTokens": 206
+  }
+}

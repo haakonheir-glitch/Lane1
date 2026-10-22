@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Single constant step of +3 in the alphabet, a very common and easily discovered rule",
+      "Requires counting letters forward (T→U→V→W) which demands alphabet position tracking; distractors U, V, X sit adjacent and catch off-by-one errors",
+      "55 seconds is ample for 5 terms; paper allowed for writing out the alphabet",
+      "Norwegian alphabet shares the same A–Z order so no language disadvantage"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 973,
+    "outputTokens": 182
+  }
+}

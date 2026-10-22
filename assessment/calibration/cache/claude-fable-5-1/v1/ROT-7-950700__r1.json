@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.42,
+    "p50": 0.63,
+    "p84": 0.8,
+    "drivers": [
+      "Very simple asymmetric L-shape makes chirality easy to track mentally",
+      "Diagonal (45° step) rotations of all options increase rotation difficulty",
+      "Must correctly classify all four options and select both correct ones; a single error fails the item",
+      "30-second limit is adequate but tight for checking four rotated figures"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1201,
+    "outputTokens": 421
+  }
+}

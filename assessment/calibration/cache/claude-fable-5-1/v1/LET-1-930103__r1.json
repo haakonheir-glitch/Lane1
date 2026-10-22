@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.92,
+    "p84": 0.97,
+    "drivers": [
+      "Single simple rule: every second letter (+2 alphabet steps)",
+      "Short series with familiar early-alphabet letters, low working-memory load",
+      "Distractors L and N adjacent to answer require one careful step count",
+      "Generous 55-second limit for a one-step inference"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 971,
+    "outputTokens": 126
+  }
+}

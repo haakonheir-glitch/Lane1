@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.66,
+    "p84": 0.87,
+    "drivers": [
+      "Single rule: gaps increase by one (+1,+2,+3,+4,+5) — a common, familiar pattern",
+      "Requires counting forward 5 letters from L accurately without alphabet positions handy",
+      "Distractors M, O, P, R are all plausible near-misses for small counting errors",
+      "65 seconds is ample for working the rule out once spotted"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 973,
+    "outputTokens": 154
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.72,
+    "p50": 0.9,
+    "p84": 0.97,
+    "drivers": [
+      "Single-step percentage calculation with very friendly numbers (20% of 60 = 12)",
+      "Distractors are weak: 96 is an increase, 43 and 53 don't correspond to common errors",
+      "Generous 80-second limit relative to task demands",
+      "Everyday shopping context familiar to the population"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 995,
+    "outputTokens": 136
+  }
+}

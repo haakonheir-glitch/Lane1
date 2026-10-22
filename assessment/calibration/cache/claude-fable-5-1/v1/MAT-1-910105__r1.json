@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.66,
+    "p50": 0.85,
+    "p84": 0.94,
+    "drivers": [
+      "Single-attribute Latin-square rule on rotation; count and fill are constant across the grid, so six of eight options are eliminated immediately",
+      "Only two options match the constant 1-empty format, making the effective choice binary (135° vs 90°)",
+      "Pentagon rotation angles are subtle because of 72° symmetry; 90° vs 135° discrimination may trip lower-ability or hurried test-takers",
+      "60 s limit is generous for a 3x3 single-shape grid"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1457,
+    "outputTokens": 460
+  }
+}

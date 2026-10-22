@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.82,
+    "p50": 0.93,
+    "p84": 0.97,
+    "drivers": [
+      "Single simple rule: count decreases 4-3-2 across every row, rows identical",
+      "Only one attribute varies in the grid; shape and fill constant",
+      "Distractors differ in fill or shape, easy to eliminate",
+      "Generous 60 s limit for a one-step inference"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1389,
+    "outputTokens": 128
+  }
+}

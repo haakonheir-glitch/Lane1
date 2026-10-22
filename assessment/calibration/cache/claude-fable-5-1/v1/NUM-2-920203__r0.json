@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.82,
+    "p84": 0.94,
+    "drivers": [
+      "Single-step rule: differences increase by 1 (1,2,3,4,5) — very common and easily spotted",
+      "Small numbers, trivial arithmetic",
+      "Distractors 21 and 22 catch off-by-one or doubled-difference errors",
+      "Generous 60 s limit for a short series"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 135
+  }
+}

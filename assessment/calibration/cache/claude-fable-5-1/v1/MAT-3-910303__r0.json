@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.64,
+    "p84": 0.85,
+    "drivers": [
+      "Three independent rules (shape and fill distribution-of-three, +45° rotation progression) must all be identified and combined",
+      "Shape and fill rules eliminate 6 of 8 options quickly; final choice hinges on rotation 270° vs 180° (distractor A)",
+      "Rotation step within rows is consistent but row 3 starting angle breaks column-wise pattern, which may confuse",
+      "90 s and clear symbolic descriptions keep time pressure moderate"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1410,
+    "outputTokens": 628
+  }
+}

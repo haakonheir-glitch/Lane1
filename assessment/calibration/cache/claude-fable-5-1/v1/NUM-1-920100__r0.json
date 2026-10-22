@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.86,
+    "p50": 0.95,
+    "p84": 0.98,
+    "drivers": [
+      "Single constant subtraction of 4, immediately visible",
+      "Small two-digit numbers, trivial arithmetic",
+      "Distractors differ clearly from the rule-based answer",
+      "Generous 50-second limit for one-step rule"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 113
+  }
+}

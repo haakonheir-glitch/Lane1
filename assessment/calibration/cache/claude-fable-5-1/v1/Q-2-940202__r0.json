@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.62,
+    "p50": 0.84,
+    "p84": 0.95,
+    "drivers": [
+      "Single-step distance = speed × time with familiar everyday context",
+      "Mental multiplication by 2.5 (85×2 + 85/2) is easy on paper; 100 s is ample",
+      "Distractors are not close to the correct value, and 212.5 is the only non-integer option, aiding elimination",
+      "Main errors: slips at the low end (e.g., 85×2=170 or misplacing the half)"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 999,
+    "outputTokens": 168
+  }
+}

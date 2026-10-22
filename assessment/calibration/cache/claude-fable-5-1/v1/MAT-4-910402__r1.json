@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.64,
+    "p84": 0.85,
+    "drivers": [
+      "Three simple, independently verifiable rules (count +1 progression, shape and fill as distribution-of-three) that are familiar matrix rules",
+      "Rotation is tied to shape rather than a separate rule, which can confuse people who try to treat it as an independent attribute",
+      "Distractors systematically vary count, fill and rotation, so each rule must be fully resolved to eliminate options",
+      "Generous 105 s limit relative to the number of attributes to check"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1402,
+    "outputTokens": 614
+  }
+}

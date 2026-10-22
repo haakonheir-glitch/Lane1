@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.64,
+    "p84": 0.84,
+    "drivers": [
+      "Three independent attributes (count, shape, rotation) must each be resolved; distractors are all one- or two-attribute near misses",
+      "Rules are simple arithmetic progressions (count +1, rotation +45°) and a shape/fill cycle, so each is individually easy to spot",
+      "Zero-count cell appears blank, which can confuse rule discovery for the count attribute",
+      "105 s is adequate but combining three rules under time pressure penalizes lower-ability test-takers"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1402,
+    "outputTokens": 672
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.82,
+    "p84": 0.94,
+    "drivers": [
+      "Simple constant +3 letter skip, one of the most familiar series rules",
+      "Alphabet position counting from M is quick (N, O, P) with little working-memory load",
+      "Distractors N, O, Q are adjacent letters that catch miscounts under time pressure",
+      "Generous 55-second limit for a single-step rule"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 141
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.92,
+    "p84": 0.97,
+    "drivers": [
+      "Single simple rule: every second letter, immediately recognizable",
+      "Only a few alphabet positions to track; no arithmetic beyond skipping one letter",
+      "Distractors (J, L) are adjacent letters that catch careless or rushed counting",
+      "Generous 55-second time limit relative to item demands"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 971,
+    "outputTokens": 136
+  }
+}

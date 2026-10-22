@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.82,
+    "p84": 0.93,
+    "drivers": [
+      "Single Latin-square rule: each row/column contains rotations 90°, 315°, 135° once",
+      "Shape, count and fill are constant across grid, so 6 of 8 distractors are eliminated by surface matching",
+      "Only two options are 3 solid arrows, reducing effective choice to a rotation judgment",
+      "Rotations of 90°/135°/315° are visually distinct; 60 s is ample"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1385,
+    "outputTokens": 392
+  }
+}

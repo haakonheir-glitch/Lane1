@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.5,
+    "p84": 0.7,
+    "drivers": [
+      "Diagonal (45°-step) rotations make alignment with the upright target harder",
+      "Mirror-image distractors differ only subtly from true rotations in a compact 3x4 shape",
+      "Must verify all 4 options and select both correct ones within 30 s",
+      "Low chance rate (0.167) and no partial credit"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1186,
+    "outputTokens": 443
+  }
+}

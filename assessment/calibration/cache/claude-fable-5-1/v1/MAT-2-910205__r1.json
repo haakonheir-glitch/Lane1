@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.82,
+    "p84": 0.93,
+    "drivers": [
+      "Simple Latin-square (each shape/fill appears once per row and column) with count and rotation held constant",
+      "Shape and fill are perfectly bound (pentagon=empty, triangle=solid, arrow=striped), so only one attribute needs tracking",
+      "Distractors vary count (4 vs 3) and fill, but only one option matches the missing empty pentagon exactly",
+      "Generous 75 s limit for a single easily spotted rule"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1417,
+    "outputTokens": 181
+  }
+}

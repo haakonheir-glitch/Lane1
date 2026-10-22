@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.4,
+    "p50": 0.66,
+    "p84": 0.86,
+    "drivers": [
+      "Two interleaved sequences (C,E,G ascending; W,U descending) must be recognized",
+      "Backward alphabet stepping (W→U→S) requires some mental alphabet navigation",
+      "Distractor T (one step back) and H (next in ascending chain) catch partial rule discovery",
+      "75 seconds is ample for a short series with a clear alternating structure"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 322
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.6,
+    "p84": 0.82,
+    "drivers": [
+      "Three independent rules (shape+fill distribution, count progression, rotation progression) must all be resolved; distractors each differ on one attribute so partial solutions fail",
+      "Shape/fill pairing is consistent and salient, making the shape dimension easy to recover",
+      "Rotation rule (decreasing 45° steps toward upright) is subtle and is the only cue separating B from C",
+      "105-second limit is adequate for a 3-rule matrix; verbal description of rotations reduces visual ambiguity"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1383,
+    "outputTokens": 590
+  }
+}

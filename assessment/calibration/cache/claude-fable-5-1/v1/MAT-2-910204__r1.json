@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.82,
+    "p84": 0.93,
+    "drivers": [
+      "Simple Latin-square permutation: each row/column contains the same three figure types, so the missing cell is directly inferable",
+      "Count (4) and rotation are constant, making the number distractors (3) easy to eliminate",
+      "Only one option matches the exact 'striped hexagon' combination, so little fine discrimination is needed",
+      "75 s is ample; main errors from attribute mix-ups (striped vs solid, hexagon vs triangle) or careless clicking"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1405,
+    "outputTokens": 187
+  }
+}

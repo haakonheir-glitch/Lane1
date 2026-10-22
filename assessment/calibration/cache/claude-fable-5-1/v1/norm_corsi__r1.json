@@ -1,0 +1,12 @@
+{
+  "value": {
+    "mean": 5.9,
+    "sd": 1.2,
+    "basis": "Kessels et al. (2000) norms and later computerized/eCorsi studies give young-adult forward block spans of roughly 6.0–6.5 (SD ~1.1–1.4) under a nearly identical protocol (1 s per block, two trials per length, span = longest length with one correct); unproctored online mouse responding and the stopping rule tend to shave a few tenths off, while the 3–10 range introduces no meaningful floor or ceiling in this population."
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 657,
+    "outputTokens": 514
+  }
+}

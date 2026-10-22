@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.72,
+    "p50": 0.88,
+    "p84": 0.95,
+    "drivers": [
+      "Single simple rule: skip one letter (+2) each step",
+      "Short, familiar alphabet-position reasoning with 55 s ample time",
+      "Distractors Q and S are adjacent letters that catch off-by-one errors",
+      "Low working-memory load; 5-option format with 0.20 guessing floor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 137
+  }
+}

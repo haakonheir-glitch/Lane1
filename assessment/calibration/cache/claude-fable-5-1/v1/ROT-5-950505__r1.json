@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.6,
+    "p84": 0.8,
+    "drivers": [
+      "Small, simple 5-square shape (2x3 with a missing corner) is easy to hold in working memory",
+      "Chiral shape: all distractors are mirror images, so the only cue is handedness, which demands genuine mental rotation rather than feature matching",
+      "Diagonal 45°/135° rotations make alignment to the grid harder and increase mirror confusions",
+      "Both-correct scoring compounds errors across two independent judgments; 30 s limit is adequate but adds pressure"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1146,
+    "outputTokens": 520
+  }
+}

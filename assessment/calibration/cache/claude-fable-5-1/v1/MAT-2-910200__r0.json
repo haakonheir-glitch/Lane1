@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.8,
+    "p84": 0.92,
+    "drivers": [
+      "Simple distribution-of-three (Latin square) rule on two attributes: shape and fill",
+      "Constant count and rotation; options with 2 figures are quickly eliminated",
+      "Four single-figure distractors require checking both shape and fill rules",
+      "Generous 75 s time limit for a low working-memory-load item"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1408,
+    "outputTokens": 330
+  }
+}

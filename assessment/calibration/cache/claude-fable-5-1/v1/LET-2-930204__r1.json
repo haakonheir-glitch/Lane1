@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.4,
+    "p50": 0.67,
+    "p84": 0.88,
+    "drivers": [
+      "Single well-known rule (gaps increase by 1: +1,+2,+3,+4,+5) that is easy to detect once letters are mapped to positions",
+      "Requires counting forward 5 letters from N without error; off-by-one slips lead to distractors R or Q",
+      "Generous 65-second limit relative to the task",
+      "Distractor R (repeating +4) attracts those who assume a constant step"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 388
+  }
+}

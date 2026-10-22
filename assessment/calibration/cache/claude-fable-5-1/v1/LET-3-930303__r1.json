@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.48,
+    "p50": 0.74,
+    "p84": 0.9,
+    "drivers": [
+      "Classic two-interleaved-sequence rule (+2 forward, -2 backward) that most adults recognize quickly",
+      "Backward alphabet counting (Y, W, U) is less automatic and invites off-by-one errors (V, T distractors)",
+      "Distractor I catches those who ignore alternation and just continue from H",
+      "Generous 75 s limit with paper allowed reduces time pressure"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 374
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.5,
+    "p50": 0.76,
+    "p84": 0.91,
+    "drivers": [
+      "All attributes follow a simple distribution-of-three rule, and count and fill are perfectly coupled, reducing effective load",
+      "Shape attribute must also be tracked; distractor C matches count and fill but not shape",
+      "Constant 135° rotation is an irrelevant feature that may briefly distract",
+      "90-second limit is ample for a three-attribute 3x3 matrix"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1417,
+    "outputTokens": 486
+  }
+}

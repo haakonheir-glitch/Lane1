@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Alternating two-operation rule (+5, ×3) is a familiar pattern and the final step is a simple addition",
+      "Multiplicative jumps (7→21, 26→78) are easy to recognize as ×3, aiding rule discovery",
+      "Distractors are all within ±2 of the answer, so guessing by magnitude is ineffective",
+      "Generous 70-second limit with minimal arithmetic load"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 384
+  }
+}

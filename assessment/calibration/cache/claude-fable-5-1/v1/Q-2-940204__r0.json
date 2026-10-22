@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Simple inverse proportion with small integers (2×12=24 person-hours, 24/12=2)",
+      "Common error: treating as direct proportion or dividing 12/2=6 (not an option) so error partly redirected",
+      "Distractor A (4) catches misreading; 100 s is ample time",
+      "Familiar textbook work-rate format reduces rule-discovery load"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 998,
+    "outputTokens": 157
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.62,
+    "p50": 0.85,
+    "p84": 0.95,
+    "drivers": [
+      "Single Latin-square rule on shape type; count, fill and rotation are constant across all cells",
+      "Only one option matches all constant attributes (2, solid) with the missing shape, so distractors are easy to eliminate",
+      "Short text-described item with 60 s is ample time",
+      "Low working-memory load; errors mainly from carelessness or picking a repeated-shape distractor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1407,
+    "outputTokens": 158
+  }
+}

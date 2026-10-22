@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.85,
+    "p50": 0.94,
+    "p84": 0.97,
+    "drivers": [
+      "Single varying attribute (fill) in a simple Latin-square distribution across rows and columns",
+      "Number and shape held constant, so most distractors are eliminated by surface matching",
+      "Generous 60-second limit for a low working-memory-load item",
+      "Only one option matches both constant features and the missing fill value"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1403,
+    "outputTokens": 249
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.72,
+    "p50": 0.9,
+    "p84": 0.97,
+    "drivers": [
+      "Powers of 3 is a highly familiar geometric series; rule is obvious from the first few terms",
+      "Only one multiplication step (81×3) needed, easily done mentally within 60 s",
+      "Distractors 241/242/244 are near-misses that catch only arithmetic slips; 405 catches a 'multiply by 5' error",
+      "Low working-memory load; high ceiling for average and above-average ability"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 169
+  }
+}

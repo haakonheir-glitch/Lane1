@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Compact 6-square chiral shape with a clear 2x2 block landmark makes mirror detection feasible",
+      "Diagonal rotations (135°, 315°) increase mental rotation load and error rate",
+      "Must judge all four options and select both correct ones within 30 s, compounding errors",
+      "Chance level only 0.167 for the two-selection format"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1171,
+    "outputTokens": 632
+  }
+}

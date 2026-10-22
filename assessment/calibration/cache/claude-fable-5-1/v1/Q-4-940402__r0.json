@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.62,
+    "p84": 0.84,
+    "drivers": [
+      "Requires knowing expected value concept and subtracting the stake (240 - 101)",
+      "Distractor C (240) captures those who forget to subtract the cost; D (499) captures those who subtract from the prize",
+      "Arithmetic is simple (0.4 x 600, minus 101) and time limit is generous",
+      "Four options with plausible partial-computation distractors reduce guessing benefit"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1024,
+    "outputTokens": 163
+  }
+}

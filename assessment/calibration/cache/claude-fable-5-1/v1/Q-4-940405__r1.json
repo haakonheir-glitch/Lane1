@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.62,
+    "p84": 0.84,
+    "drivers": [
+      "Requires knowing expected value concept and subtracting cost; many conflate expected win (125) with profit",
+      "Arithmetic is simple (500*0.25=125, 125-134=-9) and generous 140s limit",
+      "Distractors map onto common errors (125 = forgot cost, 366 = win minus cost, -134 = cost only)"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1025,
+    "outputTokens": 148
+  }
+}

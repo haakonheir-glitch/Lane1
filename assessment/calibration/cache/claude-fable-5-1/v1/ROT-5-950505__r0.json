@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.58,
+    "p84": 0.76,
+    "drivers": [
+      "Simple 5-square P-pentomino is easy to encode, but mirror-image distractors require true handedness discrimination rather than feature matching",
+      "Must correctly classify all four options (two rotated targets, two mirrors) to score, compounding per-option error rates",
+      "Diagonal 45°/135° rotations are harder to mentally undo than 90°-step rotations",
+      "30 s is adequate but adds pressure for slower rotators; chance rate 1/6 provides a floor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1146,
+    "outputTokens": 575
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.92,
+    "p84": 0.97,
+    "drivers": [
+      "single constant difference of +9, immediately visible",
+      "trivial arithmetic (52+9) within generous 50s limit",
+      "distractors 59 and 63 catch minor miscounts but are weak lures"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 103
+  }
+}

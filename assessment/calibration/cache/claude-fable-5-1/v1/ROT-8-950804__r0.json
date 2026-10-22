@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.56,
+    "p84": 0.77,
+    "drivers": [
+      "Diagonal (45°-step) rotations of a grid-based shape make feature matching harder",
+      "Must identify both correct options and reject two mirror-image distractors; one mirror error fails the item",
+      "30-second limit for four comparisons is tight for slower rotators",
+      "Shape is clearly asymmetric with distinctive features (bottom gap, top tail) aiding chirality checks"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 440
+  }
+}

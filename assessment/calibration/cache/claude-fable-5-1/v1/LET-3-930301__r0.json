@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Two interleaved subsequences (+2 forward, -2 backward) must be recognized",
+      "Backward alphabet stepping (Z, X, V) requires some counting; W and L are plausible off-by-one distractors",
+      "Short series and generous 75s limit; letter-position reasoning is a familiar puzzle format"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 304
+  }
+}

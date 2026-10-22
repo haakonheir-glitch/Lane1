@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.52,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Compound growth: must apply 50% twice (400→600→900), not add 50% once or twice",
+      "Small, clean numbers make mental arithmetic easy within 120 s",
+      "Distractors target common errors (450 misreading 50 as absolute, 810/990 arithmetic slips) but 800 (additive error) is absent, reducing pull of the most common mistake"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1000,
+    "outputTokens": 157
+  }
+}

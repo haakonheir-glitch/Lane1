@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.5,
+    "p84": 0.72,
+    "drivers": [
+      "Both correct options are shown at diagonal angles (135°, 315°), which are harder to mentally rotate than 90° multiples",
+      "Mirror-image distractors differ only in chirality of a small bump relative to the stem, requiring careful feature tracking",
+      "Must correctly classify all four options (both-correct scoring) within 30 seconds, leaving little time per comparison",
+      "Shape is compact with salient landmarks (long bar, cross stem, single bump), making it somewhat easier to encode than a random polyomino"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1236,
+    "outputTokens": 516
+  }
+}

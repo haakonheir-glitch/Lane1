@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Second-order pattern: differences increase by a constant 3 (2,5,8,11), a very common and familiar rule",
+      "Small numbers, simple mental arithmetic within 60 seconds",
+      "Distractor 46 catches those who assume differences grow by a different step or miscompute; 49/50 catch near-misses"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 289
+  }
+}

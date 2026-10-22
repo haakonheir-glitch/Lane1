@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.42,
+    "p50": 0.68,
+    "p84": 0.87,
+    "drivers": [
+      "Second-order rule: gaps increase by 1 (+1,+2,+3,+4,+5), a familiar pattern",
+      "Requires converting letters to alphabet positions and counting forward 5 from M, which is error-prone without calculator",
+      "Distractors Q, S, P, T are close neighbors, so off-by-one counting errors are penalized",
+      "65 seconds is adequate for most but tight for those who must write out the alphabet"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 178
+  }
+}

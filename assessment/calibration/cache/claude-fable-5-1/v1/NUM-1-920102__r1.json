@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.92,
+    "p84": 0.97,
+    "drivers": [
+      "Single constant difference (+7) is immediately visible",
+      "Small numbers, trivial arithmetic",
+      "Distractors 36/38 close to correct, minor slip risk",
+      "Generous 50s time limit"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 105
+  }
+}

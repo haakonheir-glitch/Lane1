@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.5,
+    "p84": 0.72,
+    "drivers": [
+      "Must identify both correct options; a single mirror-confusion error fails the item",
+      "Mirror images differ only by a subtle one-column offset of the top bump relative to the bottom square",
+      "Two options shown at 45°-step diagonal rotations, which are harder to mentally align with the upright target",
+      "30-second limit for checking four rotated figures leaves little time for careful verification"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1201,
+    "outputTokens": 463
+  }
+}

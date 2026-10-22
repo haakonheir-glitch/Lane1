@@ -1,0 +1,12 @@
+{
+  "value": {
+    "mean": 42,
+    "sd": 12,
+    "basis": "Anchored on Salthouse-style letter/pattern comparison and WAIS Symbol Search norms (young adults ~1.5–2 s per 3-element comparison at ~93–95% accuracy), adjusted for a self-paced keyboard version with immediate next-trial onset (faster than paper) but unordered set matching (slower than string matching) and an error penalty that trims scores for fast-guessers; roughly 48–52 attempts yielding ~45 correct minus ~3 errors, with extra between-person spread from unproctored online speed–accuracy trade-offs."
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 675,
+    "outputTokens": 849
+  }
+}

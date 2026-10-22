@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.35,
+    "p50": 0.62,
+    "p84": 0.84,
+    "drivers": [
+      "Two interleaved subsequences (A,C,E forward by 2; V,T,R backward by 2) must be spotted",
+      "Backward alphabet counting from V is error-prone without aids",
+      "Distractors S (back 1) and P (back 3) catch off-by-one counting errors",
+      "Common alternating-series pattern and 75 s limit make it accessible for average ability"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 971,
+    "outputTokens": 368
+  }
+}

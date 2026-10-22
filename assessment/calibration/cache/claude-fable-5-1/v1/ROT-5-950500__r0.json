@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.36,
+    "p50": 0.6,
+    "p84": 0.8,
+    "drivers": [
+      "Simple 5-square shape with clear long axis makes chirality (bump side relative to short end) easy to track",
+      "Must judge all 4 options and get both correct in 30 s, with two diagonal (45°/135°/225°) rotations that resist simple grid alignment",
+      "Mirror distractors differ only by handedness, the classic source of errors in mental rotation",
+      "Both-correct scoring and limited guessing (chance 0.167) lower accuracy for weaker test-takers"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1176,
+    "outputTokens": 540
+  }
+}

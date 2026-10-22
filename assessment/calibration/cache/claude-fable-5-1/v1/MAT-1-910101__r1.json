@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.85,
+    "p50": 0.94,
+    "p84": 0.97,
+    "drivers": [
+      "Single simple rule (count decreases 4-3-2 across rows; rows identical) with no hidden attribute changes",
+      "Only one option matches both count and shape/fill, so distractors are easily eliminated",
+      "Generous 60 s limit for a trivial perceptual match",
+      "Residual errors mainly from carelessness or picking count-matching distractor with wrong fill"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1389,
+    "outputTokens": 157
+  }
+}

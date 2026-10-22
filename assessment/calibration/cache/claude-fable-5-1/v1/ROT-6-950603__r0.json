@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.6,
+    "p84": 0.8,
+    "drivers": [
+      "Simple 6-square L-like shape with clear handedness makes mirror detection relatively easy",
+      "Two diagonal (45°/315°) rotations add visual difficulty compared with cardinal rotations",
+      "Must select both correct options with no partial credit, reducing success from guessing or one error",
+      "30-second limit is adequate for four options of a simple shape"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1156,
+    "outputTokens": 449
+  }
+}

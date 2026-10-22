@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.56,
+    "p84": 0.78,
+    "drivers": [
+      "Simple 6-square S/Z shape with 180° symmetry, so only chirality must be judged",
+      "Diagonal 45° rotations make mirror vs rotation discrimination harder",
+      "Both correct options required, so two independent judgements must both succeed",
+      "30-second limit with four rotated options adds time pressure"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1156,
+    "outputTokens": 563
+  }
+}

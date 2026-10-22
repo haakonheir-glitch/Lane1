@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.5,
+    "p50": 0.78,
+    "p84": 0.93,
+    "drivers": [
+      "Two-step compound growth with easy numbers (600→720→864) is routine mental arithmetic",
+      "Distractors are weak: 1728 and 432 are implausible magnitudes, leaving mainly 950 as a competitor",
+      "Linear-growth misconception (600+240=840) does not match any option, nudging toward recomputation",
+      "120 seconds is ample for the two multiplications"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1001,
+    "outputTokens": 163
+  }
+}

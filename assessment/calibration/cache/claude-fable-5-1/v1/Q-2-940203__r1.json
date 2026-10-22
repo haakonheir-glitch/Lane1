@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.58,
+    "p50": 0.8,
+    "p84": 0.93,
+    "drivers": [
+      "Classic inverse proportion with simple numbers (3x people → 1/3 time)",
+      "Distractor 2 catches those who assume 12/3 wrongly or divide by wrong factor; 14 catches additive reasoning",
+      "Short single-step computation easily done within 100 seconds",
+      "4-option format with plausible distractors keeps low-ability performance moderately above chance"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 998,
+    "outputTokens": 159
+  }
+}

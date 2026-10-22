@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.4,
+    "p50": 0.65,
+    "p84": 0.85,
+    "drivers": [
+      "Requires understanding expected value concept and subtracting the cost; many adults confuse expected winnings (100) with profit",
+      "Arithmetic is simple (20% of 500 = 100; 100 - 83 = 17) and generous 140 s time limit",
+      "Distractors capture common errors: 100 (forgot cost), 417 (500-83), -83 (loss case)",
+      "4-option format gives 25% floor and partial elimination helps guessers"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1024,
+    "outputTokens": 182
+  }
+}

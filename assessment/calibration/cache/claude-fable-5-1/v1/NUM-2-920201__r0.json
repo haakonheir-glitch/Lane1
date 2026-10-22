@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.72,
+    "p50": 0.9,
+    "p84": 0.97,
+    "drivers": [
+      "Powers of 3 is a highly familiar geometric series; rule recognized almost instantly",
+      "Single multiplication 81×3 is easy mental arithmetic, no calculator needed",
+      "Distractors 241/242/244 are near-misses that catch only arithmetic slips; 405 catches a ×5 confusion",
+      "60-second limit is ample for one step"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 155
+  }
+}

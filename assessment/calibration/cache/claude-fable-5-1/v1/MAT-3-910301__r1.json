@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.65,
+    "p84": 0.86,
+    "drivers": [
+      "Shape/fill follows a simple Latin-square distribution, quickly narrowing options to the two striped-arrow choices",
+      "Rotation rule (−45° per column) must be inferred visually from oblique angles, adding a second attribute to track",
+      "Only one distractor shares the correct shape, so partial rule discovery gives a 50% shot",
+      "90 s is ample for two rules; constant count of 3 removes a distracting dimension"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1423,
+    "outputTokens": 541
+  }
+}

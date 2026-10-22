@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Alternating two-operation rule (+5, ×3) must be discovered; differences alone don't reveal a single pattern",
+      "Arithmetic is light once rule found (87+5), and 70 s is ample",
+      "Close distractors (91, 93, 94) punish imprecise guessing but not those who find the rule",
+      "Three repetitions of the +5 step give strong confirmatory evidence"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 376
+  }
+}

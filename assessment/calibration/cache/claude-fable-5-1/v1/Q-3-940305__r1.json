@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Simple two-step chain: 2% of 300 = 6 meetings, 1/4 of 6 = 1.5 sales, times 15000",
+      "Fractional result (1.5 sales) may confuse some solvers who round to 1 or 2 sales (distractors 15000-adjacent not present, but 11250 and 45000 catch partial errors)",
+      "Low working-memory load and generous 120s limit; paper allowed",
+      "Percent-of-number computation is familiar everyday arithmetic"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1033,
+    "outputTokens": 199
+  }
+}

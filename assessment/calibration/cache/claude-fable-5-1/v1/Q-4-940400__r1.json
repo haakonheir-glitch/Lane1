@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.6,
+    "p84": 0.82,
+    "drivers": [
+      "Requires knowing expected value concept and subtracting the cost (100-83)",
+      "Simple arithmetic: 20% of 500 = 100, minus 83 = 17",
+      "Distractor D (100) catches those who forget to subtract the cost; C (417) catches win-minus-cost confusion",
+      "Generous 140 s time limit; 4-option format gives 25% guessing floor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1024,
+    "outputTokens": 162
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Latin-square distribution of shape, count and fill across rows/columns (standard, discoverable rule)",
+      "Count and fill are coupled (1-empty, 3-striped, 4-solid), reducing effective attributes to two",
+      "Close distractors differ in only one attribute (C hexagons, G empty, E single), requiring verification of every attribute",
+      "Constant 135° rotation is an irrelevant feature that may briefly distract; 90 s is ample"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1417,
+    "outputTokens": 435
+  }
+}

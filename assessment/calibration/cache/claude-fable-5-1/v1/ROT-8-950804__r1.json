@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.75,
+    "drivers": [
+      "8-square asymmetric shape with mirror-image distractors requires true rotation, not feature matching",
+      "diagonal (45°/135°/225°) rotations are harder to mentally align than orthogonal ones",
+      "must classify all four options correctly within 30 s; one mirror confusion fails the item",
+      "two-option 'select both' format reduces guessing to 1/6 and compounds errors"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 440
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.5,
+    "p84": 0.72,
+    "drivers": [
+      "Compact 6-square shape with only two 'arms' makes mirror vs rotation discrimination subtle (S/Z-type chirality)",
+      "Diagonal 45°-step rotations (315°, 135°) hinder quick mental alignment",
+      "Must identify both correct options with no partial credit, under a 30 s limit",
+      "Small 3x3 grid means few distinctive features to anchor on"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1171,
+    "outputTokens": 934
+  }
+}

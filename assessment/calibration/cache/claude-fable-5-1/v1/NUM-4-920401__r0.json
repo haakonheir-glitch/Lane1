@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.4,
+    "p50": 0.65,
+    "p84": 0.85,
+    "drivers": [
+      "Fibonacci-style rule (sum of two previous terms) is a familiar, commonly encountered pattern",
+      "First step 3+7=10 is highly salient and cues the rule quickly",
+      "Near distractors 42 and 46 punish approximate difference-based reasoning",
+      "Low arithmetic load and generous 80 s limit"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 333
+  }
+}

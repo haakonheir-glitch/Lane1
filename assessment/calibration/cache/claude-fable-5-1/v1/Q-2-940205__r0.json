@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.82,
+    "p50": 0.94,
+    "p84": 0.98,
+    "drivers": [
+      "Single-step multiplication (61×2) with trivially small numbers",
+      "Distance-rate-time is a familiar schema; 100 s is ample time",
+      "Distractors (244, 134) are not very tempting; 244 would catch a doubling error only",
+      "Residual errors mainly from carelessness or misreading"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 993,
+    "outputTokens": 137
+  }
+}

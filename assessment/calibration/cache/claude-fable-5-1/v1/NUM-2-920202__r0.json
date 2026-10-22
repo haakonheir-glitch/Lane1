@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.82,
+    "p50": 0.94,
+    "p84": 0.98,
+    "drivers": [
+      "Powers of 2 is one of the most familiar sequences; rule discovered almost instantly",
+      "Single easy doubling step (32→64) with ample 60s time",
+      "Distractors 62 and 66 are near-misses but only catch careless arithmetic",
+      "Low-ability test-takers may still miss via lapses or trying additive differences"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 146
+  }
+}

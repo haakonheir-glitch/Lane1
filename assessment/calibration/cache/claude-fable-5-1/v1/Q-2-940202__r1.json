@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.82,
+    "p84": 0.94,
+    "drivers": [
+      "Single-step multiplication 85 × 2.5, familiar speed-time-distance schema",
+      "Decimal multiplication by 2.5 requires some mental arithmetic (85×2 + 85/2)",
+      "Distractors are not close to plausible computation errors except 191/234; estimation (85×2=170, 85×3=255) narrows to A quickly",
+      "100 s is ample; paper allowed"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 999,
+    "outputTokens": 168
+  }
+}

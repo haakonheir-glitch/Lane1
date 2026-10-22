@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Inverse proportion (work-rate) requires recognizing fewer people means more time, a known conceptual stumbling block",
+      "Arithmetic is simple: 4×24=96 person-hours, 96/3=32",
+      "Distractors 29 and 64 catch additive (24+5) and doubling errors, but 32 is the only option consistent with correct reasoning",
+      "Generous 100-second limit for a single-step calculation"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 998,
+    "outputTokens": 174
+  }
+}

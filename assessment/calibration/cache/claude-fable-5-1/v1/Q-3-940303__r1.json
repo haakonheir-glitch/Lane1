@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.82,
+    "p84": 0.94,
+    "drivers": [
+      "Simple compound growth: two successive 20% increases (600→720→864) with easy arithmetic",
+      "Distractors are weak: 1728 and 432 are implausible, 950 is the only trap for someone who misreads growth",
+      "Main error is linear growth (600+2×120=840), but 840 is not an option, so compounding error is forgiven",
+      "Generous 120-second limit for two multiplication steps"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1001,
+    "outputTokens": 168
+  }
+}

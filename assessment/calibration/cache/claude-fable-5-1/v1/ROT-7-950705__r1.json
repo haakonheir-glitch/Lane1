@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Both correct options shown at diagonal (225°, 315°) angles, which are harder to mentally rotate than cardinal angles",
+      "Must get both selections right; a single mirror-confusion error fails the item",
+      "30-second limit is tight for four separate rotation/mirror comparisons",
+      "Shape is asymmetric with a distinctive L-like step, aiding chirality discrimination once oriented"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1186,
+    "outputTokens": 440
+  }
+}

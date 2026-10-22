@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.72,
+    "p50": 0.9,
+    "p84": 0.97,
+    "drivers": [
+      "Single-step percentage calculation with very familiar numbers (20% of 80)",
+      "Distractors are weak: 70 (subtracting 10) and 32 (misreading 20% as 40%) only trap careless solvers",
+      "Generous 80-second limit relative to task demands",
+      "Everyday shopping context makes the operation intuitive for most adults"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 995,
+    "outputTokens": 150
+  }
+}

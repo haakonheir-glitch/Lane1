@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.55,
+    "p84": 0.78,
+    "drivers": [
+      "Count (+1 across rows) and rotation (+45° across rows) progressions are straightforward and eliminate most options",
+      "Shape must be inferred from a cyclic pentagon→arrow→triangle pattern or column-wise 'one of each' rule, which is less obvious",
+      "Empty cell (0 figures) in row 2 obscures the shape pattern and may confuse",
+      "8 options fully crossed on three binary attributes means partial understanding still leaves a 50% chance on the shape dimension"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1402,
+    "outputTokens": 1032
+  }
+}

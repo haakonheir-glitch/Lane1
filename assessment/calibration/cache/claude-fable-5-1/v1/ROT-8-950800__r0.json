@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.5,
+    "p84": 0.72,
+    "drivers": [
+      "Must correctly classify all four options (both rotations vs. both mirror images) within 30 seconds — compound accuracy demand",
+      "Diagonal (45°/135°/315°) rotations are harder to mentally align than orthogonal ones",
+      "Mirror-image distractors differ only in chirality, requiring careful feature tracking (position of the single bump relative to stem and bar)",
+      "Shape has a clear asymmetric landmark (the bump) that aids discrimination once located"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1236,
+    "outputTokens": 527
+  }
+}

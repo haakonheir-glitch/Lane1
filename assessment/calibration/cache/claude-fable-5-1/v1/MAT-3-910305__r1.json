@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.74,
+    "drivers": [
+      "Simple distribution-of-three on count and fill quickly narrows options to A and D",
+      "Empty cells (count 0) may confuse rule discovery",
+      "Final discrimination between 45° and 135° pentagons is visually subtle (18° difference due to 5-fold symmetry), forcing careful comparison with the other 4-count cells",
+      "Generous 90 s limit allows checking against reference cells"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1432,
+    "outputTokens": 721
+  }
+}

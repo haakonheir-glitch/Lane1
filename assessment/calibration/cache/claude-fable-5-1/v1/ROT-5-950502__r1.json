@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.42,
+    "p50": 0.64,
+    "p84": 0.82,
+    "drivers": [
+      "Simple compact 5-square P-pentomino; chirality is easy to spot via missing corner position",
+      "Diagonal (45°/135°/315°) rotations make mirror vs rotation discrimination harder than orthogonal",
+      "Must correctly classify all four options (two selections) within 30 s; one error fails the item",
+      "Low guessing rate (1/6) and conjunctive response format"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1146,
+    "outputTokens": 383
+  }
+}

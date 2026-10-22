@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Shape-fill combinations form a clean distribution-of-three (Latin square), easy to spot",
+      "Rotation increases by 45° across each row, a regular progression but requires judging rotation angles of triangles",
+      "Only one close distractor (E) shares correct shape and fill; most options eliminated by shape/fill alone",
+      "Constant count (4) reduces attribute load; 90 s is ample"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1418,
+    "outputTokens": 487
+  }
+}

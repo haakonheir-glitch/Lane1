@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.72,
+    "p50": 0.9,
+    "p84": 0.97,
+    "drivers": [
+      "Single-step percentage computation with friendly numbers (20% of 80 = 16)",
+      "Everyday shopping context familiar to Norwegian adults",
+      "Distractors require a sign or magnitude error that is easy to catch",
+      "Generous 80-second limit for a one-line calculation"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 995,
+    "outputTokens": 130
+  }
+}

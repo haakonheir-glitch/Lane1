@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Simple alternating rule (+6, ×2) with small numbers, easy to spot",
+      "Distractors 68, 71, 72 are close to 70 so a near-miss arithmetic error costs the item",
+      "Alternating two-operation pattern requires checking two steps, moderate for low-ability",
+      "Generous 70-second limit"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 144
+  }
+}

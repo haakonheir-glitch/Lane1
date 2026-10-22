@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.82,
+    "p50": 0.94,
+    "p84": 0.98,
+    "drivers": [
+      "Highly familiar doubling/powers-of-two sequence, instantly recognized",
+      "Trivial arithmetic (32×2) with ample 60s time",
+      "Distractors 62/66 only catch careless arithmetic; 48 catches additive misreading",
+      "Multiple-choice with 0.20 chance floor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 140
+  }
+}

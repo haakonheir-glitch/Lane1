@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.85,
+    "p84": 0.95,
+    "drivers": [
+      "Simple increasing-difference rule (+1,+2,+3,+4) that is very common and quickly discovered",
+      "Small numbers, trivial arithmetic",
+      "Distractors (21, 22) are plausible for those who misapply the step, but 60 s is ample to verify"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 127
+  }
+}

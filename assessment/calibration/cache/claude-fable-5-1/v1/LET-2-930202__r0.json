@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.42,
+    "p50": 0.68,
+    "p84": 0.88,
+    "drivers": [
+      "Single second-order rule (gaps +1,+2,+3,+4,+5) is a common pattern",
+      "Requires alphabet position counting across 5 letters within 65s",
+      "Distractors R, S, U are near-miss letters that catch off-by-one counting errors",
+      "Chance rate 0.20 with 5 options"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 971,
+    "outputTokens": 141
+  }
+}

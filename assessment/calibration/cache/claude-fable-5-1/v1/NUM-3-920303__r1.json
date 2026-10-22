@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Alternating two-operation rule (+5, ×2) is a very common series pattern and quickly recognizable",
+      "Small numbers, trivial arithmetic",
+      "Distractors 60 and 61 (nearby values) catch people who only look at differences; 81 catches 'add last gap' guesses",
+      "70 seconds is ample for 5 terms"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 150
+  }
+}

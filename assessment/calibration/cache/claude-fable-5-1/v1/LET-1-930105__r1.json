@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.92,
+    "p84": 0.97,
+    "drivers": [
+      "Simple +2 alphabet skip rule, immediately recognizable",
+      "Only one short counting step from I to K",
+      "Distractors J and L are adjacent letters but rule is transparent",
+      "Generous 55 s time limit relative to demand"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 971,
+    "outputTokens": 115
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "value": {
+    "mean": 485,
+    "sd": 70,
+    "basis": "Lab 4-choice RT with spatially compatible keys in young adults runs ~420-470 ms (e.g., Deary-Liewald task), with medians slightly below means; browser/keyboard/display latency adds roughly 40-70 ms and only 5 practice trials leaves little warm-up, so medians around 480-490 ms are expected. Between-person SD in young adults is typically 50-65 ms, inflated somewhat by heterogeneous hardware and unproctored attention in online testing."
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 669,
+    "outputTokens": 555
+  }
+}

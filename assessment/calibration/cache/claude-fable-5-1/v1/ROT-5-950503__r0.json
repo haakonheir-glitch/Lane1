@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.57,
+    "p84": 0.78,
+    "drivers": [
+      "Chiral Z-pentomino requires mirror-vs-rotation discrimination, a classic mental-rotation demand",
+      "Three of four options shown at diagonal (45°-step) angles, which are harder to mentally align than orthogonal ones",
+      "Option A at 180° is identical to the upright target (Z shape is 180°-symmetric), giving one easy pick",
+      "Must select both correct options within 30 s; no partial credit, so one error on a diagonal option fails the item"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1171,
+    "outputTokens": 532
+  }
+}

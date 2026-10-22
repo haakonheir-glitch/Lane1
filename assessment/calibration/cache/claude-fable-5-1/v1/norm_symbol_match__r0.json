@@ -1,0 +1,12 @@
+{
+  "value": {
+    "mean": 40,
+    "sd": 11,
+    "basis": "Anchored on Salthouse-style pattern/letter comparison norms for young adults (~2 s per 3-element item, ~92-95% accuracy); the unordered-set rule and single-symbol mismatches slow responding relative to ordered string comparison, yielding roughly 45-50 trials in 90 s, and the correct-minus-incorrect scoring plus unproctored online testing pulls the mean down slightly and inflates variance."
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 675,
+    "outputTokens": 752
+  }
+}

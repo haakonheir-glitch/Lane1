@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.35,
+    "p50": 0.62,
+    "p84": 0.85,
+    "drivers": [
+      "Differences increase by 1 each step (+1,+2,+3,+4,+5), a common and discoverable second-order pattern",
+      "Requires converting letters to alphabet positions and tracking gaps, adding working-memory load",
+      "Distractors M, O, P, R are plausible near-misses for off-by-one counting errors",
+      "65-second limit is adequate but letter counting under time pressure invites slips"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 973,
+    "outputTokens": 167
+  }
+}

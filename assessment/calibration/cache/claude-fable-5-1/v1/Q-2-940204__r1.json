@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Simple inverse proportion with small, clean numbers (2×12=24 person-hours, 24/12=2)",
+      "Distractor A (4) catches those who incorrectly divide 12 by 3 or reason by direct proportion errors",
+      "Generous 100-second time limit and familiar 'workers and time' schema reduce difficulty",
+      "Low working-memory load; one multiplication and one division"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 998,
+    "outputTokens": 165
+  }
+}

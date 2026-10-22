@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.8,
+    "p84": 0.93,
+    "drivers": [
+      "Two simple distribution-of-three rules (shape, fill) with constant count and rotation",
+      "Half the options have 2 figures and are trivially eliminable, raising effective guess rate",
+      "Remaining distractors share one correct attribute, so both rules must be verified",
+      "75 seconds is ample for a single-figure-per-cell grid"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1408,
+    "outputTokens": 343
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.5,
+    "p84": 0.72,
+    "drivers": [
+      "Two options shown at diagonal (45°/135°) rotations, which are much harder to mentally align with the upright target",
+      "Must correctly classify all four options (two rotations, two mirrors) within 30 s; a single error fails the item",
+      "Shape is compact 3x3 with few distinctive features, so mirror vs rotation differs only in a subtle left/right asymmetry",
+      "Chance rate of 1/6 provides a floor and the 6-square figure is small enough to hold in working memory"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1171,
+    "outputTokens": 426
+  }
+}

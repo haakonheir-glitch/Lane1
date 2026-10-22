@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.93,
+    "p84": 0.98,
+    "drivers": [
+      "Single-step percentage calculation with very easy numbers (10% of 80)",
+      "Distractors are implausible (79, 144, 36) so partial understanding suffices",
+      "Generous 80-second time limit for a one-line problem",
+      "Low working-memory load; familiar everyday shopping context"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 995,
+    "outputTokens": 131
+  }
+}

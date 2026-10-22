@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.54,
+    "p84": 0.74,
+    "drivers": [
+      "Mirror-image distractors require true mental rotation rather than feature matching",
+      "Two options shown at 45°/135° diagonal angles, which are harder to align",
+      "Both correct options must be selected, compounding errors across four judgements in 30 s",
+      "Shape has a salient asymmetric tail/overhang that aids chirality checking"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 385
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Second-order arithmetic series (differences 2,5,8,11 increasing by 3) requires computing and then extrapolating a difference pattern",
+      "Small numbers and simple addition keep arithmetic load low",
+      "Distractors 43 and 46 catch off-by-one errors in the difference step",
+      "60-second limit is ample for this length of series"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 285
+  }
+}

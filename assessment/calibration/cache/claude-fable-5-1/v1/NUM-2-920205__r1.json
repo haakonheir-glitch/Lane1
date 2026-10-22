@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.8,
+    "p84": 0.93,
+    "drivers": [
+      "Simple single-rule geometric series (×3) that is quickly recognizable",
+      "Multiplying 324×3 mentally is easy but close distractors 970/973 punish arithmetic slips",
+      "Distractor 1458 (×4.5) and 540 catch those who misidentify the rule",
+      "60 seconds is ample for this computation"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 983,
+    "outputTokens": 146
+  }
+}

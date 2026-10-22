@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.35,
+    "p50": 0.58,
+    "p84": 0.78,
+    "drivers": [
+      "Simple 6-square L-like shape with low working-memory load; chirality is a single notch position",
+      "45° and 315° rotations complicate alignment and L-vs-mirror judgement",
+      "Must select both correct options, compounding errors across two judgements",
+      "30-second limit is adequate but discourages careful checking of all four options"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1156,
+    "outputTokens": 829
+  }
+}

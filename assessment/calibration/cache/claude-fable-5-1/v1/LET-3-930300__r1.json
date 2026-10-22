@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.48,
+    "p50": 0.74,
+    "p84": 0.9,
+    "drivers": [
+      "Two interleaved alternating sequences (C,E,G ascending +2; W,U,? descending -2) must be recognized rather than a single rule",
+      "Backward alphabet stepping from U to S requires some letter-position fluency but only a small step",
+      "Distractors T and R sit adjacent to the correct letter, catching off-by-one errors",
+      "75 seconds is ample for this short series once the alternation is spotted"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 358
+  }
+}

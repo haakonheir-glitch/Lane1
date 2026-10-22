@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Simple 5-square shape (2x3 block minus a corner) is easy to encode, but chirality cue is subtle (which corner is missing)",
+      "Diagonal 45° rotations (225°, 315°) make mirror/rotation discrimination harder",
+      "Must get both correct options within 30 s across 4 rotated items — compounded error, no partial credit",
+      "Chance rate 1/6 keeps floor low"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1146,
+    "outputTokens": 505
+  }
+}

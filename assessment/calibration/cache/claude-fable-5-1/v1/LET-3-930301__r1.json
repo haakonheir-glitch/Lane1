@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Two interleaved series (ascending +2, descending -2) must be recognized; common pattern for anyone who has seen alternating series",
+      "Backward stepping near the end of the alphabet (Z, X, V) is easy to track mentally",
+      "Distractors W and L capture off-by-one or wrong-subseries errors",
+      "75 seconds is ample; low working-memory load once alternation is spotted"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 339
+  }
+}

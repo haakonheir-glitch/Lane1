@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.35,
+    "p50": 0.58,
+    "p84": 0.78,
+    "drivers": [
+      "Target is point-symmetric so option A appears identical to the upright target, giving one easy hit",
+      "S/Z-type chirality discrimination with mirror-image distractors demands true mental rotation, not feature matching",
+      "45° and 135° diagonal renderings make the shape harder to parse and align",
+      "Both correct options required with a 30 s limit; a single error on the diagonal items fails the item"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 574
+  }
+}

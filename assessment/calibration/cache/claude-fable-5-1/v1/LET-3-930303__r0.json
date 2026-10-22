@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Two interleaved subseries (D,F,H ascending by 2; Y,W descending by 2) must be recognised",
+      "Backward stepping in the alphabet from W requires some letter-position counting",
+      "Distractors V (−1) and T (−3) catch off-by-one errors",
+      "Short series with only three terms per subseries and ample 75s limit"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 309
+  }
+}

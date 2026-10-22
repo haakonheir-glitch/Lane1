@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.62,
+    "p50": 0.85,
+    "p84": 0.95,
+    "drivers": [
+      "Single-step multiplication (82 × 2.5) with a familiar speed-time-distance schema",
+      "Decimal multiplier requires splitting into 164 + 41, a modest mental arithmetic load",
+      "Distractors are not very close (410 = doubling error, 103 = adding), so estimation easily rules out most",
+      "Generous 100-second limit and paper allowed"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 995,
+    "outputTokens": 158
+  }
+}

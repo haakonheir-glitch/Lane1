@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.68,
+    "p84": 0.86,
+    "drivers": [
+      "Two interleaved alphabet sequences (forward +2, backward -2) must be detected",
+      "Backward alphabet stepping (V, T, R) is error-prone without writing it out",
+      "Strong distractors: S (one step back) and F (next in forward sub-series)",
+      "Generous 75 s time limit and short series keep working-memory load manageable"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 971,
+    "outputTokens": 417
+  }
+}

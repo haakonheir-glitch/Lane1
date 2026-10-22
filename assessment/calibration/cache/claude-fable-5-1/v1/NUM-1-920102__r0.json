@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.92,
+    "p84": 0.97,
+    "drivers": [
+      "Single constant difference (+7) is the simplest possible rule",
+      "Small numbers, trivial addition, generous 50 s limit",
+      "Distractors 36 and 38 catch only minor arithmetic slips",
+      "Chance floor of 0.20 and occasional carelessness bound the low end"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 132
+  }
+}

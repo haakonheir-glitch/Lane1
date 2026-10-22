@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Both correct options shown at diagonal angles (315°, 225°), which are harder to mentally rotate than 90° steps",
+      "Must verify all 4 options and select both rotations under a 30 s limit; one error on any option fails the item",
+      "Shape is small (7 squares) with a distinctive two-prong/tail structure, making mirror detection feasible for careful rotators",
+      "Mirror distractors are at cardinal angles (180°, 270°) and look superficially similar, inviting errors"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1186,
+    "outputTokens": 413
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.62,
+    "p50": 0.85,
+    "p84": 0.95,
+    "drivers": [
+      "Single simple rule: Latin-square distribution of counts (1,3,4) across rows/columns",
+      "Shape and shading constant (empty circles), so most distractors are eliminable at a glance",
+      "Only one competing distractor (count 4) requires actually checking the row/column rule",
+      "Generous 60s limit for a one-attribute item"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1433,
+    "outputTokens": 146
+  }
+}

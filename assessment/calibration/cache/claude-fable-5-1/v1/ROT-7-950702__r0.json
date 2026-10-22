@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Mirror-image distractors require true rotation, not feature matching",
+      "Diagonal 45°/135° rotations are harder to verify than orthogonal ones",
+      "Both correct options must be selected; 30 s for 4 comparisons adds time pressure",
+      "Compact 7-square shape with limited distinctive features makes handedness harder to track"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1196,
+    "outputTokens": 394
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Compact 5-square P-shape is easy to encode, but mirror vs. rotation requires tracking chirality of the tail",
+      "Correct options shown at diagonal 45°/135° angles, which are harder to mentally rotate than cardinal angles",
+      "Must select both correct options with no partial credit, compounding error rates",
+      "30-second limit is adequate for two comparisons but adds pressure; moderate guessing base (0.167)"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1156,
+    "outputTokens": 784
+  }
+}

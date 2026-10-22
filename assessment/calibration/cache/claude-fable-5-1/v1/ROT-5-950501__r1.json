@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.6,
+    "p84": 0.78,
+    "drivers": [
+      "Small, simple 5-square P-shape is easy to hold in working memory",
+      "Must identify handedness (rotation vs mirror) for all 4 options and select both correct ones, so one error fails the item",
+      "Diagonal 45° rotations (315°, 225°) make alignment harder than axis-aligned rotations",
+      "30-second limit is adequate but adds pressure for four separate mental rotations"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1146,
+    "outputTokens": 394
+  }
+}

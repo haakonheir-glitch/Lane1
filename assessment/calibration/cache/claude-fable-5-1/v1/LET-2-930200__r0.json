@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Single increasing-difference rule (+1,+2,+3,+4,+5) is a very familiar pattern",
+      "Requires converting letters to positions or counting through the alphabet, a few mental steps",
+      "Distractors Q and S are adjacent to R, punishing off-by-one counting errors",
+      "65 seconds is ample for this short series"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 147
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.42,
+    "p50": 0.66,
+    "p84": 0.84,
+    "drivers": [
+      "Simple distribution-of-three (Latin square) rule on count, fill, and rotation, with count and rotation perfectly coupled, reducing effective load",
+      "Cells with zero figures appear as blank cells, which can confuse rule discovery",
+      "Distractors each differ from the key on a single attribute, so all three attributes must be verified",
+      "Pentagon rotation differences (45° vs 135°) are visually subtle, but the coupling with count makes it recoverable"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1432,
+    "outputTokens": 484
+  }
+}

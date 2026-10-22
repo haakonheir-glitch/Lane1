@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.4,
+    "p50": 0.65,
+    "p84": 0.86,
+    "drivers": [
+      "Alternating two-operation rule (+6, ×2) is a familiar series pattern but requires noticing the alternation rather than a single rule",
+      "Small numbers and simple arithmetic; 70 seconds is ample",
+      "Distractors 68/71/72 are close to the answer and punish rough extrapolation, so guessing from 'roughly +6' still helps"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 326
+  }
+}

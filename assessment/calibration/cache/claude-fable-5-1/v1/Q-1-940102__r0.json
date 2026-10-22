@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.82,
+    "p50": 0.95,
+    "p84": 0.98,
+    "drivers": [
+      "Single-step percentage on a round base of 100 — minimal arithmetic",
+      "Distractors (160, 40, 72) are not very tempting; only 72 mimics a compound-discount error",
+      "Generous 80-second limit relative to task demands",
+      "Highly familiar everyday context (sale price) for Norwegian adults"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 995,
+    "outputTokens": 142
+  }
+}

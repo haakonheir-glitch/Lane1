@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Differences double (2,4,8,16,32) — a very common, easily discovered pattern",
+      "Ample 80 s time limit and small numbers, low arithmetic load",
+      "Distractor 68 (naive doubling of 34) catches low-ability test-takers",
+      "Alternative rule 2x-2 leads to the same answer, so multiple routes converge on 66"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 307
+  }
+}

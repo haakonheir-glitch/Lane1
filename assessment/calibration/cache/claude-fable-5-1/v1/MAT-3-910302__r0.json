@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.68,
+    "p84": 0.86,
+    "drivers": [
+      "Latin-square shape/count distribution makes the missing shape type (single triangle) easy to identify",
+      "Rotation progresses by 45° across each row; row 3 pattern mirrors row 1, so 90° is readily inferred",
+      "Empty cells for 'zero pentagons' are confusing and four options are visually identical blanks, which may puzzle lower-ability takers",
+      "Distractors differ only in rotation (90° vs 180°) or shape type, requiring careful attention to orientation"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1456,
+    "outputTokens": 795
+  }
+}

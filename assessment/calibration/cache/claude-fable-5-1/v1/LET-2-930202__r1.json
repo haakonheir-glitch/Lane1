@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.42,
+    "p50": 0.68,
+    "p84": 0.87,
+    "drivers": [
+      "Single simple rule: gaps increase by 1 (1,2,3,4,5), a common series pattern",
+      "Requires counting forward 5 letters from O in the alphabet, modest working-memory load",
+      "Distractors R, S, U sit near the correct answer and catch off-by-one counting errors",
+      "65 seconds is ample time; chance rate 0.20 sets the floor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 971,
+    "outputTokens": 310
+  }
+}

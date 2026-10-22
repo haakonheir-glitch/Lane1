@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.6,
+    "p84": 0.8,
+    "drivers": [
+      "Simple 6-square parallelogram-like shape with 180° symmetry keeps working-memory load low",
+      "Mirror vs. original differs only in slant direction, a subtle chirality cue after rotation",
+      "Diagonal 45°/315° rotations are harder to map onto the grid than 90° steps",
+      "Must select both correct options within 30 s, so one confusion fails the item"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1156,
+    "outputTokens": 679
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Simple incrementing-gap rule (+1,+2,+3,+4,+5) that is common and easily discoverable",
+      "Requires counting alphabet positions, a small working-memory/counting load with error risk",
+      "Distractors R (+4 repeated) and Q (+3) catch people who assume a constant or shorter step",
+      "Generous 65 s limit relative to task size"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 309
+  }
+}

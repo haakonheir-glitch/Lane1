@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Two-step compound growth with simple numbers (500→550→605); arithmetic is easy",
+      "Distractor 545 catches those who misread 10% of 500 as 9% or subtract instead of compound; 1210 catches those who confuse 10% with doubling-type errors",
+      "Generous 120 s time limit and familiar percentage context",
+      "Common error of using simple interest (600) is not an option, which pushes some toward the correct compound answer"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1001,
+    "outputTokens": 180
+  }
+}

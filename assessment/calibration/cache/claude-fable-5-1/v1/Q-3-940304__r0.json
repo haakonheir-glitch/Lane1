@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.72,
+    "p84": 0.9,
+    "drivers": [
+      "Three sequential arithmetic steps (3% of 300, quarter of 9, times 11000) with a non-integer intermediate (2.25 sales) that may confuse some test-takers",
+      "Numbers are friendly (300, 3%, 1/4, 11000) so mental math is feasible without calculator",
+      "Distractors are near-miss multiples (×0.9, ×1.1, ×2), so partial errors land on options and partial-work elimination is limited",
+      "120 seconds is ample for the computation, so time pressure is low"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1033,
+    "outputTokens": 379
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.62,
+    "p84": 0.82,
+    "drivers": [
+      "Simple asymmetric L-shape with clear long/short arms makes chirality judgment feasible",
+      "Diagonal (45°/135°/225°) rotations are harder to mentally normalise than 90° steps",
+      "Must select both correct options, so errors on either option fail the item",
+      "30-second limit for four rotation/mirror judgments adds time pressure"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1201,
+    "outputTokens": 385
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.3,
+    "p50": 0.5,
+    "p84": 0.72,
+    "drivers": [
+      "Both correct options are at diagonal (135°, 315°) rotations, which are harder to mentally rotate than cardinal angles",
+      "Mirror-image distractors require precise chirality judgment on an 8-square asymmetric shape",
+      "Must correctly classify all four options within 30 seconds; a single error fails the item",
+      "Shape has a distinctive asymmetric protrusion pattern that aids identification once orientation is found"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1221,
+    "outputTokens": 400
+  }
+}

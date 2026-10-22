@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.6,
+    "p84": 0.8,
+    "drivers": [
+      "2D mental rotation of a compact 6-square shape; mirror vs rotation discrimination is the core demand",
+      "Two options shown at diagonal 45°/135° angles, which are harder to align with the grid",
+      "Must select both correct options (conjunctive scoring) under a 30-second limit, lowering chance success",
+      "Shape has distinctive asymmetric features (notch position) that aid comparison"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1171,
+    "outputTokens": 355
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.72,
+    "p50": 0.88,
+    "p84": 0.95,
+    "drivers": [
+      "Single simple rule: skip one letter (+2) each step",
+      "Short series with familiar alphabet ordering, low working-memory load",
+      "Distractors Q and S are adjacent to R and catch off-by-one counting errors",
+      "Generous 55-second limit relative to task demands"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 127
+  }
+}

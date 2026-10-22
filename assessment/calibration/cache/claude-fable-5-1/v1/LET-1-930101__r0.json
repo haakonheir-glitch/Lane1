@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.62,
+    "p50": 0.85,
+    "p84": 0.95,
+    "drivers": [
+      "Single constant step of +3 in the alphabet, a very familiar pattern",
+      "Requires counting forward from M by 3 without error; distractors N, O, Q catch off-by-one mistakes",
+      "Generous 55-second limit relative to a short series",
+      "No arithmetic beyond simple alphabet position counting"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 139
+  }
+}

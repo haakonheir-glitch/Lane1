@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Two-step compound growth: 200→300→450, simple arithmetic with round numbers",
+      "Distractor 900 (if 50% is misread as doubling or 200×1.5×... errors) and 225 (half of 450) catch some careless solvers",
+      "Generous 120 s time limit and 4-option format with 25% guessing floor",
+      "Common conceptual slip: applying 50% of the original twice (200+100+100=400, not listed) forces a recheck"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1000,
+    "outputTokens": 186
+  }
+}

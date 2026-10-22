@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.38,
+    "p50": 0.62,
+    "p84": 0.84,
+    "drivers": [
+      "Requires knowing expected-value concept and subtracting cost from expected winnings (0.2*400 - 140)",
+      "Simple arithmetic with round numbers; 140 s is ample",
+      "Distractor D (80) catches those who forget the cost; B (260) catches those who subtract cost from full prize",
+      "Many adults lack formal expected-value familiarity, raising guessing among lower ability"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1025,
+    "outputTokens": 165
+  }
+}

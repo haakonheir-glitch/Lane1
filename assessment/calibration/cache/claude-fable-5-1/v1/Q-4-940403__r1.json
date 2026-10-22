@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.35,
+    "p50": 0.58,
+    "p84": 0.8,
+    "drivers": [
+      "Requires understanding expected value and subtracting the stake (0.2*400 - 140)",
+      "Distractor 80 (expected winnings without subtracting cost) and 260 (400-140) catch common partial reasoning",
+      "Arithmetic itself is simple (20% of 400) and time limit is generous",
+      "4-option format gives 25% guessing floor"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1025,
+    "outputTokens": 152
+  }
+}

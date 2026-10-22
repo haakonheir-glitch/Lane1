@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.6,
+    "p50": 0.82,
+    "p84": 0.93,
+    "drivers": [
+      "Single Latin-square rule on rotation only; count and shape constant across grid",
+      "Most distractors differ in shape or count, making them easy to eliminate",
+      "Only one plausible distractor (H) shares count and shape but wrong rotation",
+      "Need to perceive arrow orientation differences (90° vs 135° vs 315°) within 60 s"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1385,
+    "outputTokens": 150
+  }
+}

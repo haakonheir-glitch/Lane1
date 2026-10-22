@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.78,
+    "p50": 0.93,
+    "p84": 0.98,
+    "drivers": [
+      "Simple +2 alphabet step, highly familiar pattern",
+      "Short series with no distractor rule needed",
+      "Generous 55-second limit",
+      "Distractors (L, N, O) are adjacent letters but easily rejected once rule found"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 971,
+    "outputTokens": 115
+  }
+}

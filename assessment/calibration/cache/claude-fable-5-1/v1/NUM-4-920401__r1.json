@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.45,
+    "p50": 0.7,
+    "p84": 0.88,
+    "drivers": [
+      "Fibonacci-style sum-of-previous-two rule is a well-known, commonly tested pattern",
+      "Differences (4,3,7,10) do not form a simple arithmetic pattern, so people who only check differences may get stuck",
+      "Small numbers and 80-second limit make verification easy once the rule is spotted",
+      "Near distractors 42 and 46 catch minor addition slips"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 291
+  }
+}

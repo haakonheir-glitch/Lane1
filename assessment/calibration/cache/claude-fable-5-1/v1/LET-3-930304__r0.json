@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.55,
+    "p50": 0.78,
+    "p84": 0.92,
+    "drivers": [
+      "Two interleaved simple series (+2 forward, -2 backward) must be recognized",
+      "Backward alphabet stepping (Y, W, U) requires some mental letter-position work",
+      "Distractor V (one step off) catches sloppy counting",
+      "Generous 75s time limit and familiar alternating-series pattern"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 972,
+    "outputTokens": 304
+  }
+}

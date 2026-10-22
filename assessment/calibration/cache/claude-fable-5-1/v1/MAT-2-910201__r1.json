@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.42,
+    "p50": 0.68,
+    "p84": 0.86,
+    "drivers": [
+      "Simple +1 count progression across rows is easy to spot and eliminates half the options",
+      "Constant solid fill quickly removes the four 'empty' distractors",
+      "Shape rule requires recognizing a 3-shape cycle that wraps around (arrow -> circle), a less obvious step; the column pattern offers confirmation",
+      "Key distractor D (4 solid pentagons) catches those who get the count but not the shape cycle"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1402,
+    "outputTokens": 548
+  }
+}

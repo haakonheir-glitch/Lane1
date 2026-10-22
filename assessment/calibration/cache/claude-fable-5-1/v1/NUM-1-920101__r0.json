@@ -1,0 +1,17 @@
+{
+  "value": {
+    "p16": 0.72,
+    "p50": 0.9,
+    "p84": 0.97,
+    "drivers": [
+      "Single constant difference (+9) is immediately visible, very low working-memory load",
+      "Simple addition with no multi-step arithmetic; 50 s is ample",
+      "Distractor 63 (off by +11) and 59 (+7) catch careless differencing, slightly lowering accuracy for low-ability test-takers"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 982,
+    "outputTokens": 140
+  }
+}

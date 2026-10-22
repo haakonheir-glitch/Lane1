@@ -1,0 +1,18 @@
+{
+  "value": {
+    "p16": 0.33,
+    "p50": 0.55,
+    "p84": 0.76,
+    "drivers": [
+      "Both correct options are at diagonal angles (135°, 315°), which are harder to mentally rotate than 90° multiples",
+      "Mirror-image distractors require checking chirality, not just outline; errors on either of two selections fail the item",
+      "Shape is asymmetric with a distinctive hook-and-stem structure, giving a usable handedness cue",
+      "30-second limit with four rotated comparisons adds time pressure"
+    ]
+  },
+  "model": "claude-fable-5-1",
+  "usage": {
+    "inputTokens": 1221,
+    "outputTokens": 401
+  }
+}
