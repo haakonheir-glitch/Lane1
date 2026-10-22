@@ -3,27 +3,55 @@
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Kbd } from "@/components/ui/Misc";
 import { ProgressBar } from "./ProgressBar";
+import { JobTitleSearch } from "@/components/onboarding/JobTitleSearch";
 import { saveOnboarding } from "@/app/actions/onboarding";
 import type { OnboardingAnswers } from "@/lib/types";
+import type { YearsBand } from "@/lib/matching";
+import type { JobTitleHit } from "@/lib/taxonomy";
 import { cn } from "@/lib/cn";
 import { isNavigationError } from "@/lib/action-errors";
 
-type StepId = keyof OnboardingAnswers;
-type Step = { id: StepId; prompt: string; hint: string; options: string[] };
+/** A job title the person picked in the search, resolved to a lane (and a role when the taxonomy lists it). */
+export type PickedTitle = { laneId: string; roleId: string | null; title: string; laneName: string };
+export type OnboardingState = OnboardingAnswers & {
+  current: PickedTitle | null;
+  years: YearsBand | null;
+  /** True once the person has answered the current-job step, including "not working right now". */
+  currentAnswered: boolean;
+  considering: PickedTitle[];
+};
+
+type ChoiceId = keyof OnboardingAnswers;
+type Step =
+  | { kind: "choice"; id: ChoiceId; prompt: string; hint: string; options: string[] }
+  | { kind: "current"; prompt: string; hint: string }
+  | { kind: "considering"; prompt: string; hint: string };
+
+const YEARS: { value: YearsBand; label: string }[] = [
+  { value: "0", label: "Under a year" },
+  { value: "lt2", label: "1–2 years" },
+  { value: "2to5", label: "2–5 years" },
+  { value: "5plus", label: "More than 5 years" },
+];
+const MAX_CONSIDERING = 3;
 
 const steps: Step[] = [
-  { id: "ageRange", prompt: "Which age range are you in?", hint: "Used only to compare you with people at a similar stage.", options: ["18–24", "25–34", "35–44", "45–54", "55 or over"] },
+  { kind: "choice", id: "ageRange", prompt: "Which age range are you in?", hint: "Used only to compare you with people at a similar stage.", options: ["18–24", "25–34", "35–44", "45–54", "55 or over"] },
   {
+    kind: "choice",
     id: "situation",
     prompt: "Where are you right now?",
     hint: "Pick the closest. You can change it later.",
     options: ["Studying", "Employed, fairly settled", "Employed, considering a change", "Between jobs", "Self-employed"],
   },
+  { kind: "current", prompt: "What do you do now?", hint: "Your current or most recent job. It sets where you'd realistically start in that lane." },
+  { kind: "considering", prompt: "What are you considering?", hint: `Up to ${MAX_CONSIDERING} jobs or directions. We'll mark them on your Lane Map.` },
   {
+    kind: "choice",
     id: "clarityGoal",
     prompt: "What do you most want clarity on?",
     hint: "This shapes which lanes we suggest testing first.",
@@ -37,12 +65,14 @@ const steps: Step[] = [
   },
 ];
 
-export function Onboarding({ name, initial }: { name: string; initial: OnboardingAnswers }) {
+const pickFrom = (h: JobTitleHit): PickedTitle => ({ laneId: h.laneId, roleId: h.roleId, title: h.matched, laneName: h.laneName });
+
+export function Onboarding({ name, initial }: { name: string; initial: OnboardingState }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
   const reduce = useReducedMotion();
-  const [answers, setAnswers] = useState<OnboardingAnswers>(initial);
+  const [answers, setAnswers] = useState<OnboardingState>(initial);
   const [saving, startSaving] = useTransition();
   const [error, setError] = useState("");
   const focusRef = useRef<HTMLDivElement>(null);
@@ -53,23 +83,34 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
   const step = steps[n - 1];
 
   const go = useCallback((s: number | "done") => router.replace(`${pathname}?step=${s}`, { scroll: false }), [router, pathname]);
+  const advance = useCallback(() => go(n >= steps.length ? "done" : n + 1), [go, n]);
+
+  const answered = (s: Step) =>
+    s.kind === "choice" ? !!answers[s.id] : s.kind === "current" ? answers.currentAnswered && (answers.current === null || answers.years !== null) : true;
+
   const choose = useCallback(
-    (id: StepId, value: string) => {
+    (id: ChoiceId, value: string) => {
       setAnswers((a) => ({ ...a, [id]: value }));
-      window.setTimeout(() => go(n >= steps.length ? "done" : n + 1), 180);
+      window.setTimeout(advance, 180);
     },
-    [go, n],
+    [advance],
   );
+  const stepDone = !!step && answered(step);
   const next = useCallback(() => {
-    if (!step || !answers[step.id]) return;
-    go(n >= steps.length ? "done" : n + 1);
-  }, [step, answers, n, go]);
+    if (stepDone) advance();
+  }, [stepDone, advance]);
 
   function finish() {
     setError("");
     startSaving(async () => {
       try {
-        await saveOnboarding({ ageRange: answers.ageRange ?? "", situation: answers.situation ?? "", clarityGoal: answers.clarityGoal ?? "" });
+        await saveOnboarding({
+          ageRange: answers.ageRange ?? "",
+          situation: answers.situation ?? "",
+          clarityGoal: answers.clarityGoal ?? "",
+          current: answers.current ? { laneId: answers.current.laneId, roleId: answers.current.roleId, title: answers.current.title, years: answers.years } : null,
+          considering: answers.considering.map(({ laneId, roleId, title }) => ({ laneId, roleId, title })),
+        });
       } catch (e) {
         if (isNavigationError(e)) throw e;
         setError("Couldn't save. Check your connection and try again.");
@@ -81,9 +122,9 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
     function onKey(e: KeyboardEvent) {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       const tag = (e.target as HTMLElement).tagName;
-      if (!step) return;
-      const opt = step.options[Number(e.key) - 1];
-      if (opt) {
+      if (!step || tag === "INPUT" || tag === "TEXTAREA") return;
+      const opt = step.kind === "choice" ? step.options[Number(e.key) - 1] : undefined;
+      if (opt && step.kind === "choice") {
         e.preventDefault();
         choose(step.id, opt);
       } else if (e.key === "Enter" && tag !== "BUTTON" && tag !== "A") {
@@ -99,7 +140,7 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
     focusRef.current?.focus({ preventScroll: true });
   }, [n]);
 
-  const complete = steps.every((s) => answers[s.id]);
+  const complete = steps.every(answered);
 
   return (
     <div className="flex min-h-[calc(100dvh-3.5rem)] flex-col">
@@ -117,10 +158,10 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
               {done || !step ? (
                 <div>
                   <p className="label text-positive">Ready</p>
-                  <h1 className="mt-6 text-h1 font-medium text-ink">Thanks, {name}. Next: about 30 minutes of assessment.</h1>
+                  <h1 className="mt-6 text-h1 font-medium text-ink">Thanks, {name}. Next: the assessment.</h1>
                   <p className="mt-4 text-body-l text-ink-2">
-                    Four modules, any order, saved as you go. Your first Lane Map is ready as soon as interests and
-                    personality are done.
+                    Five sessions, about 135 minutes in total, saved as you go. The first session (about 22 minutes) gives you your interests and
+                    work values.
                   </p>
                   <p role="alert" className="mt-4 min-h-5 text-small text-caution">
                     {error || (!complete ? "One step is unanswered. Go back to finish it." : "")}
@@ -142,28 +183,117 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
                   <h1 className="mt-6 text-h1 font-medium text-ink">{step.prompt}</h1>
                   <p className="mt-3 text-body text-ink-3">{step.hint}</p>
 
-                  <fieldset className="mt-10">
-                    <legend className="sr-only">{step.prompt}</legend>
-                    <div className="flex flex-col border-t border-rule">
-                      {step.options.map((opt, i) => {
-                        const checked = answers[step.id] === opt;
-                        return (
-                          <label
-                            key={opt}
-                            className={cn(
-                              "grid h-14 cursor-pointer grid-cols-[32px_1fr_auto] items-center gap-4 border-b px-3 transition-quiet has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent",
-                              checked ? "border-ink bg-ink text-bg" : "border-rule text-ink hover:bg-surface",
-                            )}
+                  {step.kind === "choice" ? (
+                    <fieldset className="mt-10">
+                      <legend className="sr-only">{step.prompt}</legend>
+                      <div className="flex flex-col border-t border-rule">
+                        {step.options.map((opt, i) => {
+                          const checked = answers[step.id] === opt;
+                          return (
+                            <label
+                              key={opt}
+                              className={cn(
+                                "grid h-14 cursor-pointer grid-cols-[32px_1fr_auto] items-center gap-4 border-b px-3 transition-quiet has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent",
+                                checked ? "border-ink bg-ink text-bg" : "border-rule text-ink hover:bg-surface",
+                              )}
+                            >
+                              <input type="radio" name={step.id} value={opt} checked={checked} onChange={() => choose(step.id, opt)} className="sr-only" />
+                              <span className={cn("font-mono text-small", checked ? "text-bg" : "text-ink-3")}>{i + 1}</span>
+                              <span className="text-body">{opt}</span>
+                              <Kbd className={cn("hidden sm:inline-flex", checked && "border-bg/40 text-bg")}>{i + 1}</Kbd>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    </fieldset>
+                  ) : step.kind === "current" ? (
+                    <div className="mt-10">
+                      {answers.current ? (
+                        <>
+                          <div className="flex items-start justify-between gap-4 rounded-xs border border-ink bg-surface px-4 py-3">
+                            <div>
+                              <p className="text-body text-ink">{answers.current.title}</p>
+                              <p className="mt-0.5 label text-ink-3">Lane: {answers.current.laneName}</p>
+                            </div>
+                            <Button variant="ghost" size="sm" onClick={() => setAnswers((a) => ({ ...a, current: null, years: null, currentAnswered: false }))}>
+                              Change
+                            </Button>
+                          </div>
+                          <fieldset className="mt-8">
+                            <legend className="label text-ink-3">How long have you done it?</legend>
+                            <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                              {YEARS.map((y) => (
+                                <label
+                                  key={y.value}
+                                  className={cn(
+                                    "flex h-12 cursor-pointer items-center justify-center rounded-xs border px-2 text-center text-small transition-quiet has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent",
+                                    answers.years === y.value ? "border-ink bg-ink text-bg" : "border-rule text-ink hover:bg-surface",
+                                  )}
+                                >
+                                  <input type="radio" name="years" value={y.value} checked={answers.years === y.value} onChange={() => setAnswers((a) => ({ ...a, years: y.value }))} className="sr-only" />
+                                  {y.label}
+                                </label>
+                              ))}
+                            </div>
+                          </fieldset>
+                        </>
+                      ) : (
+                        <>
+                          <JobTitleSearch
+                            label="Search for your job title"
+                            autoFocus
+                            onSelect={(h) => setAnswers((a) => ({ ...a, current: pickFrom(h), years: null, currentAnswered: true }))}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setAnswers((a) => ({ ...a, current: null, years: null, currentAnswered: true }));
+                              advance();
+                            }}
+                            className="mt-4 label text-ink-3 transition-quiet hover:text-ink"
                           >
-                            <input type="radio" name={step.id} value={opt} checked={checked} onChange={() => choose(step.id, opt)} className="sr-only" />
-                            <span className={cn("font-mono text-small", checked ? "text-bg" : "text-ink-3")}>{i + 1}</span>
-                            <span className="text-body">{opt}</span>
-                            <Kbd className={cn("hidden sm:inline-flex", checked && "border-bg/40 text-bg")}>{i + 1}</Kbd>
-                          </label>
-                        );
-                      })}
+                            I&apos;m not working right now
+                          </button>
+                        </>
+                      )}
                     </div>
-                  </fieldset>
+                  ) : (
+                    <div className="mt-10">
+                      {answers.considering.length < MAX_CONSIDERING ? (
+                        <JobTitleSearch
+                          label="Search for a job you're considering"
+                          autoFocus
+                          onSelect={(h) =>
+                            setAnswers((a) =>
+                              a.considering.some((c) => c.laneId === h.laneId && c.title === h.matched) ? a : { ...a, considering: [...a.considering, pickFrom(h)].slice(0, MAX_CONSIDERING) },
+                            )
+                          }
+                        />
+                      ) : (
+                        <p className="text-small text-ink-3">That&apos;s three. Remove one to add another.</p>
+                      )}
+                      {answers.considering.length ? (
+                        <ul className="mt-6 flex flex-col border-t border-rule" aria-label="Jobs you're considering">
+                          {answers.considering.map((c) => (
+                            <li key={`${c.laneId}|${c.title}`} className="flex items-center justify-between gap-4 border-b border-rule py-3">
+                              <span>
+                                <span className="block text-body text-ink">{c.title}</span>
+                                <span className="block label text-ink-3">Lane: {c.laneName}</span>
+                              </span>
+                              <button
+                                type="button"
+                                aria-label={`Remove ${c.title}`}
+                                onClick={() => setAnswers((a) => ({ ...a, considering: a.considering.filter((x) => x !== c) }))}
+                                className="flex size-8 items-center justify-center rounded-xs text-ink-3 transition-quiet hover:bg-rule/60 hover:text-ink"
+                              >
+                                <X aria-hidden strokeWidth={1.5} className="size-4" />
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </div>
+                  )}
 
                   <div className="mt-10 flex items-center justify-between gap-4">
                     <Button variant="ghost" size="sm" onClick={() => go(n - 1)} disabled={n <= 1}>
@@ -173,8 +303,8 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
                       <span className="hidden label text-ink-3 sm:inline">
                         <Kbd>↵</Kbd> continue
                       </span>
-                      <Button onClick={next} disabled={!answers[step.id]}>
-                        Continue
+                      <Button onClick={next} disabled={!stepDone}>
+                        {step.kind === "considering" && !answers.considering.length ? "Skip" : "Continue"}
                       </Button>
                     </div>
                   </div>

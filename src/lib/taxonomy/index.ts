@@ -114,3 +114,34 @@ export const laneSummary = (l: Lane): LaneSummary => ({
   modes: laneModes(l),
   roleCount: l.roles.length,
 });
+
+/* ---------------------------------------------------------------- search ---- */
+
+import escoIndex from "./esco.generated.json";
+import { buildSearchIndex, searchTitles } from "./search";
+
+let searchIndex: ReturnType<typeof buildSearchIndex> | null = null;
+
+/** Job-title search over role titles, aliases and ESCO labels, resolved to lane and role names. */
+export function findJobTitles(query: string, limit = 8) {
+  searchIndex ??= buildSearchIndex(LANES, escoIndex as [string, string, string | null][]);
+  return searchTitles(searchIndex, query, limit).flatMap((h) => {
+    const lane = getLane(h.laneId);
+    if (!lane) return [];
+    const role = h.roleId ? getRole(h.roleId)?.role : undefined;
+    // ESCO's lane assignment was reviewed; its nearest role is approximate (taxonomy README), so an
+    // ESCO hit resolves to the lane only and the role is just a hint.
+    const approx = h.source === "esco";
+    return [
+      {
+        ...h,
+        roleId: approx ? null : h.roleId,
+        laneName: lane.name,
+        familyName: getFamily(lane.family)!.name,
+        roleTitle: approx ? null : (role?.title ?? null),
+        nearestRole: approx ? (role?.title ?? null) : null,
+      },
+    ];
+  });
+}
+export type JobTitleHit = ReturnType<typeof findJobTitles>[number];

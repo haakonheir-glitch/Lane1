@@ -1,8 +1,11 @@
 /**
- * Generates src/lib/taxonomy/generated.ts from the shape of taxonomy/taxonomy.json.
+ * Generates, from ./taxonomy:
+ *   src/lib/taxonomy/generated.ts       TypeScript types, from the shape of taxonomy.json
+ *   src/lib/taxonomy/esco.generated.json [label, laneId, roleId][] from esco_mapping.csv, so the
+ *                                        job-title search index is bundled at build time
  *
- *   npm run taxonomy:types            write the file
- *   npm run taxonomy:types -- --check exit 1 if the file is out of date (used by tests/CI)
+ *   npm run taxonomy:types            write the files
+ *   npm run taxonomy:types -- --check exit 1 if either file is out of date (used by tests)
  *
  * Object shapes (Family, Lane, Role, Ladder, …) are inferred from every instance in the JSON:
  * a key missing from some instances becomes optional. String fields whose values come from one
@@ -14,6 +17,7 @@ import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const OUT = `${root}src/lib/taxonomy/generated.ts`;
+const ESCO_OUT = `${root}src/lib/taxonomy/esco.generated.json`;
 const tax = JSON.parse(readFileSync(`${root}taxonomy/taxonomy.json`, "utf8"));
 
 const lanes = tax.families.flatMap((f: { lanes: unknown[] }) => f.lanes) as Record<string, unknown>[];
@@ -112,22 +116,60 @@ export interface Taxonomy {
 }
 `;
 
-if (process.argv.includes("--check")) {
-  const current = (() => {
-    try {
-      return readFileSync(OUT, "utf8");
-    } catch {
-      return "";
-    }
-  })();
-  if (current !== out) {
-    console.error("src/lib/taxonomy/generated.ts is out of date. Run: npm run taxonomy:types");
-    process.exit(1);
+/** Minimal RFC 4180 parser: quoted fields may contain commas and doubled quotes. */
+function parseCsv(text: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let field = "";
+  let quoted = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i]!;
+    if (quoted) {
+      if (c === '"' && text[i + 1] === '"') {
+        field += '"';
+        i++;
+      } else if (c === '"') quoted = false;
+      else field += c;
+    } else if (c === '"') quoted = true;
+    else if (c === ",") {
+      row.push(field);
+      field = "";
+    } else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      row.push(field);
+      if (row.some((f) => f !== "")) rows.push(row);
+      row = [];
+      field = "";
+    } else field += c;
   }
-  console.log("Taxonomy types are up to date.");
-} else {
-  writeFileSync(OUT, out);
-  console.log(`Wrote ${OUT}`);
+  if (field !== "" || row.length) rows.push([...row, field]);
+  return rows;
 }
 
-export { out as generatedSource };
+const [header, ...escoRows] = parseCsv(readFileSync(`${root}taxonomy/esco_mapping.csv`, "utf8"));
+const col = (name: string) => header!.indexOf(name);
+const [iLabel, iLane, iRole] = [col("esco_label"), col("lane_id"), col("role_id")];
+if (iLabel < 0 || iLane < 0 || iRole < 0) throw new Error("esco_mapping.csv: expected esco_label, lane_id and role_id columns");
+const esco = JSON.stringify(escoRows.map((r) => [r[iLabel], r[iLane], r[iRole] || null])) + "\n";
+
+const outputs: [string, string][] = [
+  [OUT, out],
+  [ESCO_OUT, esco],
+];
+if (process.argv.includes("--check")) {
+  const stale = outputs.filter(([path, content]) => {
+    try {
+      return readFileSync(path, "utf8") !== content;
+    } catch {
+      return true;
+    }
+  });
+  if (stale.length) {
+    console.error(`Out of date: ${stale.map(([p]) => p.replace(root, "")).join(", ")}. Run: npm run taxonomy:types`);
+    process.exit(1);
+  }
+  console.log("Taxonomy types and ESCO index are up to date.");
+} else {
+  for (const [path, content] of outputs) writeFileSync(path, content);
+  console.log(`Wrote ${outputs.map(([p]) => p.replace(root, "")).join(", ")}`);
+}
