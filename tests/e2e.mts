@@ -46,14 +46,35 @@ await p.fill("#email", email);
 await p.fill("#password", password);
 await p.click("button[type=submit]");
 await waitPath("/start");
-for (let i = 0; i < 3; i++) {
+// Age and situation by keyboard
+for (let i = 0; i < 2; i++) {
   await p.waitForTimeout(300);
   await p.keyboard.press("2");
 }
+// What do you do now: job-title search (Norwegian alias) + years
+await p.waitForURL(/step=3/);
+await p.getByRole("combobox").fill("salgssjef");
+await p.getByRole("option").first().waitFor();
+await p.keyboard.press("Enter");
+await p.getByText("1–2 years").click();
+await p.getByRole("button", { name: "Continue" }).click();
+// What are you considering: two picks, one resolved through an alias
+await p.waitForURL(/step=4/);
+for (const q of ["YouTuber", "rørlegger"]) {
+  await p.getByRole("combobox").fill(q);
+  await p.getByRole("option").first().waitFor();
+  await p.getByRole("option").first().click();
+  await p.waitForTimeout(150);
+}
+await p.getByRole("button", { name: "Continue" }).click();
+// Clarity goal
+await p.waitForURL(/step=5/);
+await p.waitForTimeout(300);
+await p.keyboard.press("2");
 await p.waitForURL(/step=done/);
 await p.getByRole("button", { name: "Go to assessment" }).click();
 await waitPath("/assess");
-log("signed up and onboarded");
+log("signed up and onboarded (current job, years, two considered lanes)");
 
 /** The persona's answer for a questionnaire step (same logic as scripts/seed.mts). */
 function persona(sessionId: SessionId, position: number) {
@@ -235,8 +256,8 @@ async function runSession(sessionId: SessionId) {
   log(`${sessionId} done (${[...seen].join(", ")}) → “${outro}”`);
 }
 
-// SESSIONS=S4,S5 runs a subset (useful when debugging one task).
-const only = (process.env.SESSIONS?.split(",") ?? ["S1", "S2", "S3", "S4", "S5"]) as SessionId[];
+// SESSIONS=S4,S5 runs a subset (useful when debugging one task); SESSIONS= (empty) skips the assessment.
+const only = (process.env.SESSIONS !== undefined ? process.env.SESSIONS.split(",").filter(Boolean) : ["S1", "S2", "S3", "S4", "S5"]) as SessionId[];
 try {
   for (const s of only) await runSession(s);
 } catch (e) {
@@ -244,15 +265,36 @@ try {
   console.error("Screenshot: e2e-failure.png");
   throw e;
 }
-if (only.length < 5) {
-  await b.close();
-  process.exit(errors.length ? 1 : 0);
+if (only.length === 5) {
+  await p.goto(base + "/assess");
+  const doneCount = await p.getByText(/^Done/).count();
+  if (doneCount !== 5) throw new Error(`hub: expected 5 sessions done, saw ${doneCount}`);
+  log("hub: 5 sessions marked done");
 }
 
-// Hub shows everything complete
-await p.goto(base + "/assess");
-const doneCount = await p.getByText(/^Done/).count();
-log(`hub: ${doneCount} sessions marked done`);
+// Lane Map: onboarding answers show up, filters work client-side, a lane opens, plans exist
+await p.goto(base + "/lanes");
+await p.getByText("Your current lane").first().waitFor();
+const considering = await p.locator("span.label", { hasText: /^Considering$/ }).count();
+if (considering !== 2) throw new Error(`lanes: expected 2 considered lanes, saw ${considering}`);
+const summary = () => p.locator("p.mt-8 span.label").first().innerText();
+const before = await summary();
+await p.getByRole("button", { name: /^Interview & shadow/ }).click();
+await p.waitForFunction((b) => document.querySelector("p.mt-8 span.label")?.textContent !== b, before);
+log(`lane filters: ${before} → ${await summary()}`);
+await p.getByRole("button", { name: "Clear filters" }).first().click();
+await p.goto(base + "/lanes?lane=b2b_sales");
+const panel = p.locator("[aria-labelledby] h2", { hasText: "B2B sales" }).first();
+await panel.waitFor();
+await p.getByText(/^You are here$/i).first().waitFor();
+await p.getByText(/^You'd start here$/i).first().waitFor();
+log("lane detail: current job marked, entry point highlighted");
+for (const [id, h1] of [["b2b_sales", /for real/], ["software_engineering", /^Practice tasks/], ["legal_practice", /^Interview and shadow/]] as const) {
+  await p.goto(`${base}/lanes/${id}/plan`);
+  const text = await p.locator("h1").innerText();
+  if (!h1.test(text)) throw new Error(`plan ${id}: unexpected heading "${text}"`);
+}
+log("plans: real sprint, practice tasks, interview & shadow");
 
 // Pages render
 for (const path of ["/profile", "/lanes", "/sprints", "/evidence", "/settings", "/method", "/system"]) {
@@ -270,8 +312,10 @@ const data = JSON.parse(await (await import("node:fs/promises")).readFile(file!,
 type ExportSession = { sessionId: string; responses: unknown[]; trials: unknown[]; scores: unknown };
 const xs = data.sessions as ExportSession[];
 const sum = (f: (x: ExportSession) => number) => xs.reduce((n, x) => n + f(x), 0);
-if (xs.length !== 5 || xs.some((x) => !x.scores)) throw new Error("export: expected 5 scored sessions");
-log(`export: ${xs.length} sessions, ${sum((x) => x.responses.length)} responses, ${sum((x) => x.trials.length)} trials, all scored`);
+const scored = xs.filter((x) => x.scores).length;
+if (scored !== only.length) throw new Error(`export: expected ${only.length} scored sessions, found ${scored}`);
+if (data.onboarding?.currentLaneId !== "b2b_sales" || data.onboarding?.considering?.length !== 2) throw new Error("export: onboarding answers missing");
+log(`export: ${xs.length} sessions (${scored} scored), ${sum((x) => x.responses.length)} responses, ${sum((x) => x.trials.length)} trials, onboarding answers included`);
 
 await b.close();
 if (errors.length) {

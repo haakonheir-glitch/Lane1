@@ -1,6 +1,6 @@
 # Lane — Plan v0.3 (assessment package integration)
 
-Status: assessment integration **built** on `functional-backend` (sections 5–9; norms still blocked, D2/D24). Taxonomy integration (section 10) **awaiting approval**.
+Status: assessment integration **built** on `functional-backend` (sections 5–9; norms still blocked, D2/D24). Taxonomy integration (section 10) **built**; 10.7 records what changed during the build.
 
 Inputs, in priority order:
 
@@ -334,7 +334,7 @@ Conflicts and gaps between the two specs, and how this plan resolves them.
 
 ---
 
-## 10. Taxonomy integration (plan, awaiting approval)
+## 10. Taxonomy integration
 
 The 34 hand-written lanes and their four groups are replaced by `./taxonomy`: 34 families, 205 lanes, 1,883 roles. The files are unchanged from the zip. `python3 taxonomy/build/build.py` reproduces `taxonomy.json` byte for byte, so the build is a reliable way to make changes.
 
@@ -456,8 +456,23 @@ Unit tests (Vitest) use hand-built profiles:
 - **D38 — Lane drivers.** The old hand-written drivers ("Reasoning (matrices and series)" and so on) are replaced by the constructs that actually drive each lane's fit.
 - **D39 — App language.** The app stays in English. Norwegian aliases work in search only.
 
-### 10.6 Open questions (I'll use the recommended default unless you say otherwise)
+### 10.6 Open questions (approved with the recommended defaults)
 
 - **Q5 — README exclusions.** Sex work and adult content, gambling (beyond skill-based play) and subsistence work are excluded. *Recommended:* keep the exclusions as delivered.
 - **Q6 — Experience question in onboarding** (D34). *Recommended:* yes. Without it, every lane starts the person at trainee or entry level.
 - **Q7 — ESCO data.** The README says to rerun the mapping against the official ESCO download before launch. *Recommended:* use the bundled mapping now and add it to the launch checklist in README.
+
+### 10.7 Decisions made during the build
+
+- **D40 — Bands use the pairwise form of the BLUEPRINT rule.** Comparing each lane only with the person's *average* lane put 73 of 205 lanes in "strong fit". The final rule is the blueprint's own relative-strength test, applied to lanes:
+  - **Strong fit:** clearly above more than half of the person's other lanes.
+  - **Unlikely:** clearly below more than half.
+  - **"Clearly":** the difference exceeds 1.96 × its standard error, and constructs two lanes share cancel out of that error.
+  - With the sample persona and placeholder reliabilities, this gives 65 strong / 73 worth testing / 67 unlikely. The persona is strongly Enterprising, and real reliabilities will widen the errors.
+- **D41 — Owner roles start only on the founder ladder** (narrows D36). On the creator and independent ladders, owning the business is the top of the path ("Creator-led media company founder" came out as a starting role before this change).
+- **D42 — ESCO hits resolve to the lane only.** The taxonomy README says ESCO's lane assignment was reviewed but its nearest role is approximate. A search hit from ESCO therefore doesn't set an entry level, and its role is shown only as a hint. Curated roles and aliases outrank ESCO labels at equal match quality.
+- **D43 — ESCO index at build time.** `esco_mapping.csv` is converted to `src/lib/taxonomy/esco.generated.json` by the same generator as the types, and the staleness test covers both. A few labels in the bundled ESCO copy are truncated (e.g. "heating, ventilation, air"). They're left unchanged and listed in README "Before launch".
+- **D44 — Behaviour constructs don't resolve yet.** `behaviour.balloon` and `behaviour.learning_rate` have no norms, so they can't be placed on a z scale. They're skipped like the experimental scales.
+- **D45 — Plans are templates.** Next-step plans are filled from the lane's demand tags and roles (one practice task per tag; a fixed interview question set). Shadow plans name mid-level practitioners to interview, not the trainee roles.
+- **D46 — Onboarding.** Two steps were added after "situation": the current job (search plus years, or "not working right now") and up to three considered jobs. The server checks every lane and role id against the taxonomy before saving (migration 0002). The closing screen now describes the five-session battery.
+- **D47 — Filters and sorting don't call the server.** They update the URL with the History API. Only opening a lane fetches its detail, so the 1,883 roles never reach the browser; the built client JS was checked for taxonomy and ESCO strings.

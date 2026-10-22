@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Method",
-  description: "How Lane builds a profile, ranks lanes, runs sprints and weighs evidence, and where the science stops.",
+  description: "How Lane builds a profile, matches it to 205 lanes, runs sprints and weighs evidence, and where the science stops.",
 };
 
 const references = [
@@ -73,7 +73,7 @@ export default function MethodPage() {
             ["01", "The question", "#m-01"],
             ["02", "The profile", "#m-02"],
             ["02b", "Norms and intervals", "#norms"],
-            ["03", "Relative ranking", "#m-03"],
+            ["03", "Lanes and fit bands", "#m-03"],
             ["04", "Payoff structure", "#m-04"],
             ["05", "Sprints", "#m-05"],
             ["06", "Evidence", "#m-06"],
@@ -177,24 +177,38 @@ export default function MethodPage() {
             </div>
           </section>
 
-          <Section n="03" title="Relative ranking">
+          <Section n="03" title="Lanes and fit bands">
             <p>
-              The Lane Map is <em>ipsative</em>: each lane is scored against your own spread of traits, not against other
-              people. If your strongest trait is average by population standards, it is still your strongest trait, and
-              the lanes that use it rank highest for you.
+              Lane maps 205 lanes in 34 families, with 1,883 roles, checked against the international occupation classifications (ISCO-08 and the
+              EU&apos;s ESCO) so that nothing people are paid to do is missing, plus the lanes those lists miss, such as creators and founders.
             </p>
             <p>
-              Every score carries an 80% interval. When two lanes&apos; scores are within 2.5 points, we show them as
-              tied rather than pretend to an order the data cannot support.
+              The Lane Map is <em>ipsative</em>: each lane is scored against your own spread of traits, not against other people. If your
+              strongest trait is average by population standards, it is still your strongest trait, and the lanes that use it fit you best.
+              Half of a lane&apos;s fit comes from your interests (its RIASEC code), half from what the work demands (persuasion, analysis,
+              precision and so on), each linked to the scales that measure it. Lane&apos;s experimental scales don&apos;t count until a pilot
+              validates them.
+            </p>
+            <p>
+              We show bands, not ranks. With 205 lanes, number 5 and number 25 are often the same within measurement error. A lane is a{" "}
+              <strong className="font-medium text-ink">strong fit</strong> only when it is clearly ahead of more than half of your other lanes
+              after allowing for that error, and <strong className="font-medium text-ink">unlikely</strong> when it is clearly behind; the rest
+              are worth testing.
+            </p>
+            <p>
+              We match you to lanes, not to job titles: a questionnaire can tell sales from software, but not a junior seller from a head of
+              sales. Inside a lane, roles are suggested from where you could realistically start, and never at manager level.
             </p>
           </Section>
 
           <Section n="04" title="Payoff structure">
             <p>
               Lanes pay out differently. In <strong className="font-medium text-ink">linear</strong> lanes, a competent
-              practitioner earns a decent living. In <strong className="font-medium text-ink">convex</strong> lanes,
-              rewards accelerate with skill. In <strong className="font-medium text-ink">winner-take-all</strong> lanes,
-              a small top tier captures most of the reward.<Cite n={[7, 8]} />
+              practitioner earns a decent living, and <strong className="font-medium text-ink">high-floor</strong> lanes pay
+              well from the start. In <strong className="font-medium text-ink">convex</strong> lanes, rewards accelerate with
+              skill; <strong className="font-medium text-ink">steep</strong> lanes are up-or-out or equity-heavy. In{" "}
+              <strong className="font-medium text-ink">winner-take-all</strong> lanes, a small top tier captures most of the
+              reward and the median earns little, and we say so on every one of them.<Cite n={[7, 8]} />
             </p>
             <p>
               &ldquo;Fit × payoff&rdquo; places you on each curve at a realistic skill level, with an interval, and

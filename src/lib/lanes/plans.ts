@@ -89,13 +89,15 @@ export function planFor(lane: Lane, startRoles: Role[]): Plan {
       measure: ["How long each task took you", "Which task you'd happily do again", "Feedback from one practitioner"],
     };
   }
+  // Interview people who practise the work (mid level), not the trainees you'd start beside.
+  const practitioners = list(titles(lane.roles.filter((r) => r.level === "mid"))) || roleText;
   return {
     kind: "shadow",
     title: `Interview and shadow: ${lane.name.toLowerCase()}`,
     intro: `${lane.name} is licensed or safety-critical work, so you can't try it directly. Talk to people who do it, then watch a day of it.`,
     duration: "2–3 weeks",
     steps: [
-      { title: "Find three practitioners", detail: `Look for people working as ${roleText}. Alumni, LinkedIn and local employers work well.` },
+      { title: "Find three practitioners", detail: `Look for people working as ${practitioners}. Alumni, LinkedIn and local employers work well.` },
       { title: "Hold three short interviews", detail: SHADOW_QUESTIONS.join(" ") },
       { title: "Ask for a shadow day", detail: "Ask one of them if you can spend a day alongside them, or visit an open day or a job fair." },
       { title: "Do one related task", detail: PRACTICE[tags[0] ?? "practice"] },

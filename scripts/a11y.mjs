@@ -4,7 +4,7 @@ import { chromium } from "playwright";
 import { AxeBuilder } from "@axe-core/playwright";
 
 const base = process.argv[2] ?? "http://localhost:3000";
-const routes = ["/", "/method", "/system", "/login", "/signup", "/start", "/assess", "/assess/S1", "/assess/S2", "/assess/S3", "/profile", "/lanes", "/lanes?lane=sales-b2b", "/sprints/sp-sales-calls", "/sprints", "/evidence", "/settings"];
+const routes = ["/", "/method", "/system", "/login", "/signup", "/start", "/assess", "/assess/S1", "/assess/S2", "/assess/S3", "/profile", "/lanes", "/lanes?lane=b2b_sales", "/lanes?lane=film_tv&view=band", "/lanes/legal_practice/plan", "/start?step=3", "/sprints/sp-sales-calls", "/sprints", "/evidence", "/settings"];
 
 // Sign in (demo account from `npm run seed` by default) so app pages render with data.
 async function signIn(ctx) {

@@ -1,6 +1,6 @@
 # Lane
 
-*Evidence, not horoscopes.* Lane helps people find the line of work they're best suited to: a profile from five assessment sessions built on validated public instruments, a Lane Map ranked against the person's own strengths, short real-world trials ("sprints"), and an evidence record that updates as they go.
+*Evidence, not horoscopes.* Lane helps people find the line of work they're best suited to: a profile from five assessment sessions built on validated public instruments, a Lane Map of 205 lanes in fit bands against the person's own strengths, short real-world trials ("sprints"), and an evidence record that updates as they go.
 
 Accounts, answers, scores, sprints and evidence are saved to a Postgres database.
 
@@ -53,8 +53,12 @@ DATABASE_URL="postgresql://…" npm run seed -- --force
 | **Sessions** | `/assess` lists S1–S5 with minutes and what each unlocks. Each answer is saved as it is given, with its response time (from paint to answer), device class and input type. Reload resumes in place. A timed task that was interrupted restarts with fresh items. |
 | **Cognitive tasks** | 12 generated tasks (matrices, number and letter series, quantitative, 2D rotation, backward digits, Corsi, symbol match, choice RT, learning rate, balloon, delay discounting). Items come from `assessment/generators/generators.ts` with a per-user seed (`src/lib/bank/seed.ts`). Answer keys, explosion points and the learning mapping stay on the server (`src/lib/assess/tasks.ts`); the browser gets render data only. |
 | **Scoring** | Pure, tested functions in `src/lib/scoring/`: IPIP-NEO-120 facets and domains, Honesty-Humility, O*NET® Interest Profiler sums and Holland code, Work Importance Locator, cognitive accuracy, span, speed, learning, risk and patience, validity flags and confidence, and the BLUEPRINT §7 maths (90% intervals, the relative-strength test). Lane's experimental scales are scored but marked hidden. |
+| **Lane taxonomy** | `taxonomy/` (unchanged from the delivered zip): 34 families, 205 lanes, 1,883 roles, with ladders, payoff curves, entry routes, sprint feasibility and tag-to-assessment links. `src/lib/taxonomy/` loads `taxonomy.json` at build time with generated types and validates it. Don't edit `taxonomy.json` by hand: edit `taxonomy/src/*.txt`, then run `npm run taxonomy:build`. |
+| **Lane matching** | One pure function, `matchLanes()` in `src/lib/matching/`, takes a profile in the scoring output shape. Fit is relative to the person's own average: half RIASEC congruence, half the lane's demand tags scored through `tag_to_constructs`. Only validated scales count (experimental ones are listed as "not counted yet"). Lanes go into bands (strong fit / worth testing / unlikely) by the BLUEPRINT reliability rule, never a 1–205 ranking. Roles inside a lane are ranked by their tags, starting from the person's realistic entry point; management roles are never recommended as a start. |
+| **Lane Map** | `/lanes`: grouped by family or by band, with filters for family, work mode, payoff, entry route and sprint feasibility, and the fit / fit × payoff toggle. The detail panel shows the fit drivers, the top starting roles with reasons, every role on the lane's ladder with the entry point highlighted, the payoff curve, and the next step: a real sprint (direct lanes), practice tasks (simulated) or an interview-and-shadow plan (shadow), at `/lanes/[lane]/plan`. Winner-take-all lanes always say the median income is low. |
+| **Job-title search** | Onboarding asks what you do now (and for how long) and what you're considering. `GET /api/taxonomy/search` matches role titles and aliases first (Norwegian included), then the 3,039 ESCO occupation labels, and resolves to a lane. |
 | **Results** | **Sample for now.** `/profile` and `/lanes` show a sample profile, computed by running a persona's answers through the real scoring code. Real results need the published norms and reliabilities in `src/lib/scoring/psychometrics.ts`, which are not transcribed yet (see PLAN D24). Your own answers and scores are saved and included in the export. |
-| **Sprints, evidence** | Sample data for now; interactions on the sprint page aren't saved. |
+| **Sprints, evidence** | Sample data for now; interactions on the sprint page aren't saved. In lanes that can't be tried directly, the sample entries are practice tasks, not sprints. |
 | **Your data** | Settings → **Export data** downloads your sessions, answers, task trials and scores as JSON. **Delete account** (password required) removes everything immediately. |
 
 ## Commands
@@ -64,7 +68,9 @@ DATABASE_URL="postgresql://…" npm run seed -- --force
 | `npm run dev` | Development server |
 | `npm run build` / `npm start` | Apply migrations, build, then serve |
 | `npm test` | Item-bank, scoring and generator tests (Vitest) |
-| `npm run e2e -- [url]` | Browser run-through as a new user: sign up, all five sessions (every question format and task), app pages, export. Takes about 15 minutes because the timed tasks run in real time. |
+| `npm run e2e -- [url]` | Browser run-through as a new user: sign up, onboarding with job-title search, all five sessions (every question format and task), Lane Map filters, lane detail, plans, app pages, export. Takes about 15 minutes because the timed tasks run in real time; `SESSIONS= npm run e2e` skips the assessment (about a minute). |
+| `npm run taxonomy:build` | Rebuild `taxonomy.json` from `taxonomy/src/*.txt` (Python 3) and regenerate the TypeScript types and ESCO search index |
+| `npm run taxonomy:types` | Regenerate only the types and ESCO index (a test fails when they're out of date) |
 | `npm run seed` | Create or reset the demo account (S1 and S2 completed) |
 | `npm run db:generate` | Create a migration after changing `src/lib/db/schema.ts` |
 | `npm run shoot -- [url]` / `npm run a11y -- [url]` | Screenshots at 390/1440 px in both themes, and an axe WCAG audit. Both sign in as the demo account. |
@@ -76,6 +82,7 @@ The browser scripts use Playwright. If its browser isn't installed, run `npx pla
 
 ```
 assessment/                 the assessment package, as delivered (items, manifest, generators)
+taxonomy/                   the lane taxonomy, as delivered (src, build, taxonomy.json, ESCO mapping)
 src/
 ├─ proxy.ts                 sends signed-out visitors to /login
 ├─ app/
@@ -84,6 +91,7 @@ src/
 │  ├─ (onboarding)/start/   onboarding questions
 │  ├─ (app)/                assess, assess/[session], profile, lanes, sprints, evidence, settings
 │  ├─ api/assess/[session]/ state, answer, task, retake (route handlers)
+│  ├─ api/taxonomy/search/  job-title search
 │  ├─ api/export/           JSON data export
 │  └─ system/               design-system specimens
 ├─ components/              UI components (see /system); assess/items and assess/tasks are the renderers
@@ -91,13 +99,22 @@ src/
    ├─ bank/                 package loader, Zod schemas, session plans, seeds, client payload types
    ├─ assess/               session service and task engine (server only)
    ├─ scoring/              pure scoring functions
+   ├─ taxonomy/             taxonomy loader, generated types, ESCO index, job-title search
+   ├─ matching/             lane fit, bands, entry points, role ranking, payoff curves (pure)
+   ├─ lanes/                Lane Map view types, labels and next-step plans
    ├─ db/                   Drizzle schema + client (Postgres or local PGlite)
    ├─ auth.ts               sessions, password hashing, requireUser()
    ├─ data/                 data access for pages (real sessions; sample results)
-   └─ mock/                 sample profile, lanes, sprints, evidence
+   └─ mock/                 sample profile, sprints, evidence
 drizzle/                    SQL migrations
-scripts/                    migrate, seed, screenshots, a11y
+scripts/                    migrate, seed, taxonomy types, screenshots, a11y
 tests/                      Vitest suites, end-to-end run
 ```
 
 Design decisions are recorded in [`PLAN.md`](PLAN.md) (sections 7 and 9).
+
+## Before launch
+
+- Transcribe the published norms and reliabilities into `src/lib/scoring/psychometrics.ts` (PLAN D24).
+- Rerun the ESCO mapping against the official ESCO download (`python3 taxonomy/build/map_esco.py occupations_en.csv`), as the taxonomy README says. The bundled copy has a few truncated labels (for example "heating, ventilation, air").
+- Confirm the taxonomy's deliberate exclusions (taxonomy README, "Deliberate exclusions").
