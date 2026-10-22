@@ -33,7 +33,7 @@ Sign in as **demo@lane.local** / **lane-demo-2026**. Running the seed again rese
 
 The Profile report page can have Claude write your report from your scores. It needs an Anthropic API key:
 
-1. Create a key in the Anthropic Console (https://console.anthropic.com → API keys). Copy the secret when it's shown: it starts with `sk-ant-` and is shown only once. (The `apikey_01…` value in the key list is just its ID.)
+1. Create a key in the Anthropic Console (https://console.anthropic.com → API keys), **inside a workspace** (for example "Default"). Copy the secret when it's shown: it starts with `sk-ant-` and is shown only once. (The `apikey_01…` value in the key list is just its ID.) A key that isn't tied to a workspace also works if you add `ANTHROPIC_WORKSPACE_ID=<workspace id>` to `.env.local`.
 2. In the project folder, create a file named `.env.local` containing one line:
    ```
    ANTHROPIC_API_KEY=sk-ant-…your key…

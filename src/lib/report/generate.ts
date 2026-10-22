@@ -21,7 +21,9 @@ function client(): ParseClient {
   if (!process.env.ANTHROPIC_API_KEY) {
     throw new ReportError("The written report isn't set up yet: add your Anthropic API key as ANTHROPIC_API_KEY in .env.local, then restart the app.");
   }
-  defaultClient ??= new Anthropic();
+  // A key that isn't scoped to a workspace needs the workspace named on every request.
+  const workspace = process.env.ANTHROPIC_WORKSPACE_ID;
+  defaultClient ??= new Anthropic(workspace ? { defaultHeaders: { "anthropic-workspace-id": workspace } } : {});
   return defaultClient;
 }
 
@@ -51,6 +53,10 @@ async function ask(c: ParseClient, facts: ReportFacts, correction?: string) {
     return { report: res.parsed_output, model: res.model };
   } catch (e) {
     if (e instanceof ReportError) throw e;
+    if (e instanceof Anthropic.BadRequestError && /workspace/i.test(e.message))
+      throw new ReportError(
+        "This API key isn't tied to a workspace. Create a new key inside a workspace in the Anthropic Console (API keys → choose the workspace → Create key), or add ANTHROPIC_WORKSPACE_ID=<workspace id> to .env.local.",
+      );
     if (e instanceof Anthropic.AuthenticationError) throw new ReportError("Anthropic rejected the API key. Check ANTHROPIC_API_KEY in .env.local (it starts with sk-ant-).");
     if (e instanceof Anthropic.PermissionDeniedError) throw new ReportError("This API key isn't allowed to use the model. Check the key's workspace in the Anthropic Console.");
     if (e instanceof Anthropic.RateLimitError) throw new ReportError("Too many requests right now. Try again in a minute.");

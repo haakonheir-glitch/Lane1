@@ -1,4 +1,5 @@
 import { beforeAll, describe, expect, it, vi } from "vitest";
+import Anthropic from "@anthropic-ai/sdk";
 import { addSelfScores } from "@/lib/scoring/self";
 import { sampleProfile } from "@/lib/mock/profile";
 import { buildReportFacts, type ReportLane } from "@/lib/report/facts";
@@ -82,6 +83,14 @@ describe("writeReport", () => {
   it("rejects the report if the rewrite still invents figures", async () => {
     const { client } = fakeClient(report("Top 87%."), report("Top 91%."));
     await expect(writeReport(facts, client)).rejects.toBeInstanceOf(ReportError);
+  });
+
+  it("explains a key that isn't scoped to a workspace", async () => {
+    const msg = "This API key is not scoped to a workspace, so this request must include the anthropic-workspace-id header.";
+    const parse = vi.fn(async () => {
+      throw new Anthropic.BadRequestError(400, { type: "error", error: { type: "invalid_request_error", message: msg } }, msg, new Headers());
+    });
+    await expect(writeReport(facts, { beta: { messages: { parse } } } as never)).rejects.toThrow(/isn't tied to a workspace/);
   });
 
   it("turns a refusal into a readable error", async () => {
