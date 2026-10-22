@@ -27,38 +27,6 @@ export type User = {
 export type RiasecKey = "R" | "I" | "A" | "S" | "E" | "C";
 export type RiasecDimension = { key: RiasecKey; label: string; score: Score };
 
-export type LaneGroup = "corporate" | "independent" | "performance" | "craft";
-export type PayoffType = "linear" | "convex" | "winner-take-all";
-
-export type LaneDriver = { label: string; contribution: number };
-
-export type Lane = {
-  id: string;
-  name: string;
-  group: LaneGroup;
-  payoff: PayoffType;
-  summary: string;
-  /** Ipsative fit: relative to the user's own spread of scores, not to other people. */
-  relativeFit: Score;
-  /** Estimated position on the payoff curve at a realistic skill level (0–1 percentile). */
-  payoffPosition: number;
-  payoffPositionCi: [number, number];
-  confidence: Confidence;
-  drivers: LaneDriver[];
-  /** Other people who completed a sprint in this lane, and the share who wanted to continue. */
-  similar: { n: number; continuedPct: number | null };
-};
-
-export type RankedLane = Lane & {
-  rank: number;
-  tied: boolean;
-  expectedPayoff: number;
-  /** The score used for the active sort, 0–100. */
-  sortScore: Score;
-};
-
-export type LaneSort = "fit" | "fit-payoff";
-
 export type OnboardingAnswers = { ageRange: string | null; situation: string | null; clarityGoal: string | null };
 
 export type SprintStatus = "active" | "completed" | "suggested";
@@ -81,6 +49,8 @@ export type SprintOutcome = {
 
 export type Sprint = {
   id: string;
+  /** "sprint" only in lanes where the real work can be done (taxonomy sprint = direct); otherwise practice tasks. */
+  kind: "sprint" | "practice";
   templateId: string;
   laneId: string;
   title: string;

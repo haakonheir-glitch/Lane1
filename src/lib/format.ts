@@ -1,4 +1,4 @@
-import type { Confidence, LaneGroup, Score } from "./types";
+import type { Confidence, Score } from "./types";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -68,9 +68,3 @@ export function fmtTimer(seconds: number): string {
 
 export const confidenceLabel: Record<Confidence, string> = { high: "High", med: "Medium", low: "Low" };
 
-export const groupLabel: Record<LaneGroup, string> = {
-  corporate: "Corporate",
-  independent: "Independent",
-  performance: "Performance",
-  craft: "Craft",
-};

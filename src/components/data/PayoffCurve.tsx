@@ -1,6 +1,6 @@
-import { payoffCurve, payoffLabel } from "@/lib/lanes/payoff";
-import type { PayoffType } from "@/lib/types";
-import { curvePath } from "./PayoffGlyph";
+import { payoffCurve, payoffLabel } from "@/lib/matching/payoff";
+import type { PayoffId } from "@/lib/taxonomy/generated";
+import { curvePath, round2 } from "./PayoffGlyph";
 
 const W = 400;
 const H = 200;
@@ -15,14 +15,14 @@ export function PayoffCurve({
   position,
   positionCi,
 }: {
-  type: PayoffType;
+  type: PayoffId;
   position: number;
   positionCi: [number, number];
 }) {
   const pw = W - L - R;
   const ph = H - T - B;
-  const sx = (x: number) => L + x * pw;
-  const sy = (y: number) => T + (1 - y) * ph;
+  const sx = (x: number) => round2(L + x * pw);
+  const sy = (y: number) => round2(T + (1 - y) * ph);
   const path = curvePath(type, pw, ph, 0);
   const y = payoffCurve(type, position);
 
@@ -46,7 +46,8 @@ export function PayoffCurve({
       {/* user marker */}
       <line x1={sx(position)} x2={sx(position)} y1={sy(y)} y2={T + ph} className="stroke-accent" strokeWidth={1} />
       <circle cx={sx(position)} cy={sy(y)} r={4} className="fill-accent" />
-      <text x={sx(position) + 8} y={sy(y) + 16} className="fill-accent" fontSize={10}>
+      {/* Label flips to the left of the marker near the right edge so it isn't clipped. */}
+      <text x={position > 0.75 ? sx(position) - 8 : sx(position) + 8} y={sy(y) + 16} textAnchor={position > 0.75 ? "end" : "start"} className="fill-accent" fontSize={10}>
         YOU (EST.)
       </text>
       {/* labels */}

@@ -31,8 +31,10 @@ import { ProgressBar } from "@/components/assess/ProgressBar";
 import { Wordmark } from "@/components/shell/Wordmark";
 import { ThemeToggle } from "@/components/shell/ThemeToggle";
 import { SystemDemos } from "./SystemDemos";
-import { rankLanes } from "@/lib/lanes/payoff";
-import { getSampleEvidence as getEvidence, getSampleLanes as getLanes, getSampleProfile as getProfile, getSampleSprints as getSprints } from "@/lib/data/sample";
+import { BandTag, FitIndicator } from "@/components/lanes/FitIndicator";
+import { BAND_ORDER } from "@/lib/matching/fit";
+import { laneName } from "@/lib/data/lanes";
+import { getSampleEvidence as getEvidence, getSampleLaneMap, getSampleProfile as getProfile, getSampleSprints as getSprints } from "@/lib/data/sample";
 
 export const metadata: Metadata = { title: "Design system", robots: { index: false } };
 
@@ -83,9 +85,12 @@ function Specimen({ name, children, className }: { name: string; children: React
 }
 
 export default async function SystemPage() {
-  const [lanes, profile, sprints, evidence] = await Promise.all([getLanes(), getProfile(), getSprints(), getEvidence()]);
-  const ranked = rankLanes(lanes, "fit");
-  const laneNames = Object.fromEntries(lanes.map((l) => [l.id, l.name]));
+  const [{ rows }, profile, sprints, evidence] = await Promise.all([getSampleLaneMap(), getProfile(), getSprints(), getEvidence()]);
+  // One lane from each band (taxonomy order), plus a winner-take-all lane.
+  const bandSamples = BAND_ORDER.flatMap((b) => rows.filter((r) => r.band === b).slice(0, 1));
+  const wta = rows.find((r) => r.payoff === "winner_take_all" && !bandSamples.includes(r));
+  const laneRows = wta ? [...bandSamples, wta] : bandSamples;
+  const laneNames = Object.fromEntries([...new Set([...sprints.map((x) => x.laneId), ...evidence.events.flatMap((e) => (e.laneId ? [e.laneId] : [])), ...evidence.conviction.map((c) => c.laneId)])].map((id) => [id, laneName(id)]));
   const active = sprints.find((s) => s.status === "active")!;
   const allItems = (["S1", "S2", "S5"] as const).flatMap((id) => sessionPlan(id).blocks.flatMap((b) => b.items));
   const find = (pred: (f: string) => boolean) => allItems.find((i) => pred(i.format.type) && !i.validity)!;
@@ -236,11 +241,23 @@ export default async function SystemPage() {
                 <ConfidenceBadge level="low" />
               </div>
             </Specimen>
-            <Specimen name="PayoffGlyph · linear / convex / winner-take-all">
-              <div className="flex gap-8">
+            <Specimen name="PayoffGlyph · linear / high floor / convex / steep / winner-take-all">
+              <div className="flex flex-wrap gap-8">
                 <PayoffGlyph type="linear" position={0.6} />
+                <PayoffGlyph type="linear_high_floor" position={0.6} />
                 <PayoffGlyph type="convex" position={0.6} />
-                <PayoffGlyph type="winner-take-all" position={0.6} emphasis />
+                <PayoffGlyph type="steep" position={0.6} />
+                <PayoffGlyph type="winner_take_all" position={0.6} emphasis />
+              </div>
+            </Specimen>
+            <Specimen name="BandTag · FitIndicator">
+              <div className="flex flex-col gap-3">
+                {BAND_ORDER.map((b, i) => (
+                  <div key={b} className="grid grid-cols-[140px_1fr] items-center gap-4">
+                    <BandTag band={b} />
+                    <FitIndicator vsAverage={b === "insufficient" ? null : [0.9, 0.1, -0.8][i]!} se={b === "insufficient" ? null : 0.2} />
+                  </div>
+                ))}
               </div>
             </Specimen>
             <Specimen name="SegmentedProgress">
@@ -283,18 +300,18 @@ export default async function SystemPage() {
         </Block>
 
         <Block index="06" label="Composite" title="Domain components">
-          <Specimen name="LaneRow">
-            <ol className="border-t border-rule-strong">
-              {ranked.slice(0, 3).map((l, i) => (
+          <Specimen name="LaneRow · one per band, and a winner-take-all lane">
+            <ul className="border-t border-rule-strong">
+              {laneRows.map((l) => (
                 <li key={l.id} className="border-b border-rule">
-                  <LaneRow lane={l} emphasis={i === 0} />
+                  <LaneRow lane={l} showFamily />
                 </li>
               ))}
-            </ol>
+            </ul>
           </Specimen>
           <div className="mt-12 grid gap-12 lg:grid-cols-2">
             <Specimen name="SprintCard">
-              <SprintCard sprint={active} laneName={lanes.find((l) => l.id === active.laneId)?.name ?? active.laneId} />
+              <SprintCard sprint={active} laneName={laneName(active.laneId)} />
             </Specimen>
             <Specimen name="EvidenceTimeline">
               <TimelineLegend />

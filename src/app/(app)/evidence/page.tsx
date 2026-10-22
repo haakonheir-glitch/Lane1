@@ -8,14 +8,15 @@ import { EvidenceTimeline, TimelineLegend } from "@/components/evidence/Evidence
 import { ConvictionChart } from "@/components/evidence/ConvictionChart";
 import { LaneComparisonTable, buildComparisonRows } from "@/components/evidence/LaneComparisonTable";
 import { confidenceLabel, formatIsoDot } from "@/lib/format";
-import { getEvidence, getLanes, getSprints, getToday } from "@/lib/data";
+import { getEvidence, getLaneName, getSprints, getToday } from "@/lib/data";
 import { SampleBanner } from "@/components/report/SampleBanner";
 
 export const metadata: Metadata = { title: "Evidence Record" };
 
 export default async function EvidencePage() {
-  const [evidence, sprints, lanes] = await Promise.all([getEvidence(), getSprints(), getLanes()]);
-  const laneNames = Object.fromEntries(lanes.map((l) => [l.id, l.name]));
+  const [evidence, sprints] = await Promise.all([getEvidence(), getSprints()]);
+  const laneIds = new Set([...sprints.map((s) => s.laneId), ...(evidence?.events.flatMap((e) => (e.laneId ? [e.laneId] : [])) ?? []), ...(evidence?.conviction.map((c) => c.laneId) ?? [])]);
+  const laneNames = Object.fromEntries([...laneIds].map((id) => [id, getLaneName(id)]));
   const rows = buildComparisonRows(sprints, laneNames);
   const today = getToday();
   const hasSeries = (evidence?.conviction.length ?? 0) > 0 && (evidence?.conviction[0]?.points.length ?? 0) > 1;

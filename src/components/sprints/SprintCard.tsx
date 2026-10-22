@@ -19,6 +19,7 @@ export function SprintCard({ sprint, laneName, size = "md" }: { sprint: Sprint; 
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="label text-ink-3">
+            {sprint.kind === "practice" ? "Practice tasks · " : ""}
             {laneName}
             {sprint.startedOn ? ` · Started ${formatDay(sprint.startedOn)}` : ""}
           </p>

@@ -4,35 +4,46 @@ import { useCallback, useEffect, useId, useMemo, useRef } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
+import { Select } from "@/components/ui/Field";
 import { EmptyState } from "@/components/report/EmptyState";
 import { Button } from "@/components/ui/Button";
 import { LaneRow } from "./LaneRow";
 import { LaneDetailPanel } from "./LaneDetailPanel";
-import { rankLanes, payoffLabel } from "@/lib/lanes/payoff";
-import { groupLabel } from "@/lib/format";
+import { BAND_ORDER, bandLabel, sortMatches, type Band } from "@/lib/matching/fit";
+import { entryLabel, modeLabel, payoffLabel, sprintLabel } from "@/lib/lanes/labels";
+import type { LaneDetail, LaneFilterVocab, LaneRowData, LaneSort, LaneView } from "@/lib/lanes/types";
+import type { EntryId, ModeId, PayoffId, SprintId } from "@/lib/taxonomy/generated";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 import { useFocusTrap } from "@/lib/hooks/useFocusTrap";
-import type { Lane, LaneGroup, LaneSort, PayoffType, Sprint } from "@/lib/types";
 import { cn } from "@/lib/cn";
 
-const GROUPS: LaneGroup[] = ["corporate", "independent", "performance", "craft"];
-const PAYOFFS: PayoffType[] = ["linear", "convex", "winner-take-all"];
+type Filters = { family: string; mode: ModeId | "all"; payoff: PayoffId | "all"; entry: EntryId | "all"; sprint: SprintId | "all" };
+type ChipKey = "mode" | "payoff" | "entry" | "sprint";
 
-function FilterRow<T extends string>({
-  label,
-  options,
-  value,
-  onChange,
-}: {
-  label: string;
-  options: { value: T | "all"; label: string; count: number }[];
-  value: T | "all";
-  onChange: (v: T | "all") => void;
-}) {
+const CHIPS: { key: ChipKey; label: string; labels: Record<string, string> }[] = [
+  { key: "mode", label: "Work mode", labels: modeLabel },
+  { key: "payoff", label: "Payoff", labels: payoffLabel },
+  { key: "entry", label: "Entry", labels: entryLabel },
+  { key: "sprint", label: "Try it", labels: sprintLabel },
+];
+
+const pick = <T extends string>(v: string | null, allowed: Record<string, string>): T | "all" => (v && v in allowed ? (v as T) : "all");
+
+function matches(l: LaneRowData, f: Filters, skip?: keyof Filters) {
+  return (
+    (skip === "family" || f.family === "all" || l.familyId === f.family) &&
+    (skip === "mode" || f.mode === "all" || l.modes.includes(f.mode)) &&
+    (skip === "payoff" || f.payoff === "all" || l.payoff === f.payoff) &&
+    (skip === "entry" || f.entry === "all" || l.entry === f.entry) &&
+    (skip === "sprint" || f.sprint === "all" || l.sprint === f.sprint)
+  );
+}
+
+function ChipRow({ label, options, value, onChange }: { label: string; options: { value: string; label: string; count: number }[]; value: string; onChange: (v: string) => void }) {
   return (
     <div className="flex items-baseline gap-4">
-      <span className="w-16 shrink-0 label text-ink-3">{label}</span>
-      <ul className="-my-1 flex gap-x-4 overflow-x-auto py-1" role="list">
+      <span className="w-20 shrink-0 label text-ink-3">{label}</span>
+      <ul className="-my-1 flex gap-x-4 overflow-x-auto py-1" role="list" aria-label={label}>
         {options.map((o) => {
           const active = o.value === value;
           return (
@@ -40,11 +51,9 @@ function FilterRow<T extends string>({
               <button
                 type="button"
                 aria-pressed={active}
+                disabled={o.count === 0 && !active}
                 onClick={() => onChange(o.value)}
-                className={cn(
-                  "border-b label transition-quiet",
-                  active ? "border-ink text-ink" : "border-transparent text-ink-3 hover:text-ink",
-                )}
+                className={cn("border-b label transition-quiet disabled:opacity-40", active ? "border-ink text-ink" : "border-transparent text-ink-3 hover:text-ink")}
               >
                 {o.label} <span className="text-ink-3">{o.count}</span>
               </button>
@@ -56,7 +65,25 @@ function FilterRow<T extends string>({
   );
 }
 
-export function LaneMap({ lanes, sprints, sprintFor }: { lanes: Lane[]; sprints: Sprint[]; sprintFor: Record<string, string> }) {
+function Rows({ rows, selected, onSelect, showFamily, label }: { rows: LaneRowData[]; selected?: string; onSelect: (id: string) => void; showFamily?: boolean; label: string }) {
+  return (
+    <ul aria-label={label}>
+      {rows.map((l) => (
+        <li key={l.id} className="border-b border-rule">
+          <LaneRow lane={l} showFamily={showFamily} active={l.id === selected} onSelect={() => onSelect(l.id)} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function bandCounts(rows: LaneRowData[]) {
+  const n: Record<Band, number> = { strong: 0, testing: 0, unlikely: 0, insufficient: 0 };
+  for (const r of rows) n[r.band]++;
+  return BAND_ORDER.filter((b) => n[b]).map((b) => `${n[b]} ${bandLabel[b].toLowerCase()}`).join(" · ");
+}
+
+export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: LaneFilterVocab; detail: LaneDetail | null }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -66,31 +93,39 @@ export function LaneMap({ lanes, sprints, sprintFor }: { lanes: Lane[]; sprints:
   const headingId = useId();
 
   const sort: LaneSort = params.get("sort") === "fit-payoff" ? "fit-payoff" : "fit";
-  const group = (GROUPS as string[]).includes(params.get("group") ?? "") ? (params.get("group") as LaneGroup) : "all";
-  const payoff = (PAYOFFS as string[]).includes(params.get("payoff") ?? "") ? (params.get("payoff") as PayoffType) : "all";
-  const selectedId = params.get("lane");
+  const view: LaneView = params.get("view") === "band" ? "band" : "family";
+  const familyParam = params.get("family");
+  const f: Filters = {
+    family: familyParam && vocab.families.some((x) => x.id === familyParam) ? familyParam : "all",
+    mode: pick<ModeId>(params.get("mode"), modeLabel),
+    payoff: pick<PayoffId>(params.get("payoff"), payoffLabel),
+    entry: pick<EntryId>(params.get("entry"), entryLabel),
+    sprint: pick<SprintId>(params.get("sprint"), sprintLabel),
+  };
+  const selectedId = detail?.row.id;
 
-  const setParam = useCallback(
+  const qs = useCallback(
     (updates: Record<string, string | null>) => {
       const next = new URLSearchParams(params.toString());
       for (const [k, v] of Object.entries(updates)) {
-        if (v === null) next.delete(k);
+        if (v === null || v === "all") next.delete(k);
         else next.set(k, v);
       }
-      const qs = next.toString();
-      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+      const s = next.toString();
+      return s ? `${pathname}?${s}` : pathname;
     },
-    [params, pathname, router],
+    [params, pathname],
   );
+  // Filters and sorting are client-only: update the URL without a server round-trip.
+  const setView = useCallback((updates: Record<string, string | null>) => window.history.replaceState(null, "", qs(updates)), [qs]);
+  // Opening a lane fetches its detail from the server.
+  const openLane = useCallback((id: string | null) => router.replace(qs({ lane: id }), { scroll: false }), [router, qs]);
 
-  // Rank across all lanes so ranks stay stable when filtering.
-  const ranked = useMemo(() => rankLanes(lanes, sort), [lanes, sort]);
-  const visible = ranked.filter((l) => (group === "all" || l.group === group) && (payoff === "all" || l.payoff === payoff));
-  const selected = ranked.find((l) => l.id === selectedId);
-  const emphasisId = selected?.id ?? ranked[0]?.id;
+  const sorted = useMemo(() => sortMatches(rows.map((r) => ({ match: r, name: r.name, row: r })), sort).map((x) => x.row), [rows, sort]);
+  const visible = sorted.filter((l) => matches(l, f));
 
-  const close = useCallback(() => setParam({ lane: null }), [setParam]);
-  const modalOpen = !!selected && !docked;
+  const close = useCallback(() => openLane(null), [openLane]);
+  const modalOpen = !!detail && !docked;
   useFocusTrap(panelRef, modalOpen, close);
   useEffect(() => {
     if (!modalOpen) return;
@@ -101,115 +136,159 @@ export function LaneMap({ lanes, sprints, sprintFor }: { lanes: Lane[]; sprints:
     };
   }, [modalOpen]);
 
-  const countBy = <K extends "group" | "payoff">(key: K, v: string) =>
-    ranked.filter((l) => l[key] === v && (key === "group" ? payoff === "all" || l.payoff === payoff : group === "all" || l.group === group)).length;
+  // Families in order of their best lane under the current sort.
+  const familyOrder: string[] = [];
+  for (const l of visible) if (!familyOrder.includes(l.familyId)) familyOrder.push(l.familyId);
+  const families = familyOrder.map((id) => ({ id, name: vocab.families.find((x) => x.id === id)!.name, rows: visible.filter((l) => l.familyId === id) }));
 
-  const panel = selected ? (
-    <LaneDetailPanel
-      lane={selected}
-      sort={sort}
-      sprint={sprints.find((s) => s.laneId === selected.id && s.status !== "suggested")}
-      planHref={sprintFor[selected.id] ? `/sprints/${sprintFor[selected.id]}` : "/sprints"}
-      onClose={close}
-      headingId={headingId}
-    />
-  ) : null;
+  const anyFilter = f.family !== "all" || f.mode !== "all" || f.payoff !== "all" || f.entry !== "all" || f.sprint !== "all";
+
+  const panel = detail ? <LaneDetailPanel detail={detail} sort={sort} onClose={close} headingId={headingId} /> : null;
 
   return (
-    <div className={cn("grid gap-8", selected && docked && "xl:grid-cols-[minmax(0,1fr)_420px]")}>
+    <div className={cn("grid gap-8", detail && docked && "xl:grid-cols-[minmax(0,1fr)_440px]")}>
       <div className="min-w-0">
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-4">
-            <span className="w-16 shrink-0 label text-ink-3">Rank by</span>
-            <SegmentedControl<LaneSort>
-              label="Rank by"
-              value={sort}
-              onChange={(v) => setParam({ sort: v === "fit" ? null : v })}
-              options={[
-                { value: "fit", label: "Relative fit" },
-                { value: "fit-payoff", label: "Fit × payoff" },
-              ]}
-            />
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+            <div className="flex items-center gap-4">
+              <span className="w-20 shrink-0 label text-ink-3">Order by</span>
+              <SegmentedControl<LaneSort>
+                label="Order by"
+                value={sort}
+                onChange={(v) => setView({ sort: v === "fit" ? null : v })}
+                options={[
+                  { value: "fit", label: "Relative fit" },
+                  { value: "fit-payoff", label: "Fit × payoff" },
+                ]}
+              />
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="w-20 shrink-0 label text-ink-3 xl:w-auto">Group by</span>
+              <SegmentedControl<LaneView>
+                label="Group by"
+                value={view}
+                onChange={(v) => setView({ view: v === "family" ? null : v })}
+                options={[
+                  { value: "family", label: "Family" },
+                  { value: "band", label: "Fit band" },
+                ]}
+              />
+            </div>
           </div>
           <div className="flex flex-col gap-3">
-            <FilterRow<LaneGroup>
-              label="Group"
-              value={group}
-              onChange={(v) => setParam({ group: v === "all" ? null : v })}
-              options={[
-                { value: "all", label: "All", count: ranked.filter((l) => payoff === "all" || l.payoff === payoff).length },
-                ...GROUPS.map((g) => ({ value: g, label: groupLabel[g], count: countBy("group", g) })),
-              ]}
-            />
-            <FilterRow<PayoffType>
-              label="Payoff"
-              value={payoff}
-              onChange={(v) => setParam({ payoff: v === "all" ? null : v })}
-              options={[
-                { value: "all", label: "All", count: ranked.filter((l) => group === "all" || l.group === group).length },
-                ...PAYOFFS.map((p) => ({ value: p, label: payoffLabel[p], count: countBy("payoff", p) })),
-              ]}
-            />
+            <div className="flex items-center gap-4">
+              <label htmlFor="lane-family" className="w-20 shrink-0 label text-ink-3">
+                Family
+              </label>
+              <Select id="lane-family" className="h-9 max-w-[320px] text-small" value={f.family} onChange={(e) => setView({ family: e.target.value })}>
+                <option value="all">All families ({sorted.filter((l) => matches(l, f, "family")).length})</option>
+                {vocab.families.map((x) => {
+                  const n = sorted.filter((l) => l.familyId === x.id && matches(l, f, "family")).length;
+                  return (
+                    <option key={x.id} value={x.id} disabled={n === 0 && f.family !== x.id}>
+                      {x.name} ({n})
+                    </option>
+                  );
+                })}
+              </Select>
+            </div>
+            {CHIPS.map((c) => (
+              <ChipRow
+                key={c.key}
+                label={c.label}
+                value={f[c.key]}
+                onChange={(v) => setView({ [c.key]: v })}
+                options={[
+                  { value: "all", label: "All", count: sorted.filter((l) => matches(l, f, c.key)).length },
+                  ...Object.entries(c.labels).map(([value, label]) => ({
+                    value,
+                    label,
+                    count: sorted.filter((l) => matches(l, { ...f, [c.key]: value } as Filters)).length,
+                  })),
+                ]}
+              />
+            ))}
           </div>
         </div>
 
-        <div className="mt-8 hidden grid-cols-[40px_minmax(0,1.3fr)_minmax(0,1fr)_64px_88px_16px] gap-x-4 border-b border-rule-strong pb-2 md:grid">
-          <span className="label text-ink-3">#</span>
-          <span className="label text-ink-3">Lane</span>
-          <span className="label text-ink-3">{sort === "fit" ? "Relative fit" : "Fit × payoff"} · 0–100</span>
-          <span className="text-center label text-ink-3">Payoff</span>
-          <span className="label text-ink-3">Conf.</span>
-          <span />
-        </div>
-        <div className="mt-8 border-b border-rule-strong md:hidden" />
+        <p className="mt-8 flex flex-wrap items-baseline justify-between gap-2 border-b border-rule-strong pb-2">
+          <span className="label text-ink-3">
+            {visible.length} of {rows.length} lanes · {bandCounts(visible)}
+          </span>
+          {anyFilter ? (
+            <button type="button" className="label text-ink-3 underline-offset-4 hover:text-ink hover:underline" onClick={() => setView({ family: null, mode: null, payoff: null, entry: null, sprint: null })}>
+              Clear filters
+            </button>
+          ) : null}
+        </p>
 
         {visible.length === 0 ? (
           <EmptyState
             className="mt-8"
-            title="No lanes match both filters."
-            body="Try widening the payoff filter. Some groups have no lanes of every payoff type."
+            title="No lanes match these filters."
+            body="Some combinations don't exist, for example winner-take-all lanes you can enter through an apprenticeship."
             action={
-              <Button variant="secondary" size="sm" onClick={() => setParam({ group: null, payoff: null })}>
+              <Button variant="secondary" size="sm" onClick={() => setView({ family: null, mode: null, payoff: null, entry: null, sprint: null })}>
                 Clear filters
               </Button>
             }
           />
+        ) : view === "band" ? (
+          BAND_ORDER.map((b) => {
+            const inBand = visible.filter((l) => l.band === b);
+            if (!inBand.length) return null;
+            return (
+              <section key={b} className="mt-10" aria-labelledby={`band-${b}`}>
+                <h2 id={`band-${b}`} className="flex items-baseline justify-between border-b border-ink pb-2">
+                  <span className="text-h3 font-medium text-ink">{bandLabel[b]}</span>
+                  <span className="label text-ink-3">{inBand.length} lanes</span>
+                </h2>
+                <Rows rows={inBand} selected={selectedId} onSelect={openLane} showFamily label={`${bandLabel[b]} lanes`} />
+              </section>
+            );
+          })
         ) : (
-          <ol aria-label="Lanes, ranked">
-            {visible.map((l) => (
-              <li key={l.id} className="border-b border-rule">
-                <LaneRow lane={l} emphasis={l.id === emphasisId} active={l.id === selected?.id} onSelect={() => setParam({ lane: l.id })} />
-              </li>
-            ))}
-          </ol>
+          families.map((fam) => {
+            const main = fam.rows.filter((l) => l.band === "strong" || l.band === "testing");
+            const rest = fam.rows.filter((l) => l.band === "unlikely" || l.band === "insufficient");
+            return (
+              <section key={fam.id} className="mt-10" aria-labelledby={`fam-${fam.id}`}>
+                <h2 id={`fam-${fam.id}`} className="flex flex-wrap items-baseline justify-between gap-2 border-b border-ink pb-2">
+                  <span className="text-h3 font-medium text-ink">{fam.name}</span>
+                  <span className="label text-ink-3">{bandCounts(fam.rows)}</span>
+                </h2>
+                {main.length ? <Rows rows={main} selected={selectedId} onSelect={openLane} label={`${fam.name} lanes`} /> : null}
+                {rest.length ? (
+                  <details className="group border-b border-rule" open={rest.some((l) => l.id === selectedId) || !main.length}>
+                    <summary className="flex cursor-pointer list-none items-center gap-2 py-3 label text-ink-3 transition-quiet hover:text-ink">
+                      <span aria-hidden className="inline-block transition-transform group-open:rotate-90">›</span>
+                      {rest.length} unlikely {rest.length === 1 ? "lane" : "lanes"}
+                    </summary>
+                    <Rows rows={rest} selected={selectedId} onSelect={openLane} label={`Unlikely ${fam.name} lanes`} />
+                  </details>
+                ) : null}
+              </section>
+            );
+          })
         )}
 
-        <p className="mt-6 max-w-reading text-small text-ink-3">
+        <p className="mt-8 max-w-reading text-small text-ink-3">
           {sort === "fit"
-            ? "Relative fit compares lanes against your own strengths and weaker areas, not against other people. Lanes within 2.5 points of each other are shown as tied (=)."
-            : "Fit × payoff discounts each lane by how it pays at your estimated skill level. Winner-take-all lanes drop unless you are likely to reach the top tier."}
+            ? "Bands compare each lane with your other lanes, not with other people. A lane is a strong fit only when it's clearly above more than half of your lanes after allowing for measurement error; most lanes can't be told apart that precisely, so they're worth testing. The dot shows fit against your average lane, with a 90% range."
+            : "Fit × payoff reorders lanes within each band by how the lane pays at the level you'd likely reach. Winner-take-all lanes drop unless you're likely to reach the top group."}
         </p>
       </div>
 
-      {/* Docked panel (≥1280px) */}
-      {docked && selected ? (
+      {docked && detail ? (
         <aside aria-labelledby={headingId} className="sticky top-20 hidden max-h-[calc(100dvh-6rem)] flex-col self-start overflow-hidden rounded-sm border border-rule bg-surface xl:flex">
           {panel}
         </aside>
       ) : null}
 
-      {/* Modal panel (<1280px) */}
       <AnimatePresence>
-        {!docked && selected ? (
+        {!docked && detail ? (
           <motion.div key="sheet" className="fixed inset-0 z-40" initial={{ opacity: 1 }} exit={{ opacity: 1 }}>
-            <motion.div
-              className="absolute inset-0 bg-ink/30"
-              onClick={close}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            />
+            <motion.div className="absolute inset-0 bg-ink/30" onClick={close} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} />
             <motion.div
               ref={panelRef}
               role="dialog"

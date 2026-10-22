@@ -4,11 +4,12 @@ function tasks(list: [string, string][], doneThrough = 0): SprintTask[] {
   return list.map(([title, detail], i) => ({ day: i + 1, title, detail, done: i + 1 <= doneThrough }));
 }
 
-export const sprints: Sprint[] = [
+/** Sample sprints. `kind` (real sprint or practice tasks) comes from the lane's sprint feasibility in the data layer. */
+export const sprints: Omit<Sprint, "kind">[] = [
   {
     id: "sp-sales-calls",
     templateId: "sp-sales-calls",
-    laneId: "sales-b2b",
+    laneId: "b2b_sales",
     title: "Hold 20 discovery conversations",
     brief:
       "Cold-call small Oslo businesses about a real product (a local bookkeeping service has agreed to let you pitch). Track dials, conversations and booked meetings. The point is not the meetings; it is how fast your conversation rate improves and how you feel at the end of each day.",
@@ -59,7 +60,7 @@ export const sprints: Sprint[] = [
   {
     id: "sp-content-videos",
     templateId: "sp-content-videos",
-    laneId: "content",
+    laneId: "content_creation",
     title: "Publish 5 short videos",
     brief:
       "Publish five vertical videos under 60 seconds on one topic you know well (spreadsheet shortcuts for small businesses). Track average watch-through and how long each takes to make.",
@@ -113,7 +114,7 @@ export const sprints: Sprint[] = [
   {
     id: "sp-ux-interviews",
     templateId: "sp-ux-interviews",
-    laneId: "ux-research",
+    laneId: "ux_research",
     title: "Run 4 user interviews",
     brief:
       "Interview four people about how they track expenses, then write a one-page synthesis. Track usable insights per interview.",
@@ -206,7 +207,7 @@ export const sprints: Sprint[] = [
   {
     id: "sp-product",
     templateId: "sp-product",
-    laneId: "product",
+    laneId: "product_management",
     title: "Write and test one product spec",
     brief: "Write a one-page spec for a small feature in a product you use, test it with three users and one engineer, and revise it.",
     days: 10,

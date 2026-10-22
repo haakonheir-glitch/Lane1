@@ -25,6 +25,14 @@ export const profiles = pgTable("profiles", {
   situation: text("situation"),
   clarityGoal: text("clarity_goal"),
   city: text("city"),
+  /** Current job, resolved through the taxonomy search (role id when known, always a lane id). */
+  currentRoleId: text("current_role_id"),
+  currentLaneId: text("current_lane_id"),
+  currentTitle: text("current_title"),
+  /** Years in the current job: "0" | "lt2" | "2to5" | "5plus". */
+  currentYears: text("current_years"),
+  /** Lanes the person is considering (up to 3), from the same search. */
+  considering: jsonb("considering").$type<{ laneId: string; roleId: string | null; title: string }[]>(),
   onboardedAt: timestamp("onboarded_at", { withTimezone: true }),
 });
 

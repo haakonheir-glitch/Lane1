@@ -15,6 +15,13 @@
       "when": 1792610300673,
       "tag": "0001_assessment_package",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792659455470,
+      "tag": "0002_taxonomy_experience",
+      "breakpoints": true
     }
   ]
 }

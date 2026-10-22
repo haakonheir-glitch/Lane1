@@ -15,7 +15,9 @@ import * as mock from "../mock";
 import { hubStatus } from "../assess/service";
 import { allSessions } from "../bank/bank";
 import type { ProfileScores } from "../scoring/profile";
-import type { Evidence, Lane, OnboardingAnswers, Sprint, User } from "../types";
+import type { YearsBand } from "../matching";
+import type { Evidence, OnboardingAnswers, Sprint, User } from "../types";
+import { buildLaneDetail, buildLaneMap, buildLanePlan, laneName, withKind } from "./lanes";
 
 const TIME_ZONE = process.env.APP_TIMEZONE ?? "Europe/Oslo";
 const isoDate = (d: Date) => new Intl.DateTimeFormat("en-CA", { timeZone: TIME_ZONE, year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
@@ -53,6 +55,24 @@ export async function getOnboarding(): Promise<OnboardingAnswers & { done: boole
   return { ageRange: p?.ageRange ?? null, situation: p?.situation ?? null, clarityGoal: p?.clarityGoal ?? null, done: !!p?.onboardedAt };
 }
 
+/** What the person told us about their work, for lane entry points and the Lane Map. */
+export type ExperienceAnswers = {
+  current: { roleId: string | null; laneId: string; title: string; years: YearsBand | null } | null;
+  considering: { laneId: string; roleId: string | null; title: string }[];
+};
+
+export const getExperience = cache(async (): Promise<ExperienceAnswers> => {
+  const u = await requireUser();
+  const db = await getDb();
+  const [p] = await db.select().from(schema.profiles).where(eq(schema.profiles.userId, u.id)).limit(1);
+  return {
+    current: p?.currentLaneId
+      ? { roleId: p.currentRoleId, laneId: p.currentLaneId, title: p.currentTitle ?? "", years: (p.currentYears as YearsBand | null) ?? null }
+      : null,
+    considering: p?.considering ?? [],
+  };
+});
+
 export type HubSession = Awaited<ReturnType<typeof getAssessmentHub>>[number];
 
 /** Sessions S1–S5 with the user's progress, for the /assess hub. */
@@ -78,11 +98,23 @@ export async function getSessionMeta(id: string) {
 
 export const getProfile = async (): Promise<ProfileScores> => mock.sampleProfile;
 export const getSampleUser = async (): Promise<User> => mock.user;
-export const getLanes = async (): Promise<Lane[]> => structuredClone(mock.lanes);
-export const getSprints = async (): Promise<Sprint[]> => structuredClone(mock.sprints);
-export const getSprint = async (id: string): Promise<Sprint | undefined> => structuredClone(mock.sprints.find((s) => s.id === id));
+export const getSprints = async (): Promise<Sprint[]> => mock.sprints.map((s) => withKind(structuredClone(s)));
+export const getSprint = async (id: string): Promise<Sprint | undefined> => (await getSprints()).find((s) => s.id === id);
 export const getEvidence = async (): Promise<Evidence> => structuredClone(mock.evidence);
-export const getLaneName = (laneId: string) => mock.lanes.find((l) => l.id === laneId)?.name ?? laneId;
+export const getLaneName = laneName;
+
+/** Lane Map rows and the open lane's detail, matched against the profile (sample until norms exist). */
+export async function getLaneMap(selected?: string | null) {
+  const [profile, exp, sprints] = await Promise.all([getProfile(), getExperience(), getSprints()]);
+  return {
+    ...buildLaneMap(profile, exp),
+    detail: selected ? buildLaneDetail(selected, profile, exp, sprints) : null,
+  };
+}
+
+export async function getLanePlan(id: string) {
+  return buildLanePlan(id, await getExperience());
+}
 
 /* -------------------------------------------------------------- export ---- */
 

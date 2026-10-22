@@ -178,7 +178,8 @@ export const bandLabel: Record<Band, string> = {
 };
 
 /** Sort within a band by the active toggle; ties broken by name so the order is stable. */
-export function sortMatches<T extends { match: LaneMatch; name: string }>(xs: T[], sort: "fit" | "fit-payoff"): T[] {
-  const key = (m: LaneMatch) => (sort === "fit" ? (m.vsAverage ?? -Infinity) : (m.fitPayoff ?? -Infinity));
+type Sortable = Pick<LaneMatch, "band" | "vsAverage" | "fitPayoff">;
+export function sortMatches<T extends { match: Sortable; name: string }>(xs: T[], sort: "fit" | "fit-payoff"): T[] {
+  const key = (m: Sortable) => (sort === "fit" ? (m.vsAverage ?? -Infinity) : (m.fitPayoff ?? -Infinity));
   return [...xs].sort((a, b) => BAND_ORDER.indexOf(a.match.band) - BAND_ORDER.indexOf(b.match.band) || key(b.match) - key(a.match) || a.name.localeCompare(b.name));
 }

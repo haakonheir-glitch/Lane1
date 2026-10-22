@@ -1,12 +1,14 @@
-import { payoffCurve, payoffLabel } from "@/lib/lanes/payoff";
-import type { PayoffType } from "@/lib/types";
+import { payoffCurve, payoffLabel } from "@/lib/matching/payoff";
+import type { PayoffId } from "@/lib/taxonomy/generated";
 import { cn } from "@/lib/cn";
 
 const W = 48;
 const H = 20;
 const PAD = 2;
 
-export function curvePath(type: PayoffType, w: number, h: number, pad: number, steps = 32) {
+export const round2 = (n: number) => Math.round(n * 100) / 100;
+
+export function curvePath(type: PayoffId, w: number, h: number, pad: number, steps = 32) {
   const pts: string[] = [];
   for (let i = 0; i <= steps; i++) {
     const x = i / steps;
@@ -23,13 +25,14 @@ export function PayoffGlyph({
   emphasis,
   className,
 }: {
-  type: PayoffType;
+  type: PayoffId;
   position?: number;
   emphasis?: boolean;
   className?: string;
 }) {
-  const px = position !== undefined ? PAD + position * (W - 2 * PAD) : undefined;
-  const py = position !== undefined ? H - PAD - payoffCurve(type, position) * (H - 2 * PAD) : undefined;
+  // Rounded: Math.pow can differ in the last digits between server and browser (hydration).
+  const px = position !== undefined ? round2(PAD + position * (W - 2 * PAD)) : undefined;
+  const py = position !== undefined ? round2(H - PAD - payoffCurve(type, position) * (H - 2 * PAD)) : undefined;
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}

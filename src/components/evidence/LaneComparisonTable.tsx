@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Sprint } from "@/lib/types";
 import { ciHalf, fmtSigned } from "@/lib/format";
-import { mean } from "@/lib/lanes/payoff";
+const mean = (xs: number[]) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
 import { cn } from "@/lib/cn";
 
 export type ComparisonRow = {

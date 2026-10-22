@@ -35,7 +35,7 @@ export default async function SprintPage({ params }: PageProps<"/sprints/[id]">)
       <div className="max-w-content">
         <SampleBanner what="sprint records" className="mb-10" />
         <p className="label text-ink-3">
-          Sprint · {laneName} · {statusLine}
+          {sprint.kind === "sprint" ? "Sprint" : "Practice tasks"} · {laneName} · {statusLine}
         </p>
         <h1 className="mt-4 max-w-[22ch] text-h1 font-medium text-ink">{sprint.title}</h1>
         <p className="mt-4 max-w-reading text-body-l text-ink-2">{sprint.brief}</p>

@@ -5,10 +5,9 @@ import { LaneRow } from "@/components/lanes/LaneRow";
 import { RadarProfile } from "@/components/data/RadarProfile";
 import { ScaleTable } from "@/components/results/ScaleTable";
 import { radarDims } from "@/lib/view/profile";
-import { groupLabel, pad2 } from "@/lib/format";
-import { rankLanes } from "@/lib/lanes/payoff";
-import { getLaneIndex, getSampleLanes as getLanes, getSampleProfile as getProfile } from "@/lib/data/sample";
-import type { LaneGroup } from "@/lib/types";
+import { pad2 } from "@/lib/format";
+import { sortMatches } from "@/lib/matching/fit";
+import { getSampleLaneMap, getSampleProfile as getProfile, getTaxonomyIndex } from "@/lib/data/sample";
 
 const problems = [
   {
@@ -27,7 +26,7 @@ const problems = [
 
 const method = [
   { n: "01", title: "Profile", body: "Interests, personality, reasoning games and work values, combined into one coherent profile with intervals." },
-  { n: "02", title: "Lane Map", body: "Lanes ranked against your own strengths, then weighed by how each lane actually pays at a realistic skill level." },
+  { n: "02", title: "Lane Map", body: "205 lanes in fit bands against your own strengths, with how each lane actually pays and where you'd realistically start." },
   { n: "03", title: "Sprints", body: "One-to-three-week real trials of your top lanes. You log performance, improvement and how the work felt." },
   { n: "04", title: "Evidence", body: "A running record of everything you tried. Conviction builds, or drops, on data rather than on hope." },
 ];
@@ -46,12 +45,12 @@ const faq = [
     a: "About 135 minutes in total, split into five sessions of 20–30 minutes, because answers get careless after half an hour. You get part of your profile after each one. A sprint asks for roughly 30–60 minutes a day for one to two weeks.",
   },
   {
-    q: "What does “ranked relative to me” mean?",
-    a: "Your Lane Map compares lanes against your own strongest and weakest traits, not against other people. A top lane is your best option among your own options. It is not a claim that you would beat anyone else at it.",
+    q: "What does “fit relative to me” mean?",
+    a: "Your Lane Map compares lanes against your own strongest and weakest traits, not against other people. A strong-fit lane is one of your best options among your own options. It is not a claim that you would beat anyone else at it.",
   },
   {
-    q: "How certain is a ranking?",
-    a: "Not very, at first, and we say so. Every score carries an interval and every lane a confidence level. Confidence rises as sprint evidence comes in.",
+    q: "Why bands instead of a ranking?",
+    a: "With 205 lanes, number 5 and number 25 are often the same within measurement error, so a ranking would claim precision the test doesn't have. A lane is a strong fit only when it's clearly ahead of most of your other lanes; the many that can't be told apart are worth testing. Sprint evidence settles what a questionnaire can't.",
   },
   {
     q: "What happens to my data?",
@@ -60,9 +59,13 @@ const faq = [
 ];
 
 export default async function LandingPage() {
-  const [lanes, profile, laneIndex] = await Promise.all([getLanes(), getProfile(), getLaneIndex()]);
-  const excerpt = rankLanes(lanes, "fit").slice(0, 3);
-  const totalIndexed = Object.values(laneIndex).reduce((n, l) => n + l.length, 0);
+  const [{ rows }, profile, index] = await Promise.all([getSampleLaneMap(), getProfile(), getTaxonomyIndex()]);
+  // One strong-fit lane from each of three different families, so the excerpt shows range.
+  const excerpt = sortMatches(rows.map((r) => ({ match: r, name: r.name, row: r })), "fit")
+    .map((x) => x.row)
+    .filter((r, i, all) => r.band === "strong" && all.findIndex((o) => o.familyId === r.familyId) === i)
+    .slice(0, 3);
+  const totalIndexed = index.laneCount;
 
   return (
     <div className="page">
@@ -91,19 +94,19 @@ export default async function LandingPage() {
         <figure className="col-span-12 self-end lg:col-span-5 lg:col-start-8">
           <div className="rounded-sm border border-rule bg-surface px-5 pt-4 pb-2">
             <div className="flex items-baseline justify-between border-b border-rule-strong pb-3">
-              <span className="label text-ink-3">Lane Map · relative fit</span>
+              <span className="label text-ink-3">Lane Map · strong fits</span>
               <span className="label text-ink-3">Sample</span>
             </div>
-            <ol aria-label="Sample lane ranking">
+            <ul aria-label="Sample strong-fit lanes">
               {excerpt.map((l, i) => (
                 <li key={l.id} className={i < excerpt.length - 1 ? "border-b border-rule" : ""}>
-                  <LaneRow lane={l} compact />
+                  <LaneRow lane={l} showFamily />
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
           <figcaption className="mt-3 label text-ink-3">
-            Fig. 1 · Excerpt from a sample Lane Map. Bars show fit with an 80% interval.
+            Fig. 1 · Excerpt from a sample Lane Map. Dots show fit against the person&apos;s average lane, with a 90% range.
           </figcaption>
         </figure>
       </section>
@@ -147,7 +150,7 @@ export default async function LandingPage() {
           ))}
         </ol>
         <p className="mt-10 max-w-reading text-small text-ink-3">
-          Sprint evidence flows back into the Lane Map, so the ranking you see after three sprints is not the one you
+          Sprint evidence flows back into the Lane Map, so the map you see after three sprints is not the one you
           started with.
         </p>
       </section>
@@ -210,21 +213,19 @@ export default async function LandingPage() {
 
       {/* Lane index */}
       <section className="py-16" aria-labelledby="index-h">
-        <SectionHeader index="04" label="Lanes we map" title="Corporate, and everything else." id="index-h" aside={`${totalIndexed} lanes`} />
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 lg:grid-cols-4">
-          {(Object.keys(laneIndex) as LaneGroup[]).map((g) => (
-            <div key={g}>
-              <h3 className="flex items-baseline justify-between border-b border-rule-strong pb-2 label text-ink">
-                {groupLabel[g]}
-                <span className="text-ink-3">{pad2(laneIndex[g].length)}</span>
+        <SectionHeader index="04" label="Lanes we map" title="Every kind of paid work. Not only the corporate kind." id="index-h" aside={`${index.families.length} families · ${totalIndexed} lanes`} />
+        <p className="-mt-4 mb-10 max-w-reading text-body text-ink-2">
+          Checked against the international occupation classifications (ISCO-08 and ESCO), plus the lanes they miss: creators, founders, esports,
+          independent advisers and more.
+        </p>
+        <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          {index.families.map((f) => (
+            <div key={f.id}>
+              <h3 className="flex items-baseline justify-between gap-3 border-b border-rule-strong pb-2 label text-ink">
+                {f.name}
+                <span className="text-ink-3">{pad2(f.lanes.length)}</span>
               </h3>
-              <ul className="mt-2">
-                {laneIndex[g].map((name) => (
-                  <li key={name} className="border-b border-rule py-2 text-small text-ink-2">
-                    {name}
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-2 text-small text-ink-3">{f.lanes.join(" · ")}</p>
             </div>
           ))}
         </div>

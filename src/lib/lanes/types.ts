@@ -1,0 +1,69 @@
+/**
+ * Client-safe shapes for the Lane Map. Built on the server from the taxonomy and the matching
+ * results (src/lib/data/lanes.ts), so the browser never loads the full taxonomy.
+ */
+import type { Band, Driver, EntryNote } from "../matching";
+import type { EntryId, FamilyId, LaneId, LevelId, ModeId, PayoffId, SprintId } from "../taxonomy/generated";
+
+export type LaneSort = "fit" | "fit-payoff";
+export type LaneView = "family" | "band";
+
+export type LaneRowData = {
+  id: LaneId;
+  name: string;
+  familyId: FamilyId;
+  familyName: string;
+  payoff: PayoffId;
+  entry: EntryId;
+  sprint: SprintId;
+  modes: ModeId[];
+  band: Band;
+  /** Fit relative to the person's average lane, z units; null without enough data. */
+  vsAverage: number | null;
+  se: number | null;
+  fitPayoff: number | null;
+  /** Lanes the person said they're considering, and the lane of their current job. */
+  considering: boolean;
+  current: boolean;
+};
+
+export type RoleRef = { id: string; title: string; level: LevelId; mode: ModeId; aka: string[] };
+
+export type LadderRow = {
+  level: LevelId;
+  levelLabel: string;
+  /** The ladder template's description of this step; null for levels the template doesn't name. */
+  step: string | null;
+  roles: RoleRef[];
+  /** "start" = the person's realistic entry point; "current" = where they are now; "above" = the path. */
+  marker: "start" | "current" | "above" | "below";
+};
+
+export type NextStep =
+  | { kind: "sprint"; label: string; href: string; detail: string }
+  | { kind: "practice"; label: string; href: string; detail: string }
+  | { kind: "shadow"; label: string; href: string; detail: string };
+
+export type LaneDetail = {
+  row: LaneRowData;
+  description: string;
+  riasec: string;
+  payoffText: string;
+  entryText: string;
+  sprintText: string;
+  ladderName: string;
+  ladder: LadderRow[];
+  entryNote: EntryNote;
+  topRoles: { role: RoleRef; reason: string }[];
+  drivers: Driver[];
+  unscoredTags: string[];
+  /** Estimated position on the payoff curve with its 90% range (conceptual, 0–1). */
+  payoffPosition: number | null;
+  payoffRange: [number, number] | null;
+  next: NextStep;
+  isco: { code: string; label: string }[];
+};
+
+export type LaneFilterVocab = {
+  families: { id: FamilyId; name: string }[];
+};
