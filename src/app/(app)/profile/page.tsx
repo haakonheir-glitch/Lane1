@@ -14,14 +14,17 @@ import { EmptyState } from "@/components/report/EmptyState";
 import { ButtonLink } from "@/components/ui/Button";
 import { formatIsoDot, pad2 } from "@/lib/format";
 import { LIMITATIONS, summarise } from "@/lib/view/profile";
-import { getProfileView, getSampleUser, getUser } from "@/lib/data";
+import { getMyReport, getProfileView, getSampleUser, getUser } from "@/lib/data";
+import { WrittenReport } from "@/components/report/WrittenReport";
+import { WriteReportForm } from "@/components/report/WriteReportForm";
 import { OwnResultsNote } from "@/components/report/OwnResultsNote";
 
 export const metadata: Metadata = { title: "Profile report" };
 
 export default async function ProfilePage() {
-  const [{ profile, source }, me, sample] = await Promise.all([getProfileView(), getUser(), getSampleUser()]);
+  const [{ profile, source }, me, sample, written] = await Promise.all([getProfileView(), getUser(), getSampleUser(), getMyReport()]);
   const own = source === "own";
+  const reportConfigured = !!process.env.ANTHROPIC_API_KEY;
   const person = own ? me : sample;
   // Before population norms exist, scores are relative to the person's own other scores.
   const normed = profile.norms.status === "provisional";
@@ -64,6 +67,40 @@ export default async function ProfilePage() {
               {lowConfidence.map((s) => `${s.id}: ${s.flags.join("; ")}`).join(" · ")}. You can retake these sessions from the assessment page.
             </p>
           </div>
+        ) : null}
+
+        {own ? (
+          <section className="mt-16" aria-labelledby="written-h">
+            <SectionHeader index="00" label="Written report · Claude" title="Your profile, in words" id="written-h" aside="Written from the scores on this page" />
+            {written ? (
+              <>
+                {written.stale ? (
+                  <div className="mb-8 rounded-sm border border-rule-strong bg-surface p-5">
+                    <p className="label text-caution">Out of date</p>
+                    <p className="mt-2 text-small text-ink-2">Your scores have changed since this report was written (for example, a new session).</p>
+                    <div className="mt-4">
+                      <WriteReportForm label="Rewrite my report" configured={reportConfigured} />
+                    </div>
+                  </div>
+                ) : null}
+                <WrittenReport report={written.report} model={written.model} createdAt={written.createdAt} />
+              </>
+            ) : (
+              <div className="max-w-[840px] rounded-sm border border-rule-strong bg-surface p-6">
+                <p className="text-body text-ink">
+                  Claude can turn the scores on this page into a written report: what your interests, values and personality add up to, which
+                  lanes to try first, and what to watch out for.
+                </p>
+                <p className="mt-2 text-small text-ink-3">
+                  The app does all the scoring; Claude only explains the results, and a check rejects any report that cites a figure not in your
+                  scores. Written once and saved; rewritten only when your scores change.
+                </p>
+                <div className="mt-6">
+                  <WriteReportForm configured={reportConfigured} />
+                </div>
+              </div>
+            )}
+          </section>
         ) : null}
 
         <section className="mt-16" aria-labelledby="summary-h">

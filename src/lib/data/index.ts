@@ -18,7 +18,9 @@ import { addSelfScores } from "../scoring/self";
 import type { SessionId } from "../bank/types";
 import type { YearsBand } from "../matching";
 import type { Evidence, OnboardingAnswers, Sprint, User } from "../types";
-import { buildLaneDetail, buildLaneMap, buildLanePlan, laneName, withKind } from "./lanes";
+import { buildLaneDetail, buildLaneMap, buildLanePlan, laneName, reportLanes, withKind } from "./lanes";
+import { buildReportFacts, type ReportFacts } from "../report/facts";
+import { factsHash, latestReport } from "../report/service";
 
 const TIME_ZONE = process.env.APP_TIMEZONE ?? "Europe/Oslo";
 const isoDate = (d: Date) => new Intl.DateTimeFormat("en-CA", { timeZone: TIME_ZONE, year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
@@ -141,6 +143,24 @@ export async function getLaneMap(selected?: string | null) {
   };
 }
 
+/** The facts a written report is built from: the person's own scores and lanes, no name or email. */
+export async function getReportFacts(): Promise<ReportFacts | null> {
+  const [profile, exp] = await Promise.all([getMyProfile(), getExperience()]);
+  if (!profile) return null;
+  return buildReportFacts(profile, reportLanes(profile, exp), {
+    current: exp.current ? exp.current.title : null,
+    considering: exp.considering.map((c) => c.title),
+  });
+}
+
+/** The person's latest written report, and whether their scores have changed since. */
+export async function getMyReport() {
+  const u = await requireUser();
+  const [stored, facts] = await Promise.all([latestReport(u.id), getReportFacts()]);
+  if (!stored) return null;
+  return { ...stored, stale: !!facts && factsHash(facts) !== stored.factsHash };
+}
+
 export async function getLanePlan(id: string) {
   return buildLanePlan(id, await getExperience());
 }
@@ -168,5 +188,6 @@ export async function getExport() {
     user: { name: user.name, email: user.email, memberSince: user.memberSince, reportId: user.reportId },
     onboarding: profile ?? null,
     sessions: out,
+    writtenReports: await db.select().from(schema.profileReports).where(eq(schema.profileReports.userId, u.id)),
   };
 }

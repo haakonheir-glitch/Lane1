@@ -29,6 +29,20 @@ npm run dev
 
 Sign in as **demo@lane.local** / **lane-demo-2026**. Running the seed again resets the demo account.
 
+### Written report (Claude)
+
+The Profile report page can have Claude write your report from your scores. It needs an Anthropic API key:
+
+1. Create a key in the Anthropic Console (https://console.anthropic.com → API keys). Copy the secret when it's shown: it starts with `sk-ant-` and is shown only once. (The `apikey_01…` value in the key list is just its ID.)
+2. In the project folder, create a file named `.env.local` containing one line:
+   ```
+   ANTHROPIC_API_KEY=sk-ant-…your key…
+   ```
+   This file is ignored by git, so the key never leaves your computer. Don't paste the key anywhere else.
+3. Restart the app (`Ctrl+C`, then `npm run dev`), open **Profile report** and press **Write my report**.
+
+Each report costs a few cents and takes about a minute. It's saved and only rewritten when your scores change. What's sent to Anthropic: your computed scores, lane matches and the job titles you entered; not your name, email or individual answers.
+
 ## Put it online (Vercel + Neon, both have free tiers)
 
 1. **Database.** Create a project at https://neon.tech. Copy the *pooled* connection string (it starts with `postgresql://` and contains `-pooler`).
@@ -36,6 +50,7 @@ Sign in as **demo@lane.local** / **lane-demo-2026**. Running the seed again rese
 3. Before deploying, open **Environment Variables** and add:
    - `DATABASE_URL`: the Neon connection string.
    - `APP_TIMEZONE` *(optional)*: the time zone used for sprint days. The default is `Europe/Oslo`.
+   - `ANTHROPIC_API_KEY` *(optional)*: turns on the Claude-written report.
 4. Click **Deploy**. The build creates the database tables automatically (`npm run build` runs `scripts/migrate.mjs` first), and every later deploy applies any new migrations.
 
 Your site is then live at the address Vercel shows, and anyone can sign up. To load the demo account into the hosted database, run this once from your computer:
@@ -57,7 +72,8 @@ DATABASE_URL="postgresql://…" npm run seed -- --force
 | **Lane matching** | One pure function, `matchLanes()` in `src/lib/matching/`, takes a profile in the scoring output shape. Fit is relative to the person's own average: half RIASEC congruence, half the lane's demand tags scored through `tag_to_constructs`. Only validated scales count (experimental ones are listed as "not counted yet"). Lanes go into bands (strong fit / worth testing / unlikely) by the BLUEPRINT reliability rule, never a 1–205 ranking. Roles inside a lane are ranked by their tags, starting from the person's realistic entry point; management roles are never recommended as a start. |
 | **Lane Map** | `/lanes`: grouped by family or by band, with filters for family, work mode, payoff, entry route and sprint feasibility, and the fit / fit × payoff toggle. The detail panel shows the fit drivers, the top starting roles with reasons, every role on the lane's ladder with the entry point highlighted, the payoff curve, and the next step: a real sprint (direct lanes), practice tasks (simulated) or an interview-and-shadow plan (shadow), at `/lanes/[lane]/plan`. Winner-take-all lanes always say the median income is low. |
 | **Job-title search** | Onboarding asks what you do now (and for how long) and what you're considering. `GET /api/taxonomy/search` matches role titles and aliases first (Norwegian included), then the 3,039 ESCO occupation labels, and resolves to a lane. |
-| **Results** | **Sample for now.** `/profile` and `/lanes` show a sample profile, computed by running a persona's answers through the real scoring code. Real results need the published norms and reliabilities in `src/lib/scoring/psychometrics.ts`, which are not transcribed yet (see PLAN D24). Your own answers and scores are saved and included in the export. |
+| **Results** | Once S1 or S2 is done, `/profile` and `/lanes` show **your own results**, scored relative to yourself (`src/lib/scoring/self.ts`): each scale against your other scales on the same test, with ranges. Comparisons with other people need the published norms in `src/lib/scoring/psychometrics.ts`, not transcribed yet (PLAN D24). Before S1/S2, a labelled sample profile is shown. |
+| **Written report** | `src/lib/report/`: the app builds a set of facts from your computed scores (no name, email or answers); Claude (`claude-opus-5-5`, structured output) writes the report from those facts only. A check rejects any report citing a figure that isn't in the scores (one rewrite, then it's refused). Reports are stored with a fingerprint of the facts and reused until the scores change. Needs `ANTHROPIC_API_KEY`. |
 | **Sprints, evidence** | Sample data for now; interactions on the sprint page aren't saved. In lanes that can't be tried directly, the sample entries are practice tasks, not sprints. |
 | **Your data** | Settings → **Export data** downloads your sessions, answers, task trials and scores as JSON. **Delete account** (password required) removes everything immediately. |
 

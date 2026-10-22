@@ -476,3 +476,19 @@ Unit tests (Vitest) use hand-built profiles:
 - **D45 — Plans are templates.** Next-step plans are filled from the lane's demand tags and roles (one practice task per tag; a fixed interview question set). Shadow plans name mid-level practitioners to interview, not the trainee roles.
 - **D46 — Onboarding.** Two steps were added after "situation": the current job (search plus years, or "not working right now") and up to three considered jobs. The server checks every lane and role id against the taxonomy before saving (migration 0002). The closing screen now describes the five-session battery.
 - **D47 — Filters and sorting don't call the server.** They update the URL with the History API. Only opening a lane fetches its detail, so the 1,883 roles never reach the browser; the built client JS was checked for taxonomy and ESCO strings.
+
+## 11. Own results and the written report
+
+- **D48 — Scores relative to yourself before norms exist.** Population norms are still blocked (D24), so the person's own results compare each scale with their other scales on the same instrument: interests with interests, facets with facets, domains with domains (`scoring/self.ts`).
+  - This needs no norms. BLUEPRINT §7 itself asks for the "relative to yourself" comparison to be done on scores.
+  - Reliabilities use the BLUEPRINT §7 planning values (.70 for 4-item facets, .75 for scales). Each score is flagged as using an assumed reliability until published values replace them.
+  - SEM is expressed in the person's own SD units, which is an approximation.
+  - Reasoning areas aren't compared: percent correct isn't comparable across tasks of different difficulty.
+  - Matching falls back to these scores (basis "self"), so the Lane Map works on the person's own data. Nothing ever states a comparison with other people.
+- **D49 — The Claude-written report: code scores, Claude explains.**
+  - Claude never sees raw answers and never scores anything. It gets a compact set of computed, rounded facts (`report/facts.ts`, no name or email).
+  - Its instructions (`report/prompt.ts`): use only those facts; make no comparison with other people when the basis is "self"; treat facets as hints; no IQ; lanes are hypotheses; winner-take-all lanes get the low-median warning; data-quality flags are mentioned.
+  - The output is a fixed schema (structured output).
+  - A number check rejects drafts that cite figures absent from the facts (small counts up to 10 excepted). There is one rewrite naming the offending figures; after that, the report is refused rather than shown.
+  - Model `claude-opus-5-5` at effort high, with the server-side refusal fallback enabled.
+  - The person ticks a consent box each time; the consent time is stored with the report. Reports are saved with a SHA-256 of the facts and reused until the facts change, so the page doesn't call the API on every visit, and the page marks a report as out of date when the scores change. Reports are included in the data export and deleted with the account.

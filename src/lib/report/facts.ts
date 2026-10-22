@@ -1,0 +1,86 @@
+/**
+ * The facts a written report may use: computed scores only, rounded, with no name, email or
+ * individual answers. Claude writes from these and nothing else (PLAN D49). Pure.
+ */
+import type { ProfileScores } from "../scoring/profile";
+import type { ScaleScore } from "../scoring/types";
+import { relativeOf } from "../view/profile";
+
+export type ReportLane = {
+  name: string;
+  family: string;
+  band: "strong" | "testing" | "unlikely" | "insufficient";
+  drivers: string[];
+  payoff: string;
+  winnerTakeAll: boolean;
+  entry: string;
+  howToTry: string;
+  /** Why this lane is in the facts: a strong fit, or one the person said they're considering / work in now. */
+  listedBecause: "strong_fit" | "considering" | "current_job";
+};
+
+export type ReportFacts = ReturnType<typeof buildReportFacts>;
+
+const r1 = (n: number) => Math.round(n * 10) / 10;
+/** The comparable score for a scale: population-normed if available, else relative to the person. */
+const vs = (s: ScaleScore) => (s.normed ? r1(s.normed.z) : s.self ? r1(s.self.z) : null);
+
+const TAG = { strength: "relative strength", weakness: "relative weakness", none: null } as const;
+
+export function buildReportFacts(p: ProfileScores, lanes: ReportLane[], situation: { current: string | null; considering: string[] }) {
+  const basis = p.norms.status === "provisional" ? "population" : "self";
+  const interestTags = p.interests ? relativeOf(p.interests.scales) : {};
+  const domainTags = p.personality ? relativeOf(p.personality.domains) : {};
+  const facets = (p.personality?.facets ?? []).filter((f) => vs(f) !== null).sort((a, b) => vs(b)! - vs(a)!);
+
+  return {
+    basis,
+    basisExplained:
+      basis === "self"
+        ? "Scores are compared with this person's own other scores on the same test (0 = their own average, in units of their own spread). There is no comparison with other people."
+        : "Scores are compared with published population norms (provisional).",
+    interests: p.interests
+      ? {
+          hollandCode: p.interests.hollandCode,
+          lowDifferentiation: p.interests.lowDifferentiation,
+          areas: [...p.interests.scales]
+            .sort((a, b) => (b.raw ?? 0) - (a.raw ?? 0))
+            .map((s) => ({ area: s.label, rawOutOf50: s.raw, vsOwnAverage: vs(s), tag: TAG[interestTags[s.id] ?? "none"] })),
+        }
+      : null,
+    workValues: p.values?.filter((v) => v.visibility === "user").map((v) => ({ value: v.label, rank: v.rank })) ?? null,
+    personality: p.personality
+      ? {
+          domains: p.personality.domains.map((d) => ({ domain: d.label, vsOwnAverage: vs(d), tag: TAG[domainTags[d.id] ?? "none"] })),
+          // Facets have four items each: wide intervals, hints only.
+          highestFacets: facets.slice(0, 3).map((f) => ({ facet: f.label, vsOwnAverage: vs(f) })),
+          lowestFacets: facets.slice(-3).reverse().map((f) => ({ facet: f.label, vsOwnAverage: vs(f) })),
+        }
+      : null,
+    reasoning: p.reasoning
+      ? {
+          note: "Percent correct is not comparable across tasks (they differ in difficulty) and there are no norms yet, so no area can be called stronger than another.",
+          areas: p.reasoning.areas.map((a) => ({ area: a.label, result: a.summary, vsOwnAverage: a.normed ? r1(a.normed.z) : null })),
+          generalAbilityPercentileBand: p.reasoning.generalAbility?.percentileBand ?? null,
+        }
+      : null,
+    behaviour: p.behaviour
+      ? {
+          learning: p.behaviour.learning?.relativeRate != null ? { improvementVsStartPercent: Math.round(p.behaviour.learning.relativeRate * 100) } : null,
+          risk: p.behaviour.risk?.adjustedPumps != null ? { averagePumpsKeptOutOf64: r1(p.behaviour.risk.adjustedPumps) } : null,
+          patience: p.behaviour.patience?.auc != null ? { patienceIndexFrom0To1: Math.round(p.behaviour.patience.auc * 100) / 100 } : null,
+        }
+      : null,
+    dataQuality: p.sessions.filter((s) => s.confidence === "low").map((s) => ({ session: s.id, issues: s.flags })),
+    missingSessions: p.completeness.missing,
+    situation,
+    lanes,
+  };
+}
+
+/** Every number that appears anywhere in the facts, as written there. */
+export function numbersIn(facts: unknown): Set<string> {
+  const out = new Set<string>();
+  for (const m of JSON.stringify(facts).matchAll(/-?\d+(?:\.\d+)?/g)) out.add(m[0].replace(/^-/, ""));
+  return out;
+}

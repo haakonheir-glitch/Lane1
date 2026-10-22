@@ -103,6 +103,24 @@ export const sessionScores = pgTable("session_scores", {
   scoredAt: timestamp("scored_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
+/**
+ * Claude-written profile reports (PLAN D49). `factsHash` fingerprints the scores a report was
+ * written from: the same scores reuse the stored report instead of calling the API again.
+ */
+export const profileReports = pgTable("profile_reports", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  factsHash: text("facts_hash").notNull(),
+  facts: jsonb("facts").notNull(),
+  report: jsonb("report").notNull(),
+  model: text("model").notNull(),
+  /** When the person agreed to send their scores to Anthropic for this report. */
+  consentedAt: timestamp("consented_at", { withTimezone: true }).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
 export const sprints = pgTable("sprints", {
   id: uuid("id").primaryKey().defaultRandom(),
   userId: uuid("user_id")

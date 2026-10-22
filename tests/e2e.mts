@@ -285,6 +285,15 @@ if (only.length === 5) {
   log("hub: 5 sessions marked done");
 }
 
+// Own results replace the sample once S1 or S2 is done
+await p.goto(base + "/profile");
+const ownResults = await p.getByText("Your results", { exact: true }).isVisible().catch(() => false);
+if (only.includes("S1") || only.includes("S2")) {
+  if (!ownResults) throw new Error("profile: expected the person's own results after S1/S2");
+  await p.getByRole("heading", { name: "Your profile, in words" }).waitFor();
+  log("profile: own results and the written-report section shown");
+} else if (ownResults) throw new Error("profile: own results shown before any session was done");
+
 // Lane Map: onboarding answers show up, filters work client-side, a lane opens, plans exist
 await p.goto(base + "/lanes");
 await p.getByText("Your current lane").first().waitFor();

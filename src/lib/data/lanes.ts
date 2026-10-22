@@ -15,6 +15,7 @@ import { planFor } from "../lanes/plans";
 import type { LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, NextStep, RoleRef } from "../lanes/types";
 import type { Sprint } from "../types";
 import type { ExperienceAnswers } from ".";
+import type { ReportLane } from "../report/facts";
 
 const roleRef = (r: Role): RoleRef => ({ id: r.id, title: r.title, level: r.level, mode: r.mode, aka: r.aka });
 
@@ -118,3 +119,33 @@ export const laneName = (id: string) => getLane(id)?.name ?? id;
 /** A sample sprint becomes "practice tasks" unless its lane allows real work (sprint = direct). */
 export const withKind = (s: Omit<Sprint, "kind">): Sprint => ({ ...s, kind: getLane(s.laneId)?.sprint === "direct" ? "sprint" : "practice" });
 export const isKnownLane = (id: string): id is LaneId => !!getLane(id);
+
+/**
+ * Lanes for the written report: the strongest fits (up to six), plus the lanes the person is
+ * considering or works in now, whatever their band.
+ */
+export function reportLanes(profile: ProfileScores, exp: ExperienceAnswers): ReportLane[] {
+  const matches = matchesFor(profile);
+  const strong = [...matches.values()].filter((m) => m.band === "strong").sort((a, b) => (b.vsAverage ?? 0) - (a.vsAverage ?? 0)).slice(0, 6);
+  const picked = new Map<string, ReportLane["listedBecause"]>(strong.map((m) => [m.laneId, "strong_fit"]));
+  for (const c of exp.considering) picked.set(c.laneId, "considering");
+  if (exp.current) picked.set(exp.current.laneId, "current_job");
+  return [...picked].flatMap(([id, why]) => {
+    const lane = getLane(id);
+    const m = matches.get(id as LaneId);
+    if (!lane || !m) return [];
+    return [
+      {
+        name: lane.name,
+        family: getFamily(lane.family)!.name,
+        band: m.band,
+        drivers: m.drivers.filter((d) => d.contribution > 0).map((d) => d.label),
+        payoff: taxonomy.payoffs[lane.payoff],
+        winnerTakeAll: lane.payoff === "winner_take_all",
+        entry: taxonomy.entry[lane.entry],
+        howToTry: taxonomy.sprint[lane.sprint],
+        listedBecause: why,
+      },
+    ];
+  });
+}
