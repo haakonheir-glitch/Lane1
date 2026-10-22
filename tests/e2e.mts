@@ -230,10 +230,11 @@ async function runSession(sessionId: SessionId) {
       await until(() => turns > before);
     } else if (s.kind === "item") {
       seen.add(s.item.format.type);
-      const before = turns;
       await p.waitForTimeout(450); // a careful respondent; also avoids the rapid-response flag
       await answerItem(sessionId, s);
-      await until(() => turns > before);
+      // Wait for the step to move on, not for any response: in dev, React runs the page's
+      // initial state request twice, and counting responses put the persona one item behind.
+      await until(() => step!.kind !== "item" || (step as typeof s).position !== s.position);
     } else if (s.kind === "task") {
       const id = s.task.id;
       seen.add(id);
