@@ -34,9 +34,11 @@ p.on("response", async (r: Response) => {
   const j = await r.json().catch(() => null);
   if (!j) return;
   turns++;
-  if (j.step) step = j.step;
+  // A slow state response can land after an answer's response: never step back to an earlier item.
+  const later = (s: PublicStep) => !(step?.kind === "item" && s.kind === "item" && s.position < step.position);
+  if (j.step && later(j.step)) step = j.step;
   if ("trial" in j) trial = j.trial;
-  if (j.next) step = j.next;
+  if (j.next && later(j.next)) step = j.next;
 });
 
 // Sign up and onboard
