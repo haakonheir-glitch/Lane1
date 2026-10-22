@@ -1,0 +1,483 @@
+# ======================================================================
+# ENGINEERING
+# ======================================================================
+@family engineering | Engineering | Designing and improving physical systems, structures and machines.
+
+@lane mechanical_engineering | Mechanical engineering | isco 2144 3115 3118 | riasec IR | payoff linear_high_floor | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags technical analytical building precision
+> Designing machines, products, vehicles and mechanical systems.
+- Mechanical engineering technician | entry | aka maskintekniker
+- CAD / draughtsperson | entry | aka konstruktør | +detail
+- Mechanical design engineer | mid | aka maskiningeniør
+- Simulation / FEA engineer | mid | +analytical
+- HVAC / building services engineer (mechanical) | mid
+- Aerospace engineer | mid
+- Automotive engineer | mid
+- Test and validation engineer | mid
+- Senior mechanical engineer | senior
+- Principal engineer / technical specialist | lead
+- Engineering manager | manager | +leadership
+- Head of engineering / technical director | director | +leadership
+- Independent engineering consultant | senior | mode freelance
+
+@lane electrical_engineering | Electrical & electronics engineering | isco 2151 2152 2153 3113 3114 3522 | riasec IR | payoff linear_high_floor | entry degree | sprint simulated | modes employed | ladder corporate | tags technical analytical precision
+> Designing electrical systems, electronics, power and telecom networks.
+- Electrical / electronics technician | entry | aka elektrotekniker
+- Electrical design engineer | mid | aka elektroingeniør; electrical engineer
+- Electronics / hardware engineer | mid
+- PCB designer | mid | +detail
+- Power systems engineer | mid
+- Telecommunications engineer | mid
+- RF / antenna engineer | senior
+- Electrical engineer (buildings) | mid
+- Senior electrical engineer | senior
+- Lead / principal electrical engineer | lead
+- Electrical engineering manager | manager | +leadership
+
+@lane civil_engineering | Civil & structural engineering | isco 2142 3112 3118 2165 | riasec IRC | payoff linear_high_floor | entry degree | sprint simulated | modes employed public | ladder corporate | tags technical analytical precision outdoor
+> Roads, bridges, tunnels, buildings and water systems.
+- Civil engineering technician | entry
+- Civil engineer | mid | aka sivilingeniør bygg; byggingeniør
+- Structural engineer | mid | aka konstruksjonsingeniør (RIB)
+- Geotechnical engineer | mid
+- Road and transport engineer | mid
+- Tunnel / rock engineer | mid
+- Water and wastewater engineer | mid
+- Bridge engineer | senior
+- BIM coordinator | mid | +detail
+- Senior civil engineer | senior
+- Discipline lead / chief engineer | lead
+- Civil engineering manager | manager | +leadership
+
+@lane process_engineering | Chemical & process engineering | isco 2145 3116 2146 | riasec IRC | payoff linear_high_floor | entry degree | sprint simulated | modes employed | ladder corporate | tags technical analytical precision
+> Designing and optimising industrial processes: chemicals, oil and gas, food, metals, pharma.
+- Process technician | entry
+- Process engineer | mid | aka prosessingeniør
+- Chemical engineer | mid
+- Metallurgist / materials engineer | mid
+- Corrosion engineer | senior
+- Pharmaceutical process engineer | mid
+- Senior process engineer | senior
+- Process engineering manager | manager | +leadership
+
+@lane industrial_engineering | Industrial & manufacturing engineering | isco 2141 3115 3122 | riasec IEC | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical technical team
+> Making production faster, cheaper and better.
+- Production technician | entry
+- Manufacturing engineer | mid | aka produksjonsingeniør
+- Industrial engineer | mid
+- Lean / production improvement engineer | mid
+- Automation and robotics engineer | mid | +technical
+- Maintenance engineer | mid
+- Plant engineering manager | manager | +leadership
+
+@lane environmental_engineering | Environmental & energy engineering | isco 2143 2133 2149 | riasec IRS | payoff linear | entry degree | sprint simulated | modes employed public | ladder corporate | tags technical analytical outdoor
+> Pollution control, energy efficiency, climate adaptation and environmental assessment.
+- Environmental technician | entry
+- Environmental engineer | mid | aka miljøingeniør
+- Energy engineer / energy consultant | mid
+- Environmental impact assessment consultant | mid | +writing
+- Climate adaptation specialist | senior
+- Environmental engineering manager | manager | +leadership
+
+@lane biomedical_engineering | Biomedical engineering | isco 2149 3211 3214 | riasec IRS | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags technical precision analytical care
+> Medical devices, hospital technology and prosthetics.
+- Medical equipment technician | entry | aka medisinteknisk tekniker
+- Biomedical engineer | mid
+- Medical device design engineer | mid
+- Clinical engineer (hospital) | mid
+- Prosthetist / orthotist | mid | aka ortopediingeniør | +care +building
+- Dental technician | mid | aka tanntekniker | +building
+- Medical device quality engineer | mid
+
+@lane mining_geo | Mining, quarrying & drilling | isco 2146 3117 3121 8111 8112 8113 8114 7542 9311 1322 | riasec RI | payoff linear_high_floor | entry open | sprint shadow | modes employed | ladder corporate | tags physical outdoor technical shift
+> Extracting minerals, stone and rock.
+- Quarry / mining labourer | entry | +routine
+- Miner / underground operator | entry
+- Mineral and stone processing operator | entry
+- Rock drill / borehole drill operator | mid | aka bergboremaskinfører
+- Shotfirer / blaster | mid | aka bergsprenger | +precision
+- Mining technician | mid | -physical
+- Mining engineer | mid | -physical +analytical
+- Mine supervisor | manager | +leadership
+- Mine / quarry manager | director | +leadership
+
+# ======================================================================
+# ARCHITECTURE, PLANNING & CONSTRUCTION MANAGEMENT
+# ======================================================================
+@family built_environment | Architecture, planning & construction management | Designing buildings and places and running construction projects.
+
+@lane architecture | Architecture | isco 2161 2162 3118 | riasec AIR | payoff linear | entry advanced | sprint simulated | modes employed freelance owner | ladder professional_firm | tags creative aesthetic technical detail
+> Designing buildings, landscapes and spaces.
+- Architectural technician / draughtsperson | entry
+- Architect (junior) | entry | aka arkitekt
+- Architect | mid
+- Landscape architect | mid | aka landskapsarkitekt | +outdoor
+- Project architect | senior
+- Senior / lead architect | lead
+- Architecture studio partner | exec | +hunting +leadership
+- Own architecture practice | owner
+
+@lane interior_design | Interior design | isco 3432 2163 | riasec AE | payoff convex | entry course | sprint simulated | modes employed freelance owner | ladder independent | tags aesthetic creative relationship
+> Designing interiors for homes, offices, shops and hotels.
+- Interior design assistant | entry
+- Interior designer | mid | aka interiørarkitekt
+- Interior stylist / home stager | entry | mode freelance
+- Kitchen / bathroom designer | mid
+- Retail / hospitality interior designer | senior
+- Interior design studio owner | owner | +hunting
+
+@lane urban_planning | Urban & transport planning | isco 2164 2165 | riasec IAE | payoff linear | entry advanced | sprint simulated | modes public employed | ladder public | tags analytical writing technical
+> Planning cities, land use and transport systems.
+- Planning officer | entry | aka arealplanlegger
+- Urban planner | mid | aka byplanlegger
+- Transport planner | mid
+- Land surveyor | mid | aka landmåler | +outdoor +technical
+- Cartographer | mid | +detail
+- Planning consultant | senior | mode employed
+- Head of planning | director | +leadership
+
+@lane construction_management | Construction management | isco 1323 3123 2142 3112 | riasec ERC | payoff linear | entry degree | sprint shadow | modes employed | ladder corporate | tags leadership pressure technical outdoor
+> Running construction projects: cost, schedule, safety and quality.
+- Site engineer | entry | aka anleggsingeniør
+- Assistant site manager | entry
+- Site manager / construction supervisor | mid | aka anleggsleder; byggeleder
+- Estimator / cost engineer | mid | aka kalkulatør | +numbers
+- Quantity surveyor | mid | +numbers
+- Construction planner | mid | +analytical
+- Construction project manager | senior | aka prosjektleder bygg
+- Project director (construction) | director | +leadership
+- Building inspector / independent controller | mid | +detail
+- Construction company owner | owner | +risk
+
+# ======================================================================
+# SKILLED TRADES & CONSTRUCTION
+# ======================================================================
+@family trades | Skilled trades & construction | Building, installing, fixing and maintaining with hands-on skill.
+
+@lane electrician | Electrician | isco 7411 7412 7413 | riasec RC | payoff linear_high_floor | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags building technical precision physical
+> Installing and maintaining electrical systems in buildings, industry and the grid.
+- Electrician apprentice | trainee | aka elektrikerlærling
+- Electrician (installation) | entry | aka elektriker (fagbrev)
+- Industrial electrician | mid | aka industrielektriker
+- Grid electrician / line worker | mid | aka energimontør | +outdoor
+- Automation electrician | mid | aka automatiker
+- Electrical service technician | mid
+- Low-voltage / security systems installer | mid
+- EV charger and solar installer | mid
+- Authorised installer / technical manager (faglig ansvarlig) | senior
+- Master electrician (elektroinstallatør) | lead
+- Electrical foreman | manager | +leadership
+- Electrical contracting business owner | owner | +hunting +risk
+
+@lane plumbing_hvac | Plumbing, heating & refrigeration | isco 7126 7127 | riasec RC | payoff linear_high_floor | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags building technical physical
+> Pipes, water, heating, ventilation, heat pumps and cooling.
+- Plumber apprentice | trainee | aka rørleggerlærling
+- Plumber | entry | aka rørlegger
+- Service plumber | mid | +care +solo
+- Industrial pipe fitter | mid | aka industrirørlegger
+- Ventilation technician | mid | aka ventilasjonsmontør
+- Refrigeration and heat pump technician | mid | aka kuldetekniker
+- Master plumber | lead
+- Plumbing foreman | manager | +leadership
+- Plumbing business owner | owner | +hunting +risk
+
+@lane carpentry | Carpentry & building | isco 7115 7111 7119 7214 | riasec R | payoff linear | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags building physical outdoor team
+> Building houses and structures in wood and timber.
+- Carpentry apprentice | trainee | aka tømrerlærling
+- Carpenter | entry | aka tømrer
+- Renovation carpenter | mid | +solo
+- Formwork carpenter | mid | aka forskalingssnekker
+- Timber frame / log builder | mid
+- Scaffolder | entry | aka stillasbygger
+- Steel erector | mid
+- Master carpenter | lead
+- Construction foreman | manager | aka bas | +leadership
+- Building contractor (own firm) | owner | +hunting +risk
+- Handyman business | owner | +solo +autonomy
+
+@lane masonry_concrete | Masonry, concrete & tiling | isco 7112 7113 7114 7122 7123 | riasec R | payoff linear | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags building physical outdoor precision
+> Brick, stone, concrete, plaster and tile.
+- Masonry apprentice | trainee
+- Bricklayer / mason | entry | aka murer
+- Concrete worker | entry | aka betongfagarbeider
+- Stonemason / stone carver | mid | +aesthetic
+- Tiler | entry | aka flislegger
+- Plasterer | entry
+- Floor layer | entry | aka gulvlegger
+- Master mason / master tiler | lead
+- Masonry / tiling business owner | owner
+
+@lane finishing_trades | Painting, roofing & building finishes | isco 7131 7132 7121 7124 7125 7213 | riasec R | payoff linear | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags building physical
+> The trades that finish and protect buildings.
+- Painter and decorator | entry | aka maler
+- Spray painter / varnisher | entry
+- Roofer | entry | aka taktekker | +outdoor
+- Sheet metal worker | entry | aka blikkenslager
+- Insulation worker | entry
+- Glazier | entry | aka glassmester
+- Wallpaper hanger / decorator | entry | +aesthetic
+- Master painter | lead
+- Painting / roofing business owner | owner
+
+@lane heavy_equipment | Heavy equipment & civil works | isco 8342 8343 9312 9313 7215 8341 | riasec R | payoff linear_high_floor | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags physical outdoor precision solo
+> Operating excavators, cranes and machines for roads, tunnels and building sites.
+- Construction labourer | entry | aka anleggsarbeider | +team
+- Road worker / asphalt worker | entry | +team
+- Excavator / earthmoving machine operator | mid | aka anleggsmaskinfører
+- Crane operator | mid | aka kranfører
+- Tunnel worker / rock blasting crew | mid | aka tunnelarbeider
+- Rigger | mid | +team
+- Machine operator foreman | manager | +leadership
+- Excavation contractor (own machines) | owner | +risk
+
+@lane welding_metal | Welding & metal fabrication | isco 7212 7211 7213 7214 7221 7222 7223 7224 | riasec R | payoff linear_high_floor | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags building precision physical practice
+> Cutting, shaping and joining metal for ships, platforms, structures and products.
+- Welding apprentice | trainee
+- Welder | entry | aka sveiser
+- Plate worker / steel fabricator | entry | aka platearbeider
+- Pipe welder (offshore / process) | mid | +travel
+- Underwater welder | senior | +risk
+- CNC machinist | mid | aka CNC-operatør; maskinarbeider
+- Toolmaker | mid | aka verktøymaker
+- Blacksmith / forge worker | mid
+- Welding inspector | senior | +detail
+- Fabrication shop foreman | manager | +leadership
+- Metal workshop owner | owner
+
+@lane vehicle_mechanics | Vehicle & machinery mechanics | isco 7231 7232 7233 7234 7421 | riasec RI | payoff linear | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags building technical
+> Repairing and servicing cars, trucks, aircraft, bikes and machines.
+- Mechanic apprentice | trainee | aka bilmekanikerlærling
+- Car mechanic | entry | aka bilmekaniker
+- EV / hybrid technician | mid | +technical
+- Heavy vehicle mechanic | mid | aka tungbilmekaniker
+- Agricultural and construction machinery mechanic | mid | aka anleggsmaskinmekaniker
+- Aircraft maintenance technician | mid | aka flytekniker | +precision
+- Motorcycle mechanic | entry
+- Bicycle mechanic | entry
+- Auto body repairer / panel beater | entry | aka bilskadereparatør
+- Car paint technician | entry | aka billakkerer | +aesthetic
+- Tyre technician | entry
+- Electronics repair technician | entry
+- Workshop foreman / service manager | manager | +leadership
+- Workshop owner | owner
+
+@lane industrial_maintenance | Industrial maintenance & technical service | isco 7233 7412 7311 3115 3119 7421 | riasec RI | payoff linear_high_floor | entry apprenticeship | sprint shadow | modes employed | ladder trades | tags technical building precision shift
+> Keeping factories, plants, lifts and machines running.
+- Industrial mechanic (millwright) | entry | aka industrimekaniker
+- Instrument technician | mid | aka instrumentmekaniker
+- Lift / elevator technician | mid | aka heismontør
+- Automation technician | mid
+- Service technician (machines) | mid | +travel +solo
+- Precision instrument maker | mid | +detail
+- Maintenance planner | mid | -building +detail
+- Maintenance supervisor | manager | +leadership
+- Maintenance manager | director | +leadership
+
+@lane specialist_trades | Specialist trades & services | isco 7549 7541 7544 7319 5169 9622 | riasec R | payoff linear | entry course | sprint shadow | modes employed owner freelance | ladder trades | tags building technical solo
+> Smaller trades that keep buildings and equipment working.
+- Locksmith | mid | aka låsesmed
+- Commercial diver | mid | aka yrkesdykker | +risk +outdoor
+- Chimney sweep | entry | aka feier
+- Fire protection installer (sprinkler, alarms) | mid
+- Security systems installer | mid
+- Odd-job / handyman | entry | mode freelance | +autonomy
+- Demolition worker | entry | +physical
+- Specialist trades business owner | owner
+
+@lane landscaping | Landscaping & grounds | isco 6113 9214 7113 | riasec R | payoff linear | entry apprenticeship | sprint direct | modes employed owner | ladder trades | tags outdoor physical building aesthetic
+> Building and maintaining gardens, parks and outdoor spaces.
+- Garden and landscape labourer | entry
+- Gardener / groundskeeper | entry | aka gartner
+- Landscape gardener | mid | aka anleggsgartner
+- Arborist / tree surgeon | mid | aka arborist | +risk
+- Golf course greenkeeper | mid
+- Landscape foreman | manager | +leadership
+- Landscaping business owner | owner | +hunting
+
+# ======================================================================
+# MANUFACTURING & PRODUCTION
+# ======================================================================
+@family manufacturing | Manufacturing & production | Making products at scale in factories and plants.
+
+@lane machine_operation | Machine operation & assembly | isco 7223 8211 8212 8219 8141 8142 8183 8189 9329 7523 8143 8172 8181 1321 | riasec RC | payoff linear | entry open | sprint direct | modes employed | ladder frontline | tags routine precision shift team
+> Operating production machines and assembling products.
+- Production worker / assembly operator | entry | aka produksjonsmedarbeider; assembler; factory worker
+- Electronics assembler | entry | +detail
+- Machine operator | entry | aka maskinoperatør
+- Plastic / rubber products machine operator | entry
+- Packing and bottling machine operator | entry
+- Woodworking machine operator | entry
+- Paper / glass products machine operator | entry
+- CNC operator / setter | mid | +technical
+- Line lead | manager | +leadership
+- Production supervisor | manager | aka skiftleder; assembly supervisor | +leadership
+- Production manager | director | +leadership
+- Plant manager | exec | aka fabrikksjef | +leadership
+
+@lane process_operation | Process plant operation | isco 3133 3134 3135 3139 3131 8121 8122 8131 8171 8182 8132 1321 | riasec RC | payoff linear_high_floor | entry apprenticeship | sprint shadow | modes employed | ladder trades | tags technical precision shift team
+> Running continuous process plants: chemicals, metals, refineries, paper and power.
+- Process operator apprentice | trainee | aka prosessoperatørlærling
+- Process operator | entry | aka prosessoperatør
+- Control room operator | mid | aka kontrollromsoperatør | +pressure
+- Aluminium / smelter operator | entry
+- Chemical plant operator | entry
+- Refinery operator | mid
+- Power plant operator | mid
+- Process technician / process controller | senior
+- Shift supervisor (process) | manager | +leadership
+- Production manager (process industry) | director | +leadership
+
+@lane food_production | Food & seafood production | isco 7511 7512 7513 7514 7515 8160 9216 7516 | riasec RC | payoff linear | entry apprenticeship | sprint direct | modes employed | ladder trades | tags routine physical team shift
+> Processing fish, meat, dairy and food at industrial scale.
+- Food production operator | entry | aka næringsmiddelarbeider
+- Fish processing worker / fish filleter | entry | aka fiskeindustriarbeider
+- Industrial butcher / meat cutter | entry | aka slakter
+- Industrial baker | entry
+- Dairy production operator | entry
+- Food quality technician / taster | mid | +detail
+- Food technologist | mid | -physical +technical
+- Snus / tobacco production operator | entry
+- Production supervisor (food) | manager | +leadership
+
+@lane textile_print_production | Textile, print & packaging production | isco 8151 8152 8153 8154 8155 8156 8157 8159 7321 7322 7323 9121 | riasec RC | payoff linear | entry open | sprint direct | modes employed | ladder frontline | tags routine precision detail
+> Producing textiles, garments, prints and packaging.
+- Sewing machine operator | entry
+- Textile machine operator | entry
+- Laundry / dry cleaning operator | entry
+- Pre-press technician | mid | +technical
+- Printer / press operator | mid | aka trykker
+- Print finishing / bookbinding operator | entry
+- Print production manager | manager | +leadership
+
+# ======================================================================
+# MARITIME, OFFSHORE & ENERGY
+# ======================================================================
+@family maritime_energy | Maritime, offshore & energy | Ships, oil and gas, renewables and power: core Norwegian industries.
+
+@lane seafaring | Seafaring & ship operations | isco 3151 3152 8350 5111 5120 | riasec RC | payoff linear_high_floor | entry apprenticeship | sprint shadow | modes employed | ladder uniformed | tags outdoor physical shift travel team
+> Working on ships: navigation, engines and deck.
+- Deck apprentice / ordinary seaman | trainee | aka matroslærling
+- Able seaman | entry | aka matros
+- Deck officer | mid | aka styrmann
+- Chief officer | senior
+- Captain / master | lead | aka kaptein; skipsfører | +leadership
+- Engine apprentice / motorman | trainee
+- Marine engineer | mid | aka maskinist
+- Chief engineer | lead | +leadership
+- Electro-technical officer | mid
+- Maritime pilot | lead | aka los
+- Ship's cook / steward | entry | -outdoor
+- Ferry / passenger ship crew | entry | +care
+
+@lane offshore_oil_gas | Offshore & oil and gas | isco 2145 2114 2149 8113 3134 3139 3117 | riasec RI | payoff linear_high_floor | entry apprenticeship | sprint shadow | modes employed | ladder trades | tags technical physical shift travel pressure
+> Exploring for and producing oil and gas, mostly offshore on rotation.
+- Roustabout / roughneck | entry | aka boredekksarbeider
+- Driller | mid | aka boreoperatør
+- Toolpusher | senior | +leadership
+- Offshore production technician | mid | aka prosesstekniker offshore
+- ROV pilot / technician | mid | +technical
+- Crane operator offshore | mid
+- Mud logger / well service technician | mid
+- Petroleum engineer | mid | -physical +analytical
+- Reservoir engineer | senior | -physical +analytical
+- Drilling engineer | mid | -physical
+- Subsea engineer | mid | -physical
+- Petroleum geologist / geophysicist | mid | -physical +analytical
+- Offshore installation manager (OIM) | director | +leadership
+
+@lane renewables | Renewable energy | isco 7412 2151 2149 7411 3131 | riasec RI | payoff linear | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags technical outdoor physical
+> Wind, solar, hydro, hydrogen and battery projects.
+- Wind turbine technician | entry | aka vindturbintekniker | +risk
+- Solar PV installer | entry
+- Hydropower operator / technician | mid
+- Battery storage technician | mid
+- Renewable energy engineer | mid | -physical +analytical
+- Energy project developer | senior | -physical +negotiation
+- Offshore wind project manager | senior | -physical +leadership
+- Solar installation business owner | owner
+
+@lane power_utilities | Power grid & utilities | isco 3131 3132 7413 2151 1219 | riasec RIC | payoff linear_high_floor | entry apprenticeship | sprint shadow | modes employed public | ladder trades | tags technical precision shift
+> Distributing electricity, water and district heating.
+- Grid control operator | mid | aka driftsoperatør nett | +pressure
+- Line worker / grid technician | entry | +outdoor +physical
+- Substation technician | mid
+- Water / district heating operator | mid
+- Meter technician / meter reader | entry | +routine
+- Grid planning engineer | mid | -physical +analytical
+- Utility operations manager | manager | +leadership
+
+@lane shipping_business | Shipping business & maritime services | isco 3324 1324 2413 3331 | riasec EC | payoff steep | entry degree | sprint simulated | modes employed | ladder corporate | tags negotiation relationship numbers risk
+> The commercial side of shipping: chartering, broking, ship management and finance.
+- Shipbroker trainee | trainee
+- Shipbroker (dry bulk, tankers, gas) | mid | aka skipsmegler | +hunting +variable_pay
+- Sale and purchase (S&P) broker | senior | +variable_pay
+- Chartering manager | senior
+- Ship operator / post-fixture manager | mid | +detail
+- Fleet / ship manager | senior | +technical
+- Shipping finance analyst | mid | +analytical
+- Marine superintendent | senior | +technical +travel
+- Shipping company managing director | exec | +leadership
+
+# ======================================================================
+# AGRICULTURE, FISHERIES, FORESTRY & NATURE
+# ======================================================================
+@family primary | Agriculture, fisheries, forestry & nature | Producing food and raw materials from land and sea.
+
+@lane farming | Farming & horticulture | isco 6111 6112 6113 6114 6121 6122 6123 6129 6130 6310 6320 6330 9211 9212 9213 1311 3142 2132 | riasec R | payoff linear | entry apprenticeship | sprint direct | modes owner employed | ladder trades | tags outdoor physical autonomy building
+> Growing crops and raising animals.
+- Farm labourer / seasonal worker | entry | mode employed | +routine
+- Farm worker / agricultural worker | entry | mode employed | aka gårdsarbeider
+- Dairy / livestock farmer | owner | aka melkebonde
+- Crop / grain farmer | owner
+- Greenhouse / vegetable grower | owner
+- Fruit and berry grower | owner
+- Beekeeper | owner | +solo
+- Poultry farmer | owner
+- Organic / regenerative farmer | owner
+- Farm manager | manager | mode employed | +leadership
+- Agricultural adviser / agronomist | mid | mode employed | -physical +analytical
+- Agricultural technician | mid | mode employed
+- Nursery grower / florist grower | owner
+
+@lane fisheries_aquaculture | Fisheries & aquaculture | isco 6221 6222 6223 1312 2132 3142 6340 | riasec R | payoff linear_high_floor | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags outdoor physical shift team
+> Catching fish and farming salmon and other seafood.
+- Aquaculture operator (fish farm worker) | entry | aka akvakulturoperatør
+- Deckhand / fisherman | entry | aka fisker | +risk
+- Coastal fisherman (own boat) | owner | aka kystfisker | +risk +autonomy
+- Deep-sea fishing crew | mid | +travel
+- Fishing vessel skipper / owner | owner | +leadership +risk
+- Hatchery / smolt technician | mid | aka settefisk
+- Fish health biologist | senior | -physical +technical
+- Aquaculture site manager | manager | aka driftsleder | +leadership
+- Aquaculture regional / production manager | director | +leadership
+
+@lane forestry | Forestry & hunting | isco 6210 6224 9215 3143 8341 2132 9624 | riasec R | payoff linear | entry apprenticeship | sprint shadow | modes employed owner | ladder trades | tags outdoor physical solo
+> Managing forests, harvesting timber and wildlife.
+- Forestry labourer | entry
+- Forest worker / chainsaw operator | entry | aka skogsarbeider | +risk
+- Forestry machine operator (harvester) | mid | aka skogsmaskinfører
+- Forestry technician | mid
+- Forester / forest manager | senior | -physical +analytical
+- Hunting / wildlife guide | mid | mode freelance
+- Firewood producer | owner | aka vedprodusent
+- Forestry contractor | owner
+
+@lane animal_care | Animal care & training | isco 5164 6129 3240 | riasec RS | payoff linear | entry open | sprint direct | modes employed freelance owner | ladder independent | tags care physical routine
+> Looking after, training and grooming animals.
+- Animal care worker / kennel assistant | entry
+- Dog walker / pet sitter | entry | mode freelance | +autonomy +outdoor
+- Pet groomer | entry | aka hundefrisør
+- Dog trainer | mid | mode freelance | +teaching
+- Horse trainer / riding instructor | mid | +teaching +outdoor
+- Stable manager | manager | +leadership
+- Zookeeper | entry
+- Veterinary nurse / technician | mid | aka dyrepleier | +technical
+- Animal breeder | owner
+- Pet care business owner | owner
+
+@lane nature_conservation | Nature & conservation | isco 2133 3143 2131 | riasec RIS | payoff linear | entry degree | sprint simulated | modes public employed | ladder public | tags outdoor analytical solo
+> Protecting nature, wildlife and national parks.
+- Park ranger / nature warden | entry | aka naturoppsyn
+- Conservation officer | mid
+- Ecologist / ecological consultant | mid | +technical
+- Wildlife biologist (field) | mid
+- Conservation manager | manager | +leadership

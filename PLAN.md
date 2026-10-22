@@ -1,6 +1,6 @@
 # Lane — Plan v0.3 (assessment package integration)
 
-Status: **built** on `functional-backend` (phases 1–5). Section 9 records what changed during the build; norms are still blocked (D2, D24).
+Status: assessment integration **built** on `functional-backend` (sections 5–9; norms still blocked, D2/D24). Taxonomy integration (section 10) **awaiting approval**.
 
 Inputs, in priority order:
 
@@ -8,7 +8,8 @@ Inputs, in priority order:
 |---|---|---|
 | Assessment package v0.1 | `./assessment/` (README, BLUEPRINT, battery_manifest, items 01–14, generators) | **Assessment content and scoring**: wins on conflicts |
 | Master prompt | *not attached; see D0* | **Design, routes, components, everything else** |
-| Your integration rules (this request) | — | Overrides both where specific |
+| Lane taxonomy v0.1 | `./taxonomy/` (README, taxonomy.json, esco_mapping.csv, src, build) | **Lanes and roles**: wins over the master prompt (section 10) |
+| Your integration rules (each request) | — | Overrides both where specific |
 
 Earlier plans (v0.1 front-end, v0.2 backend) are in git history. Sections 2–4 below keep their design system unchanged; only what changes is described.
 
@@ -330,3 +331,133 @@ Conflicts and gaps between the two specs, and how this plan resolves them.
 - **D25 — Sprints and evidence pages are local-only.** They read the mock (D18), so sprint detail interactions work in the page but are not saved.
 - **D26 — Session outro.** The manifest's `unlocks` text is one sentence for the person followed by a design rationale; only the first sentence is shown.
 - **D27 — `/system` specimens use real content.** Item specimens are picked from the bank by format; task specimens come from the generators with fixed seeds, so the design system shows what users actually see.
+
+---
+
+## 10. Taxonomy integration (plan, awaiting approval)
+
+The 34 hand-written lanes and their four groups are replaced by `./taxonomy`: 34 families, 205 lanes, 1,883 roles. The files are unchanged from the zip. `python3 taxonomy/build/build.py` reproduces `taxonomy.json` byte for byte, so the build is a reliable way to make changes.
+
+### 10.1 Data
+
+- `src/lib/taxonomy/`:
+  - `taxonomy.json` is imported at build time.
+  - `generated.ts` holds the types: `Family`, `Lane`, `Role`, `Ladder`, plus literal unions for level, mode, payoff, entry, sprint, tag, ladder, family and lane ids. A script (`npm run taxonomy:types`) writes it from the JSON, and a test fails if the file is out of date.
+  - A Zod check at load catches a bad rebuild.
+  - Indexes provide lane by id, role by id and roles by level.
+- `src/lib/mock/lanes.ts`, `LaneGroup`, the three-value `PayoffType` and the old driver labels are removed.
+- The 6 mock sprints and the evidence events are re-keyed to taxonomy lane ids. For example `sales-b2b` → `b2b_sales`, and `content` → the creator lane.
+
+### 10.2 Matching: one pure function in `src/lib/matching/`
+
+`matchLanes(profile, taxonomy, context) → LaneMatch[]` takes the profile in the `ProfileScores` shape, so the mock now and real scores later both plug in through the same input.
+
+1. **Constructs.**
+   - `resolveConstruct(id, profile)` turns `tag_to_constructs` ids into a z-score:
+     - `neo.E3` uses the facet;
+     - `interests.E` uses the RIASEC scale;
+     - `values.independence` uses the card-sort rank, converted to z within the person;
+     - `cognitive.general` uses the percentile band;
+     - `cognitive.matrix` and `cognitive.series` use the reasoning area;
+     - `cognitive.quant` uses quantitative, `cognitive.rotation` spatial and `cognitive.symbol_match` speed;
+     - `behaviour.balloon` uses risk and `behaviour.learning_rate` learning.
+   - The `(-)` suffix reverses the sign.
+   - Unresolved ids are skipped and listed (D28–D30).
+2. **Lane fit.**
+   - Half comes from RIASEC congruence: the lane's code letters weighted 2:1 on the person's interest z-scores.
+   - Half comes from the lane's tags: the mean of each tag's resolved constructs.
+   - Everything is relative to the person's own average ("ranked against yourself").
+   - The function returns fit, a standard error built from the constructs' reliabilities, and the constructs that drove it.
+3. **Bands, not ranks.**
+   - A lane's fit is compared with the person's average fit across all lanes, using the BLUEPRINT §7 difference rule.
+   - **Strong fit:** clearly above average.
+   - **Unlikely:** clearly below average.
+   - **Worth testing:** everything else.
+   - **Not enough data:** too few constructs resolve.
+4. **Roles within a lane.**
+   - Candidate starting roles are those at the person's entry point: trainee or entry, or the lowest individual-contributor level the lane has (D35).
+   - Owner roles count only on founder, independent and creator ladders (D36).
+   - Manager, director and exec roles are **never** candidates.
+   - Each candidate's tags (lane tags ± its own) are scored through the same constructs, and the top 2–3 are shown.
+   - Each gets a one-line reason naming the person's strongest validated construct behind it, e.g. "SDR: hunting work leans on assertiveness, one of your stronger facets."
+5. **Fit × payoff.**
+   - The toggle reorders lanes *within* bands by fit × the payoff curve's expected position. `lib/lanes/payoff.ts` is extended from 3 curves to 5.
+   - Rank numbers are never shown.
+
+Unit tests (Vitest) use hand-built profiles:
+- the right interest code lifts the right lanes;
+- the `(-)` constructs reverse the sign;
+- the bands follow the difference rule;
+- missing data gives "not enough data";
+- management roles never appear as starting roles;
+- the function is deterministic and pure.
+
+### 10.3 Screens
+
+- **Lane Map (`/lanes`):**
+  - Lanes are grouped by family, with bands inside each family.
+  - A "Bands" view lists all strong-fit lanes first, across families.
+  - Filters: family, work mode, payoff curve, entry route and sprint feasibility. Filter state is kept in the URL.
+  - The "Relative fit / Fit × payoff" toggle stays.
+  - The client gets 205 small lane summaries and match results, not the 1,883 roles.
+- **Lane detail panel (`?lane=`, rendered on the server):**
+  - description, RIASEC code, entry route, ISCO labels;
+  - the payoff curve;
+  - a "why this band" list of the drivers (validated constructs only);
+  - the top 2–3 starting roles with their reasons;
+  - every role grouped by level, with the user's entry point highlighted and the lane's ladder template drawn above it;
+  - the next step chosen by sprint feasibility.
+- **Payoff note:** every `winner_take_all` lane (23) shows the plain-language note, both in the map row and in the panel: *"In this lane a small group earns most of the income; the typical person earns little or nothing from it."*
+- **Next step by sprint feasibility:**
+  - *direct* (70 lanes): "Start a sprint". These use the existing mock sprints where one exists, otherwise a generic 1–3 week template built from the lane's entry roles.
+  - *simulated* (84 lanes): "Practice tasks". A generic plan of 3 realistic tasks drawn from the lane's tags.
+  - *shadow* (51 lanes): an "interview and shadow" plan. Talk to three practitioners in the entry roles, with a question list, then ask for a shadow day.
+  - All of these are templates on mock data and are not saved (continues D18/D25).
+- **Job-title search:**
+  - `GET /api/taxonomy/search?q=` runs on the server.
+  - It matches role titles and aliases first (including Norwegian; æ/ø/å are folded), then ESCO labels from `esco_mapping.csv`.
+  - Results resolve to a lane, plus a role where known, with the source shown ("role" or "ESCO").
+  - The 500 KB ESCO file never reaches the browser.
+- **Onboarding** gains two steps:
+  - "What do you do now?", answered with the search plus years in that role (0 / under 2 / 2–5 / 5+);
+  - "What are you considering?", up to 3 searches.
+  - Both are saved in `profiles`, which needs a new migration: `current_role_id`, `current_years`, `considering`.
+  - The current role sets the entry point in that lane. Lanes the person is considering are marked on the map.
+- **Marketing page and `/system`:** the sample report's lane preview and the specimens use taxonomy lanes.
+
+### 10.4 Order
+
+1. Types generator, loader and tests.
+2. Matching and its tests.
+3. Lane Map and filters.
+4. Detail panel.
+5. Sprint, practice and shadow offers.
+6. Search API and onboarding.
+7. Remove the old lane data.
+8. QA: typecheck, lint, tests, build, e2e, axe, screenshots.
+
+### 10.5 Decisions (conflicts and gaps)
+
+- **D28 — Experimental constructs in `tag_to_constructs`.**
+  - 27 of the 87 links point to Lane's experimental scales: dispositions, values_ext, lane_interests, eq, creativity and biodata.
+  - The assessment package hides these until a pilot validates them, and it wins on assessment content, so matching skips them for now.
+  - Three tags have *only* experimental links (`solo`, `variable_pay`, `competition`). They add nothing to fit yet, which affects 28 lanes.
+  - The README's example reason ("your setback resilience…") can't be shown.
+  - When a scale is validated, enabling it is one line in the resolver.
+- **D29 — `cognitive.verbal(phase2)`.** Verbal reasoning isn't built (D5), so it is skipped.
+- **D30 — Task-level cognitive ids map to result areas.** Results expose reasoning areas, not single tasks, so `cognitive.matrix` and `cognitive.series` both resolve to the "reasoning" area.
+- **D31 — Values are ipsative.** The card sort ranks values within the person, so those constructs are converted to z within the person, not against norms.
+- **D32 — Bands replace the ranked list.** The master prompt's Lane Map showed rank numbers with tie markers. The taxonomy rule wins: bands only, and the toggle reorders within a band.
+- **D33 — Five payoff curves.** `linear_high_floor` and `steep` join linear, convex and winner-take-all. PayoffGlyph and PayoffCurve gain the two shapes.
+- **D34 — Entry point needs experience.** Onboarding asks for the current role and years in it. If someone is already a manager, their level is marked "you are here" in their own lane, but the recommended starting roles stay non-management.
+- **D35 — 14 lanes have no trainee or entry role** (e.g. ML engineering, quant finance, broadcasting). Their entry point is the lowest individual-contributor level present, labelled "usually entered from another lane". `independent_advisory` has only senior, lead and owner roles, so it recommends no starting role and says it needs prior experience.
+- **D36 — Owner roles as a start.** Owner roles count as a starting point only on founder, independent and creator ladders. Elsewhere (e.g. "agency owner" in B2B sales) they are part of the ladder, not a recommendation.
+- **D37 — The work-mode filter uses the roles' modes.** In 81 lanes, the lane's `modes` list is narrower than the modes of its roles (e.g. B2B sales has owner roles). A lane matches a mode if any of its roles has it.
+- **D38 — Lane drivers.** The old hand-written drivers ("Reasoning (matrices and series)" and so on) are replaced by the constructs that actually drive each lane's fit.
+- **D39 — App language.** The app stays in English. Norwegian aliases work in search only.
+
+### 10.6 Open questions (I'll use the recommended default unless you say otherwise)
+
+- **Q5 — README exclusions.** Sex work and adult content, gambling (beyond skill-based play) and subsistence work are excluded. *Recommended:* keep the exclusions as delivered.
+- **Q6 — Experience question in onboarding** (D34). *Recommended:* yes. Without it, every lane starts the person at trainee or entry level.
+- **Q7 — ESCO data.** The README says to rerun the mapping against the official ESCO download before launch. *Recommended:* use the bundled mapping now and add it to the launch checklist in README.

@@ -1,0 +1,460 @@
+# ======================================================================
+# SCIENCE & RESEARCH
+# ======================================================================
+@family science | Science & research | Discovering how the world works, in universities, institutes and industry.
+
+@lane academic_research | Academic research & university teaching | isco 2310 1345 | riasec IAS | payoff steep | entry advanced | sprint simulated | modes public employed | ladder academic | tags analytical writing autonomy practice
+> Doing research and teaching at universities and research institutes.
+- Research assistant | trainee
+- PhD candidate (stipendiat) | entry
+- Postdoctoral researcher | mid
+- Researcher (research institute) | mid | aka forsker
+- University lecturer (universitetslektor) | mid | +teaching +visible
+- Associate professor (førsteamanuensis) | senior | +teaching
+- Professor | lead | +teaching +leadership
+- Research group leader / PI | manager | +leadership +hunting
+- Head of department / dean | director | +leadership
+- Research administrator / grant adviser | mid | -analytical +detail
+
+@lane life_sciences | Life sciences & biotech | isco 2131 3141 2113 2269 | riasec IR | payoff linear | entry degree | sprint simulated | modes employed public | ladder corporate | tags analytical technical precision detail
+> Biology, biotech and laboratory research.
+- Laboratory technician | entry | aka laborant
+- Biologist | mid
+- Microbiologist | mid
+- Molecular biologist / geneticist | mid
+- Bioinformatician | mid | +numbers
+- Marine biologist | mid | +outdoor
+- Biotech scientist (R&D) | senior
+- Lab manager | manager | +leadership
+- R&D director (biotech) | director | +leadership
+- Biotech startup founder | owner | +risk
+
+@lane pharma_clinical | Pharmaceutical & clinical research | isco 2131 2262 2269 3213 2619 | riasec ISC | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical detail precision
+> Developing and testing medicines and medical products.
+- Clinical trial assistant | entry
+- Clinical research associate (CRA) | mid | +travel
+- Clinical project manager | senior | +leadership
+- Drug safety / pharmacovigilance specialist | mid
+- Medical science liaison | senior | +relationship
+- Medical writer | mid | +writing
+- Pharmaceutical scientist / formulation scientist | mid
+- Biostatistician | mid | +numbers
+- Head of clinical operations | director | +leadership
+
+@lane physical_sciences | Physics, chemistry & mathematics | isco 2111 2113 2120 3111 | riasec IR | payoff linear | entry advanced | sprint simulated | modes employed public | ladder academic | tags analytical technical precision practice
+> Physics, chemistry and mathematics in research and industry.
+- Chemistry technician | entry
+- Chemist (industry) | mid | aka kjemiker
+- Analytical chemist | mid
+- Physicist | mid | aka fysiker; physics researcher
+- Medical physicist | senior | +care
+- Astronomer / astrophysicist | mid
+- Mathematician | mid | aka matematiker
+- Materials scientist | mid
+- Senior scientist | senior
+- Research director | director | +leadership
+
+@lane earth_sciences | Earth, ocean & climate sciences | isco 2114 2112 2133 3111 | riasec IR | payoff linear | entry degree | sprint simulated | modes employed public | ladder corporate | tags analytical outdoor technical
+> Geology, meteorology, oceanography, hydrology and climate.
+- Geology / field technician | entry | +outdoor
+- Geologist | mid | aka geolog
+- Geophysicist | mid
+- Meteorologist / forecaster | mid | aka meteorolog | +shift
+- Oceanographer | mid
+- Hydrologist | mid
+- Climate scientist | senior
+- Engineering geologist | mid
+
+@lane social_sciences | Economics & social sciences | isco 2631 2632 2633 2634 | riasec IAS | payoff linear | entry advanced | sprint simulated | modes employed public | ladder corporate | tags analytical writing numbers
+> Studying economies, societies and behaviour, for governments, banks, think tanks and companies.
+- Research assistant (social science) | entry
+- Economist | mid | aka samfunnsøkonom
+- Central bank economist | senior | mode public
+- Chief economist | lead | +visible
+- Sociologist / social researcher | mid
+- Political scientist / analyst | mid
+- Historian | mid
+- Archaeologist | mid | +outdoor
+- Anthropologist | mid
+- Demographer | mid | +numbers
+- Philosopher / ethicist | mid
+- Think tank fellow | senior | +visible
+
+# ======================================================================
+# HEALTHCARE & MEDICINE
+# ======================================================================
+@family healthcare | Healthcare & medicine | Diagnosing, treating and preventing illness.
+
+@lane medicine | Medicine (doctors) | isco 2211 2212 1342 | riasec ISR | payoff linear_high_floor | entry advanced | sprint shadow | modes public employed owner | ladder medical | tags care precision pressure analytical practice
+> Doctors in general practice, hospitals and specialist medicine.
+- Medical student (assistant roles) | trainee
+- Junior doctor (LIS1) | entry
+- Resident physician (LIS2/3) | mid
+- General practitioner (fastlege) | senior | mode owner | +autonomy +relationship
+- Surgeon | senior | +building
+- Anaesthesiologist | senior
+- Emergency medicine physician | senior | +shift
+- Internal medicine physician | senior
+- Psychiatrist | senior | +relationship
+- Paediatrician | senior
+- Radiologist | senior | -care +technical
+- Pathologist | senior | -care +technical
+- Cardiologist | senior
+- Oncologist | senior
+- Dermatologist | senior
+- Obstetrician-gynaecologist | senior
+- Ophthalmologist | senior | +building
+- Orthopaedic surgeon | senior | +building +physical
+- Neurologist | senior
+- Sports medicine physician | senior
+- Occupational / company doctor | senior
+- Senior consultant (overlege) | lead
+- Chief physician / clinic head | director | +leadership
+- Medical director | exec | +leadership
+- Private specialist clinic owner | owner | +risk
+
+@lane nursing | Nursing & midwifery | isco 2221 2222 3221 3222 | riasec SI | payoff linear_high_floor | entry degree | sprint shadow | modes public employed | ladder corporate | tags care pressure shift team
+> Caring for patients in hospitals, clinics, homes and communities.
+- Registered nurse | entry | aka sykepleier; nurse; staff nurse
+- Intensive care nurse | mid | +precision
+- Anaesthesia nurse | mid | +precision
+- Operating room nurse | mid | +precision
+- Emergency nurse | mid
+- Psychiatric nurse | mid
+- Paediatric nurse | mid
+- Public health / school nurse (helsesykepleier) | mid | -shift
+- Home care nurse | mid | +solo +travel
+- Midwife | mid | aka jordmor
+- Nurse practitioner / advanced practice nurse | senior | +analytical
+- Nurse educator | senior | +teaching
+- Agency / travel nurse | mid | mode freelance | +travel +variable_pay
+- Nurse manager / ward manager | manager | aka avdelingssykepleier | +leadership
+- Director of nursing | director | +leadership
+
+@lane dentistry | Dentistry | isco 2261 3251 3214 | riasec IRS | payoff linear_high_floor | entry advanced | sprint shadow | modes employed owner public | ladder medical | tags precision care building
+> Teeth and oral health.
+- Dental assistant / dental health secretary | entry | aka tannhelsesekretær
+- Dental hygienist | mid | aka tannpleier
+- Dentist | senior | aka tannlege
+- Orthodontist | lead
+- Oral surgeon | lead
+- Dental technician | mid | -care
+- Dental clinic owner | owner | +risk
+
+@lane pharmacy | Pharmacy | isco 2262 3213 | riasec ICS | payoff linear_high_floor | entry degree | sprint shadow | modes employed | ladder corporate | tags precision detail care routine
+> Dispensing medicines and advising on their use.
+- Pharmacy technician (apotektekniker) | entry
+- Prescriptionist (reseptar) | mid
+- Pharmacist (farmasøyt) | senior
+- Hospital pharmacist | senior
+- Pharmacy manager | manager | aka apoteker | +leadership
+
+@lane allied_health | Rehabilitation & allied health | isco 2264 2265 2266 2267 2269 3255 3254 2240 | riasec SIR | payoff linear | entry degree | sprint shadow | modes employed owner public | ladder corporate | tags care physical teaching relationship
+> Therapists and specialists who help people move, speak, see, hear and eat well.
+- Physiotherapist | mid | aka fysioterapeut
+- Sports physiotherapist | mid | +outdoor
+- Occupational therapist | mid | aka ergoterapeut
+- Speech and language therapist | mid | aka logoped
+- Audiologist | mid
+- Optometrist | mid | aka optiker | +precision
+- Dispensing optician | entry
+- Dietitian / clinical nutritionist | mid | aka klinisk ernæringsfysiolog
+- Chiropractor | mid | aka kiropraktor
+- Osteopath / naprapath | mid
+- Podiatrist | mid
+- Physiotherapy assistant | entry
+- Physician assistant | mid
+- Private practice owner (physio / clinic) | owner | +hunting
+
+@lane diagnostics | Diagnostics & medical technology | isco 3211 3212 2269 | riasec IRS | payoff linear | entry degree | sprint shadow | modes public employed | ladder corporate | tags technical precision detail shift
+> Imaging, laboratory tests and medical technology.
+- Biomedical laboratory scientist (bioingeniør) | mid
+- Radiographer (radiograf) | mid | +care
+- Sonographer | mid | +care
+- Radiation therapist | mid | +care
+- Laboratory assistant (medical) | entry
+- Lab section manager | manager | +leadership
+
+@lane mental_health | Mental health & psychology | isco 2634 2635 3412 | riasec SIA | payoff linear | entry advanced | sprint shadow | modes public employed owner | ladder corporate | tags care relationship analytical
+> Assessing and treating mental health problems.
+- Mental health worker / support worker | entry
+- Psychologist (clinical) | senior | aka psykolog
+- Psychologist specialist | lead
+- Psychotherapist | senior
+- Family therapist | senior
+- Addiction counsellor | mid
+- School psychologist (PPT) | senior
+- Sports / performance psychologist | senior
+- Private psychology practice owner | owner | +autonomy
+
+@lane health_admin | Health administration & informatics | isco 1342 3252 3344 3256 3253 | riasec CSE | payoff linear | entry course | sprint simulated | modes public employed | ladder public | tags detail routine care
+> Running health services: records, scheduling, management and digital health.
+- Medical secretary (helsesekretær) | entry
+- Medical records / health information technician | entry
+- Health informatics specialist | mid | +technical
+- Medical coder | entry | +solo
+- Clinic coordinator | mid
+- Community health worker | entry | +outdoor
+- Health service manager | manager | +leadership
+- Hospital director / health trust executive | exec | +leadership
+
+@lane veterinary | Veterinary medicine | isco 2250 3240 | riasec IRS | payoff linear_high_floor | entry advanced | sprint shadow | modes employed owner public | ladder medical | tags care precision physical
+> Treating and preventing illness in animals.
+- Veterinary assistant | entry
+- Veterinary nurse | mid | aka dyrepleier
+- Veterinarian (small animals) | senior | aka veterinær
+- Veterinarian (livestock / aquaculture) | senior | +outdoor
+- Food safety veterinarian (public) | senior | mode public
+- Veterinary clinic owner | owner
+
+@lane complementary_health | Complementary therapies | isco 2230 3230 3259 | riasec SA | payoff linear | entry course | sprint shadow | modes freelance owner | ladder independent | tags care autonomy physical
+> Therapies outside mainstream medicine, mostly self-employed.
+- Massage therapist | entry | aka massør
+- Acupuncturist | mid
+- Homeopath / herbalist | mid
+- Reflexologist | entry
+- Complementary therapy clinic owner | owner
+
+# ======================================================================
+# CARE & SOCIAL SERVICES
+# ======================================================================
+@family care_social | Care, social work & community | Supporting people who need help in daily life.
+
+@lane care_work | Elder & disability care | isco 5321 5322 5329 1343 3412 | riasec S | payoff linear | entry apprenticeship | sprint direct | modes public employed | ladder frontline | tags care physical shift relationship
+> Helping elderly and disabled people with daily life, at home or in institutions.
+- Care assistant / healthcare assistant | entry | aka pleieassistent
+- Healthcare worker (helsefagarbeider) | entry
+- Home care worker | entry | aka hjemmehjelp | +solo
+- Personal assistant (BPA) | entry | aka brukerstyrt personlig assistent
+- Support worker (disability services) | entry | aka miljøarbeider
+- Social educator (vernepleier) | mid | +teaching
+- Activity coordinator (care home) | mid | +creative
+- Care home / home care unit manager | manager | +leadership
+- Private care services owner | owner
+
+@lane childcare | Childcare | isco 5311 1341 5162 | riasec S | payoff linear | entry open | sprint direct | modes public employed freelance | ladder frontline | tags care teaching physical
+> Looking after children outside school.
+- Kindergarten assistant | entry | aka barnehageassistent
+- Child and youth worker (barne- og ungdomsarbeider) | entry
+- After-school programme assistant (SFO) | entry
+- Nanny / au pair | entry | mode freelance
+- Childminder (family day care) | mid | mode owner
+- Childcare centre manager | manager | +leadership
+
+@lane social_work | Social work & welfare | isco 2635 3412 3353 1344 | riasec SE | payoff linear | entry degree | sprint shadow | modes public | ladder public | tags care relationship pressure
+> Helping people with welfare, child protection, housing and social problems.
+- Social worker (sosionom) | mid
+- Child welfare worker (barnevernspedagog) | mid | +pressure
+- Welfare / benefits adviser (NAV) | mid | +detail
+- Youth worker / street worker | mid | +outdoor
+- Refugee and integration adviser | mid
+- Probation officer | mid
+- Social services team leader | manager | +leadership
+- Head of child welfare services | director | +leadership
+
+@lane nonprofit | Nonprofits, NGOs & humanitarian work | isco 1114 2635 2422 | riasec SE | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags care persuasion writing travel
+> Charities, humanitarian organisations, unions and interest organisations.
+- Volunteer coordinator | entry
+- Fundraiser / donor relations officer | mid | +hunting +persuasion
+- Grant writer | mid | +writing
+- Programme officer (NGO) | mid
+- Humanitarian aid worker / field officer | mid | +outdoor +risk +travel
+- Advocacy officer | mid | +persuasion
+- Union representative / organiser | mid | +persuasion +negotiation
+- Country director (NGO) | director | +leadership
+- Secretary-general (NGO / interest organisation) | exec | +leadership +visible
+
+@lane faith | Religious & spiritual work | isco 2636 3413 | riasec SA | payoff linear | entry advanced | sprint shadow | modes employed | ladder corporate | tags care visible teaching
+> Leading congregations and providing spiritual care.
+- Church / mosque youth worker | entry
+- Deacon / pastoral worker | mid
+- Priest / pastor | senior | aka prest
+- Imam | senior
+- Rabbi | senior
+- Chaplain (hospital, military, prison) | senior
+- Bishop / senior religious leader | exec | +leadership
+
+# ======================================================================
+# EDUCATION, COACHING & TRAINING
+# ======================================================================
+@family education | Education, coaching & training | Teaching, coaching and developing people of all ages.
+
+@lane early_childhood | Early childhood education | isco 2342 1341 | riasec SA | payoff linear | entry degree | sprint shadow | modes public employed | ladder public | tags care teaching creative physical
+> Teaching and caring for children in kindergartens.
+- Kindergarten teacher (barnehagelærer) | mid
+- Pedagogical leader | senior | +leadership
+- Special education kindergarten teacher | senior
+- Kindergarten director | manager | aka styrer | +leadership
+
+@lane school_teaching | School teaching | isco 2341 2330 2352 2320 5312 1345 2359 | riasec SA | payoff linear | entry degree | sprint shadow | modes public employed | ladder public | tags teaching care visible
+> Teaching children and teenagers in primary, lower and upper secondary school.
+- Teaching assistant / learning assistant | entry | aka assistent; fagarbeider skole
+- Primary school teacher | mid | aka grunnskolelærer
+- Lower secondary teacher | mid | aka lektor / lærer (ungdomsskole)
+- Upper secondary teacher (lektor) | mid
+- Vocational teacher (yrkesfaglærer) | mid | +building
+- Special needs teacher | mid | +care
+- School counsellor / career adviser | mid | aka rådgiver | +relationship
+- Head of department (school) | manager | +leadership
+- School principal (rektor) | director | +leadership
+- International school teacher | mid | +travel
+
+@lane tutoring | Tutoring & language teaching | isco 2353 2359 2355 2354 | riasec SA | payoff linear | entry open | sprint direct | modes freelance employed owner | ladder independent | tags teaching care autonomy
+> Teaching individuals or small groups outside the school system.
+- Private tutor | entry | aka privatlærer
+- Online tutor | entry | +solo
+- Test prep tutor | mid
+- Language teacher (adult education) | mid
+- Norwegian as a second language teacher | mid
+- English teacher abroad (TEFL) | entry | +travel
+- Music teacher (private) | mid | +practice
+- Art / dance teacher (private) | mid | +creative
+- Tutoring business owner | owner | +hunting
+
+@lane coaching | Coaching | isco 2359 2423 3423 | riasec SE | payoff convex | entry open | sprint direct | modes freelance owner | ladder independent | tags care persuasion relationship autonomy hunting
+> Helping individuals and leaders reach goals through one-to-one and group coaching.
+- Life coach | entry
+- Career coach | mid
+- Executive / leadership coach | senior | +analytical
+- Business coach | senior
+- Sales coach | mid | +visible
+- Performance / mindset coach | mid
+- Relationship / dating coach | mid
+- Health and habit coach | mid
+- Group coaching programme owner | owner | +visible
+- Coaching company / academy founder | owner | +leadership
+
+@lane vocational_instruction | Vocational & specialist instruction | isco 2320 5165 2356 3153 | riasec SR | payoff linear | entry certificate | sprint shadow | modes employed freelance owner | ladder independent | tags teaching technical
+> Teaching practical skills: driving, flying, safety, trades and IT.
+- Driving instructor | mid | aka trafikklærer
+- Flight instructor | mid
+- Safety / first aid instructor | mid
+- Trade training instructor | mid | +building
+- IT / software trainer | mid
+- Driving school owner | owner
+
+# ======================================================================
+# GOVERNMENT, POLICY & PUBLIC ADMINISTRATION
+# ======================================================================
+@family public | Government, policy & public administration | Running the state, municipalities and international bodies.
+
+@lane public_policy | Public policy & analysis | isco 2422 1213 2631 | riasec IES | payoff linear | entry advanced | sprint simulated | modes public employed | ladder public | tags analytical writing persuasion
+> Developing laws, policies and strategies for government.
+- Policy adviser (ministry) | entry | aka rådgiver (departement)
+- Senior policy adviser | mid | aka seniorrådgiver
+- Policy analyst (think tank / consultancy) | mid | mode employed
+- Public affairs / lobbying consultant | mid | mode employed | +relationship
+- Regulatory economist | senior | +numbers
+- Special adviser | lead
+- Department director (ministry) | director | +leadership
+- Secretary-general (ministry) | exec | +leadership
+
+@lane public_administration | Public administration & casework | isco 3353 3352 3354 3359 4110 1219 1112 | riasec CS | payoff linear | entry degree | sprint simulated | modes public | ladder public | tags detail routine writing care
+> Handling cases, permits, benefits and services for citizens.
+- Executive officer / caseworker (saksbehandler) | entry
+- Tax officer | entry
+- Licensing / permit officer | entry
+- NAV adviser | mid | +care
+- Municipal adviser | mid
+- Senior adviser (directorate) | senior
+- Section head (municipality / agency) | manager | +leadership
+- Municipal director / chief administrative officer | exec | aka kommunedirektør | +leadership
+
+@lane inspection_regulation | Inspection & regulation | isco 3257 3359 3354 2263 | riasec CIR | payoff linear | entry degree | sprint shadow | modes public | ladder public | tags detail precision technical travel
+> Checking that food, buildings, workplaces and businesses follow the rules.
+- Food safety inspector | mid
+- Labour inspector | mid
+- Building / fire safety inspector | mid
+- Environmental inspector | mid
+- Financial supervisory analyst | mid | +analytical
+- Maritime / aviation safety inspector | senior
+- Inspection unit manager | manager | +leadership
+
+@lane politics | Politics & elected office | isco 1111 1114 | riasec ES | payoff winner_take_all | entry selection | sprint direct | modes public employed | ladder corporate | tags persuasion visible pressure competition leadership
+> Running for office, representing voters and working in political parties.
+- Party staffer / political secretary | entry | mode employed
+- Campaign manager | mid | mode employed
+- Political adviser | mid
+- Local councillor | mid
+- Mayor | senior
+- Member of parliament | lead
+- Minister | exec
+
+@lane diplomacy | Diplomacy & international organisations | isco 2422 1112 2643 | riasec ESI | payoff linear | entry advanced | sprint shadow | modes public | ladder public | tags travel analytical relationship writing
+> Representing the country abroad and working for the UN, EU and other bodies.
+- Foreign service trainee (aspirant) | trainee
+- Diplomat / embassy secretary | mid
+- Consul | senior
+- Ambassador | exec | +leadership
+- International organisation officer (UN, NATO, EU) | mid
+- Development cooperation adviser (Norad) | mid
+
+@lane library_archives | Libraries, archives & museums | isco 2621 2622 3433 4411 | riasec CIA | payoff linear | entry degree | sprint simulated | modes public | ladder public | tags detail analytical teaching
+> Organising, preserving and giving access to knowledge and heritage.
+- Library assistant | entry
+- Librarian | mid | aka bibliotekar
+- Archivist | mid
+- Museum educator | mid | +teaching +visible
+- Curator | senior | +aesthetic
+- Conservator | senior | +building +precision
+- Museum / library director | director | +leadership
+
+# ======================================================================
+# DEFENCE, SECURITY & EMERGENCY SERVICES
+# ======================================================================
+@family safety_defence | Defence, security & emergency services | Protecting people, property and the country.
+
+@lane military | Armed forces | isco 0110 0210 0310 | riasec RE | payoff linear | entry selection | sprint shadow | modes public | ladder uniformed | tags physical team pressure outdoor leadership
+> Serving in the army, navy, air force, home guard or cyber defence.
+- Conscript / private | trainee | aka vernepliktig
+- Enlisted soldier / specialist (OR) | entry | aka grenader; konstabel
+- Non-commissioned officer (sergeant) | mid | +leadership
+- Officer cadet | trainee
+- Lieutenant / platoon leader | manager | +leadership
+- Captain / company commander | manager | +leadership
+- Major and above (staff officer) | director | +leadership -physical
+- Fighter / military pilot | senior | +precision
+- Naval officer | mid | +travel
+- Special forces operator | senior | +risk
+- Military intelligence analyst | mid | -physical +analytical
+- Military engineer / technician | mid | +technical
+- General / admiral | exec | +leadership
+
+@lane police | Police & investigation | isco 5412 3355 3351 | riasec SER | payoff linear | entry degree | sprint shadow | modes public | ladder uniformed | tags pressure physical shift team care
+> Keeping public order and investigating crime.
+- Police officer (patrol) | entry | aka politibetjent
+- Customs / border officer | entry | aka tollbetjent
+- Detective / investigator | mid | aka etterforsker | +analytical
+- Forensic / crime scene technician | mid | +technical +precision
+- Cybercrime investigator | mid | +technical -physical
+- Intelligence analyst (police) | mid | +analytical -physical
+- Dog handler | mid
+- Police negotiator / special operations | senior | +risk
+- Police chief / district head | director | +leadership
+
+@lane fire_rescue | Fire, rescue & emergency response | isco 5411 3258 5419 4229 | riasec RS | payoff linear | entry selection | sprint shadow | modes public | ladder uniformed | tags physical pressure team shift care
+> Responding to fires, accidents and medical emergencies.
+- Firefighter | entry | aka brannkonstabel
+- Paramedic / ambulance worker | mid | aka ambulansearbeider; paramedisiner
+- Emergency dispatcher (110 / 113) | mid | -physical
+- Rescue swimmer / rescue crew | senior | +risk +outdoor
+- Fire officer / station chief | manager | +leadership
+- Fire chief | director | +leadership
+
+@lane corrections | Corrections | isco 5413 | riasec SR | payoff linear | entry degree | sprint shadow | modes public | ladder uniformed | tags pressure care shift
+> Supervising and rehabilitating people in prison.
+- Prison officer (fengselsbetjent) | entry
+- Senior prison officer | mid
+- Prison unit manager | manager | +leadership
+- Prison governor | director | +leadership
+
+@lane private_security | Private security | isco 5414 5419 | riasec RE | payoff linear | entry course | sprint shadow | modes employed owner | ladder frontline | tags shift physical pressure
+> Guarding property, events and people.
+- Security guard | entry | aka vekter
+- Doorman / event security | entry | +visible
+- Store detective / loss prevention officer | entry
+- Aviation security screener | entry | +routine
+- Close protection officer / bodyguard | senior | +travel +risk
+- Security operations centre operator | mid | -physical
+- Security manager | manager | +leadership
+- Security company owner | owner

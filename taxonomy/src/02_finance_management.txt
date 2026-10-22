@@ -1,0 +1,557 @@
+# ======================================================================
+# FINANCE, ACCOUNTING & INVESTING
+# ======================================================================
+@family finance | Finance, accounting & investing | Managing, moving, investing and accounting for money.
+
+@lane accounting_audit | Accounting & audit | isco 2411 3313 4311 4313 4312 | riasec CEI | payoff linear | entry degree | sprint simulated | modes employed freelance owner | ladder professional_firm | tags numbers detail routine analytical
+> Recording, checking and reporting a company's finances.
+- Accounting assistant / bookkeeper | entry | aka regnskapsmedarbeider
+- Payroll specialist | entry | aka lønnsmedarbeider
+- Accounts payable / receivable specialist | entry
+- Accountant | mid | aka regnskapsfører
+- Authorised accountant (statsautorisert regnskapsfører) | senior
+- Audit associate | entry | aka revisorassistent
+- Auditor | mid | aka revisor
+- State-authorised public accountant (statsautorisert revisor) | senior
+- Audit manager | manager | +leadership
+- Audit partner | exec | +leadership
+- Internal auditor | mid
+- Forensic accountant | senior | +analytical
+- Accounting firm owner | owner
+- Freelance bookkeeper | mid | mode freelance | +autonomy
+
+@lane corporate_finance | FP&A, controlling & corporate finance | isco 2411 2413 1211 | riasec CEI | payoff linear | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags numbers analytical detail team
+> Budgets, forecasts, cash and financial decisions inside a company.
+- Financial analyst (FP&A) | entry
+- Business controller | mid | aka controller
+- Financial controller | senior
+- Treasury analyst | mid
+- Treasurer | senior
+- Group accounting manager | manager | +leadership
+- Finance manager | manager | aka økonomisjef | +leadership
+- Head of FP&A | director | +leadership
+- Finance director | director | +leadership
+- Chief financial officer (CFO) | exec | +leadership
+- Fractional / interim CFO | lead | mode freelance | +autonomy
+
+@lane investment_banking | Investment banking & M&A advisory | isco 2413 2412 3311 | riasec ECI | payoff steep | entry degree | sprint simulated | modes employed | ladder professional_firm | tags numbers analytical pressure negotiation
+> Advising companies on mergers, acquisitions, IPOs and raising capital.
+- Investment banking summer analyst | trainee
+- Investment banking analyst | entry
+- Associate (investment banking) | mid
+- Vice president (investment banking) | senior
+- Director / executive director (investment banking) | director | +relationship
+- Managing director (investment banking) | exec | +hunting +relationship
+- M&A adviser (boutique) | mid
+- Equity capital markets (ECM) analyst | entry
+- Debt capital markets (DCM) analyst | entry
+- Leveraged finance analyst | mid
+- Restructuring adviser | senior
+- Transaction services / due diligence consultant | mid
+
+@lane private_capital | Private equity, venture & principal investing | isco 2413 2412 1211 | riasec EIC | payoff steep | entry advanced | sprint simulated | modes employed owner | ladder professional_firm | tags analytical numbers negotiation relationship risk
+> Investing in private companies and helping them grow.
+- Private equity analyst | entry
+- Private equity associate | mid
+- Vice president / principal (private equity) | senior
+- Private equity partner | exec | +leadership
+- Venture capital analyst | entry | +hunting
+- Venture capital associate | mid | +hunting
+- Venture capital partner | exec | +hunting +relationship
+- Growth equity investor | senior
+- Family office investment manager | senior
+- Infrastructure / real assets investor | senior
+- Search fund entrepreneur | owner | +risk
+- Angel investor | owner | +risk +autonomy
+
+@lane asset_management | Asset management & investment research | isco 2413 2412 | riasec ICE | payoff steep | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical numbers writing pressure
+> Managing funds and researching which investments to buy.
+- Investment analyst | entry
+- Equity research analyst | mid | +writing
+- Credit analyst (buy side) | mid
+- Fund analyst / manager selection | mid
+- ESG / sustainable investment analyst | mid
+- Portfolio manager | senior | +risk
+- Fixed income portfolio manager | senior
+- Chief investment officer (CIO) | exec | +leadership
+- Hedge fund analyst | mid | +variable_pay
+- Hedge fund portfolio manager | lead | +risk +variable_pay
+
+@lane trading_markets | Trading & markets | isco 3311 2413 | riasec ECI | payoff winner_take_all | entry open | sprint simulated | modes employed owner | ladder corporate | tags risk numbers pressure competition variable_pay
+> Buying and selling financial instruments, commodities or energy for profit.
+- Trading assistant | entry
+- Sales trader (bank) | mid | +relationship
+- Market maker / trader (bank) | mid
+- Proprietary trader | mid | +autonomy
+- Commodity trader | mid
+- Power and energy trader (Nordic power market) | mid | aka krafthandler
+- Shipping / freight derivatives trader | mid
+- Crypto trader | mid | mode owner | +autonomy +solo
+- Independent discretionary trader | senior | mode owner | aka day trader; swing trader | +autonomy +solo
+- Head of trading | director | +leadership
+- Stockbroker / securities broker | mid | aka aksjemegler | +hunting +relationship
+
+@lane quant_finance | Quantitative finance | isco 2120 2413 2512 | riasec IRC | payoff steep | entry advanced | sprint simulated | modes employed | ladder corporate | tags analytical numbers technical competition
+> Using maths and code to price, trade and manage financial risk.
+- Quantitative analyst | mid
+- Quant researcher | senior
+- Quant developer | mid | +technical
+- Algorithmic trader | senior | +risk
+- Risk quant / model validation analyst | mid
+- Head of quant research | director | +leadership
+
+@lane banking_lending | Banking, lending & credit | isco 3312 4211 1346 2412 3311 4213 4214 | riasec ECS | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags relationship numbers detail routine
+> Day-to-day banking: accounts, loans, mortgages and business credit.
+- Bank customer adviser | entry | aka kunderådgiver bank | +care
+- Bank teller / cashier | entry | +routine
+- Mortgage adviser | mid | aka boliglånsrådgiver
+- Loan officer / credit officer | mid
+- Credit analyst | mid | +analytical
+- Business banking relationship manager | senior | aka bedriftsrådgiver | +hunting
+- Corporate banking relationship manager | senior | +hunting +negotiation
+- Debt collector / collections specialist | entry | +negotiation -relationship
+- Pawnbroker / consumer credit officer | entry
+- Branch manager | manager | aka banksjef | +leadership
+- Head of corporate banking | director | +leadership
+- Mortgage / loan broker | mid | mode freelance | +hunting +variable_pay
+
+@lane wealth_advice | Wealth management & financial advice | isco 2412 1346 | riasec ESC | payoff convex | entry certificate | sprint simulated | modes employed freelance | ladder corporate | tags relationship persuasion numbers hunting
+> Advising people on saving, investing, pensions and taxes.
+- Financial adviser (authorised) | mid | aka autorisert finansiell rådgiver
+- Private banker | senior | +hunting
+- Wealth manager | senior
+- Pension adviser | mid
+- Financial planner | mid
+- Head of private banking | director | +leadership
+- Independent financial adviser | senior | mode freelance | +autonomy +variable_pay
+- Multi-family office founder | owner
+
+@lane insurance | Insurance | isco 3321 3315 2120 1346 | riasec CEI | payoff linear | entry open | sprint simulated | modes employed freelance | ladder corporate | tags numbers detail analytical relationship
+> Pricing, selling and settling insurance.
+- Insurance customer adviser | entry | aka forsikringsrådgiver
+- Insurance sales agent | entry | +hunting +variable_pay +persuasion
+- Claims handler | entry | aka skadebehandler | +care
+- Loss adjuster / claims inspector | mid | aka takstmann (skade) | +travel
+- Underwriter | mid
+- Marine underwriter | senior
+- Insurance broker | mid | aka forsikringsmegler | +negotiation +variable_pay
+- Actuary | senior | aka aktuar | +analytical
+- Reinsurance analyst | mid
+- Insurance product manager | senior
+- Head of claims / underwriting | director | +leadership
+
+@lane tax_advisory | Tax advisory | isco 2411 2611 3352 | riasec CIE | payoff steep | entry degree | sprint simulated | modes employed freelance | ladder professional_firm | tags analytical detail numbers writing
+> Helping companies and people pay the right tax and plan for it.
+- Tax associate | entry
+- Tax adviser / tax consultant | mid
+- Transfer pricing specialist | senior
+- VAT / indirect tax specialist | mid
+- Tax manager | manager | +leadership
+- Tax partner | exec | +leadership
+- In-house head of tax | director
+- Independent tax adviser | senior | mode freelance
+
+@lane risk_management | Risk management | isco 2413 2120 2421 | riasec ICE | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical numbers detail
+> Measuring and limiting what can go wrong: credit, market, operational and enterprise risk.
+- Risk analyst | entry
+- Credit risk analyst | mid
+- Market risk analyst | mid
+- Operational risk manager | senior
+- Enterprise risk manager | senior
+- Chief risk officer (CRO) | exec | +leadership
+
+@lane fintech_payments | Payments, fintech & crypto operations | isco 2421 3313 2511 | riasec CEI | payoff linear | entry open | sprint simulated | modes employed | ladder corporate | tags analytical detail technical
+> Running payment, fintech and digital-asset businesses.
+- Payments operations analyst | entry | +routine
+- Fraud analyst | entry | +pressure
+- Payments product specialist | mid
+- Fintech business analyst | mid
+- Crypto / digital asset operations specialist | mid
+- Head of payments | director | +leadership
+
+# ======================================================================
+# STRATEGY, CONSULTING & GENERAL MANAGEMENT
+# ======================================================================
+@family management | Strategy, consulting & management | Running organisations and advising them.
+
+@lane management_consulting | Management consulting | isco 2421 1219 | riasec EIC | payoff steep | entry degree | sprint simulated | modes employed | ladder professional_firm | tags analytical persuasion pressure travel team
+> Solving strategic and operational problems for client companies.
+- Consulting summer associate | trainee
+- Business analyst (consulting) | entry
+- Associate / consultant | mid
+- Senior consultant | senior
+- Engagement manager / project leader | manager | +leadership
+- Principal / associate partner | director | +hunting
+- Consulting partner | exec | +hunting +leadership
+- Specialist consultant (pricing, operations, digital) | senior
+- Big Four advisory consultant | mid
+- Public sector consultant | mid
+
+@lane independent_advisory | Independent consulting & interim leadership | isco 2421 1120 1219 | riasec EI | payoff convex | entry selection | sprint direct | modes freelance owner | ladder independent | tags autonomy hunting analytical risk
+> Selling your own expertise directly to clients, project by project or as a part-time executive.
+- Independent consultant | senior | aka selvstendig konsulent
+- Freelance strategy consultant | senior
+- Fractional COO | lead
+- Interim manager / interim CEO | lead | +leadership +pressure
+- Board member / non-executive director | lead | +relationship
+- Turnaround specialist | lead | +pressure
+- Boutique consultancy founder | owner
+
+@lane strategy_bizops | Strategy, business operations & corporate development | isco 2421 1213 1219 | riasec EIC | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical leadership team
+> In-house strategy, planning, special projects and acquisitions.
+- Business operations analyst | entry
+- Strategy analyst | entry
+- BizOps / strategy and operations manager | mid
+- Chief of staff | senior | +leadership
+- Corporate development manager (M&A) | senior | +negotiation +numbers
+- Business transformation manager | senior
+- Head of strategy | director | +leadership
+- Chief strategy officer | exec | +leadership
+
+@lane general_management | General management & executive leadership | isco 1120 1219 1439 1349 | riasec ES | payoff steep | entry selection | sprint shadow | modes employed owner | ladder corporate | tags leadership pressure persuasion relationship
+> Running a business unit or a whole company.
+- Management trainee | trainee
+- Operations manager (general) | manager
+- Business unit manager | director
+- General manager | director | aka daglig leder
+- Country manager | director | +travel
+- Managing director | exec | aka administrerende direktør
+- Chief operating officer (COO) | exec
+- Chief executive officer (CEO) | exec
+- Chair of the board | exec | +relationship
+
+@lane project_management | Project & programme management | isco 1219 2421 1323 1330 | riasec ECS | payoff linear | entry course | sprint simulated | modes employed freelance | ladder corporate | tags leadership detail team pressure
+> Delivering projects on time and budget: planning, coordinating and unblocking teams.
+- Project coordinator | entry | +detail
+- Project manager | mid | aka prosjektleder
+- Scrum master | mid | +teaching
+- Agile coach | senior | +teaching
+- PMO analyst | mid | +numbers
+- Senior project manager | senior
+- Programme manager | lead
+- Portfolio / PMO director | director
+- Freelance project manager | senior | mode freelance | +autonomy
+
+@lane business_operations | Operations & process improvement | isco 2421 1219 2141 | riasec CEI | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical detail leadership routine
+> Making organisations run better: processes, lean, quality and efficiency.
+- Operations associate | entry
+- Operations analyst | entry
+- Process improvement specialist (Lean / Six Sigma) | mid
+- Continuous improvement manager | senior
+- Operations manager | manager | +leadership
+- Head of operations | director | +leadership
+
+@lane sustainability | Sustainability & ESG | isco 2133 2421 2263 | riasec ISE | payoff linear | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags analytical writing technical
+> Measuring and reducing companies' environmental and social impact.
+- Sustainability analyst | entry
+- ESG reporting specialist (CSRD) | mid | +detail
+- Carbon accounting specialist | mid | +numbers
+- Sustainability consultant | mid | +persuasion
+- Circular economy specialist | mid
+- Sustainability manager | manager | +leadership
+- Head of sustainability / chief sustainability officer | director | +leadership
+
+@lane administration | Administration & office support | isco 4110 4120 3343 3341 4226 4131 4132 4415 4419 4413 4414 | riasec CS | payoff linear | entry open | sprint direct | modes employed freelance | ladder corporate | tags detail routine team care
+> Keeping offices and executives organised: scheduling, documents, reception and records.
+- Receptionist | entry | aka resepsjonist | +visible
+- Office assistant / administrative assistant | entry | aka kontormedarbeider
+- Data entry clerk | entry | +solo
+- Secretary | entry
+- Document controller | mid
+- Proofreader / records coder | entry | +solo
+- Executive assistant | mid | aka direktørassistent | +pressure
+- Office manager | manager | +leadership
+- Virtual assistant | entry | mode freelance | +autonomy
+- Head of administration | director | +leadership
+
+# ======================================================================
+# PEOPLE, HR & RECRUITING
+# ======================================================================
+@family people | People, HR & recruiting | Finding, developing and looking after an organisation's people.
+
+@lane recruiting | Recruiting & talent acquisition | isco 2423 3333 1212 | riasec ESC | payoff convex | entry open | sprint direct | modes employed freelance owner | ladder corporate | tags hunting relationship persuasion
+> Finding and hiring people, either inside a company or for clients at an agency.
+- Recruitment coordinator | entry | +detail
+- Sourcer / talent researcher | entry | +solo
+- Agency recruiter (recruitment consultant) | entry | +variable_pay +competition
+- Senior recruitment consultant | senior | +variable_pay
+- In-house recruiter / talent acquisition partner | mid
+- Technical recruiter | mid
+- Executive search consultant (headhunter) | senior | +negotiation +variable_pay
+- Staffing / temp agency consultant | entry | aka bemanningskonsulent
+- Employer branding specialist | mid | +creative
+- Talent acquisition manager | manager | +leadership
+- Head of talent acquisition | director | +leadership
+- Freelance recruiter | senior | mode freelance | +risk
+- Recruitment agency owner | owner | +risk
+
+@lane hr | HR & people partnering | isco 2423 1212 4416 | riasec SEC | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags relationship care detail team
+> Supporting managers and employees on everything from contracts to conflict.
+- HR assistant / HR coordinator | entry | +detail
+- HR adviser / HR generalist | mid | aka HR-rådgiver
+- HR business partner | senior
+- Employee relations specialist | senior | +negotiation
+- HRIS / people systems analyst | mid | +technical
+- Compensation and benefits analyst | mid | +numbers
+- People analytics specialist | mid | +analytical +numbers
+- Diversity and inclusion manager | senior
+- HR manager | manager | aka HR-sjef | +leadership
+- Head of people | director | +leadership
+- Chief people officer (CHRO) | exec | +leadership
+- HR consultant (independent) | senior | mode freelance
+
+@lane learning_development | Learning & development | isco 2424 2351 2356 | riasec SAE | payoff linear | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags teaching creative visible
+> Training employees and building their skills.
+- L&D coordinator | entry
+- Corporate trainer | mid | +visible
+- Instructional designer / e-learning developer | mid | +technical +creative -visible
+- Leadership development specialist | senior
+- Organisational development consultant | senior | +analytical
+- Head of learning | director | +leadership
+- Freelance trainer / facilitator | senior | mode freelance | +autonomy
+
+@lane workplace_psychology | Organisational & work psychology | isco 2634 2423 | riasec ISA | payoff linear | entry advanced | sprint shadow | modes employed freelance | ladder corporate | tags analytical care relationship
+> Applying psychology to selection, teams, leadership and wellbeing at work.
+- Assessment consultant | mid
+- Organisational psychologist | senior | aka organisasjonspsykolog
+- Work environment / occupational health adviser | mid
+- Selection and assessment specialist | senior
+- Independent organisational psychologist | senior | mode freelance
+
+# ======================================================================
+# LEGAL, COMPLIANCE & GOVERNANCE
+# ======================================================================
+@family legal | Legal, compliance & governance | Advising on rules, rights and disputes.
+
+@lane legal_practice | Law firm practice | isco 2611 | riasec EIS | payoff steep | entry advanced | sprint shadow | modes employed owner | ladder professional_firm | tags analytical writing negotiation pressure
+> Advising and representing clients as a lawyer in private practice.
+- Summer associate (law) | trainee
+- Trainee lawyer (advokatfullmektig) | entry
+- Associate lawyer | mid | aka lawyer; advokat
+- Senior associate | senior
+- Counsel / senior lawyer (advokat) | lead
+- Partner (law firm) | exec | +hunting +leadership
+- Corporate / M&A lawyer | mid
+- Litigation lawyer (trial lawyer) | mid | +visible +persuasion
+- Criminal defence lawyer | mid | +visible +care
+- Employment lawyer | mid
+- Family and inheritance lawyer | mid | +care
+- Real estate and construction lawyer | mid
+- Tax lawyer | mid | +numbers
+- Intellectual property lawyer | mid | +technical
+- Maritime / shipping lawyer | mid
+- Energy and regulatory lawyer | mid
+- Immigration lawyer | mid | +care
+- Technology and data protection lawyer | mid
+- Sports and entertainment lawyer | mid
+- Own law practice | owner
+
+@lane in_house_legal | In-house legal | isco 2611 2619 | riasec EIC | payoff linear | entry advanced | sprint shadow | modes employed public | ladder corporate | tags analytical writing relationship
+> Lawyers employed by a company or public body.
+- Legal counsel | mid | aka juridisk rådgiver
+- Senior legal counsel | senior
+- Contracts lawyer / commercial counsel | mid | +negotiation
+- Privacy counsel / data protection officer | mid
+- Public sector lawyer (government agency) | mid | mode public
+- Head of legal | director | +leadership
+- General counsel | exec | +leadership
+
+@lane courts_prosecution | Courts & prosecution | isco 2612 2611 3411 | riasec ESI | payoff linear_high_floor | entry advanced | sprint shadow | modes public | ladder public | tags analytical writing pressure precision
+> Judging, prosecuting and running the justice system.
+- Court clerk / legal executive officer | entry | aka utreder
+- Police prosecutor (politiadvokat) | mid | +visible
+- Public prosecutor (statsadvokat) | senior | +visible
+- Judge (district court) | lead | aka tingrettsdommer
+- Appeals / supreme court judge | exec
+- Mediator / conflict council mediator | mid | +care +negotiation
+
+@lane legal_support | Paralegal & legal support | isco 3411 3342 2619 | riasec CS | payoff linear | entry course | sprint direct | modes employed | ladder corporate | tags detail routine writing
+> Supporting lawyers with research, documents and case files.
+- Legal secretary | entry
+- Paralegal | entry
+- Legal assistant | entry
+- Contract administrator | mid
+- Legal operations specialist | mid | +technical
+- E-discovery / litigation support specialist | mid | +technical
+
+@lane compliance | Compliance & regulatory affairs | isco 2619 2421 3359 | riasec CEI | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags detail analytical writing
+> Making sure organisations follow laws and regulations.
+- KYC / onboarding analyst | entry | +routine
+- AML / anti-money laundering analyst | entry
+- Compliance officer | mid
+- Regulatory affairs specialist (pharma / medtech) | mid | +technical
+- Financial crime investigator | senior | +pressure
+- Sanctions specialist | mid
+- Head of compliance | director | +leadership
+- Chief compliance officer | exec | +leadership
+
+@lane intellectual_property | Intellectual property | isco 2619 2611 | riasec ICE | payoff steep | entry advanced | sprint shadow | modes employed | ladder professional_firm | tags technical analytical writing detail
+> Patents, trademarks and protecting inventions and brands.
+- Patent engineer / technical assistant | entry | +technical
+- Trademark attorney | mid
+- Patent attorney (European patent attorney) | senior
+- IP manager (in-house) | senior
+- IP firm partner | exec | +leadership
+
+# ======================================================================
+# OPERATIONS, SUPPLY CHAIN & FACILITIES
+# ======================================================================
+@family operations | Operations, supply chain & facilities | Moving goods, buying inputs and keeping buildings and workplaces running.
+
+@lane supply_chain | Supply chain & planning | isco 1324 3323 4321 4322 2421 | riasec CEI | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical numbers detail routine
+> Planning inventory, demand and flows of goods from supplier to customer.
+- Supply chain coordinator | entry
+- Demand planner | mid | +numbers
+- Supply planner / material planner | mid
+- Inventory analyst | mid
+- Production planner | mid | aka produksjonsplanlegger
+- S&OP manager | senior
+- Supply chain manager | manager | +leadership
+- Head of supply chain | director | +leadership
+
+@lane procurement | Purchasing & procurement | isco 3323 1324 2421 | riasec ECI | payoff linear | entry degree | sprint simulated | modes employed public | ladder corporate | tags negotiation analytical numbers relationship
+> Buying the goods and services a company or public body needs, at the right price.
+- Purchasing assistant | entry | +routine
+- Buyer | mid | aka innkjøper
+- Category manager (procurement) | senior
+- Strategic sourcing manager | senior | +travel
+- Public procurement specialist | mid | mode public | +detail +writing
+- Procurement manager | manager | aka innkjøpssjef | +leadership
+- Chief procurement officer | exec | +leadership
+
+@lane warehouse_logistics | Warehousing & logistics | isco 4321 8344 9333 9321 9334 1324 4323 3331 | riasec RC | payoff linear | entry open | sprint direct | modes employed gig | ladder frontline | tags physical routine team shift
+> Receiving, storing, picking and shipping goods.
+- Warehouse operative / picker | entry | aka lagermedarbeider
+- Forklift / reach truck operator | entry | aka truckfører
+- Freight handler / terminal worker | entry
+- Shelf filler / stocker | entry
+- Hand packer | entry
+- Logistics coordinator | mid | -physical +detail
+- Freight forwarder | mid | aka speditør | -physical +negotiation
+- Shipping / transport clerk | entry | -physical +detail
+- Warehouse team lead | manager | +leadership
+- Warehouse manager | director | aka lagersjef | +leadership
+- Logistics manager | director | -physical +leadership
+- Third-party logistics (3PL) business owner | owner
+
+@lane hse_quality | HSE, quality & inspection | isco 2263 3257 2149 7543 3119 | riasec CIR | payoff linear | entry degree | sprint simulated | modes employed public | ladder corporate | tags detail precision technical analytical
+> Health, safety, environment and quality: preventing accidents and defects.
+- Quality inspector / product tester | entry | +routine
+- Quality technician | entry
+- HSE adviser | mid | aka HMS-rådgiver
+- Quality engineer | mid | +technical
+- Safety engineer (offshore / industrial) | senior | +pressure
+- Auditor (ISO / quality systems) | mid | +travel
+- Occupational hygienist | senior
+- Quality manager | manager | +leadership
+- HSE manager | manager | aka HMS-leder | +leadership
+- Head of HSEQ | director | +leadership
+
+@lane facilities | Facilities, cleaning & property services | isco 5153 5151 9112 9111 9122 9123 9129 7133 1219 | riasec RC | payoff linear | entry open | sprint direct | modes employed owner | ladder frontline | tags physical routine solo
+> Keeping buildings clean, safe and working.
+- Cleaner (office / commercial) | entry | aka renholder | +shift
+- Domestic cleaner | entry | mode freelance | +autonomy
+- Window cleaner | entry | +outdoor
+- Vehicle cleaner / car valeter | entry
+- Industrial / building facade cleaner | entry | +outdoor
+- Caretaker / building superintendent | mid | aka vaktmester | +building
+- Cleaning supervisor | manager | +leadership
+- Facility manager | director | aka driftsleder | +leadership -physical
+- Workplace / office services manager | manager | -physical
+- Cleaning company owner | owner | +hunting +risk
+
+@lane waste_recycling | Waste, recycling & environmental services | isco 9611 9612 9613 3132 7544 9623 | riasec RC | payoff linear | entry open | sprint direct | modes employed public | ladder frontline | tags physical outdoor routine team
+> Collecting, sorting and treating waste, water and pests.
+- Waste collector | entry | aka renovatør | +shift
+- Recycling / sorting operator | entry
+- Street cleaner | entry
+- Pest control technician | mid | +solo
+- Water / wastewater treatment operator | mid | +technical +shift
+- Recycling plant supervisor | manager | +leadership
+- Waste management manager | director | +leadership
+
+# ======================================================================
+# TRANSPORT & MOBILITY
+# ======================================================================
+@family transport | Transport & mobility | Moving people and goods by road, rail and air.
+
+@lane road_transport | Driving & road transport | isco 8332 8331 8322 8321 9621 4412 9331 | riasec RC | payoff linear | entry certificate | sprint shadow | modes employed gig owner | ladder frontline | tags solo routine shift travel
+> Driving trucks, buses, taxis and vans, and delivering goods and mail.
+- Delivery driver (van) | entry | aka varebilsjåfør
+- Courier / bike messenger | entry | mode gig | +physical +outdoor
+- Cargo bike / pedicab rider | entry | mode gig | +physical +outdoor
+- Food delivery rider (Foodora, Wolt) | entry | mode gig | +physical +outdoor +autonomy
+- Ride-hailing driver (Uber, Bolt) | entry | mode gig | +autonomy
+- Postal worker / mail carrier | entry | aka postbud | +physical +outdoor
+- Taxi driver | entry | aka drosjesjåfør
+- Bus driver | entry | aka bussjåfør | +care
+- Tram / metro driver | entry
+- Long-haul truck driver | mid | aka langtransportsjåfør | +travel
+- Timber / tanker / specialised truck driver | mid
+- Driving instructor | mid | aka trafikklærer | +teaching -solo
+- Transport planner / dispatcher | mid | -solo +detail
+- Fleet manager | manager | +leadership
+- Haulage company owner / owner-operator | owner | aka transportbedrift | +risk
+- Taxi licence owner | owner
+
+@lane rail | Rail | isco 8311 8312 5112 3359 | riasec RC | payoff linear | entry course | sprint shadow | modes employed | ladder uniformed | tags precision routine shift
+> Driving and running trains and the rail network.
+- Conductor / train host | entry | aka konduktør | +care +visible
+- Train driver | mid | aka lokomotivfører | +solo
+- Rail traffic controller | mid | +pressure
+- Shunter / signal and switch operator | entry | +outdoor
+- Rail operations manager | manager | +leadership
+
+@lane aviation | Aviation | isco 3153 3154 3155 5111 4323 | riasec RIE | payoff linear_high_floor | entry selection | sprint shadow | modes employed | ladder uniformed | tags precision pressure technical travel shift
+> Flying aircraft and keeping air traffic safe.
+- Cabin crew / flight attendant | entry | aka kabinansatt | +care +visible -technical
+- Airline ground operations agent | entry | -technical +routine
+- Ramp agent / ground handler | entry | +physical +outdoor
+- Flight dispatcher / operations controller | mid
+- First officer (airline pilot) | mid
+- Captain (airline pilot) | senior | +leadership
+- Helicopter pilot (offshore / rescue) | senior | +outdoor
+- Commercial drone pilot | entry | mode freelance
+- Flight instructor | mid | +teaching
+- Air traffic controller | mid | aka flygeleder
+- Air traffic safety electronics technician | mid
+- Chief pilot / head of flight operations | director | +leadership
+
+# ======================================================================
+# REAL ESTATE & PROPERTY
+# ======================================================================
+@family real_estate | Real estate & property | Buying, selling, letting, managing and developing property.
+
+@lane real_estate_agency | Real estate brokerage | isco 3334 | riasec ES | payoff convex | entry certificate | sprint simulated | modes employed freelance | ladder corporate | tags hunting persuasion negotiation variable_pay visible
+> Selling and letting homes and commercial property for clients.
+- Real estate assistant (meglerassistent) | entry
+- Real estate agent with licence (eiendomsmegler) | mid | aka megler
+- Senior real estate agent / top broker | senior | +competition
+- New-build project broker | mid
+- Letting agent / rental broker | entry | aka utleiemegler
+- Buyer's agent | mid
+- Commercial real estate broker | senior | aka næringsmegler
+- Office manager (brokerage) | manager | +leadership
+- Brokerage franchise owner | owner | +risk
+
+@lane property_investment | Property investment & development | isco 1323 2413 3334 1120 | riasec EC | payoff steep | entry open | sprint simulated | modes owner employed | ladder founder | tags risk numbers negotiation autonomy
+> Buying, developing and owning property for profit.
+- Real estate analyst | entry | mode employed | +analytical
+- Property developer (employed) | senior | mode employed | aka eiendomsutvikler
+- Real estate investment manager | senior | mode employed
+- Residential landlord / small property investor | owner
+- House flipper | owner | +building
+- Property developer (own company) | owner
+- Real estate fund manager | lead | mode employed
+
+@lane property_management | Property management & valuation | isco 3334 3315 1219 | riasec CES | payoff linear | entry course | sprint simulated | modes employed freelance owner | ladder corporate | tags relationship detail routine
+> Running and valuing buildings: tenants, maintenance, housing co-ops and appraisals.
+- Property administrator | entry | aka forvalter
+- Property manager | mid | aka eiendomsforvalter
+- Housing co-op / condominium manager | mid
+- Commercial property asset manager | senior | +numbers
+- Valuer / appraiser (takstmann) | mid | mode freelance | +technical
+- Building surveyor | mid | +technical
+- Short-term rental host (Airbnb) | owner | +care +risk
+- Short-term rental co-host / management company | owner | +care
+- Head of property management | director | +leadership

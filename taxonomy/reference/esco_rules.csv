@@ -1,0 +1,10 @@
+# regex (matched against the lowercase ESCO preferred label only), lane_id. First match wins.
+\bimport export (manager|specialist)\b,trade_brokerage
+\bwholesale merchant\b,trade_brokerage
+\bspecialised seller\b,store_retail
+\bshop manager\b,store_retail
+\brental service\b,store_retail
+\b(vehicle rental|rental agent)\b,store_retail
+\bdistribution manager\b,supply_chain
+\bvocational teacher\b,school_teaching
+\blecturer\b,academic_research
