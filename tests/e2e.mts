@@ -307,6 +307,7 @@ async function runSession(sessionId: SessionId) {
           interrupted = true;
           trial = null;
           await p.reload();
+          await timingMark(id); // the reload cleared the in-page timing log
           await p.getByText(/^Task · about/).waitFor();
           await p.getByRole("button", { name: "Start" }).click();
           await until(() => current() !== null);

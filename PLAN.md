@@ -502,3 +502,13 @@ Unit tests (Vitest) use hand-built profiles:
   - Trials now store their level; older trials take it from the fixed ladder. Reasoning sessions scored by an older `SCORING_VERSION` are re-scored from their stored trials when the profile loads.
   - Every score is labelled provisional, and areas whose norms are model-only are marked "rough estimate". The written report may give reasoning percentile bands, always as ranges and with the caveat. Replace the table with an empirical calibration once pilot data exists.
 - **Bug found by the calibration:** a matrix cell's `count` is an index (0 → 1 figure). The app drew index 0 and 1 both as one figure and never drew five, so some options looked identical. The renderer now draws count + 1, and a test checks that no two options look the same.
+
+## 13. Interface: hierarchy and perceived value
+
+- **D51 — Results lead with findings, show their evidence, and stay quiet elsewhere.** Presentation only; items, generators, scoring, norms, calibration, matching and schemas are untouched.
+  - **Report cover** (`report/ReportCover.tsx`): name, then four headline figures (Holland code · top work value · standout personality domain · general reasoning range). Each figure says what it rests on (instrument and item count). Below them, a five-segment session strip and one basis line ("compared with yourself" / "provisional norms") replace the old banner and the partial-profile box. The figures are read from computed scores (`view/findings.ts`, tested).
+  - **Section anatomy**: section number and title → a one-sentence finding → the data → a method line (instrument · items · scale · comparison).
+  - **Score bars** keep their form but gain contrast: a hairline scale with dial ticks, a solid interval band (`--data-band`, no opacity), a 2 px point and a full-height reference tick (`--data-ref`). Text greys are raised to 5.4:1 or better in both themes, and there's a `figure` type size for headline numbers.
+  - **Hub and outro**: measures as one mono line; the session strip shows the profile building. The outro shows what the session added and links to the profile. It appears only after a session ends: nothing changes during items or tasks.
+  - **Lane Map**: a summary on top (band split, the five strongest lanes in the map's own order, the lanes the person named). The full list and the filters are unchanged.
+  - **Timed tasks**: no file in `components/assess/tasks/`, `hooks.ts` or `api.ts` changed; `SessionRunner.tsx` changed only inside `SessionOutro`. Timing was measured before and after (`TIMING_LOG` in the e2e: key→paint, server reply→paint and long tasks per task).
