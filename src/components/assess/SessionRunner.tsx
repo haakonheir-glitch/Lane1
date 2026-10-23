@@ -283,7 +283,7 @@ function SessionOutro({
       <h2 className="mt-6 text-h1 font-medium text-ink">{title} is done.</h2>
       {/* The reveal: what this session added to the profile. Shown only after the session ends. */}
       <div className="mt-10 border-t border-ink pt-4">
-        <p className="label text-ink-3">Added to your profile</p>
+        <p className="label text-ink-3">{/^nothing/i.test(step.unlocks) ? "What it unlocks" : "Added to your profile"}</p>
         <p className="mt-3 text-h3 font-medium text-ink">{step.unlocks}</p>
       </div>
       {step.confidence === "low" ? (

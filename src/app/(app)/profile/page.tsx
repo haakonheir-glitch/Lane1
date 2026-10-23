@@ -85,7 +85,7 @@ export default async function ProfilePage() {
                 <WrittenReport report={written.report} model={written.model} createdAt={written.createdAt} />
               </>
             ) : (
-              <div className="grid max-w-[960px] gap-6 border-l-2 border-ink pl-6 md:grid-cols-[1fr_auto] md:items-start">
+              <div className="max-w-[840px] border-l-2 border-ink pl-6">
                 <div>
                   <p className="text-body-l text-ink">
                     Turn the scores on this page into a written report: what your interests, values and personality add up to, which lanes to try
@@ -96,7 +96,7 @@ export default async function ProfilePage() {
                     scores. Written once and saved; rewritten only when your scores change.
                   </p>
                 </div>
-                <div className="md:pt-1">
+                <div className="mt-6">
                   <WriteReportForm configured={reportConfigured} />
                 </div>
               </div>
