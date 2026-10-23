@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AppPage } from "@/components/shell/AppPage";
 import { SectionHeader } from "@/components/report/SectionHeader";
 import { ButtonLink } from "@/components/ui/Button";
-import { Tag } from "@/components/ui/Misc";
+import { SessionStrip } from "@/components/report/SessionStrip";
 import { getAssessmentHub, type HubSession } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/cn";
@@ -33,7 +33,7 @@ export default async function AssessPage() {
           Each session unlocks part of your profile. Progress is saved after every answer.
         </p>
 
-        <div className="mt-12 grid grid-cols-2 gap-6 border-y border-rule py-6 sm:grid-cols-3">
+        <div className="mt-12 grid grid-cols-2 gap-6 border-t border-ink pt-5 pb-6 sm:grid-cols-3">
           {[
             { label: "Sessions", value: `${done}/5`, unit: "done" },
             { label: "Remaining", value: `~${minutesLeft}`, unit: "min" },
@@ -46,6 +46,14 @@ export default async function AssessPage() {
               </span>
             </div>
           ))}
+        </div>
+        <div className="flex flex-col gap-2 border-y border-rule py-4 sm:flex-row sm:items-center sm:justify-between">
+          <SessionStrip
+            sessions={sessions.map((s) => ({ id: s.id, completedAt: s.status === "completed" ? "done" : null, confidence: s.confidence }))}
+            highlight={next?.id}
+            className="sm:w-[420px]"
+          />
+          <p className="text-small text-ink-2">Your profile builds with every session you finish.</p>
         </div>
 
         <section className="mt-16" aria-labelledby="sessions-h">
@@ -66,13 +74,12 @@ export default async function AssessPage() {
                     <p className="mt-2 text-small text-ink-2">
                       <span className="text-ink">Unlocks:</span> {s.unlocks}
                     </p>
-                    <ul className="mt-3 flex flex-wrap gap-2">
-                      {s.blocks.map((b) => (
+                    <ul className="mt-3 flex flex-wrap gap-x-2 gap-y-1 label text-ink-3" aria-label="Measures">
+                      {s.blocks.map((b, i) => (
                         <li key={b.title}>
-                          <Tag className={b.experimental ? "border-dashed" : undefined}>
-                            {b.title}
-                            {b.experimental ? " · research" : ""}
-                          </Tag>
+                          <span className={b.experimental ? "text-ink-3" : "text-ink-2"}>{b.title}</span>
+                          {b.experimental ? <span className="text-ink-3"> (research)</span> : null}
+                          {i < s.blocks.length - 1 ? <span aria-hidden className="pl-2 text-ink-4">·</span> : null}
                         </li>
                       ))}
                     </ul>

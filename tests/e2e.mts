@@ -7,6 +7,7 @@
  * The respondent persona uses the item bank as its oracle (to pass validity items and answer
  * consistently); everything it does still goes through the browser.
  */
+import { writeFileSync } from "node:fs";
 import { chromium, type Page, type Response } from "playwright";
 import { stepsFor } from "../src/lib/assess/service";
 import type { PublicStep, TaskTurn } from "../src/lib/bank/public";
@@ -18,6 +19,49 @@ const password = "correct-horse-battery";
 const b = await chromium.launch(process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {});
 const ctx = await b.newContext({ viewport: { width: 1280, height: 900 }, acceptDownloads: true });
 const p = await ctx.newPage();
+/*
+ * TIMING_LOG=<file>: measure presentation cost in the timed tasks (UX constraint: no added delay).
+ * Per task: key/click → next painted change, server reply → next painted change, and main-thread
+ * long tasks. Same measurement before and after a UI change; compare medians.
+ */
+const TIMING = process.env.TIMING_LOG;
+// Plain JavaScript on purpose: tsx would compile a function here with helpers the page lacks.
+if (TIMING)
+  await p.addInitScript(`
+    window.__t = { task: "", samples: [], longTasks: {} };
+    var pending = [];
+    function arm(kind, t0) { if (window.__t.task) pending.push({ kind: kind, t0: t0, task: window.__t.task }); }
+    new MutationObserver(function () {
+      if (!pending.length) return;
+      var batch = pending.splice(0);
+      requestAnimationFrame(function () {
+        var now = performance.now();
+        batch.forEach(function (x) { if (now - x.t0 < 5000) window.__t.samples.push({ task: x.task, kind: x.kind, ms: now - x.t0 }); });
+      });
+    }).observe(document, { subtree: true, childList: true, characterData: true, attributes: true });
+    addEventListener("keydown", function (e) { arm("keyToPaint", e.timeStamp); }, { capture: true });
+    addEventListener("pointerdown", function (e) { arm("keyToPaint", e.timeStamp); }, { capture: true });
+    var f = window.fetch;
+    window.fetch = function () {
+      var args = arguments;
+      return f.apply(this, args).then(function (res) { if (String(args[0]).indexOf("/task") >= 0) arm("replyToPaint", performance.now()); return res; });
+    };
+    try {
+      new PerformanceObserver(function (l) {
+        var t = window.__t.task; if (t) window.__t.longTasks[t] = (window.__t.longTasks[t] || 0) + l.getEntries().length;
+      }).observe({ type: "longtask", buffered: false });
+    } catch (e) {}
+  `);
+const timingMark = (task: string) => (TIMING ? p.evaluate((t) => ((window as unknown as { __t: { task: string } }).__t.task = t), task) : Promise.resolve());
+const timingAll: { task: string; kind: string; ms: number }[] = [];
+const timingLong: Record<string, number> = {};
+const timingCollect = async () => {
+  if (!TIMING) return;
+  const t = await p.evaluate(() => (window as unknown as { __t: { samples: { task: string; kind: string; ms: number }[]; longTasks: Record<string, number> } }).__t).catch(() => null);
+  if (!t) return;
+  timingAll.push(...t.samples);
+  for (const [k, v] of Object.entries(t.longTasks)) timingLong[k] = (timingLong[k] ?? 0) + v;
+};
 const errors: string[] = [];
 p.on("pageerror", (e) => errors.push(e.message));
 p.on("console", (m) => m.type() === "error" && errors.push(m.text()));
@@ -241,6 +285,7 @@ async function runSession(sessionId: SessionId) {
       await until(() => step!.kind !== "item" || (step as typeof s).position !== s.position);
     } else if (s.kind === "task") {
       const id = s.task.id;
+      await timingMark(id);
       seen.add(id);
       trial = null;
       await p.getByText(/^Task · about/).waitFor();
@@ -270,9 +315,11 @@ async function runSession(sessionId: SessionId) {
         }
       }
       log(`${sessionId} · ${id}: ${n} turns`);
+      await timingCollect();
+      await timingMark("");
     }
   }
-  const outro = (await p.locator("h2").first().innerText()) + " " + (await p.locator("h2 + p").first().innerText());
+  const outro = (await p.locator("h2").first().innerText()) + " " + ((await p.locator("h2 + *").first().innerText()).replace(/\s+/g, " "));
   log(`${sessionId} done (${[...seen].join(", ")}) → “${outro}”`);
 }
 
@@ -280,6 +327,18 @@ async function runSession(sessionId: SessionId) {
 const only = (process.env.SESSIONS !== undefined ? process.env.SESSIONS.split(",").filter(Boolean) : ["S1", "S2", "S3", "S4", "S5"]) as SessionId[];
 try {
   for (const s of only) await runSession(s);
+  if (TIMING) {
+    const med = (xs: number[]) => (xs.length ? [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)]! : null);
+    const p95 = (xs: number[]) => (xs.length ? [...xs].sort((a, b) => a - b)[Math.floor(xs.length * 0.95)]! : null);
+    const tasks = [...new Set(timingAll.map((x) => x.task))];
+    const summary = tasks.map((task) => {
+      const k = timingAll.filter((x) => x.task === task && x.kind === "keyToPaint").map((x) => x.ms);
+      const r = timingAll.filter((x) => x.task === task && x.kind === "replyToPaint").map((x) => x.ms);
+      return { task, keyToPaint: { n: k.length, median: med(k), p95: p95(k) }, replyToPaint: { n: r.length, median: med(r), p95: p95(r) }, longTasks: timingLong[task] ?? 0 };
+    });
+    writeFileSync(TIMING, JSON.stringify({ summary, samples: timingAll }, null, 2));
+    log(`timing written to ${TIMING}`);
+  }
 } catch (e) {
   await p.screenshot({ path: "e2e-failure.png", fullPage: true });
   console.error("Screenshot: e2e-failure.png");
@@ -314,7 +373,8 @@ if (only.includes("S1") || only.includes("S2")) {
 // Lane Map: onboarding answers show up, filters work client-side, a lane opens, plans exist
 await p.goto(base + "/lanes");
 await p.getByText("Your current lane").first().waitFor();
-const considering = await p.locator("span.label", { hasText: /^Considering$/ }).count();
+// Count in the map's own lists (the summary at the top repeats named lanes).
+const considering = await p.locator("ul[aria-label] span.label", { hasText: /^Considering$/ }).count();
 if (considering !== 2) throw new Error(`lanes: expected 2 considered lanes, saw ${considering}`);
 const summary = () => p.locator("p.mt-8 span.label").first().innerText();
 const before = await summary();

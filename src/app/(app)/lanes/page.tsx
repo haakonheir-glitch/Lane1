@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AppPage } from "@/components/shell/AppPage";
 import { LaneMap } from "@/components/lanes/LaneMap";
+import { LaneSummary } from "@/components/lanes/LaneSummary";
 import { ButtonLink } from "@/components/ui/Button";
 import { Skeleton } from "@/components/ui/Misc";
 import { getLaneMap, getUser } from "@/lib/data";
@@ -32,7 +33,10 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
           Every kind of paid work, in {vocab.families.length} families. A lane is a strong fit when it uses more of your stronger traits than your
           weaker ones, clearly enough to survive measurement error. It is a starting point for trying things, not a prediction of success.
         </p>
-        <div className="mt-12">
+        <div className="mt-14">
+          <LaneSummary rows={rows} />
+        </div>
+        <div className="mt-16">
           <Suspense fallback={<Skeleton lines={8} />}>
             <LaneMap rows={rows} vocab={vocab} detail={detail} />
           </Suspense>

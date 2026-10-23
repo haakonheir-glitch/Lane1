@@ -35,7 +35,7 @@ export function FitIndicator({ vsAverage, se, className }: { vsAverage: number |
     <div className={cn("relative h-3 w-full", className)} aria-hidden>
       <div className="absolute inset-x-0 top-1/2 h-px bg-rule" />
       <div className="absolute left-1/2 top-0 h-3 w-px bg-ink-4" />
-      <div className="absolute top-1/2 h-1 -translate-y-1/2 rounded-full bg-ink/15" style={{ left: `${lo}%`, width: `${Math.max(1, hi - lo)}%` }} />
+      <div className="absolute top-1/2 h-1 -translate-y-1/2 rounded-full bg-data-band" style={{ left: `${lo}%`, width: `${Math.max(1, hi - lo)}%` }} />
       <div className="absolute top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink" style={{ left: `${x(vsAverage)}%` }} />
     </div>
   );

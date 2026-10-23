@@ -1,12 +1,16 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-/** Mono index label + H2 + hairline. Structures every page like a report. */
+/**
+ * Mono index label + H2 + hairline. Structures every page like a report. An optional `finding`
+ * states the section's result in one sentence, so the reader gets the answer before the data.
+ */
 export function SectionHeader({
   index,
   label,
   title,
   aside,
+  finding,
   id,
   as: Heading = "h2",
   className,
@@ -15,6 +19,7 @@ export function SectionHeader({
   label: string;
   title?: ReactNode;
   aside?: ReactNode;
+  finding?: ReactNode;
   id?: string;
   as?: "h2" | "h3";
   className?: string;
@@ -33,6 +38,7 @@ export function SectionHeader({
           {title}
         </Heading>
       ) : null}
+      {finding ? <p className="mt-3 max-w-[60ch] text-body-l text-ink-2">{finding}</p> : null}
     </header>
   );
 }

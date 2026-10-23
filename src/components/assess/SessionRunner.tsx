@@ -276,11 +276,16 @@ function SessionOutro({
   }
   return (
     <div>
-      <p className="label text-positive">Session recorded</p>
-      <h2 className="mt-6 text-h1 font-medium text-ink">{title} is done.</h2>
-      <p className="mt-4 text-body-l text-ink-2">
-        <span className="text-ink">Unlocks:</span> {step.unlocks}
+      <p className="label text-positive">
+        Session recorded <span className="px-1.5 text-ink-4">·</span>
+        <span className="text-ink-3">{sessionId} of S5</span>
       </p>
+      <h2 className="mt-6 text-h1 font-medium text-ink">{title} is done.</h2>
+      {/* The reveal: what this session added to the profile. Shown only after the session ends. */}
+      <div className="mt-10 border-t border-ink pt-4">
+        <p className="label text-ink-3">Added to your profile</p>
+        <p className="mt-3 text-h3 font-medium text-ink">{step.unlocks}</p>
+      </div>
       {step.confidence === "low" ? (
         <div className="mt-6 rounded-sm border border-caution/50 bg-surface p-4">
           <p className="label text-caution">Low confidence</p>
@@ -295,7 +300,10 @@ function SessionOutro({
         <p className="mt-4 text-small text-ink-3">Some questions in this session were research questions. They are collected for Lane&apos;s pilot and not part of your results until validated.</p>
       ) : null}
       <div className="mt-10 flex flex-wrap gap-3">
-        <ButtonLink href="/assess">Back to assessment</ButtonLink>
+        <ButtonLink href="/profile">See your profile</ButtonLink>
+        <ButtonLink href="/assess" variant="secondary">
+          Back to assessment
+        </ButtonLink>
         {step.confidence === "low" || step.effort === "offer_redo" ? (
           <Button variant="secondary" onClick={retake} disabled={busy}>
             Retake session

@@ -10,11 +10,14 @@
   --bg: #f7f7f5;
   --surface: #ffffff;
   --ink: #111111;
-  --ink-2: #55575c;
-  --ink-3: #6f7176; /* text-safe (AA) — see PLAN.md D1 */
+  --ink-2: #47494e;
+  --ink-3: #63656a; /* text-safe (AA, 5.4:1 on bg) — see PLAN.md D1 */
   --ink-4: #8a8c91; /* graphics only */
   --rule: #e3e3df;
   --rule-strong: #c9c9c4;
+  /* Data graphics: solid fills, never opacity, so bands read the same on any surface. */
+  --data-band: #c3c6cc;
+  --data-ref: #8a8c91;
   --accent: #2340e8;
   --accent-ink: #ffffff;
   --accent-wash: #eef1fe;
@@ -53,11 +56,13 @@
     --bg: #0e0f10;
     --surface: #16171a;
     --ink: #ededea;
-    --ink-2: #a5a7ac;
-    --ink-3: #8b8d93;
+    --ink-2: #b3b5ba;
+    --ink-3: #9a9ca2;
     --ink-4: #6e7076;
     --rule: #26282c;
     --rule-strong: #3a3c41;
+    --data-band: #474a52;
+    --data-ref: #7a7c82;
     --accent: #6b80ff;
     --accent-ink: #0e0f10;
     --accent-wash: #1a1f3d;
@@ -71,11 +76,13 @@
   --bg: #0e0f10;
   --surface: #16171a;
   --ink: #ededea;
-  --ink-2: #a5a7ac;
-  --ink-3: #8b8d93;
+  --ink-2: #b3b5ba;
+  --ink-3: #9a9ca2;
   --ink-4: #6e7076;
   --rule: #26282c;
   --rule-strong: #3a3c41;
+  --data-band: #474a52;
+  --data-ref: #7a7c82;
   --accent: #6b80ff;
   --accent-ink: #0e0f10;
   --accent-wash: #1a1f3d;
@@ -119,6 +126,10 @@
   --text-label: 12px;
   --text-label--line-height: 16px;
   --text-label--letter-spacing: 0.06em;
+  /* Headline figures: report cover, reasoning range. */
+  --text-figure: 34px;
+  --text-figure--line-height: 40px;
+  --text-figure--letter-spacing: -0.02em;
   --text-h3: 22px;
   --text-h3--line-height: 28px;
   --text-h3--letter-spacing: -0.01em;
@@ -136,6 +147,8 @@
   --color-ink-4: var(--ink-4);
   --color-rule: var(--rule);
   --color-rule-strong: var(--rule-strong);
+  --color-data-band: var(--data-band);
+  --color-data-ref: var(--data-ref);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
   --color-accent-wash: var(--accent-wash);

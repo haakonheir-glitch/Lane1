@@ -12,18 +12,30 @@ export function ReasoningProfile({ reasoning }: { reasoning: NonNullable<Profile
   return (
     <div className="grid gap-12 lg:grid-cols-12">
       <div className="lg:col-span-4">
-        <p className="label text-ink-3">General reasoning · 90% interval</p>
+        <p className="label text-ink-3">General reasoning · 90% range</p>
         {reasoning.generalAbility ? (
           <>
-            <p className="mt-3 font-mono text-h2 text-ink">
+            <p className="mt-4 font-mono text-figure font-medium tabular text-ink">
               P{reasoning.generalAbility.percentileBand[0]}–{reasoning.generalAbility.percentileBand[1]}
             </p>
-            <div className="relative mt-4 h-2 bg-rule" aria-hidden>
-              <div
-                className="absolute inset-y-0 bg-ink opacity-60"
-                style={{ left: `${reasoning.generalAbility.percentileBand[0]}%`, width: `${reasoning.generalAbility.percentileBand[1] - reasoning.generalAbility.percentileBand[0]}%` }}
-              />
-              <div className="absolute -top-1 h-4 w-px bg-ink-4" style={{ left: "50%" }} />
+            {/* Percentile scale 0–100: the 90% range as a solid band, the median as a full-height tick. */}
+            <div className="mt-5" aria-hidden>
+              <div className="relative h-4">
+                <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-rule-strong" />
+                {[0, 25, 75, 100].map((t) => (
+                  <div key={t} className="absolute top-1/2 h-1.5 w-px -translate-y-1/2 bg-rule-strong" style={{ left: `${t}%` }} />
+                ))}
+                <div
+                  className="absolute top-1/2 h-2 -translate-y-1/2 bg-ink"
+                  style={{ left: `${reasoning.generalAbility.percentileBand[0]}%`, width: `${Math.max(1, reasoning.generalAbility.percentileBand[1] - reasoning.generalAbility.percentileBand[0])}%` }}
+                />
+                <div className="absolute inset-y-0 w-px bg-data-ref" style={{ left: "50%" }} />
+              </div>
+              <div className="mt-1 flex justify-between font-mono text-[11px] text-ink-3">
+                <span>0</span>
+                <span>50</span>
+                <span>100</span>
+              </div>
             </div>
           </>
         ) : (
