@@ -192,10 +192,12 @@ describe("cognitive (file 14)", () => {
   test("rapid guesses are missing, not wrong", () => {
     const trials = [
       { correct: true, timedOut: false, rtMs: 20_000, timeLimitSec: 60 },
-      { correct: false, timedOut: false, rtMs: 1_000, timeLimitSec: 60 }, // < 25% of 50% of 60 s = 7.5 s
+      { correct: false, timedOut: false, rtMs: 1_000, timeLimitSec: 60 }, // < 25% of 20% of 60 s = 3 s
       { correct: false, timedOut: true, rtMs: 60_000, timeLimitSec: 60 },
     ];
     expect(isRapidGuess(trials[1]!)).toBe(true);
+    // A quick but genuine answer to an easy item counts.
+    expect(isRapidGuess({ correct: true, timedOut: false, rtMs: 4_000, timeLimitSec: 60 })).toBe(false);
     const s = scoreAccuracy(trials);
     expect(s.rapidGuesses).toBe(1);
     expect(s.scored).toBe(2);

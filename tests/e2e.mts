@@ -49,9 +49,11 @@ await p.fill("#password", password);
 await p.click("button[type=submit]");
 await waitPath("/start");
 // Age and situation by keyboard
-for (let i = 0; i < 2; i++) {
-  await p.waitForTimeout(300);
+// Wait for each step to load before answering it: a key pressed mid-transition is dropped.
+for (const next of [/step=2/, /step=3/]) {
+  await p.waitForTimeout(600);
   await p.keyboard.press("2");
+  await p.waitForURL(next);
 }
 // What do you do now: job-title search (Norwegian alias) + years
 await p.waitForURL(/step=3/);

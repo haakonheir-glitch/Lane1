@@ -75,10 +75,10 @@ for (let s = 1; s <= N; s++) {
   check(d.correctResponse.join() === d.sequence.slice().reverse().join(), "digits");
 }
 // discounting converges
-let h: ("sooner" | "later")[] = [];
-let res: any;
+const h: ("sooner" | "later")[] = [];
+let res: ReturnType<typeof g.discountNext> | undefined;
 for (let i = 0; i < 6; i++) { res = g.discountNext(1000, 30, h); if ("indifference" in res) break; h.push(i % 2 ? "later" : "sooner"); }
-check("indifference" in res, "discount converges");
+check(res !== undefined && "indifference" in res, "discount converges");
 const sym = g.generateSymbolMatchBlock(1);
 check(sym.every((t) => (t.left.slice().sort().join() === t.right.slice().sort().join()) === t.same), "symbol same/different");
 
@@ -91,7 +91,7 @@ console.log("sample quant", JSON.stringify(g.generateQuant(42, 4)));
 let rotFails = 0;
 for (let s = 1; s <= 2000; s++) for (const lvl of [1, 2, 3, 4] as const) {
   const m = g.generateMatrix(s * 7 + lvl, lvl);
-  const all = [...m.grid.filter(Boolean) as any[], ...m.options];
+  const all = [...m.grid.filter((c): c is g.Cell => c !== null), ...m.options];
   const rots = new Set(all.map((c) => c.rotation));
   if (rots.size > 1 && !all.every((c) => g.ROTATION_SAFE_SHAPES.includes(c.shape))) rotFails++;
 }

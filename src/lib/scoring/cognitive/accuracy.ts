@@ -2,7 +2,8 @@
  * Accuracy tasks: matrix, number_series, letter_series, quant, rotation2d.
  * - Rapid-guess rule (file 14): responses faster than 25% of the item's median time are
  *   missing, not wrong. There is no norm sample yet, so the median is provisional:
- *   50% of the item's time limit (PLAN.md D8). Replace with pilot medians when available.
+ *   20% of the item's time limit, a floor of 5% of the limit (PLAN.md D8). Replace with pilot
+ *   medians when available.
  * - Timed-out items count as wrong (attempted, no answer).
  * - Score: proportion correct among non-missing items, with a 90% Wilson interval.
  *   This is a raw accuracy. `byLevel` feeds the 3PL ability estimate (cognitive/norms.ts).
@@ -12,7 +13,7 @@ import { Z90 } from "../core";
 /** `level`: the generator difficulty (activeRules, level or cellsN) the item was drawn at. */
 export type AccuracyTrial = { correct: boolean; timedOut: boolean; rtMs: number; timeLimitSec: number; level?: number };
 
-export const PROVISIONAL_MEDIAN_SHARE = 0.5;
+export const PROVISIONAL_MEDIAN_SHARE = 0.2;
 export const RAPID_GUESS_SHARE = 0.25;
 
 export function isRapidGuess(t: AccuracyTrial): boolean {

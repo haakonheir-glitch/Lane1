@@ -20,7 +20,7 @@ import { abilityFrom, CALIBRATION, memoryFrom, speedFrom } from "./cognitive/nor
 import type { Responses } from "./types";
 
 /** Stored with each session's scores; sessions scored by an older version are re-scored from their stored answers. */
-export const SCORING_VERSION = "lane-scoring-0.4 / package-0.1";
+export const SCORING_VERSION = "lane-scoring-0.5 / package-0.1";
 
 export type SessionData = {
   responses: LoggedResponse[];
