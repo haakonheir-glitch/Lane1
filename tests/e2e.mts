@@ -318,9 +318,13 @@ const considering = await p.locator("span.label", { hasText: /^Considering$/ }).
 if (considering !== 2) throw new Error(`lanes: expected 2 considered lanes, saw ${considering}`);
 const summary = () => p.locator("p.mt-8 span.label").first().innerText();
 const before = await summary();
+// Compare like with like: innerText is upper-cased by CSS, textContent isn't.
+const beforeText = await p.locator("p.mt-8 span.label").first().textContent();
 await p.getByRole("button", { name: /^Interview & shadow/ }).click();
-await p.waitForFunction((b) => document.querySelector("p.mt-8 span.label")?.textContent !== b, before);
-log(`lane filters: ${before} → ${await summary()}`);
+await p.waitForFunction((b) => document.querySelector("p.mt-8 span.label")?.textContent !== b, beforeText);
+const after = await summary();
+if (after === before) throw new Error("lane filters: the summary didn't change");
+log(`lane filters: ${before} → ${after}`);
 await p.getByRole("button", { name: "Clear filters" }).first().click();
 await p.goto(base + "/lanes?lane=b2b_sales");
 const panel = p.locator("[aria-labelledby] h2", { hasText: "B2B sales" }).first();
