@@ -53,6 +53,7 @@ Each report costs a few cents and takes about a minute. It's saved and only rewr
    - `DATABASE_URL`: the Neon connection string.
    - `APP_TIMEZONE` *(optional)*: the time zone used for dates such as the report ID and "member since". The default is `Europe/Oslo`.
    - `ANTHROPIC_API_KEY` *(optional)*: turns on the Claude-written report.
+   - `REPORT_TIER` *(optional)*: `free` shows the report's cover, summary sheet and top three career paths, with the rest as outlined placeholders; `full` (the default) shows everything, the whole Career map and the PDF. No payments are wired to it.
    - `NEXT_PUBLIC_SITE_URL` *(optional)*: your public address (e.g. `https://lane.no`), used for the canonical URL and the share image links. On Vercel the production address is used automatically when this isn't set.
 4. Click **Deploy**. The build creates the database tables automatically (`npm run build` runs `scripts/migrate.mjs` first), and every later deploy applies any new migrations.
 

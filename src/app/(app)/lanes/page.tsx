@@ -90,6 +90,14 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
           ) : null}
 
           {!full ? (
+            <CareerSection index="02" label="Detail" id="detail-h" title="Your three career paths in detail" lead="Open any of the three for its day-to-day work, how people get in, how it pays and where you'd start.">
+              <Suspense fallback={<Skeleton lines={4} />}>
+                <LaneMap rows={rows.filter((r) => picks.overall.slice(0, 3).some((p) => p.row.id === r.id))} vocab={vocab} detail={detail} />
+              </Suspense>
+            </CareerSection>
+          ) : null}
+
+          {!full ? (
             <div className="flex min-h-48 flex-col items-center justify-center gap-2 rounded-sm border border-dashed border-rule-strong p-10 text-center">
               <p className="text-h3 font-medium text-ink">
                 The full Career map

@@ -47,7 +47,8 @@ export function ReportDocument({ profile, person, picks, effort, written, own, t
   const full = tier === "full";
   const lastSession = profile.sessions.filter((s) => s.completedAt).map((s) => s.completedAt!).sort().pop();
   const normed = profile.norms.status === "provisional";
-  const titles = chapterTitles(profile);
+  // Locked chapters show their name, not their finding.
+  const titles = full ? chapterTitles(profile) : { interests: "Interests", values: "Work values", personality: "Personality", reasoning: "Reasoning", behaviour: "Behaviour tasks" };
   const words = (id: string) => (written ? written.report.sections.find((s) => s.id === id)?.paragraphs : null);
   const answered = (xs: { answered: number }[]) => xs.reduce((n, x) => n + x.answered, 0);
   // The sheet's three lines: interests, personality and reasoning (values and paths have their own place on it).
@@ -138,7 +139,7 @@ export function ReportDocument({ profile, person, picks, effort, written, own, t
       </Chapter>
 
       {hasAnalysis ? (
-        <Chapter id="analysis" n="07" kicker="Written analysis · Claude" title={written ? written.report.headline : "Your profile, in words"} locked={lock("analysis")}>
+        <Chapter id="analysis" n="07" kicker="Written analysis · Claude" title={written && full ? written.report.headline : "Your profile, in words"} locked={lock("analysis")}>
           {written ? (
             <details className="group border-y border-rule-strong" open={print || undefined}>
               <summary className="flex cursor-pointer list-none items-center gap-3 py-4 text-body text-ink [&::-webkit-details-marker]:hidden">
