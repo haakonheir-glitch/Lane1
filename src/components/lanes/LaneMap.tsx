@@ -213,7 +213,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
 
         <p className="mt-8 flex flex-wrap items-baseline justify-between gap-2 border-b border-rule-strong pb-2">
           <span className="label text-ink-3">
-            {visible.length} of {rows.length} lanes · {bandCounts(visible)}
+            {visible.length} of {rows.length} career paths · {bandCounts(visible)}
           </span>
           {anyFilter ? (
             <button type="button" className="label text-ink-3 underline-offset-4 hover:text-ink hover:underline" onClick={() => setView({ family: null, mode: null, payoff: null, entry: null, sprint: null })}>
@@ -225,8 +225,8 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
         {visible.length === 0 ? (
           <EmptyState
             className="mt-8"
-            title="No lanes match these filters."
-            body="Some combinations don't exist, for example winner-take-all lanes you can enter through an apprenticeship."
+            title="No career paths match these filters."
+            body="Some combinations don't exist, for example winner-take-all career paths you can enter through an apprenticeship."
             action={
               <Button variant="secondary" size="sm" onClick={() => setView({ family: null, mode: null, payoff: null, entry: null, sprint: null })}>
                 Clear filters
@@ -241,9 +241,9 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
               <section key={b} className="mt-10" aria-labelledby={`band-${b}`}>
                 <h2 id={`band-${b}`} className="flex items-baseline justify-between border-b border-ink pb-2">
                   <span className="text-h3 font-medium text-ink">{bandLabel[b]}</span>
-                  <span className="label text-ink-3">{inBand.length} lanes</span>
+                  <span className="label text-ink-3">{inBand.length} career paths</span>
                 </h2>
-                <Rows rows={inBand} selected={selectedId} onSelect={openLane} showFamily label={`${bandLabel[b]} lanes`} />
+                <Rows rows={inBand} selected={selectedId} onSelect={openLane} showFamily label={`${bandLabel[b]} career paths`} />
               </section>
             );
           })
@@ -257,14 +257,14 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
                   <span className="text-h3 font-medium text-ink">{fam.name}</span>
                   <span className="label text-ink-3">{bandCounts(fam.rows)}</span>
                 </h2>
-                {main.length ? <Rows rows={main} selected={selectedId} onSelect={openLane} label={`${fam.name} lanes`} /> : null}
+                {main.length ? <Rows rows={main} selected={selectedId} onSelect={openLane} label={`${fam.name} career paths`} /> : null}
                 {rest.length ? (
                   <details className="group border-b border-rule" open={rest.some((l) => l.id === selectedId) || !main.length}>
                     <summary className="flex cursor-pointer list-none items-center gap-2 py-3 label text-ink-3 transition-quiet hover:text-ink">
                       <span aria-hidden className="inline-block transition-transform group-open:rotate-90">›</span>
-                      {rest.length} unlikely {rest.length === 1 ? "lane" : "lanes"}
+                      {rest.length} unlikely {rest.length === 1 ? "career path" : "career paths"}
                     </summary>
-                    <Rows rows={rest} selected={selectedId} onSelect={openLane} label={`Unlikely ${fam.name} lanes`} />
+                    <Rows rows={rest} selected={selectedId} onSelect={openLane} label={`Unlikely ${fam.name} career paths`} />
                   </details>
                 ) : null}
               </section>
@@ -274,8 +274,8 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
 
         <p className="mt-8 max-w-reading text-small text-ink-3">
           {sort === "fit"
-            ? "Bands compare each lane with your other lanes, not with other people. A lane is a strong fit only when it's clearly above more than half of your lanes after allowing for measurement error; most lanes can't be told apart that precisely, so they're worth testing. The dot shows fit against your average lane, with a 90% range."
-            : "Fit × payoff reorders lanes within each band by how the lane pays at the level you'd likely reach. Winner-take-all lanes drop unless you're likely to reach the top group."}
+            ? "Bands compare each career path with your other career paths, not with other people. A career path is a strong fit only when it's clearly above more than half of yours after allowing for measurement error; most can't be told apart that precisely, so they're worth testing. The dot shows fit against your average career path, with a 90% range."
+            : "Fit × payoff reorders career paths within each band by how each pays at the level you'd likely reach. Winner-take-all careers drop unless you're likely to reach the top group."}
         </p>
       </div>
 

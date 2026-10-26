@@ -32,12 +32,12 @@ export function buildComparisonRows(sprints: Sprint[], laneNames: Record<string,
 /** All lanes tried, side by side. */
 export function LaneComparisonTable({ rows }: { rows: ComparisonRow[] }) {
   return (
-    <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0" tabIndex={0} role="region" aria-label="Lane comparison, scrollable">
+    <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0" tabIndex={0} role="region" aria-label="Career path comparison, scrollable">
       <table className="w-full min-w-[640px] border-collapse text-left">
-        <caption className="sr-only">Lanes tried, compared</caption>
+        <caption className="sr-only">Career paths tried, compared</caption>
         <thead>
           <tr className="border-b border-rule-strong">
-            {["Lane · sprint", "Status", "Performance", "Improvement", "Energy avg", "Continue?"].map((h, i) => (
+            {["Career path · sprint", "Status", "Performance", "Improvement", "Energy avg", "Continue?"].map((h, i) => (
               <th key={h} scope="col" className={cn("py-2 pr-4 label font-normal text-ink-3", i > 1 && "text-right")}>
                 {h}
               </th>

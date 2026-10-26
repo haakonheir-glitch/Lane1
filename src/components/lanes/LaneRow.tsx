@@ -18,13 +18,13 @@ export function LaneRow({ lane, active, onSelect, showFamily }: { lane: LaneRowD
       <span className="flex min-w-0 flex-col gap-1">
         <span className="flex flex-wrap items-baseline gap-x-2 text-body text-ink">
           {lane.name}
-          {lane.current ? <span className="label text-accent">Your current lane</span> : lane.considering ? <span className="label text-accent">Considering</span> : null}
+          {lane.current ? <span className="label text-accent">Your current career</span> : lane.considering ? <span className="label text-accent">Considering</span> : null}
         </span>
         <span className="label text-ink-3">
           {showFamily ? `${lane.familyName} · ` : ""}
           {payoffLabel[lane.payoff]} · {entryLabel[lane.entry]} · {sprintLabel[lane.sprint]}
         </span>
-        {lane.payoff === "winner_take_all" ? <span className="text-small text-caution">Median income in this lane is low.</span> : null}
+        {lane.payoff === "winner_take_all" ? <span className="text-small text-caution">Median income in this career is low.</span> : null}
       </span>
       <span className="col-start-1 row-start-2 flex items-center gap-3 md:col-start-auto md:row-start-auto">
         <BandTag band={lane.band} />

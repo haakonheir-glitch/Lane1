@@ -135,6 +135,7 @@
   --text-h3--letter-spacing: -0.01em;
 
   --animate-shimmer: shimmer 1.6s var(--ease-out) infinite;
+  --animate-rise: rise 560ms var(--ease-out) both;
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
 }
 
@@ -169,6 +170,18 @@
   --text-h2--letter-spacing: -0.015em;
 
   --shadow-hairline: 0 0 0 1px var(--rule);
+}
+
+/* Result reveal: cards rise in once when a results page opens. Never used during tasks. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes shimmer {

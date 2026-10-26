@@ -16,7 +16,7 @@ const problems = [
   },
   {
     title: "Most people never try the alternatives.",
-    body: "Switching costs years, so people commit early and stay. The lanes they never tried remain a permanent “what if”.",
+    body: "Switching costs years, so people commit early and stay. The career paths they never tried remain a permanent “what if”.",
   },
   {
     title: "Doubt fills the gap.",
@@ -26,8 +26,8 @@ const problems = [
 
 const method = [
   { n: "01", title: "Profile", body: "Interests, personality, reasoning games and work values, combined into one coherent profile with intervals." },
-  { n: "02", title: "Lane Map", body: "205 lanes in fit bands against your own strengths, with how each lane actually pays and where you'd realistically start." },
-  { n: "03", title: "Sprints", body: "One-to-three-week real trials of your top lanes. You log performance, improvement and how the work felt." },
+  { n: "02", title: "Career map", body: "205 career paths in fit bands against your own strengths, with how each career path actually pays and where you'd realistically start." },
+  { n: "03", title: "Sprints", body: "One-to-three-week real trials of your top career paths. You log performance, improvement and how the work felt." },
   { n: "04", title: "Evidence", body: "A running record of everything you tried. Conviction builds, or drops, on data rather than on hope." },
 ];
 
@@ -38,7 +38,7 @@ const faq = [
   },
   {
     q: "Is this just another personality test?",
-    a: "The core is a set of validated public instruments: the IPIP-NEO-120 personality inventory, the O*NET® Interest Profiler and Work Importance Locator, plus reasoning tasks generated fresh for every person. Lane adds its own experimental questions for lanes those instruments miss; they are collected but not used in your results until a pilot validates them. Even so, a test predicts job outcomes only modestly. The point of Lane is the second half: short real-world sprints that produce evidence a questionnaire cannot.",
+    a: "The core is a set of validated public instruments: the IPIP-NEO-120 personality inventory, the O*NET® Interest Profiler and Work Importance Locator, plus reasoning tasks generated fresh for every person. Lane adds its own experimental questions for career paths those instruments miss; they are collected but not used in your results until a pilot validates them. Even so, a test predicts job outcomes only modestly. The point of Lane is the second half: short real-world sprints that produce evidence a questionnaire cannot.",
   },
   {
     q: "How long does it take?",
@@ -46,11 +46,11 @@ const faq = [
   },
   {
     q: "What does “fit relative to me” mean?",
-    a: "Your Lane Map compares lanes against your own strongest and weakest traits, not against other people. A strong-fit lane is one of your best options among your own options. It is not a claim that you would beat anyone else at it.",
+    a: "Your Career map compares career paths against your own strongest and weakest traits, not against other people. A strong-fit career path is one of your best options among your own options. It is not a claim that you would beat anyone else at it.",
   },
   {
     q: "Why bands instead of a ranking?",
-    a: "With 205 lanes, number 5 and number 25 are often the same within measurement error, so a ranking would claim precision the test doesn't have. A lane is a strong fit only when it's clearly ahead of most of your other lanes; the many that can't be told apart are worth testing. Sprint evidence settles what a questionnaire can't.",
+    a: "With 205 career paths, number 5 and number 25 are often the same within measurement error, so a ranking would claim precision the test doesn't have. A career path is a strong fit only when it's clearly ahead of most of your other career paths; the many that can't be told apart are worth testing. Sprint evidence settles what a questionnaire can't.",
   },
   {
     q: "What happens to my data?",
@@ -77,7 +77,7 @@ export default async function LandingPage() {
             Find the work you&apos;re built for. With evidence.
           </h1>
           <p className="mt-8 max-w-[52ch] text-body-l text-ink-2">
-            Tests can narrow the field. Only trying the work can settle it. Lane maps the lanes that fit you, runs short
+            Tests can narrow the field. Only trying the work can settle it. Lane maps the career paths that fit you, runs short
             real-world trials of the best ones, and keeps the record.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
@@ -87,17 +87,17 @@ export default async function LandingPage() {
             </ButtonLink>
           </div>
           <p className="mt-10 font-mono text-label uppercase text-ink-3">
-            5 sessions · ~135 min in total · {totalIndexed} lanes mapped · no DNA, ever
+            5 sessions · ~135 min in total · {totalIndexed} career paths mapped · no DNA, ever
           </p>
         </div>
 
         <figure className="col-span-12 self-end lg:col-span-5 lg:col-start-8">
           <div className="rounded-sm border border-rule bg-surface px-5 pt-4 pb-2">
             <div className="flex items-baseline justify-between border-b border-rule-strong pb-3">
-              <span className="label text-ink-3">Lane Map · strong fits</span>
+              <span className="label text-ink-3">Career map · strong fits</span>
               <span className="label text-ink-3">Sample</span>
             </div>
-            <ul aria-label="Sample strong-fit lanes">
+            <ul aria-label="Sample strong-fit career paths">
               {excerpt.map((l, i) => (
                 <li key={l.id} className={i < excerpt.length - 1 ? "border-b border-rule" : ""}>
                   <LaneRow lane={l} showFamily />
@@ -106,7 +106,7 @@ export default async function LandingPage() {
             </ul>
           </div>
           <figcaption className="mt-3 label text-ink-3">
-            Fig. 1 · Excerpt from a sample Lane Map. Dots show fit against the person&apos;s average lane, with a 90% range.
+            Fig. 1 · Excerpt from a sample Career map. Dots show fit against the person&apos;s average career path, with a 90% range.
           </figcaption>
         </figure>
       </section>
@@ -150,7 +150,7 @@ export default async function LandingPage() {
           ))}
         </ol>
         <p className="mt-10 max-w-reading text-small text-ink-3">
-          Sprint evidence flows back into the Lane Map, so the map you see after three sprints is not the one you
+          Sprint evidence flows back into the Career map, so the map you see after three sprints is not the one you
           started with.
         </p>
       </section>
@@ -213,9 +213,9 @@ export default async function LandingPage() {
 
       {/* Lane index */}
       <section className="py-16" aria-labelledby="index-h">
-        <SectionHeader index="04" label="Lanes we map" title="Every kind of paid work. Not only the corporate kind." id="index-h" aside={`${index.families.length} families · ${totalIndexed} lanes`} />
+        <SectionHeader index="04" label="Career paths we map" title="Every kind of paid work. Not only the corporate kind." id="index-h" aside={`${index.families.length} families · ${totalIndexed} career paths`} />
         <p className="-mt-4 mb-10 max-w-reading text-body text-ink-2">
-          Checked against the international occupation classifications (ISCO-08 and ESCO), plus the lanes they miss: creators, founders, esports,
+          Checked against the international occupation classifications (ISCO-08 and ESCO), plus the career paths they miss: creators, founders, esports,
           independent advisers and more.
         </p>
         <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">

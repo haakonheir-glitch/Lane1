@@ -30,4 +30,4 @@ export const payoffLabel: Record<PayoffId, string> = {
 
 /** Shown on every winner-take-all lane, in the map row and the detail panel (taxonomy rule 4). */
 export const WINNER_TAKE_ALL_NOTE =
-  "In this lane a small group earns most of the income; the typical person earns little or nothing from it.";
+  "In this career a small group earns most of the income; the typical person earns little or nothing from it.";

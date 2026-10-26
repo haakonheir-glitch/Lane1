@@ -18,7 +18,7 @@ import { addSelfScores } from "../scoring/self";
 import type { SessionId } from "../bank/types";
 import type { YearsBand } from "../matching";
 import type { Evidence, OnboardingAnswers, Sprint, User } from "../types";
-import { buildLaneDetail, buildLaneMap, buildLanePlan, laneName, reportLanes, withKind } from "./lanes";
+import { buildCareerPicks, buildLaneDetail, buildLaneMap, buildLanePlan, laneName, reportLanes, withKind } from "./lanes";
 import { buildReportFacts, type ReportFacts } from "../report/facts";
 import { factsHash, latestReport } from "../report/service";
 
@@ -140,6 +140,7 @@ export async function getLaneMap(selected?: string | null) {
   return {
     source,
     ...buildLaneMap(profile, exp),
+    picks: buildCareerPicks(profile, exp),
     detail: selected ? buildLaneDetail(selected, profile, exp, sprints) : null,
   };
 }

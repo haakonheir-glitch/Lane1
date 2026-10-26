@@ -102,7 +102,7 @@ export const TAG_NOUN: Record<TagId, string> = {
 function strength(d: number) {
   if (d >= 0.5) return "one of your stronger scores";
   if (d >= 0) return "above your own average";
-  return "not a strength for you, but the closest match in this lane";
+  return "not a strength for you, but the closest match in this career path";
 }
 
 export function rankRoles(lane: Lane, profile: ProfileScores, taxonomy: TaxonomyForRoles, exp: Experience = {}, limit = 3) {

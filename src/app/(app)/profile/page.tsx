@@ -40,7 +40,7 @@ export default async function ProfilePage() {
       meta={own ? person.reportId : `${person.reportId} · sample`}
       action={
         <ButtonLink href="/lanes" variant="secondary" size="sm">
-          Open Lane Map
+          Open Career map
         </ButtonLink>
       }
     >

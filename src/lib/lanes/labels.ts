@@ -46,8 +46,8 @@ export const levelShort: Record<LevelId, string> = {
 };
 
 export const entryNoteText: Record<EntryNote, string> = {
-  standard: "Without experience in this lane, this is where you'd realistically start.",
+  standard: "Without experience in this career path, this is where you'd realistically start.",
   from_experience: "Based on the job and years you told us about, you could start from here.",
-  via_other_lane: "This lane has no junior roles. People usually move in at mid level after a few years in a related lane.",
-  needs_experience: "This lane is only open to people with substantial experience elsewhere, so there's no starting role to recommend yet.",
+  via_other_lane: "This career path has no junior roles. People usually move in at mid level after a few years in a related one.",
+  needs_experience: "This career path is only open to people with substantial experience elsewhere, so there's no starting role to recommend yet.",
 };

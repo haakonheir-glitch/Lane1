@@ -371,9 +371,9 @@ if (only.includes("S1") || only.includes("S2")) {
   }
 } else if (ownResults) throw new Error("profile: own results shown before any session was done");
 
-// Lane Map: onboarding answers show up, filters work client-side, a lane opens, plans exist
+// Career map: onboarding answers show up, filters work client-side, a lane opens, plans exist
 await p.goto(base + "/lanes");
-await p.getByText("Your current lane").first().waitFor();
+await p.getByText("Your current career").first().waitFor();
 // Count in the map's own lists (the summary at the top repeats named lanes).
 const considering = await p.locator("ul[aria-label] span.label", { hasText: /^Considering$/ }).count();
 if (considering !== 2) throw new Error(`lanes: expected 2 considered lanes, saw ${considering}`);

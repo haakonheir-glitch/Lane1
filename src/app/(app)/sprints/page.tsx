@@ -24,7 +24,7 @@ export default async function SprintsPage() {
         <p className="label text-ink-3">Evidence · Sprints</p>
         <h1 className="mt-4 max-w-[20ch] text-h1 font-medium text-ink">Try the work. Then decide.</h1>
         <p className="mt-4 max-w-reading text-body-l text-ink-2">
-          A sprint is one to two weeks of real work in a lane. You log what you did, how fast you improved and how it
+          A sprint is one to two weeks of real work in a career path. You log what you did, how fast you improved and how it
           felt. One sprint at a time keeps the signal clean.
         </p>
 
@@ -35,15 +35,15 @@ export default async function SprintsPage() {
           ) : (
             <EmptyState
               title="No sprint running."
-              body={suggested.length ? "Pick one of the suggestions below, or any lane from your Lane Map." : "Finish interests and personality first; your suggestions come from your Lane Map."}
-              action={<ButtonLink href={suggested.length ? "/lanes" : "/assess"}>{suggested.length ? "Open Lane Map" : "Continue assessment"}</ButtonLink>}
+              body={suggested.length ? "Pick one of the suggestions below, or any career path from your Career map." : "Finish interests and personality first; your suggestions come from your Lane Map."}
+              action={<ButtonLink href={suggested.length ? "/lanes" : "/assess"}>{suggested.length ? "Open Career map" : "Continue assessment"}</ButtonLink>}
             />
           )}
         </section>
 
         {suggested.length ? (
           <section className="mt-20" aria-labelledby="next-h">
-            <SectionHeader index="02" label="Suggested next" title="Untested lanes near the top of your map" id="next-h" />
+            <SectionHeader index="02" label="Suggested next" title="Untested career paths near the top of your map" id="next-h" />
             <ul className="grid gap-px border border-rule bg-rule md:grid-cols-3">
               {suggested.map((s) => (
                 <li key={s.id} className="flex flex-col bg-bg p-6">

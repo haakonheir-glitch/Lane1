@@ -26,7 +26,7 @@ export default function NotFound() {
           <div className="mt-10 flex flex-wrap gap-3">
             <ButtonLink href="/">Go to the start</ButtonLink>
             <ButtonLink href="/lanes" variant="secondary">
-              Open Lane Map
+              Open Career map
             </ButtonLink>
           </div>
           <p className="mt-8 text-small text-ink-3">

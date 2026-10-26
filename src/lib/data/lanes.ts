@@ -12,7 +12,7 @@ import { normalCdf, Z90 } from "../scoring/core";
 import type { ProfileScores } from "../scoring/profile";
 import { TAG_NOUN } from "../matching/roles";
 import { planFor } from "../lanes/plans";
-import type { LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, NextStep, RoleRef } from "../lanes/types";
+import type { CareerCategory, CareerPick, CareerPicks, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, NextStep, RoleRef } from "../lanes/types";
 import type { Sprint } from "../types";
 import type { ExperienceAnswers } from ".";
 import type { ReportLane } from "../report/facts";
@@ -50,6 +50,48 @@ export function buildLaneMap(profile: ProfileScores, exp: ExperienceAnswers): { 
 }
 
 const toExperience = (exp: ExperienceAnswers): Experience => ({ laneId: exp.current?.laneId, roleId: exp.current?.roleId, years: exp.current?.years });
+
+const CORPORATE_LADDERS = new Set(["corporate", "professional_firm"]);
+const OWN_PATH_LADDERS = new Set(["independent", "performer", "creator", "founder"]);
+/** Corporate needs a company ladder and private employment as the main mode (politics and public health use the corporate ladder too). */
+export const careerCategory = (lane: Pick<Lane, "ladder" | "modes">): CareerCategory =>
+  CORPORATE_LADDERS.has(lane.ladder) && lane.modes[0] === "employed" ? "corporate" : OWN_PATH_LADDERS.has(lane.ladder) ? "own_path" : "other";
+
+const PICKS = 5;
+
+/**
+ * The Career map's result lists: the five best-fitting career paths overall, then the next five
+ * corporate and the next five non-corporate ones (not repeating the top five), each led by the specific starting role
+ * that fits the person best inside it (matching/roles.ts). Order is the map's own default
+ * (band, then fit relative to the person); nothing is scored here.
+ */
+export function buildCareerPicks(profile: ProfileScores, exp: ExperienceAnswers): CareerPicks {
+  const matches = matchesFor(profile);
+  const bandOrder = ["strong", "testing", "unlikely", "insufficient"];
+  const ordered = LANES.map((lane) => ({ lane, m: matches.get(lane.id)! }))
+    .filter((x) => x.m.band !== "insufficient")
+    .sort((a, b) => bandOrder.indexOf(a.m.band) - bandOrder.indexOf(b.m.band) || (b.m.vsAverage ?? -Infinity) - (a.m.vsAverage ?? -Infinity) || a.lane.name.localeCompare(b.lane.name));
+  const experience = toExperience(exp);
+  const pick = ({ lane, m }: (typeof ordered)[number]): CareerPick => {
+    const ranked = rankRoles(lane, profile, taxonomy, experience, 3);
+    const [first, ...rest] = ranked.top;
+    return {
+      row: toRow(lane, m, exp),
+      category: careerCategory(lane),
+      role: first ? { title: first.role.title, levelLabel: taxonomy.levels[first.role.level].label, reason: first.reason } : null,
+      alsoRoles: rest.map((r) => r.role.title),
+      entryNote: ranked.entry.note,
+      why: m.drivers.filter((d) => d.contribution > 0.01).slice(0, 3).map((d) => d.label),
+    };
+  };
+  const top = ordered.slice(0, PICKS);
+  const rest = ordered.slice(PICKS);
+  return {
+    overall: top.map(pick),
+    corporate: rest.filter((x) => careerCategory(x.lane) === "corporate").slice(0, PICKS).map(pick),
+    ownPath: rest.filter((x) => careerCategory(x.lane) === "own_path").slice(0, PICKS).map(pick),
+  };
+}
 
 function ladderRows(lane: Lane, start: LevelId | null, current: LevelId | null): LadderRow[] {
   const ladder = ladderOf(lane);

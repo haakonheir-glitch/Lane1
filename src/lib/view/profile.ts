@@ -96,7 +96,7 @@ export function summarise(p: ProfileScores): string[] {
     const low = [...i.scales].sort((x, y) => (x.raw ?? 0) - (y.raw ?? 0))[0]!;
     out.push(`Your interests lean toward ${RIASEC_GLOSS[a!]} and ${RIASEC_GLOSS[b!]}, with ${RIASEC_GLOSS[low.code]} the least appealing.`);
   } else if (i?.lowDifferentiation) {
-    out.push("Your interests are fairly even across all six areas. That often means they are still forming; trying lanes will tell you more than this scale can.");
+    out.push("Your interests are fairly even across all six areas. That often means they are still forming; trying careers will tell you more than this scale can.");
   }
   const d = p.personality?.domains.filter((x) => x.normed !== null || !!x.self) ?? [];
   if (d.length) {
@@ -121,7 +121,7 @@ export function summarise(p: ProfileScores): string[] {
 export const LIMITATIONS = [
   "It cannot give certainty. Even a strong battery explains a modest share of the differences in career outcomes; most of the rest comes from opportunity, effort, luck, timing and the specific job.",
   "Scores are ranges, not points. Facets with four items are especially imprecise, so they are shown with wide intervals and never used on their own.",
-  "It cannot measure physical talent. For athletic lanes it describes motivation and temperament, not whether the body is elite.",
+  "It cannot measure physical talent. For athletic careers it describes motivation and temperament, not whether the body is elite.",
   "It measures you at one point in time. Interests and personality keep developing through the twenties; retake interests and values each year.",
   "It cannot replace trying. The profile is a well-informed hypothesis. Sprints test it.",
 ];

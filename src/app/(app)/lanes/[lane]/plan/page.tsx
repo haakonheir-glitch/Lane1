@@ -57,7 +57,7 @@ export default async function LanePlanPage({ params }: PageProps<"/lanes/[lane]/
           {plan.kind === "sprint"
             ? "Starting and logging sprints from a plan isn't connected yet; for now this is the plan to follow."
             : plan.kind === "practice"
-              ? "This lane can't be tried for real in a short sprint, so these are practice tasks instead."
+              ? "This career path can't be tried for real in a short sprint, so these are practice tasks instead."
               : "This is licensed or safety-critical work, so Lane offers interviews and shadowing instead of a sprint."}
         </p>
       </article>

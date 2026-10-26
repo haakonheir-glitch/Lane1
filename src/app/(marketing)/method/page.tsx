@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Method",
-  description: "How Lane builds a profile, matches it to 205 lanes, runs sprints and weighs evidence, and where the science stops.",
+  description: "How Lane builds a profile, matches it to 205 career paths, runs sprints and weighs evidence, and where the science stops.",
 };
 
 const references = [
@@ -73,7 +73,7 @@ export default function MethodPage() {
             ["01", "The question", "#m-01"],
             ["02", "The profile", "#m-02"],
             ["02b", "Norms and intervals", "#norms"],
-            ["03", "Lanes and fit bands", "#m-03"],
+            ["03", "Career paths and fit bands", "#m-03"],
             ["04", "Payoff structure", "#m-04"],
             ["05", "Sprints", "#m-05"],
             ["06", "Evidence", "#m-06"],
@@ -148,7 +148,7 @@ export default function MethodPage() {
             </p>
             <p>
               <strong className="font-medium text-ink">Lane&apos;s own scales</strong> cover what the standard instruments
-              miss for non-corporate lanes: extra interests and values, ten work dispositions (such as variance tolerance and
+              miss for non-corporate career paths: extra interests and values, ten work dispositions (such as variance tolerance and
               setback resilience), an emotion-judgement test,<Cite n={22} /> idea tasks<Cite n={23} /> and life history. They are
               experimental. Your answers are collected for the pilot, but these scales are not shown as results until they meet a
               reliability bar and add something beyond the established scales.<Cite n={21} />
@@ -177,42 +177,41 @@ export default function MethodPage() {
             </div>
           </section>
 
-          <Section n="03" title="Lanes and fit bands">
+          <Section n="03" title="Career paths and fit bands">
             <p>
-              Lane maps 205 lanes in 34 families, with 1,883 roles, checked against the international occupation classifications (ISCO-08 and the
-              EU&apos;s ESCO) so that nothing people are paid to do is missing, plus the lanes those lists miss, such as creators and founders.
+              Lane maps 205 career paths in 34 families, with 1,883 roles, checked against the international occupation classifications (ISCO-08 and the
+              EU&apos;s ESCO) so that nothing people are paid to do is missing, plus the career paths those lists miss, such as creators and founders.
             </p>
             <p>
-              The Lane Map is <em>ipsative</em>: each lane is scored against your own spread of traits, not against other people. If your
-              strongest trait is average by population standards, it is still your strongest trait, and the lanes that use it fit you best.
-              Half of a lane&apos;s fit comes from your interests (its RIASEC code), half from what the work demands (persuasion, analysis,
+              The Career map is <em>ipsative</em>: each career path is scored against your own spread of traits, not against other people. If your
+              strongest trait is average by population standards, it is still your strongest trait, and the career paths that use it fit you best.
+              Half of a career path&apos;s fit comes from your interests (its RIASEC code), half from what the work demands (persuasion, analysis,
               precision and so on), each linked to the scales that measure it. Lane&apos;s experimental scales don&apos;t count until a pilot
               validates them.
             </p>
             <p>
-              We show bands, not ranks. With 205 lanes, number 5 and number 25 are often the same within measurement error. A lane is a{" "}
-              <strong className="font-medium text-ink">strong fit</strong> only when it is clearly ahead of more than half of your other lanes
+              We show bands, not ranks. With 205 career paths, number 5 and number 25 are often the same within measurement error. A career path is a{" "}
+              <strong className="font-medium text-ink">strong fit</strong> only when it is clearly ahead of more than half of your other career paths
               after allowing for that error, and <strong className="font-medium text-ink">unlikely</strong> when it is clearly behind; the rest
               are worth testing.
             </p>
             <p>
-              We match you to lanes, not to job titles: a questionnaire can tell sales from software, but not a junior seller from a head of
-              sales. Inside a lane, roles are suggested from where you could realistically start, and never at manager level.
+              We match you to career paths first, then to the specific role inside each one where you could realistically start, never at manager level. A questionnaire can tell sales from software, but not who will make a better head of sales: seniority is a path you grow along, not a result of a test.
             </p>
           </Section>
 
           <Section n="04" title="Payoff structure">
             <p>
-              Lanes pay out differently. In <strong className="font-medium text-ink">linear</strong> lanes, a competent
-              practitioner earns a decent living, and <strong className="font-medium text-ink">high-floor</strong> lanes pay
-              well from the start. In <strong className="font-medium text-ink">convex</strong> lanes, rewards accelerate with
-              skill; <strong className="font-medium text-ink">steep</strong> lanes are up-or-out or equity-heavy. In{" "}
-              <strong className="font-medium text-ink">winner-take-all</strong> lanes, a small top tier captures most of the
+              Career paths pay out differently. In <strong className="font-medium text-ink">linear</strong> career paths, a competent
+              practitioner earns a decent living, and <strong className="font-medium text-ink">high-floor</strong> career paths pay
+              well from the start. In <strong className="font-medium text-ink">convex</strong> career paths, rewards accelerate with
+              skill; <strong className="font-medium text-ink">steep</strong> career paths are up-or-out or equity-heavy. In{" "}
+              <strong className="font-medium text-ink">winner-take-all</strong> career paths, a small top tier captures most of the
               reward and the median earns little, and we say so on every one of them.<Cite n={[7, 8]} />
             </p>
             <p>
               &ldquo;Fit × payoff&rdquo; places you on each curve at a realistic skill level, with an interval, and
-              discounts lanes accordingly. This is not a judgement about which lanes are worth pursuing. It is a way to
+              discounts career paths accordingly. This is not a judgement about which career paths are worth pursuing. It is a way to
               see the bet you are making.
             </p>
           </Section>
@@ -232,7 +231,7 @@ export default function MethodPage() {
 
           <Section n="06" title="Evidence">
             <p>
-              Your Evidence Record combines the profile prior with sprint outcomes into a conviction score for each lane
+              Your Evidence Record combines the profile prior with sprint outcomes into a conviction score for each career path
               you have tried. It moves in both directions. As more people complete sprints, the model also learns from what
               happened to profiles like yours, and it reports how many such profiles that estimate rests on.
             </p>
@@ -242,7 +241,7 @@ export default function MethodPage() {
             <ul className="flex flex-col gap-3">
               {[
                 "We do not use genetic, DNA, hormonal or brain-chemistry data. The science does not support using it to choose a career, and we would not use it if it did.",
-                "We do not promise a single true calling. Most people could do well in several lanes.",
+                "We do not promise a single true calling. Most people could do well in several career paths.",
                 "We do not hide uncertainty. If a confidence interval is wide, you will see that it is wide.",
                 "We do not sell your data.",
               ].map((t, i) => (

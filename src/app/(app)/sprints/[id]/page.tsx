@@ -41,7 +41,7 @@ export default async function SprintPage({ params }: PageProps<"/sprints/[id]">)
         <p className="mt-4 max-w-reading text-body-l text-ink-2">{sprint.brief}</p>
 
         <div className="mt-10 grid grid-cols-2 gap-6 border-y border-rule py-6 sm:grid-cols-4">
-          <DataLabel layout="stacked" label="Lane" value={laneName} small />
+          <DataLabel layout="stacked" label="Career path" value={laneName} small />
           <DataLabel layout="stacked" label="Length" value={sprint.days} unit="days" />
           <DataLabel
             layout="stacked"

@@ -334,7 +334,7 @@ export default async function SystemPage() {
           <div className="grid gap-12 lg:grid-cols-2">
             <LimitationsBox title="A profile is a starting hypothesis." items={LIMITATIONS.slice(0, 3)} />
             <div className="flex flex-col gap-10">
-              <EmptyState label="Empty state" title="No sprint running." body="Pick one of the suggestions below." action={<Button size="sm">Choose a lane</Button>} />
+              <EmptyState label="Empty state" title="No sprint running." body="Pick one of the suggestions below." action={<Button size="sm">Choose a career path</Button>} />
               <Specimen name="Skeleton · hairline shimmer">
                 <Skeleton lines={4} />
               </Specimen>

@@ -48,13 +48,13 @@ const steps: Step[] = [
     hint: "Pick the closest. You can change it later.",
     options: ["Studying", "Employed, fairly settled", "Employed, considering a change", "Between jobs", "Self-employed"],
   },
-  { kind: "current", prompt: "What do you do now?", hint: "Your current or most recent job. It sets where you'd realistically start in that lane." },
-  { kind: "considering", prompt: "What are you considering?", hint: `Up to ${MAX_CONSIDERING} jobs or directions. We'll mark them on your Lane Map.` },
+  { kind: "current", prompt: "What do you do now?", hint: "Your current or most recent job. It sets where you'd realistically start in that career." },
+  { kind: "considering", prompt: "What are you considering?", hint: `Up to ${MAX_CONSIDERING} jobs or directions. We'll mark them on your Career map.` },
   {
     kind: "choice",
     id: "clarityGoal",
     prompt: "What do you most want clarity on?",
-    hint: "This shapes which lanes we suggest testing first.",
+    hint: "This shapes which career paths we suggest testing first.",
     options: [
       "Which direction to study or train in",
       "Whether to leave my current field",
@@ -213,7 +213,7 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
                           <div className="flex items-start justify-between gap-4 rounded-xs border border-ink bg-surface px-4 py-3">
                             <div>
                               <p className="text-body text-ink">{answers.current.title}</p>
-                              <p className="mt-0.5 label text-ink-3">Lane: {answers.current.laneName}</p>
+                              <p className="mt-0.5 label text-ink-3">Career path: {answers.current.laneName}</p>
                             </div>
                             <Button variant="ghost" size="sm" onClick={() => setAnswers((a) => ({ ...a, current: null, years: null, currentAnswered: false }))}>
                               Change
@@ -278,7 +278,7 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
                             <li key={`${c.laneId}|${c.title}`} className="flex items-center justify-between gap-4 border-b border-rule py-3">
                               <span>
                                 <span className="block text-body text-ink">{c.title}</span>
-                                <span className="block label text-ink-3">Lane: {c.laneName}</span>
+                                <span className="block label text-ink-3">Career path: {c.laneName}</span>
                               </span>
                               <button
                                 type="button"

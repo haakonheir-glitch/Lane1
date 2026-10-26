@@ -69,14 +69,14 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close lane detail"
+          aria-label="Close career path detail"
           className="-mr-2 flex size-8 shrink-0 items-center justify-center rounded-xs text-ink-3 transition-quiet hover:bg-rule/60 hover:text-ink"
         >
           <X aria-hidden strokeWidth={1.5} className="size-4" />
         </button>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6" tabIndex={0} role="region" aria-label="Lane detail">
+      <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6" tabIndex={0} role="region" aria-label="Career path detail">
         {row.payoff === "winner_take_all" ? (
           <p className="mb-6 rounded-sm border border-caution/50 p-3 text-small text-ink">
             <span className="label text-caution">Low median income</span>
@@ -96,7 +96,7 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
           </div>
           <p className="mt-2 text-small text-ink-2">
             {bandLabel[row.band]}: fit is {fitWords(row.vsAverage)}.
-            {row.band === "testing" ? " The difference from your other lanes is within measurement error, so trying it is the way to find out." : ""}
+            {row.band === "testing" ? " The difference from your other career paths is within measurement error, so trying it is the way to find out." : ""}
           </p>
           {detail.drivers.length ? (
             <>

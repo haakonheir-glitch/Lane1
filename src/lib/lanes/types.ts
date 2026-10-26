@@ -67,3 +67,21 @@ export type LaneDetail = {
 export type LaneFilterVocab = {
   families: { id: FamilyId; name: string }[];
 };
+
+/** Corporate = corporate and professional-firm ladders; own path = independent, performer, creator, founder. */
+export type CareerCategory = "corporate" | "own_path" | "other";
+
+/** One career path on the Career map's result lists, led by the best specific starting role. */
+export type CareerPick = {
+  row: LaneRowData;
+  category: CareerCategory;
+  /** The best-matching starting role in this career path, or null when it needs experience first. */
+  role: { title: string; levelLabel: string; reason: string } | null;
+  /** Up to two other starting roles, best first. */
+  alsoRoles: string[];
+  entryNote: EntryNote;
+  /** What lifts this career path for the person: up to three positive drivers, strongest first. */
+  why: string[];
+};
+
+export type CareerPicks = { overall: CareerPick[]; corporate: CareerPick[]; ownPath: CareerPick[] };

@@ -56,7 +56,7 @@ export default async function EvidencePage() {
                     {hasSeries ? (
                       <>
                         <ConvictionChart series={evidence.conviction} laneNames={laneNames} height={300} />
-                        <p className="mt-4 text-small text-ink-3">Flat segments mean no new evidence for that lane.</p>
+                        <p className="mt-4 text-small text-ink-3">Flat segments mean no new evidence for that career path.</p>
                       </>
                     ) : (
                       <EmptyState
@@ -77,7 +77,7 @@ export default async function EvidencePage() {
             </section>
 
             <section className="mt-20" aria-labelledby="compare-h">
-              <SectionHeader index="02" label="Comparison" title="Every lane you've tried" id="compare-h" />
+              <SectionHeader index="02" label="Comparison" title="Every career path you've tried" id="compare-h" />
               {rows.length ? (
                 <>
                   <LaneComparisonTable rows={rows} />
@@ -87,7 +87,7 @@ export default async function EvidencePage() {
                   </p>
                 </>
               ) : (
-                <EmptyState title="No lanes tried yet." body="Each sprint you run adds a row here." />
+                <EmptyState title="No career paths tried yet." body="Each sprint you run adds a row here." />
               )}
             </section>
           </>

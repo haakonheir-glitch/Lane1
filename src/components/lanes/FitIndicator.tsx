@@ -46,5 +46,5 @@ export function fitWords(vsAverage: number | null): string {
   if (vsAverage === null) return "not enough data";
   const a = Math.abs(vsAverage);
   const how = a < 0.15 ? "about the same as" : a < 0.5 ? (vsAverage > 0 ? "a little above" : "a little below") : vsAverage > 0 ? "well above" : "well below";
-  return `${how} your average lane`;
+  return `${how} your average career path`;
 }
