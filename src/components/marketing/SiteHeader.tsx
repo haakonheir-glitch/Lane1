@@ -14,7 +14,7 @@ export async function SiteHeader() {
           <Link href="/method" className="hidden text-small text-ink-2 transition-quiet hover:text-ink sm:inline">
             Method
           </Link>
-          <Link href="/#sample" className="hidden text-small text-ink-2 transition-quiet hover:text-ink md:inline">
+          <Link href="/sample" className="hidden text-small text-ink-2 transition-quiet hover:text-ink md:inline">
             Sample report
           </Link>
           {user ? (

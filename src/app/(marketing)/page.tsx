@@ -1,40 +1,32 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
 import { Accordion } from "@/components/ui/Accordion";
 import { SectionHeader } from "@/components/report/SectionHeader";
-import { SampleCareerRow } from "@/components/marketing/SampleCareerRow";
 import { JobFinder } from "@/components/marketing/JobFinder";
-import { RadarProfile } from "@/components/data/RadarProfile";
-import { ScaleTable } from "@/components/results/ScaleTable";
-import { radarDims } from "@/lib/view/profile";
-import { pad2 } from "@/lib/format";
-import { sortMatches } from "@/lib/matching/fit";
-import { getSampleLaneMap, getSampleProfile as getProfile, getTaxonomyIndex } from "@/lib/data/sample";
+import { Scaled } from "@/components/marketing/Scaled";
+import { HeroCareer, RankedCareer } from "@/components/lanes/CareerResults";
+import { Cover } from "@/components/report/doc/Cover";
+import { SummarySheet } from "@/components/report/doc/SummarySheet";
+import { Chapter } from "@/components/report/doc/Chapter";
+import { InterestPanel } from "@/components/results/InterestPanel";
+import { ProfileMark } from "@/components/brand/ProfileMark";
+import { formatIsoDot, pad2 } from "@/lib/format";
+import { getTaxonomyIndex } from "@/lib/data/sample";
+import { getSampleReport } from "@/lib/data/sample-report";
+import { effortLine } from "@/lib/data/effort";
+import { summarise } from "@/lib/view/profile";
+import { chapterTitles } from "@/lib/view/chapters";
 import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const problems = [
-  {
-    title: "Credentials sort people, not fit.",
-    body: "School, university and hiring filter on grades and degrees. Almost nothing in that chain asks what you would be best at or most engaged by.",
-  },
-  {
-    title: "Most people only see a few options.",
-    body: "Careers advice covers the jobs people around you already do. Hundreds of kinds of paid work never come up, so they are never considered.",
-  },
-  {
-    title: "Self-tests guess instead of measuring.",
-    body: "Most career quizzes are unvalidated and give one confident answer. They don't say how precise the result is, so a lucky guess and a solid finding look the same.",
-  },
-];
-
 const method = [
   { n: "01", title: "Assessment", body: "Five short sessions: validated questionnaires on interests, personality and work values, and reasoning tasks generated fresh for you." },
-  { n: "02", title: "Profile report", body: "Every score with its measurement error, the strengths that clearly stand out, a written summary, and what the results can't tell you." },
-  { n: "03", title: "Career map", body: "205 career paths in fit bands against your own strengths, with the day-to-day work, how people get in, how it pays and where you'd realistically start." },
+  { n: "02", title: "Profile report", body: "Every score with its measurement error, what clearly stands out, a written summary, and what the results can't tell you." },
+  { n: "03", title: "Career map", body: "205 career paths in fit bands against your own strengths, with the day-to-day work, how people get in, how it pays and where you'd start." },
 ];
 
 const faq = [
@@ -69,75 +61,79 @@ const faq = [
 ];
 
 export default async function LandingPage() {
-  const [{ rows }, profile, index] = await Promise.all([getSampleLaneMap(), getProfile(), getTaxonomyIndex()]);
-  // One strong fit, one possible fit and one unlikely, each from a different family, so the
-  // excerpt shows what the bands mean.
-  const ordered = sortMatches(rows.map((r) => ({ match: r, name: r.name, row: r })), "fit").map((x) => x.row);
-  const excerpt: typeof ordered = [];
-  for (const band of ["strong", "testing", "unlikely"] as const) {
-    const r = ordered.find((x) => x.band === band && !excerpt.some((e) => e.familyId === x.familyId));
-    if (r) excerpt.push(r);
-  }
+  const [{ profile, picks, person, effort }, index] = await Promise.all([getSampleReport(), getTaxonomyIndex()]);
+  const last = profile.sessions.filter((s) => s.completedAt).map((s) => s.completedAt!).sort().pop();
+  const date = last ? formatIsoDot(last) : "—";
+  const brief = summarise(profile).filter((_, i, all) => all.length <= 3 || i !== 1);
+  const cover = <Cover profile={profile} name={person.name} reportId={person.reportId} date={date} effort={effortLine(effort)} status=" · Sample" />;
+  const summary = <SummarySheet profile={profile} name={person.name} reportId={person.reportId} paths={picks} brief={brief} />;
   const totalIndexed = index.laneCount;
 
   return (
     <div className="page">
-      {/* Hero */}
-      <section className="grid-12 gap-y-16 pt-16 pb-24 sm:pt-24 lg:pt-32" aria-labelledby="hero-h">
-        <div className="col-span-12 lg:col-span-6">
-          <p className="label text-ink-3">Career fit, measured · v0.1</p>
-          <h1 id="hero-h" className="mt-8 text-display font-medium text-ink">
+      {/* Hero: the product, then the argument */}
+      <section className="grid-12 items-center gap-y-16 pt-16 pb-24 sm:pt-20 lg:pt-24" aria-labelledby="hero-h">
+        <div className="col-span-12 lg:col-span-5">
+          <h1 id="hero-h" className="text-display font-medium text-ink">
             Find the work you&apos;re built for.
           </h1>
-          <p className="mt-8 max-w-[52ch] text-body-l text-ink-2">
-            Validated tests of your interests, personality, values and reasoning, matched against {totalIndexed} career paths.
-            Measured, not guessed.
+          <p className="mt-8 max-w-[44ch] text-body-l text-ink-2">
+            Validated tests of your interests, personality, values and reasoning, matched against {totalIndexed} career paths. Measured, not guessed.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <ButtonLink href="/signup">Start your profile</ButtonLink>
-            <ButtonLink href="#method" variant="secondary">
-              How it works
+            <ButtonLink href="/sample" variant="secondary">
+              See a sample report
             </ButtonLink>
           </div>
           <p className="mt-4 text-small text-ink-2">Free during the pilot · No card</p>
-          <p className="mt-10 font-mono text-label uppercase text-ink-3">
-            5 sessions · ~135 min in total · {totalIndexed} career paths mapped · no DNA, ever
-          </p>
+          <p className="mt-10 font-mono text-small text-ink-3 tabular">{effortLine(effort)}</p>
         </div>
-
-        <figure className="col-span-12 self-end lg:col-span-5 lg:col-start-8">
-          <div className="rounded-sm border border-rule bg-surface px-5 pt-4 pb-2">
-            <div className="flex items-baseline justify-between border-b border-rule-strong pb-3">
-              <span className="label text-ink-3">Career map · one career from each band</span>
-              <span className="label text-ink-3">Sample</span>
-            </div>
-            <ul aria-label="Sample career paths: a strong fit, a possible fit and an unlikely one">
-              {excerpt.map((l, i) => (
-                <li key={l.id} className={i < excerpt.length - 1 ? "border-b border-rule" : ""}>
-                  <SampleCareerRow lane={l} />
-                </li>
-              ))}
-            </ul>
+        <figure className="col-span-12 lg:col-span-7 lg:col-start-6">
+          <div className="relative mx-auto h-[540px] w-full max-w-[640px]">
+            <Scaled width={980} height={1180} scale={0.4} label="A sample report's summary sheet" className="absolute top-0 right-0 h-[440px]! border border-paper-edge bg-paper">
+              {summary}
+            </Scaled>
+            <Scaled width={980} height={574} scale={0.48} label={`A sample report's cover for ${person.name}, with the Profile Mark`} className="absolute bottom-0 left-0 border border-paper-edge bg-paper">
+              {cover}
+            </Scaled>
           </div>
-          <figcaption className="mt-3 label text-ink-3">
-            Fig. 1 · Excerpt from a sample Career map. The dot shows how well each career fits the person, compared with their other careers; the
-            bar around it is the 90% range.
-          </figcaption>
+          <figcaption className="mt-4 text-small text-ink-3">A sample report&apos;s cover and summary sheet, for a fictional person.</figcaption>
         </figure>
       </section>
 
-      {/* Problem */}
-      <section className="py-16" aria-labelledby="problem-h">
-        <SectionHeader index="01" label="The problem" title="Most people end up in their work by accident." id="problem-h" />
-        <ol className="grid gap-10 md:grid-cols-3 md:gap-8">
-          {problems.map((p, i) => (
-            <li key={p.title} className="flex flex-col gap-3">
-              <span className="font-mono text-h3 text-ink-3">{pad2(i + 1)}</span>
-              <h3 className="text-h3 font-medium text-ink">{p.title}</h3>
-              <p className="text-body text-ink-2">{p.body}</p>
+      {/* What you get */}
+      <section className="py-16" aria-labelledby="get-h">
+        <SectionHeader index="01" label="What you get" title="A report you keep, and a map of where you fit." id="get-h" />
+        <ul className="grid gap-10 md:grid-cols-3">
+          {[
+            { title: "The cover", body: "Your name, your report ID and your Profile Mark: every line of it is one of your scores.", node: cover, h: 640 },
+            { title: "The summary sheet", body: "Your headline results and three closest career paths on one page you can print.", node: summary, h: 1180 },
+            {
+              title: "The Career map",
+              body: "All 205 career paths in fit bands, each with the role you could realistically start in.",
+              node: (
+                <div className="flex flex-col gap-3 bg-bg p-6">
+                  <HeroCareer p={picks[0]!} />
+                  <div className="grid grid-cols-2 gap-3">
+                    {picks.slice(1, 3).map((p, i) => (
+                      <RankedCareer key={p.row.id} p={p} rank={i + 2} />
+                    ))}
+                  </div>
+                </div>
+              ),
+              h: 1180,
+            },
+          ].map((o) => (
+            <li key={o.title} className="flex flex-col">
+              <Scaled width={980} height={o.h} scale={0.3} label={`Sample ${o.title.toLowerCase()}`} className="h-[294px]! w-full! border border-paper-edge bg-paper">
+                {o.node}
+              </Scaled>
+              <h3 className="mt-5 text-h3 font-medium text-ink">{o.title}</h3>
+              <p className="mt-2 text-body text-ink-2">{o.body}</p>
             </li>
           ))}
-        </ol>
+        </ul>
       </section>
 
       {/* Method */}
@@ -147,9 +143,7 @@ export default async function LandingPage() {
           {method.map((m, i) => (
             <li key={m.n} className="relative flex gap-4 md:flex-col md:pr-8">
               <div className="flex shrink-0 items-center md:w-full">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-ink font-mono text-small text-ink">
-                  {m.n}
-                </span>
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-ink font-mono text-small text-ink">{m.n}</span>
                 {i < method.length - 1 ? <span aria-hidden className="hidden h-px flex-1 bg-rule-strong md:block" /> : null}
               </div>
               <div className="md:mt-6">
@@ -159,76 +153,55 @@ export default async function LandingPage() {
             </li>
           ))}
         </ol>
-        <p className="mt-10 max-w-reading text-small text-ink-3">
-          The map shows where your profile fits best and why. It doesn&apos;t tell you what to do; it shows which careers are
-          worth looking into first.
-        </p>
       </section>
 
-      {/* Sample report */}
+      {/* Sample report preview */}
       <section id="sample" className="scroll-mt-20 py-16" aria-labelledby="sample-h">
-        <SectionHeader index="03" label="Sample report" title="Reads like a lab report. Because it is one." id="sample-h" />
-        <div className="relative overflow-hidden rounded-sm border border-rule bg-surface">
-          <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-rule px-6 py-4">
-            <span className="label text-ink-3">Profile report · sample · fictional person</span>
+        <SectionHeader index="03" label="Sample report" title="Reads like a well-made document. Because it is one." id="sample-h" />
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="border border-paper-edge">
+            <Chapter id="sample-interests" n="01" kicker="Interests · O*NET® Interest Profiler" title={chapterTitles(profile).interests}>
+              {profile.interests ? <InterestPanel interests={profile.interests} /> : null}
+            </Chapter>
           </div>
-          <div className="grid gap-10 p-6 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-4">
-              <p className="label text-ink-3">§ 02 · Interests · O*NET® Interest Profiler</p>
-              {profile.interests ? <RadarProfile dimensions={radarDims(profile.interests)} showCi={false} scale={["10", "30", "50"]} className="mt-4" /> : null}
-            </div>
-            <div className="lg:col-span-8">
-              <p className="mb-4 label text-ink-3">§ 04 · Personality · IPIP-NEO-120 · T with 90% interval</p>
-              {profile.personality ? <ScaleTable domains={profile.personality.domains.slice(0, 3)} facets={[]} /> : null}
-              <p className="mt-4 label text-ink-3">+ 2 more domains · 29 facets · values · reasoning profile · limitations</p>
+          <div>
+            <p className="text-body-l text-ink-2">
+              Every chapter leads with what is clearly true, shows the measurement with its range, and keeps every caveat in one place at the end.
+            </p>
+            <div className="mt-6">
+              <ButtonLink href="/sample">Read the full sample report</ButtonLink>
             </div>
           </div>
         </div>
       </section>
 
-      {/* What a profile can and can't tell you */}
+      {/* Limits */}
       <section className="py-16" aria-labelledby="why-h">
         <SectionHeader index="04" label="Limits" title="What a profile can and can&apos;t tell you." id="why-h" />
-        <div className="grid-12 gap-y-12">
-          <div className="col-span-12 flex flex-col gap-4 text-body-l text-ink-2 lg:col-span-6">
-            <p>
-              Interest and personality measures are useful. Decades of research show they relate to job performance and
-              satisfaction, but the relationships are modest. A profile can show which kinds of work suit how you think and
-              what you care about; it can&apos;t say how a particular job, team or year will go.
-            </p>
-            <p>
-              So {BRAND.name} shows every score with its measurement error, calls a difference a strength only when it is larger than
-              that error, and sorts career paths into bands rather than a precise ranking.
-            </p>
-          </div>
+        <div className="grid-12 gap-y-10">
+          <p className="col-span-12 text-body-l text-ink-2 lg:col-span-6">
+            It shows which kinds of work suit how you think and what you care about, measured with validated instruments and shown with its error. It
+            can&apos;t say how a particular job, team or year will go, and it doesn&apos;t predict success.
+          </p>
           <figure className="col-span-12 lg:col-span-5 lg:col-start-8">
-            <p className="label text-ink-3">What decides fit · illustrative</p>
-            <div className="mt-6 flex h-1 w-full" aria-hidden>
+            <div className="flex h-1 w-full" aria-hidden>
               <span className="h-full w-[35%] bg-ink" />
               <span className="h-full flex-1 bg-rule" />
             </div>
-            <ul className="mt-6 flex flex-col gap-4">
-              <li className="grid grid-cols-[12px_1fr] items-baseline gap-3">
-                <span className="size-2 bg-ink" aria-hidden />
-                <span>
-                  <span className="block text-body text-ink">What a profile can tell you</span>
-                  <span className="text-small text-ink-3">Your interests, values, personality and reasoning, and which kinds of work use them. A real but limited signal.</span>
-                </span>
+            <ul className="mt-5 flex flex-col gap-3">
+              <li className="grid grid-cols-[12px_1fr] items-baseline gap-3 text-body text-ink">
+                <span className="size-2 bg-ink" aria-hidden />A profile: interests, values, personality, reasoning
               </li>
-              <li className="grid grid-cols-[12px_1fr] items-baseline gap-3">
+              <li className="grid grid-cols-[12px_1fr] items-baseline gap-3 text-body text-ink">
                 <span className="size-2 border border-ink-4" aria-hidden />
-                <span>
-                  <span className="block text-body text-ink">What it can&apos;t</span>
-                  <span className="text-small text-ink-3">The specific job and team, effort, luck, timing, the people you meet. We don&apos;t pretend otherwise.</span>
-                </span>
+                The rest: the specific job, effort, luck, timing
               </li>
             </ul>
-            <figcaption className="mt-6 text-small text-ink-3">
-              Proportions are conceptual, not measured. See the{" "}
-              <a href="/method" className="text-ink underline decoration-rule-strong underline-offset-4 hover:decoration-ink">
-                method
-              </a>{" "}
-              for the research and its limits.
+            <figcaption className="mt-4 text-small text-ink-3">
+              Proportions are conceptual, not measured.{" "}
+              <Link href="/method" className="text-ink underline decoration-rule-strong underline-offset-4 hover:decoration-ink">
+                The method and its limits
+              </Link>
             </figcaption>
           </figure>
         </div>
@@ -236,21 +209,20 @@ export default async function LandingPage() {
 
       {/* Career paths */}
       <section className="py-16" aria-labelledby="index-h">
-        <SectionHeader index="05" label="Career paths we map" title="Every kind of paid work. Not only the corporate kind." id="index-h" aside={`${index.families.length} families · ${totalIndexed} career paths`} />
+        <SectionHeader index="05" label="Career paths" title="Is your job in here?" id="index-h" aside={`${index.families.length} families · ${totalIndexed} career paths`} />
         <p className="-mt-4 mb-10 max-w-reading text-body text-ink-2">
           Checked against the international occupation classifications (ISCO-08 and ESCO), plus the career paths they miss: creators, founders, esports,
           independent advisers and more.
         </p>
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <h3 className="text-h3 font-medium text-ink">Is your job in here?</h3>
-            <p className="mt-2 mb-5 text-small text-ink-2">Type any job title, in English or Norwegian. It finds the career path and family it belongs to.</p>
+            <p className="mb-5 text-small text-ink-2">Type any job title, in English or Norwegian. It finds the career path and family it belongs to.</p>
             <JobFinder />
           </div>
           <div className="lg:col-span-7">
             <ul className="grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-2" aria-label="Career families">
               {index.families.map((f) => (
-                <li key={f.id} className="flex items-baseline justify-between gap-3 bg-bg px-4 py-3">
+                <li key={f.id} className="flex items-baseline justify-between gap-3 bg-paper px-4 py-3">
                   <span className="text-small text-ink">{f.name}</span>
                   <span className="font-mono text-label tabular text-ink-3">{pad2(f.lanes.length)}</span>
                 </li>
@@ -287,12 +259,13 @@ export default async function LandingPage() {
 
       {/* Closing CTA */}
       <section className="border-t border-ink pt-12" aria-label="Start">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="max-w-[24ch] text-h2 font-medium text-ink">Evidence, not horoscopes.</p>
-            <p className="mt-3 max-w-[52ch] text-small text-ink-2">
-              Validated instruments, every score shown with its measurement error, and no claim the data can&apos;t support.
-            </p>
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex items-center gap-8">
+            <ProfileMark input={{ riasec: [null, null, null, null, null, null], domains: [null, null, null, null, null], reasoning: null, topValue: null }} size={96} decorative className="hidden shrink-0 sm:block" />
+            <div>
+              <p className="max-w-[24ch] text-h2 font-medium text-ink">{BRAND.tagline}</p>
+              <p className="mt-3 max-w-[52ch] text-small text-ink-2">Measured, not guessed: validated instruments, every score with its measurement error, and no claim the data can&apos;t support.</p>
+            </div>
           </div>
           <ButtonLink href="/signup">Start your profile</ButtonLink>
         </div>
