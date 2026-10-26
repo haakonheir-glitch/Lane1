@@ -259,6 +259,9 @@
   stroke-dasharray: 1;
   animation: mark-draw 400ms var(--ease-out) 320ms both;
 }
+.doc-reveal-name {
+  animation: rise 400ms var(--ease-out) 450ms both;
+}
 .mark-reveal .mark-value {
   animation: mark-fade 250ms var(--ease-out) 700ms both;
 }

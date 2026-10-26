@@ -18,7 +18,7 @@ export function Cover({
   name: string;
   reportId: string;
   date: string;
-  effort: string;
+  effort: ReactNode;
   /** A quiet status in the metadata line, e.g. "Sample" or "Updating…". */
   status?: ReactNode;
   reveal?: boolean;

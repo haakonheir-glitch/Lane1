@@ -122,7 +122,7 @@ await p.keyboard.press("2");
 await p.waitForURL(/step=done/);
 await p.getByRole("button", { name: "Go to assessment" }).click();
 await waitPath("/assess");
-log("signed up and onboarded (current job, years, two considered lanes)");
+log(`signed up and onboarded as ${email} (current job, years, two considered lanes)`);
 
 /** The persona's answer for a questionnaire step (same logic as scripts/seed.mts). */
 function persona(sessionId: SessionId, position: number) {
@@ -354,11 +354,13 @@ if (only.length === 5) {
 
 // Own results replace the sample once S1 or S2 is done
 await p.goto(base + "/profile");
-const ownResults = await p.getByText("Your results", { exact: true }).isVisible().catch(() => false);
+// Only a person's own report has the written-analysis chapter; the sample has a banner instead.
+const ownResults = await p.locator("#analysis").isVisible().catch(() => false);
 if (only.includes("S1") || only.includes("S2")) {
   if (!ownResults) throw new Error("profile: expected the person's own results after S1/S2");
-  await p.getByRole("heading", { name: "The full analysis" }).waitFor();
-  log("profile: own results and the written-report section shown");
+  await p.locator("#cover").getByText(/Built from \d+ sessions? · [\d,]+ answers/).waitFor();
+  await p.locator("#summary").waitFor();
+  log("profile: own report (cover with real effort counts, summary sheet, written-analysis chapter)");
   if (only.includes("S3") && only.includes("S4")) {
     // Reasoning is scored against the provisional difficulty table (PLAN D50).
     await p.getByText("Provisional norms ·").first().waitFor();

@@ -21,6 +21,9 @@ import type { PublicStep } from "@/lib/bank/public";
 import type { SessionId } from "@/lib/bank/types";
 import { cn } from "@/lib/cn";
 import { BRAND } from "@/lib/brand";
+import { ProfileMark } from "@/components/brand/ProfileMark";
+import { outroPreview, type OutroPreview } from "@/app/actions/milestones";
+import type { KeyFigure } from "@/lib/view/findings";
 
 /**
  * Runs one session (S1–S5). The server decides what comes next; this component renders the
@@ -241,6 +244,55 @@ function StepView({
   }
 }
 
+/* What the session just added, shown after it ends (never during measurement). */
+const UNLOCKED: Record<SessionId, KeyFigure["id"][]> = { S1: ["interests", "values"], S2: ["personality"], S3: [], S4: ["reasoning"], S5: [] };
+
+function usePreview() {
+  const [p, setP] = useState<OutroPreview | null>(null);
+  useEffect(() => {
+    let live = true;
+    outroPreview().then((x) => live && setP(x));
+    return () => {
+      live = false;
+    };
+  }, []);
+  return p;
+}
+
+function OutroPreviewPanel({ sessionId, p }: { sessionId: SessionId; p: OutroPreview | null }) {
+  const shown = p?.figures.filter((f) => UNLOCKED[sessionId].includes(f.id) && f.value !== null) ?? [];
+  return (
+    <div className="mt-8 grid min-h-[176px] items-center gap-8 rounded-sm border border-rule-strong bg-paper p-6 sm:grid-cols-[144px_1fr]">
+      {p ? <ProfileMark input={p.mark} size={144} decorative className="mx-auto" /> : <div className="mx-auto size-36" />}
+      <div>
+        <p className="text-small text-ink-3">{p?.complete ? "Your mark is complete" : "Your mark so far"}</p>
+        {shown.length ? (
+          <dl className="mt-3 grid grid-cols-2 gap-6">
+            {shown.map((f) => (
+              <div key={f.id}>
+                <dt className="text-small text-ink-3">{f.label}</dt>
+                <dd className={cn("mt-1 text-h3 font-medium text-ink", (f.id === "interests" || f.id === "reasoning") && "font-mono")}>{f.value}</dd>
+                <dd className="text-small text-ink-2">{f.detail}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : (
+          <p className="mt-2 text-body text-ink-2">{sessionId === "S3" ? "Reasoning results appear after S4, when both parts are in." : "Each session fills in more of the mark and the report."}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function NextSessionLink({ p }: { p: OutroPreview | null }) {
+  if (!p?.next) return <ButtonLink href="/assess">Back to assessment</ButtonLink>;
+  return (
+    <ButtonLink href={`/assess/${p.next.id}`}>
+      Next: {p.next.id} · {p.next.title} · ~{p.next.minutes} min
+    </ButtonLink>
+  );
+}
+
 function SessionOutro({
   step,
   title,
@@ -253,6 +305,7 @@ function SessionOutro({
   onRestart: (s: PublicStep) => void;
 }) {
   const [busy, setBusy] = useState(false);
+  const preview = usePreview();
   async function retake() {
     setBusy(true);
     await api.retake(sessionId);
@@ -275,6 +328,7 @@ function SessionOutro({
       </div>
     );
   }
+  const last = sessionId === "S5";
   return (
     <div>
       <p className="label text-positive">
@@ -300,11 +354,18 @@ function SessionOutro({
       {step.hasExperimental ? (
         <p className="mt-4 text-small text-ink-3">Some questions in this session were research questions. They are collected for {BRAND.name}&apos;s pilot and not part of your results until validated.</p>
       ) : null}
+      <OutroPreviewPanel sessionId={sessionId} p={preview} />
       <div className="mt-10 flex flex-wrap gap-3">
-        <ButtonLink href="/profile">See your profile</ButtonLink>
-        <ButtonLink href="/assess" variant="secondary">
-          Back to assessment
-        </ButtonLink>
+        {last ? (
+          <ButtonLink href="/profile/reveal">Compile your report</ButtonLink>
+        ) : (
+          <>
+            <NextSessionLink p={preview} />
+            <ButtonLink href="/profile" variant="secondary">
+              See your report so far
+            </ButtonLink>
+          </>
+        )}
         {step.confidence === "low" || step.effort === "offer_redo" ? (
           <Button variant="secondary" onClick={retake} disabled={busy}>
             Retake session
