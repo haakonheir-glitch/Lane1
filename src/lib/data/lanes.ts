@@ -7,11 +7,11 @@ import "server-only";
 import { cache } from "react";
 import { FAMILIES, LANES, LEVELS, getFamily, getLane, ladderOf, laneModes, taxonomy } from "../taxonomy";
 import type { Lane, LaneId, LevelId, Role } from "../taxonomy/generated";
-import { matchLanes, rankRoles, type Experience, type LaneMatch } from "../matching";
+import { constructTable, matchLanes, rankRoles, type Experience, type LaneMatch } from "../matching";
 import { normalCdf, Z90 } from "../scoring/core";
 import type { ProfileScores } from "../scoring/profile";
 import { TAG_NOUN } from "../matching/roles";
-import type { CareerCategory, CareerPick, CareerPicks, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, RoleRef } from "../lanes/types";
+import type { CareerCategory, CareerPick, CareerPicks, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, MatchOverlay, RoleRef } from "../lanes/types";
 import type { ExperienceAnswers } from ".";
 import type { ReportLane } from "../report/facts";
 
@@ -87,6 +87,7 @@ export function buildCareerPicks(profile: ProfileScores, exp: ExperienceAnswers)
       entryNote: ranked.entry.note,
       why: m.drivers.filter((d) => d.contribution > 0.01).slice(0, 3).map((d) => d.label),
       driverIds: m.drivers.filter((d) => d.contribution > 0.01).map((d) => d.id),
+      ladder: ladderRows(lane, ranked.entry.level, ranked.entry.current).map((r) => ({ label: r.step ?? r.levelLabel, marker: r.marker })),
     };
   };
   const top = ordered.slice(0, PICKS);
@@ -135,7 +136,28 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
     payoffPosition: m.vsAverage !== null ? normalCdf(m.vsAverage) : null,
     payoffRange: m.vsAverage !== null && half !== null ? [normalCdf(m.vsAverage - half), normalCdf(m.vsAverage + half)] : null,
     isco: Object.entries(lane.isco_labels).map(([code, label]) => ({ code, label })),
+    overlay: matchOverlay(lane, profile),
   };
+}
+
+const RIASEC_NAME: Record<string, string> = { R: "Realistic", I: "Investigative", A: "Artistic", S: "Social", E: "Enterprising", C: "Conventional" };
+/** How strongly the code asks for each of its letters, first letter outermost (presentation only). */
+const CODE_DEMAND = [1, 0.82, 0.66];
+
+/**
+ * The match overlay: the career path's demands and the person's scores on the same axes, the
+ * constructs the matching function uses for this path (its interest code and its demand tags).
+ * The person's value is their score relative to their own average, exactly as matching reads it.
+ */
+function matchOverlay(lane: Lane, profile: ProfileScores): MatchOverlay {
+  const t = constructTable(profile, taxonomy);
+  const you = (ids: string[]) => {
+    const zs = ids.map((id) => t.table.get(id)).filter((r) => !!r).map((r) => r!.z - t.mean);
+    return zs.length ? zs.reduce((a, b) => a + b, 0) / zs.length : null;
+  };
+  const axes: MatchOverlay["axes"] = lane.riasec.split("").map((l, i) => ({ label: `${RIASEC_NAME[l]} interests`, kind: "interest" as const, demand: CODE_DEMAND[i] ?? 0.66, you: you([`interests.${l}`]) }));
+  for (const tag of lane.tags) axes.push({ label: TAG_NOUN[tag], kind: "demand", demand: 0.82, you: you(taxonomy.tag_to_constructs[tag] ?? []) });
+  return { axes: axes.slice(0, 8) };
 }
 
 export const laneName = (id: string) => getLane(id)?.name ?? id;

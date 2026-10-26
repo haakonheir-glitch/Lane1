@@ -35,7 +35,7 @@ function Why({ items, className }: { items: string[]; className?: string }) {
 
 function Meta({ p, className }: { p: CareerPick; className?: string }) {
   return (
-    <p className={cn("flex flex-wrap gap-x-2 gap-y-1 label text-ink-3", className)}>
+    <p className={cn("flex flex-wrap gap-x-2 gap-y-1 text-small text-ink-2", className)}>
       <span title={`Pay pattern: ${payoffTerm[p.row.payoff]}`}>{payoffLabel[p.row.payoff]}</span>
       <span aria-hidden className="text-ink-4">·</span>
       <span title={`Entry: ${entryTerm[p.row.entry]}`}>{entryLabel[p.row.entry]}</span>
@@ -47,6 +47,26 @@ function RoleTitle({ p, className }: { p: CareerPick; className?: string }) {
   return <span className={className}>{p.role?.title ?? p.row.name}</span>;
 }
 
+/** Where you'd start, and the steps above it, entry level first. */
+function Ladder({ p }: { p: CareerPick }) {
+  const steps = p.ladder.filter((s) => s.marker !== "below");
+  if (!steps.length) return null;
+  return (
+    <div>
+      <p className="text-small text-ink-3">Where you&apos;d start</p>
+      <ol className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-small" aria-label="Career ladder from your starting step">
+        {steps.slice(0, 5).map((s, i) => (
+          <li key={i} className="flex items-center gap-2">
+            {i > 0 ? <span aria-hidden className="text-ink-4">→</span> : null}
+            <span className={s.marker === "start" || s.marker === "current" ? "font-medium text-ink underline decoration-accent decoration-2 underline-offset-4" : "text-ink-2"}>{s.label}</span>
+          </li>
+        ))}
+        {steps.length > 5 ? <li className="text-ink-3">→ …</li> : null}
+      </ol>
+    </div>
+  );
+}
+
 /** The best fit: the role as the headline, then the career path, the reason and the starting role. */
 export function HeroCareer({ p }: { p: CareerPick }) {
   return (
@@ -54,9 +74,9 @@ export function HeroCareer({ p }: { p: CareerPick }) {
       href={href(p)}
       scroll={false}
       style={rise(0)}
-      className="group relative block animate-rise rounded-sm border border-rule-strong bg-surface p-6 transition-quiet hover:border-ink sm:p-10"
+      className="group relative block animate-rise rounded-sm border border-ink bg-paper p-6 transition-quiet hover:bg-surface sm:p-10"
     >
-      <span aria-hidden className="absolute inset-x-0 top-0 h-[2px] rounded-t-sm bg-accent" />
+      <span aria-hidden className="absolute inset-x-0 top-0 h-[3px] rounded-t-sm bg-accent" />
       <div className="flex flex-wrap items-baseline justify-between gap-4">
         <p className="label text-accent">
           <span className="font-mono">01</span>
@@ -98,6 +118,7 @@ export function HeroCareer({ p }: { p: CareerPick }) {
           </div>
           <Meta p={p} />
           {p.row.payoff === "winner_take_all" ? <p className="text-small text-ink-3">{WINNER_TAKE_ALL_NOTE}</p> : null}
+          <Ladder p={p} />
           <span className="mt-2 inline-flex items-center gap-2 text-small font-medium text-ink">
             Explore this career path
             <span aria-hidden className="transition-quiet group-hover:translate-x-1">→</span>
@@ -115,7 +136,7 @@ export function RankedCareer({ p, rank }: { p: CareerPick; rank: number }) {
       href={href(p)}
       scroll={false}
       style={rise(rank - 1)}
-      className="group flex animate-rise flex-col rounded-sm border border-rule-strong bg-surface p-6 transition-quiet hover:border-ink"
+      className="group flex animate-rise flex-col rounded-sm border border-rule-strong bg-paper p-6 transition-quiet hover:border-ink"
     >
       <div className="flex items-start justify-between gap-4">
         <span className="font-mono text-figure tabular text-ink-3 transition-quiet group-hover:text-ink">{pad2(rank)}</span>
@@ -143,7 +164,7 @@ export function CareerRow({ p, rank, index }: { p: CareerPick; rank: number; ind
         href={href(p)}
         scroll={false}
         style={rise(index)}
-        className="group grid animate-rise grid-cols-[40px_minmax(0,1fr)] items-center gap-x-5 gap-y-3 rounded-sm border border-rule-strong bg-surface px-5 py-5 transition-quiet hover:border-ink md:grid-cols-[48px_minmax(0,1.5fr)_minmax(0,1fr)_160px_24px]"
+        className="group grid animate-rise grid-cols-[40px_minmax(0,1fr)] items-center gap-x-5 gap-y-3 rounded-sm border border-rule-strong bg-paper px-5 py-5 transition-quiet hover:border-ink md:grid-cols-[48px_minmax(0,1.5fr)_minmax(0,1fr)_160px_24px]"
       >
         <span className="font-mono text-h3 tabular text-ink-3 transition-quiet group-hover:text-ink">{pad2(rank)}</span>
         <span className="min-w-0">

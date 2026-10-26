@@ -6,6 +6,7 @@ import { bandLabel } from "@/lib/matching/fit";
 import { WINNER_TAKE_ALL_NOTE, entryLabel, entryNoteText, entryTerm, levelShort, modeLabel, payoffLabel, payoffTerm } from "@/lib/lanes/labels";
 import type { LadderRow, LaneDetail, LaneSort, RoleRef } from "@/lib/lanes/types";
 import { BandTag, FitIndicator, fitWords } from "./FitIndicator";
+import { MatchOverlay } from "./MatchOverlay";
 import { cn } from "@/lib/cn";
 import { BRAND } from "@/lib/brand";
 
@@ -125,6 +126,9 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
           <p className="mt-2 text-small text-ink-2">
             {bandLabel[row.band]}: fit is {fitWords(row.vsAverage, row.band)}.
           </p>
+          <div className="mt-5 rounded-sm border border-rule bg-paper p-4">
+            <MatchOverlay overlay={detail.overlay} name={row.name} />
+          </div>
           {detail.drivers.length ? (
             <>
               <ul className="mt-5 flex flex-col gap-3" aria-label="What drives this fit">

@@ -56,7 +56,11 @@ export type LaneDetail = {
   payoffPosition: number | null;
   payoffRange: [number, number] | null;
   isco: { code: string; label: string }[];
+  overlay: MatchOverlay;
 };
+
+/** One axis per construct the matching uses for a path. `you` is z relative to your own average (null = not measured). */
+export type MatchOverlay = { axes: { label: string; kind: "interest" | "demand"; demand: number; you: number | null }[] };
 
 export type LaneFilterVocab = {
   families: { id: FamilyId; name: string }[];
@@ -78,6 +82,8 @@ export type CareerPick = {
   why: string[];
   /** Construct ids of every positive driver, strongest first (for the trait connections view). */
   driverIds: string[];
+  /** The path's ladder, entry level first, with the realistic starting step marked. */
+  ladder: { label: string; marker: LadderRow["marker"] }[];
 };
 
 export type CareerPicks = { overall: CareerPick[]; corporate: CareerPick[]; ownPath: CareerPick[] };
