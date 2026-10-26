@@ -1,97 +1,79 @@
 /**
- * The 1200×630 share image (Open Graph and Twitter): the landing headline beside a sample
- * Career map card. Rendered by next/og at build time; Satori supports flex layout only, so every
- * element with several children sets display: flex.
+ * The 1200×630 share card: the Profile Mark, a first name, Holland code, top work value and the
+ * three closest career paths, with the wordmark. One component for a person's own card (opt-in,
+ * /api/share) and the site's Open Graph image (the sample profile). Rendered by next/og; Satori
+ * supports flex layout only, so every element with several children sets display: flex.
  */
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { getSampleLaneMap } from "@/lib/data/sample";
-import { sortMatches, bandLabel } from "@/lib/matching/fit";
+import { getSamplePicks, getSampleProfile, getSampleUser } from "@/lib/data/sample";
+import { bandLabel } from "@/lib/matching/fit";
+import { shareCardFrom, type ShareCard } from "./share-card";
 import { BRAND } from "../brand";
+import { markDataUri } from "./mark-svg";
 
 export const SHARE_SIZE = { width: 1200, height: 630 };
-export const SHARE_ALT = `${BRAND.name}: find the work you're built for. A sample Career map with a strong fit, a possible fit and an unlikely one.`;
+export const SHARE_ALT = `${BRAND.name}: a sample Career Profile with its Profile Mark, Holland code, top work value and three closest career paths.`;
 
 const INK = "#111111";
 const INK_2 = "#47494e";
 const INK_3 = "#63656a";
 const BG = "#F7F7F5";
-const RULE = "#e3e3df";
-const RULE_STRONG = "#c9c9c4";
-const BAND = "#c3c6cc";
-const ACCENT = "#2340E8";
+const PAPER = "#ffffff";
+const EDGE = "#c9c9c4";
+const PANEL_INK = "#f7f7f5";
+const PANEL_INK_2 = "#b3b5ba";
+const PANEL_RULE = "#3a3c41";
 
 const font = (dir: string, file: string) => readFile(join(process.cwd(), "node_modules/geist/dist/fonts", dir, file));
 
-/** Fit dot on a −1.5…+1.5 scale around the person's average, with its 90% range (as FitIndicator). */
-function Fit({ vs, se }: { vs: number | null; se: number | null }) {
-  const x = (v: number) => (Math.min(1.5, Math.max(-1.5, v)) / 1.5) * 50 + 50;
-  const half = 1.645 * (se ?? 0);
-  return (
-    <div style={{ display: "flex", position: "relative", width: 110, height: 14, flexShrink: 0 }}>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 7, height: 1, background: RULE_STRONG }} />
-      <div style={{ position: "absolute", left: 55, top: 0, width: 1, height: 14, background: "#8a8c91" }} />
-      {vs !== null ? (
-        <>
-          <div style={{ position: "absolute", top: 5, height: 4, borderRadius: 2, background: BAND, left: (x(vs - half) / 100) * 110, width: Math.max(2, ((x(vs + half) - x(vs - half)) / 100) * 110) }} />
-          <div style={{ position: "absolute", top: 3, width: 8, height: 8, borderRadius: 4, background: INK, left: (x(vs) / 100) * 110 - 4 }} />
-        </>
-      ) : null}
-    </div>
-  );
-}
-
-export async function renderShareImage() {
-  const [regular, medium, mono, { rows }] = await Promise.all([
-    font("geist-sans", "Geist-Regular.ttf"),
-    font("geist-sans", "Geist-Medium.ttf"),
-    font("geist-mono", "GeistMono-Regular.ttf"),
-    getSampleLaneMap(),
-  ]);
-  const ordered = sortMatches(rows.map((r) => ({ match: r, name: r.name, row: r })), "fit").map((x) => x.row);
-  const excerpt: typeof ordered = [];
-  for (const band of ["strong", "testing", "unlikely"] as const) {
-    const r = ordered.find((x) => x.band === band && !excerpt.some((e) => e.familyId === x.familyId));
-    if (r) excerpt.push(r);
-  }
-
-  const label = { fontFamily: "Geist Mono", fontSize: 15, letterSpacing: 1.2, textTransform: "uppercase" as const, color: INK_3 };
+export async function renderShareCard(card: ShareCard) {
+  const [regular, medium, mono] = await Promise.all([font("geist-sans", "Geist-Regular.ttf"), font("geist-sans", "Geist-Medium.ttf"), font("geist-mono", "GeistMono-Regular.ttf")]);
+  const label = { fontFamily: "Geist Mono", fontSize: 13, letterSpacing: 1.2, textTransform: "uppercase" as const, color: INK_3 };
+  const facts: [string, string, boolean][] = (
+    [
+      ["Holland code", card.hollandCode, true],
+      ["Top work value", card.topValue, false],
+      ["Standout trait", card.personality, false],
+      ["Reasoning · 90% range", card.reasoning, true],
+    ] as [string, string | null | undefined, boolean][]
+  ).filter((x): x is [string, string, boolean] => !!x[1]);
 
   return new ImageResponse(
     (
-      <div style={{ display: "flex", width: "100%", height: "100%", background: BG, padding: "64px 72px", fontFamily: "Geist", color: INK }}>
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 520 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <div style={{ width: 2, height: 22, background: INK }} />
-            <div style={{ ...label, color: INK, fontSize: 20, letterSpacing: 4 }}>{BRAND.upper}</div>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontFamily: "Geist Medium", fontSize: 64, lineHeight: 1.06, letterSpacing: -2 }}>Find the work you&apos;re built for.</div>
-            <div style={{ marginTop: 26, fontSize: 24, lineHeight: 1.4, color: INK_2 }}>Validated tests of your interests, personality, values and reasoning, matched against 205 career paths.</div>
-          </div>
-          <div style={{ ...label }}>Free during the pilot · No card</div>
+      <div style={{ display: "flex", width: "100%", height: "100%", background: BG, padding: 44, fontFamily: "Geist", color: INK }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 480, flexShrink: 0, background: PAPER, border: `1px solid ${EDGE}` }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={markDataUri(card.mark, { size: 400 })} width={400} height={400} alt="" />
         </div>
-
-        <div style={{ display: "flex", flexDirection: "column", marginLeft: 56, flex: 1, alignSelf: "center", background: "#ffffff", border: `1px solid ${RULE_STRONG}`, borderTop: `3px solid ${ACCENT}`, borderRadius: 4, padding: "22px 28px 8px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", paddingBottom: 14, borderBottom: `1px solid ${RULE_STRONG}` }}>
-            <div style={{ ...label }}>Career map</div>
-            <div style={{ ...label }}>Sample</div>
-          </div>
-          {excerpt.map((l, i) => (
-            <div key={l.id} style={{ display: "flex", flexDirection: "column", padding: "18px 0", borderBottom: i < excerpt.length - 1 ? `1px solid ${RULE}` : "none" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <div style={{ fontFamily: "Geist Medium", fontSize: 24, flex: 1, marginRight: 16 }}>{l.name}</div>
-                <div style={{ ...label, fontSize: 13, color: l.band === "strong" ? INK : INK_3, border: `1px solid ${l.band === "strong" ? INK : RULE_STRONG}`, borderRadius: 2, padding: "3px 8px", flexShrink: 0 }}>
-                  {bandLabel[l.band]}
-                </div>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
-                <div style={{ fontSize: 18, color: INK_2, flex: 1, marginRight: 16 }}>{l.familyName}</div>
-                <Fit vs={l.vsAverage} se={l.se} />
-              </div>
+        <div style={{ display: "flex", flexDirection: "column", flex: 1, marginLeft: 44 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ width: 2, height: 18, background: INK, marginRight: 12 }} />
+              <div style={{ fontFamily: "Geist Mono", fontSize: 18, letterSpacing: 3.5, color: INK }}>{BRAND.upper}</div>
             </div>
-          ))}
+            <div style={{ ...label }}>{card.sample ? "Sample profile" : "Career Profile"}</div>
+          </div>
+          <div style={{ marginTop: 26, fontFamily: "Geist Medium", fontSize: 60, lineHeight: 1.05, letterSpacing: -2 }}>{card.firstName}</div>
+          <div style={{ display: "flex", flexWrap: "wrap", marginTop: 18 }}>
+            {facts.map(([l, v, monoFace]) => (
+              <div key={l} style={{ display: "flex", flexDirection: "column", width: "50%", marginBottom: 12 }}>
+                <div style={{ ...label, fontSize: 11 }}>{l}</div>
+                <div style={{ fontFamily: monoFace ? "Geist Mono" : "Geist Medium", fontSize: 26, marginTop: 2 }}>{v}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", marginTop: "auto", background: INK, color: PANEL_INK, padding: "16px 20px" }}>
+            <div style={{ ...label, fontSize: 11, color: PANEL_INK_2 }}>Closest career paths</div>
+            {card.paths.map((p, i) => (
+              <div key={p.name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderTop: i ? `1px solid ${PANEL_RULE}` : "none", marginTop: i ? 0 : 4 }}>
+                <div style={{ display: "flex", fontSize: 20, marginRight: 12 }}>{`${String(i + 1).padStart(2, "0")}   ${p.name}`}</div>
+                <div style={{ ...label, fontSize: 10, color: PANEL_INK, border: `1px solid ${PANEL_INK_2}`, padding: "2px 6px", flexShrink: 0 }}>{bandLabel[p.band]}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: 10, fontSize: 14, color: INK_2 }}>Measured with validated instruments. Fit with a profile, not a prediction.</div>
         </div>
       </div>
     ),
@@ -104,4 +86,10 @@ export async function renderShareImage() {
       ],
     },
   );
+}
+
+/** The site's Open Graph image: the same card, with the sample profile. */
+export async function renderShareImage() {
+  const [profile, picks, user] = await Promise.all([getSampleProfile(), getSamplePicks(), getSampleUser()]);
+  return renderShareCard(shareCardFrom(profile, user.name.split(" ")[0]!, picks, { sample: true, personality: true, reasoning: true }));
 }

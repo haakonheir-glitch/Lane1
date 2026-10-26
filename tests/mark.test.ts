@@ -65,3 +65,19 @@ describe("Profile Mark", () => {
     expect(g.value).toBeNull();
   });
 });
+
+describe("share card", () => {
+  it("leaves personality and reasoning out, of the text and the mark, unless opted in", async () => {
+    const { shareCardFrom } = await import("@/lib/og/share-card");
+    const plain = shareCardFrom(sampleProfile, "Ingrid", []);
+    expect(plain.personality).toBeUndefined();
+    expect(plain.reasoning).toBeUndefined();
+    expect(plain.mark.reasoning).toBeNull();
+    expect(plain.mark.domains.every((d) => d === null)).toBe(true);
+    expect(plain.mark.riasec).toEqual(markInput(sampleProfile).riasec);
+    const all = shareCardFrom(sampleProfile, "Ingrid", [], { personality: true, reasoning: true });
+    expect(all.personality).toBeTruthy();
+    expect(all.reasoning).toMatch(/^P\d+–\d+$/);
+    expect(all.mark).toEqual(markInput(sampleProfile));
+  });
+});

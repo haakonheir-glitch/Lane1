@@ -22,6 +22,11 @@ export default async function ProfilePage() {
       meta={own ? person.reportId : `${person.reportId} · sample`}
       action={
         <div className="flex gap-2">
+          {own ? (
+            <ButtonLink href="/profile/share" variant="secondary" size="sm">
+              Share
+            </ButtonLink>
+          ) : null}
           {tier === "full" ? <PrintButton /> : null}
           <ButtonLink href="/lanes" variant="secondary" size="sm">
             Open Career map
