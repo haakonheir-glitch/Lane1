@@ -21,14 +21,14 @@ export function WrittenReport({ report, model, createdAt }: { report: Report; mo
           </div>
         </section>
       ))}
-      {report.nextSteps.length ? (
-        <section className="mt-10" aria-label="Next steps">
-          <h3 className="border-b border-rule pb-2 text-h3 font-medium text-ink">Next steps</h3>
-          <ol className="mt-4 flex list-decimal flex-col gap-2 pl-5 text-body text-ink-2">
-            {report.nextSteps.map((s, i) => (
+      {report.pathsToLookInto?.length ? (
+        <section className="mt-10" aria-label="Career paths to look into">
+          <h3 className="border-b border-rule pb-2 text-h3 font-medium text-ink">Career paths to look into</h3>
+          <ul className="mt-4 flex list-disc flex-col gap-2 pl-5 text-body text-ink-2">
+            {report.pathsToLookInto.map((s, i) => (
               <li key={i}>{s}</li>
             ))}
-          </ol>
+          </ul>
         </section>
       ) : null}
       {report.caveats.length ? (

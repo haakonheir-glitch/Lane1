@@ -3,9 +3,9 @@ import type { RiasecDimension } from "@/lib/types";
 type Dimension = RiasecDimension & { display?: string };
 import { cn } from "@/lib/cn";
 
-const SIZE = 320;
+const SIZE = 360;
 const C = SIZE / 2;
-const R = 112;
+const R = 132;
 
 function point(i: number, v: number): [number, number] {
   const angle = -Math.PI / 2 + (i * Math.PI) / 3;
@@ -15,14 +15,20 @@ function point(i: number, v: number): [number, number] {
 
 const poly = (vals: number[]) => vals.map((v, i) => point(i, v).map((n) => n.toFixed(2)).join(",")).join(" ");
 
-/** Hexagonal RIASEC chart: hairline frame, user polygon in accent at 12% fill. */
+/**
+ * Hexagonal RIASEC chart: hairline rings, user polygon in accent. `scale` labels the centre and
+ * rings with the axis values (for interests the centre is the lowest possible score, 10).
+ */
 export function RadarProfile({
   dimensions,
   showCi = true,
+  scale,
   className,
 }: {
   dimensions: Dimension[];
   showCi?: boolean;
+  /** Axis values at the centre, middle ring and outer ring. */
+  scale?: [string, string, string];
   className?: string;
 }) {
   const values = dimensions.map((d) => d.score.value);
@@ -31,12 +37,14 @@ export function RadarProfile({
     <figure className={cn("w-full", className)}>
       <svg
         viewBox={`0 0 ${SIZE} ${SIZE}`}
-        className="mx-auto h-auto w-full max-w-[360px] overflow-visible"
+        className="mx-auto h-auto w-full max-w-[440px] overflow-visible"
         role="img"
         aria-label={`Interest profile. ${dimensions.map((d) => `${d.label} ${d.display ?? Math.round(d.score.value)}`).join(", ")}.`}
       >
         <polygon points={poly([100, 100, 100, 100, 100, 100])} fill="none" className="stroke-rule-strong" />
-        <polygon points={poly([50, 50, 50, 50, 50, 50])} fill="none" className="stroke-rule" />
+        {[25, 50, 75].map((v) => (
+          <polygon key={v} points={poly([v, v, v, v, v, v])} fill="none" className="stroke-rule" />
+        ))}
         {dimensions.map((_, i) => {
           const [x, y] = point(i, 100);
           return <line key={i} x1={C} y1={C} x2={x} y2={y} className="stroke-rule" />;
@@ -48,17 +56,27 @@ export function RadarProfile({
               return <line key={d.key} x1={x1} y1={y1} x2={x2} y2={y2} className="stroke-accent" strokeWidth={3} opacity={0.3} />;
             })
           : null}
-        <polygon points={poly(values)} className="fill-accent stroke-accent" fillOpacity={0.12} strokeWidth={1.5} strokeLinejoin="round" />
+        {scale
+          ? ([0, 50, 100] as const).map((v, k) => {
+              const [, y] = point(0, v);
+              return (
+                <text key={v} x={C + 4} y={y + (v === 0 ? 12 : -3)} fontSize={10} className="fill-ink-3 font-mono">
+                  {scale[k]}
+                </text>
+              );
+            })
+          : null}
+        <polygon points={poly(values)} className="fill-accent stroke-accent" fillOpacity={0.3} strokeWidth={2} strokeLinejoin="round" />
         {dimensions.map((d, i) => {
           const [x, y] = point(i, d.score.value);
-          return <circle key={d.key} cx={x} cy={y} r={2.5} className="fill-accent" />;
+          return <circle key={d.key} cx={x} cy={y} r={3.5} className="fill-accent" />;
         })}
         {dimensions.map((d, i) => {
-          const [x, y] = point(i, 124);
+          const [x, y] = point(i, 112);
           const anchor = Math.abs(x - C) < 4 ? "middle" : x > C ? "start" : "end";
           const dy = y < C - 40 ? -4 : y > C + 40 ? 12 : 4;
           return (
-            <text key={d.key} x={x} y={y + dy} textAnchor={anchor} fontSize={11} className={d.score.value === top ? "fill-ink" : "fill-ink-3"}>
+            <text key={d.key} x={x} y={y + dy} textAnchor={anchor} fontSize={12} className={d.score.value === top ? "fill-ink font-medium" : "fill-ink-2"}>
               {d.key} {d.display ?? Math.round(d.score.value)}
             </text>
           );

@@ -3,7 +3,7 @@
  *
  * Real (database):  user, onboarding, assessment progress, the person's own profile and Lane Map
  *   (scored relative to themselves until population norms exist, PLAN D48), export.
- * Sample (/lib/mock): the profile shown before S1/S2 are done, sprints, evidence (PLAN D18).
+ * Sample (/lib/mock): the profile shown before S1/S2 are done (PLAN D18).
  */
 import "server-only";
 import { cache } from "react";
@@ -17,8 +17,8 @@ import { buildProfile, type ProfileScores, type SessionScores } from "../scoring
 import { addSelfScores } from "../scoring/self";
 import type { SessionId } from "../bank/types";
 import type { YearsBand } from "../matching";
-import type { Evidence, OnboardingAnswers, Sprint, User } from "../types";
-import { buildCareerPicks, buildLaneDetail, buildLaneMap, buildLanePlan, laneName, reportLanes, withKind } from "./lanes";
+import type { OnboardingAnswers, User } from "../types";
+import { buildCareerPicks, buildLaneDetail, buildLaneMap, laneName, reportLanes } from "./lanes";
 import { buildReportFacts, type ReportFacts } from "../report/facts";
 import { factsHash, latestReport } from "../report/service";
 
@@ -129,20 +129,23 @@ export const getProfileView = cache(async (): Promise<{ profile: ProfileScores; 
   return own ? { profile: own, source: "own" } : { profile: mock.sampleProfile, source: "sample" };
 });
 export const getProfile = async (): Promise<ProfileScores> => (await getProfileView()).profile;
-export const getSprints = async (): Promise<Sprint[]> => mock.sprints.map((s) => withKind(structuredClone(s)));
-export const getSprint = async (id: string): Promise<Sprint | undefined> => (await getSprints()).find((s) => s.id === id);
-export const getEvidence = async (): Promise<Evidence> => structuredClone(mock.evidence);
 export const getLaneName = laneName;
 
 /** Lane Map rows and the open lane's detail, matched against the profile (sample until norms exist). */
 export async function getLaneMap(selected?: string | null) {
-  const [{ profile, source }, exp, sprints] = await Promise.all([getProfileView(), getExperience(), getSprints()]);
+  const [{ profile, source }, exp] = await Promise.all([getProfileView(), getExperience()]);
   return {
     source,
     ...buildLaneMap(profile, exp),
     picks: buildCareerPicks(profile, exp),
-    detail: selected ? buildLaneDetail(selected, profile, exp, sprints) : null,
+    detail: selected ? buildLaneDetail(selected, profile, exp) : null,
   };
+}
+
+/** The three career paths that fit best overall, by name, for the report's summary. */
+export async function getTopCareerPaths(): Promise<string[]> {
+  const [{ profile }, exp] = await Promise.all([getProfileView(), getExperience()]);
+  return buildCareerPicks(profile, exp).overall.slice(0, 3).map((p) => p.row.name);
 }
 
 /** The facts a written report is built from: the person's own scores and lanes, no name or email. */
@@ -163,9 +166,6 @@ export async function getMyReport() {
   return { ...stored, stale: !!facts && factsHash(facts) !== stored.factsHash };
 }
 
-export async function getLanePlan(id: string) {
-  return buildLanePlan(id, await getExperience());
-}
 
 /* -------------------------------------------------------------- export ---- */
 

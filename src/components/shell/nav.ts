@@ -1,4 +1,4 @@
-import { Activity, ClipboardList, FileText, Map, ScrollText, type LucideIcon } from "lucide-react";
+import { ClipboardList, FileText, Map, type LucideIcon } from "lucide-react";
 
 export type NavItem = { href: string; label: string; short: string; icon: LucideIcon };
 export type NavGroup = { label: string; items: NavItem[] };
@@ -14,13 +14,6 @@ export const navGroups: NavGroup[] = [
   {
     label: "Careers",
     items: [{ href: "/lanes", label: "Career map", short: "Careers", icon: Map }],
-  },
-  {
-    label: "Evidence",
-    items: [
-      { href: "/sprints", label: "Sprints", short: "Sprints", icon: Activity },
-      { href: "/evidence", label: "Evidence Record", short: "Evidence", icon: ScrollText },
-    ],
   },
 ];
 

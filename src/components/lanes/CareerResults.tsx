@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import type { CareerPick } from "@/lib/lanes/types";
-import { entryLabel, payoffLabel, sprintLabel, WINNER_TAKE_ALL_NOTE } from "@/lib/lanes/labels";
+import { entryLabel, entryTerm, payoffLabel, payoffTerm, WINNER_TAKE_ALL_NOTE } from "@/lib/lanes/labels";
 import { pad2 } from "@/lib/format";
 import { BandTag, FitIndicator, fitWords } from "./FitIndicator";
 import { cn } from "@/lib/cn";
@@ -36,11 +36,9 @@ function Why({ items, className }: { items: string[]; className?: string }) {
 function Meta({ p, className }: { p: CareerPick; className?: string }) {
   return (
     <p className={cn("flex flex-wrap gap-x-2 gap-y-1 label text-ink-3", className)}>
-      <span>{payoffLabel[p.row.payoff]}</span>
+      <span title={`Pay pattern: ${payoffTerm[p.row.payoff]}`}>{payoffLabel[p.row.payoff]}</span>
       <span aria-hidden className="text-ink-4">·</span>
-      <span>{entryLabel[p.row.entry]}</span>
-      <span aria-hidden className="text-ink-4">·</span>
-      <span>Try it: {sprintLabel[p.row.sprint]}</span>
+      <span title={`Entry: ${entryTerm[p.row.entry]}`}>{entryLabel[p.row.entry]}</span>
     </p>
   );
 }
@@ -49,7 +47,7 @@ function RoleTitle({ p, className }: { p: CareerPick; className?: string }) {
   return <span className={className}>{p.role?.title ?? p.row.name}</span>;
 }
 
-/** The best fit: the role as the headline, then the career path, the reason and how to try it. */
+/** The best fit: the role as the headline, then the career path, the reason and the starting role. */
 export function HeroCareer({ p }: { p: CareerPick }) {
   return (
     <Link
@@ -96,7 +94,7 @@ export function HeroCareer({ p }: { p: CareerPick }) {
           <div>
             <p className="label text-ink-3">Fit compared with your other career paths</p>
             <FitIndicator vsAverage={p.row.vsAverage} se={p.row.se} className="mt-3 h-4" />
-            <p className="mt-2 text-small text-ink-2">{fitWords(p.row.vsAverage)}</p>
+            <p className="mt-2 text-small text-ink-2">{fitWords(p.row.vsAverage, p.row.band)}</p>
           </div>
           <Meta p={p} />
           {p.row.payoff === "winner_take_all" ? <p className="text-small text-ink-3">{WINNER_TAKE_ALL_NOTE}</p> : null}

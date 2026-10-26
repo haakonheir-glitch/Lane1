@@ -1,10 +1,9 @@
 "use client";
 
 import { X } from "lucide-react";
-import { ButtonLink } from "@/components/ui/Button";
 import { PayoffCurve } from "@/components/data/PayoffCurve";
 import { bandLabel } from "@/lib/matching/fit";
-import { WINNER_TAKE_ALL_NOTE, entryLabel, entryNoteText, levelShort, modeLabel, payoffLabel, sprintLabel } from "@/lib/lanes/labels";
+import { WINNER_TAKE_ALL_NOTE, entryLabel, entryNoteText, entryTerm, levelShort, modeLabel, payoffLabel, payoffTerm } from "@/lib/lanes/labels";
 import type { LadderRow, LaneDetail, LaneSort, RoleRef } from "@/lib/lanes/types";
 import { BandTag, FitIndicator, fitWords } from "./FitIndicator";
 import { cn } from "@/lib/cn";
@@ -86,6 +85,34 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
         ) : null}
         <p className="text-body text-ink-2">{detail.description}</p>
 
+        <section className="mt-8 rounded-sm border border-rule bg-bg p-4" aria-labelledby={`${headingId}-about`}>
+          <h3 id={`${headingId}-about`} className="label text-ink-3">
+            About this career path
+          </h3>
+          <dl className="mt-3 flex flex-col gap-3 text-small">
+            <div>
+              <dt className="text-ink">Day to day</dt>
+              <dd className="text-ink-2">{detail.dayToDay.join(" · ")}</dd>
+            </div>
+            <div>
+              <dt className="text-ink">How people get in</dt>
+              <dd className="text-ink-2">
+                <span title={`Entry: ${entryTerm[row.entry]}`}>{entryLabel[row.entry]}</span>. {detail.entryText}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-ink">How it pays</dt>
+              <dd className="text-ink-2">
+                <span title={`Pay pattern: ${payoffTerm[row.payoff]}`}>{payoffLabel[row.payoff]}</span>. {detail.payoffText}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-ink">Realistic starting role</dt>
+              <dd className="text-ink-2">{detail.topRoles[0] ? detail.topRoles[0].role.title : entryNoteText[detail.entryNote]}</dd>
+            </div>
+          </dl>
+        </section>
+
         <section className="mt-8" aria-labelledby={`${headingId}-fit`}>
           <h3 id={`${headingId}-fit`} className="label text-ink-3">
             Fit
@@ -95,8 +122,7 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
             <FitIndicator vsAverage={row.vsAverage} se={row.se} className="flex-1" />
           </div>
           <p className="mt-2 text-small text-ink-2">
-            {bandLabel[row.band]}: fit is {fitWords(row.vsAverage)}.
-            {row.band === "testing" ? " The difference from your other career paths is within measurement error, so trying it is the way to find out." : ""}
+            {bandLabel[row.band]}: fit is {fitWords(row.vsAverage, row.band)}.
           </p>
           {detail.drivers.length ? (
             <>
@@ -159,18 +185,11 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
             <div className="mt-4 rounded-sm border border-rule bg-surface p-3">
               <PayoffCurve type={row.payoff} position={detail.payoffPosition} positionCi={detail.payoffRange} />
             </div>
-            <p className="mt-3 text-small text-ink-2">{detail.payoffText}</p>
             <p className="mt-2 text-small text-ink-3">Your position is a rough estimate from fit, not a prediction of earnings.</p>
           </section>
         ) : null}
 
-        <section className="mt-8" aria-labelledby={`${headingId}-next`}>
-          <h3 id={`${headingId}-next`} className="label text-ink-3">
-            Try it · {sprintLabel[row.sprint]}
-          </h3>
-          <p className="mt-3 text-small text-ink-2">{detail.next.detail}</p>
-          <p className="mt-2 text-small text-ink-3">Entry route: {detail.entryText}</p>
-        </section>
+
 
         {detail.isco.length ? (
           <section className="mt-8" aria-labelledby={`${headingId}-isco`}>
@@ -188,11 +207,6 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
         ) : null}
       </div>
 
-      <div className="border-t border-rule px-6 py-4">
-        <ButtonLink href={detail.next.href} className="w-full">
-          {detail.next.label}
-        </ButtonLink>
-      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
-import { payoffCurve, payoffLabel } from "@/lib/matching/payoff";
+import { payoffCurve } from "@/lib/matching/payoff";
+import { payoffLabel } from "@/lib/lanes/labels";
 import type { PayoffId } from "@/lib/taxonomy/generated";
 import { cn } from "@/lib/cn";
 

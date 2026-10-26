@@ -12,7 +12,7 @@ export function BehaviourSummary({ behaviour }: { behaviour: NonNullable<Profile
           <DataLabel label="Improvement vs start" value={learning?.relativeRate !== null && learning?.relativeRate !== undefined ? `${Math.round(learning.relativeRate * 100)}%` : "—"} />
           <DataLabel label="Accuracy slope" value={learning?.accuracySlope?.toFixed(2) ?? "—"} unit="/log block" />
         </div>
-        <p className="mt-4 text-small text-ink-2">How fast you got better at a brand-new task. Sprints compare your improvement against this baseline.</p>
+        <p className="mt-4 text-small text-ink-2">How fast you got better at a brand-new task, compared with your own first attempts.</p>
       </div>
       <div className="bg-bg p-6">
         <p className="label text-ink-3">Risk in practice</p>

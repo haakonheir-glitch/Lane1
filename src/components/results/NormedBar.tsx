@@ -1,6 +1,6 @@
 import type { Normed } from "@/lib/scoring/core";
 import type { SelfScore } from "@/lib/scoring/types";
-import { tToBar } from "@/lib/view/profile";
+import { fmtPct, pctBand, tToBar } from "@/lib/view/profile";
 import { cn } from "@/lib/cn";
 
 /**
@@ -39,7 +39,7 @@ export function NormedBar({ n, label, emphasis, className }: { n: Normed; label:
       aria-valuemin={20}
       aria-valuemax={80}
       aria-valuenow={Math.round(n.t)}
-      aria-valuetext={`T ${Math.round(n.t)}, 90% interval ${Math.round(n.ci[0])} to ${Math.round(n.ci[1])}, percentile ${n.percentileBand[0]} to ${n.percentileBand[1]}`}
+      aria-valuetext={`T ${Math.round(n.t)}, 90% interval ${Math.round(n.ci[0])} to ${Math.round(n.ci[1])}, percentile ${pctBand(n.percentileBand)[0]} to ${pctBand(n.percentileBand)[1]}`}
       className={cn("relative h-4 w-full", className)}
     >
       <Gauge point={v} lo={lo} hi={hi} ticks={T_TICKS} refTitle="Population median (T 50)" emphasis={emphasis} />
@@ -57,7 +57,7 @@ export function NormedFigure({ n }: { n: Normed }) {
       </span>
       {/* Wraps as a unit on narrow screens, never mid-range. */}
       <span className="ml-3 inline-block whitespace-nowrap text-label text-ink-3">
-        P{n.percentileBand[0]}–{n.percentileBand[1]}
+        {fmtPct(n.percentileBand)}
       </span>
     </span>
   );

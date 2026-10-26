@@ -13,7 +13,10 @@ export const tToBar = (t: number) => Math.min(100, Math.max(0, ((t - 20) / 60) *
 
 export const fmtT = (n: Normed) => Math.round(n.t);
 export const fmtHalf = (n: Normed) => Math.round((n.ci[1] - n.ci[0]) / 2);
-export const fmtBand = (n: Normed) => `P${n.percentileBand[0]}–${n.percentileBand[1]}`;
+/** Percentile bands as shown: the upper bound is capped at 99, since "the 100th percentile" doesn't exist. */
+export const pctBand = ([lo, hi]: [number, number]): [number, number] => [Math.min(lo, 99), Math.min(hi, 99)];
+export const fmtPct = (b: [number, number]) => `P${pctBand(b)[0]}–${pctBand(b)[1]}`;
+export const fmtBand = (n: Normed) => fmtPct(n.percentileBand);
 
 type Band = "low" | "mid" | "high";
 export const band = (n: Normed): Band => (n.ci[1] < 50 ? "low" : n.ci[0] > 50 ? "high" : "mid");
@@ -55,7 +58,7 @@ export function interpret(scaleId: string, n: Normed | null, self?: SelfScore | 
   if (n) return DOMAIN_TEXT[scaleId]?.[band(n)] ?? "";
   // Without norms, only a comparison with the person's own other traits is possible.
   if (self) return self.ci[0] > 0 ? "Higher than your other traits." : self.ci[1] < 0 ? "Lower than your other traits." : "Around your own average.";
-  return "Interpretation appears once norms are loaded.";
+  return "Not enough answers to interpret yet.";
 }
 
 type Comparable = { id: string; normed: Normed | null; self?: SelfScore | null };
@@ -87,24 +90,41 @@ const RIASEC_GLOSS: Record<string, string> = {
   C: "organising and keeping things in order",
 };
 
-/** Three plain-language summary sentences from the profile. Hedged on purpose. */
-export function summarise(p: ProfileScores): string[] {
+/** "a", "a and b", "a, b and c". */
+export const listWords = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}` : (xs[0] ?? ""));
+
+/**
+ * The "In brief" lines: interests, values, personality, reasoning and the closest career paths.
+ * Only differences that pass the relative-strength test are stated as findings; the rest are
+ * called tentative.
+ */
+export function summarise(p: ProfileScores, topPaths: string[] = []): string[] {
   const out: string[] = [];
   const i = p.interests;
   if (i?.hollandCode) {
+    const rel = relativeOf(i.scales);
+    const strong = i.scales.filter((x) => rel[x.id] === "strength").map((x) => RIASEC_GLOSS[x.code]!);
+    const weak = i.scales.filter((x) => rel[x.id] === "weakness").map((x) => RIASEC_GLOSS[x.code]!);
     const [a, b] = i.hollandCode.split("");
-    const low = [...i.scales].sort((x, y) => (x.raw ?? 0) - (y.raw ?? 0))[0]!;
-    out.push(`Your interests lean toward ${RIASEC_GLOSS[a!]} and ${RIASEC_GLOSS[b!]}, with ${RIASEC_GLOSS[low.code]} the least appealing.`);
+    if (strong.length || weak.length) {
+      const parts = [strong.length ? `${listWords(strong)} clearly appeal${strong.length === 1 ? "s" : ""} to you most` : "", weak.length ? `${listWords(weak)} clearly appeal${weak.length === 1 ? "s" : ""} least` : ""].filter(Boolean);
+      out.push(`${parts.join(", and ")}.`.replace(/^./, (c) => c.toUpperCase()) + (strong.length ? "" : ` Your lean toward ${RIASEC_GLOSS[a!]} is tentative.`));
+    } else {
+      out.push(`Your interests lean tentatively toward ${RIASEC_GLOSS[a!]} and ${RIASEC_GLOSS[b!]}; the gaps between areas are within measurement error.`);
+    }
   } else if (i?.lowDifferentiation) {
-    out.push("Your interests are fairly even across all six areas. That often means they are still forming; trying careers will tell you more than this scale can.");
+    out.push("Your interests are fairly even across all six areas. That often means they are still forming, so read the career matches with extra care.");
   }
+  const values = p.values?.filter((v) => v.visibility === "user").sort((a, b) => a.rank - b.rank) ?? [];
+  if (values.length > 1) out.push(`In your card sort, ${values[0]!.label.toLowerCase()} came first as what you want from work, then ${values[1]!.label.toLowerCase()}.`);
   const d = p.personality?.domains.filter((x) => x.normed !== null || !!x.self) ?? [];
   if (d.length) {
     const rel = relativeOf(d);
-    const strengths = d.filter((x) => rel[x.id] === "strength").map((x) => x.label.toLowerCase());
+    const hi = d.filter((x) => rel[x.id] === "strength").map((x) => x.label.toLowerCase());
+    const lo = d.filter((x) => rel[x.id] === "weakness").map((x) => x.label.toLowerCase());
     out.push(
-      strengths.length
-        ? `Compared with the rest of your personality profile, ${strengths.join(" and ")} stand${strengths.length === 1 ? "s" : ""} out clearly.`
+      hi.length || lo.length
+        ? `Compared with the rest of your personality profile, ${[hi.length ? `${listWords(hi)} ${hi.length === 1 ? "is" : "are"} clearly higher` : "", lo.length ? `${listWords(lo)} ${lo.length === 1 ? "is" : "are"} clearly lower` : ""].filter(Boolean).join(" and ")}; other differences are tentative.`
         : "None of your five personality domains stands out from the others by more than the measurement can resolve, so treat the differences between them as tentative.",
     );
   }
@@ -112,10 +132,20 @@ export function summarise(p: ProfileScores): string[] {
   if (areas.length) {
     const rel = relativeOf(areas);
     const s = areas.filter((a) => rel[a.id] === "strength").map((a) => a.label.toLowerCase());
-    out.push(s.length ? `In the reasoning tasks, ${s.join(" and ")} came out as a clear relative strength.` : "In the reasoning tasks, no area stood out clearly from the others.");
+    const w = areas.filter((a) => rel[a.id] === "weakness").map((a) => a.label.toLowerCase());
+    out.push(
+      s.length && w.length
+        ? `In the reasoning tasks, ${listWords(s)} came out as a clear relative strength and ${listWords(w)} as a clear relative weakness.`
+        : s.length
+          ? `In the reasoning tasks, ${listWords(s)} came out as a clear relative strength; the other differences are tentative.`
+          : w.length
+            ? `In the reasoning tasks, ${listWords(w)} came out as a clear relative weakness; the other areas can't be told apart.`
+            : "In the reasoning tasks, no area stood out clearly from the others; the differences between them are tentative.",
+    );
   }
+  if (topPaths.length && out.length) out.push(`Your closest career paths are ${listWords(topPaths)}. The Career map shows why, and what each involves.`);
   if (out.length === 0) out.push("Complete sessions S1 and S2 to see your summary.");
-  return out;
+  return out.slice(0, 5);
 }
 
 export const LIMITATIONS = [
@@ -123,7 +153,7 @@ export const LIMITATIONS = [
   "Scores are ranges, not points. Facets with four items are especially imprecise, so they are shown with wide intervals and never used on their own.",
   "It cannot measure physical talent. For athletic careers it describes motivation and temperament, not whether the body is elite.",
   "It measures you at one point in time. Interests and personality keep developing through the twenties; retake interests and values each year.",
-  "It cannot replace trying. The profile is a well-informed hypothesis. Sprints test it.",
+  "It describes fit, not destiny. Use it to decide which careers to look into first.",
 ];
 
 /** RadarProfile input from O*NET interest scores: geometry on the 10–50 range, labels show raw sums. */

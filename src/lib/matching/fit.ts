@@ -172,7 +172,7 @@ export function matchLanes(profile: ProfileScores, taxonomy: TaxonomyForMatching
 export const BAND_ORDER: Band[] = ["strong", "testing", "unlikely", "insufficient"];
 export const bandLabel: Record<Band, string> = {
   strong: "Strong fit",
-  testing: "Worth testing",
+  testing: "Possible fit",
   unlikely: "Unlikely",
   insufficient: "Not enough data",
 };

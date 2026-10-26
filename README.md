@@ -1,8 +1,8 @@
 # Lane
 
-*Evidence, not horoscopes.* Lane helps people find the line of work they're best suited to: a profile from five assessment sessions built on validated public instruments, a Lane Map of 205 lanes in fit bands against the person's own strengths, short real-world trials ("sprints"), and an evidence record that updates as they go.
+*Evidence, not horoscopes.* Lane helps people find the line of work they're best suited to: a profile from five assessment sessions built on validated public instruments, a Lane Map of 205 lanes in fit bands against the person's own strengths, and a written profile report. Lane describes fit; it doesn't coach people into a career or ask them to try one.
 
-Accounts, answers, scores, sprints and evidence are saved to a Postgres database.
+Accounts, answers, scores and written reports are saved to a Postgres database.
 
 ## Run it on your computer
 
@@ -51,7 +51,7 @@ Each report costs a few cents and takes about a minute. It's saved and only rewr
 2. **Hosting.** At https://vercel.com, choose **Add New → Project** and import the `Lane1` GitHub repository.
 3. Before deploying, open **Environment Variables** and add:
    - `DATABASE_URL`: the Neon connection string.
-   - `APP_TIMEZONE` *(optional)*: the time zone used for sprint days. The default is `Europe/Oslo`.
+   - `APP_TIMEZONE` *(optional)*: the time zone used for dates such as the report ID and "member since". The default is `Europe/Oslo`.
    - `ANTHROPIC_API_KEY` *(optional)*: turns on the Claude-written report.
    - `NEXT_PUBLIC_SITE_URL` *(optional)*: your public address (e.g. `https://lane.no`), used for the canonical URL and the share image links. On Vercel the production address is used automatically when this isn't set.
 4. Click **Deploy**. The build creates the database tables automatically (`npm run build` runs `scripts/migrate.mjs` first), and every later deploy applies any new migrations.
@@ -73,11 +73,10 @@ DATABASE_URL="postgresql://…" npm run seed -- --force
 | **Scoring** | Pure, tested functions in `src/lib/scoring/`: IPIP-NEO-120 facets and domains, Honesty-Humility, O*NET® Interest Profiler sums and Holland code, Work Importance Locator, cognitive accuracy, span, speed, learning, risk and patience, validity flags and confidence, and the BLUEPRINT §7 maths (90% intervals, the relative-strength test). Lane's experimental scales are scored but marked hidden. |
 | **Lane taxonomy** | `taxonomy/` (unchanged from the delivered zip): 34 families, 205 lanes, 1,883 roles, with ladders, payoff curves, entry routes, sprint feasibility and tag-to-assessment links. `src/lib/taxonomy/` loads `taxonomy.json` at build time with generated types and validates it. Don't edit `taxonomy.json` by hand: edit `taxonomy/src/*.txt`, then run `npm run taxonomy:build`. |
 | **Lane matching** | One pure function, `matchLanes()` in `src/lib/matching/`, takes a profile in the scoring output shape. Fit is relative to the person's own average: half RIASEC congruence, half the lane's demand tags scored through `tag_to_constructs`. Only validated scales count (experimental ones are listed as "not counted yet"). Lanes go into bands (strong fit / worth testing / unlikely) by the BLUEPRINT reliability rule, never a 1–205 ranking. Roles inside a lane are ranked by their tags, starting from the person's realistic entry point; management roles are never recommended as a start. |
-| **Lane Map** | `/lanes`: grouped by family or by band, with filters for family, work mode, payoff, entry route and sprint feasibility, and the fit / fit × payoff toggle. The detail panel shows the fit drivers, the top starting roles with reasons, every role on the lane's ladder with the entry point highlighted, the payoff curve, and the next step: a real sprint (direct lanes), practice tasks (simulated) or an interview-and-shadow plan (shadow), at `/lanes/[lane]/plan`. Winner-take-all lanes always say the median income is low. |
+| **Lane Map** | `/lanes`: grouped by family or by band, with filters for family, work mode, pay pattern and entry route, and the fit / fit × payoff toggle. The detail panel shows the fit drivers, an "About this career path" block (day-to-day work, how people get in, how it pays, realistic starting role), the top starting roles with reasons, and every role on the lane's ladder with the entry point highlighted. Winner-take-all lanes always say the median income is low. |
 | **Job-title search** | Onboarding asks what you do now (and for how long) and what you're considering. `GET /api/taxonomy/search` matches role titles and aliases first (Norwegian included), then the 3,039 ESCO occupation labels, and resolves to a lane. |
 | **Results** | Once S1 or S2 is done, `/profile` and `/lanes` show **your own results**, scored relative to yourself (`src/lib/scoring/self.ts`): each scale against your other scales on the same test, with ranges. Comparisons with other people need the published norms in `src/lib/scoring/psychometrics.ts`, not transcribed yet (PLAN D24). Before S1/S2, a labelled sample profile is shown. |
 | **Written report** | `src/lib/report/`: the app builds a set of facts from your computed scores (no name, email or answers); Claude (`claude-opus-5-5`, structured output) writes the report from those facts only. A check rejects any report citing a figure that isn't in the scores (one rewrite, then it's refused). Reports are stored with a fingerprint of the facts and reused until the scores change. Needs `ANTHROPIC_API_KEY`. |
-| **Sprints, evidence** | Sample data for now; interactions on the sprint page aren't saved. In lanes that can't be tried directly, the sample entries are practice tasks, not sprints. |
 | **Your data** | Settings → **Export data** downloads your sessions, answers, task trials and scores as JSON. **Delete account** (password required) removes everything immediately. |
 
 ## Commands
@@ -109,7 +108,7 @@ src/
 │  ├─ (marketing)/          /, /method
 │  ├─ (auth)/               /login, /signup
 │  ├─ (onboarding)/start/   onboarding questions
-│  ├─ (app)/                assess, assess/[session], profile, lanes, sprints, evidence, settings
+│  ├─ (app)/                assess, assess/[session], profile, lanes, settings
 │  ├─ api/assess/[session]/ state, answer, task, retake (route handlers)
 │  ├─ api/taxonomy/search/  job-title search
 │  ├─ api/export/           JSON data export
@@ -125,7 +124,7 @@ src/
    ├─ db/                   Drizzle schema + client (Postgres or local PGlite)
    ├─ auth.ts               sessions, password hashing, requireUser()
    ├─ data/                 data access for pages (real sessions; sample results)
-   └─ mock/                 sample profile, sprints, evidence
+   └─ mock/                 sample profile
 drizzle/                    SQL migrations
 scripts/                    migrate, seed, taxonomy types, screenshots, a11y
 tests/                      Vitest suites, end-to-end run

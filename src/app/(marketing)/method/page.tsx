@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Method",
-  description: "How Lane builds a profile, matches it to 205 career paths, runs sprints and weighs evidence, and where the science stops.",
+  description: "How Lane builds a profile from validated instruments, matches it to 205 career paths, and where the science stops.",
   alternates: { canonical: "/method" },
 };
 
@@ -17,21 +17,19 @@ const references = [
   { id: 6, text: "Sackett, P. R., Zhang, C., Berry, C. M., & Lievens, F. (2022). Revisiting meta-analytic estimates of validity in personnel selection: Addressing systematic overcorrection for restriction of range. Journal of Applied Psychology, 107(11), 2040–2068." },
   { id: 7, text: "Rosen, S. (1981). The economics of superstars. American Economic Review, 71(5), 845–858." },
   { id: 8, text: "Frank, R. H., & Cook, P. J. (1995). The Winner-Take-All Society. Free Press." },
-  { id: 9, text: "Ibarra, H. (2003). Working Identity: Unconventional Strategies for Reinventing Your Career. Harvard Business School Press." },
-  { id: 10, text: "Csikszentmihalyi, M. (1990). Flow: The Psychology of Optimal Experience. Harper & Row." },
-  { id: 11, text: "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory: Development of the IPIP-NEO-120. Journal of Research in Personality, 51, 78–89." },
-  { id: 12, text: "Sibley, C. G., et al. (2011). The Mini-IPIP6: Validation and extension of a short measure of the Big-Six factors of personality in New Zealand. New Zealand Journal of Psychology, 40, 142–159." },
-  { id: 13, text: "National Center for O*NET Development. O*NET® Interest Profiler Short Form; O*NET® Work Importance Locator. U.S. Department of Labor, Employment and Training Administration. https://www.onetcenter.org" },
-  { id: 14, text: "Hoff, K. A., Song, Q. C., Wee, C. J. M., Phan, W. M. J., & Rounds, J. (2020). Interest fit and job satisfaction: A systematic review and meta-analysis. Journal of Vocational Behavior, 123, 103503." },
-  { id: 15, text: "Condon, D. M., & Revelle, W. (2014). The International Cognitive Ability Resource: Development and initial validation of a public-domain measure. Intelligence, 43, 52–64." },
-  { id: 16, text: "Lejuez, C. W., et al. (2002). Evaluation of a behavioral measure of risk taking: The Balloon Analogue Risk Task (BART). Journal of Experimental Psychology: Applied, 8, 75–84." },
-  { id: 17, text: "Blais, A.-R., & Weber, E. U. (2006). A Domain-Specific Risk-Taking (DOSPERT) scale for adult populations. Judgment and Decision Making, 1, 33–47." },
-  { id: 18, text: "Huang, J. L., Curran, P. G., Keeney, J., Poposki, E. M., & DeShon, R. P. (2012). Detecting and deterring insufficient effort responding to surveys. Journal of Business and Psychology, 27, 99–114." },
-  { id: 19, text: "Curran, P. G. (2016). Methods for the detection of carelessly invalid responses in survey data. Journal of Experimental Social Psychology, 66, 4–19." },
-  { id: 20, text: "Connelly, B. S., & Ones, D. S. (2010). An other perspective on personality: Meta-analytic integration of observers' accuracy and predictive validity. Psychological Bulletin, 136, 1092–1122." },
-  { id: 21, text: "Credé, M., Tynan, M. C., & Harms, P. D. (2017). Much ado about grit: A meta-analytic synthesis of the grit literature. Journal of Personality and Social Psychology, 113, 492–511." },
-  { id: 22, text: "MacCann, C., & Roberts, R. D. (2008). New paradigms for assessing emotional intelligence: Theory and data. Emotion, 8, 540–551." },
-  { id: 23, text: "Beaty, R. E., & Johnson, D. R. (2021). Automating creativity assessment with SemDis: An open platform for computing semantic distance. Behavior Research Methods, 53, 757–780." },
+  { id: 9, text: "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory: Development of the IPIP-NEO-120. Journal of Research in Personality, 51, 78–89." },
+  { id: 10, text: "Sibley, C. G., et al. (2011). The Mini-IPIP6: Validation and extension of a short measure of the Big-Six factors of personality in New Zealand. New Zealand Journal of Psychology, 40, 142–159." },
+  { id: 11, text: "National Center for O*NET Development. O*NET® Interest Profiler Short Form; O*NET® Work Importance Locator. U.S. Department of Labor, Employment and Training Administration. https://www.onetcenter.org" },
+  { id: 12, text: "Hoff, K. A., Song, Q. C., Wee, C. J. M., Phan, W. M. J., & Rounds, J. (2020). Interest fit and job satisfaction: A systematic review and meta-analysis. Journal of Vocational Behavior, 123, 103503." },
+  { id: 13, text: "Condon, D. M., & Revelle, W. (2014). The International Cognitive Ability Resource: Development and initial validation of a public-domain measure. Intelligence, 43, 52–64." },
+  { id: 14, text: "Lejuez, C. W., et al. (2002). Evaluation of a behavioral measure of risk taking: The Balloon Analogue Risk Task (BART). Journal of Experimental Psychology: Applied, 8, 75–84." },
+  { id: 15, text: "Blais, A.-R., & Weber, E. U. (2006). A Domain-Specific Risk-Taking (DOSPERT) scale for adult populations. Judgment and Decision Making, 1, 33–47." },
+  { id: 16, text: "Huang, J. L., Curran, P. G., Keeney, J., Poposki, E. M., & DeShon, R. P. (2012). Detecting and deterring insufficient effort responding to surveys. Journal of Business and Psychology, 27, 99–114." },
+  { id: 17, text: "Curran, P. G. (2016). Methods for the detection of carelessly invalid responses in survey data. Journal of Experimental Social Psychology, 66, 4–19." },
+  { id: 18, text: "Connelly, B. S., & Ones, D. S. (2010). An other perspective on personality: Meta-analytic integration of observers' accuracy and predictive validity. Psychological Bulletin, 136, 1092–1122." },
+  { id: 19, text: "Credé, M., Tynan, M. C., & Harms, P. D. (2017). Much ado about grit: A meta-analytic synthesis of the grit literature. Journal of Personality and Social Psychology, 113, 492–511." },
+  { id: 20, text: "MacCann, C., & Roberts, R. D. (2008). New paradigms for assessing emotional intelligence: Theory and data. Emotion, 8, 540–551." },
+  { id: 21, text: "Beaty, R. E., & Johnson, D. R. (2021). Automating creativity assessment with SemDis: An open platform for computing semantic distance. Behavior Research Methods, 53, 757–780." },
 ];
 
 function Cite({ n }: { n: number | number[] }) {
@@ -76,10 +74,9 @@ export default function MethodPage() {
             ["02b", "Norms and intervals", "#norms"],
             ["03", "Career paths and fit bands", "#m-03"],
             ["04", "Payoff structure", "#m-04"],
-            ["05", "Sprints", "#m-05"],
-            ["06", "Evidence", "#m-06"],
-            ["07", "What we don't do", "#m-07"],
-            ["08", "References", "#references"],
+            ["05", "What you get", "#m-05"],
+            ["06", "What we don't do", "#m-06"],
+            ["07", "References", "#references"],
           ].map(([n, t, href]) => (
             <li key={t}>
               <a href={href} className="grid grid-cols-[36px_1fr] text-small text-ink-2 transition-quiet hover:text-ink">
@@ -103,8 +100,8 @@ export default function MethodPage() {
           <Section n="01" title="The question">
             <p>
               &ldquo;What am I built for?&rdquo; has no single answer, and no instrument can give one. What we can do is
-              narrow the field with good measurement, then let real experience decide between the remaining options. Lane
-              treats the profile as a starting hypothesis and every sprint as a test of it.
+              measure the things that research links to career fit, with validated instruments and honest error bars, and show
+              which career paths match the results. Lane gives you that information; the decision stays yours.
             </p>
           </Section>
 
@@ -116,43 +113,43 @@ export default function MethodPage() {
             </p>
             <p>
               <strong className="font-medium text-ink">Personality</strong> uses the IPIP-NEO-120, the public-domain counterpart
-              of the most researched facet-level inventory: five domains and 30 facets.<Cite n={[3, 11]} /> One facet
+              of the most researched facet-level inventory: five domains and 30 facets.<Cite n={[3, 9]} /> One facet
               (political attitudes) is not used: it is irrelevant to work and inappropriate for anything selection-adjacent. A
-              sixth factor, Honesty-Humility, comes from the Mini-IPIP6.<Cite n={12} /> Facets have four items each, so they
-              are shown with wide intervals and never used on their own.<Cite n={11} />
+              sixth factor, Honesty-Humility, comes from the Mini-IPIP6.<Cite n={10} /> Facets have four items each, so they
+              are shown with wide intervals and never used on their own.<Cite n={9} />
             </p>
             <p>
               <strong className="font-medium text-ink">Interests and values</strong> use the O*NET® Interest Profiler (60 work
               activities, Holland&apos;s RIASEC model) and the O*NET® Work Importance Locator, a 20-card sort that stops
-              everything being rated &ldquo;very important&rdquo;.<Cite n={[1, 13]} /> Interest fit predicts satisfaction modestly
-              and career-path satisfaction and performance more strongly.<Cite n={[2, 14]} />
+              everything being rated &ldquo;very important&rdquo;.<Cite n={[1, 11]} /> Interest fit predicts satisfaction modestly
+              and career-path satisfaction and performance more strongly.<Cite n={[2, 12]} />
             </p>
             <p>
               <strong className="font-medium text-ink">Reasoning</strong> uses item types from decades of ability research
               (matrices, number and letter series, word problems, rotation, memory span, processing speed), the same types as the
-              open ICAR battery.<Cite n={15} /> Every item is generated fresh from a seed, so nobody can look up answers and no
+              open ICAR battery.<Cite n={13} /> Every item is generated fresh from a seed, so nobody can look up answers and no
               commercial test is reproduced. Classic estimates put cognitive ability among the strongest predictors of job
               performance;<Cite n={5} /> a 2022 re-analysis argued those estimates were inflated and the true figures are lower.
               <Cite n={6} /> There is no IQ number: results are a percentile range and a profile of relative strengths.
             </p>
             <p>
               <strong className="font-medium text-ink">Behaviour tasks</strong> measure what you do rather than what you say:
-              how fast you learn a new mapping, how you take risks in the balloon task,<Cite n={16} /> and how you trade money
+              how fast you learn a new mapping, how you take risks in the balloon task,<Cite n={14} /> and how you trade money
               now against money later. Risk is domain-specific, so no single &ldquo;risk tolerance&rdquo; number is claimed.
-              <Cite n={17} />
+              <Cite n={15} />
             </p>
             <p>
               <strong className="font-medium text-ink">Data quality</strong> is checked in every session: a few
               absurd or instructed statements, answer speed, long runs of identical answers, and consistency between opposite
-              statements.<Cite n={[18, 19]} /> Two or more flags mark a session &ldquo;low confidence&rdquo;; you see why and can
+              statements.<Cite n={[16, 17]} /> Two or more flags mark a session &ldquo;low confidence&rdquo;; you see why and can
               retake it. Nothing is discarded silently.
             </p>
             <p>
               <strong className="font-medium text-ink">Lane&apos;s own scales</strong> cover what the standard instruments
               miss for non-corporate career paths: extra interests and values, ten work dispositions (such as variance tolerance and
-              setback resilience), an emotion-judgement test,<Cite n={22} /> idea tasks<Cite n={23} /> and life history. They are
+              setback resilience), an emotion-judgement test,<Cite n={20} /> idea tasks<Cite n={21} /> and life history. They are
               experimental. Your answers are collected for the pilot, but these scales are not shown as results until they meet a
-              reliability bar and add something beyond the established scales.<Cite n={21} />
+              reliability bar and add something beyond the established scales.<Cite n={19} />
             </p>
           </Section>
 
@@ -194,7 +191,7 @@ export default function MethodPage() {
               We show bands, not ranks. With 205 career paths, number 5 and number 25 are often the same within measurement error. A career path is a{" "}
               <strong className="font-medium text-ink">strong fit</strong> only when it is clearly ahead of more than half of your other career paths
               after allowing for that error, and <strong className="font-medium text-ink">unlikely</strong> when it is clearly behind; the rest
-              are worth testing.
+              are <strong className="font-medium text-ink">possible fits</strong> that the measurement can&apos;t separate.
             </p>
             <p>
               We match you to career paths first, then to the specific role inside each one where you could realistically start, never at manager level. A questionnaire can tell sales from software, but not who will make a better head of sales: seniority is a path you grow along, not a result of a test.
@@ -217,32 +214,25 @@ export default function MethodPage() {
             </p>
           </Section>
 
-          <Section n="05" title="Sprints">
+          <Section n="05" title="What you get">
             <p>
-              People rarely think their way into a new career; they discover it by trying things.<Cite n={9} /> A sprint
-              is a structured, one-to-three-week trial with a concrete output, such as calls made, videos published or a
-              product shipped.
+              <strong className="font-medium text-ink">A profile report.</strong> Every score with its 90% interval, the relative
+              strengths and weaknesses that pass a reliability test, a short written summary, and the limits of what the
+              measures can say about you.
             </p>
             <p>
-              We record four things: performance against others at the same stage of the same sprint; rate of
-              improvement; daily energy and flow check-ins<Cite n={10} />; and whether you want to continue. Improvement
-              rate and the wish to continue tend to say more than first-week performance, which is mostly noise.
-            </p>
-          </Section>
-
-          <Section n="06" title="Evidence">
-            <p>
-              Your Evidence Record combines the profile prior with sprint outcomes into a conviction score for each career path
-              you have tried. It moves in both directions. As more people complete sprints, the model also learns from what
-              happened to profiles like yours, and it reports how many such profiles that estimate rests on.
+              <strong className="font-medium text-ink">A Career map.</strong> All 205 career paths in fit bands, with what the
+              work involves day to day, how people get in, how it pays and the role you could realistically start in. It is a
+              way to decide which careers to look into first, not a plan you have to follow.
             </p>
           </Section>
 
-          <Section n="07" title="What we don't do">
+          <Section n="06" title="What we don't do">
             <ul className="flex flex-col gap-3">
               {[
                 "We do not use genetic, DNA, hormonal or brain-chemistry data. The science does not support using it to choose a career, and we would not use it if it did.",
                 "We do not promise a single true calling. Most people could do well in several career paths.",
+                "We do not coach you into a career or set you tasks. The report and the map are information; what you do with them is up to you.",
                 "We do not hide uncertainty. If a confidence interval is wide, you will see that it is wide.",
                 "We do not sell your data.",
               ].map((t, i) => (
@@ -255,7 +245,7 @@ export default function MethodPage() {
           </Section>
 
           <section id="references" className="mt-16 scroll-mt-24 border-t border-ink pt-3" aria-labelledby="refs-h">
-            <p className="label text-ink">§ 08</p>
+            <p className="label text-ink">§ 07</p>
             <h2 id="refs-h" className="mt-4 text-h2 font-medium text-ink">
               References
             </h2>

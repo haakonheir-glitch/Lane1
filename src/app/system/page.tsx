@@ -25,17 +25,13 @@ import { SectionHeader } from "@/components/report/SectionHeader";
 import { LimitationsBox } from "@/components/report/LimitationsBox";
 import { EmptyState } from "@/components/report/EmptyState";
 import { LaneRow } from "@/components/lanes/LaneRow";
-import { SprintCard } from "@/components/sprints/SprintCard";
-import { EvidenceTimeline, TimelineLegend } from "@/components/evidence/EvidenceTimeline";
-import { ConvictionChart } from "@/components/evidence/ConvictionChart";
 import { ProgressBar } from "@/components/assess/ProgressBar";
 import { Wordmark } from "@/components/shell/Wordmark";
 import { ThemeToggle } from "@/components/shell/ThemeToggle";
 import { SystemDemos } from "./SystemDemos";
 import { BandTag, FitIndicator } from "@/components/lanes/FitIndicator";
 import { BAND_ORDER } from "@/lib/matching/fit";
-import { laneName } from "@/lib/data/lanes";
-import { getSampleEvidence as getEvidence, getSampleLaneMap, getSampleProfile as getProfile, getSampleSprints as getSprints } from "@/lib/data/sample";
+import { getSampleLaneMap, getSampleProfile as getProfile } from "@/lib/data/sample";
 
 export const metadata: Metadata = { title: "Design system", robots: { index: false } };
 
@@ -88,13 +84,11 @@ function Specimen({ name, children, className }: { name: string; children: React
 export default async function SystemPage() {
   // A development tool only: production has no link to it and no route.
   if (process.env.NODE_ENV === "production") notFound();
-  const [{ rows }, profile, sprints, evidence] = await Promise.all([getSampleLaneMap(), getProfile(), getSprints(), getEvidence()]);
+  const [{ rows }, profile] = await Promise.all([getSampleLaneMap(), getProfile()]);
   // One lane from each band (taxonomy order), plus a winner-take-all lane.
   const bandSamples = BAND_ORDER.flatMap((b) => rows.filter((r) => r.band === b).slice(0, 1));
   const wta = rows.find((r) => r.payoff === "winner_take_all" && !bandSamples.includes(r));
   const laneRows = wta ? [...bandSamples, wta] : bandSamples;
-  const laneNames = Object.fromEntries([...new Set([...sprints.map((x) => x.laneId), ...evidence.events.flatMap((e) => (e.laneId ? [e.laneId] : [])), ...evidence.conviction.map((c) => c.laneId)])].map((id) => [id, laneName(id)]));
-  const active = sprints.find((s) => s.status === "active")!;
   const allItems = (["S1", "S2", "S5"] as const).flatMap((id) => sessionPlan(id).blocks.flatMap((b) => b.items));
   const find = (pred: (f: string) => boolean) => allItems.find((i) => pred(i.format.type) && !i.validity)!;
   const asPublic = (i: (typeof allItems)[number]): Extract<PublicStep, { kind: "item" }>["item"] => ({ token: "specimen", text: i.text, format: i.format });
@@ -297,9 +291,6 @@ export default async function SystemPage() {
           <Specimen name="ReasoningProfile" className="mt-12">
             {profile.reasoning ? <ReasoningProfile reasoning={profile.reasoning} /> : null}
           </Specimen>
-          <Specimen name="LineChart · ConvictionChart" className="mt-12">
-            <ConvictionChart series={evidence.conviction} laneNames={laneNames} />
-          </Specimen>
         </Block>
 
         <Block index="06" label="Composite" title="Domain components">
@@ -312,17 +303,6 @@ export default async function SystemPage() {
               ))}
             </ul>
           </Specimen>
-          <div className="mt-12 grid gap-12 lg:grid-cols-2">
-            <Specimen name="SprintCard">
-              <SprintCard sprint={active} laneName={laneName(active.laneId)} />
-            </Specimen>
-            <Specimen name="EvidenceTimeline">
-              <TimelineLegend />
-              <div className="mt-4">
-                <EvidenceTimeline events={evidence.events.slice(-5)} laneNames={laneNames} />
-              </div>
-            </Specimen>
-          </div>
         </Block>
 
         <Block index="07" label="Assessment" title="Response formats (real bank items)">
@@ -337,7 +317,7 @@ export default async function SystemPage() {
           <div className="grid gap-12 lg:grid-cols-2">
             <LimitationsBox title="A profile is a starting hypothesis." items={LIMITATIONS.slice(0, 3)} />
             <div className="flex flex-col gap-10">
-              <EmptyState label="Empty state" title="No sprint running." body="Pick one of the suggestions below." action={<Button size="sm">Choose a career path</Button>} />
+              <EmptyState label="Empty state" title="Not done yet." body="Session S1 unlocks this section." action={<Button size="sm">Start S1</Button>} />
               <Specimen name="Skeleton · hairline shimmer">
                 <Skeleton lines={4} />
               </Specimen>

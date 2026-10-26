@@ -19,14 +19,14 @@ const unnormed = addSelfScores({
   interests: sampleProfile.interests && { ...sampleProfile.interests, scales: sampleProfile.interests.scales.map(strip) },
   personality: sampleProfile.personality && { ...sampleProfile.personality, facets: sampleProfile.personality.facets.map(strip), domains: sampleProfile.personality.domains.map(strip) },
 });
-const lane: ReportLane = { name: "B2B sales", family: "Sales", band: "strong", drivers: ["Enterprising interests"], payoff: "Base plus variable pay", winnerTakeAll: false, entry: "Open", howToTry: "Real sprint", listedBecause: "strong_fit" };
+const lane: ReportLane = { name: "B2B sales", family: "Sales", band: "strong", drivers: ["Enterprising interests"], payoff: "Base plus variable pay", winnerTakeAll: false, entry: "Open", dayToDay: ["Finding new customers"], listedBecause: "strong_fit" };
 const facts = buildReportFacts(unnormed, [lane], { current: "salgssjef", considering: ["YouTuber"] });
 
 const report = (text: string): WrittenReport => ({
   headline: "You lean toward persuading and leading.",
   overview: [text],
   sections: [{ id: "interests", title: "Interests", paragraphs: ["Enterprising is your strongest interest."] }],
-  nextSteps: ["Try a two-week sales sprint.", "Finish session S3.", "Talk to three people in sales."],
+  pathsToLookInto: ["Most people get into sales through an entry-level role.", "The day-to-day work is finding new customers.", "Pay is a base plus variable pay."],
   caveats: ["Your scores are compared with yourself only."],
 });
 

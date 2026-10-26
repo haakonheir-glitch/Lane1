@@ -10,7 +10,10 @@ import type { ReportFacts } from "./facts";
 import type { WrittenReport } from "./schema";
 import { writeReport } from "./generate";
 
-export const factsHash = (facts: ReportFacts) => createHash("sha256").update(JSON.stringify(facts)).digest("hex");
+/** Bump when the report's instructions or shape change, so stored reports are written again. */
+export const REPORT_FORMAT = 2;
+
+export const factsHash = (facts: ReportFacts) => createHash("sha256").update(`${REPORT_FORMAT}:${JSON.stringify(facts)}`).digest("hex");
 
 export type StoredReport = { report: WrittenReport; model: string; createdAt: Date; factsHash: string };
 

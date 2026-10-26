@@ -4,7 +4,7 @@
  */
 import type { ProfileScores } from "../scoring/profile";
 import type { ScaleScore } from "../scoring/types";
-import { relativeOf } from "../view/profile";
+import { pctBand, relativeOf } from "../view/profile";
 
 export type ReportLane = {
   name: string;
@@ -14,7 +14,8 @@ export type ReportLane = {
   payoff: string;
   winnerTakeAll: boolean;
   entry: string;
-  howToTry: string;
+  /** What the work demands day to day (the career path's demand tags, in words). */
+  dayToDay: string[];
   /** Why this lane is in the facts: a strong fit, or one the person said they're considering / work in now. */
   listedBecause: "strong_fit" | "considering" | "current_job";
 };
@@ -65,11 +66,11 @@ export function buildReportFacts(p: ProfileScores, lanes: ReportLane[], situatio
           areas: p.reasoning.areas.map((a) => ({
             area: a.label,
             result: a.summary,
-            percentileBand90: a.normed?.percentileBand ?? null,
+            percentileBand90: a.normed ? pctBand(a.normed.percentileBand) : null,
             normConfidence: a.normed ? (a.normConfidence ?? "low") : null,
             tag: TAG[areaTags[a.id] ?? "none"],
           })),
-          generalAbilityPercentileBand90: p.reasoning.generalAbility?.percentileBand ?? null,
+          generalAbilityPercentileBand90: p.reasoning.generalAbility ? pctBand(p.reasoning.generalAbility.percentileBand) : null,
         }
       : null,
     behaviour: p.behaviour

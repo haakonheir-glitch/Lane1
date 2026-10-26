@@ -371,7 +371,7 @@ if (only.includes("S1") || only.includes("S2")) {
   }
 } else if (ownResults) throw new Error("profile: own results shown before any session was done");
 
-// Career map: onboarding answers show up, filters work client-side, a lane opens, plans exist
+// Career map: onboarding answers show up, filters work client-side, a lane opens, removed pages redirect
 await p.goto(base + "/lanes");
 await p.getByText("Your current career").first().waitFor();
 // Count in the map's own lists (the summary at the top repeats named lanes).
@@ -381,7 +381,7 @@ const summary = () => p.locator("p.mt-8 span.label").first().innerText();
 const before = await summary();
 // Compare like with like: innerText is upper-cased by CSS, textContent isn't.
 const beforeText = await p.locator("p.mt-8 span.label").first().textContent();
-await p.getByRole("button", { name: /^Interview & shadow/ }).click();
+await p.getByRole("button", { name: /^Licence needed/ }).click();
 await p.waitForFunction((b) => document.querySelector("p.mt-8 span.label")?.textContent !== b, beforeText);
 const after = await summary();
 if (after === before) throw new Error("lane filters: the summary didn't change");
@@ -392,16 +392,16 @@ const panel = p.locator("[aria-labelledby] h2", { hasText: "B2B sales" }).first(
 await panel.waitFor();
 await p.getByText(/^You are here$/i).first().waitFor();
 await p.getByText(/^You'd start here$/i).first().waitFor();
-log("lane detail: current job marked, entry point highlighted");
-for (const [id, h1] of [["b2b_sales", /for real/], ["software_engineering", /^Practice tasks/], ["legal_practice", /^Interview and shadow/]] as const) {
-  await p.goto(`${base}/lanes/${id}/plan`);
-  const text = await p.locator("h1").innerText();
-  if (!h1.test(text)) throw new Error(`plan ${id}: unexpected heading "${text}"`);
+await p.getByText(/^About this career path$/i).first().waitFor();
+log("lane detail: current job marked, entry point highlighted, about block shown");
+for (const path of ["/sprints", "/sprints/sp-sales-calls", "/evidence", "/lanes/legal_practice/plan"]) {
+  await p.goto(base + path);
+  if (new URL(p.url()).pathname !== "/lanes") throw new Error(`${path} should redirect to /lanes, landed on ${p.url()}`);
 }
-log("plans: real sprint, practice tasks, interview & shadow");
+log("removed pages: /sprints, /evidence and plans redirect to /lanes");
 
 // Pages render
-for (const path of ["/profile", "/lanes", "/sprints", "/evidence", "/settings", "/method", "/system"]) {
+for (const path of ["/profile", "/lanes", "/settings", "/method", "/system"]) {
   const r = await p.goto(base + path);
   if (!r || r.status() >= 400) throw new Error(`${path} → ${r?.status()}`);
 }

@@ -5,7 +5,7 @@
  */
 import type { ProfileScores } from "@/lib/scoring/profile";
 import type { ScaleScore } from "@/lib/scoring/types";
-import { fmtBand, relativeOf } from "./profile";
+import { fmtBand, fmtPct, listWords as list, relativeOf } from "./profile";
 
 export type KeyFigure = {
   id: "interests" | "values" | "personality" | "reasoning";
@@ -71,7 +71,7 @@ export function keyFigures(p: ProfileScores): KeyFigure[] {
     {
       id: "reasoning",
       label: "Reasoning",
-      value: general ? `P${general.percentileBand[0]}–${general.percentileBand[1]}` : null,
+      value: general ? fmtPct(general.percentileBand) : null,
       detail: general ? "General reasoning · 90% range" : p.reasoning ? "Not enough scored items" : "Sessions S3 and S4",
       source: p.reasoning ? "Provisional norms · 5 tasks" : "Not done yet",
     },
@@ -86,35 +86,57 @@ export function basisLine(p: ProfileScores): string {
   return parts.join(" · ");
 }
 
-/** One plain sentence that leads each section. Hedged where the measurement is. */
+/** One plain sentence that leads each section. Only tagged differences are stated as findings. */
 export function findings(p: ProfileScores) {
   const i = p.interests;
   const ranked = i ? [...i.scales].sort((a, b) => (b.raw ?? 0) - (a.raw ?? 0)) : [];
+  const interestRel = i ? relativeOf(i.scales) : {};
   const values = p.values?.filter((v) => v.visibility === "user").sort((a, b) => a.rank - b.rank) ?? [];
   const domains = p.personality?.domains.filter((d) => zOf(d) !== null) ?? [];
   const domainRel = relativeOf(domains);
-  const strengths = domains.filter((d) => domainRel[d.id] === "strength").map((d) => d.label);
-  const areas = p.reasoning?.areas ?? [];
-  const areaRel = relativeOf(areas);
-  const areaStrengths = areas.filter((a) => areaRel[a.id] === "strength").map((a) => a.label);
-  const list = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}` : (xs[0] ?? ""));
+  const higher = domains.filter((d) => domainRel[d.id] === "strength").map((d) => d.label);
+  const lower = domains.filter((d) => domainRel[d.id] === "weakness").map((d) => d.label);
+  const { strengths: areaStrengths, weaknesses: areaWeaknesses } = reasoningTags(p);
+  const s = (xs: string[]) => (xs.length === 1 ? "s" : "");
 
   return {
     interests: i
       ? i.hollandCode
-        ? `${ranked[0]!.label} first, then ${ranked[1]!.label} and ${ranked[2]!.label}.`
+        ? interestRel[ranked[0]!.id] === "strength"
+          ? `${ranked[0]!.label} clearly leads, then ${ranked[1]!.label} and ${ranked[2]!.label}.`
+          : `${ranked[0]!.label} first, then ${ranked[1]!.label} and ${ranked[2]!.label}, though the gaps are within measurement error.`
         : "Your six interest areas sit close together; no single area leads yet."
       : null,
     values: values.length > 1 ? `${values[0]!.label} matters most to you, then ${values[1]!.label}.` : null,
     personality: domains.length
-      ? strengths.length
-        ? `${list(strengths)} stand${strengths.length === 1 ? "s" : ""} out from the rest of your profile.`
+      ? higher.length || lower.length
+        ? [higher.length ? `${list(higher)} stand${s(higher)} out above the rest of your profile` : "", lower.length ? `${list(lower)} sit${s(lower)} clearly below it` : ""].filter(Boolean).join("; ") + "."
         : "No domain stands out from the others by more than the measurement can resolve."
       : null,
-    reasoning: areas.length
-      ? areaStrengths.length
-        ? `${list(areaStrengths)} came out as a clear relative strength.`
-        : "No reasoning area stands out clearly from the others."
+    reasoning: p.reasoning?.areas.length
+      ? areaStrengths.length && areaWeaknesses.length
+        ? `${list(areaStrengths)} came out as a clear relative strength, and ${list(areaWeaknesses)} as a clear relative weakness.`
+        : areaStrengths.length
+          ? `${list(areaStrengths)} came out as a clear relative strength.`
+          : areaWeaknesses.length
+            ? `${list(areaWeaknesses)} came out as a clear relative weakness; the other areas can't be told apart.`
+            : "No reasoning area stands out clearly from the others."
       : null,
   };
+}
+
+/** Reasoning areas tagged as a relative strength or weakness. */
+export function reasoningTags(p: ProfileScores) {
+  const areas = p.reasoning?.areas ?? [];
+  const rel = relativeOf(areas);
+  return { strengths: areas.filter((a) => rel[a.id] === "strength").map((a) => a.label), weaknesses: areas.filter((a) => rel[a.id] === "weakness").map((a) => a.label) };
+}
+
+/** The reasoning section's heading, matching its tags. */
+export function reasoningTitle(p: ProfileScores) {
+  const { strengths, weaknesses } = reasoningTags(p);
+  if (strengths.length && weaknesses.length) return "Where your reasoning is relatively strongest and weakest";
+  if (weaknesses.length) return "Where your reasoning is relatively weakest";
+  if (strengths.length) return "Where your reasoning is relatively strongest";
+  return "How your reasoning areas compare";
 }

@@ -3,7 +3,7 @@
  * results (src/lib/data/lanes.ts), so the browser never loads the full taxonomy.
  */
 import type { Band, Driver, EntryNote } from "../matching";
-import type { EntryId, FamilyId, LaneId, LevelId, ModeId, PayoffId, SprintId } from "../taxonomy/generated";
+import type { EntryId, FamilyId, LaneId, LevelId, ModeId, PayoffId } from "../taxonomy/generated";
 
 export type LaneSort = "fit" | "fit-payoff";
 export type LaneView = "family" | "band";
@@ -15,7 +15,6 @@ export type LaneRowData = {
   familyName: string;
   payoff: PayoffId;
   entry: EntryId;
-  sprint: SprintId;
   modes: ModeId[];
   band: Band;
   /** Fit relative to the person's average lane, z units; null without enough data. */
@@ -39,18 +38,14 @@ export type LadderRow = {
   marker: "start" | "current" | "above" | "below";
 };
 
-export type NextStep =
-  | { kind: "sprint"; label: string; href: string; detail: string }
-  | { kind: "practice"; label: string; href: string; detail: string }
-  | { kind: "shadow"; label: string; href: string; detail: string };
-
 export type LaneDetail = {
   row: LaneRowData;
   description: string;
   riasec: string;
   payoffText: string;
   entryText: string;
-  sprintText: string;
+  /** What the work demands day to day, from the career path's demand tags. */
+  dayToDay: string[];
   ladderName: string;
   ladder: LadderRow[];
   entryNote: EntryNote;
@@ -60,7 +55,6 @@ export type LaneDetail = {
   /** Estimated position on the payoff curve with its 90% range (conceptual, 0–1). */
   payoffPosition: number | null;
   payoffRange: [number, number] | null;
-  next: NextStep;
   isco: { code: string; label: string }[];
 };
 

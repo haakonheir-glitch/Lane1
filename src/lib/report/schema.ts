@@ -15,11 +15,13 @@ export const WrittenReportSchema = z.object({
       }),
     )
     .describe("One section per part of the profile that has data, in the order listed in the instructions."),
-  nextSteps: z.array(z.string()).describe("Three concrete next steps, each one sentence."),
+  pathsToLookInto: z
+    .array(z.string())
+    .describe("Exactly three bullets, one sentence each, saying what is worth finding out about the top career paths: how people get in, what the day-to-day work is, and how the pay works. Information, not instructions."),
   caveats: z.array(z.string()).describe("What this report can't tell the person, specific to their data."),
 });
 
 export type WrittenReport = z.infer<typeof WrittenReportSchema>;
 
 /** All prose in a report, for checks. */
-export const reportText = (r: WrittenReport) => [r.headline, ...r.overview, ...r.sections.flatMap((s) => [s.title, ...s.paragraphs]), ...r.nextSteps, ...r.caveats].join("\n");
+export const reportText = (r: WrittenReport) => [r.headline, ...r.overview, ...r.sections.flatMap((s) => [s.title, ...s.paragraphs]), ...(r.pathsToLookInto ?? []), ...r.caveats].join("\n");

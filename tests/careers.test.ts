@@ -46,4 +46,11 @@ describe("Career map picks", () => {
     expect(byName("Politics & elected office")).toBe("other");
     expect(byName("Nursing & midwifery")).toBe("other");
   });
+
+  it("never lists nonprofit, care or coaching work as corporate", () => {
+    for (const l of LANES.filter((l) => ["healthcare", "care_social", "education"].includes(l.family) || l.id === "sports_coaching")) {
+      expect(careerCategory(l), l.name).not.toBe("corporate");
+    }
+    expect(careerCategory(LANES.find((l) => l.id === "nonprofit")!)).toBe("other");
+  });
 });

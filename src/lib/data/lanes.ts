@@ -7,13 +7,11 @@ import "server-only";
 import { cache } from "react";
 import { FAMILIES, LANES, LEVELS, getFamily, getLane, ladderOf, laneModes, taxonomy } from "../taxonomy";
 import type { Lane, LaneId, LevelId, Role } from "../taxonomy/generated";
-import { matchLanes, rankRoles, startingRoles, entryPoint, type Experience, type LaneMatch } from "../matching";
+import { matchLanes, rankRoles, type Experience, type LaneMatch } from "../matching";
 import { normalCdf, Z90 } from "../scoring/core";
 import type { ProfileScores } from "../scoring/profile";
 import { TAG_NOUN } from "../matching/roles";
-import { planFor } from "../lanes/plans";
-import type { CareerCategory, CareerPick, CareerPicks, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, NextStep, RoleRef } from "../lanes/types";
-import type { Sprint } from "../types";
+import type { CareerCategory, CareerPick, CareerPicks, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, RoleRef } from "../lanes/types";
 import type { ExperienceAnswers } from ".";
 import type { ReportLane } from "../report/facts";
 
@@ -30,7 +28,6 @@ function toRow(lane: Lane, m: LaneMatch, exp: ExperienceAnswers): LaneRowData {
     familyName: getFamily(lane.family)!.name,
     payoff: lane.payoff,
     entry: lane.entry,
-    sprint: lane.sprint,
     modes: laneModes(lane),
     band: m.band,
     vsAverage: m.vsAverage,
@@ -53,9 +50,16 @@ const toExperience = (exp: ExperienceAnswers): Experience => ({ laneId: exp.curr
 
 const CORPORATE_LADDERS = new Set(["corporate", "professional_firm"]);
 const OWN_PATH_LADDERS = new Set(["independent", "performer", "creator", "founder"]);
+/** Care, health, teaching, nonprofit and coaching work is never listed as corporate, even on a company-style ladder. */
+const NOT_CORPORATE_FAMILIES = new Set(["healthcare", "care_social", "education"]);
+const NOT_CORPORATE_LANES = new Set(["sports_coaching"]);
 /** Corporate needs a company ladder and private employment as the main mode (politics and public health use the corporate ladder too). */
-export const careerCategory = (lane: Pick<Lane, "ladder" | "modes">): CareerCategory =>
-  CORPORATE_LADDERS.has(lane.ladder) && lane.modes[0] === "employed" ? "corporate" : OWN_PATH_LADDERS.has(lane.ladder) ? "own_path" : "other";
+export const careerCategory = (lane: Pick<Lane, "id" | "family" | "ladder" | "modes">): CareerCategory =>
+  CORPORATE_LADDERS.has(lane.ladder) && lane.modes[0] === "employed" && !NOT_CORPORATE_FAMILIES.has(lane.family) && !NOT_CORPORATE_LANES.has(lane.id)
+    ? "corporate"
+    : OWN_PATH_LADDERS.has(lane.ladder)
+      ? "own_path"
+      : "other";
 
 const PICKS = 5;
 
@@ -107,21 +111,8 @@ function ladderRows(lane: Lane, start: LevelId | null, current: LevelId | null):
   }));
 }
 
-function nextStep(lane: Lane, sprints: Sprint[]): NextStep {
-  const own = sprints.find((s) => s.laneId === lane.id && s.status !== "suggested");
-  const planHref = `/lanes/${lane.id}/plan`;
-  if (lane.sprint === "direct") {
-    if (own) return { kind: "sprint", label: own.status === "active" ? "Open your sprint" : "View your sprint", href: `/sprints/${own.id}`, detail: taxonomy.sprint.direct };
-    return { kind: "sprint", label: "Plan a sprint", href: planHref, detail: taxonomy.sprint.direct };
-  }
-  if (lane.sprint === "simulated") {
-    if (own) return { kind: "practice", label: "Open your practice tasks", href: `/sprints/${own.id}`, detail: taxonomy.sprint.simulated };
-    return { kind: "practice", label: "See practice tasks", href: planHref, detail: taxonomy.sprint.simulated };
-  }
-  return { kind: "shadow", label: "Plan interviews and shadowing", href: planHref, detail: taxonomy.sprint.shadow };
-}
 
-export function buildLaneDetail(id: string, profile: ProfileScores, exp: ExperienceAnswers, sprints: Sprint[]): LaneDetail | null {
+export function buildLaneDetail(id: string, profile: ProfileScores, exp: ExperienceAnswers): LaneDetail | null {
   const lane = getLane(id);
   if (!lane) return null;
   const m = matchesFor(profile).get(lane.id)!;
@@ -133,7 +124,7 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
     riasec: lane.riasec,
     payoffText: taxonomy.payoffs[lane.payoff],
     entryText: taxonomy.entry[lane.entry],
-    sprintText: taxonomy.sprint[lane.sprint],
+    dayToDay: lane.tags.map((t) => TAG_NOUN[t]),
     ladderName: ladderOf(lane).name,
     ladder: ladderRows(lane, ranked.entry.level, ranked.entry.current),
     entryNote: ranked.entry.note,
@@ -142,24 +133,12 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
     unscoredTags: m.unscoredTags.map((t) => TAG_NOUN[t]),
     payoffPosition: m.vsAverage !== null ? normalCdf(m.vsAverage) : null,
     payoffRange: m.vsAverage !== null && half !== null ? [normalCdf(m.vsAverage - half), normalCdf(m.vsAverage + half)] : null,
-    next: nextStep(lane, sprints),
     isco: Object.entries(lane.isco_labels).map(([code, label]) => ({ code, label })),
   };
 }
 
-/** The plan page for a lane: sprint, practice tasks or interview-and-shadow. */
-export function buildLanePlan(id: string, exp: ExperienceAnswers) {
-  const lane = getLane(id);
-  if (!lane) return null;
-  const ep = entryPoint(lane, taxonomy, toExperience(exp));
-  const roles = startingRoles(lane, taxonomy, ep);
-  return { lane: { id: lane.id, name: lane.name, familyName: getFamily(lane.family)!.name, sprint: lane.sprint }, plan: planFor(lane, roles.length ? roles : lane.roles.filter((r) => taxonomy.levels[r.level].track !== "mgmt")) };
-}
-
 export const laneName = (id: string) => getLane(id)?.name ?? id;
 
-/** A sample sprint becomes "practice tasks" unless its lane allows real work (sprint = direct). */
-export const withKind = (s: Omit<Sprint, "kind">): Sprint => ({ ...s, kind: getLane(s.laneId)?.sprint === "direct" ? "sprint" : "practice" });
 export const isKnownLane = (id: string): id is LaneId => !!getLane(id);
 
 /**
@@ -185,7 +164,7 @@ export function reportLanes(profile: ProfileScores, exp: ExperienceAnswers): Rep
         payoff: taxonomy.payoffs[lane.payoff],
         winnerTakeAll: lane.payoff === "winner_take_all",
         entry: taxonomy.entry[lane.entry],
-        howToTry: taxonomy.sprint[lane.sprint],
+        dayToDay: lane.tags.map((t) => TAG_NOUN[t]),
         listedBecause: why,
       },
     ];

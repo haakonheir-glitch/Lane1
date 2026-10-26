@@ -10,21 +10,20 @@ import { Button } from "@/components/ui/Button";
 import { LaneRow } from "./LaneRow";
 import { LaneDetailPanel } from "./LaneDetailPanel";
 import { BAND_ORDER, bandLabel, sortMatches, type Band } from "@/lib/matching/fit";
-import { entryLabel, modeLabel, payoffLabel, sprintLabel } from "@/lib/lanes/labels";
+import { entryLabel, entryTerm, modeLabel, payoffLabel, payoffTerm } from "@/lib/lanes/labels";
 import type { LaneDetail, LaneFilterVocab, LaneRowData, LaneSort, LaneView } from "@/lib/lanes/types";
-import type { EntryId, ModeId, PayoffId, SprintId } from "@/lib/taxonomy/generated";
+import type { EntryId, ModeId, PayoffId } from "@/lib/taxonomy/generated";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 import { useFocusTrap } from "@/lib/hooks/useFocusTrap";
 import { cn } from "@/lib/cn";
 
-type Filters = { family: string; mode: ModeId | "all"; payoff: PayoffId | "all"; entry: EntryId | "all"; sprint: SprintId | "all" };
-type ChipKey = "mode" | "payoff" | "entry" | "sprint";
+type Filters = { family: string; mode: ModeId | "all"; payoff: PayoffId | "all"; entry: EntryId | "all" };
+type ChipKey = "mode" | "payoff" | "entry";
 
-const CHIPS: { key: ChipKey; label: string; labels: Record<string, string> }[] = [
+const CHIPS: { key: ChipKey; label: string; labels: Record<string, string>; terms?: Record<string, string> }[] = [
   { key: "mode", label: "Work mode", labels: modeLabel },
-  { key: "payoff", label: "Payoff", labels: payoffLabel },
-  { key: "entry", label: "Entry", labels: entryLabel },
-  { key: "sprint", label: "Try it", labels: sprintLabel },
+  { key: "payoff", label: "Pay", labels: payoffLabel, terms: payoffTerm },
+  { key: "entry", label: "Getting in", labels: entryLabel, terms: entryTerm },
 ];
 
 const pick = <T extends string>(v: string | null, allowed: Record<string, string>): T | "all" => (v && v in allowed ? (v as T) : "all");
@@ -34,12 +33,11 @@ function matches(l: LaneRowData, f: Filters, skip?: keyof Filters) {
     (skip === "family" || f.family === "all" || l.familyId === f.family) &&
     (skip === "mode" || f.mode === "all" || l.modes.includes(f.mode)) &&
     (skip === "payoff" || f.payoff === "all" || l.payoff === f.payoff) &&
-    (skip === "entry" || f.entry === "all" || l.entry === f.entry) &&
-    (skip === "sprint" || f.sprint === "all" || l.sprint === f.sprint)
+    (skip === "entry" || f.entry === "all" || l.entry === f.entry)
   );
 }
 
-function ChipRow({ label, options, value, onChange }: { label: string; options: { value: string; label: string; count: number }[]; value: string; onChange: (v: string) => void }) {
+function ChipRow({ label, options, value, onChange }: { label: string; options: { value: string; label: string; count: number; title?: string }[]; value: string; onChange: (v: string) => void }) {
   return (
     <div className="flex items-baseline gap-4">
       <span className="w-20 shrink-0 label text-ink-3">{label}</span>
@@ -53,6 +51,7 @@ function ChipRow({ label, options, value, onChange }: { label: string; options: 
                 aria-pressed={active}
                 disabled={o.count === 0 && !active}
                 onClick={() => onChange(o.value)}
+                title={o.title}
                 className={cn("border-b label transition-quiet disabled:opacity-40", active ? "border-ink text-ink" : "border-transparent text-ink-3 hover:text-ink")}
               >
                 {o.label} <span className="text-ink-3">{o.count}</span>
@@ -100,7 +99,6 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
     mode: pick<ModeId>(params.get("mode"), modeLabel),
     payoff: pick<PayoffId>(params.get("payoff"), payoffLabel),
     entry: pick<EntryId>(params.get("entry"), entryLabel),
-    sprint: pick<SprintId>(params.get("sprint"), sprintLabel),
   };
   const selectedId = detail?.row.id;
   // Opened from the result cards above the list (?from=top): the docked column sits down in the
@@ -144,7 +142,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
   for (const l of visible) if (!familyOrder.includes(l.familyId)) familyOrder.push(l.familyId);
   const families = familyOrder.map((id) => ({ id, name: vocab.families.find((x) => x.id === id)!.name, rows: visible.filter((l) => l.familyId === id) }));
 
-  const anyFilter = f.family !== "all" || f.mode !== "all" || f.payoff !== "all" || f.entry !== "all" || f.sprint !== "all";
+  const anyFilter = f.family !== "all" || f.mode !== "all" || f.payoff !== "all" || f.entry !== "all";
 
   const panel = detail ? <LaneDetailPanel detail={detail} sort={sort} onClose={close} headingId={headingId} /> : null;
 
@@ -206,6 +204,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
                   ...Object.entries(c.labels).map(([value, label]) => ({
                     value,
                     label,
+                    title: c.terms?.[value],
                     count: sorted.filter((l) => matches(l, { ...f, [c.key]: value } as Filters)).length,
                   })),
                 ]}
@@ -219,7 +218,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
             {visible.length} of {rows.length} career paths · {bandCounts(visible)}
           </span>
           {anyFilter ? (
-            <button type="button" className="label text-ink-3 underline-offset-4 hover:text-ink hover:underline" onClick={() => setView({ family: null, mode: null, payoff: null, entry: null, sprint: null })}>
+            <button type="button" className="label text-ink-3 underline-offset-4 hover:text-ink hover:underline" onClick={() => setView({ family: null, mode: null, payoff: null, entry: null })}>
               Clear filters
             </button>
           ) : null}
@@ -231,7 +230,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
             title="No career paths match these filters."
             body="Some combinations don't exist, for example winner-take-all career paths you can enter through an apprenticeship."
             action={
-              <Button variant="secondary" size="sm" onClick={() => setView({ family: null, mode: null, payoff: null, entry: null, sprint: null })}>
+              <Button variant="secondary" size="sm" onClick={() => setView({ family: null, mode: null, payoff: null, entry: null })}>
                 Clear filters
               </Button>
             }
@@ -277,7 +276,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
 
         <p className="mt-8 max-w-reading text-small text-ink-3">
           {sort === "fit"
-            ? "Bands compare each career path with your other career paths, not with other people. A career path is a strong fit only when it's clearly above more than half of yours after allowing for measurement error; most can't be told apart that precisely, so they're worth testing. The dot shows fit against your average career path, with a 90% range."
+            ? "Bands compare each career path with your other career paths, not with other people. A career path is a strong fit only when it's clearly above more than half of yours after allowing for measurement error; most can't be told apart that precisely, so they're possible fits. The dot shows fit against your average career path, with a 90% range."
             : "Fit × payoff reorders career paths within each band by how each pays at the level you'd likely reach. Winner-take-all careers drop unless you're likely to reach the top group."}
         </p>
       </div>

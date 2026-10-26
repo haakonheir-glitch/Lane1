@@ -67,7 +67,7 @@ export function SettingsForm({ user }: { user: User }) {
 
       <Row label="Your data" description="Everything Lane holds about you, in one file.">
         <p className="text-small text-ink-2">
-          Includes your answers, game responses, scores, sprints and check-ins as JSON. You can take it anywhere.
+          Includes your answers, game responses, scores and report as JSON. You can take it anywhere.
         </p>
         <a href="/api/export" download className={`${buttonClass({ variant: "secondary" })} mt-4`}>
           Export data (.json)
@@ -84,8 +84,8 @@ export function SettingsForm({ user }: { user: User }) {
 
       <Row label="Delete account" description="Permanent. Cannot be undone.">
         <p className="text-small text-ink-2">
-          Deletes your account, answers, scores, sprints and evidence record immediately. Anonymous counts you already
-          contributed to (for example &quot;people who completed a sprint&quot;) are recomputed without you.
+          Deletes your account, answers, scores and report immediately. Anonymous counts you already contributed to (for
+          example &quot;people who completed the assessment&quot;) are recomputed without you.
         </p>
         <Button variant="secondary" className="mt-4 border-caution text-caution hover:bg-caution hover:text-bg" onClick={() => dialog.current?.showModal()}>
           Delete account…

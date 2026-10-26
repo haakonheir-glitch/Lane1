@@ -28,7 +28,6 @@ export function ReportCover({
     <header>
       <p className="label text-ink-3">
         Profile report <span className="px-1.5 text-ink-4">·</span> {reportId} <span className="px-1.5 text-ink-4">·</span> Updated {updated}
-        <span className="px-1.5 text-ink-4">·</span> {profile.scoringVersion}
         {note}
       </p>
       <h1 className="mt-5 text-display font-medium text-ink">{subject}</h1>

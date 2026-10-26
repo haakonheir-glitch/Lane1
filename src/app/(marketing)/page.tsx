@@ -21,34 +21,37 @@ const problems = [
     body: "School, university and hiring filter on grades and degrees. Almost nothing in that chain asks what you would be best at or most engaged by.",
   },
   {
-    title: "Most people never try the alternatives.",
-    body: "Switching costs years, so people commit early and stay. The career paths they never tried remain a permanent “what if”.",
+    title: "Most people only see a few options.",
+    body: "Careers advice covers the jobs people around you already do. Hundreds of kinds of paid work never come up, so they are never considered.",
   },
   {
-    title: "Doubt fills the gap.",
-    body: "Without evidence, every path looks greener from the outside. People pursue their work without conviction, or keep switching without learning.",
+    title: "Self-tests guess instead of measuring.",
+    body: "Most career quizzes are unvalidated and give one confident answer. They don't say how precise the result is, so a lucky guess and a solid finding look the same.",
   },
 ];
 
 const method = [
-  { n: "01", title: "Profile", body: "Interests, personality, reasoning games and work values, combined into one coherent profile with intervals." },
-  { n: "02", title: "Career map", body: "205 career paths in fit bands against your own strengths, with how each career path actually pays and where you'd realistically start." },
-  { n: "03", title: "Sprints", body: "One-to-three-week real trials of your top career paths. You log performance, improvement and how the work felt." },
-  { n: "04", title: "Evidence", body: "A running record of everything you tried. Conviction builds, or drops, on data rather than on hope." },
+  { n: "01", title: "Assessment", body: "Five short sessions: validated questionnaires on interests, personality and work values, and reasoning tasks generated fresh for you." },
+  { n: "02", title: "Profile report", body: "Every score with its measurement error, the strengths that clearly stand out, a written summary, and what the results can't tell you." },
+  { n: "03", title: "Career map", body: "205 career paths in fit bands against your own strengths, with the day-to-day work, how people get in, how it pays and where you'd realistically start." },
 ];
 
 const faq = [
   {
     q: "Does this use my DNA?",
-    a: "No, and it never will. Genetic tests cannot tell you which job suits you; the science does not support it, and anyone claiming otherwise is selling certainty that does not exist. Lane uses what you report, how you perform on short tasks, and what happens when you actually try the work.",
+    a: "No, and it never will. Genetic tests cannot tell you which job suits you; the science does not support it, and anyone claiming otherwise is selling certainty that does not exist. Lane uses what you report and how you perform on short reasoning tasks.",
   },
   {
     q: "Is this just another personality test?",
-    a: "The core is a set of validated public instruments: the IPIP-NEO-120 personality inventory, the O*NET® Interest Profiler and Work Importance Locator, plus reasoning tasks generated fresh for every person. Lane adds its own experimental questions for career paths those instruments miss; they are collected but not used in your results until a pilot validates them. Even so, a test predicts job outcomes only modestly. The point of Lane is the second half: short real-world sprints that produce evidence a questionnaire cannot.",
+    a: "The core is a set of validated public instruments: the IPIP-NEO-120 personality inventory, the O*NET® Interest Profiler and Work Importance Locator, plus reasoning tasks generated fresh for every person. Lane adds its own experimental questions for career paths those instruments miss; they are collected but not used in your results until a pilot validates them. Every score is shown with its measurement error, and a difference is called a strength only when it is larger than that error. Even good tests predict job outcomes only modestly, and the report says so.",
   },
   {
     q: "How long does it take?",
-    a: "About 135 minutes in total, split into five sessions of 20–30 minutes, because answers get careless after half an hour. You get part of your profile after each one. A sprint asks for roughly 30–60 minutes a day for one to two weeks.",
+    a: "About 135 minutes in total, split into five sessions of 20–30 minutes, because answers get careless after half an hour. You get part of your profile after each one, and you can stop and come back at any point. Once all five are done, nothing else is asked of you.",
+  },
+  {
+    q: "What do I get at the end?",
+    a: "Two things. A profile report: your interests, values, personality and reasoning, each with its measurement error, a short written summary, and the limits of what it can say. And a Career map: all 205 career paths sorted into fit bands, each with the day-to-day work, how people get in, how it pays and the role you could realistically start in.",
   },
   {
     q: "What does “fit relative to me” mean?",
@@ -56,7 +59,7 @@ const faq = [
   },
   {
     q: "Why bands instead of a ranking?",
-    a: "With 205 career paths, number 5 and number 25 are often the same within measurement error, so a ranking would claim precision the test doesn't have. A career path is a strong fit only when it's clearly ahead of most of your other career paths; the many that can't be told apart are worth testing. Sprint evidence settles what a questionnaire can't.",
+    a: "With 205 career paths, number 5 and number 25 are often the same within measurement error, so a ranking would claim precision the test doesn't have. A career path is a strong fit only when it's clearly ahead of most of your other career paths; the many that can't be told apart are shown as possible fits, so you can see where the measurement stops.",
   },
   {
     q: "What happens to my data?",
@@ -66,7 +69,7 @@ const faq = [
 
 export default async function LandingPage() {
   const [{ rows }, profile, index] = await Promise.all([getSampleLaneMap(), getProfile(), getTaxonomyIndex()]);
-  // One strong fit, one worth testing and one unlikely, each from a different family, so the
+  // One strong fit, one possible fit and one unlikely, each from a different family, so the
   // excerpt shows what the bands mean.
   const ordered = sortMatches(rows.map((r) => ({ match: r, name: r.name, row: r })), "fit").map((x) => x.row);
   const excerpt: typeof ordered = [];
@@ -83,11 +86,11 @@ export default async function LandingPage() {
         <div className="col-span-12 lg:col-span-6">
           <p className="label text-ink-3">Career fit, measured · v0.1</p>
           <h1 id="hero-h" className="mt-8 text-display font-medium text-ink">
-            Find the work you&apos;re built for. With evidence.
+            Find the work you&apos;re built for.
           </h1>
           <p className="mt-8 max-w-[52ch] text-body-l text-ink-2">
-            Tests can narrow the field. Only trying the work can settle it. Lane maps the career paths that fit you, runs short
-            real-world trials of the best ones, and keeps the record.
+            Validated tests of your interests, personality, values and reasoning, matched against {totalIndexed} career paths.
+            Measured, not guessed.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <ButtonLink href="/signup">Start your profile</ButtonLink>
@@ -107,7 +110,7 @@ export default async function LandingPage() {
               <span className="label text-ink-3">Career map · one career from each band</span>
               <span className="label text-ink-3">Sample</span>
             </div>
-            <ul aria-label="Sample career paths: a strong fit, one worth testing and an unlikely one">
+            <ul aria-label="Sample career paths: a strong fit, a possible fit and an unlikely one">
               {excerpt.map((l, i) => (
                 <li key={l.id} className={i < excerpt.length - 1 ? "border-b border-rule" : ""}>
                   <SampleCareerRow lane={l} />
@@ -138,8 +141,8 @@ export default async function LandingPage() {
 
       {/* Method */}
       <section id="method" className="scroll-mt-20 py-16" aria-labelledby="method-h">
-        <SectionHeader index="02" label="Method" title="A loop, not a verdict." id="method-h" />
-        <ol className="grid gap-8 md:grid-cols-4 md:gap-0">
+        <SectionHeader index="02" label="Method" title="A map, not a verdict." id="method-h" />
+        <ol className="grid gap-8 md:grid-cols-3 md:gap-0">
           {method.map((m, i) => (
             <li key={m.n} className="relative flex gap-4 md:flex-col md:pr-8">
               <div className="flex shrink-0 items-center md:w-full">
@@ -147,11 +150,6 @@ export default async function LandingPage() {
                   {m.n}
                 </span>
                 {i < method.length - 1 ? <span aria-hidden className="hidden h-px flex-1 bg-rule-strong md:block" /> : null}
-                {i === method.length - 1 ? (
-                  <span aria-hidden className="ml-3 hidden font-mono text-label text-ink-3 md:inline">
-                    ↺ 02
-                  </span>
-                ) : null}
               </div>
               <div className="md:mt-6">
                 <h3 className="text-h3 font-medium text-ink">{m.title}</h3>
@@ -161,8 +159,8 @@ export default async function LandingPage() {
           ))}
         </ol>
         <p className="mt-10 max-w-reading text-small text-ink-3">
-          Sprint evidence flows back into the Career map, so the map you see after three sprints is not the one you
-          started with.
+          The map shows where your profile fits best and why. It doesn&apos;t tell you what to do; it shows which careers are
+          worth looking into first.
         </p>
       </section>
 
@@ -176,7 +174,7 @@ export default async function LandingPage() {
           <div className="grid gap-10 p-6 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-4">
               <p className="label text-ink-3">§ 02 · Interests · O*NET® Interest Profiler</p>
-              {profile.interests ? <RadarProfile dimensions={radarDims(profile.interests)} showCi={false} className="mt-4" /> : null}
+              {profile.interests ? <RadarProfile dimensions={radarDims(profile.interests)} showCi={false} scale={["10", "30", "50"]} className="mt-4" /> : null}
             </div>
             <div className="lg:col-span-8">
               <p className="mb-4 label text-ink-3">§ 04 · Personality · IPIP-NEO-120 · T with 90% interval</p>
@@ -187,48 +185,40 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* Why tests alone fail */}
+      {/* What a profile can and can't tell you */}
       <section className="py-16" aria-labelledby="why-h">
-        <SectionHeader index="04" label="Why tests alone fail" title="A questionnaire can only say so much." id="why-h" />
+        <SectionHeader index="04" label="Limits" title="What a profile can and can&apos;t tell you." id="why-h" />
         <div className="grid-12 gap-y-12">
           <div className="col-span-12 flex flex-col gap-4 text-body-l text-ink-2 lg:col-span-6">
             <p>
               Interest and personality measures are useful. Decades of research show they relate to job performance and
-              satisfaction, but the relationships are modest. Most of what decides whether a line of work suits you does
-              not show up on a form.
+              satisfaction, but the relationships are modest. A profile can show which kinds of work suit how you think and
+              what you care about; it can&apos;t say how a particular job, team or year will go.
             </p>
             <p>
-              It shows up when you do the work: how quickly you improve, whether the hard days still feel worth it, and
-              whether you want to come back tomorrow. That is what sprints measure.
+              So Lane shows every score with its measurement error, calls a difference a strength only when it is larger than
+              that error, and sorts career paths into bands rather than a precise ranking.
             </p>
           </div>
           <figure className="col-span-12 lg:col-span-5 lg:col-start-8">
             <p className="label text-ink-3">What decides fit · illustrative</p>
             <div className="mt-6 flex h-1 w-full" aria-hidden>
-              <span className="h-full w-[28%] bg-ink" />
-              <span className="h-full w-[30%] bg-accent" />
+              <span className="h-full w-[35%] bg-ink" />
               <span className="h-full flex-1 bg-rule" />
             </div>
             <ul className="mt-6 flex flex-col gap-4">
               <li className="grid grid-cols-[12px_1fr] items-baseline gap-3">
                 <span className="size-2 bg-ink" aria-hidden />
                 <span>
-                  <span className="block text-body text-ink">What a test can predict</span>
-                  <span className="text-small text-ink-3">Interests, personality and reasoning. A real but limited signal.</span>
-                </span>
-              </li>
-              <li className="grid grid-cols-[12px_1fr] items-baseline gap-3">
-                <span className="size-2 bg-accent" aria-hidden />
-                <span>
-                  <span className="block text-body text-ink">What trial data adds</span>
-                  <span className="text-small text-ink-3">Rate of improvement, energy and the wish to continue.</span>
+                  <span className="block text-body text-ink">What a profile can tell you</span>
+                  <span className="text-small text-ink-3">Your interests, values, personality and reasoning, and which kinds of work use them. A real but limited signal.</span>
                 </span>
               </li>
               <li className="grid grid-cols-[12px_1fr] items-baseline gap-3">
                 <span className="size-2 border border-ink-4" aria-hidden />
                 <span>
-                  <span className="block text-body text-ink">What no one can predict</span>
-                  <span className="text-small text-ink-3">Luck, timing, the people you meet. We don&apos;t pretend otherwise.</span>
+                  <span className="block text-body text-ink">What it can&apos;t</span>
+                  <span className="text-small text-ink-3">The specific job and team, effort, luck, timing, the people you meet. We don&apos;t pretend otherwise.</span>
                 </span>
               </li>
             </ul>
@@ -297,7 +287,12 @@ export default async function LandingPage() {
       {/* Closing CTA */}
       <section className="border-t border-ink pt-12" aria-label="Start">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <p className="max-w-[24ch] text-h2 font-medium text-ink">Evidence, not horoscopes.</p>
+          <div>
+            <p className="max-w-[24ch] text-h2 font-medium text-ink">Evidence, not horoscopes.</p>
+            <p className="mt-3 max-w-[52ch] text-small text-ink-2">
+              Validated instruments, every score shown with its measurement error, and no claim the data can&apos;t support.
+            </p>
+          </div>
           <ButtonLink href="/signup">Start your profile</ButtonLink>
         </div>
       </section>

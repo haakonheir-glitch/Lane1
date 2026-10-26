@@ -189,7 +189,7 @@ describe("matchLanes", () => {
     expect(m.unscoredTags).toEqual(["competition"]);
   });
 
-  it("calls everything 'worth testing' when measurement can't separate lanes", () => {
+  it("calls everything a possible fit ('testing') when measurement can't separate lanes", () => {
     const noisy = profile({ interests: { E: 2, S: 1, R: -1.5, C: -0.5 }, facets: { E3: 1 }, r: 0 });
     expect(new Set(matchLanes(noisy, tax).map((x) => x.band))).toEqual(new Set(["testing"]));
   });

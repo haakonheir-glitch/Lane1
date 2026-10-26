@@ -41,10 +41,16 @@ export function FitIndicator({ vsAverage, se, className }: { vsAverage: number |
   );
 }
 
-/** Words for the indicator, for screen readers and the detail panel. */
-export function fitWords(vsAverage: number | null): string {
-  if (vsAverage === null) return "not enough data";
+/**
+ * Words for the indicator, for screen readers and the detail panel. When the band is known the
+ * words follow it, so a tag and its sentence never disagree ("Strong fit: … clearly above …").
+ */
+export function fitWords(vsAverage: number | null, band?: Band): string {
+  if (vsAverage === null || band === "insufficient") return "not enough data";
+  if (band === "strong") return "clearly above most of your other career paths";
+  if (band === "unlikely") return "clearly below most of your other career paths";
   const a = Math.abs(vsAverage);
-  const how = a < 0.15 ? "about the same as" : a < 0.5 ? (vsAverage > 0 ? "a little above" : "a little below") : vsAverage > 0 ? "well above" : "well below";
-  return `${how} your average career path`;
+  const how = a < 0.15 ? "about the same as" : vsAverage > 0 ? "a little above" : "a little below";
+  if (band === "testing") return `${how} your average career path, within measurement error`;
+  return `${a >= 0.5 ? (vsAverage > 0 ? "well above" : "well below") : how} your average career path`;
 }

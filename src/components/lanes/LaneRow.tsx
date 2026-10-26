@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import { PayoffGlyph } from "@/components/data/PayoffGlyph";
 import { normalCdf } from "@/lib/scoring/core";
-import { entryLabel, payoffLabel, sprintLabel } from "@/lib/lanes/labels";
+import { entryLabel, entryTerm, payoffLabel, payoffTerm } from "@/lib/lanes/labels";
 import { bandLabel } from "@/lib/matching/fit";
 import type { LaneRowData } from "@/lib/lanes/types";
 import { BandTag, FitIndicator, fitWords } from "./FitIndicator";
@@ -22,14 +22,15 @@ export function LaneRow({ lane, active, onSelect, showFamily }: { lane: LaneRowD
         </span>
         <span className="label text-ink-3">
           {showFamily ? `${lane.familyName} · ` : ""}
-          {payoffLabel[lane.payoff]} · {entryLabel[lane.entry]} · {sprintLabel[lane.sprint]}
+          <span title={`Pay pattern: ${payoffTerm[lane.payoff]}`}>{payoffLabel[lane.payoff]}</span> ·{" "}
+          <span title={`Entry: ${entryTerm[lane.entry]}`}>{entryLabel[lane.entry]}</span>
         </span>
         {lane.payoff === "winner_take_all" ? <span className="text-small text-caution">Median income in this career is low.</span> : null}
       </span>
       <span className="col-start-1 row-start-2 flex items-center gap-3 md:col-start-auto md:row-start-auto">
         <BandTag band={lane.band} />
         <span className="sr-only">
-          {bandLabel[lane.band]}: fit {fitWords(lane.vsAverage)}.
+          {bandLabel[lane.band]}: fit {fitWords(lane.vsAverage, lane.band)}.
         </span>
         <FitIndicator vsAverage={lane.vsAverage} se={lane.se} className="min-w-16 flex-1" />
       </span>

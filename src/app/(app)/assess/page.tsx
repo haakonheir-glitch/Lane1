@@ -27,37 +27,53 @@ export default async function AssessPage() {
     <AppPage title="Assessment" meta={`${done}/5 sessions`}>
       <div className="max-w-content">
         <p className="label text-ink-3">Profile · Assessment</p>
-        <h1 className="mt-4 max-w-[22ch] text-h1 font-medium text-ink">Five sessions. Never more than 30 minutes at a time.</h1>
-        <p className="mt-4 max-w-reading text-body-l text-ink-2">
-          About {total} minutes in total, split so you&apos;re never answering for so long that answers get careless.
-          Each session unlocks part of your profile. Progress is saved after every answer.
-        </p>
+        {next ? (
+          <>
+            <h1 className="mt-4 max-w-[22ch] text-h1 font-medium text-ink">Five sessions. Never more than 30 minutes at a time.</h1>
+            <p className="mt-4 max-w-reading text-body-l text-ink-2">
+              About {total} minutes in total, split so you&apos;re never answering for so long that answers get careless.
+              Each session unlocks part of your profile. Progress is saved after every answer.
+            </p>
 
-        <div className="mt-12 grid grid-cols-2 gap-6 border-t border-ink pt-5 pb-6 sm:grid-cols-3">
-          {[
-            { label: "Sessions", value: `${done}/5`, unit: "done" },
-            { label: "Remaining", value: `~${minutesLeft}`, unit: "min" },
-            { label: "Next", value: next ? next.id : "—", unit: next ? next.title : "all done" },
-          ].map((s) => (
-            <div key={s.label} className="flex flex-col gap-1">
-              <span className="label text-ink-3">{s.label}</span>
-              <span className="font-mono text-h2 text-ink">
-                {s.value} <span className="text-label text-ink-3">{s.unit}</span>
-              </span>
+            <div className="mt-12 grid grid-cols-2 gap-6 border-t border-ink pt-5 pb-6 sm:grid-cols-3">
+              {[
+                { label: "Sessions", value: `${done}/5`, unit: "done" },
+                { label: "Remaining", value: `~${minutesLeft}`, unit: "min" },
+                { label: "Next", value: next.id, unit: next.title },
+              ].map((s) => (
+                <div key={s.label} className="flex flex-col gap-1">
+                  <span className="label text-ink-3">{s.label}</span>
+                  <span className="font-mono text-h2 text-ink">
+                    {s.value} <span className="text-label text-ink-3">{s.unit}</span>
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        ) : (
+          <>
+            <h1 className="mt-4 max-w-[22ch] text-h1 font-medium text-ink">Profile complete.</h1>
+            <p className="mt-4 max-w-reading text-body-l text-ink-2">
+              All five sessions are done. Your profile report sets out what was measured and how precisely; your Career map shows the career paths
+              that fit it best, and what each involves.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3 border-t border-ink pt-6 pb-6">
+              <ButtonLink href="/profile">Read your report</ButtonLink>
+              <ButtonLink href="/lanes">Open your Career map</ButtonLink>
+            </div>
+          </>
+        )}
         <div className="flex flex-col gap-2 border-y border-rule py-4 sm:flex-row sm:items-center sm:justify-between">
           <SessionStrip
             sessions={sessions.map((s) => ({ id: s.id, completedAt: s.status === "completed" ? "done" : null, confidence: s.confidence }))}
             highlight={next?.id}
             className="sm:w-[420px]"
           />
-          <p className="text-small text-ink-2">Your profile builds with every session you finish.</p>
+          <p className="text-small text-ink-2">{next ? "Your profile builds with every session you finish." : "You can review any session, or retake one if your answers have changed."}</p>
         </div>
 
         <section className="mt-16" aria-labelledby="sessions-h">
-          <SectionHeader index="01" label="Sessions" title={next ? "In this order works best" : "All sessions complete"} id="sessions-h" />
+          <SectionHeader index="01" label="Sessions" title={next ? "In this order works best" : "Your sessions"} id="sessions-h" />
           <ol className="border-t border-rule">
             {sessions.map((s) => {
               const pct = Math.round((s.answered / s.total) * 100);

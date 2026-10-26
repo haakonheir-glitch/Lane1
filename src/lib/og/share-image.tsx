@@ -10,7 +10,7 @@ import { getSampleLaneMap } from "@/lib/data/sample";
 import { sortMatches, bandLabel } from "@/lib/matching/fit";
 
 export const SHARE_SIZE = { width: 1200, height: 630 };
-export const SHARE_ALT = "Lane: find the work you're built for, with evidence. A sample Career map with a strong fit, one worth testing and an unlikely one.";
+export const SHARE_ALT = "Lane: find the work you're built for. A sample Career map with a strong fit, a possible fit and an unlikely one.";
 
 const INK = "#111111";
 const INK_2 = "#47494e";
@@ -66,8 +66,8 @@ export async function renderShareImage() {
             <div style={{ ...label, color: INK, fontSize: 20, letterSpacing: 4 }}>LANE</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontFamily: "Geist Medium", fontSize: 64, lineHeight: 1.06, letterSpacing: -2 }}>Find the work you&apos;re built for. With evidence.</div>
-            <div style={{ marginTop: 26, fontSize: 24, lineHeight: 1.4, color: INK_2 }}>A profile matched to 205 career paths, then short real-world trials of the best ones.</div>
+            <div style={{ fontFamily: "Geist Medium", fontSize: 64, lineHeight: 1.06, letterSpacing: -2 }}>Find the work you&apos;re built for.</div>
+            <div style={{ marginTop: 26, fontSize: 24, lineHeight: 1.4, color: INK_2 }}>Validated tests of your interests, personality, values and reasoning, matched against 205 career paths.</div>
           </div>
           <div style={{ ...label }}>Free during the pilot · No card</div>
         </div>

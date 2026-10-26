@@ -13,7 +13,7 @@ export function InterestPanel({ interests }: { interests: InterestScores }) {
   return (
     <div className="grid gap-12 md:grid-cols-12">
       <div className="md:col-span-6 lg:col-span-5">
-        <RadarProfile dimensions={dims} showCi={false} />
+        <RadarProfile dimensions={dims} showCi={false} scale={["10", "30", "50"]} />
       </div>
       <div className="md:col-span-6 lg:col-span-6 lg:col-start-7">
         <table className="w-full border-collapse text-left">

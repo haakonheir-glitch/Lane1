@@ -1,5 +1,5 @@
 import type { LaneRowData } from "@/lib/lanes/types";
-import { plainEntry, plainPayoff, plainSprint } from "@/lib/lanes/labels";
+import { entryLabel, entryTerm, payoffLabel, payoffTerm } from "@/lib/lanes/labels";
 import { bandLabel } from "@/lib/matching/fit";
 import { BandTag, FitIndicator, fitWords } from "@/components/lanes/FitIndicator";
 
@@ -18,12 +18,13 @@ export function SampleCareerRow({ lane }: { lane: LaneRowData }) {
       <span className="flex flex-col items-end gap-2 pt-0.5">
         <BandTag band={lane.band} />
         <span className="sr-only">
-          {bandLabel[lane.band]}: fit {fitWords(lane.vsAverage)}.
+          {bandLabel[lane.band]}: fit {fitWords(lane.vsAverage, lane.band)}.
         </span>
         <FitIndicator vsAverage={lane.vsAverage} se={lane.se} className="w-full" />
       </span>
       <span className="col-span-2 text-small text-ink-2 sm:truncate">
-        {plainPayoff[lane.payoff]} · {plainEntry[lane.entry]} · {plainSprint[lane.sprint]}
+        <span title={`Pay pattern: ${payoffTerm[lane.payoff]}`}>{payoffLabel[lane.payoff]}</span> ·{" "}
+        <span title={`Entry: ${entryTerm[lane.entry]}`}>{entryLabel[lane.entry]}</span>
       </span>
     </div>
   );
