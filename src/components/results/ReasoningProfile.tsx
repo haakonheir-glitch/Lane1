@@ -2,6 +2,7 @@ import type { ProfileScores } from "@/lib/scoring/profile";
 import { fmtPct, pctBand, relativeOf } from "@/lib/view/profile";
 import { NormedBar, NormedFigure } from "./NormedBar";
 import { RelativeTag } from "./RelativeTag";
+import { BRAND } from "@/lib/brand";
 
 /**
  * Reasoning profile (file 14 composite_scores): relative strengths across five areas and one
@@ -45,7 +46,7 @@ export function ReasoningProfile({ reasoning }: { reasoning: NonNullable<Profile
         {reasoning.norms?.provisional ? (
           <p className="mt-4 text-small text-ink-2">
             <span className="label text-ink-3">Provisional norms · </span>
-            Compared with adults 18–35 in Norway, using difficulty estimates made before Lane had pilot data. Ranges may shift once real
+            Compared with adults 18–35 in Norway, using difficulty estimates made before {BRAND.name} had pilot data. Ranges may shift once real
             results are in.
           </p>
         ) : null}

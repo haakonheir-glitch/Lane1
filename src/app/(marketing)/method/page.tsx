@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/Button";
+import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "Method",
-  description: "How Lane builds a profile from validated instruments, matches it to 205 career paths, and where the science stops.",
+  description: `How ${BRAND.name} builds a profile from validated instruments, matches it to 205 career paths, and where the science stops.`,
   alternates: { canonical: "/method" },
 };
 
@@ -90,7 +91,7 @@ export default function MethodPage() {
 
       <article className="col-span-12 lg:col-span-8 lg:col-start-5">
         <p className="label text-ink-3">Method · Working paper v0.1 · October 2026</p>
-        <h1 className="mt-8 text-h1 font-medium text-ink">How Lane works, and where the science stops.</h1>
+        <h1 className="mt-8 text-h1 font-medium text-ink">How {BRAND.name} works, and where the science stops.</h1>
         <p className="mt-6 max-w-reading text-body-l text-ink-2">
           This page explains each step in plain language, with references. Where the research is uncertain or contested,
           we say so.
@@ -101,7 +102,7 @@ export default function MethodPage() {
             <p>
               &ldquo;What am I built for?&rdquo; has no single answer, and no instrument can give one. What we can do is
               measure the things that research links to career fit, with validated instruments and honest error bars, and show
-              which career paths match the results. Lane gives you that information; the decision stays yours.
+              which career paths match the results. {BRAND.name} gives you that information; the decision stays yours.
             </p>
           </Section>
 
@@ -145,7 +146,7 @@ export default function MethodPage() {
               retake it. Nothing is discarded silently.
             </p>
             <p>
-              <strong className="font-medium text-ink">Lane&apos;s own scales</strong> cover what the standard instruments
+              <strong className="font-medium text-ink">{BRAND.name}&apos;s own scales</strong> cover what the standard instruments
               miss for non-corporate career paths: extra interests and values, ten work dispositions (such as variance tolerance and
               setback resilience), an emotion-judgement test,<Cite n={20} /> idea tasks<Cite n={21} /> and life history. They are
               experimental. Your answers are collected for the pilot, but these scales are not shown as results until they meet a
@@ -160,7 +161,7 @@ export default function MethodPage() {
             </h2>
             <div className="mt-6 flex flex-col gap-5 text-body-l text-ink-2">
               <p>
-                A score means something only against a population. Until Lane has its own norm sample (1,000+ people per age
+                A score means something only against a population. Until {BRAND.name} has its own norm sample (1,000+ people per age
                 band), results are compared with the published norms of each instrument and labelled &ldquo;provisional&rdquo;.
                 Those tables are being transcribed from the original sources. Until they are in, your answers are saved and
                 scored, and the results pages show a clearly labelled sample for a fictional person instead of numbers we
@@ -177,14 +178,14 @@ export default function MethodPage() {
 
           <Section n="03" title="Career paths and fit bands">
             <p>
-              Lane maps 205 career paths in 34 families, with 1,883 roles, checked against the international occupation classifications (ISCO-08 and the
+              {BRAND.name} maps 205 career paths in 34 families, with 1,883 roles, checked against the international occupation classifications (ISCO-08 and the
               EU&apos;s ESCO) so that nothing people are paid to do is missing, plus the career paths those lists miss, such as creators and founders.
             </p>
             <p>
               The Career map is <em>ipsative</em>: each career path is scored against your own spread of traits, not against other people. If your
               strongest trait is average by population standards, it is still your strongest trait, and the career paths that use it fit you best.
               Half of a career path&apos;s fit comes from your interests (its RIASEC code), half from what the work demands (persuasion, analysis,
-              precision and so on), each linked to the scales that measure it. Lane&apos;s experimental scales don&apos;t count until a pilot
+              precision and so on), each linked to the scales that measure it. {BRAND.name}&apos;s experimental scales don&apos;t count until a pilot
               validates them.
             </p>
             <p>

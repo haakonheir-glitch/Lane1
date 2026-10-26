@@ -4,12 +4,13 @@ import { GeistMono } from "geist/font/mono";
 import { themeScript } from "@/components/shell/theme-script";
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/lib/site";
 import "./globals.css";
+import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Lane — Evidence, not horoscopes", template: "%s · Lane" },
+  title: { default: `${BRAND.name} — ${BRAND.tagline.replace(/\.$/, "")}`, template: `%s · ${BRAND.name}` },
   description: SITE_DESCRIPTION,
-  openGraph: { type: "website", siteName: "Lane", title: SITE_TITLE, description: SITE_DESCRIPTION, url: "/", locale: "en_GB" },
+  openGraph: { type: "website", siteName: BRAND.name, title: SITE_TITLE, description: SITE_DESCRIPTION, url: "/", locale: "en_GB" },
   twitter: { card: "summary_large_image", title: SITE_TITLE, description: SITE_DESCRIPTION },
 };
 

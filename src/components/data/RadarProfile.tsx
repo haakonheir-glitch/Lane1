@@ -16,7 +16,7 @@ function point(i: number, v: number): [number, number] {
 const poly = (vals: number[]) => vals.map((v, i) => point(i, v).map((n) => n.toFixed(2)).join(",")).join(" ");
 
 /**
- * Hexagonal RIASEC chart: hairline rings, user polygon in accent. `scale` labels the centre and
+ * Hexagonal RIASEC chart: hairline rings, your polygon as an ink outline over a solid blue fill. `scale` labels the centre and
  * rings with the axis values (for interests the centre is the lowest possible score, 10).
  */
 export function RadarProfile({
@@ -66,10 +66,10 @@ export function RadarProfile({
               );
             })
           : null}
-        <polygon points={poly(values)} className="fill-accent stroke-accent" fillOpacity={0.3} strokeWidth={2} strokeLinejoin="round" />
+        <polygon points={poly(values)} className="fill-you-2 stroke-ink" strokeWidth={1.75} strokeLinejoin="round" />
         {dimensions.map((d, i) => {
           const [x, y] = point(i, d.score.value);
-          return <circle key={d.key} cx={x} cy={y} r={3.5} className="fill-accent" />;
+          return <circle key={d.key} cx={x} cy={y} r={3} className="fill-ink" />;
         })}
         {dimensions.map((d, i) => {
           const [x, y] = point(i, 112);

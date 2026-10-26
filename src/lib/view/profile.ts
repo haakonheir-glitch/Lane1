@@ -98,8 +98,11 @@ export const listWords = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).j
  * Only differences that pass the relative-strength test are stated as findings; the rest are
  * called tentative.
  */
-export function summarise(p: ProfileScores, topPaths: string[] = []): string[] {
-  const out: string[] = [];
+export type BriefLines = { interests?: string; values?: string; personality?: string; reasoning?: string; paths?: string };
+
+/** The brief, by part: only tagged differences are stated as findings; the rest say "no clear leader". */
+export function briefLines(p: ProfileScores, topPaths: string[] = []): BriefLines {
+  const out: BriefLines = {};
   const i = p.interests;
   if (i?.hollandCode) {
     const rel = relativeOf(i.scales);
@@ -108,44 +111,48 @@ export function summarise(p: ProfileScores, topPaths: string[] = []): string[] {
     const [a, b] = i.hollandCode.split("");
     if (strong.length || weak.length) {
       const parts = [strong.length ? `${listWords(strong)} clearly appeal${strong.length === 1 ? "s" : ""} to you most` : "", weak.length ? `${listWords(weak)} clearly appeal${weak.length === 1 ? "s" : ""} least` : ""].filter(Boolean);
-      out.push(`${parts.join(", and ")}.`.replace(/^./, (c) => c.toUpperCase()) + (strong.length ? "" : ` Your lean toward ${RIASEC_GLOSS[a!]} is tentative.`));
+      out.interests = `${parts.join(", and ")}.`.replace(/^./, (c) => c.toUpperCase());
     } else {
-      out.push(`Your interests lean tentatively toward ${RIASEC_GLOSS[a!]} and ${RIASEC_GLOSS[b!]}; the gaps between areas are within measurement error.`);
+      out.interests = `Your interests lean toward ${RIASEC_GLOSS[a!]} and ${RIASEC_GLOSS[b!]}, with no clear leader.`;
     }
   } else if (i?.lowDifferentiation) {
-    out.push("Your interests are fairly even across all six areas. That often means they are still forming, so read the career matches with extra care.");
+    out.interests = "Your interests are fairly even across all six areas, which often means they are still forming.";
   }
   const values = p.values?.filter((v) => v.visibility === "user").sort((a, b) => a.rank - b.rank) ?? [];
-  if (values.length > 1) out.push(`In your card sort, ${values[0]!.label.toLowerCase()} came first as what you want from work, then ${values[1]!.label.toLowerCase()}.`);
+  if (values.length > 1) out.values = `In your card sort, ${values[0]!.label.toLowerCase()} came first as what you want from work, then ${values[1]!.label.toLowerCase()}.`;
   const d = p.personality?.domains.filter((x) => x.normed !== null || !!x.self) ?? [];
   if (d.length) {
     const rel = relativeOf(d);
     const hi = d.filter((x) => rel[x.id] === "strength").map((x) => x.label.toLowerCase());
     const lo = d.filter((x) => rel[x.id] === "weakness").map((x) => x.label.toLowerCase());
-    out.push(
+    out.personality =
       hi.length || lo.length
-        ? `Compared with the rest of your personality profile, ${[hi.length ? `${listWords(hi)} ${hi.length === 1 ? "is" : "are"} clearly higher` : "", lo.length ? `${listWords(lo)} ${lo.length === 1 ? "is" : "are"} clearly lower` : ""].filter(Boolean).join(" and ")}; other differences are tentative.`
-        : "None of your five personality domains stands out from the others by more than the measurement can resolve, so treat the differences between them as tentative.",
-    );
+        ? `Compared with the rest of your personality profile, ${[hi.length ? `${listWords(hi)} ${hi.length === 1 ? "is" : "are"} clearly higher` : "", lo.length ? `${listWords(lo)} ${lo.length === 1 ? "is" : "are"} clearly lower` : ""].filter(Boolean).join(" and ")}.`
+        : "No personality domain stands out clearly from the others.";
   }
   const areas = p.reasoning?.areas ?? [];
   if (areas.length) {
     const rel = relativeOf(areas);
-    const s = areas.filter((a) => rel[a.id] === "strength").map((a) => a.label.toLowerCase());
+    const st = areas.filter((a) => rel[a.id] === "strength").map((a) => a.label.toLowerCase());
     const w = areas.filter((a) => rel[a.id] === "weakness").map((a) => a.label.toLowerCase());
-    out.push(
-      s.length && w.length
-        ? `In the reasoning tasks, ${listWords(s)} came out as a clear relative strength and ${listWords(w)} as a clear relative weakness.`
-        : s.length
-          ? `In the reasoning tasks, ${listWords(s)} came out as a clear relative strength; the other differences are tentative.`
+    out.reasoning =
+      st.length && w.length
+        ? `In the reasoning tasks, ${listWords(st)} came out as a clear relative strength and ${listWords(w)} as a clear relative weakness.`
+        : st.length
+          ? `In the reasoning tasks, ${listWords(st)} came out as a clear relative strength.`
           : w.length
-            ? `In the reasoning tasks, ${listWords(w)} came out as a clear relative weakness; the other areas can't be told apart.`
-            : "In the reasoning tasks, no area stood out clearly from the others; the differences between them are tentative.",
-    );
+            ? `In the reasoning tasks, ${listWords(w)} came out as a clear relative weakness; the other areas are close together.`
+            : "In the reasoning tasks, no area stood out clearly from the others.";
   }
-  if (topPaths.length && out.length) out.push(`Your closest career paths are ${listWords(topPaths)}. The Career map shows why, and what each involves.`);
-  if (out.length === 0) out.push("Complete sessions S1 and S2 to see your summary.");
-  return out.slice(0, 5);
+  if (topPaths.length && Object.keys(out).length) out.paths = `Your closest career paths are ${listWords(topPaths)}. The Career map shows why, and what each involves.`;
+  return out;
+}
+
+/** The "In brief" lines, in report order (up to five). */
+export function summarise(p: ProfileScores, topPaths: string[] = []): string[] {
+  const b = briefLines(p, topPaths);
+  const out = [b.interests, b.values, b.personality, b.reasoning, b.paths].filter((x): x is string => !!x);
+  return out.length ? out : ["Complete sessions S1 and S2 to see your summary."];
 }
 
 export const LIMITATIONS = [

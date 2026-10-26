@@ -6,6 +6,7 @@ import { SessionStrip } from "@/components/report/SessionStrip";
 import { getAssessmentHub, type HubSession } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/cn";
+import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = { title: "Assessment" };
 
@@ -123,7 +124,7 @@ export default async function AssessPage() {
             })}
           </ol>
           <p className="mt-6 max-w-reading text-small text-ink-3">
-            Sessions marked &quot;research&quot; include Lane&apos;s own experimental questions. They are collected for the pilot and are not part of your results until
+            Sessions marked &quot;research&quot; include {BRAND.name}&apos;s own experimental questions. They are collected for the pilot and are not part of your results until
             validated. If you stop after S1 and S2, you still get interests, values and personality, and a partial Career map.
           </p>
         </section>

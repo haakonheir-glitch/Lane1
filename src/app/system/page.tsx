@@ -11,6 +11,14 @@ import { ConfidenceBadge } from "@/components/data/ConfidenceBadge";
 import { PayoffGlyph } from "@/components/data/PayoffGlyph";
 import { PayoffCurve } from "@/components/data/PayoffCurve";
 import { RadarProfile } from "@/components/data/RadarProfile";
+import { MarkLegend, ProfileMark } from "@/components/brand/ProfileMark";
+import type { MarkInput } from "@/lib/view/mark";
+
+const MARK_SPECIMENS: { name: string; input: MarkInput }[] = [
+  { name: "Sample A · persuader", input: { riasec: [18, 30, 26, 34, 46, 28], domains: [0.2, 0.9, 1.4, -0.3, -0.8], reasoning: [45, 75], topValue: 2 } },
+  { name: "Sample B · analyst", input: { riasec: [38, 47, 22, 20, 24, 40], domains: [0.8, 1.1, -1.0, 0.1, 0.2], reasoning: [70, 92], topValue: 1 } },
+  { name: "Sample C · maker", input: { riasec: [30, 36, 48, 26, 22, 14], domains: [1.7, -0.6, 0.3, 0.6, 0.9], reasoning: [35, 68], topValue: 5 } },
+];
 import { ScaleTable } from "@/components/results/ScaleTable";
 import { NormedBar, NormedFigure } from "@/components/results/NormedBar";
 import { RelativeTag } from "@/components/results/RelativeTag";
@@ -32,6 +40,7 @@ import { SystemDemos } from "./SystemDemos";
 import { BandTag, FitIndicator } from "@/components/lanes/FitIndicator";
 import { BAND_ORDER } from "@/lib/matching/fit";
 import { getSampleLaneMap, getSampleProfile as getProfile } from "@/lib/data/sample";
+import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = { title: "Design system", robots: { index: false } };
 
@@ -113,7 +122,7 @@ export default async function SystemPage() {
       <main id="main" className="page pb-32">
         <div className="pt-16 pb-8">
           <p className="label text-ink-3">Specimen</p>
-          <h1 className="mt-4 text-h1 font-medium text-ink">Lane design system</h1>
+          <h1 className="mt-4 text-h1 font-medium text-ink">{BRAND.name} design system</h1>
           <p className="mt-4 max-w-reading text-body-l text-ink-2">
             Structure over decoration. Every color, size and component used in the product, on one page. Toggle the theme
             to check both modes.
@@ -212,6 +221,28 @@ export default async function SystemPage() {
               </Field>
             </div>
             <SystemDemos />
+          </div>
+        </Block>
+
+        <Block index="04b" label="Brand" title="Profile Mark">
+          <p className="-mt-4 mb-8 max-w-reading text-body text-ink-2">
+            A person&apos;s scores drawn as one instrument face. Every element is a score; the same scores always draw the same mark. Unmeasured parts are
+            drawn as placeholders. Three fictional profiles, then the legend.
+          </p>
+          <div className="grid gap-6 md:grid-cols-3">
+            {MARK_SPECIMENS.map((m) => (
+              <Specimen key={m.name} name={m.name}>
+                <ProfileMark input={m.input} size="100%" className="mx-auto max-w-[220px]" />
+              </Specimen>
+            ))}
+          </div>
+          <div className="mt-6 grid gap-6 md:grid-cols-[220px_1fr]">
+            <Specimen name="Before any session">
+              <ProfileMark input={{ riasec: [null, null, null, null, null, null], domains: [null, null, null, null, null], reasoning: null, topValue: null }} size="100%" className="mx-auto max-w-[180px]" />
+            </Specimen>
+            <Specimen name="How to read your mark">
+              <MarkLegend />
+            </Specimen>
           </div>
         </Block>
 

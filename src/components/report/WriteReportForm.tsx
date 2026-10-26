@@ -28,8 +28,8 @@ export function WriteReportForm({ label = "Write my report", configured }: { lab
       <label htmlFor={id} className="flex cursor-pointer items-start gap-3 text-small text-ink-2">
         <Checkbox id={id} checked={consent} onChange={(e) => setConsent(e.currentTarget.checked)} className="mt-0.5" />
         <span>
-          Send my computed scores to Anthropic so Claude can write the report. This includes your scores, lane matches and the job titles you
-          entered; it doesn&apos;t include your name, email or individual answers.
+          Send my computed scores to Anthropic so Claude can write the report. This includes your scores, career path matches and the job titles you
+          entered; it doesn&apos;t include your name, email or individual answers. When your scores change, the report is rewritten the same way; you can stop this in Settings.
         </span>
       </label>
       <div className="mt-4 flex flex-wrap items-center gap-4">

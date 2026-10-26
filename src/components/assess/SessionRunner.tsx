@@ -20,6 +20,7 @@ import { api } from "./api";
 import type { PublicStep } from "@/lib/bank/public";
 import type { SessionId } from "@/lib/bank/types";
 import { cn } from "@/lib/cn";
+import { BRAND } from "@/lib/brand";
 
 /**
  * Runs one session (S1–S5). The server decides what comes next; this component renders the
@@ -297,7 +298,7 @@ function SessionOutro({
       ) : null}
       {step.effort === "offer_redo" ? <p className="mt-4 text-small text-ink-2">You said you rushed some parts. You can retake this session whenever you like.</p> : null}
       {step.hasExperimental ? (
-        <p className="mt-4 text-small text-ink-3">Some questions in this session were research questions. They are collected for Lane&apos;s pilot and not part of your results until validated.</p>
+        <p className="mt-4 text-small text-ink-3">Some questions in this session were research questions. They are collected for {BRAND.name}&apos;s pilot and not part of your results until validated.</p>
       ) : null}
       <div className="mt-10 flex flex-wrap gap-3">
         <ButtonLink href="/profile">See your profile</ButtonLink>

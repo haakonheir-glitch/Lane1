@@ -76,6 +76,8 @@ export type CareerPick = {
   entryNote: EntryNote;
   /** What lifts this career path for the person: up to three positive drivers, strongest first. */
   why: string[];
+  /** Construct ids of every positive driver, strongest first (for the trait connections view). */
+  driverIds: string[];
 };
 
 export type CareerPicks = { overall: CareerPick[]; corporate: CareerPick[]; ownPath: CareerPick[] };

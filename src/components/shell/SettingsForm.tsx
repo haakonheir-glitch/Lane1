@@ -7,6 +7,8 @@ import { ThemeToggle } from "./ThemeToggle";
 import { deleteAccount, updateProfile, type FormState } from "@/app/actions/account";
 import { logout } from "@/app/actions/auth";
 import type { User } from "@/lib/types";
+import { BRAND } from "@/lib/brand";
+import { ReportConsent } from "./ReportConsent";
 
 const AGE_RANGES = ["18–24", "25–34", "35–44", "45–54", "55 or over"];
 
@@ -22,7 +24,7 @@ function Row({ label, description, children }: { label: string; description: str
   );
 }
 
-export function SettingsForm({ user }: { user: User }) {
+export function SettingsForm({ user, hasReport = false }: { user: User; hasReport?: boolean }) {
   const [profileState, saveProfile, saving] = useActionState<FormState, FormData>(updateProfile, undefined);
   const [deleteState, doDelete, deleting] = useActionState<FormState, FormData>(deleteAccount, undefined);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -65,7 +67,11 @@ export function SettingsForm({ user }: { user: User }) {
         <ThemeToggle />
       </Row>
 
-      <Row label="Your data" description="Everything Lane holds about you, in one file.">
+      <Row label="Written report" description="Drafted by Claude from your scores, with your consent.">
+        <ReportConsent hasReport={hasReport} />
+      </Row>
+
+      <Row label="Your data" description={`Everything ${BRAND.name} holds about you, in one file.`}>
         <p className="text-small text-ink-2">
           Includes your answers, game responses, scores and report as JSON. You can take it anywhere.
         </p>

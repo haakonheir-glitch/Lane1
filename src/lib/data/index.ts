@@ -7,12 +7,12 @@
  */
 import "server-only";
 import { cache } from "react";
-import { and, eq } from "drizzle-orm";
+import { and, eq, inArray } from "drizzle-orm";
 import { getDb, schema } from "../db";
 import { requireUser } from "../auth";
 import * as mock from "../mock";
-import { hubStatus, rescoreIfStale } from "../assess/service";
-import { allSessions } from "../bank/bank";
+import { hubStatus, rescoreIfStale, stepsFor } from "../assess/service";
+import { allSessions, sessionPlan } from "../bank/bank";
 import { buildProfile, type ProfileScores, type SessionScores } from "../scoring/profile";
 import { addSelfScores } from "../scoring/self";
 import type { SessionId } from "../bank/types";
@@ -21,6 +21,11 @@ import type { OnboardingAnswers, User } from "../types";
 import { buildCareerPicks, buildLaneDetail, buildLaneMap, laneName, reportLanes } from "./lanes";
 import { buildReportFacts, type ReportFacts } from "../report/facts";
 import { factsHash, latestReport } from "../report/service";
+import { BRAND } from "../brand";
+import { LANES } from "../taxonomy";
+import type { CareerPick } from "../lanes/types";
+import type { Effort } from "./effort";
+export { effortLine, type Effort } from "./effort";
 
 const TIME_ZONE = process.env.APP_TIMEZONE ?? "Europe/Oslo";
 const isoDate = (d: Date) => new Intl.DateTimeFormat("en-CA", { timeZone: TIME_ZONE, year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
@@ -142,11 +147,59 @@ export async function getLaneMap(selected?: string | null) {
   };
 }
 
-/** The three career paths that fit best overall, by name, for the report's summary. */
-export async function getTopCareerPaths(): Promise<string[]> {
+/** The best-fitting career paths overall (the Career map's top five), for the report. */
+export const getTopCareerPaths = cache(async (): Promise<CareerPick[]> => {
   const [{ profile }, exp] = await Promise.all([getProfileView(), getExperience()]);
-  return buildCareerPicks(profile, exp).overall.slice(0, 3).map((p) => p.row.name);
+  return buildCareerPicks(profile, exp).overall;
+});
+
+/* -------------------------------------------------------------- effort ---- */
+
+
+const ANSWERED = new Set(["questionnaire", "qsort", "sjt", "ideas", "mixed", "effort"]);
+const CAREER_PATHS = LANES.length;
+
+/** What the full assessment asks of everyone, counted from the item bank. */
+export function bankEffort(): Effort {
+  const ids = allSessions().map((s) => s.id);
+  return {
+    sessions: ids.length,
+    answers: ids.reduce((n, id) => n + stepsFor(id).filter((s) => ANSWERED.has(s.block.kind)).length, 0),
+    tasks: ids.reduce((n, id) => n + sessionPlan(id).blocks.filter((b) => b.kind === "task").length, 0),
+    trials: null,
+    careerPaths: CAREER_PATHS,
+  };
 }
+
+/** What this person actually did: their stored answers and trials in completed sessions. */
+export const getEffort = cache(async (): Promise<Effort> => {
+  const { source } = await getProfileView();
+  if (source === "sample") return bankEffort();
+  const u = await requireUser();
+  const db = await getDb();
+  const done = await db
+    .select({ id: schema.assessmentSessions.id, sessionId: schema.assessmentSessions.sessionId })
+    .from(schema.assessmentSessions)
+    .where(and(eq(schema.assessmentSessions.userId, u.id), eq(schema.assessmentSessions.status, "completed")));
+  const rows = done.map((d) => d.id);
+  if (!rows.length) return { sessions: 0, answers: 0, tasks: 0, trials: 0, careerPaths: CAREER_PATHS };
+  const [answers, trials] = await Promise.all([
+    db.select({ k: schema.itemResponses.position }).from(schema.itemResponses).where(inArray(schema.itemResponses.sessionRowId, rows)),
+    db
+      .select({ k: schema.taskTrials.trialIndex })
+      .from(schema.taskTrials)
+      .where(and(inArray(schema.taskTrials.sessionRowId, rows), eq(schema.taskTrials.practice, false))),
+  ]);
+  const sessions = new Set(done.map((d) => d.sessionId));
+  return {
+    sessions: sessions.size,
+    answers: answers.length,
+    tasks: [...sessions].reduce((n, id) => n + sessionPlan(id as SessionId).blocks.filter((b) => b.kind === "task").length, 0),
+    trials: trials.length,
+    careerPaths: CAREER_PATHS,
+  };
+});
+
 
 /** The facts a written report is built from: the person's own scores and lanes, no name or email. */
 export async function getReportFacts(): Promise<ReportFacts | null> {
@@ -186,7 +239,7 @@ export async function getExport() {
   }
   return {
     exportedAt: new Date().toISOString(),
-    assessmentPackage: "Lane Assessment Package v0.1",
+    assessmentPackage: `${BRAND.name} Assessment Package v0.1`,
     user: { name: user.name, email: user.email, memberSince: user.memberSince, reportId: user.reportId },
     onboarding: profile ?? null,
     sessions: out,

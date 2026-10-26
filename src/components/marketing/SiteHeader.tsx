@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Wordmark } from "@/components/shell/Wordmark";
 import { ButtonLink } from "@/components/ui/Button";
 import { getCurrentUser } from "@/lib/auth";
+import { BRAND } from "@/lib/brand";
 
 export async function SiteHeader() {
   const user = await getCurrentUser();
@@ -18,7 +19,7 @@ export async function SiteHeader() {
           </Link>
           {user ? (
             <ButtonLink href="/assess" size="sm" variant="secondary">
-              Open Lane
+              Open {BRAND.name}
             </ButtonLink>
           ) : (
             <>

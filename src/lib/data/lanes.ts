@@ -86,6 +86,7 @@ export function buildCareerPicks(profile: ProfileScores, exp: ExperienceAnswers)
       alsoRoles: rest.map((r) => r.role.title),
       entryNote: ranked.entry.note,
       why: m.drivers.filter((d) => d.contribution > 0.01).slice(0, 3).map((d) => d.label),
+      driverIds: m.drivers.filter((d) => d.contribution > 0.01).map((d) => d.id),
     };
   };
   const top = ordered.slice(0, PICKS);

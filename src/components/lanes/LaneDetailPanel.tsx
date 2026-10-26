@@ -7,6 +7,7 @@ import { WINNER_TAKE_ALL_NOTE, entryLabel, entryNoteText, entryTerm, levelShort,
 import type { LadderRow, LaneDetail, LaneSort, RoleRef } from "@/lib/lanes/types";
 import { BandTag, FitIndicator, fitWords } from "./FitIndicator";
 import { cn } from "@/lib/cn";
+import { BRAND } from "@/lib/brand";
 
 function DriverBar({ value }: { value: number }) {
   // Signed contribution on a −0.6…+0.6 scale (z units), drawn from a centre line.
@@ -174,7 +175,7 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
               <LadderStep key={r.level} row={r} />
             ))}
           </ol>
-          <p className="mt-3 text-small text-ink-3">Seniority is a path, not a recommendation: Lane never suggests starting in a management role.</p>
+          <p className="mt-3 text-small text-ink-3">Seniority is a path, not a recommendation: {BRAND.name} never suggests starting in a management role.</p>
         </section>
 
         {detail.payoffPosition !== null && detail.payoffRange ? (

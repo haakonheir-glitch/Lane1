@@ -10,6 +10,7 @@ import { radarDims } from "@/lib/view/profile";
 import { pad2 } from "@/lib/format";
 import { sortMatches } from "@/lib/matching/fit";
 import { getSampleLaneMap, getSampleProfile as getProfile, getTaxonomyIndex } from "@/lib/data/sample";
+import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -39,11 +40,11 @@ const method = [
 const faq = [
   {
     q: "Does this use my DNA?",
-    a: "No, and it never will. Genetic tests cannot tell you which job suits you; the science does not support it, and anyone claiming otherwise is selling certainty that does not exist. Lane uses what you report and how you perform on short reasoning tasks.",
+    a: `No, and it never will. Genetic tests cannot tell you which job suits you; the science does not support it, and anyone claiming otherwise is selling certainty that does not exist. ${BRAND.name} uses what you report and how you perform on short reasoning tasks.`,
   },
   {
     q: "Is this just another personality test?",
-    a: "The core is a set of validated public instruments: the IPIP-NEO-120 personality inventory, the O*NET® Interest Profiler and Work Importance Locator, plus reasoning tasks generated fresh for every person. Lane adds its own experimental questions for career paths those instruments miss; they are collected but not used in your results until a pilot validates them. Every score is shown with its measurement error, and a difference is called a strength only when it is larger than that error. Even good tests predict job outcomes only modestly, and the report says so.",
+    a: `The core is a set of validated public instruments: the IPIP-NEO-120 personality inventory, the O*NET® Interest Profiler and Work Importance Locator, plus reasoning tasks generated fresh for every person. ${BRAND.name} adds its own experimental questions for career paths those instruments miss; they are collected but not used in your results until a pilot validates them. Every score is shown with its measurement error, and a difference is called a strength only when it is larger than that error. Even good tests predict job outcomes only modestly, and the report says so.`,
   },
   {
     q: "How long does it take?",
@@ -196,7 +197,7 @@ export default async function LandingPage() {
               what you care about; it can&apos;t say how a particular job, team or year will go.
             </p>
             <p>
-              So Lane shows every score with its measurement error, calls a difference a strength only when it is larger than
+              So {BRAND.name} shows every score with its measurement error, calls a difference a strength only when it is larger than
               that error, and sorts career paths into bands rather than a precise ranking.
             </p>
           </div>

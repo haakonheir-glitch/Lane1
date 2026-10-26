@@ -23,6 +23,19 @@
   --accent-wash: #eef1fe;
   --positive: #1e7a4c;
   --caution: #8f5a00; /* text-safe (AA) — see PLAN.md D1 */
+  /* Document surfaces: white paper on the canvas, one inverted panel per screen. */
+  --paper: #ffffff;
+  --paper-edge: #c9c9c4;
+  --panel: #111111;
+  --panel-ink: #f7f7f5;
+  --panel-ink-2: #b3b5ba;
+  --panel-rule: #3a3c41;
+  /* "Your data": a tonal ramp from the accent. Grey (data-band, data-ref) means population. */
+  --you-1: #eef1fe;
+  --you-2: #c9d0fa;
+  --you-3: #8d9cf3;
+  --you-4: #4a60ee;
+  --you-5: #2340e8;
 
   --dur-1: 150ms;
   --dur-2: 200ms;
@@ -68,6 +81,17 @@
     --accent-wash: #1a1f3d;
     --positive: #4cb884;
     --caution: #d9a441;
+    --paper: #16171a;
+    --paper-edge: #3a3c41;
+    --panel: #ededea;
+    --panel-ink: #111111;
+    --panel-ink-2: #47494e;
+    --panel-rule: #c9c9c4;
+    --you-1: #1a1f3d;
+    --you-2: #27306b;
+    --you-3: #3e4fb0;
+    --you-4: #5468e6;
+    --you-5: #6b80ff;
     color-scheme: dark;
   }
 }
@@ -88,6 +112,17 @@
   --accent-wash: #1a1f3d;
   --positive: #4cb884;
   --caution: #d9a441;
+  --paper: #16171a;
+  --paper-edge: #3a3c41;
+  --panel: #ededea;
+  --panel-ink: #111111;
+  --panel-ink-2: #47494e;
+  --panel-rule: #c9c9c4;
+  --you-1: #1a1f3d;
+  --you-2: #27306b;
+  --you-3: #3e4fb0;
+  --you-4: #5468e6;
+  --you-5: #6b80ff;
   color-scheme: dark;
 }
 
@@ -130,6 +165,10 @@
   --text-figure: 34px;
   --text-figure--line-height: 40px;
   --text-figure--letter-spacing: -0.02em;
+  /* Large tabular numerals: summary sheet and cover figures. */
+  --text-numeral: 56px;
+  --text-numeral--line-height: 56px;
+  --text-numeral--letter-spacing: -0.03em;
   --text-h3: 22px;
   --text-h3--line-height: 28px;
   --text-h3--letter-spacing: -0.01em;
@@ -155,6 +194,17 @@
   --color-accent-wash: var(--accent-wash);
   --color-positive: var(--positive);
   --color-caution: var(--caution);
+  --color-paper: var(--paper);
+  --color-paper-edge: var(--paper-edge);
+  --color-panel: var(--panel);
+  --color-panel-ink: var(--panel-ink);
+  --color-panel-ink-2: var(--panel-ink-2);
+  --color-panel-rule: var(--panel-rule);
+  --color-you-1: var(--you-1);
+  --color-you-2: var(--you-2);
+  --color-you-3: var(--you-3);
+  --color-you-4: var(--you-4);
+  --color-you-5: var(--you-5);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
@@ -182,6 +232,35 @@
     opacity: 1;
     transform: none;
   }
+}
+
+/* Profile Mark reveal: plays once, on the report reveal only (ProfileMark reveal prop). */
+@keyframes mark-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes mark-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.mark-reveal .mark-ticks line {
+  animation: mark-fade 300ms var(--ease-out) both;
+}
+.mark-reveal .mark-arc,
+.mark-reveal .mark-shape {
+  stroke-dasharray: 1;
+  animation: mark-draw 400ms var(--ease-out) 320ms both;
+}
+.mark-reveal .mark-value {
+  animation: mark-fade 250ms var(--ease-out) 700ms both;
 }
 
 @keyframes shimmer {
@@ -296,4 +375,87 @@
   transition-property: color, background-color, border-color, opacity, transform;
   transition-duration: var(--dur-1);
   transition-timing-function: var(--ease-out);
+}
+
+/* ---------------------------------------------------------------------------
+   Report document: print. One sheet per A4 page, light colours, nothing interactive.
+   --------------------------------------------------------------------------- */
+
+@media print {
+  :root,
+  :root[data-theme="dark"],
+  :root:not([data-theme="light"]) {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --paper: #ffffff;
+    --paper-edge: #c9c9c4;
+    --ink: #111111;
+    --ink-2: #47494e;
+    --ink-3: #63656a;
+    --ink-4: #8a8c91;
+    --rule: #e3e3df;
+    --rule-strong: #c9c9c4;
+    --data-band: #c3c6cc;
+    --data-ref: #8a8c91;
+    --accent: #2340e8;
+    --panel: #111111;
+    --panel-ink: #f7f7f5;
+    --panel-ink-2: #b3b5ba;
+    --panel-rule: #3a3c41;
+    --you-1: #eef1fe;
+    --you-2: #c9d0fa;
+    --you-3: #8d9cf3;
+    --you-4: #4a60ee;
+    --you-5: #2340e8;
+    color-scheme: light;
+  }
+  html,
+  body {
+    background: #ffffff !important;
+  }
+  .doc-screen {
+    display: none !important;
+  }
+  .doc {
+    gap: 0 !important;
+  }
+  .doc-sheet {
+    border: 0 !important;
+    padding: 0 !important;
+    break-after: page;
+    min-height: 0 !important;
+  }
+  .doc-sheet:last-child {
+    break-after: auto;
+  }
+  .doc-cover {
+    min-height: 255mm !important;
+  }
+  /* The summary sheet fits one page. */
+  #summary svg {
+    width: 150px;
+    height: 150px;
+  }
+  #summary .doc-panel {
+    margin-top: 24px;
+    padding: 16px 20px;
+  }
+  #summary .doc-panel li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  #summary .text-body-l {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .doc-panel,
+  .doc-sheet svg {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .doc-sheet table,
+  .doc-sheet li,
+  .doc-sheet figure {
+    break-inside: avoid;
+  }
 }
