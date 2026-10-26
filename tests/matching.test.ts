@@ -112,6 +112,44 @@ describe("resolveConstruct", () => {
   });
 });
 
+describe("reasoning in matching (PLAN D52)", () => {
+  const areas = (zs: Record<string, number>): NonNullable<ProfileScores["reasoning"]> => ({
+    generalAbility: null,
+    norms: { source: "test", provisional: true },
+    areas: Object.entries(zs).map(([id, z]) => ({ id: id as never, label: id, summary: "", normed: normed(50 + 10 * z, { mean: 50, sd: 10, reliability: 0.8 }) })),
+  });
+  const zs = { reasoning: 1.5, spatial: 0.5, quantitative: 1.0, memory: 1.0, speed: 1.0 };
+  /** Interests and personality relative to the person (no population norms), as for real users today. */
+  const selfOnly = (p: ProfileScores): ProfileScores => ({
+    ...p,
+    interests: p.interests && { ...p.interests, scales: p.interests.scales.map((x) => ({ ...x, normed: null, self: { z: 0, ci: [-1, 1], reliability: 0.75, assumedReliability: true } })) },
+    personality: p.personality && { ...p.personality, facets: p.personality.facets.map((x) => ({ ...x, normed: null, self: { z: 0, ci: [-1, 1], reliability: 0.7, assumedReliability: true } })) },
+  });
+
+  it("makes reasoning areas relative to the person's own areas when the rest of the profile is", () => {
+    const p = selfOnly({ ...profile(), reasoning: areas(zs) });
+    const r = resolveConstruct("cognitive.matrix", p) as { z: number; basis: string };
+    const s = resolveConstruct("cognitive.rotation", p) as { z: number; basis: string };
+    expect(r.basis).toBe("self");
+    // mean of the five areas is 1.0, SD √0.1: reasoning +0.5 → +1.58, spatial −0.5 → −1.58
+    expect(r.z).toBeCloseTo(0.5 / Math.sqrt(0.1), 9);
+    expect(s.z).toBeCloseTo(-0.5 / Math.sqrt(0.1), 9);
+    // Being above the population everywhere gives no boost on its own: the level is not used.
+    expect(resolveConstruct("cognitive.general", p)).toMatchObject({ reason: "no_score" });
+  });
+
+  it("needs at least three scored areas for a within-person comparison", () => {
+    const p = selfOnly({ ...profile(), reasoning: areas({ reasoning: 1, spatial: 0 }) });
+    expect(resolveConstruct("cognitive.matrix", p)).toMatchObject({ reason: "no_score" });
+  });
+
+  it("uses the population scores once interests or personality are population-normed", () => {
+    const p = { ...profile(), reasoning: areas(zs) };
+    expect(resolveConstruct("cognitive.matrix", p)).toMatchObject({ basis: "normed", z: 1.5 });
+    expect(resolveConstruct("cognitive.general", p)).toMatchObject({ basis: "normed" });
+  });
+});
+
 /* ---------- lane fit ---------- */
 
 describe("matchLanes", () => {

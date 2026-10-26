@@ -58,6 +58,39 @@ function value(id: string, p: ProfileScores, valueId: string): Resolved | null {
   return { id, z: (v.score - m) / sd, reliability: null, label: `${v.label} (work value)`, basis: "ipsative" };
 }
 
+/**
+ * Reasoning areas on the same footing as the rest of the profile (PLAN D52). Lane fit compares
+ * every construct with the person's own average, so all of them must be on one scale:
+ * - while interests and personality are relative to the person (no population norms yet), the
+ *   reasoning areas are made relative to the person too: each area's z against the mean and SD of
+ *   the person's own areas, the way scoring/self.ts treats facets. The absolute level (general
+ *   reasoning) carries no within-person information, so it doesn't resolve in this mode.
+ * - once interests or personality are population-normed, the reasoning areas' provisional
+ *   population scores are used as they are.
+ * The profile always shows the population-based reasoning scores; this only changes matching.
+ */
+const MIN_AREAS = 3;
+type AreaScore = { z: number; reliability: number; basis: "normed" | "self" };
+
+function populationMode(p: ProfileScores): boolean {
+  return !!(p.interests?.scales.some((s) => s.normed) || p.personality?.facets.some((s) => s.normed) || p.personality?.domains.some((s) => s.normed));
+}
+
+function reasoningAreas(p: ProfileScores): Map<string, AreaScore> {
+  const scored = (p.reasoning?.areas ?? []).flatMap((a) => (a.normed ? [{ id: a.id, n: a.normed }] : []));
+  if (populationMode(p)) return new Map(scored.map((a) => [a.id, { z: a.n.z, reliability: a.n.reliability, basis: "normed" as const }]));
+  if (scored.length < MIN_AREAS) return new Map();
+  const mean = scored.reduce((s, a) => s + a.n.z, 0) / scored.length;
+  const sd = Math.sqrt(scored.reduce((s, a) => s + (a.n.z - mean) ** 2, 0) / scored.length);
+  if (sd === 0) return new Map();
+  return new Map(scored.map((a) => [a.id, { z: (a.n.z - mean) / sd, reliability: a.n.reliability, basis: "self" as const }]));
+}
+
+const fromArea = (id: string, p: ProfileScores, areaId: string, label: string): Resolved | null => {
+  const a = reasoningAreas(p).get(areaId);
+  return a ? { id, z: a.z, reliability: a.reliability, label, basis: a.basis } : null;
+};
+
 const area = (p: ProfileScores, a: string) => p.reasoning?.areas.find((x) => x.id === a)?.normed;
 
 /** Lower-case facet label for prose ("Assertiveness" → "assertiveness"). */
@@ -77,17 +110,18 @@ const RESOLVERS: Record<string, Resolver> = {
   cognitive: (id, p, key) => {
     switch (key) {
       case "general":
-        return composite(id, [area(p, "reasoning"), area(p, "spatial"), area(p, "quantitative"), area(p, "memory")], "general reasoning");
+        // An absolute level: only meaningful against a population (see reasoningAreas).
+        return populationMode(p) ? composite(id, [area(p, "reasoning"), area(p, "spatial"), area(p, "quantitative"), area(p, "memory")], "general reasoning") : null;
       case "matrix":
       case "series":
       case "number_series": // results expose areas, not single tasks (PLAN D30)
-        return fromNormed(id, area(p, "reasoning"), "reasoning with patterns and series");
+        return fromArea(id, p, "reasoning", "reasoning with patterns and series");
       case "quant":
-        return fromNormed(id, area(p, "quantitative"), "quantitative reasoning");
+        return fromArea(id, p, "quantitative", "quantitative reasoning");
       case "rotation":
-        return fromNormed(id, area(p, "spatial"), "spatial reasoning");
+        return fromArea(id, p, "spatial", "spatial reasoning");
       case "symbol_match":
-        return fromNormed(id, area(p, "speed"), "processing speed");
+        return fromArea(id, p, "speed", "processing speed");
       default:
         return null;
     }
