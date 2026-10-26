@@ -7,13 +7,14 @@
  */
 import "server-only";
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
 import { and, eq, inArray } from "drizzle-orm";
 import { getDb, schema } from "../db";
 import { requireUser } from "../auth";
 import * as mock from "../mock";
 import { hubStatus, rescoreIfStale, stepsFor } from "../assess/service";
 import { allSessions, sessionPlan } from "../bank/bank";
-import { buildProfile, type ProfileScores, type SessionScores } from "../scoring/profile";
+import { buildProfile, SCORING_VERSION, type ProfileScores, type SessionScores } from "../scoring/profile";
 import { addSelfScores } from "../scoring/self";
 import type { SessionId } from "../bank/types";
 import type { YearsBand } from "../matching";
@@ -111,14 +112,27 @@ export const getSampleUser = async (): Promise<User> => mock.user;
  * session (discarded attempts are skipped), with scores relative to themselves added.
  * Null until S1 or S2 is complete.
  */
-export const getMyProfile = cache(async (): Promise<ProfileScores | null> => {
-  const u = await requireUser();
+/**
+ * What a person's profile is built from: their completed session rows. Results are cached under
+ * this fingerprint (with the scoring version), so a new or retaken session is a new key and is
+ * never served stale. One small query per request instead of rebuilding everything.
+ */
+const profileFingerprint = cache(async (userId: string) => {
+  const db = await getDb();
+  const rows = await db
+    .select({ id: schema.assessmentSessions.id, at: schema.assessmentSessions.completedAt })
+    .from(schema.assessmentSessions)
+    .where(and(eq(schema.assessmentSessions.userId, userId), eq(schema.assessmentSessions.status, "completed")));
+  return rows.map((r) => `${r.id}@${r.at?.getTime() ?? 0}`).sort().join(",");
+});
+
+async function buildMyProfile(userId: string): Promise<ProfileScores | null> {
   const db = await getDb();
   const rows = await db
     .select({ s: schema.assessmentSessions, scores: schema.sessionScores.scores })
     .from(schema.assessmentSessions)
     .innerJoin(schema.sessionScores, eq(schema.sessionScores.sessionRowId, schema.assessmentSessions.id))
-    .where(and(eq(schema.assessmentSessions.userId, u.id), eq(schema.assessmentSessions.status, "completed")));
+    .where(and(eq(schema.assessmentSessions.userId, userId), eq(schema.assessmentSessions.status, "completed")));
   const scored: Parameters<typeof buildProfile>[0] = {};
   for (const { s, scores } of rows.sort((a, b) => a.s.attempt - b.s.attempt)) {
     const current = await rescoreIfStale(s.id, s.sessionId as SessionId, scores as SessionScores);
@@ -126,6 +140,18 @@ export const getMyProfile = cache(async (): Promise<ProfileScores | null> => {
   }
   if (!scored.S1 && !scored.S2) return null;
   return addSelfScores(buildProfile(scored, "pending"));
+}
+
+/**
+ * The signed-in person's own profile, built from their latest completed attempt of each
+ * session (discarded attempts are skipped), with scores relative to themselves added.
+ * Null until S1 or S2 is complete. Cached per completed-session fingerprint.
+ */
+export const getMyProfile = cache(async (): Promise<ProfileScores | null> => {
+  const u = await requireUser();
+  const fp = await profileFingerprint(u.id);
+  if (!fp) return null;
+  return unstable_cache(() => buildMyProfile(u.id), ["profile", u.id, fp, SCORING_VERSION], { tags: [`profile:${u.id}`], revalidate: 60 * 60 * 24 })();
 });
 
 /** The profile pages show: the person's own once they have one, otherwise the labelled sample. */
@@ -137,21 +163,27 @@ export const getProfile = async (): Promise<ProfileScores> => (await getProfileV
 export const getLaneName = laneName;
 
 /** Lane Map rows and the open lane's detail, matched against the profile (sample until norms exist). */
-export async function getLaneMap(selected?: string | null) {
+/**
+ * Matching results for the person: the map's rows and the picks. Cached under the profile
+ * fingerprint and the job answers, since they are pure functions of those.
+ */
+const getMatching = cache(async () => {
   const [{ profile, source }, exp] = await Promise.all([getProfileView(), getExperience()]);
-  return {
-    source,
-    ...buildLaneMap(profile, exp),
-    picks: buildCareerPicks(profile, exp),
-    detail: selected ? buildLaneDetail(selected, profile, exp) : null,
-  };
+  const compute = () => Promise.resolve({ ...buildLaneMap(profile, exp), picks: buildCareerPicks(profile, exp) });
+  if (source === "sample") return { source, profile, exp, ...(await compute()) };
+  const u = await requireUser();
+  const fp = await profileFingerprint(u.id);
+  const data = await unstable_cache(compute, ["matching", u.id, fp, SCORING_VERSION, JSON.stringify(exp)], { tags: [`profile:${u.id}`], revalidate: 60 * 60 * 24 })();
+  return { source, profile, exp, ...data };
+});
+
+export async function getLaneMap(selected?: string | null) {
+  const { source, profile, exp, rows, vocab, picks } = await getMatching();
+  return { source, rows, vocab, picks, detail: selected ? buildLaneDetail(selected, profile, exp) : null };
 }
 
 /** The best-fitting career paths overall (the Career map's top five), for the report. */
-export const getTopCareerPaths = cache(async (): Promise<CareerPick[]> => {
-  const [{ profile }, exp] = await Promise.all([getProfileView(), getExperience()]);
-  return buildCareerPicks(profile, exp).overall;
-});
+export const getTopCareerPaths = cache(async (): Promise<CareerPick[]> => (await getMatching()).picks.overall);
 
 /* -------------------------------------------------------------- effort ---- */
 

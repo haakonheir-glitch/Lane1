@@ -297,10 +297,12 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
               aria-modal="true"
               aria-labelledby={headingId}
               className="absolute inset-y-0 right-0 flex w-full max-w-[480px] flex-col border-l border-rule bg-surface"
-              initial={reduce ? { opacity: 0 } : { x: 24, opacity: 0 }}
+              // The same starting state on server and client (useReducedMotion is null on the server);
+              // reduced motion turns the movement off with a zero-length transition instead.
+              initial={{ x: 24, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={reduce ? { opacity: 0 } : { x: 24, opacity: 0 }}
-              transition={{ duration: 0.22, ease: [0.2, 0, 0, 1] }}
+              exit={{ x: 24, opacity: 0 }}
+              transition={reduce ? { duration: 0 } : { duration: 0.22, ease: [0.2, 0, 0, 1] }}
             >
               {panel}
             </motion.div>
