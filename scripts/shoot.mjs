@@ -1,5 +1,6 @@
 // Visual QA: full-page screenshots of each route at 390/1440 px in light and dark,
 // plus a horizontal-overflow check. Usage: node scripts/shoot.mjs [baseUrl] [route ...]
+// SHOOT_OUT sets the folder; SHOOT_SIZES sets viewports, e.g. "1440x900,1280x800".
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
 
@@ -7,9 +8,9 @@ const base = process.argv[2] ?? "http://localhost:3000";
 const routes = process.argv.slice(3).length
   ? process.argv.slice(3)
   : ["/", "/method", "/system", "/login", "/signup", "/start", "/assess", "/assess/S1", "/assess/S2", "/assess/S3", "/profile", "/lanes", "/lanes?lane=b2b_sales", "/lanes?lane=film_tv&view=band", "/start?step=3", "/settings", "/nope"];
-const widths = [390, 1440];
+const sizes = (process.env.SHOOT_SIZES ?? "390x900,1440x900").split(",").map((s) => s.split("x").map(Number));
 const themes = ["light", "dark"];
-const out = ".screenshots";
+const out = process.env.SHOOT_OUT ?? ".screenshots";
 mkdirSync(out, { recursive: true });
 
 
@@ -29,8 +30,8 @@ const browser = await chromium.launch(
 );
 const problems = [];
 for (const theme of themes) {
-  for (const width of widths) {
-    const ctx = await browser.newContext({ viewport: { width, height: 900 }, colorScheme: theme, reducedMotion: "reduce" });
+  for (const [width, height] of sizes) {
+    const ctx = await browser.newContext({ viewport: { width, height }, colorScheme: theme, reducedMotion: "reduce" });
     await ctx.addInitScript((t) => localStorage.setItem("lane-theme", t), theme);
     await signIn(ctx);
     const page = await ctx.newPage();
