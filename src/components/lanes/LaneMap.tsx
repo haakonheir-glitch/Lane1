@@ -88,7 +88,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
   const pathname = usePathname();
   const params = useSearchParams();
   const reduce = useReducedMotion();
-  const docked = useMediaQuery("(min-width: 1280px)", true);
+  const wide = useMediaQuery("(min-width: 1280px)", true);
   const panelRef = useRef<HTMLDivElement>(null);
   const headingId = useId();
 
@@ -103,6 +103,9 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
     sprint: pick<SprintId>(params.get("sprint"), sprintLabel),
   };
   const selectedId = detail?.row.id;
+  // Opened from the result cards above the list (?from=top): the docked column sits down in the
+  // list, out of view, so use the drawer instead, wherever the person is on the page.
+  const docked = wide && params.get("from") !== "top";
 
   const qs = useCallback(
     (updates: Record<string, string | null>) => {
@@ -119,7 +122,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
   // Filters and sorting are client-only: update the URL without a server round-trip.
   const setView = useCallback((updates: Record<string, string | null>) => window.history.replaceState(null, "", qs(updates)), [qs]);
   // Opening a lane fetches its detail from the server.
-  const openLane = useCallback((id: string | null) => router.replace(qs({ lane: id }), { scroll: false }), [router, qs]);
+  const openLane = useCallback((id: string | null) => router.replace(qs({ lane: id, from: null }), { scroll: false }), [router, qs]);
 
   const sorted = useMemo(() => sortMatches(rows.map((r) => ({ match: r, name: r.name, row: r })), sort).map((x) => x.row), [rows, sort]);
   const visible = sorted.filter((l) => matches(l, f));

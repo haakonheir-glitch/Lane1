@@ -13,7 +13,7 @@ import { cn } from "@/lib/cn";
  * no gradients: contrast comes from surface, border and type.
  */
 
-const href = (p: CareerPick) => `/lanes?lane=${p.row.id}`;
+const href = (p: CareerPick) => `/lanes?lane=${p.row.id}&from=top`;
 const rise = (i: number): CSSProperties => ({ animationDelay: `${80 + i * 70}ms` });
 
 const ENTRY_NOTE: Record<CareerPick["entryNote"], string> = {

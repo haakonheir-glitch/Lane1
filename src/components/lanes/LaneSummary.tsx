@@ -44,7 +44,7 @@ export function LaneSummary({ rows }: { rows: LaneRowData[] }) {
           <ul className="mt-4">
             {named.map((l) => (
               <li key={l.id} className="border-b border-rule last:border-b-0">
-                <Link href={`/lanes?lane=${l.id}`} scroll={false} className="flex items-center justify-between gap-4 py-3 transition-quiet hover:text-ink">
+                <Link href={`/lanes?lane=${l.id}&from=top`} scroll={false} className="flex items-center justify-between gap-4 py-3 transition-quiet hover:text-ink">
                   <span className="min-w-0">
                     <span className="block truncate text-body text-ink">{l.name}</span>
                     <span className="block label text-ink-3">{l.current ? "Your current career" : "You're considering it"}</span>
