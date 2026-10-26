@@ -1,13 +1,19 @@
+import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ui/Button";
 import { Accordion } from "@/components/ui/Accordion";
 import { SectionHeader } from "@/components/report/SectionHeader";
-import { LaneRow } from "@/components/lanes/LaneRow";
+import { SampleCareerRow } from "@/components/marketing/SampleCareerRow";
+import { JobFinder } from "@/components/marketing/JobFinder";
 import { RadarProfile } from "@/components/data/RadarProfile";
 import { ScaleTable } from "@/components/results/ScaleTable";
 import { radarDims } from "@/lib/view/profile";
 import { pad2 } from "@/lib/format";
 import { sortMatches } from "@/lib/matching/fit";
 import { getSampleLaneMap, getSampleProfile as getProfile, getTaxonomyIndex } from "@/lib/data/sample";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const problems = [
   {
@@ -60,11 +66,14 @@ const faq = [
 
 export default async function LandingPage() {
   const [{ rows }, profile, index] = await Promise.all([getSampleLaneMap(), getProfile(), getTaxonomyIndex()]);
-  // One strong-fit lane from each of three different families, so the excerpt shows range.
-  const excerpt = sortMatches(rows.map((r) => ({ match: r, name: r.name, row: r })), "fit")
-    .map((x) => x.row)
-    .filter((r, i, all) => r.band === "strong" && all.findIndex((o) => o.familyId === r.familyId) === i)
-    .slice(0, 3);
+  // One strong fit, one worth testing and one unlikely, each from a different family, so the
+  // excerpt shows what the bands mean.
+  const ordered = sortMatches(rows.map((r) => ({ match: r, name: r.name, row: r })), "fit").map((x) => x.row);
+  const excerpt: typeof ordered = [];
+  for (const band of ["strong", "testing", "unlikely"] as const) {
+    const r = ordered.find((x) => x.band === band && !excerpt.some((e) => e.familyId === x.familyId));
+    if (r) excerpt.push(r);
+  }
   const totalIndexed = index.laneCount;
 
   return (
@@ -86,6 +95,7 @@ export default async function LandingPage() {
               How it works
             </ButtonLink>
           </div>
+          <p className="mt-4 text-small text-ink-2">Free during the pilot · No card</p>
           <p className="mt-10 font-mono text-label uppercase text-ink-3">
             5 sessions · ~135 min in total · {totalIndexed} career paths mapped · no DNA, ever
           </p>
@@ -94,19 +104,20 @@ export default async function LandingPage() {
         <figure className="col-span-12 self-end lg:col-span-5 lg:col-start-8">
           <div className="rounded-sm border border-rule bg-surface px-5 pt-4 pb-2">
             <div className="flex items-baseline justify-between border-b border-rule-strong pb-3">
-              <span className="label text-ink-3">Career map · strong fits</span>
+              <span className="label text-ink-3">Career map · one career from each band</span>
               <span className="label text-ink-3">Sample</span>
             </div>
-            <ul aria-label="Sample strong-fit career paths">
+            <ul aria-label="Sample career paths: a strong fit, one worth testing and an unlikely one">
               {excerpt.map((l, i) => (
                 <li key={l.id} className={i < excerpt.length - 1 ? "border-b border-rule" : ""}>
-                  <LaneRow lane={l} showFamily />
+                  <SampleCareerRow lane={l} />
                 </li>
               ))}
             </ul>
           </div>
           <figcaption className="mt-3 label text-ink-3">
-            Fig. 1 · Excerpt from a sample Career map. Dots show fit against the person&apos;s average career path, with a 90% range.
+            Fig. 1 · Excerpt from a sample Career map. The dot shows how well each career fits the person, compared with their other careers; the
+            bar around it is the 90% range.
           </figcaption>
         </figure>
       </section>
@@ -155,9 +166,30 @@ export default async function LandingPage() {
         </p>
       </section>
 
+      {/* Sample report */}
+      <section id="sample" className="scroll-mt-20 py-16" aria-labelledby="sample-h">
+        <SectionHeader index="03" label="Sample report" title="Reads like a lab report. Because it is one." id="sample-h" />
+        <div className="relative overflow-hidden rounded-sm border border-rule bg-surface">
+          <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-rule px-6 py-4">
+            <span className="label text-ink-3">Profile report · sample · fictional person</span>
+          </div>
+          <div className="grid gap-10 p-6 lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-4">
+              <p className="label text-ink-3">§ 02 · Interests · O*NET® Interest Profiler</p>
+              {profile.interests ? <RadarProfile dimensions={radarDims(profile.interests)} showCi={false} className="mt-4" /> : null}
+            </div>
+            <div className="lg:col-span-8">
+              <p className="mb-4 label text-ink-3">§ 04 · Personality · IPIP-NEO-120 · T with 90% interval</p>
+              {profile.personality ? <ScaleTable domains={profile.personality.domains.slice(0, 3)} facets={[]} /> : null}
+              <p className="mt-4 label text-ink-3">+ 2 more domains · 29 facets · values · reasoning profile · limitations</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why tests alone fail */}
       <section className="py-16" aria-labelledby="why-h">
-        <SectionHeader index="03" label="Why tests alone fail" title="A questionnaire can only say so much." id="why-h" />
+        <SectionHeader index="04" label="Why tests alone fail" title="A questionnaire can only say so much." id="why-h" />
         <div className="grid-12 gap-y-12">
           <div className="col-span-12 flex flex-col gap-4 text-body-l text-ink-2 lg:col-span-6">
             <p>
@@ -211,46 +243,47 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* Lane index */}
+      {/* Career paths */}
       <section className="py-16" aria-labelledby="index-h">
-        <SectionHeader index="04" label="Career paths we map" title="Every kind of paid work. Not only the corporate kind." id="index-h" aside={`${index.families.length} families · ${totalIndexed} career paths`} />
+        <SectionHeader index="05" label="Career paths we map" title="Every kind of paid work. Not only the corporate kind." id="index-h" aside={`${index.families.length} families · ${totalIndexed} career paths`} />
         <p className="-mt-4 mb-10 max-w-reading text-body text-ink-2">
           Checked against the international occupation classifications (ISCO-08 and ESCO), plus the career paths they miss: creators, founders, esports,
           independent advisers and more.
         </p>
-        <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-          {index.families.map((f) => (
-            <div key={f.id}>
-              <h3 className="flex items-baseline justify-between gap-3 border-b border-rule-strong pb-2 label text-ink">
-                {f.name}
-                <span className="text-ink-3">{pad2(f.lanes.length)}</span>
-              </h3>
-              <p className="mt-2 text-small text-ink-3">{f.lanes.join(" · ")}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Sample report */}
-      <section id="sample" className="scroll-mt-20 py-16" aria-labelledby="sample-h">
-        <SectionHeader index="05" label="Sample report" title="Reads like a lab report. Because it is one." id="sample-h" />
-        <div className="relative overflow-hidden rounded-sm border border-rule bg-surface">
-          <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-rule px-6 py-4">
-            <span className="label text-ink-3">Profile report · {profile.scoringVersion}</span>
-            <span className="font-mono text-label text-ink-3">SAMPLE · fictional person</span>
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <h3 className="text-h3 font-medium text-ink">Is your job in here?</h3>
+            <p className="mt-2 mb-5 text-small text-ink-2">Type any job title, in English or Norwegian. It finds the career path and family it belongs to.</p>
+            <JobFinder />
           </div>
-          <div className="grid gap-10 p-6 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-4">
-              <p className="label text-ink-3">§ 02 · Interests · O*NET® Interest Profiler</p>
-              {profile.interests ? <RadarProfile dimensions={radarDims(profile.interests)} showCi={false} className="mt-4" /> : null}
-            </div>
-            <div className="lg:col-span-8">
-              <p className="mb-4 label text-ink-3">§ 04 · Personality · IPIP-NEO-120 · T with 90% interval</p>
-              {profile.personality ? <ScaleTable domains={profile.personality.domains.slice(0, 3)} facets={[]} /> : null}
-              <p className="mt-4 label text-ink-3">+ 2 more domains · 29 facets · values · reasoning profile · limitations</p>
-            </div>
+          <div className="lg:col-span-7">
+            <ul className="grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-2" aria-label="Career families">
+              {index.families.map((f) => (
+                <li key={f.id} className="flex items-baseline justify-between gap-3 bg-bg px-4 py-3">
+                  <span className="text-small text-ink">{f.name}</span>
+                  <span className="font-mono text-label tabular text-ink-3">{pad2(f.lanes.length)}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+        <details className="group mt-10 border-t border-rule-strong">
+          <summary className="flex cursor-pointer list-none items-center gap-3 py-4 text-body text-ink [&::-webkit-details-marker]:hidden">
+            <span aria-hidden className="font-mono text-small text-ink-3 transition-quiet group-open:rotate-90">›</span>
+            See all {totalIndexed} career paths
+          </summary>
+          <div className="grid gap-x-8 gap-y-8 pt-4 pb-2 sm:grid-cols-2 lg:grid-cols-3">
+            {index.families.map((f) => (
+              <div key={f.id}>
+                <h4 className="flex items-baseline justify-between gap-3 border-b border-rule-strong pb-2 label text-ink">
+                  {f.name}
+                  <span className="text-ink-3">{pad2(f.lanes.length)}</span>
+                </h4>
+                <p className="mt-2 text-small text-ink-3">{f.lanes.join(" · ")}</p>
+              </div>
+            ))}
+          </div>
+        </details>
       </section>
 
       {/* FAQ */}

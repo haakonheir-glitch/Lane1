@@ -14,11 +14,19 @@ export function JobTitleSearch({
   placeholder = "e.g. account executive, sykepleier, YouTuber",
   onSelect,
   autoFocus,
+  endpoint = "/api/taxonomy/search",
+  errorText = "Search isn't responding. You can skip this step.",
+  keepQuery,
 }: {
   label: string;
   placeholder?: string;
   onSelect: (hit: JobTitleHit) => void;
   autoFocus?: boolean;
+  /** The search route: the signed-in onboarding one by default, or the public one on the landing page. */
+  endpoint?: string;
+  errorText?: string;
+  /** Leave the chosen title in the box (a lookup) instead of clearing it (picking several). */
+  keepQuery?: boolean;
 }) {
   const id = useId();
   const listId = `${id}-list`;
@@ -29,18 +37,20 @@ export function JobTitleSearch({
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   /** The query the current `hits` answer, so "no results" never shows for a stale search. */
   const [answered, setAnswered] = useState("");
+  /** The title just chosen, when it stays in the box (keepQuery): not a new search. */
+  const [picked, setPicked] = useState<string | null>(null);
   const abort = useRef<AbortController | null>(null);
 
   useEffect(() => {
     const query = q.trim();
-    if (query.length < 2) return;
+    if (query.length < 2 || query === picked) return;
     const t = window.setTimeout(async () => {
       abort.current?.abort();
       const ctrl = new AbortController();
       abort.current = ctrl;
       setStatus("loading");
       try {
-        const res = await fetch(`/api/taxonomy/search?q=${encodeURIComponent(query)}`, { signal: ctrl.signal });
+        const res = await fetch(`${endpoint}?q=${encodeURIComponent(query)}`, { signal: ctrl.signal });
         if (!res.ok) throw new Error(String(res.status));
         const data = (await res.json()) as { hits: JobTitleHit[] };
         setHits(data.hits);
@@ -53,18 +63,19 @@ export function JobTitleSearch({
       }
     }, 150);
     return () => window.clearTimeout(t);
-  }, [q]);
+  }, [q, endpoint, picked]);
 
   function choose(h: JobTitleHit) {
     onSelect(h);
-    setQ("");
+    setPicked(keepQuery ? h.matched : null);
+    setQ(keepQuery ? h.matched : "");
     setHits([]);
     setOpen(false);
   }
 
   const shown = q.trim().length >= 2 ? hits : [];
   const expanded = open && shown.length > 0;
-  const noResults = status === "idle" && q.trim().length >= 2 && answered === q.trim() && hits.length === 0;
+  const noResults = status === "idle" && q.trim().length >= 2 && q.trim() !== picked && answered === q.trim() && hits.length === 0;
 
   return (
     <div className="relative">
@@ -141,7 +152,7 @@ export function JobTitleSearch({
       {noResults ? (
         <p className="mt-2 text-small text-ink-3">No match yet. Try a shorter or more general title.</p>
       ) : null}
-      {status === "error" ? <p className="mt-2 text-small text-caution">Search isn&apos;t responding. You can skip this step.</p> : null}
+      {status === "error" ? <p className="mt-2 text-small text-caution">{errorText}</p> : null}
     </div>
   );
 }

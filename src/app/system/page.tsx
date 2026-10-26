@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Field, Input, Select } from "@/components/ui/Field";
@@ -85,6 +86,8 @@ function Specimen({ name, children, className }: { name: string; children: React
 }
 
 export default async function SystemPage() {
+  // A development tool only: production has no link to it and no route.
+  if (process.env.NODE_ENV === "production") notFound();
   const [{ rows }, profile, sprints, evidence] = await Promise.all([getSampleLaneMap(), getProfile(), getSprints(), getEvidence()]);
   // One lane from each band (taxonomy order), plus a winner-take-all lane.
   const bandSamples = BAND_ORDER.flatMap((b) => rows.filter((r) => r.band === b).slice(0, 1));

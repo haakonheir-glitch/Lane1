@@ -53,6 +53,7 @@ Each report costs a few cents and takes about a minute. It's saved and only rewr
    - `DATABASE_URL`: the Neon connection string.
    - `APP_TIMEZONE` *(optional)*: the time zone used for sprint days. The default is `Europe/Oslo`.
    - `ANTHROPIC_API_KEY` *(optional)*: turns on the Claude-written report.
+   - `NEXT_PUBLIC_SITE_URL` *(optional)*: your public address (e.g. `https://lane.no`), used for the canonical URL and the share image links. On Vercel the production address is used automatically when this isn't set.
 4. Click **Deploy**. The build creates the database tables automatically (`npm run build` runs `scripts/migrate.mjs` first), and every later deploy applies any new migrations.
 
 Your site is then live at the address Vercel shows, and anyone can sign up. To load the demo account into the hosted database, run this once from your computer:

@@ -5,6 +5,7 @@ import { ButtonLink } from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "Method",
   description: "How Lane builds a profile, matches it to 205 career paths, runs sprints and weighs evidence, and where the science stops.",
+  alternates: { canonical: "/method" },
 };
 
 const references = [
