@@ -81,7 +81,7 @@ export function MarkLegend({ className }: { className?: string }) {
 /** The mark with its legend on hover and keyboard focus. */
 export function ProfileMarkWithLegend({ scores, size = 240, reveal, className }: { scores: ProfileScores; size?: number; reveal?: boolean; className?: string }) {
   return (
-    <figure className={cn("group relative inline-block outline-none", className)} tabIndex={0}>
+    <figure className={cn("group relative inline-block rounded-full", className)} tabIndex={0}>
       <ProfileMark scores={scores} size={size} reveal={reveal} />
       <figcaption
         className="pointer-events-none absolute top-full left-1/2 z-20 mt-3 w-[360px] -translate-x-1/2 rounded-sm border border-rule-strong bg-paper p-4 opacity-0 transition-quiet group-hover:opacity-100 group-focus-visible:opacity-100"

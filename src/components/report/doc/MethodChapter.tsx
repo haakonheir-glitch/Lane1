@@ -36,7 +36,7 @@ export function MethodChapter({ n, profile }: { n: string; profile: ProfileScore
 
   return (
     <Chapter id="method" n={n} kicker="Method and limits" title="What this can and can't tell you">
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Instruments behind this report (scrolls sideways on narrow screens)">
         <table className="w-full min-w-[720px] border-collapse text-left text-small">
           <caption className="sr-only">Instruments behind this report</caption>
           <thead>
