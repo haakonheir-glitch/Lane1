@@ -254,6 +254,7 @@ def build(args) -> dict:
     esco_route: dict[str, str] = {}
     unknown_codes: set[str] = set()
     changed_since: list[dict] = []
+    lookup_errors: list[dict] = []
     label_differs: list[dict] = []
 
     def link(lane: str, socs: list[str], w: float, route: str, esco: str | None):
@@ -271,7 +272,9 @@ def build(args) -> dict:
         rec = occ_codes.get(uri) or {}
         cv, latest = rec.get("crosswalk_version") or {}, rec.get("latest") or {}
         code = cv.get("code")
-        if cv and latest and (cv.get("code") != latest.get("code") or cv.get("label") != latest.get("label")):
+        if cv.get("error") or latest.get("error"):
+            lookup_errors.append({"uri": uri, "crosswalk_version": cv.get("error"), "latest": latest.get("error")})
+        elif cv and latest and (cv.get("code") != latest.get("code") or cv.get("label") != latest.get("label")):
             changed_since.append({"uri": uri, "crosswalk_version": cv, "latest": latest})
         if code and code in xw_esco:
             esco_route[uri] = "crosswalk"
@@ -374,6 +377,7 @@ def build(args) -> dict:
             "esco_by_route": dict(route_counts),
             "esco_unlinked": sorted((r["esco_label"], r["lane_id"], esco_route[r["esco_uri"]]) for r in esco_rows if esco_route[r["esco_uri"]] in ("unlinked", "no_code")),
             "esco_changed_since_crosswalk_version": len(changed_since),
+            "esco_api_lookup_errors": lookup_errors,
             "esco_label_differs_from_crosswalk": label_differs,
             "unknown_onet_codes_in_crosswalk": sorted(unknown_codes),
             "lanes_by_provenance": {k: sum(1 for p in profiles.values() if p["provenance"] == k) for k in ("onet", "estimated", "unlinked")},

@@ -17,6 +17,7 @@ import csv
 import json
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -33,6 +34,7 @@ def get(uri: str, version: str | None) -> dict | None:
     if version:
         q["selectedVersion"] = version
     url = f"{API}?{urllib.parse.urlencode(q)}"
+    last = None
     for attempt in range(5):
         try:
             with urllib.request.urlopen(urllib.request.Request(url, headers={"Accept": "application/json"}), timeout=30) as r:
@@ -41,10 +43,13 @@ def get(uri: str, version: str | None) -> dict | None:
         except urllib.error.HTTPError as e:
             if e.code == 404:
                 return None
+            last = f"HTTP {e.code}: {e.read()[:200].decode('utf-8', 'replace')}"
             time.sleep(2**attempt)
-        except Exception:
+        except Exception as e:
+            last = repr(e)
             time.sleep(2**attempt)
-    raise RuntimeError(f"Failed after retries: {url}")
+    # Some records fail on the server every time (e.g. a 500 for one version only): keep the error, don't stop.
+    return {"code": None, "label": None, "status": None, "error": last}
 
 
 def fetch(uri: str) -> tuple[str, dict]:
@@ -66,13 +71,14 @@ def main(argv=None):
             uri, rec = fut.result()
             data["occupations"][uri] = rec
             done += 1
-            if done % 200 == 0:
+            if done % 100 == 0:
                 OUT.write_text(json.dumps(data, indent=1, sort_keys=True))
                 print(f"{done}/{len(todo)}", flush=True)
     data["fetched"] = time.strftime("%Y-%m-%d")
     OUT.write_text(json.dumps(data, indent=1, sort_keys=True))
-    missing = sum(1 for v in data["occupations"].values() if not v["crosswalk_version"])
-    print(f"done: {len(data['occupations'])} occupations; {missing} not found in {CROSSWALK_VERSION}")
+    missing = sum(1 for v in data["occupations"].values() if not (v["crosswalk_version"] or {}).get("code"))
+    errors = sum(1 for v in data["occupations"].values() for r in v.values() if r and r.get("error"))
+    print(f"done: {len(data['occupations'])} occupations; {missing} without a {CROSSWALK_VERSION} code; {errors} lookups failed on the server")
 
 
 if __name__ == "__main__":
