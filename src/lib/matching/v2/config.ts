@@ -14,22 +14,25 @@ export type V2Config = {
   flat: { minStrong: number; interestsSd: number; modesSd: number };
   minPairs: number;
   correlationFloor: number;
-  componentSdFloor: number;
+  componentRefSd: { interests: number; values: number; valueModes: number; environment: number; challenge: number };
+  guardMinTotal: number;
 };
 
 export const V2_CONFIG: V2Config = {
-  version: "v2-0.2",
+  version: "v2-0.3",
   /**
    * Fulfilment fit (needs–supplies) as a weighted combination of its components. Each component is
-   * first standardised across the person's 205 career paths, so each weight is its real share of
-   * the ranking (raw components differ a lot in spread). Renormalised over the components the person has.
+   * centred on the person's average career path and divided by a fixed reference spread
+   * (componentRefSd), so the weights are comparable across components (as SD shares) while a
+   * near-flat profile stays near-flat. Renormalised over the components the person has.
    */
   weights: { interests: 0.35, values: 0.15, valueModes: 0.2, environment: 0.2, challenge: 0.1 },
   /**
    * Environment dimensions are weighted by how strong the person's need is: two-sided |p − 50| / 50;
    * deficit (only "too little" hurts) max(0, p − 50) / 50; excess (only "too much" hurts)
    * max(0, 50 − p) / 50. A low need on a deficit dimension can never be let down, so it gets only
-   * the floor. The floor keeps a perfectly neutral profile defined.
+   * the floor (it can then only be let down by unusually extreme careers). The floor keeps a
+   * perfectly neutral profile defined.
    */
   environmentWeightFloor: 0.05,
   /** Monte Carlo draws of the person's scores from their standard errors. */
@@ -46,8 +49,9 @@ export const V2_CONFIG: V2Config = {
   /**
    * No single personality facet may carry more than this share of any fit. A facet's share is its
    * effect on the fit (the fit with the facet against the fit with the facet set to its domain
-   * score) over the summed effects of all inputs; above the cap the facet is shrunk towards its
-   * domain score until it fits (enforced per person in matchAllV2).
+   * score) over the summed effects of all inputs, with that sum floored at guardMinTotal fit points
+   * so a tiny effect on a near-flat profile isn't "100%". Above the cap the facet is shrunk towards
+   * its domain score, repeated until no facet is over (enforced per person in matchAllV2).
    */
   facetCap: 0.15,
   /** Archetype blend: softmax over the nine mode scores (0–100) with this temperature, in score points. */
@@ -67,6 +71,12 @@ export const V2_CONFIG: V2Config = {
    * differences can't flip a whole ranking.
    */
   correlationFloor: 10,
-  /** Floor on a component's SD across career paths (0–1 scale) when standardising, so a near-constant component isn't blown up into noise. */
-  componentSdFloor: 0.03,
+  /**
+   * Each component's typical spread across career paths (0–1 scale): the median over 400 simulated
+   * people (scripts/validate-matching-v2.mts population; componentSpreads in fit.ts). Fixed, so a
+   * person whose component barely varies across careers gets a component that barely matters.
+   */
+  componentRefSd: { interests: 0.195, values: 0.19, valueModes: 0.14, environment: 0.065, challenge: 0.095 },
+  /** The facet guard's floor on summed input effects, in fit points (one component SD ≈ 10). */
+  guardMinTotal: 10,
 };

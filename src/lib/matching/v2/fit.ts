@@ -195,9 +195,21 @@ type LaneCtx = {
   challenge: number | null;
   abilities: ({ demand: number; importance: number } | null)[];
   direction: string | null;
+  /** The career's general advantage on the one-sided components, removed before scoring (see Offsets). */
+  offset: Offsets[string] | undefined;
 };
 
-function laneCtx(id: string, lane: LaneProfileV2): LaneCtx {
+/**
+ * Per career path, how much it gains on the one-sided components (environment and challenge) for
+ * people in general: its mean component score over a reference population minus the mean over all
+ * career paths. Those components only ever penalise in one direction (a career can't have "too much"
+ * autonomy or challenge), so demanding, autonomous, calm careers would otherwise suit nearly
+ * everyone. Subtracting the offset credits a career only for fitting this person better than it fits
+ * people in general. Built by taxonomy/build/build_v2_offsets.mts.
+ */
+export type Offsets = Record<string, { environment: number; challenge: number }>;
+
+function laneCtx(id: string, lane: LaneProfileV2, offsets?: Offsets): LaneCtx {
   const modes = VALUE_MODES.map((m) => lane.modes[m.id] ?? null);
   const best = VALUE_MODES.map((m, i) => [m.id, modes[i]] as const)
     .filter(([, x]) => x !== null)
@@ -216,6 +228,7 @@ function laneCtx(id: string, lane: LaneProfileV2): LaneCtx {
       return x && x.demand !== null && x.importance !== null ? { demand: x.demand, importance: x.importance } : null;
     }),
     direction: best ? best[0] : null,
+    offset: offsets?.[id],
   };
 }
 
@@ -253,9 +266,10 @@ function raw(pt: PersonPoint, l: LaneCtx, cfg: V2Config): Raw {
   const challenge = pt.challenge !== null && l.challenge !== null ? 1 - Math.max(0, pt.challenge - l.challenge) / 100 : null;
   const ew = environment.reduce((a, e) => a + e.weight, 0);
   const envFit = ew ? environment.reduce((a, e) => a + e.weight * e.fit, 0) / ew : null;
+  const o = l.offset;
   return {
     comps: { interests, values, valueModes, environment, challenge, imputed: [] },
-    values: { interests, values, valueModes, environment: envFit, challenge },
+    values: { interests, values, valueModes, environment: envFit === null ? null : envFit - (o?.environment ?? 0), challenge: challenge === null ? null : challenge - (o?.challenge ?? 0) },
     ability: abilityOf(pt, l),
   };
 }
@@ -280,14 +294,14 @@ function abilityOf(pt: PersonPoint, l: LaneCtx): number | null {
   return w && w / total >= 0.5 ? 100 - short / w : null;
 }
 
-/** Per component: mean and SD (floored) across career paths, for standardising. */
+/** Per component: the person's mean across career paths (centring) and the fixed reference spread. */
 type Scale = Record<Key, { mean: number; sd: number } | null>;
 
 function scaleOf(raws: Raw[], cfg: V2Config): Scale {
   const out = {} as Scale;
   for (const k of KEYS) {
     const xs = raws.flatMap((r) => (r.values[k] === null ? [] : [r.values[k]!]));
-    out[k] = xs.length ? { mean: mean(xs), sd: Math.max(sd(xs), cfg.componentSdFloor) } : null;
+    out[k] = xs.length ? { mean: mean(xs), sd: cfg.componentRefSd[k] } : null;
   }
   return out;
 }
@@ -364,36 +378,50 @@ function inputShares(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Conf
       s.map((x, j) => (x.fulfilment === null || base[j] === null ? 0 : Math.abs(x.fulfilment - base[j]!))),
     );
   }
-  const totals = base.map((_, j) => keys.reduce((a, k) => a + effects.get(k)![j]!, 0));
-  const share = (k: PersonConstructId) => Math.max(0, ...effects.get(k)!.map((e, j) => (totals[j]! > 1e-9 ? e / totals[j]! : 0)));
+  // The summed effects are floored, so a tiny effect on a near-flat profile isn't "100% of the fit".
+  const totals = base.map((_, j) => Math.max(cfg.guardMinTotal, keys.reduce((a, k) => a + effects.get(k)![j]!, 0)));
+  const share = (k: PersonConstructId) => Math.max(0, ...effects.get(k)!.map((e, j) => e / totals[j]!));
   return new Map((only ?? keys.filter(isFacet)).map((k) => [k, share(k)]));
 }
 
-/** Shrinks any facet whose share of some fit is above the cap, until no fit leans on it beyond the cap. */
+/**
+ * Shrinks facets whose share of some fit is above the cap, repeating the pass until no facet is
+ * over (shrinking one facet changes the others' shares). Reports each facet's share before and
+ * its final share after.
+ */
 function facetGuard(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Config): { shrink: Shrink; guard: FacetGuard[] } {
   const shrink: Shrink = {};
-  const guard: FacetGuard[] = [];
-  const shares = inputShares(cp, v, ctxs, cfg);
-  for (const [f, before] of [...shares].sort((a, b) => b[1] - a[1])) {
-    if (before <= cfg.facetCap) continue;
-    let lo = 0;
-    let hi = 1;
-    for (let it = 0; it < 8; it++) {
-      const mid = (lo + hi) / 2;
-      const s = inputShares(cp, applyShrink(v, { ...shrink, [f]: mid }), ctxs, cfg, [f]).get(f)!;
-      if (s <= cfg.facetCap) lo = mid;
-      else hi = mid;
+  const first = inputShares(cp, v, ctxs, cfg);
+  let current = first;
+  for (let pass = 0; pass < 6; pass++) {
+    const over = [...current].filter(([, s]) => s > cfg.facetCap).sort((a, b) => b[1] - a[1]);
+    if (!over.length) break;
+    for (const [f] of over) {
+      const share = (lambda: number) => inputShares(cp, applyShrink(v, { ...shrink, [f]: lambda }), ctxs, cfg, [f as PersonConstructId]).get(f)!;
+      let lo = 0;
+      let hi = shrink[f as PersonConstructId] ?? 1;
+      if (share(hi) <= cfg.facetCap) continue;
+      for (let it = 0; it < 8; it++) {
+        const mid = (lo + hi) / 2;
+        if (share(mid) <= cfg.facetCap) lo = mid;
+        else hi = mid;
+      }
+      shrink[f as PersonConstructId] = lo;
     }
-    shrink[f] = lo;
-    const after = inputShares(cp, applyShrink(v, shrink), ctxs, cfg, [f]).get(f)!;
-    guard.push({ facet: f, shrink: Math.round(lo * 1000) / 1000, maxShareBefore: Math.round(before * 1000) / 1000, maxShareAfter: Math.round(after * 1000) / 1000 });
+    current = inputShares(cp, applyShrink(v, shrink), ctxs, cfg);
   }
+  const guard = (Object.keys(shrink) as PersonConstructId[]).map((f) => ({
+    facet: f,
+    shrink: Math.round(shrink[f]! * 1000) / 1000,
+    maxShareBefore: Math.round(first.get(f)! * 1000) / 1000,
+    maxShareAfter: Math.round(current.get(f)! * 1000) / 1000,
+  }));
   return { shrink, guard };
 }
 
 /** Every facet's largest share of any fit for this person, after the guard (for tests and reports). */
-export function facetShares(person: PersonProfile, lanes: Record<string, LaneProfileV2>, cfg: V2Config = V2_CONFIG): Map<string, number> {
-  const ctxs = Object.entries(lanes).map(([id, l]) => laneCtx(id, l));
+export function facetShares(person: PersonProfile, lanes: Record<string, LaneProfileV2>, cfg: V2Config = V2_CONFIG, offsets?: Offsets): Map<string, number> {
+  const ctxs = Object.entries(lanes).map(([id, l]) => laneCtx(id, l, offsets));
   const cp = compilePerson(person);
   const v: Values = Object.fromEntries((Object.keys(person.inputs) as PersonConstructId[]).map((k) => [k, person.inputs[k]!.value]));
   const { shrink } = facetGuard(cp, v, ctxs, cfg);
@@ -419,21 +447,23 @@ function shapeLabels(name: string, kind: "interests" | "value" | "mode", pole: P
 }
 
 /** Environment labels from the person's side and the career's. */
-function envLabels(id: string, person: number, career: number): { label: string; friction: string } {
+function envLabels(id: string, person: number, career: number, fit: number): { label: string; friction: string } {
   const name = ENV_BY_ID.get(id)!.name;
   const lower = name.charAt(0).toLowerCase() + name.slice(1);
   return {
     label:
-      person >= 60
-        ? career >= person - 5
-          ? `${name}: as much as you need`
-          : `${name}: close to what you need`
-        : person <= 40
-          ? career <= person + 5
-            ? `Little ${lower}, which suits you`
-            : `${name}: within what suits you`
-          : `${name}: about what suits you`,
-    friction: career < person ? `${name}: less than you need` : `${name}: more than suits you`,
+      fit < 0.9
+        ? `${name}: a smaller gap than most of your options`
+        : person >= 60
+          ? career >= person - 5
+            ? `${name}: as much as you need`
+            : `${name}: close to what you need`
+          : person <= 40
+            ? career <= person + 5
+              ? `Little ${lower}, which suits you`
+              : `${name}: within what suits you`
+            : `${name}: about what suits you`,
+    friction: career < person ? (person >= 60 ? `${name}: less than you need` : `${name}: less than suits you`) : `${name}: more than suits you`,
   };
 }
 
@@ -462,11 +492,11 @@ function parts(pt: PersonPoint, l: LaneCtx, s: Scored, cp: CompiledPerson, p: Pe
     const ew = s.comps.environment.reduce((a, e) => a + e.weight, 0);
     for (const e of s.comps.environment) {
       const i = ENV_DIMS.findIndex((d) => d.id === e.id);
-      out.push({ id: `env.${e.id}`, ...envLabels(e.id, e.person, e.career), pole: "high", component: "environment", contribution: (k("environment") * e.weight * e.fit) / ew, sources: cp.env[i]?.sources ?? [] });
+      out.push({ id: `env.${e.id}`, ...envLabels(e.id, e.person, e.career, e.fit), pole: "high", component: "environment", contribution: (k("environment") * e.weight * e.fit) / ew, sources: cp.env[i]?.sources ?? [] });
     }
   }
   if (s.values.challenge !== null)
-    out.push({ id: "env.challenge", label: `${CHALLENGE.name}: enough for your reasoning range`, friction: `${CHALLENGE.name}: less than your reasoning range`, pole: "high", component: "challenge", contribution: k("challenge") * s.values.challenge!, sources: cp.challenge?.sources ?? [] });
+    out.push({ id: "env.challenge", label: s.values.challenge! >= 0.95 ? `${CHALLENGE.name}: enough for your reasoning range` : `${CHALLENGE.name}: closer to your range than most of your options`, friction: `${CHALLENGE.name}: less than your reasoning range`, pole: "high", component: "challenge", contribution: k("challenge") * s.values.challenge!, sources: cp.challenge?.sources ?? [] });
   return out;
 }
 
@@ -476,7 +506,8 @@ function driversFrictions(own: Part[], baseline: Map<string, number>): { drivers
   // Shared strengths lead; shared absences ("little X work, which suits you") come after them.
   const rank = (x: (typeof rel)[number]) => (x.pole === "low" ? 1 : 0);
   return {
-    drivers: rel.filter((x) => x.d.contribution >= 0.3).sort((a, b) => rank(a) - rank(b) || b.d.contribution - a.d.contribution).slice(0, 4).map((x) => x.d),
+    // Mixed parts (one side high, the other low) only ever count against a fit, never as a reason for it.
+    drivers: rel.filter((x) => x.d.contribution >= 0.3 && x.pole !== "mixed").sort((a, b) => rank(a) - rank(b) || b.d.contribution - a.d.contribution).slice(0, 4).map((x) => x.d),
     frictions: rel.filter((x) => x.d.contribution <= -0.3).sort((a, b) => a.d.contribution - b.d.contribution).slice(0, 3).map((x) => ({ ...x.d, label: x.friction })),
   };
 }
@@ -501,20 +532,20 @@ function archetypeBlend(pt: PersonPoint, drawsModes: (number | null)[][], cfg: V
     blend,
     top2: [a!, b!].map((x) => ({ id: x.id, archetype: x.archetype, share: x.share })),
     tentative,
-    reason: tentative ? `${a!.archetype} leads ${b!.archetype} in ${Math.round(ahead * 100)}% of draws once measurement error is allowed for, so the order of the two isn't certain.` : null,
+    reason: tentative ? `${a!.archetype} leads ${b!.archetype} in ${Math.min(Math.floor(ahead * 100), Math.ceil(cfg.archetypeConfidence * 100) - 1)}% of draws once measurement error is allowed for, so the order of the two isn't certain.` : null,
     caveat: pair ? `${a!.archetype} and ${b!.archetype} are built from largely the same scores, so read them as one pattern.` : null,
   };
 }
 
 /* ---------------------------------------------------------------- main ---- */
 
-export type MatchOptions = { config?: V2Config; draws?: number; seed?: number };
+export type MatchOptions = { config?: V2Config; draws?: number; seed?: number; offsets?: Offsets };
 
 /** Every career path for one person: fits as distributions, drivers, bands from rank stability. */
 export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProfileV2>, opts: MatchOptions = {}): MatchResultV2 {
   const cfg = opts.config ?? V2_CONFIG;
   const draws = opts.draws ?? cfg.draws;
-  const ctxs = Object.entries(lanes).map(([id, l]) => laneCtx(id, l));
+  const ctxs = Object.entries(lanes).map(([id, l]) => laneCtx(id, l, opts.offsets));
   const cp = compilePerson(person);
   const keys = Object.keys(person.inputs) as PersonConstructId[];
   const est: Values = Object.fromEntries(keys.map((k) => [k, person.inputs[k]!.value]));
@@ -612,8 +643,16 @@ function notesFor(cp: CompiledPerson, pt: PersonPoint, bands: Record<BandV2, num
       });
     else notes.push({ code: "few_strong", text: `Several career paths fit you about equally well, so only ${bands.strong === 0 ? "none" : `${bands.strong}`} stand${bands.strong === 1 ? "s" : ""} out reliably once measurement error is allowed for (${n}). The possible fits nearest the top are worth the same look.` });
   }
-  if (guard.length)
-    notes.push({ code: "facet_guard", text: `So that no single personality facet decides a match, ${guard.map((g) => g.facet.replace("neo.", "")).join(", ")} ${guard.length === 1 ? "was" : "were"} weighted down towards the domain score.` });
+  if (guard.length) {
+    const names = (gs: FacetGuard[]) => gs.map((g) => g.facet.replace("neo.", "")).join(", ");
+    const replaced = guard.filter((g) => g.shrink < 0.05);
+    const weighted = guard.filter((g) => g.shrink >= 0.05);
+    const parts = [
+      weighted.length ? `${names(weighted)} ${weighted.length === 1 ? "was" : "were"} weighted down towards ${weighted.length === 1 ? "its" : "their"} domain score` : null,
+      replaced.length ? `${names(replaced)} ${replaced.length === 1 ? "was" : "were"} replaced by ${replaced.length === 1 ? "its" : "their"} domain score` : null,
+    ].filter(Boolean);
+    notes.push({ code: "facet_guard", text: `So that no single personality facet decides a match, ${parts.join(" and ")}.` });
+  }
   return notes;
 }
 
@@ -632,4 +671,43 @@ export function computeFit(person: PersonProfile, lane: string | LaneProfileV2, 
   if (!all[id]) throw new Error(`Unknown career path ${id}`);
   const r = matchAllV2(person, all, opts).lanes.find((x) => x.laneId === id)!;
   return { fulfilmentFit: r.fulfilmentFit, abilityFit: r.abilityFit, components: r.components, drivers: r.drivers, frictions: r.frictions };
+}
+
+/** Each component's spread across career paths at the person's estimates, before standardising (for calibrating V2_CONFIG.componentRefSd). */
+export function componentSpreads(person: PersonProfile, lanes: Record<string, LaneProfileV2>, cfg: V2Config = V2_CONFIG): Record<string, number | null> {
+  const ctxs = Object.entries(lanes).map(([id, l]) => laneCtx(id, l));
+  const cp = compilePerson(person);
+  const v: Values = Object.fromEntries((Object.keys(person.inputs) as PersonConstructId[]).map((k) => [k, person.inputs[k]!.value]));
+  const raws = ctxs.map((l) => raw(personPoint(cp, v, cfg), l, cfg));
+  return Object.fromEntries(KEYS.map((k) => {
+    const xs = raws.flatMap((r) => (r.values[k] === null ? [] : [r.values[k]!]));
+    return [k, xs.length ? sd(xs) : null];
+  }));
+}
+
+/** The career offsets (see Offsets) from a reference population, at each person's estimates. */
+export function populationOffsets(people: PersonProfile[], lanes: Record<string, LaneProfileV2>, cfg: V2Config = V2_CONFIG): Offsets {
+  const ctxs = Object.entries(lanes).map(([id, l]) => laneCtx(id, l));
+  const sums = ctxs.map(() => ({ environment: 0, challenge: 0, ne: 0, nc: 0 }));
+  for (const p of people) {
+    const cp = compilePerson(p);
+    const v: Values = Object.fromEntries((Object.keys(p.inputs) as PersonConstructId[]).map((k) => [k, p.inputs[k]!.value]));
+    const pt = personPoint(cp, v, cfg);
+    ctxs.forEach((l, j) => {
+      const r = raw(pt, l, cfg);
+      if (r.values.environment !== null) {
+        sums[j]!.environment += r.values.environment;
+        sums[j]!.ne++;
+      }
+      if (r.values.challenge !== null) {
+        sums[j]!.challenge += r.values.challenge;
+        sums[j]!.nc++;
+      }
+    });
+  }
+  const means = sums.map((s) => ({ environment: s.ne ? s.environment / s.ne : 0, challenge: s.nc ? s.challenge / s.nc : 0 }));
+  const avgE = mean(means.map((m) => m.environment));
+  const avgC = mean(means.map((m) => m.challenge));
+  const r4 = (x: number) => Math.round(x * 10000) / 10000;
+  return Object.fromEntries(ctxs.map((l, j) => [l.id, { environment: r4(means[j]!.environment - avgE), challenge: r4(means[j]!.challenge - avgC) }]));
 }

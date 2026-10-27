@@ -50,6 +50,8 @@ export type LaneDetail = {
   unscoredTags: string[];
   isco: { code: string; label: string }[];
   overlay: MatchOverlay;
+  /** How to read the drivers' contributions (differs between matching v1 and v2). */
+  driversNote: string;
 };
 
 /** One axis per construct the matching uses for a path. `you` is z relative to your own average (null = not measured). */

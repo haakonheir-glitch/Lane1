@@ -24,16 +24,17 @@ const roleRef = (r: Role): RoleRef => ({ id: r.id, title: r.title, level: r.leve
 export const matchingCacheKey = () => (matchingVersion() === "v2" ? `v2:${V2_CONFIG.version}:${LANE_PROFILES_V2_STAMP}` : "v1");
 
 /**
- * v2 results by profile (500 draws × 205 fits, about half a second), kept across requests so that
- * opening a career path's detail doesn't rerun the Monte Carlo. Small: one entry per active profile.
+ * v2 matches by profile (500 draws × 205 fits, about half a second), kept across requests so that
+ * opening a career path's detail doesn't rerun the Monte Carlo. Holds only the adapted rows (about
+ * 205 small objects per profile), at most 64 profiles.
  */
-const v2Memo = new Map<string, ReturnType<typeof matchV2>>();
-function matchV2Memo(profile: ProfileScores) {
+const v2Memo = new Map<string, LaneMatch[]>();
+function matchV2Memo(profile: ProfileScores): LaneMatch[] {
   const person = { inputs: personInputs(profile) };
   const key = `${V2_CONFIG.version}:${profileSeed(person)}`;
   let r = v2Memo.get(key);
   if (!r) {
-    r = matchV2(person);
+    r = toV1Matches(matchV2(person));
     if (v2Memo.size >= 64) v2Memo.delete(v2Memo.keys().next().value!);
     v2Memo.set(key, r);
   }
@@ -42,7 +43,7 @@ function matchV2Memo(profile: ProfileScores) {
 
 /** Matching is pure and costs ~205×205 pair checks (v1) or 500 draws × 205 fits (v2), so compute it once per request. */
 const matchesFor = cache((profile: ProfileScores) => {
-  const ms = matchingVersion() === "v2" ? toV1Matches(matchV2Memo(profile)) : matchLanes(profile, taxonomy);
+  const ms = matchingVersion() === "v2" ? matchV2Memo(profile) : matchLanes(profile, taxonomy);
   return new Map(ms.map((m) => [m.laneId, m]));
 });
 
@@ -157,6 +158,10 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
     unscoredTags: m.unscoredTags.map((t) => TAG_NOUN[t]),
     isco: Object.entries(lane.isco_labels).map(([code, label]) => ({ code, label })),
     overlay: matchOverlay(lane, profile),
+    driversNote:
+      matchingVersion() === "v2"
+        ? "Contribution to fit, against the same part averaged over all your career paths."
+        : "Contribution to fit, relative to your own average across all scales.",
   };
 }
 

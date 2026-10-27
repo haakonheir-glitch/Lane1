@@ -126,7 +126,7 @@ export function LaneDetailPanel({ detail, onClose, headingId }: { detail: LaneDe
                   </li>
                 ))}
               </ul>
-              <p className="mt-3 text-small text-ink-3">Contribution to fit, relative to your own average across all scales.</p>
+              <p className="mt-3 text-small text-ink-3">{detail.driversNote}</p>
             </>
           ) : null}
           {detail.unscoredTags.length ? (

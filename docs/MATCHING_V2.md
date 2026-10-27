@@ -1,9 +1,9 @@
 # Matching v2
 
-Version `v2-0.2`.
+Version `v2-0.3`.
 - **Code:** `src/lib/matching/v2/` (pure, deterministic, no LLM calls).
 - **Settings:** `src/lib/matching/v2/config.ts`.
-- **Career data:** `taxonomy/derived/lane_profiles_v2.json`, built by `taxonomy/build/build_v2_lane_profiles.mts` from the O\*NET profiles (`taxonomy/derived/REPORT.md`).
+- **Career data:** `taxonomy/derived/lane_profiles_v2.json`, built by `taxonomy/build/build_v2_lane_profiles.mts` from the O\*NET profiles (`taxonomy/derived/REPORT.md`). Career offsets: `taxonomy/derived/lane_offsets_v2.json`, built by `taxonomy/build/build_v2_offsets.mts`.
 - **Person data:** the Work Design inputs, each a 0–100 value with a standard error (`docs/WORK_DESIGN.md`).
 - **Validation and tuning:** `taxonomy/derived/MATCHING_V2_REPORT.md`.
 
@@ -48,11 +48,17 @@ A single fit still needs the whole field, for three reasons:
   - each plus a 0.05 floor.
 
   This is how v2 reads the brief's "how far the person sits from the middle". A low need on a deficit dimension can never be let down, so it gets only the floor.
-- **Standardised, then weighted.**
-  - Each component is turned into a z-score across your 205 career paths, with its SD floored at 0.03 so a near-constant component isn't amplified into noise.
+- **Centred, scaled, then weighted.**
+  - Each component is centred on your average career path and divided by a **fixed reference spread**: its typical SD across career paths, the median over 400 simulated people. Interests .195, values .19, value modes .14, environment .065, challenge .095.
   - The fit is 50 + 10 × Σ weight × z.
-  - So a weight is a component's real share of the ranking. On raw scales, interests dominated and environment and challenge (30% nominal) moved almost nothing.
-  - The result is **relative to you**: 50 is your average career path, and ±10 is about one component SD.
+  - **Weights are comparable SD shares.** On raw scales, interests dominated and environment and challenge (30% nominal) moved almost nothing. Measured over a population, environment now carries about its nominal share of the ranking variance. Challenge and values carry less than nominal in variance terms, because they correlate with the other components.
+  - **A near-flat profile stays near-flat.** The reference spread is fixed rather than your own, so a 1-point change in one interest moves no fit by more than a point.
+  - The result is **relative to you**: 50 is your average career path.
+- **Career offsets (popularity).** Environment and challenge only penalise in one direction: a career can't give "too much" autonomy or challenge.
+  - Left alone, demanding, autonomous, calm careers suited nearly everyone. Electrical & electronics engineering was a strong fit for 31% of simulated people.
+  - So each career's general advantage on these two components (its mean over a reference population of 1,000 simulated people, minus the mean over all careers) is subtracted. A career is credited only for fitting *you* better than it fits people in general.
+  - The reference population uses a different seed from the validation population.
+  - Interests, values and modes are symmetric correlations and are not offset.
 - **Missing data.**
   - A component the career path lacks (5 have no O\*NET Work Values) counts as your average for it (z = 0): unknown is neutral. Dropping it instead made missing data a bonus.
   - A component you lack is left out, and the weights renormalise.
@@ -86,9 +92,11 @@ The thresholds are tuned on 1,000 simulated people (`MATCHING_V2_REPORT.md`).
 - **No personality facet carries more than 15% of any fit. This is enforced, not assumed.**
   - For each person, every input's effect on every fit is measured: the fit against the fit with that input set to its reference. A facet's reference is its domain score; anything else's is 50.
   - A facet's share is its effect over all effects.
-  - If a facet passes 15% of any fit, it is shrunk towards its domain score (x' = domain + λ(x − domain), λ found by bisection) until it doesn't. The same λ applies in every draw.
-  - The result lists the facet in `guard`, and a note says so.
-  - An earlier analytic bound turned out not to bound the correlation's non-linearity; the review found a 19-point swing. It is replaced by this check.
+  - The summed effects are floored at 10 fit points, so a tiny effect on a near-flat profile can't count as "100% of the fit".
+  - If a facet passes 15% of any fit, it is shrunk towards its domain score (x' = domain + λ(x − domain), λ found by bisection). The pass repeats until no facet is over, because shrinking one facet changes the others' shares.
+  - The same λ applies in every draw.
+  - The result lists each facet with its share before and its final share after, and a note says whether it was weighted down or replaced by the domain score.
+  - Two earlier versions failed independent review: an analytic bound missed the correlation's non-linearity (a 19-point swing), and a one-pass guard didn't converge (shares up to 82% on contrived profiles). On the same adversarial profiles, every facet now ends at 15.0%.
 - **Few strong fits are always explained.**
   - Fewer than 8 strong fits gets a note.
   - "flat_profile" applies when the interests SD < 10 or the value-mode SD < 6.
@@ -116,7 +124,10 @@ The thresholds are tuned on 1,000 simulated people (`MATCHING_V2_REPORT.md`).
   - "Little Realistic work, which suits you": both low;
   - "Little use of your Social interests": yours high, the career's low;
   - "Less Investigative work than most of your options": a shared strength that is weaker here;
-  - "Autonomy: less than you need": an environment shortfall.
+  - "Autonomy: less than you need" (or "less than suits you" when your need is moderate): an environment shortfall.
+  - Mixed parts (one side high, the other low) only ever count as frictions.
+  - Environment drivers say "as much as you need" only when the gap is small; otherwise "a smaller gap than most of your options".
+  - The challenge driver says "enough for your reasoning range" only when the career is not under-challenging.
 - **Sources:** every driver lists the source score ids.
 
 ## Not done in Phase 2

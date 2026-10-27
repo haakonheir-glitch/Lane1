@@ -27,8 +27,8 @@ export function toV1Matches(r: MatchResultV2): LaneMatch[] {
       laneId: l.laneId as LaneId,
       band: BAND[l.band],
       fit: ok ? l.fulfilmentFit.mean : null,
-      se: ok ? l.fulfilmentFit.sd / 10 : null,
-      vsAverage: ok ? (l.fulfilmentFit.mean - 50) / 10 : null,
+      se: ok ? Math.round(l.fulfilmentFit.sd * 100) / 1000 : null,
+      vsAverage: ok ? Math.round((l.fulfilmentFit.mean - 50) * 100) / 1000 : null,
       drivers: [...l.drivers.map(z), ...l.frictions.map(z)],
       unscoredTags: [],
     };

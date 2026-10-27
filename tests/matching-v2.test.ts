@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { LANE_PROFILES_V2, V2_CONFIG, bestByDirection, computeFit, facetShares, matchAllV2, matchV2, rankV2, topFive, type LaneProfileV2 } from "@/lib/matching/v2";
+import { LANE_OFFSETS_V2, LANE_PROFILES_V2, V2_CONFIG, bestByDirection, computeFit, facetShares, matchAllV2, matchV2, rankV2, topFive, type LaneProfileV2 } from "@/lib/matching/v2";
 import { TEST_PROFILES, population, synthetic } from "@/lib/matching/v2/synthetic";
 import { toV1Matches } from "@/lib/matching/v2/adapter";
 import { matchingVersion } from "@/lib/matching/version";
@@ -32,11 +32,31 @@ describe("matching v2: data and config", () => {
     for (const p of Object.values(LANE_PROFILES_V2)) expect(p.interests).toHaveLength(6);
   });
 
+  it("converges the facet guard on adversarial profiles (several facets pushed at once)", () => {
+    const used = ["C2", "C3", "C4", "C6", "E3", "A3", "A6", "O1", "O2", "O5"] as const;
+    const cases = [
+      synthetic({ interests: { I: 51 }, facets: { C2: 100, C3: 100 } }),
+      synthetic({ facets: Object.fromEntries(used.map((f) => [f, 100])) }),
+      synthetic({ facets: Object.fromEntries(used.map((f, i) => [f, i % 2 ? 0 : 100])) }),
+    ];
+    for (const p of cases) for (const [f, share] of facetShares(p, LANE_PROFILES_V2, V2_CONFIG, LANE_OFFSETS_V2)) expect(share, f).toBeLessThanOrEqual(V2_CONFIG.facetCap + 0.005);
+    const r = matchV2(cases[0]!, { draws: 20 });
+    for (const g of r.guard) expect(g.maxShareAfter).toBeLessThanOrEqual(V2_CONFIG.facetCap + 0.005);
+  });
+
+  it("keeps a near-flat profile near-flat: a 1-point change moves no fit by more than a point", () => {
+    const zero = (p: ReturnType<typeof synthetic>) => ({ inputs: Object.fromEntries(Object.entries(p.inputs).map(([k, v]) => [k, { ...v!, se: 0 }])) }) as ReturnType<typeof synthetic>;
+    const fits = (p: ReturnType<typeof synthetic>) => new Map(matchV2(zero(p), { draws: 1 }).lanes.map((l) => [l.laneId, l.fulfilmentFit.mean]));
+    const a = fits(synthetic({ interests: { I: 51 } }));
+    const b = fits(synthetic({ interests: { S: 51 } }));
+    expect(Math.max(...[...a].map(([id, x]) => Math.abs(x - b.get(id)!)))).toBeLessThan(1);
+  });
+
   it("keeps every personality facet at or under 15% of every fit, shrinking it when needed", () => {
     // A profile built so that one facet would carry far more: everything flat except orderliness.
     const lopsided = synthetic({ interests: { I: 60, C: 55 }, facets: { C2: 100 } });
     for (const p of [lopsided, synthetic(TEST_PROFILES.analyst!.spec), ...population(4, 3)]) {
-      for (const [f, share] of facetShares(p, LANE_PROFILES_V2)) expect(share, f).toBeLessThanOrEqual(V2_CONFIG.facetCap + 0.01);
+      for (const [f, share] of facetShares(p, LANE_PROFILES_V2, V2_CONFIG, LANE_OFFSETS_V2)) expect(share, f).toBeLessThanOrEqual(V2_CONFIG.facetCap + 0.01);
     }
     const r = matchV2(lopsided, { draws: 40 });
     if (r.guard.length) expect(r.notes.map((n) => n.code)).toContain("facet_guard");
