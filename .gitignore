@@ -42,3 +42,4 @@ next-env.d.ts
 .screenshots
 .data
 e2e-failure.png
+__pycache__/

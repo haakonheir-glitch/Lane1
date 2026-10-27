@@ -1,0 +1,25 @@
+{
+  "_comment": "Weights for linking O*NET occupations to a career path, by how the link was made. Provisional; documented in docs/WORK_DESIGN.md.",
+  "match_weights": {
+    "exact": 1.0,
+    "close": 0.7,
+    "narrow": 0.5,
+    "broad": 0.4,
+    "fallback_isco": 0.25,
+    "fallback_lane_isco": 0.15
+  },
+  "files": {
+    "occupations": "Occupation Data.txt",
+    "interests": "Interests.txt",
+    "work_values": "Work Values.txt",
+    "work_activities": "Work Activities.txt",
+    "work_context": "Work Context.txt",
+    "abilities": "Abilities.txt",
+    "work_styles": "Work Styles.txt",
+    "job_zones": "Job Zones.txt"
+  },
+  "confidence": {
+    "_comment": "coverage confidence = min(1, total link weight / full_weight) x share of weight from exact or close links",
+    "full_weight": 3.0
+  }
+}

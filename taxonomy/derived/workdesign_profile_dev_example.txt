@@ -1,0 +1,25 @@
+Work Design profile wd-0.1 for e2e-1793030275246@example.com · sessions S1, S2, S3, S4, S5
+
+Value modes (0–100, SE, 90% range; relative = BLUEPRINT reliability rule)
+  Influence (Hunter)        69 ± 5.0 (90%: 61–77)  strength  coverage 100%
+  Analyse (Scout)           54 ± 7.1 (90%: 42–65)  none  coverage 70%
+  Build (Maker)             13 ± 10.0 (90%: 0–29)  weakness  coverage 60%
+  Organise (Gatherer)       53 ± 5.8 (90%: 44–63)  none  coverage 100%
+  Care (Healer)             53 ± 5.8 (90%: 44–63)  none  coverage 100%
+  Teach (Teacher)           63 ± 5.7 (90%: 54–73)  none  coverage 100%
+  Create (Storyteller)      56 ± 5.8 (90%: 47–66)  none  coverage 100%
+  Lead (Chief)              71 ± 4.9 (90%: 63–79)  strength  coverage 100%
+  Protect (Guardian)        56 ± 5.0 (90%: 48–64)  none  coverage 100%
+
+Environment dimensions
+  Autonomy                              55 ± 6.8 (90%: 44–66)  coverage 100%
+  Social contact                        49 ± 5.2 (90%: 41–58)  coverage 100%
+  Pace and time pressure                76 ± 3.8 (90%: 69–82)  coverage 100%
+  Conflict and friction                 63 ± 4.5 (90%: 56–71)  coverage 100%
+  Competition                           55 ± 7.2 (90%: 43–67)  coverage 100%
+  Precision and consequence of error    49 ± 5.4 (90%: 40–57)  coverage 100%
+  Variety vs. routine                   52 ± 6.0 (90%: 42–62)  coverage 100%
+  Income variance                        5 ± 7.1 (90%: 0–16)  coverage 100%
+  Cognitive challenge                  not measured  coverage 0%
+
+Inseparable by design (shared inputs): influence + lead, organise + protect, care + teach

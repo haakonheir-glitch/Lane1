@@ -248,12 +248,18 @@ export function generateBackwardDigits(seed: number, length: number): SpanTrial 
 /** Corsi: 9 fixed block positions on screen (indices 0-8). Forward recall of spatial sequences. */
 export const CORSI_LAYOUT: [number, number][] = [[0.15, 0.2], [0.55, 0.12], [0.85, 0.3], [0.3, 0.45], [0.65, 0.5], [0.1, 0.7], [0.45, 0.75], [0.8, 0.72], [0.35, 0.92]];
 export function generateCorsi(seed: number, length: number): SpanTrial {
+  // A sequence can't be longer than the board: asking for 10 used to return 9 taps labelled 10.
+  if (!Number.isInteger(length) || length < 1 || length > CORSI_LAYOUT.length) {
+    throw new RangeError(`Corsi length must be 1–${CORSI_LAYOUT.length} (the board has ${CORSI_LAYOUT.length} blocks); got ${length}`);
+  }
   const r = makeRng(seed);
   const seq = shuffle(r, [0, 1, 2, 3, 4, 5, 6, 7, 8]).slice(0, length);
   return { id: `CORSI-${length}-${seed}`, task: "corsi", sequence: seq, correctResponse: seq, length };
 }
 /** Adaptive span procedure: start at 3, two trials per length, advance if >=1 correct, stop after 2 failures at one length. Span = longest length with >=1 correct. */
 export const SPAN_PROTOCOL = { startLength: 3, trialsPerLength: 2, maxLength: 10, stopRule: "both trials at a length wrong", presentationMs: 900, isiMs: 300 } as const;
+/** Corsi uses the same procedure, capped at the number of blocks on the board (9). */
+export const CORSI_PROTOCOL = { ...SPAN_PROTOCOL, maxLength: CORSI_LAYOUT.length } as const;
 
 // ------------------------------------------------------------------ 6. Processing speed: symbol matching
 export const SYMBOLS = ["◇", "△", "○", "□", "☆", "⬠", "⬡", "✕", "＋", "◐", "◑", "▽"] as const;

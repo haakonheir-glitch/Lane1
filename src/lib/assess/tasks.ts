@@ -146,7 +146,7 @@ export function nextTrial(ctx: TaskCtx): TaskTurn["trial"] {
     const gen = t === "corsi" ? g.generateCorsi : g.generateBackwardDigits;
     const base = { presentationMs: g.SPAN_PROTOCOL.presentationMs, isiMs: g.SPAN_PROTOCOL.isiMs, layout: t === "corsi" ? g.CORSI_LAYOUT : undefined };
     if (practiceLeft) return turn({ task: t, sequence: gen(seed(ctx, p, true), 2).sequence, ...base }, p, true, null);
-    const len = nextSpanLength(s.map((h) => h.payload as SpanTrialResult), g.SPAN_PROTOCOL);
+    const len = nextSpanLength(s.map((h) => h.payload as SpanTrialResult), t === "corsi" ? g.CORSI_PROTOCOL : g.SPAN_PROTOCOL);
     if (len === null) return null;
     return turn({ task: t, sequence: gen(seed(ctx, s.length, false), len).sequence, ...base }, s.length, false, null);
   }
@@ -234,7 +234,7 @@ export function respond(
   if (t === "backward_digits" || t === "corsi") {
     if (response.kind !== "sequence") throw new Error("Expected a sequence");
     const gen = t === "corsi" ? g.generateCorsi : g.generateBackwardDigits;
-    const len = practice ? 2 : nextSpanLength(scored(ctx).map((h) => h.payload as SpanTrialResult), g.SPAN_PROTOCOL)!;
+    const len = practice ? 2 : nextSpanLength(scored(ctx).map((h) => h.payload as SpanTrialResult), t === "corsi" ? g.CORSI_PROTOCOL : g.SPAN_PROTOCOL)!;
     const trial = gen(seed(ctx, index, practice), len);
     const correct = markSpan(response.sequence, trial.correctResponse);
     return { store: row({ length: len, correct, response: response.sequence }), feedback: practice ? { correct } : undefined };

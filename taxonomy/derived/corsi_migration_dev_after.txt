@@ -1,0 +1,3 @@
+Corsi span migration (dry run), max length 9
+S4 score rows: 8 · with a Corsi span: 8 · stored span above 9: 0
+Stored Corsi trials at a length above 9: 22 of 187

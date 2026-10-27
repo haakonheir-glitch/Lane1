@@ -24,6 +24,8 @@ import { buildReportFacts, type ReportFacts } from "../report/facts";
 import { factsHash, latestReport } from "../report/service";
 import { BRAND } from "../brand";
 import { LANES } from "../taxonomy";
+import { personWorkDesign } from "../workdesign/person";
+import { logShadow, shadowRecord } from "../workdesign/shadow";
 import type { CareerPick } from "../lanes/types";
 import type { Effort } from "./effort";
 export { effortLine, type Effort } from "./effort";
@@ -139,7 +141,10 @@ async function buildMyProfile(userId: string): Promise<ProfileScores | null> {
     scored[s.sessionId as SessionId] = { scores: current, completedAt: (s.completedAt ?? s.startedAt).toISOString() };
   }
   if (!scored.S1 && !scored.S2) return null;
-  return addSelfScores(buildProfile(scored, "pending"));
+  const profile = addSelfScores(buildProfile(scored, "pending"));
+  // Research scales in shadow mode: logged next to the Work Design dimensions, never shown.
+  logShadow(shadowRecord(Object.values(scored).map((x) => x!.scores), personWorkDesign(profile)), userId);
+  return profile;
 }
 
 /**

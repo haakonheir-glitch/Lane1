@@ -1,0 +1,196 @@
+{
+  "version": "wd-0.1",
+  "elements": [
+    {
+      "file": "Work Activities",
+      "element": "Selling or Influencing Others"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Communicating with People Outside the Organization"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Analyzing Data or Information"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Getting Information"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Processing Information"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Handling and Moving Objects"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Repairing and Maintaining Mechanical Equipment"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Repairing and Maintaining Electronic Equipment"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Organizing, Planning, and Prioritizing Work"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Documenting/Recording Information"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Scheduling Work and Activities"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Assisting and Caring for Others"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Training and Teaching Others"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Coaching and Developing Others"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Thinking Creatively"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Guiding, Directing, and Motivating Subordinates"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Coordinating the Work and Activities of Others"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Making Decisions and Solving Problems"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Monitoring Processes, Materials, or Surroundings"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Evaluating Information to Determine Compliance with Standards"
+    },
+    {
+      "file": "Work Activities",
+      "element": "Inspecting Equipment, Structures, or Materials"
+    },
+    {
+      "file": "Work Context",
+      "element": "Freedom to Make Decisions"
+    },
+    {
+      "file": "Work Context",
+      "element": "Structured versus Unstructured Work"
+    },
+    {
+      "file": "Work Values",
+      "element": "Independence"
+    },
+    {
+      "file": "Work Context",
+      "element": "Contact With Others"
+    },
+    {
+      "file": "Work Context",
+      "element": "Work With Work Group or Team"
+    },
+    {
+      "file": "Work Context",
+      "element": "Deal With External Customers"
+    },
+    {
+      "file": "Work Context",
+      "element": "Time Pressure"
+    },
+    {
+      "file": "Work Context",
+      "element": "Frequency of Conflict Situations"
+    },
+    {
+      "file": "Work Context",
+      "element": "Deal With Unpleasant or Angry People"
+    },
+    {
+      "file": "Work Context",
+      "element": "Level of Competition"
+    },
+    {
+      "file": "Work Context",
+      "element": "Importance of Being Exact or Accurate"
+    },
+    {
+      "file": "Work Context",
+      "element": "Consequence of Error"
+    },
+    {
+      "file": "Work Context",
+      "element": "Importance of Repeating Same Tasks"
+    },
+    {
+      "file": "Job Zones",
+      "element": "Job Zone"
+    },
+    {
+      "file": "Abilities",
+      "element": "Deductive Reasoning"
+    },
+    {
+      "file": "Abilities",
+      "element": "Inductive Reasoning"
+    },
+    {
+      "file": "Abilities",
+      "element": "Mathematical Reasoning"
+    },
+    {
+      "file": "Abilities",
+      "element": "Problem Sensitivity"
+    },
+    {
+      "file": "Abilities",
+      "element": "Number Facility"
+    },
+    {
+      "file": "Abilities",
+      "element": "Spatial Orientation"
+    },
+    {
+      "file": "Abilities",
+      "element": "Visualization"
+    },
+    {
+      "file": "Abilities",
+      "element": "Memorization"
+    },
+    {
+      "file": "Abilities",
+      "element": "Perceptual Speed"
+    },
+    {
+      "file": "Abilities",
+      "element": "Speed of Closure"
+    }
+  ],
+  "payoffVariance": {
+    "linear_high_floor": 10,
+    "linear": 20,
+    "steep": 55,
+    "convex": 70,
+    "winner_take_all": 95
+  }
+}

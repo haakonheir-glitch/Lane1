@@ -1,7 +1,8 @@
 /**
- * backward_digits and corsi: adaptive span with SPAN_PROTOCOL from the generators
- * (start 3, 2 trials per length, max 10, stop when both trials at a length are wrong).
- * Span = the longest length with at least one correct trial. Also total correct trials.
+ * backward_digits and corsi: adaptive span with SPAN_PROTOCOL / CORSI_PROTOCOL from the
+ * generators (start 3, 2 trials per length, max 10 for digits and 9 for Corsi, stop when both
+ * trials at a length are wrong). Span = the longest length with at least one correct trial, never
+ * above the protocol's maximum. Also total correct trials.
  */
 export type SpanProtocol = { startLength: number; trialsPerLength: number; maxLength: number };
 export type SpanTrialResult = { length: number; correct: boolean };
@@ -16,9 +17,10 @@ export function nextSpanLength(history: SpanTrialResult[], p: SpanProtocol): num
   return last.length >= p.maxLength ? null : last.length + 1;
 }
 
-export function scoreSpan(history: SpanTrialResult[]) {
+export function scoreSpan(history: SpanTrialResult[], maxLength = Infinity) {
   const passed = history.filter((h) => h.correct).map((h) => h.length);
-  return { span: passed.length ? Math.max(...passed) : 0, correctTrials: passed.length, trials: history.length };
+  // Sessions recorded before the Corsi fix can hold a "length 10" trial that was really 9 taps.
+  return { span: passed.length ? Math.min(Math.max(...passed), maxLength) : 0, correctTrials: passed.length, trials: history.length };
 }
 
 export function markSpan(response: number[], correctResponse: number[]): boolean {

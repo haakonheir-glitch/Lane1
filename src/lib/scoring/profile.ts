@@ -12,6 +12,7 @@ import { scoreDispositions, scoreIdeas, scoreInterestExtension, scoreSjt } from 
 import { checkValidity, type LoggedResponse, type ValidityResult } from "./validity";
 import { scoreAccuracy, type AccuracyScore, type AccuracyTrial } from "./cognitive/accuracy";
 import { scoreSpan, type SpanTrialResult } from "./cognitive/span";
+import { CORSI_PROTOCOL, SPAN_PROTOCOL } from "@assessment/generators/generators";
 import { scoreChoiceRt, scoreSymbolMatch, type RtTrialResult, type SymbolTrial } from "./cognitive/speed";
 import { scoreLearning, type LearningTrial } from "./cognitive/learning";
 import { scoreBalloon, type BalloonResult } from "./cognitive/balloon";
@@ -82,7 +83,7 @@ export function scoreSession(session: SessionId, data: SessionData, ctx: ItemCon
   if (session === "S3" || session === "S4") {
     out.cognitive = {
       accuracy: Object.fromEntries(Object.entries(data.accuracy).map(([k, v]) => [k, scoreAccuracy(v!)])),
-      span: Object.fromEntries(Object.entries(data.span).map(([k, v]) => [k, scoreSpan(v!)])),
+      span: Object.fromEntries(Object.entries(data.span).map(([k, v]) => [k, scoreSpan(v!, k === "corsi" ? CORSI_PROTOCOL.maxLength : SPAN_PROTOCOL.maxLength)])),
       symbolMatch: data.symbol ? scoreSymbolMatch(data.symbol) : undefined,
       learning: data.learning ? scoreLearning(data.learning) : undefined,
       balloon: data.balloon ? scoreBalloon(data.balloon) : undefined,
@@ -205,7 +206,9 @@ function reasoningProfile(s3: Cognitive, s4: Cognitive): NonNullable<ProfileScor
     quant: lv(s4.accuracy.quant),
   });
   const digit = s3.span.backward_digits?.span;
-  const corsi = s4.span.corsi?.span;
+  // Capped at read time too, so scores stored before the Corsi fix show a possible span.
+  const corsiStored = s4.span.corsi?.span;
+  const corsi = corsiStored === undefined ? undefined : Math.min(corsiStored, CORSI_PROTOCOL.maxLength);
   return {
     generalAbility: general ? { percentileBand: general.percentileBand } : null,
     norms: { source: `Provisional: item difficulties and norms estimated offline by ${CALIBRATION.model} (${CALIBRATION.date}), not yet checked against Lane's own pilot data.`, provisional: true },

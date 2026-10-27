@@ -14,7 +14,7 @@ import { scoreBalloon } from "@/lib/scoring/cognitive/balloon";
 import { discountAuc } from "@/lib/scoring/cognitive/discount";
 import { relativeStrengths } from "@/lib/scoring/relative";
 import { buildProfile, scoreSession } from "@/lib/scoring/profile";
-import { SPAN_PROTOCOL } from "@assessment/generators/generators";
+import { CORSI_LAYOUT, CORSI_PROTOCOL, SPAN_PROTOCOL, generateCorsi } from "@assessment/generators/generators";
 import type { BankItem } from "@/lib/bank/types";
 
 const items = (module: string) => [...itemIndex.values()].filter((i) => i.module === module);
@@ -221,6 +221,20 @@ describe("cognitive (file 14)", () => {
     ];
     expect(scoreSpan(h)).toEqual({ span: 4, correctTrials: 3, trials: 6 });
     expect(markSpan([3, 2, 1], [3, 2, 1])).toBe(true);
+  });
+  test("Corsi: never longer than the board", () => {
+    expect(CORSI_PROTOCOL.maxLength).toBe(CORSI_LAYOUT.length);
+    expect(CORSI_PROTOCOL.maxLength).toBe(9);
+    expect(SPAN_PROTOCOL.maxLength).toBe(10); // digit span keeps its own maximum
+    expect(generateCorsi(7, 9).sequence).toHaveLength(9);
+    expect(new Set(generateCorsi(7, 9).sequence).size).toBe(9);
+    expect(() => generateCorsi(7, 10)).toThrow(RangeError);
+    expect(() => generateCorsi(7, 0)).toThrow(RangeError);
+    // The adaptive procedure stops at 9: after passing 9 there is no length 10.
+    const h = [3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9].map((length) => ({ length, correct: true }));
+    expect(nextSpanLength(h, CORSI_PROTOCOL)).toBeNull();
+    // A session recorded before the fix, with a "length 10" pass, scores as 9.
+    expect(scoreSpan([...h, { length: 10, correct: true }], CORSI_PROTOCOL.maxLength).span).toBe(9);
   });
   test("symbol match = correct − incorrect", () => {
     expect(scoreSymbolMatch([{ correct: true, rtMs: 900 }, { correct: true, rtMs: 900 }, { correct: false, rtMs: 900 }]).score).toBe(1);
