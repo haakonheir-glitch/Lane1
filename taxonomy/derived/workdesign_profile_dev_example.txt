@@ -1,4 +1,4 @@
-Work Design profile wd-0.1 for e2e-1793030275246@example.com · sessions S1, S2, S3, S4, S5
+Work Design profile wd-0.2 for e2e-1793030275246@example.com · sessions S1, S2, S3, S4, S5
 
 Value modes (0–100, SE, 90% range; relative = BLUEPRINT reliability rule)
   Influence (Hunter)        69 ± 5.0 (90%: 61–77)  strength  coverage 100%
@@ -19,7 +19,6 @@ Environment dimensions
   Competition                           55 ± 7.2 (90%: 43–67)  coverage 100%
   Precision and consequence of error    49 ± 5.4 (90%: 40–57)  coverage 100%
   Variety vs. routine                   52 ± 6.0 (90%: 42–62)  coverage 100%
-  Income variance                        5 ± 7.1 (90%: 0–16)  coverage 100%
   Cognitive challenge                  not measured  coverage 0%
 
 Inseparable by design (shared inputs): influence + lead, organise + protect, care + teach

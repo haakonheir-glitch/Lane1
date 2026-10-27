@@ -8,13 +8,13 @@ http://data.europa.eu/esco/occupation/0044c991-c26f-4261-a213-4bd1c0564a4c,medic
 http://data.europa.eu/esco/occupation/00634fc4-802a-461b-8af0-499273756f99,asphalt laboratory technician,civil_engineering,civil_engineering.civil_engineering_technician,0.477,manual
 http://data.europa.eu/esco/occupation/00674f21-2f8f-4a41-9896-133f7cbe2a6e,primary school teaching assistant,school_teaching,school_teaching.primary_school_teacher,0.58,model
 http://data.europa.eu/esco/occupation/006cc1f9-2841-41c3-991a-dc3f2f3bd533,physiotherapist,allied_health,allied_health.physiotherapist,0.563,model
-http://data.europa.eu/esco/occupation/00747307-6341-4266-a061-25416f7c6a96,performing arts theatre instructor,tutoring,tutoring.art_dance_teacher_private,0.346,model
+http://data.europa.eu/esco/occupation/00747307-6341-4266-a061-25416f7c6a96,performing arts theatre instructor,academic_research,academic_research.university_lecturer_universitetslektor,0.346,manual
 http://data.europa.eu/esco/occupation/0085f271-5999-4d42-b879-75c3b4269883,hydrogenation machine operator,process_operation,process_operation.process_operator,0.34,model
 http://data.europa.eu/esco/occupation/0090dd54-057a-4f65-bbe8-f74c4999e8e8,pasta operator,food_production,food_production.dairy_production_operator,0.408,model
 http://data.europa.eu/esco/occupation/00913533-5237-4870-9003-d1cb806603c9,tobacco shop manager,store_retail,store_retail.specialist_shop_manager,0.216,rule
 http://data.europa.eu/esco/occupation/009d29de-5872-43be-8d9b-abd27f8c99f1,"rental service representative in other machinery, equipment and tangible goods",store_retail,store_retail.rental_agent_vehicles_equipment_leisure,0.324,rule
 http://data.europa.eu/esco/occupation/00ab29a3-6d4a-4df9-b46d-de31069e36e8,mine surveyor,urban_planning,urban_planning.land_surveyor,0.479,model
-http://data.europa.eu/esco/occupation/00ab5610-e715-428f-99f6-b1e5e469dbcd,food safety specialist,inspection_regulation,inspection_regulation.food_safety_inspector,0.556,model
+http://data.europa.eu/esco/occupation/00ab5610-e715-428f-99f6-b1e5e469dbcd,food safety specialist,food_production,food_production.food_technologist,0.556,manual
 http://data.europa.eu/esco/occupation/00c8d1cf-24f2-47d1-9f10-765e1c102811,land-based machinery technician,vehicle_mechanics,vehicle_mechanics.agricultural_and_construction_machinery_mechanic,0.458,model
 http://data.europa.eu/esco/occupation/00cee175-1376-43fb-9f02-ba3d7a910a58,bus driver,road_transport,road_transport.bus_driver,0.504,model
 http://data.europa.eu/esco/occupation/00fdad73-4551-4e43-b256-1d4a3759db1e,import export manager in meat and meat products,trade_brokerage,trade_brokerage.import_export_coordinator,0.496,rule
@@ -444,7 +444,7 @@ http://data.europa.eu/esco/occupation/22987b58-dbfa-4ecd-ae3f-82dd209255f6,green
 http://data.europa.eu/esco/occupation/22f86890-f68b-402f-a711-3e6df4913271,typist,administration,administration.data_entry_clerk,0.419,model
 http://data.europa.eu/esco/occupation/23043d05-42c4-4811-b478-f8a17d22480b,moulding machine operator,machine_operation,machine_operation.machine_operator,0.424,model
 http://data.europa.eu/esco/occupation/2339733d-5a37-4031-b587-db28848e4958,foreclosure specialist,banking_lending,banking_lending.debt_collector_collections_specialist,0.348,manual
-http://data.europa.eu/esco/occupation/234be692-befb-41df-bdf0-e1b2f4eaf5e7,activity leader,childcare,childcare.childcare_centre_manager,0.417,model
+http://data.europa.eu/esco/occupation/234be692-befb-41df-bdf0-e1b2f4eaf5e7,activity leader,tourism,tourism.tour_operator_product_manager,0.417,manual
 http://data.europa.eu/esco/occupation/235ce16a-1ef7-4535-a82e-e371213c392b,air separation plant operator,process_operation,process_operation.power_plant_operator,0.442,model
 http://data.europa.eu/esco/occupation/237e21f1-a7fa-4273-91eb-28e7b5d72f60,lacquer maker,process_operation,process_operation.power_plant_operator,0.38,manual
 http://data.europa.eu/esco/occupation/239707a0-4754-4f4b-80b6-6b1ef5657aed,sound mastering engineer,music_production,music_production.mixing_and_mastering_engineer,0.653,model
@@ -513,7 +513,7 @@ http://data.europa.eu/esco/occupation/27f92adf-1384-4c01-8ad0-1680ead6abf9,paper
 http://data.europa.eu/esco/occupation/2800e788-57b4-49f7-9c00-6c35e12cfb8e,puppeteer,variety,variety.circus_artist_acrobat,0.448,manual
 http://data.europa.eu/esco/occupation/2808c7ec-cdb1-4b48-8429-e160a418ed0c,regional development policy officer,public_policy,public_policy.policy_analyst_think_tank_consultancy,0.516,model
 http://data.europa.eu/esco/occupation/28742973-c452-4996-b070-440e437306dc,water quality analyst,environmental_engineering,environmental_engineering.environmental_technician,0.39,manual
-http://data.europa.eu/esco/occupation/289c7385-2342-4a4e-b0b1-7b2e977aea79,alternative animal therapist,complementary_health,complementary_health.massage_therapist,0.49,model
+http://data.europa.eu/esco/occupation/289c7385-2342-4a4e-b0b1-7b2e977aea79,alternative animal therapist,animal_care,animal_care.animal_care_worker_kennel_assistant,0.49,manual
 http://data.europa.eu/esco/occupation/28b25dbf-1eab-45e8-9d02-7a5eea9bb139,made-up textile articles manufacturer,textile_print_production,textile_print_production.textile_machine_operator,0.388,manual
 http://data.europa.eu/esco/occupation/28d82e8d-7379-4245-a5a0-c5a68864a528,centrifuge operator,food_production,food_production.food_production_operator,0.348,model
 http://data.europa.eu/esco/occupation/28dbd459-d634-484a-92d7-e6f8dc1ec532,braiding textile technician,textile_print_production,textile_print_production.textile_machine_operator,0.48,model
@@ -564,7 +564,7 @@ http://data.europa.eu/esco/occupation/2c1ed9dd-9799-4882-8bfa-40b841f7d4a1,furth
 http://data.europa.eu/esco/occupation/2c5ae1b4-c3ca-4882-b7ce-e346ae5b5b00,botanical technician,life_sciences,life_sciences.laboratory_technician,0.376,model
 http://data.europa.eu/esco/occupation/2c83f279-a1d1-4c9f-a6aa-5e5ee1850e46,social security inspector,public_administration,public_administration.executive_officer_caseworker_saksbehandler,0.416,manual
 http://data.europa.eu/esco/occupation/2c8a4b72-21f4-4ab1-9dbd-1cae779211b7,commercial art gallery manager,arts_admin,arts_admin.gallery_manager,0.642,model
-http://data.europa.eu/esco/occupation/2c90a752-43f0-483d-8f64-3ce5e4535aa8,carriage driver,outdoor_guiding,outdoor_guiding.dive_instructor,0.316,model
+http://data.europa.eu/esco/occupation/2c90a752-43f0-483d-8f64-3ce5e4535aa8,carriage driver,road_transport,road_transport.bus_driver,0.316,manual
 http://data.europa.eu/esco/occupation/2c94916d-bd7d-4855-ab89-574d2c439a63,leather measuring operator,textile_print_production,textile_print_production.sewing_machine_operator,0.415,model
 http://data.europa.eu/esco/occupation/2c9939ef-ebab-4111-8f27-605ae8782791,contract manager,procurement,procurement.procurement_manager,0.387,manual
 http://data.europa.eu/esco/occupation/2cad9c6f-0289-4b26-b247-e65c0089f8f4,boiler operator,process_operation,process_operation.power_plant_operator,0.52,model
@@ -609,7 +609,7 @@ http://data.europa.eu/esco/occupation/2ff73126-7aff-4233-9d9c-d8725e1c6822,pipe 
 http://data.europa.eu/esco/occupation/2ff9e53c-6e7f-42af-8d71-b5dd7f283089,bank teller,banking_lending,banking_lending.bank_teller_cashier,0.591,model
 http://data.europa.eu/esco/occupation/30058b71-fe16-45ea-a2b8-d5461c706372,business lecturer,academic_research,academic_research.university_lecturer_universitetslektor,0.53,rule
 http://data.europa.eu/esco/occupation/30194ac4-93b8-4450-8a15-f6f7cbe351cb,maternity support worker,nursing,nursing.midwife,0.51,model
-http://data.europa.eu/esco/occupation/3025dea4-1752-40a9-9431-fd874420386f,life guard,fitness,fitness.nutrition_coach,0.391,manual
+http://data.europa.eu/esco/occupation/3025dea4-1752-40a9-9431-fd874420386f,life guard,fire_rescue,fire_rescue.rescue_swimmer_rescue_crew,0.391,manual
 http://data.europa.eu/esco/occupation/3027abf6-bc54-4709-8dc1-4f20b772ac70,engineered wood board grader,hse_quality,hse_quality.quality_engineer,0.399,model
 http://data.europa.eu/esco/occupation/303931a2-860a-4f76-83ac-3c190d67287e,oilseed presser,food_production,food_production.dairy_production_operator,0.397,model
 http://data.europa.eu/esco/occupation/303a1e34-cb16-4054-b323-81e5eec17397,building cleaner,facilities,facilities.cleaner_office_commercial,0.479,model
@@ -656,7 +656,7 @@ http://data.europa.eu/esco/occupation/33e4f026-a823-4ffc-99e4-60d3fe597a1e,digit
 http://data.europa.eu/esco/occupation/33fe4c90-c4fd-4860-bdc5-24fcab16f45a,food analyst,physical_sciences,physical_sciences.analytical_chemist,0.385,model
 http://data.europa.eu/esco/occupation/340b04fd-6312-47e5-80ff-28222a343864,fisheries engineering technician,fisheries_aquaculture,fisheries_aquaculture.deckhand_fisherman,0.456,manual
 http://data.europa.eu/esco/occupation/3413f234-6230-47a8-8cc7-2691fd54ce3a,child care worker,childcare,childcare.child_and_youth_worker_barne_og_ungdomsarbeider,0.466,model
-http://data.europa.eu/esco/occupation/3417aab3-8b87-4c3b-bee6-be03fe05be2b,tufting operator,machine_operation,machine_operation.machine_operator,0.403,model
+http://data.europa.eu/esco/occupation/3417aab3-8b87-4c3b-bee6-be03fe05be2b,tufting operator,textile_print_production,textile_print_production.textile_machine_operator,0.403,manual
 http://data.europa.eu/esco/occupation/341b405b-12cd-4ece-9b4b-cbfae3551ea3,automotive engineering drafter,mechanical_engineering,mechanical_engineering.automotive_engineer,0.514,model
 http://data.europa.eu/esco/occupation/3469cbcc-5332-41dc-977a-29cf1b7ef7be,front line medical receptionist,administration,administration.receptionist,0.478,model
 http://data.europa.eu/esco/occupation/34852729-a2f6-4063-aa90-18b3d16754f7,university department head,academic_research,academic_research.head_of_department_dean,0.592,model
@@ -806,7 +806,7 @@ http://data.europa.eu/esco/occupation/3f7b7ce5-94b6-4e0c-98e7-a4ee5a6accf4,toxic
 http://data.europa.eu/esco/occupation/3f863faa-c045-4f05-a419-b19182aea866,drilling engineer,offshore_oil_gas,offshore_oil_gas.drilling_engineer,0.595,model
 http://data.europa.eu/esco/occupation/3fa31588-2e4d-49c3-b839-4b615cc62742,humanitarian advisor,nonprofit,nonprofit.humanitarian_aid_worker_field_officer,0.474,model
 http://data.europa.eu/esco/occupation/3fa9a480-ceb3-4c2a-8a91-0508e1bb6ba5,footwear CAD patternmaker,fashion,fashion.pattern_maker_garment_technologist,0.473,model
-http://data.europa.eu/esco/occupation/3ff2fdf4-af54-4517-873d-73e9353f112e,"computer games, multimedia and software specialised seller",software_engineering,software_engineering.full_stack_developer,0.443,model
+http://data.europa.eu/esco/occupation/3ff2fdf4-af54-4517-873d-73e9353f112e,"computer games, multimedia and software specialised seller",store_retail,store_retail.specialised_shop_salesperson_books_hardware_food_pets_optics,0.443,manual
 http://data.europa.eu/esco/occupation/40260ee8-c94a-4dc8-a562-f9fbc2fe13b1,sewerage maintenance technician,waste_recycling,waste_recycling.pest_control_technician,0.341,manual
 http://data.europa.eu/esco/occupation/403be630-8d1e-43b7-9f07-098aca5bb689,mediator,courts_prosecution,courts_prosecution.mediator_conflict_council_mediator,0.349,manual
 http://data.europa.eu/esco/occupation/404a50e9-61ce-448d-a695-bbfc697a0727,government minister,politics,politics.minister,0.491,model
@@ -872,11 +872,11 @@ http://data.europa.eu/esco/occupation/463558cd-6e02-43a8-a675-d4e65af70431,herba
 http://data.europa.eu/esco/occupation/463a687a-c7e9-469a-bb38-dcdfe1e7e35f,audio and video equipment shop manager,store_retail,store_retail.specialist_shop_manager,0.329,rule
 http://data.europa.eu/esco/occupation/4666cccf-cfbc-4296-95b5-67dad2f620d2,bus driving instructor,vocational_instruction,vocational_instruction.driving_instructor,0.55,model
 http://data.europa.eu/esco/occupation/46bbecf4-368a-44a8-9262-dcd775ae2c46,well-digger,mining_geo,mining_geo.rock_drill_borehole_drill_operator,0.446,manual
-http://data.europa.eu/esco/occupation/46db7e2e-d44d-412a-9a80-02d43111aca8,photography teacher,tutoring,tutoring.music_teacher_private,0.472,manual
+http://data.europa.eu/esco/occupation/46db7e2e-d44d-412a-9a80-02d43111aca8,photography teacher,tutoring,tutoring.art_dance_teacher_private,0.472,manual
 http://data.europa.eu/esco/occupation/46f9d58f-11bd-4d96-b000-ff4490d3009b,industrial arts vocational teacher,school_teaching,school_teaching.vocational_teacher_yrkesfagl_rer,0.525,rule
 http://data.europa.eu/esco/occupation/47300afa-5496-484c-8f65-14247a98b2b8,civil engineering worker,heavy_equipment,heavy_equipment.road_worker_asphalt_worker,0.384,model
 http://data.europa.eu/esco/occupation/476420bb-2577-4f79-ad32-186f19c4fd02,helicopter pilot,aviation,aviation.helicopter_pilot_offshore_rescue,0.642,model
-http://data.europa.eu/esco/occupation/4779055b-f769-4c6d-8e0e-088bb74cfce9,swimming facility attendant,fitness,fitness.nutrition_coach,0.355,manual
+http://data.europa.eu/esco/occupation/4779055b-f769-4c6d-8e0e-088bb74cfce9,swimming facility attendant,facilities,facilities.facility_manager,0.355,manual
 http://data.europa.eu/esco/occupation/4791e217-d607-40d5-9f84-df1d0a071cbc,marketing consultant,growth_marketing,growth_marketing.digital_marketing_specialist,0.553,model
 http://data.europa.eu/esco/occupation/4795d4e3-c623-47ff-abab-7de97fcb764e,advertising media buyer,advertising_agency,advertising_agency.media_planner_media_buyer,0.584,model
 http://data.europa.eu/esco/occupation/479ede81-bd51-4f3b-9d30-4910699fd211,journalism lecturer,academic_research,academic_research.university_lecturer_universitetslektor,0.485,rule
@@ -963,7 +963,7 @@ http://data.europa.eu/esco/occupation/4d34a9ee-2653-4da0-bef7-f59294577224,elect
 http://data.europa.eu/esco/occupation/4d4b243f-6c3b-48c3-a564-2e7f2d592a3c,production designer,film_tv,film_tv.production_coordinator,0.44,manual
 http://data.europa.eu/esco/occupation/4d5bd738-9202-4fd7-bd8c-7dbe914048de,agricultural engineer,mechanical_engineering,mechanical_engineering.automotive_engineer,0.52,manual
 http://data.europa.eu/esco/occupation/4d6d9057-5167-4158-8bc1-cc2f89d73fd7,beauty vocational teacher,school_teaching,school_teaching.vocational_teacher_yrkesfagl_rer,0.526,rule
-http://data.europa.eu/esco/occupation/4d750b7f-f40d-447c-ba90-f5fb0ee9ef27,social security officer,social_work,social_work.social_worker_sosionom,0.477,model
+http://data.europa.eu/esco/occupation/4d750b7f-f40d-447c-ba90-f5fb0ee9ef27,social security officer,public_administration,public_administration.nav_adviser,0.477,manual
 http://data.europa.eu/esco/occupation/4d7d2628-1405-4ff2-b5b5-bd0d57ed9bbd,residential childcare worker,care_work,care_work.home_care_worker,0.454,model
 http://data.europa.eu/esco/occupation/4daee8bd-8400-4da6-ba52-30d4c193d1a9,aviation ground systems engineer,electrical_engineering,electrical_engineering.power_systems_engineer,0.452,model
 http://data.europa.eu/esco/occupation/4dc6e03f-bfb0-4078-a453-01bd1cb735aa,computer and accessories specialised seller,store_retail,store_retail.specialised_shop_salesperson_books_hardware_food_pets_optics,0.278,rule
@@ -1047,7 +1047,7 @@ http://data.europa.eu/esco/occupation/53d55c80-6a82-4187-b59f-b737aa4cdaab,leath
 http://data.europa.eu/esco/occupation/53db8c0d-7aed-47aa-a339-eb9d485d25dc,secondary school head teacher,school_teaching,school_teaching.upper_secondary_teacher_lektor,0.559,model
 http://data.europa.eu/esco/occupation/53e61b71-60a3-4873-bc14-d6e28693818c,"textiles, textile semi-finished and raw materials distribution manager",supply_chain,supply_chain.supply_planner_material_planner,0.439,model
 http://data.europa.eu/esco/occupation/53ed8787-3423-4843-8c63-7be1877d29e2,head waiter/head waitress,restaurant_service,restaurant_service.food_and_beverage_director,0.468,model
-http://data.europa.eu/esco/occupation/54361270-bc5e-40fb-8f84-a0023a85cdf7,fine arts instructor,tutoring,tutoring.art_dance_teacher_private,0.349,model
+http://data.europa.eu/esco/occupation/54361270-bc5e-40fb-8f84-a0023a85cdf7,fine arts instructor,academic_research,academic_research.university_lecturer_universitetslektor,0.349,manual
 http://data.europa.eu/esco/occupation/544cd9cf-e2ee-4ac0-8a02-7147af6b97d7,business manager,general_management,general_management.business_unit_manager,0.593,model
 http://data.europa.eu/esco/occupation/546ec458-e2a4-4cb1-ac17-553d314ac2e2,water treatment plant manager,waste_recycling,waste_recycling.water_wastewater_treatment_operator,0.498,model
 http://data.europa.eu/esco/occupation/547b304b-9a72-4717-9b24-b7046df5f64e,specialised seller,store_retail,store_retail.specialised_shop_salesperson_books_hardware_food_pets_optics,0.565,rule
@@ -1096,7 +1096,7 @@ http://data.europa.eu/esco/occupation/57af9090-55b4-4911-b2d0-86db01c00b02,embed
 http://data.europa.eu/esco/occupation/57b459d4-655c-4053-b189-3c249ce33faf,ICT business development manager,partnerships,partnerships.business_development_manager_strategic_deals,0.428,model
 http://data.europa.eu/esco/occupation/57b89801-0e43-4b19-bf29-ef9a51d65155,metal annealer,process_operation,process_operation.process_operator,0.308,manual
 http://data.europa.eu/esco/occupation/57d1be2e-c476-43fb-b014-fa58602cac95,dismantling supervisor,specialist_trades,specialist_trades.commercial_diver,0.437,manual
-http://data.europa.eu/esco/occupation/57e87533-e523-4ee5-bf21-94a39fcc279b,health safety and environmental manager,inspection_regulation,inspection_regulation.food_safety_inspector,0.458,model
+http://data.europa.eu/esco/occupation/57e87533-e523-4ee5-bf21-94a39fcc279b,health safety and environmental manager,hse_quality,hse_quality.hse_manager,0.458,manual
 http://data.europa.eu/esco/occupation/580c98d4-fb97-4597-864c-54140f058f1b,call centre quality auditor,customer_service,customer_service.contact_centre_agent,0.469,model
 http://data.europa.eu/esco/occupation/586fe133-1987-41f4-b89a-f39d4bc58e1e,eBusiness manager,ecommerce,ecommerce.head_of_e_commerce,0.52,manual
 http://data.europa.eu/esco/occupation/589efb6c-9080-40b2-ab6a-144955675967,verger,faith,faith.church_mosque_youth_worker,0.323,manual
@@ -1131,7 +1131,7 @@ http://data.europa.eu/esco/occupation/5a2d0031-5dfd-46e8-8eb4-cf1d03876940,whole
 http://data.europa.eu/esco/occupation/5a551d36-0e14-40ab-84a2-7aa9b37dc528,furniture restorer,woodcraft,woodcraft.furniture_restorer,0.404,manual
 http://data.europa.eu/esco/occupation/5a58da2b-2fa0-40d4-a9f5-fead48e7de88,naval architect,mechanical_engineering,mechanical_engineering.mechanical_design_engineer,0.448,manual
 http://data.europa.eu/esco/occupation/5a596834-bc8f-4273-8d09-006957b60347,construction commercial diver,specialist_trades,specialist_trades.commercial_diver,0.518,model
-http://data.europa.eu/esco/occupation/5a80044b-9b2f-40eb-a210-0c1c3c958e0e,lifeguard instructor,fitness,fitness.gym_instructor_floor_trainer,0.362,manual
+http://data.europa.eu/esco/occupation/5a80044b-9b2f-40eb-a210-0c1c3c958e0e,lifeguard instructor,vocational_instruction,vocational_instruction.safety_first_aid_instructor,0.362,manual
 http://data.europa.eu/esco/occupation/5a8835bf-65c7-48e3-ab2f-7ad98b3fdb59,intellectual property consultant,intellectual_property,intellectual_property.patent_attorney_european_patent_attorney,0.398,manual
 http://data.europa.eu/esco/occupation/5a91a8bc-eb18-4c7e-847d-96cbcce5a47a,speechwriter,authorship,authorship.speechwriter,0.635,model
 http://data.europa.eu/esco/occupation/5a940ae0-3fa4-40f9-8ca4-17bf792da243,animal groomer,animal_care,animal_care.pet_groomer,0.479,model
@@ -1142,7 +1142,7 @@ http://data.europa.eu/esco/occupation/5ac65daa-0896-4193-9f0e-8b00746b78a1,unive
 http://data.europa.eu/esco/occupation/5aeaea2f-6585-4d3d-8f3e-1fdd9903aa32,fruit production team leader,farming,farming.farm_manager,0.427,model
 http://data.europa.eu/esco/occupation/5aff8b2a-298a-456d-957a-274c774e8523,moulding machine technician,machine_operation,machine_operation.machine_operator,0.388,model
 http://data.europa.eu/esco/occupation/5b3ef95b-7d99-4af9-b2d0-41c6bc33f58c,chemical mixer,process_operation,process_operation.chemical_plant_operator,0.535,model
-http://data.europa.eu/esco/occupation/5b6c0c64-1321-4fe7-a274-3287c13b489c,music teacher secondary school,tutoring,tutoring.music_teacher_private,0.592,model
+http://data.europa.eu/esco/occupation/5b6c0c64-1321-4fe7-a274-3287c13b489c,music teacher secondary school,school_teaching,school_teaching.upper_secondary_teacher_lektor,0.592,manual
 http://data.europa.eu/esco/occupation/5b912733-abc8-43f7-825c-00ae21043685,import export manager in wood and construction materials,trade_brokerage,trade_brokerage.import_export_coordinator,0.409,rule
 http://data.europa.eu/esco/occupation/5b942a51-c9a2-4dc7-82cc-57451426cf4d,textile printer,textile_print_production,textile_print_production.textile_machine_operator,0.535,model
 http://data.europa.eu/esco/occupation/5b9a678a-7c35-4c50-a804-754b82652ee6,tour organiser,tourism,tourism.tour_guide,0.459,model
@@ -1509,7 +1509,7 @@ http://data.europa.eu/esco/occupation/789d9781-8724-4367-936a-3a4cb7c54315,dance
 http://data.europa.eu/esco/occupation/78db356f-a96a-4456-ab29-2de62e52f830,public finance accountant,corporate_finance,corporate_finance.finance_manager,0.514,model
 http://data.europa.eu/esco/occupation/78ddc0cc-166e-437e-9c41-48aa0a6c6f93,extract mixer tester,food_production,food_production.food_quality_technician_taster,0.395,manual
 http://data.europa.eu/esco/occupation/78eacaf8-06d6-4b78-920f-edece2e41464,school bus attendant,childcare,childcare.after_school_programme_assistant_sfo,0.418,manual
-http://data.europa.eu/esco/occupation/78ed3811-f421-45e5-9574-31364c76af67,performing arts school dance instructor,tutoring,tutoring.art_dance_teacher_private,0.431,model
+http://data.europa.eu/esco/occupation/78ed3811-f421-45e5-9574-31364c76af67,performing arts school dance instructor,academic_research,academic_research.university_lecturer_universitetslektor,0.431,manual
 http://data.europa.eu/esco/occupation/78f474ae-c154-4206-ad0f-d8a00e9c541e,residential home adult care worker,care_work,care_work.home_care_worker,0.453,model
 http://data.europa.eu/esco/occupation/78faf623-2543-43a5-acb2-3c43a22d36e4,blockchain architect,software_engineering,software_engineering.software_architect,0.484,manual
 http://data.europa.eu/esco/occupation/79082f76-4b11-4594-8437-2db567331f41,road marker,heavy_equipment,heavy_equipment.road_worker_asphalt_worker,0.357,model
@@ -1589,7 +1589,7 @@ http://data.europa.eu/esco/occupation/8021f3a2-e3de-43c0-b366-075da74dc5b7,speec
 http://data.europa.eu/esco/occupation/8022c821-1ed0-414e-b440-63cc88943a89,wholesale merchant in watches and jewellery,trade_brokerage,trade_brokerage.wholesale_buyer_and_trader,0.378,rule
 http://data.europa.eu/esco/occupation/802a0e5d-5625-4166-a1f0-d13e2586df55,printmaker,visual_arts,visual_arts.printmaker,0.482,model
 http://data.europa.eu/esco/occupation/802d3a2f-b966-42e3-94df-683adfcff20c,aquaculture rearing technician,fisheries_aquaculture,fisheries_aquaculture.aquaculture_operator_fish_farm_worker,0.479,model
-http://data.europa.eu/esco/occupation/804f1ae2-429c-48a9-9858-d5d42df144eb,dryer attendant,machine_operation,machine_operation.paper_glass_products_machine_operator,0.323,manual
+http://data.europa.eu/esco/occupation/804f1ae2-429c-48a9-9858-d5d42df144eb,dryer attendant,food_production,food_production.food_production_operator,0.323,manual
 http://data.europa.eu/esco/occupation/8050a89e-563b-4073-943b-84b0c4286c1f,poultry sexer,farming,farming.poultry_farmer,0.426,model
 http://data.europa.eu/esco/occupation/807a1ac3-4f56-41f3-a68c-d653d558eb0a,co-pilot,aviation,aviation.commercial_drone_pilot,0.462,model
 http://data.europa.eu/esco/occupation/808b5940-8092-4f08-bc37-9b60ee5761d8,assayer,metal_jewellery,metal_jewellery.goldsmith_silversmith,0.369,model
@@ -1692,7 +1692,7 @@ http://data.europa.eu/esco/occupation/8862c29b-3810-4fbc-85c7-c9ee87535f73,elect
 http://data.europa.eu/esco/occupation/8870032b-9be3-4fd4-b9fb-1d8d9de33c5f,wash deinking operator,process_operation,process_operation.process_operator,0.344,model
 http://data.europa.eu/esco/occupation/88721b6c-d2ce-41c6-8878-73c0d3aacf39,firefighter,fire_rescue,fire_rescue.firefighter,0.501,model
 http://data.europa.eu/esco/occupation/88760821-9df4-47a6-a1c2-ac08b9759396,miniature set designer,stage_production,stage_production.set_designer,0.435,manual
-http://data.europa.eu/esco/occupation/88990bdf-4f6b-4411-82c9-9eecad1db8fb,music instructor,tutoring,tutoring.music_teacher_private,0.497,model
+http://data.europa.eu/esco/occupation/88990bdf-4f6b-4411-82c9-9eecad1db8fb,music instructor,academic_research,academic_research.university_lecturer_universitetslektor,0.497,manual
 http://data.europa.eu/esco/occupation/88a34087-311e-497e-ad81-a6843b9b461e,vessel engine assembler,machine_operation,machine_operation.production_worker_assembly_operator,0.418,model
 http://data.europa.eu/esco/occupation/88b21b2f-350c-4f41-9680-a53f8ea708ed,filament winding operator,machine_operation,machine_operation.machine_operator,0.41,model
 http://data.europa.eu/esco/occupation/88c55070-444a-45db-abe3-7b95c40bc9ec,leisure attendant,fitness,fitness.group_fitness_instructor,0.431,model
@@ -1737,7 +1737,7 @@ http://data.europa.eu/esco/occupation/8bc48c43-d976-458a-9e3c-ee784572351d,indus
 http://data.europa.eu/esco/occupation/8bc845cb-0702-47e4-aabc-4036032b0a8d,shipping agent,warehouse_logistics,warehouse_logistics.shipping_transport_clerk,0.482,model
 http://data.europa.eu/esco/occupation/8bd74371-1818-47d5-a253-d703c51c5f26,copy editor,publishing,publishing.proofreader_copy_editor,0.587,model
 http://data.europa.eu/esco/occupation/8befd482-70e2-4d1e-8a09-091e15fe85c3,Freinet school teacher,school_teaching,school_teaching.primary_school_teacher,0.398,manual
-http://data.europa.eu/esco/occupation/8bf76ba6-e661-4574-9887-4f2cb943835a,political affairs officer,public_policy,public_policy.public_affairs_lobbying_consultant,0.457,model
+http://data.europa.eu/esco/occupation/8bf76ba6-e661-4574-9887-4f2cb943835a,political affairs officer,diplomacy,diplomacy.international_organisation_officer_un_nato_eu,0.457,manual
 http://data.europa.eu/esco/occupation/8c0524b8-f878-4c68-8293-698d07c1807c,"wholesale merchant in agricultural raw materials, seeds and animal feeds",trade_brokerage,trade_brokerage.wholesale_buyer_and_trader,0.209,rule
 http://data.europa.eu/esco/occupation/8c0cc417-6b09-4082-8062-2f0f7123a573,import export manager in office machinery and equipment,trade_brokerage,trade_brokerage.import_export_coordinator,0.471,rule
 http://data.europa.eu/esco/occupation/8c0f59c9-9a47-42e7-8287-aab19df4e6ab,microelectronics engineer,electrical_engineering,electrical_engineering.electronics_hardware_engineer,0.466,model
@@ -1908,7 +1908,7 @@ http://data.europa.eu/esco/occupation/9a39a143-d93c-4093-ba3b-47fb67ade318,insur
 http://data.europa.eu/esco/occupation/9a4ba556-e72b-49c2-834c-d6a03a2fc906,aircraft pilot,aviation,aviation.helicopter_pilot_offshore_rescue,0.581,model
 http://data.europa.eu/esco/occupation/9a6d8a84-a8a9-4c9b-9ead-59a710e93759,business and marketing vocational teacher,school_teaching,school_teaching.vocational_teacher_yrkesfagl_rer,0.549,rule
 http://data.europa.eu/esco/occupation/9a7e780a-b778-4a5a-b4eb-309d394d313d,university literature lecturer,academic_research,academic_research.university_lecturer_universitetslektor,0.543,rule
-http://data.europa.eu/esco/occupation/9a903a4a-282d-4724-a7de-1918b41d2965,motor vehicle assembly inspector,machine_operation,machine_operation.production_worker_assembly_operator,0.378,model
+http://data.europa.eu/esco/occupation/9a903a4a-282d-4724-a7de-1918b41d2965,motor vehicle assembly inspector,hse_quality,hse_quality.quality_inspector_product_tester,0.378,manual
 http://data.europa.eu/esco/occupation/9a99a5fe-875d-49b2-9b53-cc1b73be1659,railway sales agent,rail,rail.rail_traffic_controller,0.413,manual
 http://data.europa.eu/esco/occupation/9aa2115d-83cb-4db1-af1d-b426c87c2393,criminal justice social worker,social_work,social_work.social_worker_sosionom,0.484,model
 http://data.europa.eu/esco/occupation/9aa2a36f-296e-45fe-9798-b7839e0ed389,electrical engineering technician,electrical_engineering,electrical_engineering.electrical_engineering_manager,0.595,model
@@ -2120,10 +2120,10 @@ http://data.europa.eu/esco/occupation/acf69cab-8629-45c8-ae10-c8fb15f474b6,anthr
 http://data.europa.eu/esco/occupation/ad14ec64-128c-4a72-9c1a-257a5f3b180c,exploration geologist,earth_sciences,earth_sciences.geologist,0.483,model
 http://data.europa.eu/esco/occupation/ad404c6b-291f-439e-9ad4-c93ddabd3c13,"mining, construction and civil engineering machinery distribution manager",civil_engineering,civil_engineering.civil_engineering_technician,0.541,model
 http://data.europa.eu/esco/occupation/ad6589cb-ef1e-482d-863d-d80b2eb6b070,hot foil operator,textile_print_production,textile_print_production.printer_press_operator,0.432,model
-http://data.europa.eu/esco/occupation/ad7bbc92-d5cb-4b64-a1a3-efc593afd437,lumber grader,machine_operation,machine_operation.plastic_rubber_products_machine_operator,0.317,model
+http://data.europa.eu/esco/occupation/ad7bbc92-d5cb-4b64-a1a3-efc593afd437,lumber grader,hse_quality,hse_quality.quality_inspector_product_tester,0.317,manual
 http://data.europa.eu/esco/occupation/ad7c76e8-af96-42af-99a5-d579f707758c,aircraft assembler,machine_operation,machine_operation.production_worker_assembly_operator,0.412,model
 http://data.europa.eu/esco/occupation/ad8ab454-b506-46a5-afd3-66bbffd54115,cartographer,urban_planning,urban_planning.cartographer,0.521,model
-http://data.europa.eu/esco/occupation/ada3fc30-c205-4279-90b8-ed5c7c467626,leather goods product development manager,machine_operation,machine_operation.production_manager,0.46,model
+http://data.europa.eu/esco/occupation/ada3fc30-c205-4279-90b8-ed5c7c467626,leather goods product development manager,fashion,fashion.head_designer_creative_director_fashion,0.46,manual
 http://data.europa.eu/esco/occupation/ade351da-7bda-424e-8682-bbdcab2a25be,payroll clerk,accounting_audit,accounting_audit.payroll_specialist,0.493,model
 http://data.europa.eu/esco/occupation/adf9257e-78cb-467d-b259-59ed65bd7aed,fire safety tester,specialist_trades,specialist_trades.fire_protection_installer_sprinkler_alarms,0.354,manual
 http://data.europa.eu/esco/occupation/ae2c1bf4-669e-4fec-a7d7-698753699083,philosophy lecturer,academic_research,academic_research.university_lecturer_universitetslektor,0.516,rule
@@ -2268,7 +2268,7 @@ http://data.europa.eu/esco/occupation/b972feaa-e2a6-4b22-9de4-18040f3f04eb,renta
 http://data.europa.eu/esco/occupation/b9836ed2-1ca7-49b4-9f0e-bb5d2ca14443,road transport maintenance scheduler,road_transport,road_transport.transport_planner_dispatcher,0.374,manual
 http://data.europa.eu/esco/occupation/b997a091-23b3-4f87-a6bc-bdbea2f609ae,wine fermenter,food_production,food_production.dairy_production_operator,0.341,model
 http://data.europa.eu/esco/occupation/b9b47087-6045-405d-b769-6a0c94e2eb84,cultural visitor services manager,arts_admin,arts_admin.cultural_centre_venue_manager,0.447,model
-http://data.europa.eu/esco/occupation/b9c80d74-97b6-4a4b-849e-a3908ba57ae1,veneer grader,machine_operation,machine_operation.woodworking_machine_operator,0.319,model
+http://data.europa.eu/esco/occupation/b9c80d74-97b6-4a4b-849e-a3908ba57ae1,veneer grader,hse_quality,hse_quality.quality_inspector_product_tester,0.319,manual
 http://data.europa.eu/esco/occupation/b9d03330-c71c-4827-8797-3e96249d54db,woodcarver,woodcraft,woodcraft.woodturner_wood_carver,0.374,manual
 http://data.europa.eu/esco/occupation/b9dd2ee7-5fea-46f8-b226-ddae9501f728,sexual violence counsellor,mental_health,mental_health.addiction_counsellor,0.415,model
 http://data.europa.eu/esco/occupation/b9de6d8b-1cf6-4722-bf8c-d73aad03bf87,fish cook,culinary,culinary.line_cook_commis_chef,0.461,model
@@ -2348,7 +2348,7 @@ http://data.europa.eu/esco/occupation/bfc1b4e9-624c-4fba-89f2-d218bba9e257,perfo
 http://data.europa.eu/esco/occupation/bfc92738-128b-44f5-92d4-51b10df17961,philosopher,social_sciences,social_sciences.philosopher_ethicist,0.493,model
 http://data.europa.eu/esco/occupation/bfdc096e-e450-424d-9340-46968047ed68,nitroglycerin neutraliser,process_operation,process_operation.process_operator,0.334,model
 http://data.europa.eu/esco/occupation/bfe142b9-a049-4d41-89c4-fd2f34ac56b6,accounting assistant,accounting_audit,accounting_audit.accounting_assistant_bookkeeper,0.485,model
-http://data.europa.eu/esco/occupation/bff716c9-42c7-471e-8af0-582f799fb29a,aquaculture environmental analyst,inspection_regulation,inspection_regulation.environmental_inspector,0.477,model
+http://data.europa.eu/esco/occupation/bff716c9-42c7-471e-8af0-582f799fb29a,aquaculture environmental analyst,fisheries_aquaculture,fisheries_aquaculture.fish_health_biologist,0.477,manual
 http://data.europa.eu/esco/occupation/bff7e8a3-6206-4d38-b25f-fcb6e634c7af,archaeology lecturer,academic_research,academic_research.university_lecturer_universitetslektor,0.509,rule
 http://data.europa.eu/esco/occupation/bffbe18a-cb8b-4f90-bd87-7505cd3b16f5,optometrist,allied_health,allied_health.optometrist,0.527,model
 http://data.europa.eu/esco/occupation/c011a88b-95ab-46ad-ad30-539e3fc56092,literature teacher at secondary school,school_teaching,school_teaching.international_school_teacher,0.486,model
@@ -2496,7 +2496,7 @@ http://data.europa.eu/esco/occupation/cbad55a4-c7cf-4ab6-9540-eac72b26729b,domes
 http://data.europa.eu/esco/occupation/cbdb80db-c760-4b68-b074-88c397650ef5,editor-in-chief,journalism,journalism.editor_in_chief,0.632,model
 http://data.europa.eu/esco/occupation/cbdbe324-81fe-48da-a8f7-0106dd94a05b,gas processing plant supervisor,process_operation,process_operation.shift_supervisor_process,0.472,model
 http://data.europa.eu/esco/occupation/cbde1a3a-406d-4d17-b30b-03981925035d,energy analyst,sustainability,sustainability.sustainability_analyst,0.474,model
-http://data.europa.eu/esco/occupation/cbde2432-cb7f-451f-a686-b22cad3957a6,drama teacher,tutoring,tutoring.music_teacher_private,0.378,model
+http://data.europa.eu/esco/occupation/cbde2432-cb7f-451f-a686-b22cad3957a6,drama teacher,tutoring,tutoring.art_dance_teacher_private,0.378,manual
 http://data.europa.eu/esco/occupation/cc325a8f-702e-4bf0-893f-5b5d456475ad,cloud identity manager,cybersecurity,cybersecurity.cloud_security_engineer,0.357,manual
 http://data.europa.eu/esco/occupation/cc844eb8-c81d-40ff-af3d-119700e60f23,costume buyer,stage_production,stage_production.lighting_designer_technician,0.595,manual
 http://data.europa.eu/esco/occupation/cc867bee-ab5c-427f-9244-f7a204d9574b,cloud DevOps engineer,devops_cloud,devops_cloud.cloud_engineer_aws_azure_gcp,0.671,model
@@ -2533,7 +2533,7 @@ http://data.europa.eu/esco/occupation/cf74a14f-f1fe-4008-a935-5c173f246655,mattr
 http://data.europa.eu/esco/occupation/cf7b89d0-1cf9-4567-a8bf-9d6905a2b31b,choirmaster/choirmistress,music_performance,music_performance.church_musician_organist,0.332,manual
 http://data.europa.eu/esco/occupation/cf9b6da9-3a59-4780-bec9-500b148b8878,podiatrist,allied_health,allied_health.podiatrist,0.546,model
 http://data.europa.eu/esco/occupation/cfda19c9-c7e1-497d-a18b-66e29c773745,airspace manager,aviation,aviation.chief_pilot_head_of_flight_operations,0.427,model
-http://data.europa.eu/esco/occupation/d00b4607-c4fe-4f3e-8974-29401e23223c,social security administrator,social_work,social_work.social_worker_sosionom,0.477,model
+http://data.europa.eu/esco/occupation/d00b4607-c4fe-4f3e-8974-29401e23223c,social security administrator,public_administration,public_administration.section_head_municipality_agency,0.477,manual
 http://data.europa.eu/esco/occupation/d0341f2c-f797-4306-b847-411dee1058a9,art model,modelling,modelling.commercial_model,0.48,model
 http://data.europa.eu/esco/occupation/d051a141-92cd-4800-b0ee-6c8c31ea5838,crane technician,industrial_maintenance,industrial_maintenance.service_technician_machines,0.405,manual
 http://data.europa.eu/esco/occupation/d07a4984-e775-46a7-b967-a3d0b3a54268,metal polisher,welding_metal,welding_metal.plate_worker_steel_fabricator,0.338,model
@@ -2706,7 +2706,7 @@ http://data.europa.eu/esco/occupation/e047b8f5-9491-4da2-8816-7aa37ad2370d,paten
 http://data.europa.eu/esco/occupation/e04bca7b-c0c7-454d-9d15-dfb64a30dc0a,agricultural machinery and equipment distribution manager,supply_chain,supply_chain.supply_chain_manager,0.285,rule
 http://data.europa.eu/esco/occupation/e0628770-57f0-4cf2-952e-5b16547db8c1,aquaculture husbandry technician,fisheries_aquaculture,fisheries_aquaculture.aquaculture_operator_fish_farm_worker,0.442,model
 http://data.europa.eu/esco/occupation/e0904e3f-d3e7-4313-8ff9-3facf9fce70d,wholesale merchant in beverages,trade_brokerage,trade_brokerage.wholesale_buyer_and_trader,0.28,rule
-http://data.europa.eu/esco/occupation/e0b347de-f88b-4f69-b7d0-0a965e41f0d5,cocoa mill operator,machine_operation,machine_operation.machine_operator,0.357,model
+http://data.europa.eu/esco/occupation/e0b347de-f88b-4f69-b7d0-0a965e41f0d5,cocoa mill operator,food_production,food_production.food_production_operator,0.357,manual
 http://data.europa.eu/esco/occupation/e0b544dd-b621-4126-a55e-054af25c6ea0,ICT network architect,it_support,it_support.network_engineer,0.485,model
 http://data.europa.eu/esco/occupation/e0c5e005-6303-4d5a-9125-a7f86ed1c4df,liquor grinding mill operator,food_production,food_production.food_production_operator,0.326,model
 http://data.europa.eu/esco/occupation/e1106f6d-81fc-44f8-af94-8b7d2763065c,assistant stage director,stage_production,stage_production.stage_manager,0.468,model
@@ -2914,7 +2914,7 @@ http://data.europa.eu/esco/occupation/f4f671d5-208f-4423-a250-c049de8d9adc,anima
 http://data.europa.eu/esco/occupation/f5166c6b-3467-4fc4-9343-d12e870d9def,contact centre manager,customer_service,customer_service.contact_centre_agent,0.594,model
 http://data.europa.eu/esco/occupation/f5332f2d-3119-4194-8b5c-d0a5d97f55ef,advertising sales agent,media_ad_sales,media_ad_sales.digital_ad_sales_manager,0.488,model
 http://data.europa.eu/esco/occupation/f53dbdb1-2f64-42f8-a6a4-0552c40e4f57,flour purifier operator,food_production,food_production.food_production_operator,0.338,model
-http://data.europa.eu/esco/occupation/f5576c5b-8d03-4a3d-9cb7-b8c4ac07a7ef,youth centre manager,childcare,childcare.childcare_centre_manager,0.524,model
+http://data.europa.eu/esco/occupation/f5576c5b-8d03-4a3d-9cb7-b8c4ac07a7ef,youth centre manager,social_work,social_work.social_services_team_leader,0.524,manual
 http://data.europa.eu/esco/occupation/f5596182-70b2-4c18-97ab-f9405bae0385,screen making technician,textile_print_production,textile_print_production.pre_press_technician,0.533,manual
 http://data.europa.eu/esco/occupation/f569145d-8f87-4f80-b861-45583430d9f4,idiophone musical instruments maker,ceramics_glass,ceramics_glass.musical_instrument_maker_luthier,0.495,model
 http://data.europa.eu/esco/occupation/f56e33a3-01bb-46ba-98f4-d47aa242b983,road transport division manager,aviation,aviation.chief_pilot_head_of_flight_operations,0.4,model
@@ -2929,15 +2929,15 @@ http://data.europa.eu/esco/occupation/f634ce9b-68a5-4a8a-af4a-ed13fc0deba9,justi
 http://data.europa.eu/esco/occupation/f643bff3-74ef-48d1-b033-820e2d8659e9,rail traffic controller,rail,rail.rail_traffic_controller,0.648,model
 http://data.europa.eu/esco/occupation/f6803a58-91d9-4251-9a07-09fc387cec16,musician,music_performance,music_performance.session_musician,0.453,model
 http://data.europa.eu/esco/occupation/f6811475-94d4-4d13-8d5f-f173978ae7ec,political party agent,politics,politics.party_staffer_political_secretary,0.49,model
-http://data.europa.eu/esco/occupation/f6ca9392-708d-46cb-a2e9-51519595baa2,drama teacher secondary school,tutoring,tutoring.music_teacher_private,0.412,model
-http://data.europa.eu/esco/occupation/f6f1a9c5-a956-4a10-98ad-b83525e843fb,bulk filler,machine_operation,machine_operation.production_worker_assembly_operator,0.357,model
+http://data.europa.eu/esco/occupation/f6ca9392-708d-46cb-a2e9-51519595baa2,drama teacher secondary school,school_teaching,school_teaching.upper_secondary_teacher_lektor,0.412,manual
+http://data.europa.eu/esco/occupation/f6f1a9c5-a956-4a10-98ad-b83525e843fb,bulk filler,food_production,food_production.food_production_operator,0.357,manual
 http://data.europa.eu/esco/occupation/f7066fc0-5f2f-43a9-bd35-a99e6119490d,zookeeper,animal_care,animal_care.zookeeper,0.523,model
 http://data.europa.eu/esco/occupation/f70e5875-df7e-40be-a315-3ac1c9d36d64,second-hand shop manager,store_retail,store_retail.specialist_shop_manager,0.522,rule
 http://data.europa.eu/esco/occupation/f7145f87-5940-43f5-bc98-aa1a2b872b47,agricultural machinery technician,vehicle_mechanics,vehicle_mechanics.agricultural_and_construction_machinery_mechanic,0.5,manual
 http://data.europa.eu/esco/occupation/f7177f79-63e7-4944-8896-044056b62523,personal trainer,fitness,fitness.personal_trainer,0.543,model
 http://data.europa.eu/esco/occupation/f738f568-b4ff-4f23-acb7-5f99d9a3b393,import export specialist in dairy products and edible oils,trade_brokerage,trade_brokerage.import_export_coordinator,0.449,rule
 http://data.europa.eu/esco/occupation/f73e11e7-0eb8-4a46-b2e1-9e544c2f3652,textile finishing machine operator,textile_print_production,textile_print_production.textile_machine_operator,0.629,model
-http://data.europa.eu/esco/occupation/f7450c1f-20b7-45dd-b3bb-25095830bf3f,foreign affairs officer,public_policy,public_policy.public_affairs_lobbying_consultant,0.438,model
+http://data.europa.eu/esco/occupation/f7450c1f-20b7-45dd-b3bb-25095830bf3f,foreign affairs officer,diplomacy,diplomacy.diplomat_embassy_secretary,0.438,manual
 http://data.europa.eu/esco/occupation/f756fdab-7726-4c48-bfcc-94ff8810fc08,kitchen porter,culinary,culinary.kitchen_porter_dishwasher,0.562,model
 http://data.europa.eu/esco/occupation/f7b04542-d8c7-42db-8475-e63b507cce82,receptionist,administration,administration.receptionist,0.529,model
 http://data.europa.eu/esco/occupation/f7ddb68a-beba-4aa9-b5cb-d174d70ea724,welding inspector,welding_metal,welding_metal.welding_inspector,0.599,model

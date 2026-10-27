@@ -1,6 +1,6 @@
 # Work Design: "How you work best" (layer 2)
 
-Version `wd-0.1`. Config: `src/lib/workdesign/model.ts`. Person side: `src/lib/workdesign/person.ts`. Career side: `taxonomy/build/build_onet_profiles.py` → `taxonomy/derived/lane_onet_profiles.json`.
+Version `wd-0.2` (wd-0.1 had a ninth environment dimension, Income variance, removed on 2026-10-27: its career side came only from the taxonomy's payoff labels, which the product owner ruled out). Config: `src/lib/workdesign/model.ts`. Person side: `src/lib/workdesign/person.ts`. Career side: `taxonomy/build/build_onet_profiles.py` → `taxonomy/derived/lane_onet_profiles.json`.
 
 **Status: provisional.**
 - **Person side:** every formula is **Lane's own model**, not a published scoring. The input weights are reasoned starting points, to be fitted to outcome data later.
@@ -102,12 +102,10 @@ Penalty shapes (used in Phase 2; person score p, career score c):
 | Competition | Enterprising .6, risk task .4 | Level of Competition | two-sided |
 | Precision and consequence of error | Conscientiousness .6, low Neuroticism .4 | Importance of Being Exact or Accurate; Consequence of Error | excess |
 | Variety vs. routine | Openness .6, learning rate .4 | Importance of Repeating Same Tasks (reversed); Thinking Creatively (Work Activity) | deficit |
-| Income variance | Risk task .5, patience task .5 | Lane taxonomy payoff curve: high-floor 10, linear 20, steep 55, convex 70, winner-take-all 95 | two-sided |
 | Cognitive challenge | General reasoning percentile | Job Zone ×2; Level of Deductive Reasoning, Inductive Reasoning, Mathematical Reasoning, Problem Sensitivity | deficit (under-challenge) |
 
 Notes:
 - **"Determine Tasks, Priorities and Goals"** (4.C.3.b.8, called "Structured versus Unstructured Work" before 31.0): the 31.0 categories run from 1 "No freedom" to 5 "A lot of freedom", so the high end is self-directed work. It is used unreversed. Checked in `Work Context Categories.txt`.
-- **Income variance:** the payoff mapping is Lane's judgement on its own taxonomy (more variance from linear to winner-take-all), not O\*NET.
 - **Cognitive challenge:** this is about under-challenge only. Work that demands more than your measured range is ability fit (C), not fulfilment.
 
 ## C. Ability demands (Phase 2 ability fit)
@@ -127,3 +125,17 @@ Only a shortfall counts against ability fit; surplus capability doesn't.
 1. **Work Styles:** O\*NET 31.0 replaced the old 16 with 21 styles on a new impact scale (WI, −3 to +3); the names are listed in `taxonomy/derived/REPORT.md`. The profiles carry them, but no dimension uses them yet. They are candidates for Phase 2, with validation.
 2. **Planning SDs:** they set the error bars of anchored inputs. Transcribing Johnson (2014) and the O\*NET Interest Profiler norms replaces them.
 3. **Correlated errors:** they are ignored in dimension SEs (an approximation, noted above).
+
+## Decisions for Phase 2 (product owner, 2026-10-27)
+
+Recorded here; nothing below is implemented in Phase 1.
+
+1. **Pace and time pressure:** O\*NET's Time Pressure is deadline frequency, so emergency work rates low (firefighters 15th percentile, air traffic controllers 18th). Blend in urgency-related Work Context (for example Consequence of Error, Frequency of Decision Making, Impact of Decisions on Co-workers or Company Results) so emergency work rises; re-run the face-validity check.
+2. **Model weighting:** fix the issues in REPORT.md §2 ("The model") in Phase 2 rather than leaving them to calibration:
+   - Protect's missing people-safety element;
+   - Social contact for teaching and childcare;
+   - Variety for assembly work;
+   - Organise for administration;
+   - Analyse's weight on Getting Information.
+3. **Norms:** transcribe the IPIP-NEO-120 norms (Johnson, 2014) and the O\*NET Interest Profiler norms, so personality and interests switch from `anchored` to `normed`.
+4. **Income labels:** not part of Work Design.

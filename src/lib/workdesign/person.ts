@@ -14,7 +14,7 @@
 import type { ProfileScores } from "../scoring/profile";
 import type { ScaleScore } from "../scoring/types";
 import { ASSUMED_RELIABILITY } from "../scoring/self";
-import { ENVIRONMENT, VALUE_MODES, type Dimension, type PersonConstructId } from "./model";
+import { ENVIRONMENT, VALUE_MODES, WORK_DESIGN_VERSION, type Dimension, type PersonConstructId } from "./model";
 
 export type Provenance = "normed" | "anchored" | "ipsative" | "task";
 export type Estimate = { value: number; se: number; provenance: Provenance; source: string };
@@ -156,7 +156,7 @@ export type WorkDesignProfile = {
   inputs: Partial<Record<PersonConstructId, Estimate>>;
 };
 
-export function personWorkDesign(p: ProfileScores, version = "wd-0.1"): WorkDesignProfile {
+export function personWorkDesign(p: ProfileScores, version = WORK_DESIGN_VERSION): WorkDesignProfile {
   const inputs = personInputs(p);
   const modes = VALUE_MODES.map((d) => scoreDimension(d, inputs));
   const rel = relativeOfDimensions(modes);

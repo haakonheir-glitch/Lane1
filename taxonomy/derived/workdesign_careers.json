@@ -1360,103 +1360,103 @@
   "content_social": {
    "influence": {
     "id": "influence",
-    "value": 69,
+    "value": 69.36666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 64.14999999999999,
+    "value": 72.975,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 20.200000000000003,
+    "value": 20.875,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 54.074999999999996,
+    "value": 58.800000000000004,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 6.6,
+    "value": 2.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 24.666666666666668,
+    "value": 33.800000000000004,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 86.1,
+    "value": 89.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 37.325,
+    "value": 43.825,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 15.300000000000002,
+    "value": 17.733333333333334,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 72.1,
+    "value": 67.35,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 18.625,
+    "value": 12.475000000000001,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 52.5,
+    "value": 42.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 24.25,
+    "value": 10.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 84,
+    "value": 79.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 30.9,
+    "value": 32.150000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 60.4,
+    "value": 65.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 57.58333333333334,
+    "value": 62.73333333333333,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -2400,103 +2400,103 @@
   "software_engineering": {
    "influence": {
     "id": "influence",
-    "value": 42.199999999999996,
+    "value": 40.166666666666664,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 72.55000000000001,
+    "value": 75.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 36.125,
+    "value": 35.625,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 55.24999999999999,
+    "value": 57.99999999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 28.1,
+    "value": 25.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 35.666666666666664,
+    "value": 37.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 74.2,
+    "value": 76.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 48.8,
+    "value": 50.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 44.900000000000006,
+    "value": 46.36666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 54.425,
+    "value": 56.849999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 38.2,
+    "value": 35.475,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 51.4,
+    "value": 53.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 37.65,
+    "value": 35.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 77.6,
+    "value": 77,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 50.5,
+    "value": 51.599999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 56.8,
+    "value": 58.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 67.58333333333333,
+    "value": 70.03333333333333,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -4064,103 +4064,103 @@
   "investment_banking": {
    "influence": {
     "id": "influence",
-    "value": 70.36666666666667,
+    "value": 82.73333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 70.85,
+    "value": 78.65,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 8.850000000000001,
+    "value": 6.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 40.25,
+    "value": 37.85,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 13,
+    "value": 5.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 25.166666666666668,
+    "value": 22.866666666666664,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 34.6,
+    "value": 56.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 39.974999999999994,
+    "value": 41.224999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 22.666666666666668,
+    "value": 21.599999999999998,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 51.62499999999999,
+    "value": 60.449999999999996,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 45.550000000000004,
+    "value": 42.85,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 78.2,
+    "value": 47.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 44.45,
+    "value": 34.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 59.4,
+    "value": 96.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 75,
+    "value": 63.900000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 33.599999999999994,
+    "value": 62.150000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 56.96666666666667,
+    "value": 80.14999999999999,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -4688,103 +4688,103 @@
   "wealth_advice": {
    "influence": {
     "id": "influence",
-    "value": 78.39999999999999,
+    "value": 83.83333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 64.65,
+    "value": 86.725,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 8.6,
+    "value": 5.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 49.825,
+    "value": 68.875,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 54.8,
+    "value": 57.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 48.76666666666667,
+    "value": 53.73333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 28.1,
+    "value": 42.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 61.724999999999994,
+    "value": 66.325,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 38.1,
+    "value": 32.06666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 46.474999999999994,
+    "value": 59.425,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 52.400000000000006,
+    "value": 35.925,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 62.6,
+    "value": 54.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 45.650000000000006,
+    "value": 26.35,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 66.1,
+    "value": 76.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 69.45,
+    "value": 68.95,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 25.900000000000002,
+    "value": 42.849999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 65.78333333333335,
+    "value": 79.01666666666667,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -5520,25 +5520,25 @@
   "general_management": {
    "influence": {
     "id": "influence",
-    "value": 78.36666666666666,
+    "value": 81.46666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 67.9,
+    "value": 73.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 47.925,
+    "value": 43.275,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 68.75,
+    "value": 76.52499999999999,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -5550,73 +5550,73 @@
    },
    "teach": {
     "id": "teach",
-    "value": 68.16666666666667,
+    "value": 80.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 65.1,
+    "value": 77.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 81.225,
+    "value": 91.57499999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 65.33333333333333,
+    "value": 68.03333333333335,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 73.44999999999999,
+    "value": 86.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 75.1,
+    "value": 72.375,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 58.8,
+    "value": 66.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 75.5,
+    "value": 75,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 59.7,
+    "value": 62.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 53.6,
+    "value": 51.05,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 50.75,
+    "value": 60.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 64.68333333333334,
+    "value": 73.78333333333335,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -6040,103 +6040,103 @@
   "recruiting": {
    "influence": {
     "id": "influence",
-    "value": 67.10000000000001,
+    "value": 71.36666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 55.75,
+    "value": 62.074999999999996,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 11.100000000000001,
+    "value": 9.274999999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 70.475,
+    "value": 79.05,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 62.7,
+    "value": 58.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 51.23333333333333,
+    "value": 62.36666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 47.6,
+    "value": 57.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 52.525000000000006,
+    "value": 62.325,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 32.93333333333333,
+    "value": 36.06666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 61.075,
+    "value": 63.85,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 59.25,
+    "value": 61.15,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 49.8,
+    "value": 42.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 72.05000000000001,
+    "value": 68.45,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 44.2,
+    "value": 54.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 41.25,
+    "value": 47.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 40.55,
+    "value": 46.75,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 67.11666666666666,
+    "value": 68.61666666666666,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -6456,103 +6456,103 @@
   "legal_practice": {
    "influence": {
     "id": "influence",
-    "value": 56.4,
+    "value": 75.26666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 67.825,
+    "value": 69.625,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 11.024999999999999,
+    "value": 13.05,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 65.325,
+    "value": 62.625,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 36.2,
+    "value": 51.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 21.2,
+    "value": 29,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 34.8,
+    "value": 54.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 45,
+    "value": 61.075,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 32.53333333333334,
+    "value": 34.800000000000004,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 65.2,
+    "value": 74.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 48.375,
+    "value": 54.574999999999996,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 73.3,
+    "value": 70.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 56.4,
+    "value": 69.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 55.6,
+    "value": 68.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 67.05,
+    "value": 70.35,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 39.849999999999994,
+    "value": 55.45,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 61.13333333333333,
+    "value": 68.64999999999999,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -7392,103 +7392,103 @@
   "hse_quality": {
    "influence": {
     "id": "influence",
-    "value": 43.199999999999996,
+    "value": 43.06666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 61.349999999999994,
+    "value": 59.75,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 62.375,
+    "value": 63.175,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 54.599999999999994,
+    "value": 53.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 38.7,
+    "value": 39,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 50.76666666666667,
+    "value": 49.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 32.8,
+    "value": 32.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 43.650000000000006,
+    "value": 43.375,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 81.83333333333333,
+    "value": 80.86666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 46.199999999999996,
+    "value": 46.22500000000001,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 46.775000000000006,
+    "value": 46.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 53.4,
+    "value": 52.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 50.95,
+    "value": 50.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 43.3,
+    "value": 41.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 64.7,
+    "value": 64.35,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 34.7,
+    "value": 34.45,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 57.5,
+    "value": 55.51666666666667,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -7496,103 +7496,103 @@
   "facilities": {
    "influence": {
     "id": "influence",
-    "value": 37.4,
+    "value": 36.56666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 21.3,
+    "value": 20.525,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 66.2,
+    "value": 65.025,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 33.575,
+    "value": 32.775000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 60.8,
+    "value": 61.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 42.13333333333333,
+    "value": 41.833333333333336,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 35.5,
+    "value": 33.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 39.475,
+    "value": 38.825,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 44.23333333333333,
+    "value": 43.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 35.85,
+    "value": 34.75,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 26.625,
+    "value": 28.65,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 47.3,
+    "value": 44.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 34.3,
+    "value": 35.05,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 22.7,
+    "value": 23.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 27.049999999999997,
+    "value": 26.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 51.7,
+    "value": 51.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 18.566666666666666,
+    "value": 18.299999999999997,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -7704,103 +7704,103 @@
   "road_transport": {
    "influence": {
     "id": "influence",
-    "value": 50.13333333333333,
+    "value": 49.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 34.525,
+    "value": 34.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 56.35,
+    "value": 56.325,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 39.425,
+    "value": 38.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 60.5,
+    "value": 59.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 37,
+    "value": 36.26666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 32.5,
+    "value": 31.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 38.55,
+    "value": 37.775,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 52.666666666666664,
+    "value": 53.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 39.825,
+    "value": 40.075,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 56.349999999999994,
+    "value": 55.87499999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 67.6,
+    "value": 67.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 62.75,
+    "value": 62.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 33.4,
+    "value": 34.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 57.099999999999994,
+    "value": 57.15,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 33.95,
+    "value": 33.650000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 27.716666666666665,
+    "value": 27.5,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -9160,103 +9160,103 @@
   "architecture": {
    "influence": {
     "id": "influence",
-    "value": 76.73333333333333,
+    "value": 84.03333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 52.975,
+    "value": 58.425,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 44.65,
+    "value": 40.849999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 64.85,
+    "value": 63.85,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 28.7,
+    "value": 33,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 55.833333333333336,
+    "value": 57.06666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 81.5,
+    "value": 91.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 79.025,
+    "value": 82.07499999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 54.699999999999996,
+    "value": 54.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 40.35,
+    "value": 41.025000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 52.050000000000004,
+    "value": 51.62500000000001,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 50,
+    "value": 50.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 45.349999999999994,
+    "value": 43.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 68.3,
+    "value": 72.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 37.05,
+    "value": 34.400000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 74.1,
+    "value": 81.65,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 67.85000000000001,
+    "value": 73.88333333333334,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -10720,103 +10720,103 @@
   "machine_operation": {
    "influence": {
     "id": "influence",
-    "value": 29.433333333333334,
+    "value": 29.066666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 33.75,
+    "value": 33.65,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 73.17500000000001,
+    "value": 73.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 31.275,
+    "value": 31.15,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 40,
+    "value": 39.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 45,
+    "value": 45.26666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 33.8,
+    "value": 34,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 42.2,
+    "value": 42.150000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 62.633333333333326,
+    "value": 62.43333333333334,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 32.075,
+    "value": 31.825000000000003,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 32.949999999999996,
+    "value": 32.900000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 67.1,
+    "value": 67.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 42.25,
+    "value": 42.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 40.7,
+    "value": 41.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 56.45,
+    "value": 56.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 37.05,
+    "value": 37.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 27.55,
+    "value": 27.399999999999995,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -10928,79 +10928,79 @@
   "food_production": {
    "influence": {
     "id": "influence",
-    "value": 27.13333333333333,
+    "value": 27.46666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 32.275,
+    "value": 32.625,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 59.97500000000001,
+    "value": 60.025,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 26.8,
+    "value": 27.35,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 40.2,
+    "value": 40.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 45.23333333333333,
+    "value": 45.833333333333336,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 22.3,
+    "value": 22.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 34.675,
+    "value": 35.349999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 60.93333333333334,
+    "value": 61.53333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 25.724999999999998,
+    "value": 25.575000000000003,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 37.675,
+    "value": 37.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 68.1,
+    "value": 68.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 46.900000000000006,
+    "value": 45.849999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -11012,19 +11012,19 @@
    },
    "precision": {
     "id": "precision",
-    "value": 54.35,
+    "value": 54.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 31.950000000000003,
+    "value": 31.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 26.183333333333334,
+    "value": 26.600000000000005,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -11032,7 +11032,7 @@
   "textile_print_production": {
    "influence": {
     "id": "influence",
-    "value": 30.733333333333334,
+    "value": 30.866666666666664,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -11044,13 +11044,13 @@
    },
    "build": {
     "id": "build",
-    "value": 67.125,
+    "value": 67.17500000000001,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 28.3,
+    "value": 28.174999999999997,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -11062,49 +11062,49 @@
    },
    "teach": {
     "id": "teach",
-    "value": 37.199999999999996,
+    "value": 37.03333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 31.7,
+    "value": 31.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 34.324999999999996,
+    "value": 34.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 49.26666666666667,
+    "value": 49.300000000000004,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 26.075,
+    "value": 25.925,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 28.7,
+    "value": 28.45,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 59.7,
+    "value": 59.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 30.950000000000003,
+    "value": 30.8,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -11116,19 +11116,19 @@
    },
    "precision": {
     "id": "precision",
-    "value": 44.5,
+    "value": 44.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 38.5,
+    "value": 38.45,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 22.033333333333335,
+    "value": 21.916666666666668,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -11760,103 +11760,103 @@
   "fisheries_aquaculture": {
    "influence": {
     "id": "influence",
-    "value": 49.06666666666666,
+    "value": 49.333333333333336,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 35.625,
+    "value": 37.025,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 71.625,
+    "value": 70.975,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 43.5,
+    "value": 44.375,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 47.3,
+    "value": 46.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 40.03333333333333,
+    "value": 41.06666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 38.9,
+    "value": 39.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 54.525,
+    "value": 55.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 54.13333333333333,
+    "value": 54.06666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 53.375,
+    "value": 53.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 40.5,
+    "value": 40.45,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 33.2,
+    "value": 32.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 35.85,
+    "value": 36.05,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 47,
+    "value": 48.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 43.8,
+    "value": 43.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 50.75,
+    "value": 51.150000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 48.550000000000004,
+    "value": 49.300000000000004,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -11968,103 +11968,103 @@
   "animal_care": {
    "influence": {
     "id": "influence",
-    "value": 66.36666666666667,
+    "value": 66.73333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 36.725,
+    "value": 37.625,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 42.324999999999996,
+    "value": 42,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 42.400000000000006,
+    "value": 41.825,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 68.9,
+    "value": 69.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 47.06666666666666,
+    "value": 46.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 45.7,
+    "value": 44.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 45.625,
+    "value": 46.375,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 42.63333333333333,
+    "value": 42.699999999999996,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 61.75,
+    "value": 62.675,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 59.6,
+    "value": 60.675,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 30.6,
+    "value": 32.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 62.85,
+    "value": 63.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 33.8,
+    "value": 34.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 47.95,
+    "value": 49.15,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 54.7,
+    "value": 54,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 46.03333333333333,
+    "value": 47.51666666666666,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -12176,37 +12176,37 @@
   "academic_research": {
    "influence": {
     "id": "influence",
-    "value": 54.1,
+    "value": 54.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 67.425,
+    "value": 64.075,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 26.400000000000002,
+    "value": 27.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 69.57499999999999,
+    "value": 68.44999999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 57.9,
+    "value": 58.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 89.59999999999998,
+    "value": 88.43333333333334,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -12218,61 +12218,61 @@
    },
    "lead": {
     "id": "lead",
-    "value": 63.675000000000004,
+    "value": 63.425000000000004,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 30.7,
+    "value": 29.500000000000004,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 82.225,
+    "value": 80.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 48,
+    "value": 48.65,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 38.3,
+    "value": 37.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 44.1,
+    "value": 43.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 67.2,
+    "value": 68,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 24.15,
+    "value": 23.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 82.5,
+    "value": 82.05,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 75.71666666666667,
+    "value": 73.68333333333332,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -13112,103 +13112,103 @@
   "pharmacy": {
    "influence": {
     "id": "influence",
-    "value": 42.43333333333333,
+    "value": 43.666666666666664,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 77.925,
+    "value": 78.30000000000001,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 38.35,
+    "value": 35.35,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 50.7,
+    "value": 57.574999999999996,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 87.4,
+    "value": 88,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 63.633333333333326,
+    "value": 74.53333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 21.6,
+    "value": 24.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 57.35,
+    "value": 68.65,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 59.46666666666667,
+    "value": 62.199999999999996,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 21.450000000000003,
+    "value": 31.825,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 79.80000000000001,
+    "value": 75.625,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 63.6,
+    "value": 80.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 94.3,
+    "value": 92.75,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 49.6,
+    "value": 66.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 90.05,
+    "value": 95.05,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 16.95,
+    "value": 17.049999999999997,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 50.96666666666666,
+    "value": 67.8,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -13736,103 +13736,103 @@
   "complementary_health": {
    "influence": {
     "id": "influence",
-    "value": 59.1,
+    "value": 57.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 45.175,
+    "value": 43.375,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 36.725,
+    "value": 37.125,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 51.225,
+    "value": 53.650000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 91.8,
+    "value": 92.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 49.36666666666667,
+    "value": 51.63333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 59.3,
+    "value": 63.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 43.650000000000006,
+    "value": 41.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 39.6,
+    "value": 39.13333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 79.80000000000001,
+    "value": 78.85000000000001,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 65.725,
+    "value": 63.075,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 31.2,
+    "value": 26.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 57.25,
+    "value": 54.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 46.5,
+    "value": 44.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 46.15,
+    "value": 42.349999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 57.65,
+    "value": 59.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 65.76666666666667,
+    "value": 63.300000000000004,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -13944,103 +13944,103 @@
   "childcare": {
    "influence": {
     "id": "influence",
-    "value": 37.4,
+    "value": 32.63333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 20.35,
+    "value": 16.125,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 32.65,
+    "value": 33.825,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 48.05,
+    "value": 43.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 87.8,
+    "value": 89.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 58.1,
+    "value": 55.23333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 69.9,
+    "value": 68.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 52.525,
+    "value": 48.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 38.53333333333333,
+    "value": 37.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 53.325,
+    "value": 49.125,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 58.474999999999994,
+    "value": 55.025,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 23.6,
+    "value": 20.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 71.94999999999999,
+    "value": 70.95,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 15.7,
+    "value": 16,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 33.6,
+    "value": 33,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 70.9,
+    "value": 71.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 37.28333333333333,
+    "value": 32.650000000000006,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -14048,103 +14048,103 @@
   "social_work": {
    "influence": {
     "id": "influence",
-    "value": 66.33333333333333,
+    "value": 66.96666666666665,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 53.375,
+    "value": 52.475,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 18.925,
+    "value": 19.349999999999998,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 76.17500000000001,
+    "value": 77.15,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 81.3,
+    "value": 83.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 62.20000000000001,
+    "value": 64.23333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 62.7,
+    "value": 64.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 52.900000000000006,
+    "value": 53.925,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 46.599999999999994,
+    "value": 47.46666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 60.1,
+    "value": 61.35,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 74.35,
+    "value": 75.625,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 67.9,
+    "value": 68.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 81.1,
+    "value": 82.75,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 21.9,
+    "value": 21.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 45.45,
+    "value": 45.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 55.05,
+    "value": 56.650000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 65.06666666666666,
+    "value": 65.61666666666666,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -14464,25 +14464,25 @@
   "school_teaching": {
    "influence": {
     "id": "influence",
-    "value": 52.03333333333334,
+    "value": 52.866666666666674,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 51.699999999999996,
+    "value": 50.949999999999996,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 33.55,
+    "value": 33.95,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 65.57499999999999,
+    "value": 65.925,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -14494,73 +14494,73 @@
    },
    "teach": {
     "id": "teach",
-    "value": 86.39999999999999,
+    "value": 86.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 76.4,
+    "value": 77.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 64.575,
+    "value": 65.15,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 40.233333333333334,
+    "value": 39.56666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 65.15,
+    "value": 65.69999999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 57.975,
+    "value": 58.025,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 31.2,
+    "value": 30.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 63.9,
+    "value": 62.900000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 35.1,
+    "value": 36.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 21.7,
+    "value": 21.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 77.95,
+    "value": 78.44999999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 67.88333333333334,
+    "value": 67.7,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -14568,103 +14568,103 @@
   "tutoring": {
    "influence": {
     "id": "influence",
-    "value": 63.833333333333336,
+    "value": 59.366666666666674,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 32.099999999999994,
+    "value": 36.375,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 38,
+    "value": 36.275000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 65.32499999999999,
+    "value": 66.975,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 66.9,
+    "value": 67.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 86.59999999999998,
+    "value": 89.53333333333335,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 90,
+    "value": 91.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 66.35,
+    "value": 64.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 19.966666666666665,
+    "value": 22.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 72.1,
+    "value": 74.225,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 56.325,
+    "value": 55.75,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 29.2,
+    "value": 33.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 37.7,
+    "value": 40.150000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 67.4,
+    "value": 60.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 11.6,
+    "value": 10.600000000000001,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 86,
+    "value": 88.35,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 57.66666666666668,
+    "value": 60.31666666666667,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -14880,103 +14880,103 @@
   "public_policy": {
    "influence": {
     "id": "influence",
-    "value": 76.83333333333333,
+    "value": 76.66666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 79.475,
+    "value": 79.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 15.7,
+    "value": 16.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 66.5,
+    "value": 66.35000000000001,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 31.8,
+    "value": 31.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 50.199999999999996,
+    "value": 49.43333333333334,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 69.2,
+    "value": 68.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 58.625,
+    "value": 59,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 32.43333333333333,
+    "value": 32.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 64.85,
+    "value": 64.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 47.575,
+    "value": 47.95,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 37.5,
+    "value": 36.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 42.7,
+    "value": 41.15,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 59.6,
+    "value": 58.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 37.35,
+    "value": 37.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 69.85,
+    "value": 69.05,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 76.06666666666668,
+    "value": 76.16666666666667,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -14984,103 +14984,103 @@
   "public_administration": {
    "influence": {
     "id": "influence",
-    "value": 61.13333333333333,
+    "value": 60.366666666666674,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 69.85,
+    "value": 69.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 21.2,
+    "value": 20.174999999999997,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 66.1,
+    "value": 65.725,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 46.5,
+    "value": 47,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 44.4,
+    "value": 43.26666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 44.4,
+    "value": 44.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 48.225,
+    "value": 48.35,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 42.03333333333333,
+    "value": 41.599999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 52.95,
+    "value": 52.45,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 58.275,
+    "value": 58.125,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 45.1,
+    "value": 46.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 58.1,
+    "value": 58,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 47.2,
+    "value": 45.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 50.05,
+    "value": 50.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 43.7,
+    "value": 42.400000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 64.51666666666667,
+    "value": 64.11666666666666,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -15088,67 +15088,67 @@
   "inspection_regulation": {
    "influence": {
     "id": "influence",
-    "value": 57.56666666666666,
+    "value": 57.96666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 58.925,
+    "value": 57.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 47.5,
+    "value": 48.400000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 60.375,
+    "value": 59.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 47.5,
+    "value": 49.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 58.96666666666667,
+    "value": 57.13333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 39.1,
+    "value": 36.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 55.15,
+    "value": 53.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 66.6,
+    "value": 69.16666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 49.75,
+    "value": 48.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 59.974999999999994,
+    "value": 61.625,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -15160,31 +15160,31 @@
    },
    "conflict": {
     "id": "conflict",
-    "value": 61.95,
+    "value": 65.15,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 42.6,
+    "value": 39.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 53.1,
+    "value": 53.849999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 41.900000000000006,
+    "value": 39.85,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 60.916666666666664,
+    "value": 59.98333333333333,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -15296,103 +15296,103 @@
   "diplomacy": {
    "influence": {
     "id": "influence",
-    "value": 94.73333333333333,
+    "value": 89.56666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 86.25,
+    "value": 83.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 17.875,
+    "value": 15.375,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 78.625,
+    "value": 75.425,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 46.3,
+    "value": 42.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 78.66666666666667,
+    "value": 72.10000000000001,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 82.9,
+    "value": 80.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 78.275,
+    "value": 70.32499999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 55.666666666666664,
+    "value": 47.666666666666664,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 75.925,
+    "value": 73.225,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 55.075,
+    "value": 51.175,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 62.7,
+    "value": 57.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 66.8,
+    "value": 65.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 75.3,
+    "value": 73.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 47.2,
+    "value": 43.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 74.95,
+    "value": 76.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 82.13333333333334,
+    "value": 79.58333333333333,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -15712,55 +15712,55 @@
   "fire_rescue": {
    "influence": {
     "id": "influence",
-    "value": 54.56666666666666,
+    "value": 57.366666666666674,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 40.125,
+    "value": 39.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 58.975,
+    "value": 62.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 47.425,
+    "value": 48.62499999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 84,
+    "value": 85.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 67.7,
+    "value": 71.76666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 35.5,
+    "value": 38.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 64.05,
+    "value": 67.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 64.16666666666667,
+    "value": 65.53333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -15772,43 +15772,43 @@
    },
    "social": {
     "id": "social",
-    "value": 70.925,
+    "value": 70.94999999999999,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 40.6,
+    "value": 41.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 74.45,
+    "value": 74.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 49.5,
+    "value": 46.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 60.85,
+    "value": 63,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 42.7,
+    "value": 44.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 49.25,
+    "value": 48.4,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -16856,103 +16856,103 @@
   "fashion": {
    "influence": {
     "id": "influence",
-    "value": 54.96666666666667,
+    "value": 55.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 42.625,
+    "value": 43.349999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 58.025,
+    "value": 58.775,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 50.575,
+    "value": 50.975,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 24.8,
+    "value": 25.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 39.1,
+    "value": 40.6,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 80.3,
+    "value": 79.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 51.35000000000001,
+    "value": 53.275,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 42.06666666666667,
+    "value": 43.70000000000001,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 38.2,
+    "value": 40.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 38.675000000000004,
+    "value": 40.025000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 66.4,
+    "value": 66.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 36.15,
+    "value": 37.85,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 40.6,
+    "value": 41.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 42.45,
+    "value": 43.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 70.8,
+    "value": 70.15,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 44.88333333333333,
+    "value": 46.70000000000001,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -18416,49 +18416,153 @@
   "fitness": {
    "influence": {
     "id": "influence",
-    "value": 47.13333333333333,
+    "value": 52.099999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 25.225,
+    "value": 28.949999999999996,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 49.72500000000001,
+    "value": 46.574999999999996,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 39.05,
+    "value": 45.575,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 83.6,
+    "value": 84.1,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 65.86666666666666,
+    "value": 70.36666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 51.1,
+    "value": 66.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 41.27499999999999,
+    "value": 37.075,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "protect": {
+    "id": "protect",
+    "value": 40.53333333333333,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "autonomy": {
+    "id": "autonomy",
+    "value": 60.400000000000006,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "social": {
+    "id": "social",
+    "value": 65.675,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "pace": {
+    "id": "pace",
+    "value": 24.5,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "conflict": {
+    "id": "conflict",
+    "value": 58.15,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "competition": {
+    "id": "competition",
+    "value": 59.4,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "precision": {
+    "id": "precision",
+    "value": 22.85,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "variety": {
+    "id": "variety",
+    "value": 62.800000000000004,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "challenge": {
+    "id": "challenge",
+    "value": 35.949999999999996,
+    "coverage": 1,
+    "provenance": "onet"
+   }
+  },
+  "outdoor_guiding": {
+   "influence": {
+    "id": "influence",
+    "value": 70.53333333333333,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "analyse": {
+    "id": "analyse",
+    "value": 38.5,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "build": {
+    "id": "build",
+    "value": 39.9,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "organise": {
+    "id": "organise",
+    "value": 52.25,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "care": {
+    "id": "care",
+    "value": 70.8,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "teach": {
+    "id": "teach",
+    "value": 77.63333333333334,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "create": {
+    "id": "create",
+    "value": 83,
+    "coverage": 1,
+    "provenance": "onet"
+   },
+   "lead": {
+    "id": "lead",
+    "value": 54.400000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -18470,123 +18574,19 @@
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 49.8,
+    "value": 71.475,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 65.05,
+    "value": 68.75,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 23.4,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "conflict": {
-    "id": "conflict",
-    "value": 58.1,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "competition": {
-    "id": "competition",
-    "value": 50.1,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "precision": {
-    "id": "precision",
-    "value": 30.5,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "variety": {
-    "id": "variety",
-    "value": 57.5,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "challenge": {
-    "id": "challenge",
-    "value": 33.75,
-    "coverage": 1,
-    "provenance": "onet"
-   }
-  },
-  "outdoor_guiding": {
-   "influence": {
-    "id": "influence",
-    "value": 66.9,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "analyse": {
-    "id": "analyse",
-    "value": 37.2,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "build": {
-    "id": "build",
-    "value": 41.025,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "organise": {
-    "id": "organise",
-    "value": 49.25,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "care": {
-    "id": "care",
-    "value": 66.9,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "teach": {
-    "id": "teach",
-    "value": 72,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "create": {
-    "id": "create",
-    "value": 77.4,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "lead": {
-    "id": "lead",
-    "value": 50.725,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "protect": {
-    "id": "protect",
-    "value": 44.666666666666664,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "autonomy": {
-    "id": "autonomy",
-    "value": 69.95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "social": {
-    "id": "social",
-    "value": 66.2,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "pace": {
-    "id": "pace",
-    "value": 22.3,
+    "value": 17.7,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -18598,25 +18598,25 @@
    },
    "competition": {
     "id": "competition",
-    "value": 16.3,
+    "value": 12.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 25.799999999999997,
+    "value": 22.9,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 67.55000000000001,
+    "value": 71.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 37.7,
+    "value": 40.00000000000001,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -18624,103 +18624,103 @@
   "sports_business": {
    "influence": {
     "id": "influence",
-    "value": 65.56666666666666,
+    "value": 79.16666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 32.724999999999994,
+    "value": 32.400000000000006,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 37.85,
+    "value": 42.95,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 56.525000000000006,
+    "value": 57.925,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 61.8,
+    "value": 66.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 62.86666666666667,
+    "value": 70.56666666666666,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 62.4,
+    "value": 65.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 65.775,
+    "value": 73.15,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 32.199999999999996,
+    "value": 38.43333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 53.525000000000006,
+    "value": 55.724999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 73.525,
+    "value": 78.025,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 22.9,
+    "value": 21.4,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 76.1,
+    "value": 63.95,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 66.2,
+    "value": 46.8,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 34.65,
+    "value": 34,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 59.45,
+    "value": 56.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 50.54999999999999,
+    "value": 48.86666666666667,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -19872,103 +19872,103 @@
   "tourism": {
    "influence": {
     "id": "influence",
-    "value": 70.16666666666667,
+    "value": 69.53333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 33.2,
+    "value": 32.775,
     "coverage": 1,
     "provenance": "onet"
    },
    "build": {
     "id": "build",
-    "value": 33.275,
+    "value": 33.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "organise": {
     "id": "organise",
-    "value": 33.175,
+    "value": 34.425,
     "coverage": 1,
     "provenance": "onet"
    },
    "care": {
     "id": "care",
-    "value": 60.6,
+    "value": 61.3,
     "coverage": 1,
     "provenance": "onet"
    },
    "teach": {
     "id": "teach",
-    "value": 43.73333333333333,
+    "value": 45.23333333333333,
     "coverage": 1,
     "provenance": "onet"
    },
    "create": {
     "id": "create",
-    "value": 47.5,
+    "value": 49.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "lead": {
     "id": "lead",
-    "value": 35.349999999999994,
+    "value": 36.675,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 33.699999999999996,
+    "value": 33.833333333333336,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 52.75,
+    "value": 53.425000000000004,
     "coverage": 1,
     "provenance": "onet"
    },
    "social": {
     "id": "social",
-    "value": 73.425,
+    "value": 73.25,
     "coverage": 1,
     "provenance": "onet"
    },
    "pace": {
     "id": "pace",
-    "value": 45.9,
+    "value": 44.7,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 58.099999999999994,
+    "value": 58.45,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 31.8,
+    "value": 31.2,
     "coverage": 1,
     "provenance": "onet"
    },
    "precision": {
     "id": "precision",
-    "value": 40.3,
+    "value": 39.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "variety": {
     "id": "variety",
-    "value": 53.95,
+    "value": 55,
     "coverage": 1,
     "provenance": "onet"
    },
    "challenge": {
     "id": "challenge",
-    "value": 33.13333333333333,
+    "value": 33.56666666666667,
     "coverage": 1,
     "provenance": "onet"
    }
@@ -19976,13 +19976,13 @@
   "store_retail": {
    "influence": {
     "id": "influence",
-    "value": 76.36666666666666,
+    "value": 76.36666666666667,
     "coverage": 1,
     "provenance": "onet"
    },
    "analyse": {
     "id": "analyse",
-    "value": 29.075,
+    "value": 29,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -19994,7 +19994,7 @@
    },
    "organise": {
     "id": "organise",
-    "value": 30.425,
+    "value": 30.275000000000002,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -20006,7 +20006,7 @@
    },
    "teach": {
     "id": "teach",
-    "value": 52.73333333333333,
+    "value": 52.4,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -20018,19 +20018,19 @@
    },
    "lead": {
     "id": "lead",
-    "value": 51.65,
+    "value": 51.375,
     "coverage": 1,
     "provenance": "onet"
    },
    "protect": {
     "id": "protect",
-    "value": 27.46666666666667,
+    "value": 27.400000000000002,
     "coverage": 1,
     "provenance": "onet"
    },
    "autonomy": {
     "id": "autonomy",
-    "value": 42.925000000000004,
+    "value": 42.724999999999994,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -20042,19 +20042,19 @@
    },
    "pace": {
     "id": "pace",
-    "value": 48.7,
+    "value": 48.5,
     "coverage": 1,
     "provenance": "onet"
    },
    "conflict": {
     "id": "conflict",
-    "value": 79.55000000000001,
+    "value": 79.55,
     "coverage": 1,
     "provenance": "onet"
    },
    "competition": {
     "id": "competition",
-    "value": 54.4,
+    "value": 54.7,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -20072,7 +20072,7 @@
    },
    "challenge": {
     "id": "challenge",
-    "value": 34.28333333333334,
+    "value": 34.25,
     "coverage": 1,
     "provenance": "onet"
    }
