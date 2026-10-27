@@ -9,6 +9,10 @@ import { FAMILIES, LANES, LEVELS, getFamily, getLane, ladderOf, laneModes, taxon
 import type { Lane, LaneId, LevelId, Role } from "../taxonomy/generated";
 import { constructTable, matchLanes, rankRoles, type Experience, type LaneMatch } from "../matching";
 import type { ProfileScores } from "../scoring/profile";
+import { matchingVersion } from "../matching/version";
+import { matchV2 } from "../matching/v2";
+import { toV1Matches } from "../matching/v2/adapter";
+import { personInputs } from "../workdesign/person";
 import { TAG_NOUN } from "../matching/roles";
 import type { CareerCategory, CareerPick, CareerPicks, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, MatchOverlay, RoleRef } from "../lanes/types";
 import type { ExperienceAnswers } from ".";
@@ -16,8 +20,11 @@ import type { ReportLane } from "../report/facts";
 
 const roleRef = (r: Role): RoleRef => ({ id: r.id, title: r.title, level: r.level, mode: r.mode, aka: r.aka });
 
-/** Matching is pure and costs ~205×205 pair checks, so compute it once per request. */
-const matchesFor = cache((profile: ProfileScores) => new Map(matchLanes(profile, taxonomy).map((m) => [m.laneId, m])));
+/** Matching is pure and costs ~205×205 pair checks (v1) or 500 draws × 205 fits (v2), so compute it once per request. */
+const matchesFor = cache((profile: ProfileScores) => {
+  const ms = matchingVersion() === "v2" ? toV1Matches(matchV2({ inputs: personInputs(profile) })) : matchLanes(profile, taxonomy);
+  return new Map(ms.map((m) => [m.laneId, m]));
+});
 
 function toRow(lane: Lane, m: LaneMatch, exp: ExperienceAnswers): LaneRowData {
   return {
