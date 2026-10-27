@@ -19,6 +19,9 @@ if (process.env.DATABASE_URL && !process.argv.includes("--force")) {
   process.exit(1);
 }
 const db = await getDb();
+// Which database this is, without credentials: a missing DATABASE_URL means the local dev database.
+const target = process.env.DATABASE_URL ? `hosted database at ${new URL(process.env.DATABASE_URL).host}` : "LOCAL dev database (.data/pglite), not production: DATABASE_URL is not set";
+console.log(`Database: ${target}`);
 const iso = (d: Date) => new Intl.DateTimeFormat("en-CA", { timeZone: process.env.APP_TIMEZONE ?? "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
 const users = await db.select().from(schema.users);
 const idOf = (u: (typeof users)[number]) => {
