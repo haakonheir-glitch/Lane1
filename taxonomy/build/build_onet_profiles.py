@@ -118,6 +118,7 @@ class Onet:
         self.raw: dict[str, dict[tuple[str, str, str], float]] = {name: load_long(paths[key], scales) for name, (key, scales) in DESCRIPTORS.items()}
         self.raw["Job Zones"] = load_job_zones(paths["job_zones"])
         self.pct: dict[tuple[str, str, str], dict[str, float]] = {}
+        self._rated: dict[str, set[str]] = {}
         for file, data in self.raw.items():
             by: dict[tuple[str, str], dict[str, float]] = defaultdict(dict)
             for (soc, el, sc), v in data.items():
@@ -127,6 +128,12 @@ class Onet:
 
     def elements(self, file: str) -> set[str]:
         return {el for (_, el, _) in self.raw[file]}
+
+    def rated(self, file: str) -> set[str]:
+        """Occupations with any rating in this file."""
+        if file not in self._rated:
+            self._rated[file] = {soc for (soc, _, _) in self.raw[file]}
+        return self._rated[file]
 
     def scales(self, file: str) -> set[str]:
         return {sc for (_, _, sc) in self.raw[file]}
@@ -219,13 +226,30 @@ def parse_estimated(path: Path) -> dict[str, dict]:
     return out
 
 
-def use_estimate(est: dict | None, lane_links: dict) -> bool:
-    """An estimate replaces a career path's linked profile only when it is forced, or when the career path has
-    nothing better than its own ISCO groups (the weakest route): documented analogs beat a whole ISCO unit group."""
+def use_estimate(est: dict | None, lane_links: dict, data_share: float = 1.0) -> bool:
+    """An estimate replaces a career path's linked profile only when it is forced; when the career path has
+    nothing better than its own ISCO groups (the weakest route), since documented analogs beat a whole ISCO
+    unit group; or when less than half its link weight rests on occupations O*NET has rated."""
     if not est:
         return False
     lane_isco_only = all(e["routes"] == {"fallback_lane_isco"} for e in lane_links.values())
-    return est["force"] or not lane_links or lane_isco_only
+    return est["force"] or not lane_links or lane_isco_only or data_share < MIN_DATA_SHARE
+
+
+# Many O*NET-SOC codes carry no ratings ("All Other" codes, Legislators, some 2019 codes). A career path whose
+# links rest mostly on those has no real profile and must have a documented estimate instead.
+MIN_DATA_SHARE = 0.5
+CORE_FILE = "Work Activities"
+
+
+def data_shares(onet: "Onet", weights: dict[str, float]) -> dict[str, float]:
+    """Per descriptor file: the share of link weight on occupations that have that file's ratings."""
+    total = sum(weights.values())
+    out = {}
+    for file in onet.raw:
+        rated = onet.rated(file)
+        out[file] = round(sum(w for c, w in weights.items() if c in rated) / total, 3) if total else 0.0
+    return out
 
 
 def build(args) -> dict:
@@ -303,10 +327,14 @@ def build(args) -> dict:
                 raise SystemExit(f"{lane_id}: adjustment element not in this release: {a['file']}: {a['element']}")
 
     profiles = {}
+    needs_estimate: list[str] = []
     for lane_id, lane in lanes.items():
         est = estimated.get(lane_id)
         ls = links.get(lane_id, {})
-        if use_estimate(est, ls):
+        shares = data_shares(onet, {c: e["weight"] for c, e in ls.items()})
+        if ls and shares[CORE_FILE] < MIN_DATA_SHARE and not est:
+            needs_estimate.append(f"{lane_id} ({shares[CORE_FILE]:.0%} of link weight rated)")
+        if use_estimate(est, ls, shares.get(CORE_FILE, 0.0) if ls else 1.0):
             desc = weighted(onet, est["analogs"])
             for a in est["adjustments"]:
                 cell = desc.get(a["file"], {}).get(a["element"], {}).get(a["scale"])
@@ -321,6 +349,7 @@ def build(args) -> dict:
                 "coverage_confidence": None,
                 "rationale": est["rationale"],
                 "linked_but_replaced": sorted(ls) if ls else [],
+                "linked_data_share": shares[CORE_FILE] if ls else None,
                 "descriptors": desc,
             }
             continue
@@ -330,7 +359,7 @@ def build(args) -> dict:
         total = sum(e["weight"] for e in ls.values())
         via_xw = sum(e["weight"] for e in ls.values() if "crosswalk" in e["routes"])
         n_esco_xw = sum(1 for r in esco_rows if r["lane_id"] == lane_id and esco_route.get(r["esco_uri"]) == "crosswalk")
-        conf = min(1.0, n_esco_xw / cfg["confidence"]["full_occupations"]) * (via_xw / total)
+        conf = min(1.0, n_esco_xw / cfg["confidence"]["full_occupations"]) * (via_xw / total) * shares[CORE_FILE]
         profiles[lane_id] = {
             "provenance": "onet",
             "n_occupations": len(ls),
@@ -339,9 +368,13 @@ def build(args) -> dict:
                 key=lambda x: (-x["weight"], x["soc"]),
             ),
             "esco_linked": n_esco_xw,
+            "data_share": shares,
             "coverage_confidence": round(conf, 3),
             "descriptors": weighted(onet, {c: e["weight"] for c, e in ls.items()}),
         }
+
+    if needs_estimate:
+        raise SystemExit("These career paths rest mostly on O*NET occupations without ratings; add an estimated profile:\n  " + "\n  ".join(needs_estimate))
 
     payoff = wd["payoffVariance"]
     for lane_id, p in profiles.items():

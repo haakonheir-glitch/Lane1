@@ -121,6 +121,19 @@ class UseEstimate(unittest.TestCase):
         self.assertTrue(b.use_estimate(est, lane))
         self.assertFalse(b.use_estimate(est, direct))
         self.assertTrue(b.use_estimate({"force": True}, direct))
+        self.assertTrue(b.use_estimate(est, direct, data_share=0.4))
+        self.assertFalse(b.use_estimate(est, direct, data_share=0.5))
+        self.assertFalse(b.use_estimate(None, direct, data_share=0.0))
+
+    def test_data_shares(self):
+        class FakeOnet:
+            raw = {"Work Activities": {("a", "x", "IM"): 1.0}, "Work Values": {}}
+
+            def rated(self, file):
+                return {s for (s, _, _) in self.raw[file]}
+
+        self.assertEqual(b.data_shares(FakeOnet(), {"a": 3.0, "b": 1.0}), {"Work Activities": 0.75, "Work Values": 0.0})
+        self.assertEqual(b.data_shares(FakeOnet(), {}), {"Work Activities": 0.0, "Work Values": 0.0})
 
 if __name__ == "__main__":
     unittest.main()
