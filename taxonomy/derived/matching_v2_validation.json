@@ -1,0 +1,900 @@
+{
+ "generated": "2026-10-27",
+ "version": "v2-0.3",
+ "draws": 500,
+ "config": {
+  "version": "v2-0.3",
+  "weights": {
+   "interests": 0.35,
+   "values": 0.15,
+   "valueModes": 0.2,
+   "environment": 0.2,
+   "challenge": 0.1
+  },
+  "environmentWeightFloor": 0.05,
+  "draws": 500,
+  "bands": {
+   "topShare": 0.1,
+   "bottomShare": 0.4,
+   "strong": 0.5,
+   "unlikely": 0.7
+  },
+  "facetCap": 0.15,
+  "archetypeTemperature": 8,
+  "archetypeConfidence": 0.9,
+  "flat": {
+   "minStrong": 8,
+   "interestsSd": 10,
+   "modesSd": 6
+  },
+  "minPairs": 5,
+  "correlationFloor": 10,
+  "componentRefSd": {
+   "interests": 0.195,
+   "values": 0.19,
+   "valueModes": 0.14,
+   "environment": 0.065,
+   "challenge": 0.095
+  },
+  "guardMinTotal": 10
+ },
+ "tests": [
+  {
+   "id": "analyst",
+   "label": "Investigative / conventional analyst",
+   "bandCounts": {
+    "strong": 21,
+    "possible": 114,
+    "unlikely": 70,
+    "insufficient": 0
+   },
+   "archetype": {
+    "top2": [
+     {
+      "id": "analyse",
+      "archetype": "Scout",
+      "share": 65.7
+     },
+     {
+      "id": "organise",
+      "archetype": "Gatherer",
+      "share": 19.2
+     }
+    ],
+    "tentative": true,
+    "reason": "Scout leads Gatherer in 89% of draws once measurement error is allowed for, so the order of the two isn't certain."
+   },
+   "notes": [],
+   "expectFamilies": [
+    "data_ai",
+    "finance",
+    "science",
+    "software"
+   ],
+   "top10": [
+    {
+     "id": "data_science",
+     "name": "Data science & statistics",
+     "family": "data_ai",
+     "band": "strong",
+     "fulfilment": 66.1,
+     "ability": 98.5
+    },
+    {
+     "id": "gis_geodata",
+     "name": "GIS & geospatial analysis",
+     "family": "data_ai",
+     "band": "strong",
+     "fulfilment": 65.9,
+     "ability": 99.7
+    },
+    {
+     "id": "data_analysis",
+     "name": "Data analysis & business intelligence",
+     "family": "data_ai",
+     "band": "strong",
+     "fulfilment": 65.8,
+     "ability": 98.9
+    },
+    {
+     "id": "physical_sciences",
+     "name": "Physics, chemistry & mathematics",
+     "family": "science",
+     "band": "strong",
+     "fulfilment": 65.8,
+     "ability": 99
+    },
+    {
+     "id": "data_engineering",
+     "name": "Data engineering & databases",
+     "family": "data_ai",
+     "band": "strong",
+     "fulfilment": 65.3,
+     "ability": 99.8
+    },
+    {
+     "id": "earth_sciences",
+     "name": "Earth, ocean & climate sciences",
+     "family": "science",
+     "band": "strong",
+     "fulfilment": 64.7,
+     "ability": 98.9
+    },
+    {
+     "id": "embedded_systems",
+     "name": "Embedded & hardware-near software",
+     "family": "software",
+     "band": "strong",
+     "fulfilment": 64.4,
+     "ability": 99
+    },
+    {
+     "id": "software_engineering",
+     "name": "Software engineering",
+     "family": "software",
+     "band": "strong",
+     "fulfilment": 64.4,
+     "ability": 99.9
+    },
+    {
+     "id": "quant_finance",
+     "name": "Quantitative finance",
+     "family": "finance",
+     "band": "strong",
+     "fulfilment": 64.2,
+     "ability": 96.4
+    },
+    {
+     "id": "devops_cloud",
+     "name": "DevOps, cloud & site reliability",
+     "family": "software",
+     "band": "strong",
+     "fulfilment": 64.1,
+     "ability": 99.9
+    }
+   ],
+   "expectedFamilyHits": 10
+  },
+  {
+   "id": "carer",
+   "label": "Social / artistic carer",
+   "bandCounts": {
+    "strong": 21,
+    "possible": 118,
+    "unlikely": 66,
+    "insufficient": 0
+   },
+   "archetype": {
+    "top2": [
+     {
+      "id": "care",
+      "archetype": "Healer",
+      "share": 73.4
+     },
+     {
+      "id": "teach",
+      "archetype": "Teacher",
+      "share": 17.4
+     }
+    ],
+    "tentative": false,
+    "reason": null
+   },
+   "notes": [],
+   "expectFamilies": [
+    "healthcare",
+    "care_social",
+    "education"
+   ],
+   "top10": [
+    {
+     "id": "early_childhood",
+     "name": "Early childhood education",
+     "family": "education",
+     "band": "strong",
+     "fulfilment": 70.8,
+     "ability": 88.6
+    },
+    {
+     "id": "social_work",
+     "name": "Social work & welfare",
+     "family": "care_social",
+     "band": "strong",
+     "fulfilment": 68.8,
+     "ability": 92.3
+    },
+    {
+     "id": "outdoor_guiding",
+     "name": "Outdoor guiding & instruction",
+     "family": "sport",
+     "band": "strong",
+     "fulfilment": 68.5,
+     "ability": 99.8
+    },
+    {
+     "id": "childcare",
+     "name": "Childcare",
+     "family": "care_social",
+     "band": "strong",
+     "fulfilment": 67.2,
+     "ability": 97
+    },
+    {
+     "id": "care_work",
+     "name": "Elder & disability care",
+     "family": "care_social",
+     "band": "strong",
+     "fulfilment": 66.5,
+     "ability": 99.5
+    },
+    {
+     "id": "coaching",
+     "name": "Coaching",
+     "family": "education",
+     "band": "strong",
+     "fulfilment": 66.3,
+     "ability": 93.2
+    },
+    {
+     "id": "mental_health",
+     "name": "Mental health & psychology",
+     "family": "healthcare",
+     "band": "strong",
+     "fulfilment": 65.8,
+     "ability": 87.3
+    },
+    {
+     "id": "nursing",
+     "name": "Nursing & midwifery",
+     "family": "healthcare",
+     "band": "strong",
+     "fulfilment": 65.5,
+     "ability": 79.6
+    },
+    {
+     "id": "school_teaching",
+     "name": "School teaching",
+     "family": "education",
+     "band": "strong",
+     "fulfilment": 65.4,
+     "ability": 87
+    },
+    {
+     "id": "vocational_instruction",
+     "name": "Vocational & specialist instruction",
+     "family": "education",
+     "band": "strong",
+     "fulfilment": 64.6,
+     "ability": 94.1
+    }
+   ],
+   "expectedFamilyHits": 9
+  },
+  {
+   "id": "maker",
+   "label": "Realistic maker",
+   "bandCounts": {
+    "strong": 18,
+    "possible": 117,
+    "unlikely": 70,
+    "insufficient": 0
+   },
+   "archetype": {
+    "top2": [
+     {
+      "id": "build",
+      "archetype": "Maker",
+      "share": 95.1
+     },
+     {
+      "id": "analyse",
+      "archetype": "Scout",
+      "share": 1.4
+     }
+    ],
+    "tentative": false,
+    "reason": null
+   },
+   "notes": [],
+   "expectFamilies": [
+    "trades",
+    "engineering",
+    "manufacturing",
+    "craft",
+    "maritime_energy",
+    "primary",
+    "transport"
+   ],
+   "top10": [
+    {
+     "id": "ceramics_glass",
+     "name": "Ceramics, glass & instrument making",
+     "family": "craft",
+     "band": "strong",
+     "fulfilment": 65.7,
+     "ability": 99.7
+    },
+    {
+     "id": "electrical_engineering",
+     "name": "Electrical & electronics engineering",
+     "family": "engineering",
+     "band": "strong",
+     "fulfilment": 65.3,
+     "ability": 93.2
+    },
+    {
+     "id": "renewables",
+     "name": "Renewable energy",
+     "family": "maritime_energy",
+     "band": "strong",
+     "fulfilment": 64.3,
+     "ability": 91.5
+    },
+    {
+     "id": "restoration_signs",
+     "name": "Restoration & decorative crafts",
+     "family": "craft",
+     "band": "strong",
+     "fulfilment": 64.2,
+     "ability": 99.9
+    },
+    {
+     "id": "vehicle_mechanics",
+     "name": "Vehicle & machinery mechanics",
+     "family": "trades",
+     "band": "strong",
+     "fulfilment": 64.1,
+     "ability": 98.6
+    },
+    {
+     "id": "industrial_maintenance",
+     "name": "Industrial maintenance & technical service",
+     "family": "trades",
+     "band": "strong",
+     "fulfilment": 64,
+     "ability": 98.8
+    },
+    {
+     "id": "gis_geodata",
+     "name": "GIS & geospatial analysis",
+     "family": "data_ai",
+     "band": "strong",
+     "fulfilment": 63.7,
+     "ability": 91.4
+    },
+    {
+     "id": "mechanical_engineering",
+     "name": "Mechanical engineering",
+     "family": "engineering",
+     "band": "strong",
+     "fulfilment": 63.5,
+     "ability": 90.3
+    },
+    {
+     "id": "embedded_systems",
+     "name": "Embedded & hardware-near software",
+     "family": "software",
+     "band": "strong",
+     "fulfilment": 63.3,
+     "ability": 84.6
+    },
+    {
+     "id": "farming",
+     "name": "Farming & horticulture",
+     "family": "primary",
+     "band": "strong",
+     "fulfilment": 63.2,
+     "ability": 99.9
+    }
+   ],
+   "expectedFamilyHits": 8
+  },
+  {
+   "id": "hunter",
+   "label": "Enterprising hunter",
+   "bandCounts": {
+    "strong": 21,
+    "possible": 110,
+    "unlikely": 74,
+    "insufficient": 0
+   },
+   "archetype": {
+    "top2": [
+     {
+      "id": "influence",
+      "archetype": "Hunter",
+      "share": 52.4
+     },
+     {
+      "id": "lead",
+      "archetype": "Chief",
+      "share": 42.9
+     }
+    ],
+    "tentative": true,
+    "reason": "Hunter leads Chief in 63% of draws once measurement error is allowed for, so the order of the two isn't certain."
+   },
+   "notes": [],
+   "expectFamilies": [
+    "sales",
+    "marketing",
+    "real_estate",
+    "entrepreneurship",
+    "management"
+   ],
+   "top10": [
+    {
+     "id": "events",
+     "name": "Events & experiential",
+     "family": "marketing",
+     "band": "strong",
+     "fulfilment": 66.2,
+     "ability": 93.9
+    },
+    {
+     "id": "politics",
+     "name": "Politics & elected office",
+     "family": "public",
+     "band": "strong",
+     "fulfilment": 66.2,
+     "ability": 81.7
+    },
+    {
+     "id": "brand_marketing",
+     "name": "Brand marketing",
+     "family": "marketing",
+     "band": "strong",
+     "fulfilment": 66.1,
+     "ability": 83.4
+    },
+    {
+     "id": "agency_ownership",
+     "name": "Agency & studio ownership",
+     "family": "entrepreneurship",
+     "band": "strong",
+     "fulfilment": 65.9,
+     "ability": 88.3
+    },
+    {
+     "id": "intellectual_property",
+     "name": "Intellectual property",
+     "family": "legal",
+     "band": "strong",
+     "fulfilment": 65.9,
+     "ability": 78.4
+    },
+    {
+     "id": "pr_comms",
+     "name": "PR & communications",
+     "family": "marketing",
+     "band": "strong",
+     "fulfilment": 65.9,
+     "ability": 93.6
+    },
+    {
+     "id": "project_management",
+     "name": "Project & programme management",
+     "family": "management",
+     "band": "strong",
+     "fulfilment": 65.6,
+     "ability": 88.3
+    },
+    {
+     "id": "startup_founder",
+     "name": "Startup founding",
+     "family": "entrepreneurship",
+     "band": "strong",
+     "fulfilment": 65.6,
+     "ability": 80.3
+    },
+    {
+     "id": "b2b_sales",
+     "name": "B2B sales",
+     "family": "sales",
+     "band": "strong",
+     "fulfilment": 65.5,
+     "ability": 83
+    },
+    {
+     "id": "advertising_agency",
+     "name": "Advertising & creative agencies",
+     "family": "marketing",
+     "band": "strong",
+     "fulfilment": 65.4,
+     "ability": 91.6
+    }
+   ],
+   "expectedFamilyHits": 8
+  },
+  {
+   "id": "storyteller",
+   "label": "Artistic storyteller",
+   "bandCounts": {
+    "strong": 20,
+    "possible": 112,
+    "unlikely": 73,
+    "insufficient": 0
+   },
+   "archetype": {
+    "top2": [
+     {
+      "id": "create",
+      "archetype": "Storyteller",
+      "share": 94.4
+     },
+     {
+      "id": "teach",
+      "archetype": "Teacher",
+      "share": 2.4
+     }
+    ],
+    "tentative": false,
+    "reason": null
+   },
+   "notes": [],
+   "expectFamilies": [
+    "creative",
+    "media",
+    "performance",
+    "creator",
+    "marketing",
+    "product_design",
+    "craft"
+   ],
+   "top10": [
+    {
+     "id": "content_creation",
+     "name": "Content creation",
+     "family": "creator",
+     "band": "strong",
+     "fulfilment": 68.8,
+     "ability": 94.2
+    },
+    {
+     "id": "course_creation",
+     "name": "Courses, digital products & communities",
+     "family": "creator",
+     "band": "strong",
+     "fulfilment": 68.2,
+     "ability": 95.8
+    },
+    {
+     "id": "animation_vfx",
+     "name": "Animation, VFX & 3D",
+     "family": "creative",
+     "band": "strong",
+     "fulfilment": 68,
+     "ability": 91.8
+    },
+    {
+     "id": "music_performance",
+     "name": "Music performance",
+     "family": "performance",
+     "band": "strong",
+     "fulfilment": 67.3,
+     "ability": 86.9
+    },
+    {
+     "id": "journalism",
+     "name": "Journalism",
+     "family": "media",
+     "band": "strong",
+     "fulfilment": 67,
+     "ability": 94.6
+    },
+    {
+     "id": "authorship",
+     "name": "Writing & authorship",
+     "family": "media",
+     "band": "strong",
+     "fulfilment": 66.4,
+     "ability": 99.2
+    },
+    {
+     "id": "comedy",
+     "name": "Comedy",
+     "family": "performance",
+     "band": "strong",
+     "fulfilment": 66,
+     "ability": 82.9
+    },
+    {
+     "id": "broadcasting",
+     "name": "Hosting & broadcasting",
+     "family": "performance",
+     "band": "strong",
+     "fulfilment": 65.7,
+     "ability": 87.6
+    },
+    {
+     "id": "tattoo",
+     "name": "Tattoo & body art",
+     "family": "craft",
+     "band": "strong",
+     "fulfilment": 65.3,
+     "ability": 93.7
+    },
+    {
+     "id": "dance",
+     "name": "Dance",
+     "family": "performance",
+     "band": "strong",
+     "fulfilment": 65.1,
+     "ability": 85
+    }
+   ],
+   "expectedFamilyHits": 10
+  },
+  {
+   "id": "flat",
+   "label": "Flat profile",
+   "bandCounts": {
+    "strong": 0,
+    "possible": 205,
+    "unlikely": 0,
+    "insufficient": 0
+   },
+   "archetype": {
+    "top2": [
+     {
+      "id": "influence",
+      "archetype": "Hunter",
+      "share": 11.1
+     },
+     {
+      "id": "analyse",
+      "archetype": "Scout",
+      "share": 11.1
+     }
+    ],
+    "tentative": true,
+    "reason": "Hunter leads Scout in 49% of draws once measurement error is allowed for, so the order of the two isn't certain."
+   },
+   "notes": [
+    "Your interest and value-mode scores are close together, so few career paths stand out once measurement error is allowed for (0 strong fits). That is a result in itself: several directions suit you about equally well."
+   ],
+   "expectFamilies": [],
+   "top10": [
+    {
+     "id": "industrial_maintenance",
+     "name": "Industrial maintenance & technical service",
+     "family": "trades",
+     "band": "possible",
+     "fulfilment": 51.5,
+     "ability": 91.4
+    },
+    {
+     "id": "food_drink_craft",
+     "name": "Food & drink craft",
+     "family": "craft",
+     "band": "possible",
+     "fulfilment": 51.4,
+     "ability": 98.8
+    },
+    {
+     "id": "renewables",
+     "name": "Renewable energy",
+     "family": "maritime_energy",
+     "band": "possible",
+     "fulfilment": 51.4,
+     "ability": 80.4
+    },
+    {
+     "id": "seafaring",
+     "name": "Seafaring & ship operations",
+     "family": "maritime_energy",
+     "band": "possible",
+     "fulfilment": 51.4,
+     "ability": 85.4
+    },
+    {
+     "id": "vehicle_mechanics",
+     "name": "Vehicle & machinery mechanics",
+     "family": "trades",
+     "band": "possible",
+     "fulfilment": 51.4,
+     "ability": 90.8
+    },
+    {
+     "id": "woodcraft",
+     "name": "Furniture & woodcraft",
+     "family": "craft",
+     "band": "possible",
+     "fulfilment": 51.3,
+     "ability": 94.8
+    },
+    {
+     "id": "plumbing_hvac",
+     "name": "Plumbing, heating & refrigeration",
+     "family": "trades",
+     "band": "possible",
+     "fulfilment": 51.3,
+     "ability": 91.3
+    },
+    {
+     "id": "fashion",
+     "name": "Fashion & styling",
+     "family": "creative",
+     "band": "possible",
+     "fulfilment": 51.2,
+     "ability": 95
+    },
+    {
+     "id": "heavy_equipment",
+     "name": "Heavy equipment & civil works",
+     "family": "trades",
+     "band": "possible",
+     "fulfilment": 51.2,
+     "ability": 93.9
+    },
+    {
+     "id": "hse_quality",
+     "name": "HSE, quality & inspection",
+     "family": "operations",
+     "band": "possible",
+     "fulfilment": 51.2,
+     "ability": 87.5
+    }
+   ],
+   "expectedFamilyHits": 0
+  }
+ ],
+ "population": {
+  "n": 1000,
+  "seconds": 432,
+  "strongFits": {
+   "mean": 14.3,
+   "p10": 6,
+   "median": 15,
+   "p90": 20,
+   "min": 0,
+   "max": 23,
+   "shareIn8to20": 0.822
+  },
+  "bandDistribution": {
+   "strong": 14.3,
+   "possible": 133.5,
+   "unlikely": 57.2,
+   "insufficient": 0
+  },
+  "popularityBias": [],
+  "mostOftenStrong": [
+   {
+    "id": "early_childhood",
+    "name": "Early childhood education",
+    "share": 0.233
+   },
+   {
+    "id": "care_work",
+    "name": "Elder & disability care",
+    "share": 0.199
+   },
+   {
+    "id": "social_work",
+    "name": "Social work & welfare",
+    "share": 0.198
+   },
+   {
+    "id": "outdoor_guiding",
+    "name": "Outdoor guiding & instruction",
+    "share": 0.196
+   },
+   {
+    "id": "school_teaching",
+    "name": "School teaching",
+    "share": 0.188
+   },
+   {
+    "id": "coaching",
+    "name": "Coaching",
+    "share": 0.188
+   },
+   {
+    "id": "childcare",
+    "name": "Childcare",
+    "share": 0.186
+   },
+   {
+    "id": "vocational_instruction",
+    "name": "Vocational & specialist instruction",
+    "share": 0.182
+   },
+   {
+    "id": "learning_development",
+    "name": "Learning & development",
+    "share": 0.174
+   },
+   {
+    "id": "mental_health",
+    "name": "Mental health & psychology",
+    "share": 0.174
+   },
+   {
+    "id": "textile_print_production",
+    "name": "Textile, print & packaging production",
+    "share": 0.165
+   },
+   {
+    "id": "embedded_systems",
+    "name": "Embedded & hardware-near software",
+    "share": 0.157
+   },
+   {
+    "id": "mechanical_engineering",
+    "name": "Mechanical engineering",
+    "share": 0.156
+   },
+   {
+    "id": "restoration_signs",
+    "name": "Restoration & decorative crafts",
+    "share": 0.156
+   },
+   {
+    "id": "gis_geodata",
+    "name": "GIS & geospatial analysis",
+    "share": 0.154
+   }
+  ],
+  "neverStrong": [],
+  "flatNotes": 104,
+  "tentativeArchetypes": 828
+ },
+ "thresholdSweep": [
+  {
+   "threshold": 0.3,
+   "mean": 25.2,
+   "p10": 22,
+   "median": 25,
+   "p90": 29,
+   "shareIn8to20": 0.067
+  },
+  {
+   "threshold": 0.4,
+   "mean": 19,
+   "p10": 13,
+   "median": 20,
+   "p90": 23,
+   "shareIn8to20": 0.517
+  },
+  {
+   "threshold": 0.5,
+   "mean": 14.3,
+   "p10": 6,
+   "median": 15,
+   "p90": 20,
+   "shareIn8to20": 0.822
+  },
+  {
+   "threshold": 0.6,
+   "mean": 10.7,
+   "p10": 3,
+   "median": 11,
+   "p90": 17,
+   "shareIn8to20": 0.722
+  },
+  {
+   "threshold": 0.7,
+   "mean": 7.7,
+   "p10": 1,
+   "median": 8,
+   "p90": 14,
+   "shareIn8to20": 0.515
+  },
+  {
+   "threshold": 0.8,
+   "mean": 5.1,
+   "p10": 0,
+   "median": 4,
+   "p90": 12,
+   "shareIn8to20": 0.293
+  },
+  {
+   "threshold": 0.9,
+   "mean": 2.8,
+   "p10": 0,
+   "median": 1,
+   "p90": 8,
+   "shareIn8to20": 0.127
+  }
+ ]
+}

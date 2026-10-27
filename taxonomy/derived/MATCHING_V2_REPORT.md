@@ -1,0 +1,226 @@
+# Phase 2 report: matching v2
+
+Status, 2026-10-27: **Phase 2 is complete and waiting for your approval. Phase 3 has not been started.**
+
+- **v1 is unchanged and still the default.** v2 runs only with `MATCHING_VERSION=v2`. With the flag unset, v1's output is byte-identical to before Phase 2 (checked in review).
+- **Nothing was deleted.** v1 stays until you approve v2.
+- **No test items, item order, instruments, session structure or scoring changed** in Phase 2.
+- **Matching is deterministic code.** There are no LLM calls in it. The Monte Carlo seed comes from the profile, so the same profile always gets the same result.
+- **Method:** `docs/MATCHING_V2.md` describes it in full. Settings are in `src/lib/matching/v2/config.ts` (version `v2-0.3`). Every weight and threshold is provisional.
+- **Tests:** every new module has unit tests (`tests/matching-v2.test.ts`), and the full suite passes (174 tests), as do typecheck and lint.
+
+## 1. What was built (brief steps 1–8)
+
+| Step | Where | Notes |
+|---|---|---|
+| `computeFit(person, lane)` | `src/lib/matching/v2/index.ts`, `fit.ts` | Takes an id or a profile and scores it against the full field of 205 career paths, because fits are standardised across that field |
+| 1. Fulfilment fit | `fit.ts` | Interests .35, value modes .20, environment .20, work values .15, challenge .10, each on a fixed reference scale |
+| 2. Ability fit | `fit.ts` | 100 minus the importance-weighted shortfall against O\*NET ability levels; empty when less than half the demand is measured |
+| 3. Monte Carlo | `fit.ts` | 500 draws from each input's standard error |
+| 4. Bands | `config.ts` | Strong: P(top 10%) ≥ .5. Unlikely: P(bottom 40%) ≥ .7. Tuned with the sweep in §3 |
+| 5. Guards | `fit.ts` | No facet carries over 15% of any fit (measured and enforced per person). A note explains having fewer than 8 strong fits |
+| 6. Presentation | `present.ts` | Top five, best career path in each direction; "where you'd start" reuses v1 |
+| 7. Archetype blend | `fit.ts` | Softmax blend with the top two; marked tentative when unstable; caveat for overlapping pairs |
+| 8. Validation | `scripts/validate-matching-v2.mts`, `scripts/compare-matching.mts`, `synthetic.ts` | Results in §3 and §4 |
+
+**Data:**
+- `taxonomy/derived/lane_profiles_v2.json`, built by `taxonomy/build/build_v2_lane_profiles.mts`.
+- `taxonomy/derived/lane_offsets_v2.json`, built by `taxonomy/build/build_v2_offsets.mts`.
+
+Nothing in `taxonomy.json` was edited.
+
+**App wiring (until Phase 3):**
+- With the flag on, the current Career map reads v2 through an adapter (`adapter.ts`).
+- Cache keys include the matching version, so switching recomputes.
+
+## 2. Review history and what it changed
+
+v2 went through **two independent adversarial review rounds**. Each finding below was reproduced before it was fixed.
+
+**Round 1 (v2-0.1 → v2-0.2):**
+- The facet guard's analytic "bound" wasn't one: the correlation is non-linear, and a facet could swing a fit by 19 points. It is now measured per person.
+- Environment and challenge (30% nominal weight) barely moved rankings, because interests dominated on raw scales. Components are now standardised.
+- Archetypes were "tentative" for 91% of people, because the test double-counted shared inputs. Draws now redraw shared inputs together.
+- The flat-profile note triggered on the wrong condition.
+- Driver labels misstated direction.
+- Cache key, memo and adapter fixes.
+- `computeFit` didn't match `matchAllV2`.
+
+**Round 2 (v2-0.2 → v2-0.3):**
+- **The guard didn't converge.** One pass of shrinking left other facets over the cap (up to 82% on contrived profiles), and it reported stale shares.
+  - Now: repeated passes until every facet is ≤ 15%.
+  - Total effects are floored at 10 fit points, so a tiny effect can't count as "100% of the fit".
+  - On the same adversarial profiles, every facet ends at 15.0%.
+- **Standardising per person undid the regularisation on near-flat profiles:** a 1-point change in one interest moved fits by up to 4.3. Now each component is divided by a fixed reference spread, and a 1-point change moves no fit by more than 0.7.
+- **Labels overclaimed:**
+  - mixed parts were shown as strengths;
+  - "enough challenge" appeared where the career was under-challenging;
+  - "as much as you need" appeared when a gap remained.
+
+  The rules are now explicit (`docs/MATCHING_V2.md`, Drivers and frictions).
+- **Popularity bias:** environment and challenge only penalise one way, so demanding, autonomous careers suited nearly everyone. Electrical engineering was strong for 31% of people.
+  - Now each career's general advantage on those two components, from a separate reference population, is subtracted.
+  - The worst case is now about 22%.
+- **Smaller fixes:**
+  - Careers missing Work Values got a bonus. Missing now counts as neutral.
+  - Ability fit was "100" from two measured abilities. There is now a coverage rule.
+  - Driver ordering now puts strengths first.
+
+## 3. Validation
+
+The section below is generated by `npx tsx scripts/report-matching-v2.mts` from `taxonomy/derived/matching_v2_validation.json`. That JSON is written by `npx tsx --conditions=react-server scripts/validate-matching-v2.mts`.
+
+**How it was generated:**
+- The six profiles come from `src/lib/matching/v2/synthetic.ts`.
+- The population is 1,000 people from a three-factor latent model (seed 20261027). Its inputs are correlated the way the real constructs are, with realistic standard errors.
+- The population is **synthetic**. It checks that the machinery behaves as intended. It does not show that the matches are right.
+
+<!-- GENERATED:START -->
+Generated 2026-10-27 from `taxonomy/derived/matching_v2_validation.json` (matching v2-0.3, 500 draws per person).
+
+### The six test profiles
+
+| Profile | Strong / possible / unlikely | Top 10 in expected families | Archetype blend (top two) | Note |
+|---|---|---|---|---|
+| Investigative / conventional analyst | 21 / 114 / 70 | 10 of 10 | Scout 65.7%, Gatherer 19.2% (tentative) |  |
+| Social / artistic carer | 21 / 118 / 66 | 9 of 10 | Healer 73.4%, Teacher 17.4% |  |
+| Realistic maker | 18 / 117 / 70 | 8 of 10 | Maker 95.1%, Scout 1.4% |  |
+| Enterprising hunter | 21 / 110 / 74 | 8 of 10 | Hunter 52.4%, Chief 42.9% (tentative) |  |
+| Artistic storyteller | 20 / 112 / 73 | 10 of 10 | Storyteller 94.4%, Teacher 2.4% |  |
+| Flat profile | 0 / 205 / 0 | n/a | Hunter 11.1%, Scout 11.1% (tentative) | flat-profile note shown |
+
+**Investigative / conventional analyst**: 1. Data science & statistics (S, fulfilment 66.1, ability 98.5) · 2. GIS & geospatial analysis (S, fulfilment 65.9, ability 99.7) · 3. Data analysis & business intelligence (S, fulfilment 65.8, ability 98.9) · 4. Physics, chemistry & mathematics (S, fulfilment 65.8, ability 99) · 5. Data engineering & databases (S, fulfilment 65.3, ability 99.8) · 6. Earth, ocean & climate sciences (S, fulfilment 64.7, ability 98.9) · 7. Embedded & hardware-near software (S, fulfilment 64.4, ability 99) · 8. Software engineering (S, fulfilment 64.4, ability 99.9) · 9. Quantitative finance (S, fulfilment 64.2, ability 96.4) · 10. DevOps, cloud & site reliability (S, fulfilment 64.1, ability 99.9)
+
+**Social / artistic carer**: 1. Early childhood education (S, fulfilment 70.8, ability 88.6) · 2. Social work & welfare (S, fulfilment 68.8, ability 92.3) · 3. Outdoor guiding & instruction (S, fulfilment 68.5, ability 99.8) · 4. Childcare (S, fulfilment 67.2, ability 97) · 5. Elder & disability care (S, fulfilment 66.5, ability 99.5) · 6. Coaching (S, fulfilment 66.3, ability 93.2) · 7. Mental health & psychology (S, fulfilment 65.8, ability 87.3) · 8. Nursing & midwifery (S, fulfilment 65.5, ability 79.6) · 9. School teaching (S, fulfilment 65.4, ability 87) · 10. Vocational & specialist instruction (S, fulfilment 64.6, ability 94.1)
+
+**Realistic maker**: 1. Ceramics, glass & instrument making (S, fulfilment 65.7, ability 99.7) · 2. Electrical & electronics engineering (S, fulfilment 65.3, ability 93.2) · 3. Renewable energy (S, fulfilment 64.3, ability 91.5) · 4. Restoration & decorative crafts (S, fulfilment 64.2, ability 99.9) · 5. Vehicle & machinery mechanics (S, fulfilment 64.1, ability 98.6) · 6. Industrial maintenance & technical service (S, fulfilment 64, ability 98.8) · 7. GIS & geospatial analysis (S, fulfilment 63.7, ability 91.4) · 8. Mechanical engineering (S, fulfilment 63.5, ability 90.3) · 9. Embedded & hardware-near software (S, fulfilment 63.3, ability 84.6) · 10. Farming & horticulture (S, fulfilment 63.2, ability 99.9)
+
+**Enterprising hunter**: 1. Events & experiential (S, fulfilment 66.2, ability 93.9) · 2. Politics & elected office (S, fulfilment 66.2, ability 81.7) · 3. Brand marketing (S, fulfilment 66.1, ability 83.4) · 4. Agency & studio ownership (S, fulfilment 65.9, ability 88.3) · 5. Intellectual property (S, fulfilment 65.9, ability 78.4) · 6. PR & communications (S, fulfilment 65.9, ability 93.6) · 7. Project & programme management (S, fulfilment 65.6, ability 88.3) · 8. Startup founding (S, fulfilment 65.6, ability 80.3) · 9. B2B sales (S, fulfilment 65.5, ability 83) · 10. Advertising & creative agencies (S, fulfilment 65.4, ability 91.6)
+
+**Artistic storyteller**: 1. Content creation (S, fulfilment 68.8, ability 94.2) · 2. Courses, digital products & communities (S, fulfilment 68.2, ability 95.8) · 3. Animation, VFX & 3D (S, fulfilment 68, ability 91.8) · 4. Music performance (S, fulfilment 67.3, ability 86.9) · 5. Journalism (S, fulfilment 67, ability 94.6) · 6. Writing & authorship (S, fulfilment 66.4, ability 99.2) · 7. Comedy (S, fulfilment 66, ability 82.9) · 8. Hosting & broadcasting (S, fulfilment 65.7, ability 87.6) · 9. Tattoo & body art (S, fulfilment 65.3, ability 93.7) · 10. Dance (S, fulfilment 65.1, ability 85)
+
+**Flat profile**: 1. Industrial maintenance & technical service (P, fulfilment 51.5, ability 91.4) · 2. Food & drink craft (P, fulfilment 51.4, ability 98.8) · 3. Renewable energy (P, fulfilment 51.4, ability 80.4) · 4. Seafaring & ship operations (P, fulfilment 51.4, ability 85.4) · 5. Vehicle & machinery mechanics (P, fulfilment 51.4, ability 90.8) · 6. Furniture & woodcraft (P, fulfilment 51.3, ability 94.8) · 7. Plumbing, heating & refrigeration (P, fulfilment 51.3, ability 91.3) · 8. Fashion & styling (P, fulfilment 51.2, ability 95) · 9. Heavy equipment & civil works (P, fulfilment 51.2, ability 93.9) · 10. HSE, quality & inspection (P, fulfilment 51.2, ability 87.5)
+
+### Simulated population (1000 people)
+
+- **Strong fits per person:** mean **14.3**, median 15, 10th–90th percentile 6–20, range 0–23. **82.2%** of people get 8–20.
+- **Band distribution (average per person):** strong 14.3, possible 133.5, unlikely 57.2, not enough data 0.
+- **Popularity bias (strong for more than 30% of people):** **none**.
+- **Strong most often:** Early childhood education 23.3%, Elder & disability care 19.9%, Social work & welfare 19.8%, Outdoor guiding & instruction 19.6%, School teaching 18.8%, Coaching 18.8%, Childcare 18.6%, Vocational & specialist instruction 18.2%, Learning & development 17.4%, Mental health & psychology 17.4%.
+- **Never strong for anyone:** none.
+- **Few-strong-fit notes:** 104 of 1000 people got a flat-profile note.
+- **Tentative archetype blends:** 828 of 1000 (82.8%).
+- **Runtime:** 432 s for 1000 people (about 432 ms each).
+
+### Strong-fit threshold sweep (P(top 10%) ≥ threshold)
+
+| Threshold | Mean strong fits | 10th pct | Median | 90th pct | Share with 8–20 |
+|---|---|---|---|---|---|
+| 0.3 | 25.2 | 22 | 25 | 29 | 6.7% |
+| 0.4 | 19 | 13 | 20 | 23 | 51.7% |
+| 0.5 (chosen) | 14.3 | 6 | 15 | 20 | 82.2% |
+| 0.6 | 10.7 | 3 | 11 | 17 | 72.2% |
+| 0.7 | 7.7 | 1 | 8 | 14 | 51.5% |
+| 0.8 | 5.1 | 0 | 4 | 12 | 29.3% |
+| 0.9 | 2.8 | 0 | 1 | 8 | 12.7% |
+<!-- GENERATED:END -->
+
+**Reading it:**
+- **Strong-fit count.** The brief asks for 8–20 strong fits for a typical profile. At the chosen threshold, the mean and median sit inside that range for most people.
+  - Profiles with sharper interests get more, near 20.
+  - Flatter ones get fewer, and are told why.
+- **Expected families.** "Top 10 in expected families" counts how many of a test profile's top 10 fall in the career families that profile was written to point at. It is a sanity check, not a target: neighbouring families are often reasonable.
+- **The flat profile** gets no strong fits and the flat-profile note. That is the brief's requirement.
+
+## 4. v1 against v2 for a real account
+
+`scripts/compare-matching.mts` prints both rankings side by side. It reads only.
+
+### Local dev database (demo account, sessions S1 and S2 only, no reasoning tasks)
+
+```
+Band counts   v1: strong 45 · possible 116 · unlikely 44 · not enough data 0
+              v2: strong 19 · possible 111 · unlikely 75 · not enough data 0
+
+ #  v1 (relative fit)                            v2 (fulfilment fit, 90% range · ability fit · P(top 10%))
+ 1  S B2B sales                                  S Politics & elected office (est.) · 70.6 (66–75.4) · — · 1
+ 2  S Consumer & direct sales                    S PR & communications · 70.3 (66.1–73.4) · — · 0.998
+ 3  S Media, advertising & sponsorship sales     S Intellectual property · 69.7 (66.9–72) · — · 1
+ 4  S Real estate brokerage                      S Brand marketing · 67.8 (63.6–70.9) · — · 0.954
+ 5  S Sports business                            S Startup founding (est.) · 67.1 (64.2–69.2) · — · 0.974
+ 6  S Politics & elected office                  S Private equity, venture & principal investing · 67 (62–72.1) · — · 0.82
+ 7  S Recruiting & talent acquisition            S Advertising & creative agencies · 66.9 (62.7–70.1) · — · 0.898
+ 8  S General management & executive leadership  S B2B sales · 66.6 (62–70.3) · — · 0.794
+ 9  S Partnerships, channel & business developm… S Project & programme management · 66.6 (64.3–68.5) · — · 0.964
+10  S Account management & customer success      S Agency & studio ownership (est.) · 66.5 (61.9–70) · — · 0.83
+11  S Agency & studio ownership                  S Creator services · 65.8 (62.8–68.4) · — · 0.784
+12  S Wealth management & financial advice       S Partnerships, channel & business development (est.) · 65.7 (62–68.3) · — · 0.772
+13  S Startup founding                           S Diplomacy & international organisations · 65.6 (64.1–67.1) · — · 0.758
+14  S Product management                         S Independent consulting & interim leadership (est.) · 64.9 (63.3–66.4) · — · 0.628
+15  S Courses, digital products & communities    S Events & experiential · 64.7 (61.9–67.2) · — · 0.546
+
+Overlap of the two top 15s: 5 career paths.
+Archetype blend (v2): Hunter 73.5% · Chief 14.2%
+Why Politics & elected office fits: Enterprising interests (+3.6); Competition: a smaller gap than most of your options (+3.4);
+  Work value: Recognition (+1); Social contact: as much as you need (+0.9)
+```
+
+**What changed for this persona:**
+- **Fewer strong fits.** v1 gave 45 strong fits, which is a quarter of all career paths. v2 gives 19.
+- **Fewer sales roles at the top.** v1's top 15 is almost all sales and commercial roles. v2 keeps the Enterprising core but adds communication, brand, IP, policy and investing. The value modes and environment now carry real weight, not just interests.
+- **"(est.)"** marks career paths whose O\*NET profile is estimated from documented analogs (Phase 1). Provenance is visible.
+
+### Your account (production)
+
+The production database can't be reached from here, so this needs one command from you. In the terminal, in the project folder:
+
+1. Run `git pull`.
+2. Export the **new** `DATABASE_URL`, the one after your password reset, from Neon.
+3. Run `npx tsx --conditions=react-server scripts/compare-matching.mts LN-20261023-H2C --force`.
+
+It reads only, and it prints the database host (never the password) before anything else. Paste the output back and I'll add it here.
+
+## 5. Judgment calls I made
+
+- **Weights are SD shares.** Each component is centred on your average career path and divided by a fixed reference spread. The brief's weights then mean what they say.
+  - Without this, interests (35% nominal) decided almost everything.
+  - In variance terms, environment now carries about its nominal share. Challenge and values carry less, because they correlate with interests and modes.
+- **Career offsets for environment and challenge.** These are one-sided penalties, so without a correction the most demanding, autonomous careers would be strong fits for a large share of everyone. A career is now credited only for fitting you *better than it fits people in general*. Interests, values and modes are symmetric, so they are not offset.
+- **Missing career data is neutral, not dropped.** Dropping a missing component made missing data a bonus.
+- **Ability fit needs coverage.** It is shown only when at least half of the career's ability demand is measured. Otherwise it is empty and the note says why.
+- **"Fit" is relative to you.** 50 is your average career path. That keeps everyone's top list meaningful, but fits can't be compared between people. The bands are rank-based for the same reason.
+- **Possible is the adapter's "testing".** In the v1-shaped data the Career map reads today, v2's "possible" maps to v1's "testing" band. Phase 3 replaces this with native v2 views.
+
+## 6. Open questions for you
+
+1. **Approve v2?** If yes, Phase 3 builds the native views. v1 stays in the code until you also approve deleting it.
+2. **Archetype "tentative" rate.** The leader must beat the second in 90% of draws. In the population most blends are still tentative (see §3), because many people genuinely sit between two archetypes.
+   - Lowering the bar to 75–80% would mark fewer as tentative.
+   - Keeping 90% is more honest.
+
+   My suggestion: keep 90% and phrase it as "you sit between X and Y", not as a warning.
+3. **Phase 3 conflict with the income ruling.** The Phase 3 brief says "keep the list views and the fit × payoff option". Income labels no longer exist, by your ruling, so there is no payoff axis. I suggest dropping that option, or replacing it with fit × ability. Please decide before Phase 3.
+4. **The validation population is synthetic.** Real thresholds should be refitted once there are outcome check-ins (Phase 3).
+5. **Until Phase 3:** the Career map's overlay and trait connections are still computed the v1 way, even when v2 drives the ranking.
+
+## 7. Files
+
+**New:**
+- `src/lib/matching/v2/` (types, config, fit, present, synthetic, adapter, index)
+- `src/lib/matching/version.ts`
+- `taxonomy/build/build_v2_lane_profiles.mts`
+- `taxonomy/build/build_v2_offsets.mts`
+- `taxonomy/derived/lane_profiles_v2.json`
+- `taxonomy/derived/lane_offsets_v2.json`
+- `taxonomy/derived/matching_v2_validation.json`
+- this report
+- `docs/MATCHING_V2.md`
+- `scripts/validate-matching-v2.mts`
+- `scripts/compare-matching.mts`
+- `scripts/report-matching-v2.mts`
+- `scripts/lib-account.ts`
+- `tests/matching-v2.test.ts`
+
+**Changed:**
+- `src/lib/data/lanes.ts` and `src/lib/data/index.ts`: the version switch, the memo and cache keys.
+- `src/lib/lanes/types.ts` and `src/components/lanes/LaneDetailPanel.tsx`: the driver footnote comes from the data.
