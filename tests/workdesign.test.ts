@@ -102,3 +102,35 @@ describe("shadow mode", () => {
     expect(Object.keys(rec.dimensions)).toHaveLength(18);
   });
 });
+
+describe("career side", async () => {
+  const { careerDimension, careerWorkDesign } = await import("@/lib/workdesign/career");
+  const lane = {
+    name: "Test",
+    provenance: "onet" as const,
+    n_occupations: 2,
+    coverage_confidence: 1,
+    taxonomy: { payoff: "convex", payoff_variance: 70 },
+    descriptors: {
+      "Work Context": {
+        "Freedom to Make Decisions": { CX: { raw: 4.5, pct: 90 } },
+        "Determine Tasks, Priorities and Goals": { CX: { raw: 4.0, pct: 80 } },
+        "Importance of Repeating Same Tasks": { CX: { raw: 2.0, pct: 20 } },
+      },
+      "Work Values": { Independence: { EX: { raw: 6.0, pct: 70 } } },
+      "Work Activities": { "Thinking Creatively": { IM: { raw: 4.0, pct: 60 } } },
+    },
+  };
+  it("is the weighted mean of element percentiles, with reverse and taxonomy inputs", () => {
+    const autonomy = careerDimension(ENVIRONMENT.find((d) => d.id === "autonomy")!, lane);
+    expect(autonomy.value).toBeCloseTo((2 * 90 + 80 + 70) / 4);
+    const variety = careerDimension(ENVIRONMENT.find((d) => d.id === "variety")!, lane);
+    expect(variety.value).toBeCloseTo((100 - 20 + 60) / 2); // repetition reversed
+    expect(careerDimension(ENVIRONMENT.find((d) => d.id === "income_variance")!, lane).value).toBe(70);
+  });
+  it("leaves a dimension empty when under half its weight is in the profile", () => {
+    const all = careerWorkDesign(lane);
+    expect(all.pace!.value).toBeNull();
+    expect(all.autonomy!.coverage).toBe(1);
+  });
+});

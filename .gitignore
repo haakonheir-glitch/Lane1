@@ -43,3 +43,6 @@ next-env.d.ts
 .data
 e2e-failure.png
 __pycache__/
+
+# O*NET extracted text files (the zips in taxonomy/reference/onet/ are the committed sources)
+taxonomy/reference/onet/db_*_text/

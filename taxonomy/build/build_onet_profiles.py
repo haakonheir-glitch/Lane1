@@ -3,35 +3,39 @@
 Build taxonomy/derived/lane_onet_profiles.json: an O*NET profile for each of Lane's 205 career
 paths, on one common scale (0-100 percentile across all O*NET occupations), with provenance.
 
-Inputs (never edited by hand; recorded in taxonomy/reference/onet/SOURCES.md):
-  --onet DIR            an O*NET database release in text format (tab-separated .txt files)
-  --esco-crosswalk CSV  the European Commission's ESCO-O*NET crosswalk
-  --esco-occupations CSV  (optional) official ESCO occupations CSV with ISCO codes, for the fallback
-  --isco-soc CSV        (optional) ISCO-08 -> SOC crosswalk (BLS), for the fallback
-  --soc-onet CSV        (optional) SOC -> O*NET-SOC (only needed if --isco-soc gives SOC 2010)
-Lane inputs: taxonomy/taxonomy.json, taxonomy/esco_mapping.csv,
-             taxonomy/reference/onet/estimated_profiles.csv, taxonomy/build/onet_config.json,
-             taxonomy/derived/workdesign_elements.json (from scripts/export-workdesign-elements.mts).
+Sources (unedited, recorded in taxonomy/reference/onet/SOURCES.md):
+  taxonomy/reference/onet/db_31_0_text/        O*NET 31.0 (primary release), extracted
+  taxonomy/reference/onet/db_30_2_text/        O*NET 30.2, for Work Values only (31.0 dropped them)
+  taxonomy/reference/crosswalks/ESCO_to_ONET-SOC.xlsx   the ESCO-O*NET crosswalk, as hosted by O*NET
+  taxonomy/reference/crosswalks/esco_uri_codes.json     each ESCO URI's code in the crosswalk's ESCO
+                                                        version (fetch_esco_codes.py, ESCO API)
+Lane inputs: taxonomy.json, esco_mapping.csv, reference/onet/estimated_profiles.csv,
+             build/onet_config.json, derived/workdesign_elements.json.
 
-Routes, best first: the ESCO-O*NET crosswalk by ESCO URI (keeping its match type); for ESCO
-occupations it doesn't cover, ISCO-08 -> SOC -> O*NET-SOC; for career paths with nothing linked,
-an estimated profile from named analog occupations (estimated_profiles.csv), marked
-"provenance": "estimated". Fails loudly on any missing input column, unknown O*NET-SOC code or
-Work Design element name, instead of guessing.
+Routes, best first:
+  1. crosswalk: ESCO URI -> ESCO code (in the crosswalk's version) -> O*NET-SOC codes;
+  2. fallback_isco: ESCO occupations the crosswalk doesn't list -> their ISCO-08 unit group (the
+     first four digits of the code) -> the crosswalk's own ISCO-level rows;
+  3. fallback_lane_isco: career paths with nothing linked -> the career path's ISCO codes;
+  4. estimated: career paths with no ESCO occupation (or forced) -> named analog occupations
+     with explicit adjustments (estimated_profiles.csv), marked "provenance": "estimated".
+Fails loudly on a missing column, an unknown O*NET-SOC code or a Work Design element name the
+release doesn't have, instead of guessing.
 
-Usage: python3 -I taxonomy/build/build_onet_profiles.py --onet taxonomy/reference/onet/db_30_0_text \\
-           --esco-crosswalk taxonomy/reference/crosswalks/esco_onet_crosswalk.csv [--isco-soc ...]
+Usage: python3 -I taxonomy/build/build_onet_profiles.py
 """
 from __future__ import annotations
 
 import argparse
 import csv
 import json
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+REF = ROOT / "reference"
 
 # ---------------------------------------------------------------- O*NET reading ----
 
@@ -58,6 +62,8 @@ def load_long(path: Path, scales: set[str] | None = None) -> dict[tuple[str, str
         scale = r["Scale ID"]
         if scales and scale not in scales:
             continue
+        if r.get("Category") not in (None, "", "n/a"):
+            continue  # Work Context category percentages (CXP): the CX mean is used instead
         try:
             v = float(r["Data Value"])
         except ValueError:
@@ -84,32 +90,33 @@ def percentiles(values: dict[str, float]) -> dict[str, float]:
         j = i
         while j + 1 < n and items[j + 1][1] == items[i][1]:
             j += 1
-        mid = (i + j) / 2
-        p = 100.0 * (mid + 0.5) / n
+        p = 100.0 * ((i + j) / 2 + 0.5) / n
         for k in range(i, j + 1):
             out[items[k][0]] = p
         i = j + 1
     return out
 
 
-class Onet:
-    """All descriptors of one release, by file, with raw values and percentiles per occupation."""
+# Descriptor files: name in the output -> (config key, scales kept)
+DESCRIPTORS = {
+    "Interests": ("interests", {"OI"}),
+    "Work Values": ("work_values", {"EX"}),
+    "Work Activities": ("work_activities", {"IM", "LV"}),
+    "Work Context": ("work_context", {"CX"}),
+    "Abilities": ("abilities", {"IM", "LV"}),
+    "Work Styles": ("work_styles", {"WI"}),
+}
 
-    def __init__(self, root: Path, files: dict[str, str]):
-        self.root = root
-        occ = read_tsv(root / files["occupations"])
+
+class Onet:
+    """All descriptors, by file, with raw values and percentiles per occupation."""
+
+    def __init__(self, paths: dict[str, Path]):
+        occ = read_tsv(paths["occupations"])
         need(occ[0], "O*NET-SOC Code", "Title")
         self.titles = {r["O*NET-SOC Code"]: r["Title"] for r in occ}
-        self.raw: dict[str, dict[tuple[str, str, str], float]] = {
-            "Interests": load_long(root / files["interests"], {"OI"}),
-            "Work Values": load_long(root / files["work_values"], {"EX"}),
-            "Work Activities": load_long(root / files["work_activities"], {"IM", "LV"}),
-            "Work Context": load_long(root / files["work_context"], {"CX"}),
-            "Abilities": load_long(root / files["abilities"], {"IM", "LV"}),
-            "Work Styles": load_long(root / files["work_styles"]),
-            "Job Zones": load_job_zones(root / files["job_zones"]),
-        }
-        # (file, element, scale) -> {soc: percentile}
+        self.raw: dict[str, dict[tuple[str, str, str], float]] = {name: load_long(paths[key], scales) for name, (key, scales) in DESCRIPTORS.items()}
+        self.raw["Job Zones"] = load_job_zones(paths["job_zones"])
         self.pct: dict[tuple[str, str, str], dict[str, float]] = {}
         for file, data in self.raw.items():
             by: dict[tuple[str, str], dict[str, float]] = defaultdict(dict)
@@ -125,65 +132,63 @@ class Onet:
         return {sc for (_, _, sc) in self.raw[file]}
 
 
-# ---------------------------------------------------------------- linking ----
+def paths_from_config(cfg: dict, onet_dir: Path) -> dict[str, Path]:
+    rel = cfg["releases"]
+    return {key: onet_dir / rel[r]["dir"] / name for key, (r, name) in cfg["files"].items()}
 
 
-def load_crosswalk(path: Path) -> dict[str, list[tuple[str, str]]]:
-    """ESCO URI -> [(O*NET-SOC code, match type)]. Column names are detected, not assumed."""
-    with open(path, encoding="utf-8-sig", newline="") as f:
-        rows = list(csv.DictReader(f))
-    if not rows:
-        raise SystemExit(f"Empty crosswalk: {path}")
-    cols = {c.lower(): c for c in rows[0]}
-    uri = next((cols[c] for c in cols if "esco" in c and "uri" in c), None)
-    soc = next((cols[c] for c in cols if "o*net" in c or "onet" in c), None)
-    kind = next((cols[c] for c in cols if "match" in c or "type" in c or "relation" in c), None)
-    if not uri or not soc:
-        raise SystemExit(f"Can't find the ESCO URI and O*NET-SOC columns in {path}: {list(rows[0])}")
-    out: dict[str, list[tuple[str, str]]] = defaultdict(list)
-    for r in rows:
-        code = r[soc].strip()
-        if not code:
+def ensure_extracted(paths: dict[str, Path]) -> None:
+    """The release zips are the committed sources; extract any file that is missing from <dir>/ out of <dir>.zip."""
+    import zipfile
+
+    for path in paths.values():
+        if path.exists():
             continue
-        t = (r[kind] if kind else "exact").strip().lower()
-        t = next((k for k in ("exact", "close", "narrow", "broad") if k in t), t or "exact")
-        out[r[uri].strip()].append((code, t))
-    return out
+        zpath = path.parent.with_suffix(".zip")
+        if not zpath.exists():
+            raise SystemExit(f"Missing {path} and {zpath}")
+        with zipfile.ZipFile(zpath) as z:
+            member = next((n for n in z.namelist() if n.endswith("/" + path.name) or n == path.name), None)
+            if member is None:
+                raise SystemExit(f"{path.name} is not in {zpath}")
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(z.read(member))
 
 
-def load_isco_soc(path: Path | None, soc_onet: Path | None, onet_codes: set[str]) -> dict[str, list[str]]:
-    """ISCO-08 unit group (4 digits) -> O*NET-SOC codes, via SOC. Empty when no crosswalk is given."""
-    if not path:
-        return {}
-    with open(path, encoding="utf-8-sig", newline="") as f:
-        rows = list(csv.DictReader(f))
-    cols = {c.lower(): c for c in rows[0]}
-    isco = next((cols[c] for c in cols if "isco" in c and "code" in c), None)
-    soc = next((cols[c] for c in cols if "soc" in c and "code" in c), None)
-    if not isco or not soc:
-        raise SystemExit(f"Can't find ISCO and SOC code columns in {path}: {list(rows[0])}")
-    soc_map: dict[str, list[str]] = defaultdict(list)
-    if soc_onet:
-        with open(soc_onet, encoding="utf-8-sig", newline="") as f:
-            r2 = list(csv.DictReader(f))
-        c2 = {c.lower(): c for c in r2[0]}
-        a = next(c2[c] for c in c2 if "soc" in c and "o*net" not in c and "onet" not in c)
-        b = next(c2[c] for c in c2 if "o*net" in c or "onet" in c)
-        for r in r2:
-            soc_map[r[a].strip()].append(r[b].strip())
-    out: dict[str, list[str]] = defaultdict(list)
-    for r in rows:
-        s = r[soc].strip()
-        targets = soc_map.get(s) or [c for c in onet_codes if c.startswith(s + ".")]
-        out[r[isco].strip()[:4]].extend(targets)
-    return out
+# ---------------------------------------------------------------- crosswalk ----
+
+
+def load_crosswalk_xlsx(path: Path) -> tuple[dict[str, list[str]], dict[str, list[str]], dict[str, str]]:
+    """The O*NET-hosted ESCO crosswalk: (ESCO code -> O*NET codes, ISCO-08 unit group -> O*NET codes, ESCO code -> title)."""
+    import openpyxl
+
+    ws = openpyxl.load_workbook(path, read_only=True).worksheets[0]
+    rows = list(ws.iter_rows(values_only=True))
+    head = next(i for i, r in enumerate(rows) if r and r[0] == "ESCO/ISCO Code")
+    cols = rows[head]
+    if tuple(cols[:3]) != ("ESCO/ISCO Code", "ESCO/ISCO Title", "O*NET-SOC 2019 Code"):
+        raise SystemExit(f"Unexpected crosswalk columns: {cols}")
+    esco: dict[str, list[str]] = defaultdict(list)
+    isco: dict[str, list[str]] = defaultdict(list)
+    titles: dict[str, str] = {}
+    for r in rows[head + 1 :]:
+        if not r or not r[0] or not r[2]:
+            continue
+        code, soc = str(r[0]).strip(), str(r[2]).strip()
+        if "." in code:
+            esco[code].append(soc)
+            titles[code] = str(r[1]).strip()
+        elif re.fullmatch(r"\d{4}", code):
+            isco[code].append(soc)
+    return esco, isco, titles
 
 
 # ---------------------------------------------------------------- profiles ----
 
 
 def weighted(onet: Onet, links: dict[str, float]) -> dict:
-    """Weighted mean of every descriptor over the linked occupations: raw and percentile."""
+    """Weighted mean of every descriptor over the linked occupations: raw and percentile.
+    A descriptor is kept only when occupations carrying at least half the weight have it."""
     total = sum(links.values())
     out: dict = {}
     for (file, el, sc), pct in onet.pct.items():
@@ -214,13 +219,24 @@ def parse_estimated(path: Path) -> dict[str, dict]:
     return out
 
 
+def use_estimate(est: dict | None, lane_links: dict) -> bool:
+    """An estimate replaces a career path's linked profile only when it is forced, or when the career path has
+    nothing better than its own ISCO groups (the weakest route): documented analogs beat a whole ISCO unit group."""
+    if not est:
+        return False
+    lane_isco_only = all(e["routes"] == {"fallback_lane_isco"} for e in lane_links.values())
+    return est["force"] or not lane_links or lane_isco_only
+
+
 def build(args) -> dict:
     cfg = json.loads((ROOT / "build" / "onet_config.json").read_text())
     weights = cfg["match_weights"]
-    onet = Onet(Path(args.onet), cfg["files"])
+    paths = paths_from_config(cfg, Path(args.onet_dir))
+    ensure_extracted(paths)
+    onet = Onet(paths)
     codes = set(onet.titles)
 
-    # Verify the Work Design model's element names against this release before anything else.
+    # The Work Design model's element names must all exist in this release.
     wd = json.loads((ROOT / "derived" / "workdesign_elements.json").read_text())
     missing = [f'{e["file"]}: {e["element"]}' for e in wd["elements"] if e["element"] not in onet.elements(e["file"])]
     if missing:
@@ -230,47 +246,51 @@ def build(args) -> dict:
     lanes = {l["id"]: l for f in taxonomy["families"] for l in f["lanes"]}
     with open(ROOT / "esco_mapping.csv", encoding="utf-8", newline="") as f:
         esco_rows = list(csv.DictReader(f))
-    crosswalk = load_crosswalk(Path(args.esco_crosswalk))
-    esco_isco: dict[str, str] = {}
-    if args.esco_occupations:
-        with open(args.esco_occupations, encoding="utf-8-sig", newline="") as f:
-            for r in csv.DictReader(f):
-                if r.get("conceptUri") and r.get("iscoGroup"):
-                    esco_isco[r["conceptUri"]] = r["iscoGroup"][:4]
-    isco_onet = load_isco_soc(Path(args.isco_soc) if args.isco_soc else None, Path(args.soc_onet) if args.soc_onet else None, codes)
+    xw_esco, xw_isco, xw_titles = load_crosswalk_xlsx(Path(args.crosswalk))
+    uri_codes = json.loads(Path(args.uri_codes).read_text())
+    occ_codes = uri_codes["occupations"]
 
-    links: dict[str, dict[str, dict]] = defaultdict(dict)  # lane -> soc -> {weight, routes}
-    esco_routes: dict[str, str] = {}
+    links: dict[str, dict[str, dict]] = defaultdict(dict)  # lane -> soc -> {weight, routes, esco}
+    esco_route: dict[str, str] = {}
     unknown_codes: set[str] = set()
+    changed_since: list[dict] = []
+    label_differs: list[dict] = []
 
-    def link(lane: str, soc: str, w: float, route: str):
-        if soc not in codes:
-            unknown_codes.add(soc)
-            return
-        e = links[lane].setdefault(soc, {"weight": 0.0, "routes": set()})
-        e["weight"] += w
-        e["routes"].add(route)
+    def link(lane: str, socs: list[str], w: float, route: str, esco: str | None):
+        socs = sorted(set(socs))
+        ok = [s for s in socs if s in codes]
+        unknown_codes.update(s for s in socs if s not in codes)
+        for soc in ok:
+            e = links[lane].setdefault(soc, {"weight": 0.0, "routes": set(), "esco": 0})
+            e["weight"] += w / len(ok)
+            e["routes"].add(route)
+            e["esco"] += 1 if esco else 0
 
     for r in esco_rows:
         uri, lane = r["esco_uri"], r["lane_id"]
-        if uri in crosswalk:
-            esco_routes[uri] = "crosswalk"
-            for soc, t in crosswalk[uri]:
-                link(lane, soc, weights.get(t, weights["broad"]), f"crosswalk:{t}")
-        elif uri in esco_isco and esco_isco[uri] in isco_onet:
-            esco_routes[uri] = "fallback_isco"
-            for soc in isco_onet[esco_isco[uri]]:
-                link(lane, soc, weights["fallback_isco"], "fallback_isco")
+        rec = occ_codes.get(uri) or {}
+        cv, latest = rec.get("crosswalk_version") or {}, rec.get("latest") or {}
+        code = cv.get("code")
+        if cv and latest and (cv.get("code") != latest.get("code") or cv.get("label") != latest.get("label")):
+            changed_since.append({"uri": uri, "crosswalk_version": cv, "latest": latest})
+        if code and code in xw_esco:
+            esco_route[uri] = "crosswalk"
+            if (cv.get("label") or "").strip().lower() != xw_titles[code].strip().lower():
+                label_differs.append({"uri": uri, "code": code, "esco_api": cv.get("label"), "crosswalk": xw_titles[code]})
+            link(lane, xw_esco[code], weights["crosswalk"], "crosswalk", uri)
+        elif code and code.split(".")[0] in xw_isco:
+            esco_route[uri] = "fallback_isco"
+            link(lane, xw_isco[code.split(".")[0]], weights["fallback_isco"], "fallback_isco", uri)
         else:
-            esco_routes[uri] = "unlinked"
+            esco_route[uri] = "unlinked" if code else "no_code"
 
     for lane_id, lane in lanes.items():
-        if not links.get(lane_id) and isco_onet:
+        if not links.get(lane_id):
             for isco in lane["isco"]:
-                for soc in isco_onet.get(isco, []):
-                    link(lane_id, soc, weights["fallback_lane_isco"], "fallback_lane_isco")
+                if isco in xw_isco:
+                    link(lane_id, xw_isco[isco], weights["fallback_lane_isco"], "fallback_lane_isco", None)
 
-    estimated = parse_estimated(ROOT / "reference" / "onet" / "estimated_profiles.csv")
+    estimated = parse_estimated(REF / "onet" / "estimated_profiles.csv")
     for lane_id, est in estimated.items():
         bad = [c for c in est["analogs"] if c not in codes]
         if bad:
@@ -282,78 +302,101 @@ def build(args) -> dict:
     profiles = {}
     for lane_id, lane in lanes.items():
         est = estimated.get(lane_id)
-        if est and (est["force"] or not links.get(lane_id)):
+        ls = links.get(lane_id, {})
+        if use_estimate(est, ls):
             desc = weighted(onet, est["analogs"])
             for a in est["adjustments"]:
                 cell = desc.get(a["file"], {}).get(a["element"], {}).get(a["scale"])
-                if cell:
-                    cell["pct"] = round(min(100.0, max(0.0, cell["pct"] + a["delta"])), 1)
-                    cell["adjusted"] = a["delta"]
+                if not cell:
+                    raise SystemExit(f"{lane_id}: adjustment target missing from the analog profile: {a}")
+                cell["pct"] = round(min(100.0, max(0.0, cell["pct"] + a["delta"])), 1)
+                cell["adjusted"] = a["delta"]
             profiles[lane_id] = {
                 "provenance": "estimated",
                 "n_occupations": len(est["analogs"]),
-                "occupations": [{"soc": c, "title": onet.titles[c], "weight": w, "route": "analog"} for c, w in est["analogs"].items()],
+                "occupations": [{"soc": c, "title": onet.titles[c], "weight": w, "route": ["analog"]} for c, w in est["analogs"].items()],
                 "coverage_confidence": None,
                 "rationale": est["rationale"],
+                "linked_but_replaced": sorted(ls) if ls else [],
                 "descriptors": desc,
             }
             continue
-        ls = links.get(lane_id, {})
         if not ls:
             profiles[lane_id] = {"provenance": "unlinked", "n_occupations": 0, "occupations": [], "coverage_confidence": 0.0, "descriptors": {}}
             continue
         total = sum(e["weight"] for e in ls.values())
-        good = sum(e["weight"] for e in ls.values() if any(r in ("crosswalk:exact", "crosswalk:close") for r in e["routes"]))
-        conf = min(1.0, total / cfg["confidence"]["full_weight"]) * (good / total)
+        via_xw = sum(e["weight"] for e in ls.values() if "crosswalk" in e["routes"])
+        n_esco_xw = sum(1 for r in esco_rows if r["lane_id"] == lane_id and esco_route.get(r["esco_uri"]) == "crosswalk")
+        conf = min(1.0, n_esco_xw / cfg["confidence"]["full_occupations"]) * (via_xw / total)
         profiles[lane_id] = {
             "provenance": "onet",
             "n_occupations": len(ls),
             "occupations": sorted(
                 ({"soc": c, "title": onet.titles[c], "weight": round(e["weight"] / total, 4), "route": sorted(e["routes"])} for c, e in ls.items()),
-                key=lambda x: -x["weight"],
+                key=lambda x: (-x["weight"], x["soc"]),
             ),
+            "esco_linked": n_esco_xw,
             "coverage_confidence": round(conf, 3),
             "descriptors": weighted(onet, {c: e["weight"] for c, e in ls.items()}),
         }
 
     payoff = wd["payoffVariance"]
     for lane_id, p in profiles.items():
+        p["name"] = lanes[lane_id]["name"]
         p["taxonomy"] = {"payoff": lanes[lane_id]["payoff"], "payoff_variance": payoff.get(lanes[lane_id]["payoff"])}
 
     route_counts: dict[str, int] = defaultdict(int)
-    for v in esco_routes.values():
+    for v in esco_route.values():
         route_counts[v] += 1
+    lane_routes: dict[str, int] = defaultdict(int)
+    for p in profiles.values():
+        if p["provenance"] != "onet":
+            lane_routes[p["provenance"]] += 1
+        else:
+            rs = {r for o in p["occupations"] for r in o["route"]}
+            lane_routes["crosswalk" if "crosswalk" in rs else ("fallback_isco" if "fallback_isco" in rs else "fallback_lane_isco")] += 1
+    rel = cfg["releases"]
     return {
-        "release": args.release,
-        "built_from": {"onet": str(args.onet), "esco_crosswalk": str(args.esco_crosswalk), "isco_soc": args.isco_soc, "esco_occupations": args.esco_occupations},
-        "scale": "Each descriptor: 'raw' on O*NET's own scale, 'pct' = weighted mean of the linked occupations' percentiles (0-100) among all O*NET occupations.",
-        "content_model": {"work_styles": sorted(onet.elements("Work Styles")), "work_styles_scales": sorted(onet.scales("Work Styles"))},
+        "release": {"onet": rel["primary"]["release"], "work_values": rel["work_values"]["release"], "esco_crosswalk_version": uri_codes["crosswalk_version"]},
+        "scale": "Each descriptor: 'raw' on O*NET's own scale; 'pct' = weighted mean of the linked occupations' percentiles (0-100) among all O*NET occupations that have the descriptor.",
+        "content_model": {
+            "work_styles": sorted(onet.elements("Work Styles")),
+            "interests_source": cfg["files"]["interests"][1],
+            "o_net_occupations": len(codes),
+        },
+        # Work Values come from an older release: which codes the two releases disagree on.
+        "release_alignment": {
+            "work_values_codes_not_in_primary": sorted({soc for (soc, _, _) in onet.raw["Work Values"]} - codes),
+            "primary_codes_with_interests_but_no_work_values": len({soc for (soc, _, _) in onet.raw["Interests"]} - {soc for (soc, _, _) in onet.raw["Work Values"]}),
+        },
         "coverage": {
             "esco_occupations": len(esco_rows),
             "esco_by_route": dict(route_counts),
-            "esco_uris_not_in_crosswalk": sum(1 for r in esco_rows if r["esco_uri"] not in crosswalk),
-            "crosswalk_uris_not_in_lane_mapping": sorted(set(crosswalk) - {r["esco_uri"] for r in esco_rows})[:200],
-            "unknown_onet_codes_in_links": sorted(unknown_codes),
+            "esco_unlinked": sorted((r["esco_label"], r["lane_id"], esco_route[r["esco_uri"]]) for r in esco_rows if esco_route[r["esco_uri"]] in ("unlinked", "no_code")),
+            "esco_changed_since_crosswalk_version": len(changed_since),
+            "esco_label_differs_from_crosswalk": label_differs,
+            "unknown_onet_codes_in_crosswalk": sorted(unknown_codes),
             "lanes_by_provenance": {k: sum(1 for p in profiles.values() if p["provenance"] == k) for k in ("onet", "estimated", "unlinked")},
+            "lanes_by_best_route": dict(lane_routes),
         },
+        "changed_since_crosswalk_version": changed_since,
         "lanes": profiles,
     }
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--onet", required=True)
-    ap.add_argument("--release", required=True, help="O*NET release, e.g. 30.0")
-    ap.add_argument("--esco-crosswalk", required=True)
-    ap.add_argument("--esco-occupations")
-    ap.add_argument("--isco-soc")
-    ap.add_argument("--soc-onet")
+    ap.add_argument("--onet-dir", default=str(REF / "onet"))
+    ap.add_argument("--crosswalk", default=str(REF / "crosswalks" / "ESCO_to_ONET-SOC.xlsx"))
+    ap.add_argument("--uri-codes", default=str(REF / "crosswalks" / "esco_uri_codes.json"))
     ap.add_argument("--out", default=str(ROOT / "derived" / "lane_onet_profiles.json"))
     args = ap.parse_args(argv)
     result = build(args)
-    Path(args.out).write_text(json.dumps(result, indent=1, sort_keys=False) + "\n")
+    Path(args.out).write_text(json.dumps(result, indent=1) + "\n")
     c = result["coverage"]
-    print(f"Wrote {args.out}: {c['lanes_by_provenance']}; ESCO by route {c['esco_by_route']}")
+    print(f"Wrote {args.out}")
+    print(f"  career paths by provenance: {c['lanes_by_provenance']}; by best route: {c['lanes_by_best_route']}")
+    print(f"  ESCO occupations by route: {c['esco_by_route']}")
 
 
 if __name__ == "__main__":

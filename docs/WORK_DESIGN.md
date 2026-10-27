@@ -4,7 +4,7 @@ Version `wd-0.1`. Config: `src/lib/workdesign/model.ts`. Person side: `src/lib/w
 
 **Status: provisional.**
 - **Person side:** every formula is **Lane's own model**, not a published scoring. The input weights are reasoned starting points, to be fitted to outcome data later.
-- **Career side:** it uses O\*NET's published descriptors. The O\*NET element names are checked against the downloaded release, and the build fails on any name it can't find. That check hasn't run yet, because the download is blocked in this environment (`ONET_ELEMENTS_VERIFIED` is `null`).
+- **Career side:** it uses O\*NET's published descriptors: O\*NET 31.0 (August 2026), plus Work Values from 30.2, because 31.0 dropped them. The build checks every element name against the release and fails on any it can't find. All 46 were verified on 2026-10-27 (`ONET_ELEMENTS_VERIFIED`). Five Work Context elements were renamed in 31.0; the tables below use the new names.
 
 ## Why this layer exists
 
@@ -42,20 +42,27 @@ Error of the gap (xᵢ − mean) = √(seᵢ²(1 − 1/n)² + Σⱼ≠ᵢ seⱼ�
 
 Each career path's profile is the weighted mean of its linked O\*NET occupations.
 
+**How links are made.** Each career path has its ESCO occupations (`taxonomy/esco_mapping.csv`).
+
+1. **Crosswalk (primary).** The ESCO URI is looked up in the official ESCO API at the crosswalk's ESCO version (v1.2.0) to get its code. That code is then looked up in the O\*NET-hosted ESCO → O\*NET-SOC crosswalk. The join is exact by URI; labels aren't matched.
+2. **ISCO fallback.** If the crosswalk has no row for the code, its ISCO-08 unit group (the code's first four digits) is looked up in the same crosswalk's ISCO rows.
+3. **Lane-ISCO fallback.** If none of a career path's occupations link, the career path's own ISCO groups are used.
+
 **Weights by link quality** (`taxonomy/build/onet_config.json`, provisional):
 
 | Link | Weight |
 |---|---|
-| Crosswalk exact | 1.0 |
-| Crosswalk close | 0.7 |
-| Crosswalk narrow | 0.5 |
-| Crosswalk broad | 0.4 |
-| ISCO→SOC fallback (per ESCO occupation) | 0.25 |
+| Crosswalk | 1.0, split evenly over the O\*NET codes listed for that ESCO occupation |
+| ISCO fallback (per ESCO occupation) | 0.25 |
 | Lane-ISCO fallback (career path level) | 0.15 |
+
+The O\*NET-hosted crosswalk has **no match-type column** (exact, close, broad and so on), so every crosswalk link gets the same weight. The brief asked to keep the crosswalk's match type; there is none to keep. If a version with match types turns up, the config takes per-type weights.
+
+**Coverage confidence** = min(1, ESCO occupations linked by the crosswalk / 5) × the crosswalk's share of the link weight. It is a plain signal of how much of the profile rests on direct links, not a statistical confidence.
 
 Every descriptor is kept raw and as a 0–100 **percentile across all O\*NET occupations**, so files with different scales (Importance 1–5, Level 0–7, Context 1–5, Extent 1–7, Job Zone 1–5) share one scale. A dimension's career score is the weighted mean of its elements' percentiles ("reverse" uses 100 − percentile).
 
-**Career paths with no linked occupations** (10, plus Content creation, forced; see `taxonomy/reference/onet/estimated_profiles.csv`) get a profile from 1–4 named analog occupations plus explicit percentile adjustments, each with a written rationale. They are marked `"provenance": "estimated"` in the data and must be marked in the UI.
+**Career paths with no linked occupations** (10, plus Content creation, forced; see `taxonomy/reference/onet/estimated_profiles.csv`) get a profile from 2–4 named analog occupations plus explicit percentile adjustments, each with a written rationale. They are marked `"provenance": "estimated"` in the data and must be marked in the UI.
 
 ## A. Value modes: how you add value
 
@@ -82,10 +89,10 @@ Penalty shapes (used in Phase 2; person score p, career score c):
 
 | Dimension | Person side | Career side (O\*NET; Work Context = CX) | Penalty |
 |---|---|---|---|
-| Autonomy | Independence value .6, low orderliness .4 | Freedom to Make Decisions ×2; Structured versus Unstructured Work; Work Values: Independence | deficit |
-| Social contact | Extraversion .4, Social interest .3, Relationships value .3 | Contact With Others ×2; Work With Work Group or Team; Deal With External Customers | two-sided |
+| Autonomy | Independence value .6, low orderliness .4 | Freedom to Make Decisions ×2; Determine Tasks, Priorities and Goals; Work Values: Independence | deficit |
+| Social contact | Extraversion .4, Social interest .3, Relationships value .3 | Contact With Others ×2; Work With or Contribute to a Work Group or Team; Deal With External Customers or the Public in General | two-sided |
 | Pace and time pressure | Processing speed .5, low Neuroticism .5 | Time Pressure | excess |
-| Conflict and friction | Low Neuroticism .4, assertiveness .3, low Agreeableness .3 | Frequency of Conflict Situations; Deal With Unpleasant or Angry People | excess |
+| Conflict and friction | Low Neuroticism .4, assertiveness .3, low Agreeableness .3 | Conflict Situations; Dealing With Unpleasant, Angry, or Discourteous People | excess |
 | Competition | Enterprising .6, risk task .4 | Level of Competition | two-sided |
 | Precision and consequence of error | Conscientiousness .6, low Neuroticism .4 | Importance of Being Exact or Accurate; Consequence of Error | excess |
 | Variety vs. routine | Openness .6, learning rate .4 | Importance of Repeating Same Tasks (reversed); Thinking Creatively (Work Activity) | deficit |
@@ -93,7 +100,7 @@ Penalty shapes (used in Phase 2; person score p, career score c):
 | Cognitive challenge | General reasoning percentile | Job Zone ×2; Level of Deductive Reasoning, Inductive Reasoning, Mathematical Reasoning, Problem Sensitivity | deficit (under-challenge) |
 
 Notes:
-- **"Structured versus Unstructured Work":** O\*NET rates it toward "unstructured" at the high end. The direction must be confirmed in the downloaded file before Phase 2.
+- **"Determine Tasks, Priorities and Goals"** (4.C.3.b.8, called "Structured versus Unstructured Work" before 31.0): the 31.0 categories run from 1 "No freedom" to 5 "A lot of freedom", so the high end is self-directed work. It is used unreversed. Checked in `Work Context Categories.txt`.
 - **Income variance:** the payoff mapping is Lane's judgement on its own taxonomy (more variance from linear to winner-take-all), not O\*NET.
 - **Cognitive challenge:** this is about under-challenge only. Work that demands more than your measured range is ability fit (C), not fulfilment.
 
@@ -111,6 +118,6 @@ Only a shortfall counts against ability fit; surplus capability doesn't.
 
 ## Open questions
 
-1. **Work Styles:** O\*NET revised them recently. The build script records the element names it finds in the release (`content_model.work_styles`). None are used until they've been inspected.
+1. **Work Styles:** O\*NET 31.0 replaced the old 16 with 21 styles on a new impact scale (WI, −3 to +3); the names are listed in `taxonomy/derived/REPORT.md`. The profiles carry them, but no dimension uses them yet. They are candidates for Phase 2, with validation.
 2. **Planning SDs:** they set the error bars of anchored inputs. Transcribing Johnson (2014) and the O\*NET Interest Profiler norms replaces them.
 3. **Correlated errors:** they are ignored in dimension SEs (an approximation, noted above).

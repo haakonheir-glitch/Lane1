@@ -1,25 +1,28 @@
 {
-  "_comment": "Weights for linking O*NET occupations to a career path, by how the link was made. Provisional; documented in docs/WORK_DESIGN.md.",
+  "_comment": "Provisional settings for build_onet_profiles.py; documented in docs/WORK_DESIGN.md.",
+  "releases": {
+    "_comment": "O*NET 31.0 is the primary release. It dropped Work Values (and the old Interests file); Work Values come from 30.2, the last release that has them.",
+    "primary": { "release": "31.0", "dir": "db_31_0_text" },
+    "work_values": { "release": "30.2", "dir": "db_30_2_text" }
+  },
+  "files": {
+    "occupations": ["primary", "Occupation Data.txt"],
+    "interests": ["primary", "Career Interest Types.txt"],
+    "work_values": ["work_values", "Work Values.txt"],
+    "work_activities": ["primary", "Work Activities.txt"],
+    "work_context": ["primary", "Work Context.txt"],
+    "abilities": ["primary", "Abilities.txt"],
+    "work_styles": ["primary", "Work Styles.txt"],
+    "job_zones": ["primary", "Job Zones.txt"]
+  },
   "match_weights": {
-    "exact": 1.0,
-    "close": 0.7,
-    "narrow": 0.5,
-    "broad": 0.4,
+    "_comment": "Weight of one ESCO occupation's link, split evenly over the O*NET occupations it maps to. The O*NET-hosted crosswalk has no match-type column, so every crosswalk link is 'crosswalk'.",
+    "crosswalk": 1.0,
     "fallback_isco": 0.25,
     "fallback_lane_isco": 0.15
   },
-  "files": {
-    "occupations": "Occupation Data.txt",
-    "interests": "Interests.txt",
-    "work_values": "Work Values.txt",
-    "work_activities": "Work Activities.txt",
-    "work_context": "Work Context.txt",
-    "abilities": "Abilities.txt",
-    "work_styles": "Work Styles.txt",
-    "job_zones": "Job Zones.txt"
-  },
   "confidence": {
-    "_comment": "coverage confidence = min(1, total link weight / full_weight) x share of weight from exact or close links",
-    "full_weight": 3.0
+    "_comment": "coverage confidence = min(1, ESCO occupations linked through the crosswalk / full_occupations) x share of link weight from the crosswalk route",
+    "full_occupations": 5
   }
 }

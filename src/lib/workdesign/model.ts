@@ -4,15 +4,15 @@
  * computed from the same definitions. See docs/WORK_DESIGN.md for the rationale of each choice.
  *
  * STATUS: provisional. Every person-side formula is Lane's own model, not a published scoring.
- * Career-side O*NET element names are listed as expected from the O*NET content model and are
- * checked against the downloaded database by taxonomy/build/build_onet_profiles.py, which fails
- * on any name it can't find (`ONET_ELEMENTS_VERIFIED` records when that last passed).
+ * Career-side O*NET element names are the exact names in O*NET 31.0 (Work Values from 30.2, the
+ * last release that has them); taxonomy/build/build_onet_profiles.py fails on any name it can't
+ * find (`ONET_ELEMENTS_VERIFIED` records the release they were checked against).
  */
 
 export const WORK_DESIGN_VERSION = "wd-0.1";
 
-/** null until build_onet_profiles.py has checked every element name against a downloaded O*NET release. */
-export const ONET_ELEMENTS_VERIFIED: { release: string; date: string } | null = null;
+/** The O*NET release every element name below was checked against (build_onet_profiles.py fails on any it can't find). */
+export const ONET_ELEMENTS_VERIFIED: { release: string; date: string } | null = { release: "O*NET 31.0 (Work Values: 30.2)", date: "2026-10-27" };
 
 /* ------------------------------------------------------------------ person side ---- */
 
@@ -223,9 +223,9 @@ export const ENVIRONMENT: Dimension[] = [
       { id: "values.Independence", weight: 0.6 },
       { id: "neo.C2", weight: 0.4, reverse: true },
     ],
-    career: [WC("Freedom to Make Decisions", 2), WC("Structured versus Unstructured Work"), WV("Independence")],
+    career: [WC("Freedom to Make Decisions", 2), WC("Determine Tasks, Priorities and Goals"), WV("Independence")],
     penalty: "deficit",
-    note: "O*NET's 'Structured versus Unstructured Work' is rated toward 'unstructured' at the high end; confirm the scale direction in the downloaded file.",
+    note: "'Determine Tasks, Priorities and Goals' (4.C.3.b.8) is the element older releases called 'Structured versus Unstructured Work'; high = the worker sets their own tasks.",
   },
   {
     id: "social",
@@ -236,7 +236,7 @@ export const ENVIRONMENT: Dimension[] = [
       { id: "interests.S", weight: 0.3 },
       { id: "values.Relationships", weight: 0.3 },
     ],
-    career: [WC("Contact With Others", 2), WC("Work With Work Group or Team"), WC("Deal With External Customers")],
+    career: [WC("Contact With Others", 2), WC("Work With or Contribute to a Work Group or Team"), WC("Deal With External Customers or the Public in General")],
     penalty: "two_sided",
   },
   {
@@ -259,7 +259,7 @@ export const ENVIRONMENT: Dimension[] = [
       { id: "neo.E3", weight: 0.3 },
       { id: "neo.Agreeableness", weight: 0.3, reverse: true },
     ],
-    career: [WC("Frequency of Conflict Situations"), WC("Deal With Unpleasant or Angry People")],
+    career: [WC("Conflict Situations"), WC("Dealing With Unpleasant, Angry, or Discourteous People")],
     penalty: "excess",
   },
   {
