@@ -4,7 +4,7 @@
  * its elements' percentiles (0–100 across all O*NET occupations); "reverse" uses 100 − percentile.
  * Pure.
  */
-import { DIMENSIONS, PAYOFF_VARIANCE, type CareerInput, type Dimension } from "./model";
+import { DIMENSIONS, type CareerInput, type Dimension } from "./model";
 
 /** The shape build_onet_profiles.py writes for one career path. */
 export type LaneOnetProfile = {
@@ -12,7 +12,6 @@ export type LaneOnetProfile = {
   provenance: "onet" | "estimated" | "unlinked";
   n_occupations: number;
   coverage_confidence: number | null;
-  taxonomy: { payoff: string; payoff_variance: number | null };
   descriptors: Record<string, Record<string, Record<string, { raw: number; pct: number; adjusted?: number }>>>;
 };
 
@@ -25,7 +24,6 @@ export type CareerDimensionScore = {
 };
 
 function inputValue(c: CareerInput, p: LaneOnetProfile): number | null {
-  if ("taxonomy" in c) return p.taxonomy.payoff_variance ?? PAYOFF_VARIANCE[p.taxonomy.payoff] ?? null;
   const cell = p.descriptors[c.source.file]?.[c.element]?.[c.source.scale];
   if (!cell) return null;
   return c.reverse ? 100 - cell.pct : cell.pct;

@@ -85,12 +85,12 @@
     "unlinked"
    ],
    [
-    "director",
+    "director of compliance and information security",
     "it_support",
     "unlinked"
    ],
    [
-    "director",
+    "director of compliance and information security in gambling",
     "it_support",
     "unlinked"
    ],
@@ -100,7 +100,7 @@
     "unlinked"
    ],
    [
-    "health safety and",
+    "health safety and environmental manager",
     "inspection_regulation",
     "unlinked"
    ],
@@ -8522,11 +8522,7 @@
      }
     }
    },
-   "name": "B2B sales",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "B2B sales"
   },
   "solutions_sales": {
    "provenance": "onet",
@@ -10072,11 +10068,7 @@
      }
     }
    },
-   "name": "Technical & solutions sales",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Technical & solutions sales"
   },
   "account_management": {
    "provenance": "onet",
@@ -11614,11 +11606,7 @@
      }
     }
    },
-   "name": "Account management & customer success",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Account management & customer success"
   },
   "field_sales": {
    "provenance": "onet",
@@ -13094,11 +13082,7 @@
      }
     }
    },
-   "name": "Field & territory sales",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Field & territory sales"
   },
   "consumer_sales": {
    "provenance": "onet",
@@ -14692,11 +14676,7 @@
      }
     }
    },
-   "name": "Consumer & direct sales",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Consumer & direct sales"
   },
   "partnerships": {
    "provenance": "estimated",
@@ -16222,11 +16202,7 @@
      }
     }
    },
-   "name": "Partnerships, channel & business development",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Partnerships, channel & business development"
   },
   "media_ad_sales": {
    "provenance": "onet",
@@ -17748,11 +17724,7 @@
      }
     }
    },
-   "name": "Media, advertising & sponsorship sales",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Media, advertising & sponsorship sales"
   },
   "sales_ops": {
    "provenance": "onet",
@@ -19298,11 +19270,7 @@
      }
     }
    },
-   "name": "Sales operations & enablement",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Sales operations & enablement"
   },
   "trade_brokerage": {
    "provenance": "onet",
@@ -20904,11 +20872,7 @@
      }
     }
    },
-   "name": "International trade & brokerage",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "International trade & brokerage"
   },
   "brand_marketing": {
    "provenance": "onet",
@@ -22470,11 +22434,7 @@
      }
     }
    },
-   "name": "Brand marketing",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Brand marketing"
   },
   "growth_marketing": {
    "provenance": "onet",
@@ -24012,11 +23972,7 @@
      }
     }
    },
-   "name": "Performance & growth marketing",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Performance & growth marketing"
   },
   "lifecycle_marketing": {
    "provenance": "estimated",
@@ -25539,11 +25495,7 @@
      }
     }
    },
-   "name": "CRM, lifecycle & marketing operations",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "CRM, lifecycle & marketing operations"
   },
   "product_marketing": {
    "provenance": "estimated",
@@ -27054,11 +27006,7 @@
      }
     }
    },
-   "name": "Product marketing",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Product marketing"
   },
   "content_social": {
    "provenance": "onet",
@@ -28604,11 +28552,7 @@
      }
     }
    },
-   "name": "Content, copy & social media",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Content, copy & social media"
   },
   "advertising_agency": {
    "provenance": "onet",
@@ -30162,11 +30106,7 @@
      }
     }
    },
-   "name": "Advertising & creative agencies",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Advertising & creative agencies"
   },
   "pr_comms": {
    "provenance": "onet",
@@ -31650,11 +31590,7 @@
      }
     }
    },
-   "name": "PR & communications",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "PR & communications"
   },
   "market_research": {
    "provenance": "onet",
@@ -33224,11 +33160,7 @@
      }
     }
    },
-   "name": "Market research & consumer insights",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Market research & consumer insights"
   },
   "events": {
    "provenance": "onet",
@@ -34758,11 +34690,7 @@
      }
     }
    },
-   "name": "Events & experiential",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Events & experiential"
   },
   "product_management": {
    "provenance": "onet",
@@ -36319,11 +36247,7 @@
      }
     }
    },
-   "name": "Product management",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Product management"
   },
   "product_design": {
    "provenance": "onet",
@@ -37839,11 +37763,7 @@
      }
     }
    },
-   "name": "Product & UX/UI design",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Product & UX/UI design"
   },
   "ux_research": {
    "provenance": "onet",
@@ -39357,11 +39277,7 @@
      }
     }
    },
-   "name": "UX research",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "UX research"
   },
   "graphic_design": {
    "provenance": "onet",
@@ -40861,11 +40777,7 @@
      }
     }
    },
-   "name": "Graphic & brand design",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Graphic & brand design"
   },
   "industrial_design": {
    "provenance": "onet",
@@ -42451,11 +42363,7 @@
      }
     }
    },
-   "name": "Industrial & product design",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Industrial & product design"
   },
   "software_engineering": {
    "provenance": "onet",
@@ -44067,11 +43975,7 @@
      }
     }
    },
-   "name": "Software engineering",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Software engineering"
   },
   "embedded_systems": {
    "provenance": "onet",
@@ -45642,11 +45546,7 @@
      }
     }
    },
-   "name": "Embedded & hardware-near software",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Embedded & hardware-near software"
   },
   "devops_cloud": {
    "provenance": "onet",
@@ -47217,11 +47117,7 @@
      }
     }
    },
-   "name": "DevOps, cloud & site reliability",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "DevOps, cloud & site reliability"
   },
   "cybersecurity": {
    "provenance": "onet",
@@ -48809,11 +48705,7 @@
      }
     }
    },
-   "name": "Cybersecurity",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Cybersecurity"
   },
   "it_support": {
    "provenance": "onet",
@@ -50583,11 +50475,7 @@
      }
     }
    },
-   "name": "IT support & infrastructure",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "IT support & infrastructure"
   },
   "qa_testing": {
    "provenance": "onet",
@@ -52133,11 +52021,7 @@
      }
     }
    },
-   "name": "Software testing & quality assurance",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Software testing & quality assurance"
   },
   "enterprise_systems": {
    "provenance": "onet",
@@ -53683,11 +53567,7 @@
      }
     }
    },
-   "name": "Enterprise systems & IT consulting",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Enterprise systems & IT consulting"
   },
   "game_development": {
    "provenance": "onet",
@@ -55233,11 +55113,7 @@
      }
     }
    },
-   "name": "Game development",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Game development"
   },
   "devrel_techwriting": {
    "provenance": "onet",
@@ -56759,11 +56635,7 @@
      }
     }
    },
-   "name": "Developer relations & technical writing",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Developer relations & technical writing"
   },
   "data_analysis": {
    "provenance": "onet",
@@ -58325,11 +58197,7 @@
      }
     }
    },
-   "name": "Data analysis & business intelligence",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Data analysis & business intelligence"
   },
   "data_science": {
    "provenance": "onet",
@@ -59931,11 +59799,7 @@
      }
     }
    },
-   "name": "Data science & statistics",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Data science & statistics"
   },
   "ml_ai_engineering": {
    "provenance": "onet",
@@ -61497,11 +61361,7 @@
      }
     }
    },
-   "name": "Machine learning & AI engineering",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Machine learning & AI engineering"
   },
   "data_engineering": {
    "provenance": "onet",
@@ -63087,11 +62947,7 @@
      }
     }
    },
-   "name": "Data engineering & databases",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Data engineering & databases"
   },
   "gis_geodata": {
    "provenance": "onet",
@@ -64629,11 +64485,7 @@
      }
     }
    },
-   "name": "GIS & geospatial analysis",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "GIS & geospatial analysis"
   },
   "accounting_audit": {
    "provenance": "onet",
@@ -66219,11 +66071,7 @@
      }
     }
    },
-   "name": "Accounting & audit",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Accounting & audit"
   },
   "corporate_finance": {
    "provenance": "onet",
@@ -67809,11 +67657,7 @@
      }
     }
    },
-   "name": "FP&A, controlling & corporate finance",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "FP&A, controlling & corporate finance"
   },
   "investment_banking": {
    "provenance": "onet",
@@ -69351,11 +69195,7 @@
      }
     }
    },
-   "name": "Investment banking & M&A advisory",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Investment banking & M&A advisory"
   },
   "private_capital": {
    "provenance": "onet",
@@ -70869,11 +70709,7 @@
      }
     }
    },
-   "name": "Private equity, venture & principal investing",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Private equity, venture & principal investing"
   },
   "asset_management": {
    "provenance": "onet",
@@ -72435,11 +72271,7 @@
      }
     }
    },
-   "name": "Asset management & investment research",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Asset management & investment research"
   },
   "trading_markets": {
    "provenance": "onet",
@@ -73977,11 +73809,7 @@
      }
     }
    },
-   "name": "Trading & markets",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Trading & markets"
   },
   "quant_finance": {
    "provenance": "estimated",
@@ -75516,11 +75344,7 @@
      }
     }
    },
-   "name": "Quantitative finance",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Quantitative finance"
   },
   "banking_lending": {
    "provenance": "onet",
@@ -77168,11 +76992,7 @@
      }
     }
    },
-   "name": "Banking, lending & credit",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Banking, lending & credit"
   },
   "wealth_advice": {
    "provenance": "onet",
@@ -78694,11 +78514,7 @@
      }
     }
    },
-   "name": "Wealth management & financial advice",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Wealth management & financial advice"
   },
   "insurance": {
    "provenance": "onet",
@@ -80348,11 +80164,7 @@
      }
     }
    },
-   "name": "Insurance",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Insurance"
   },
   "tax_advisory": {
    "provenance": "onet",
@@ -81866,11 +81678,7 @@
      }
     }
    },
-   "name": "Tax advisory",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Tax advisory"
   },
   "risk_management": {
    "provenance": "estimated",
@@ -83407,11 +83215,7 @@
      }
     }
    },
-   "name": "Risk management",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Risk management"
   },
   "fintech_payments": {
    "provenance": "estimated",
@@ -84943,11 +84747,7 @@
      }
     }
    },
-   "name": "Payments, fintech & crypto operations",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Payments, fintech & crypto operations"
   },
   "management_consulting": {
    "provenance": "estimated",
@@ -86465,11 +86265,7 @@
      }
     }
    },
-   "name": "Management consulting",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Management consulting"
   },
   "independent_advisory": {
    "provenance": "estimated",
@@ -87993,11 +87789,7 @@
      }
     }
    },
-   "name": "Independent consulting & interim leadership",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Independent consulting & interim leadership"
   },
   "strategy_bizops": {
    "provenance": "onet",
@@ -89583,11 +89375,7 @@
      }
     }
    },
-   "name": "Strategy, business operations & corporate development",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Strategy, business operations & corporate development"
   },
   "general_management": {
    "provenance": "onet",
@@ -91141,11 +90929,7 @@
      }
     }
    },
-   "name": "General management & executive leadership",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "General management & executive leadership"
   },
   "project_management": {
    "provenance": "onet",
@@ -92691,11 +92475,7 @@
      }
     }
    },
-   "name": "Project & programme management",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Project & programme management"
   },
   "business_operations": {
    "provenance": "onet",
@@ -94249,11 +94029,7 @@
      }
     }
    },
-   "name": "Operations & process improvement",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Operations & process improvement"
   },
   "sustainability": {
    "provenance": "onet",
@@ -95695,11 +95471,7 @@
      }
     }
    },
-   "name": "Sustainability & ESG",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Sustainability & ESG"
   },
   "administration": {
    "provenance": "onet",
@@ -97461,11 +97233,7 @@
      }
     }
    },
-   "name": "Administration & office support",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Administration & office support"
   },
   "recruiting": {
    "provenance": "onet",
@@ -99019,11 +98787,7 @@
      }
     }
    },
-   "name": "Recruiting & talent acquisition",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Recruiting & talent acquisition"
   },
   "hr": {
    "provenance": "onet",
@@ -100637,11 +100401,7 @@
      }
     }
    },
-   "name": "HR & people partnering",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "HR & people partnering"
   },
   "learning_development": {
    "provenance": "onet",
@@ -102187,11 +101947,7 @@
      }
     }
    },
-   "name": "Learning & development",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Learning & development"
   },
   "workplace_psychology": {
    "provenance": "estimated",
@@ -103701,11 +103457,7 @@
      }
     }
    },
-   "name": "Organisational & work psychology",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Organisational & work psychology"
   },
   "legal_practice": {
    "provenance": "onet",
@@ -105291,11 +105043,7 @@
      }
     }
    },
-   "name": "Law firm practice",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Law firm practice"
   },
   "in_house_legal": {
    "provenance": "onet",
@@ -106673,11 +106421,7 @@
      }
     }
    },
-   "name": "In-house legal",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "In-house legal"
   },
   "courts_prosecution": {
    "provenance": "onet",
@@ -108393,11 +108137,7 @@
      }
     }
    },
-   "name": "Courts & prosecution",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Courts & prosecution"
   },
   "legal_support": {
    "provenance": "onet",
@@ -110015,11 +109755,7 @@
      }
     }
    },
-   "name": "Paralegal & legal support",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Paralegal & legal support"
   },
   "compliance": {
    "provenance": "onet",
@@ -111637,11 +111373,7 @@
      }
     }
    },
-   "name": "Compliance & regulatory affairs",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Compliance & regulatory affairs"
   },
   "intellectual_property": {
    "provenance": "onet",
@@ -113155,11 +112887,7 @@
      }
     }
    },
-   "name": "Intellectual property",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Intellectual property"
   },
   "supply_chain": {
    "provenance": "onet",
@@ -114777,11 +114505,7 @@
      }
     }
    },
-   "name": "Supply chain & planning",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Supply chain & planning"
   },
   "procurement": {
    "provenance": "onet",
@@ -116319,11 +116043,7 @@
      }
     }
    },
-   "name": "Purchasing & procurement",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Purchasing & procurement"
   },
   "warehouse_logistics": {
    "provenance": "onet",
@@ -117997,11 +117717,7 @@
      }
     }
    },
-   "name": "Warehousing & logistics",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Warehousing & logistics"
   },
   "hse_quality": {
    "provenance": "onet",
@@ -119755,11 +119471,7 @@
      }
     }
    },
-   "name": "HSE, quality & inspection",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "HSE, quality & inspection"
   },
   "facilities": {
    "provenance": "onet",
@@ -121393,11 +121105,7 @@
      }
     }
    },
-   "name": "Facilities, cleaning & property services",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Facilities, cleaning & property services"
   },
   "waste_recycling": {
    "provenance": "onet",
@@ -123081,11 +122789,7 @@
      }
     }
    },
-   "name": "Waste, recycling & environmental services",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Waste, recycling & environmental services"
   },
   "road_transport": {
    "provenance": "onet",
@@ -124849,11 +124553,7 @@
      }
     }
    },
-   "name": "Driving & road transport",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Driving & road transport"
   },
   "rail": {
    "provenance": "onet",
@@ -126551,11 +126251,7 @@
      }
     }
    },
-   "name": "Rail",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Rail"
   },
   "aviation": {
    "provenance": "onet",
@@ -128309,11 +128005,7 @@
      }
     }
    },
-   "name": "Aviation",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Aviation"
   },
   "real_estate_agency": {
    "provenance": "onet",
@@ -129835,11 +129527,7 @@
      }
     }
    },
-   "name": "Real estate brokerage",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Real estate brokerage"
   },
   "property_investment": {
    "provenance": "onet",
@@ -131377,11 +131065,7 @@
      }
     }
    },
-   "name": "Property investment & development",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Property investment & development"
   },
   "property_management": {
    "provenance": "onet",
@@ -132999,11 +132683,7 @@
      }
     }
    },
-   "name": "Property management & valuation",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Property management & valuation"
   },
   "mechanical_engineering": {
    "provenance": "onet",
@@ -134909,11 +134589,7 @@
      }
     }
    },
-   "name": "Mechanical engineering",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Mechanical engineering"
   },
   "electrical_engineering": {
    "provenance": "onet",
@@ -136820,11 +136496,7 @@
      }
     }
    },
-   "name": "Electrical & electronics engineering",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Electrical & electronics engineering"
   },
   "civil_engineering": {
    "provenance": "onet",
@@ -138514,11 +138186,7 @@
      }
     }
    },
-   "name": "Civil & structural engineering",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Civil & structural engineering"
   },
   "process_engineering": {
    "provenance": "onet",
@@ -140256,11 +139924,7 @@
      }
     }
    },
-   "name": "Chemical & process engineering",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Chemical & process engineering"
   },
   "industrial_engineering": {
    "provenance": "onet",
@@ -142040,11 +141704,7 @@
      }
     }
    },
-   "name": "Industrial & manufacturing engineering",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Industrial & manufacturing engineering"
   },
   "environmental_engineering": {
    "provenance": "onet",
@@ -143675,11 +143335,7 @@
      }
     }
    },
-   "name": "Environmental & energy engineering",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Environmental & energy engineering"
   },
   "biomedical_engineering": {
    "provenance": "onet",
@@ -145402,11 +145058,7 @@
      }
     }
    },
-   "name": "Biomedical engineering",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Biomedical engineering"
   },
   "mining_geo": {
    "provenance": "onet",
@@ -147080,11 +146732,7 @@
      }
     }
    },
-   "name": "Mining, quarrying & drilling",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Mining, quarrying & drilling"
   },
   "architecture": {
    "provenance": "onet",
@@ -148654,11 +148302,7 @@
      }
     }
    },
-   "name": "Architecture",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Architecture"
   },
   "interior_design": {
    "provenance": "onet",
@@ -150204,11 +149848,7 @@
      }
     }
    },
-   "name": "Interior design",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Interior design"
   },
   "urban_planning": {
    "provenance": "onet",
@@ -151842,11 +151482,7 @@
      }
     }
    },
-   "name": "Urban & transport planning",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Urban & transport planning"
   },
   "construction_management": {
    "provenance": "onet",
@@ -153520,11 +153156,7 @@
      }
     }
    },
-   "name": "Construction management",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Construction management"
   },
   "electrician": {
    "provenance": "onet",
@@ -155201,11 +154833,7 @@
      }
     }
    },
-   "name": "Electrician",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Electrician"
   },
   "plumbing_hvac": {
    "provenance": "onet",
@@ -156823,11 +156451,7 @@
      }
     }
    },
-   "name": "Plumbing, heating & refrigeration",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Plumbing, heating & refrigeration"
   },
   "carpentry": {
    "provenance": "onet",
@@ -158504,11 +158128,7 @@
      }
     }
    },
-   "name": "Carpentry & building",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Carpentry & building"
   },
   "masonry_concrete": {
    "provenance": "onet",
@@ -160222,11 +159842,7 @@
      }
     }
    },
-   "name": "Masonry, concrete & tiling",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Masonry, concrete & tiling"
   },
   "finishing_trades": {
    "provenance": "onet",
@@ -161996,11 +161612,7 @@
      }
     }
    },
-   "name": "Painting, roofing & building finishes",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Painting, roofing & building finishes"
   },
   "heavy_equipment": {
    "provenance": "onet",
@@ -163834,11 +163446,7 @@
      }
     }
    },
-   "name": "Heavy equipment & civil works",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Heavy equipment & civil works"
   },
   "welding_metal": {
    "provenance": "onet",
@@ -165656,11 +165264,7 @@
      }
     }
    },
-   "name": "Welding & metal fabrication",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Welding & metal fabrication"
   },
   "vehicle_mechanics": {
    "provenance": "onet",
@@ -167622,11 +167226,7 @@
      }
     }
    },
-   "name": "Vehicle & machinery mechanics",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Vehicle & machinery mechanics"
   },
   "industrial_maintenance": {
    "provenance": "onet",
@@ -169541,11 +169141,7 @@
      }
     }
    },
-   "name": "Industrial maintenance & technical service",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Industrial maintenance & technical service"
   },
   "specialist_trades": {
    "provenance": "onet",
@@ -171243,11 +170839,7 @@
      }
     }
    },
-   "name": "Specialist trades & services",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Specialist trades & services"
   },
   "landscaping": {
    "provenance": "onet",
@@ -172857,11 +172449,7 @@
      }
     }
    },
-   "name": "Landscaping & grounds",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Landscaping & grounds"
   },
   "machine_operation": {
    "provenance": "onet",
@@ -175344,11 +174932,7 @@
      }
     }
    },
-   "name": "Machine operation & assembly",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Machine operation & assembly"
   },
   "process_operation": {
    "provenance": "onet",
@@ -177304,11 +176888,7 @@
      }
     }
    },
-   "name": "Process plant operation",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Process plant operation"
   },
   "food_production": {
    "provenance": "onet",
@@ -179046,11 +178626,7 @@
      }
     }
    },
-   "name": "Food & seafood production",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Food & seafood production"
   },
   "textile_print_production": {
    "provenance": "onet",
@@ -180932,11 +180508,7 @@
      }
     }
    },
-   "name": "Textile, print & packaging production",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Textile, print & packaging production"
   },
   "seafaring": {
    "provenance": "onet",
@@ -182507,11 +182079,7 @@
      }
     }
    },
-   "name": "Seafaring & ship operations",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Seafaring & ship operations"
   },
   "offshore_oil_gas": {
    "provenance": "onet",
@@ -184105,11 +183673,7 @@
      }
     }
    },
-   "name": "Offshore & oil and gas",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Offshore & oil and gas"
   },
   "renewables": {
    "provenance": "onet",
@@ -185664,11 +185228,7 @@
      }
     }
    },
-   "name": "Renewable energy",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Renewable energy"
   },
   "power_utilities": {
    "provenance": "onet",
@@ -187326,11 +186886,7 @@
      }
     }
    },
-   "name": "Power grid & utilities",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Power grid & utilities"
   },
   "shipping_business": {
    "provenance": "onet",
@@ -188860,11 +188416,7 @@
      }
     }
    },
-   "name": "Shipping business & maritime services",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Shipping business & maritime services"
   },
   "farming": {
    "provenance": "onet",
@@ -190554,11 +190106,7 @@
      }
     }
    },
-   "name": "Farming & horticulture",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Farming & horticulture"
   },
   "fisheries_aquaculture": {
    "provenance": "onet",
@@ -192184,11 +191732,7 @@
      }
     }
    },
-   "name": "Fisheries & aquaculture",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Fisheries & aquaculture"
   },
   "forestry": {
    "provenance": "onet",
@@ -193822,11 +193366,7 @@
      }
     }
    },
-   "name": "Forestry & hunting",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Forestry & hunting"
   },
   "animal_care": {
    "provenance": "onet",
@@ -195468,11 +195008,7 @@
      }
     }
    },
-   "name": "Animal care & training",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Animal care & training"
   },
   "nature_conservation": {
    "provenance": "onet",
@@ -197178,11 +196714,7 @@
      }
     }
    },
-   "name": "Nature & conservation",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Nature & conservation"
   },
   "academic_research": {
    "provenance": "onet",
@@ -199064,11 +198596,7 @@
      }
     }
    },
-   "name": "Academic research & university teaching",
-   "taxonomy": {
-    "payoff": "steep",
-    "payoff_variance": 55
-   }
+   "name": "Academic research & university teaching"
   },
   "life_sciences": {
    "provenance": "onet",
@@ -200990,11 +200518,7 @@
      }
     }
    },
-   "name": "Life sciences & biotech",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Life sciences & biotech"
   },
   "pharma_clinical": {
    "provenance": "onet",
@@ -202628,11 +202152,7 @@
      }
     }
    },
-   "name": "Pharmaceutical & clinical research",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Pharmaceutical & clinical research"
   },
   "physical_sciences": {
    "provenance": "onet",
@@ -204410,11 +203930,7 @@
      }
     }
    },
-   "name": "Physics, chemistry & mathematics",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Physics, chemistry & mathematics"
   },
   "earth_sciences": {
    "provenance": "onet",
@@ -206056,11 +205572,7 @@
      }
     }
    },
-   "name": "Earth, ocean & climate sciences",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Earth, ocean & climate sciences"
   },
   "social_sciences": {
    "provenance": "onet",
@@ -207846,11 +207358,7 @@
      }
     }
    },
-   "name": "Economics & social sciences",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Economics & social sciences"
   },
   "medicine": {
    "provenance": "onet",
@@ -209540,11 +209048,7 @@
      }
     }
    },
-   "name": "Medicine (doctors)",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Medicine (doctors)"
   },
   "nursing": {
    "provenance": "onet",
@@ -211154,11 +210658,7 @@
      }
     }
    },
-   "name": "Nursing & midwifery",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Nursing & midwifery"
   },
   "dentistry": {
    "provenance": "onet",
@@ -212739,11 +212239,7 @@
      }
     }
    },
-   "name": "Dentistry",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Dentistry"
   },
   "pharmacy": {
    "provenance": "onet",
@@ -214266,11 +213762,7 @@
      }
     }
    },
-   "name": "Pharmacy",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Pharmacy"
   },
   "allied_health": {
    "provenance": "onet",
@@ -216305,11 +215797,7 @@
      }
     }
    },
-   "name": "Rehabilitation & allied health",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Rehabilitation & allied health"
   },
   "diagnostics": {
    "provenance": "onet",
@@ -218121,11 +217609,7 @@
      }
     }
    },
-   "name": "Diagnostics & medical technology",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Diagnostics & medical technology"
   },
   "mental_health": {
    "provenance": "onet",
@@ -219847,11 +219331,7 @@
      }
     }
    },
-   "name": "Mental health & psychology",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Mental health & psychology"
   },
   "health_admin": {
    "provenance": "onet",
@@ -221621,11 +221101,7 @@
      }
     }
    },
-   "name": "Health administration & informatics",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Health administration & informatics"
   },
   "veterinary": {
    "provenance": "onet",
@@ -223163,11 +222639,7 @@
      }
     }
    },
-   "name": "Veterinary medicine",
-   "taxonomy": {
-    "payoff": "linear_high_floor",
-    "payoff_variance": 10
-   }
+   "name": "Veterinary medicine"
   },
   "complementary_health": {
    "provenance": "onet",
@@ -224817,11 +224289,7 @@
      }
     }
    },
-   "name": "Complementary therapies",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Complementary therapies"
   },
   "care_work": {
    "provenance": "onet",
@@ -226463,11 +225931,7 @@
      }
     }
    },
-   "name": "Elder & disability care",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Elder & disability care"
   },
   "childcare": {
    "provenance": "onet",
@@ -228109,11 +227573,7 @@
      }
     }
    },
-   "name": "Childcare",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Childcare"
   },
   "social_work": {
    "provenance": "onet",
@@ -229867,11 +229327,7 @@
      }
     }
    },
-   "name": "Social work & welfare",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Social work & welfare"
   },
   "nonprofit": {
    "provenance": "onet",
@@ -231473,11 +230929,7 @@
      }
     }
    },
-   "name": "Nonprofits, NGOs & humanitarian work",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Nonprofits, NGOs & humanitarian work"
   },
   "faith": {
    "provenance": "onet",
@@ -233007,11 +232459,7 @@
      }
     }
    },
-   "name": "Religious & spiritual work",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Religious & spiritual work"
   },
   "early_childhood": {
    "provenance": "onet",
@@ -234541,11 +233989,7 @@
      }
     }
    },
-   "name": "Early childhood education",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Early childhood education"
   },
   "school_teaching": {
    "provenance": "onet",
@@ -236483,11 +235927,7 @@
      }
     }
    },
-   "name": "School teaching",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "School teaching"
   },
   "tutoring": {
    "provenance": "onet",
@@ -238145,11 +237585,7 @@
      }
     }
    },
-   "name": "Tutoring & language teaching",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Tutoring & language teaching"
   },
   "coaching": {
    "provenance": "onet",
@@ -239719,11 +239155,7 @@
      }
     }
    },
-   "name": "Coaching",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Coaching"
   },
   "vocational_instruction": {
    "provenance": "estimated",
@@ -241249,11 +240681,7 @@
      }
     }
    },
-   "name": "Vocational & specialist instruction",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Vocational & specialist instruction"
   },
   "public_policy": {
    "provenance": "onet",
@@ -242975,11 +242403,7 @@
      }
     }
    },
-   "name": "Public policy & analysis",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Public policy & analysis"
   },
   "public_administration": {
    "provenance": "onet",
@@ -244701,11 +244125,7 @@
      }
     }
    },
-   "name": "Public administration & casework",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Public administration & casework"
   },
   "inspection_regulation": {
    "provenance": "onet",
@@ -246581,11 +246001,7 @@
      }
     }
    },
-   "name": "Inspection & regulation",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Inspection & regulation"
   },
   "politics": {
    "provenance": "estimated",
@@ -248126,11 +247542,7 @@
      }
     }
    },
-   "name": "Politics & elected office",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Politics & elected office"
   },
   "diplomacy": {
    "provenance": "onet",
@@ -249668,11 +249080,7 @@
      }
     }
    },
-   "name": "Diplomacy & international organisations",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Diplomacy & international organisations"
   },
   "library_archives": {
    "provenance": "onet",
@@ -251330,11 +250738,7 @@
      }
     }
    },
-   "name": "Libraries, archives & museums",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Libraries, archives & museums"
   },
   "military": {
    "provenance": "onet",
@@ -252928,11 +252332,7 @@
      }
     }
    },
-   "name": "Armed forces",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Armed forces"
   },
   "police": {
    "provenance": "onet",
@@ -254582,11 +253982,7 @@
      }
     }
    },
-   "name": "Police & investigation",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Police & investigation"
   },
   "fire_rescue": {
    "provenance": "onet",
@@ -256268,11 +255664,7 @@
      }
     }
    },
-   "name": "Fire, rescue & emergency response",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Fire, rescue & emergency response"
   },
   "corrections": {
    "provenance": "onet",
@@ -257826,11 +257218,7 @@
      }
     }
    },
-   "name": "Corrections",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Corrections"
   },
   "private_security": {
    "provenance": "onet",
@@ -259496,11 +258884,7 @@
      }
     }
    },
-   "name": "Private security",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Private security"
   },
   "journalism": {
    "provenance": "onet",
@@ -261062,11 +260446,7 @@
      }
     }
    },
-   "name": "Journalism",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Journalism"
   },
   "publishing": {
    "provenance": "onet",
@@ -262676,11 +262056,7 @@
      }
     }
    },
-   "name": "Publishing & editorial",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Publishing & editorial"
   },
   "authorship": {
    "provenance": "onet",
@@ -264218,11 +263594,7 @@
      }
     }
    },
-   "name": "Writing & authorship",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Writing & authorship"
   },
   "translation": {
    "provenance": "onet",
@@ -265784,11 +265156,7 @@
      }
     }
    },
-   "name": "Translation & interpreting",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Translation & interpreting"
   },
   "film_tv": {
    "provenance": "onet",
@@ -267494,11 +266862,7 @@
      }
     }
    },
-   "name": "Film & TV production",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Film & TV production"
   },
   "animation_vfx": {
    "provenance": "onet",
@@ -269076,11 +268440,7 @@
      }
     }
    },
-   "name": "Animation, VFX & 3D",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Animation, VFX & 3D"
   },
   "photography": {
    "provenance": "onet",
@@ -270610,11 +269970,7 @@
      }
     }
    },
-   "name": "Photography",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Photography"
   },
   "visual_arts": {
    "provenance": "onet",
@@ -272288,11 +271644,7 @@
      }
     }
    },
-   "name": "Fine art & illustration",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Fine art & illustration"
   },
   "fashion": {
    "provenance": "onet",
@@ -273878,11 +273230,7 @@
      }
     }
    },
-   "name": "Fashion & styling",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Fashion & styling"
   },
   "music_production": {
    "provenance": "onet",
@@ -275444,11 +274792,7 @@
      }
     }
    },
-   "name": "Music production & industry",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Music production & industry"
   },
   "stage_production": {
    "provenance": "onet",
@@ -277170,11 +276514,7 @@
      }
     }
    },
-   "name": "Theatre & live production",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Theatre & live production"
   },
   "arts_admin": {
    "provenance": "onet",
@@ -278840,11 +278180,7 @@
      }
     }
    },
-   "name": "Arts & culture management",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Arts & culture management"
   },
   "acting": {
    "provenance": "onet",
@@ -280374,11 +279710,7 @@
      }
     }
    },
-   "name": "Acting",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Acting"
   },
   "music_performance": {
    "provenance": "onet",
@@ -281918,11 +281250,7 @@
      }
     }
    },
-   "name": "Music performance",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Music performance"
   },
   "comedy": {
    "provenance": "onet",
@@ -283428,11 +282756,7 @@
      }
     }
    },
-   "name": "Comedy",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Comedy"
   },
   "broadcasting": {
    "provenance": "onet",
@@ -284970,11 +284294,7 @@
      }
     }
    },
-   "name": "Hosting & broadcasting",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Hosting & broadcasting"
   },
   "dance": {
    "provenance": "onet",
@@ -286488,11 +285808,7 @@
      }
     }
    },
-   "name": "Dance",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Dance"
   },
   "modelling": {
    "provenance": "onet",
@@ -287998,11 +287314,7 @@
      }
     }
    },
-   "name": "Modelling",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Modelling"
   },
   "variety": {
    "provenance": "onet",
@@ -289524,11 +288836,7 @@
      }
     }
    },
-   "name": "Variety & live entertainment",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Variety & live entertainment"
   },
   "pro_sport": {
    "provenance": "onet",
@@ -291042,11 +290350,7 @@
      }
     }
    },
-   "name": "Professional sport",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Professional sport"
   },
   "esports": {
    "provenance": "estimated",
@@ -292568,11 +291872,7 @@
      }
     }
    },
-   "name": "Esports",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Esports"
   },
   "strategy_games": {
    "provenance": "estimated",
@@ -294109,11 +293409,7 @@
      }
     }
    },
-   "name": "Professional strategy games",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Professional strategy games"
   },
   "sports_coaching": {
    "provenance": "onet",
@@ -295659,11 +294955,7 @@
      }
     }
    },
-   "name": "Sports coaching & performance",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Sports coaching & performance"
   },
   "fitness": {
    "provenance": "onet",
@@ -297249,11 +296541,7 @@
      }
     }
    },
-   "name": "Fitness & wellness coaching",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Fitness & wellness coaching"
   },
   "outdoor_guiding": {
    "provenance": "onet",
@@ -298823,11 +298111,7 @@
      }
     }
    },
-   "name": "Outdoor guiding & instruction",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Outdoor guiding & instruction"
   },
   "sports_business": {
    "provenance": "onet",
@@ -300389,11 +299673,7 @@
      }
     }
    },
-   "name": "Sports business",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Sports business"
   },
   "content_creation": {
    "provenance": "estimated",
@@ -301921,11 +301201,7 @@
      }
     }
    },
-   "name": "Content creation",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Content creation"
   },
   "written_creator": {
    "provenance": "onet",
@@ -303431,11 +302707,7 @@
      }
     }
    },
-   "name": "Newsletters, blogs & niche publishing",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Newsletters, blogs & niche publishing"
   },
   "course_creation": {
    "provenance": "estimated",
@@ -304967,11 +304239,7 @@
      }
     }
    },
-   "name": "Courses, digital products & communities",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Courses, digital products & communities"
   },
   "creator_services": {
    "provenance": "onet",
@@ -306485,11 +305753,7 @@
      }
     }
    },
-   "name": "Creator services",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Creator services"
   },
   "startup_founder": {
    "provenance": "estimated",
@@ -308019,11 +307283,7 @@
      }
     }
    },
-   "name": "Startup founding",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "Startup founding"
   },
   "small_business": {
    "provenance": "onet",
@@ -309569,11 +308829,7 @@
      }
     }
    },
-   "name": "Small business ownership",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Small business ownership"
   },
   "ecommerce": {
    "provenance": "onet",
@@ -311087,11 +310343,7 @@
      }
     }
    },
-   "name": "E-commerce",
-   "taxonomy": {
-    "payoff": "winner_take_all",
-    "payoff_variance": 95
-   }
+   "name": "E-commerce"
   },
   "agency_ownership": {
    "provenance": "estimated",
@@ -312624,11 +311876,7 @@
      }
     }
    },
-   "name": "Agency & studio ownership",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Agency & studio ownership"
   },
   "culinary": {
    "provenance": "onet",
@@ -314238,11 +313486,7 @@
      }
     }
    },
-   "name": "Culinary",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Culinary"
   },
   "restaurant_service": {
    "provenance": "onet",
@@ -315812,11 +315056,7 @@
      }
     }
    },
-   "name": "Restaurant, bar & caf\u00e9 service",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Restaurant, bar & caf\u00e9 service"
   },
   "hotels": {
    "provenance": "onet",
@@ -317506,11 +316746,7 @@
      }
     }
    },
-   "name": "Hotels & accommodation",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Hotels & accommodation"
   },
   "tourism": {
    "provenance": "onet",
@@ -319232,11 +318468,7 @@
      }
     }
    },
-   "name": "Tourism & travel",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Tourism & travel"
   },
   "store_retail": {
    "provenance": "onet",
@@ -321006,11 +320238,7 @@
      }
     }
    },
-   "name": "Store retail",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Store retail"
   },
   "retail_buying": {
    "provenance": "onet",
@@ -322532,11 +321760,7 @@
      }
     }
    },
-   "name": "Retail buying & merchandising",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Retail buying & merchandising"
   },
   "customer_service": {
    "provenance": "onet",
@@ -324170,11 +323394,7 @@
      }
     }
    },
-   "name": "Customer service & support",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Customer service & support"
   },
   "hair_beauty": {
    "provenance": "onet",
@@ -325736,11 +324956,7 @@
      }
     }
    },
-   "name": "Hair, beauty & cosmetics",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Hair, beauty & cosmetics"
   },
   "household_services": {
    "provenance": "onet",
@@ -327398,11 +326614,7 @@
      }
     }
    },
-   "name": "Household & personal assistance",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Household & personal assistance"
   },
   "funeral_services": {
    "provenance": "onet",
@@ -328948,11 +328160,7 @@
      }
     }
    },
-   "name": "Funeral services",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Funeral services"
   },
   "woodcraft": {
    "provenance": "onet",
@@ -330602,11 +329810,7 @@
      }
     }
    },
-   "name": "Furniture & woodcraft",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Furniture & woodcraft"
   },
   "tattoo": {
    "provenance": "estimated",
@@ -332125,11 +331329,7 @@
      }
     }
    },
-   "name": "Tattoo & body art",
-   "taxonomy": {
-    "payoff": "convex",
-    "payoff_variance": 70
-   }
+   "name": "Tattoo & body art"
   },
   "metal_jewellery": {
    "provenance": "onet",
@@ -333739,11 +332939,7 @@
      }
     }
    },
-   "name": "Jewellery, metal & precision craft",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Jewellery, metal & precision craft"
   },
   "textile_leather": {
    "provenance": "onet",
@@ -335385,11 +334581,7 @@
      }
     }
    },
-   "name": "Textiles, leather & upholstery",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Textiles, leather & upholstery"
   },
   "ceramics_glass": {
    "provenance": "onet",
@@ -336986,11 +336178,7 @@
      }
     }
    },
-   "name": "Ceramics, glass & instrument making",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Ceramics, glass & instrument making"
   },
   "food_drink_craft": {
    "provenance": "onet",
@@ -338576,11 +337764,7 @@
      }
     }
    },
-   "name": "Food & drink craft",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Food & drink craft"
   },
   "restoration_signs": {
    "provenance": "onet",
@@ -340214,11 +339398,7 @@
      }
     }
    },
-   "name": "Restoration & decorative crafts",
-   "taxonomy": {
-    "payoff": "linear",
-    "payoff_variance": 20
-   }
+   "name": "Restoration & decorative crafts"
   }
  }
 }

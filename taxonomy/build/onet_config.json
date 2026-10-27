@@ -1,28 +1,58 @@
 {
-  "_comment": "Provisional settings for build_onet_profiles.py; documented in docs/WORK_DESIGN.md.",
-  "releases": {
-    "_comment": "O*NET 31.0 is the primary release. It dropped Work Values (and the old Interests file); Work Values come from 30.2, the last release that has them.",
-    "primary": { "release": "31.0", "dir": "db_31_0_text" },
-    "work_values": { "release": "30.2", "dir": "db_30_2_text" }
+ "_comment": "Provisional settings for build_onet_profiles.py; documented in docs/WORK_DESIGN.md.",
+ "releases": {
+  "_comment": "O*NET 31.0 is the primary release. It dropped Work Values (and the old Interests file); Work Values come from 30.2, the last release that has them.",
+  "primary": {
+   "release": "31.0",
+   "dir": "db_31_0_text"
   },
-  "files": {
-    "occupations": ["primary", "Occupation Data.txt"],
-    "interests": ["primary", "Career Interest Types.txt"],
-    "work_values": ["work_values", "Work Values.txt"],
-    "work_activities": ["primary", "Work Activities.txt"],
-    "work_context": ["primary", "Work Context.txt"],
-    "abilities": ["primary", "Abilities.txt"],
-    "work_styles": ["primary", "Work Styles.txt"],
-    "job_zones": ["primary", "Job Zones.txt"]
-  },
-  "match_weights": {
-    "_comment": "Weight of one ESCO occupation's link, split evenly over the O*NET occupations it maps to. The O*NET-hosted crosswalk has no match-type column, so every crosswalk link is 'crosswalk'.",
-    "crosswalk": 1.0,
-    "fallback_isco": 0.25,
-    "fallback_lane_isco": 0.15
-  },
-  "confidence": {
-    "_comment": "coverage confidence = min(1, ESCO occupations linked through the crosswalk / full_occupations) x share of link weight from the crosswalk route",
-    "full_occupations": 5
+  "work_values": {
+   "release": "30.2",
+   "dir": "db_30_2_text"
   }
+ },
+ "files": {
+  "occupations": [
+   "primary",
+   "Occupation Data.txt"
+  ],
+  "interests": [
+   "primary",
+   "Career Interest Types.txt"
+  ],
+  "work_values": [
+   "work_values",
+   "Work Values.txt"
+  ],
+  "work_activities": [
+   "primary",
+   "Work Activities.txt"
+  ],
+  "work_context": [
+   "primary",
+   "Work Context.txt"
+  ],
+  "abilities": [
+   "primary",
+   "Abilities.txt"
+  ],
+  "work_styles": [
+   "primary",
+   "Work Styles.txt"
+  ],
+  "job_zones": [
+   "primary",
+   "Job Zones.txt"
+  ]
+ },
+ "match_weights": {
+  "crosswalk": 1.0,
+  "override": 1.0,
+  "fallback_isco": 0.25,
+  "fallback_lane_isco": 0.15
+ },
+ "confidence": {
+  "_comment": "coverage confidence = min(1, ESCO occupations linked through the crosswalk / full_occupations) x share of link weight from the crosswalk route",
+  "full_occupations": 5
+ }
 }

@@ -9,7 +9,7 @@
  * find (`ONET_ELEMENTS_VERIFIED` records the release they were checked against).
  */
 
-export const WORK_DESIGN_VERSION = "wd-0.1";
+export const WORK_DESIGN_VERSION = "wd-0.2";
 
 /** The O*NET release every element name below was checked against (build_onet_profiles.py fails on any it can't find). */
 export const ONET_ELEMENTS_VERIFIED: { release: string; date: string } | null = { release: "O*NET 31.0 (Work Values: 30.2)", date: "2026-10-27" };
@@ -46,11 +46,8 @@ export type OnetSource =
 /**
  * One career-side input: an O*NET element by its exact name, read as a 0–100 percentile across
  * all O*NET occupations (so different files share one scale). `reverse` uses 100 − percentile.
- * `taxonomy` inputs come from Lane's own taxonomy instead of O*NET.
  */
-export type CareerInput =
-  | { element: string; source: OnetSource; weight: number; reverse?: boolean }
-  | { taxonomy: "payoff_variance"; weight: number };
+export type CareerInput = { element: string; source: OnetSource; weight: number; reverse?: boolean };
 
 /**
  * How a mismatch costs fit in Phase 2 (person score p, career score c, both 0–100):
@@ -213,7 +210,7 @@ export const VALUE_MODES: Dimension[] = [
 
 /* ------------------------------------------------------------------ B. environment ---- */
 
-/** What your best day feels like: nine environment dimensions, each with a penalty shape. */
+/** What your best day feels like: eight environment dimensions, each with a penalty shape. */
 export const ENVIRONMENT: Dimension[] = [
   {
     id: "autonomy",
@@ -296,18 +293,6 @@ export const ENVIRONMENT: Dimension[] = [
     penalty: "deficit",
   },
   {
-    id: "income_variance",
-    name: "Income variance",
-    poles: ["Steady, predictable pay", "Uneven pay with high upside"],
-    person: [
-      { id: "behaviour.risk", weight: 0.5 },
-      { id: "behaviour.patience", weight: 0.5 },
-    ],
-    career: [{ taxonomy: "payoff_variance", weight: 1 }],
-    penalty: "two_sided",
-    note: "Career side from Lane's taxonomy payoff curve, not O*NET (see PAYOFF_VARIANCE).",
-  },
-  {
     id: "challenge",
     name: "Cognitive challenge",
     poles: ["Familiar, well-defined problems", "Hard, novel problems"],
@@ -323,15 +308,6 @@ export const ENVIRONMENT: Dimension[] = [
     note: "Deficit means under-challenge: the work asks less than your reasoning range. Over-demand is ability fit (section C), not fulfilment.",
   },
 ];
-
-/** Income variance on 0–100 from the taxonomy payoff curve (Lane's judgement; documented in WORK_DESIGN.md). */
-export const PAYOFF_VARIANCE: Record<string, number> = {
-  linear_high_floor: 10,
-  linear: 20,
-  steep: 55,
-  convex: 70,
-  winner_take_all: 95,
-};
 
 /* ------------------------------------------------------------------ C. ability demands ---- */
 
@@ -349,7 +325,7 @@ export const DIMENSIONS: Dimension[] = [...VALUE_MODES, ...ENVIRONMENT];
 /** Every O*NET element name the model reads, by file, for verification against a download. */
 export function onetElements(): { file: OnetSource["file"]; element: string }[] {
   const out = new Map<string, { file: OnetSource["file"]; element: string }>();
-  for (const d of DIMENSIONS) for (const c of d.career) if ("element" in c) out.set(`${c.source.file}|${c.element}`, { file: c.source.file, element: c.element });
+  for (const d of DIMENSIONS) for (const c of d.career) out.set(`${c.source.file}|${c.element}`, { file: c.source.file, element: c.element });
   for (const a of ABILITY_DEMANDS) for (const e of a.abilities) out.set(`Abilities|${e}`, { file: "Abilities", element: e });
   return [...out.values()];
 }

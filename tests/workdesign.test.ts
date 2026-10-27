@@ -17,9 +17,10 @@ const unnormed: ProfileScores = addSelfScores({
 });
 
 describe("work design model", () => {
-  it("defines nine value modes with archetypes and nine environment dimensions with a penalty shape", () => {
+  it("defines nine value modes with archetypes and eight environment dimensions with a penalty shape", () => {
     expect(VALUE_MODES.map((d) => d.archetype)).toEqual(["Hunter", "Scout", "Maker", "Gatherer", "Healer", "Teacher", "Storyteller", "Chief", "Guardian"]);
-    expect(ENVIRONMENT).toHaveLength(9);
+    expect(ENVIRONMENT).toHaveLength(8);
+    expect(ENVIRONMENT.map((d) => d.id)).not.toContain("income_variance");
     for (const d of ENVIRONMENT) expect(["deficit", "excess", "two_sided"]).toContain(d.penalty);
     expect(new Set(DIMENSIONS.map((d) => d.id)).size).toBe(DIMENSIONS.length);
   });
@@ -99,7 +100,7 @@ describe("shadow mode", () => {
     const wd = personWorkDesign(profile);
     const rec = shadowRecord([{ session: "S2", validity: { flags: [], confidence: "ok" } as never, hidden: { dispositions: { x: 1 } } }], wd);
     expect(rec.research.S2).toEqual({ dispositions: { x: 1 } });
-    expect(Object.keys(rec.dimensions)).toHaveLength(18);
+    expect(Object.keys(rec.dimensions)).toHaveLength(17);
   });
 });
 
@@ -110,7 +111,6 @@ describe("career side", async () => {
     provenance: "onet" as const,
     n_occupations: 2,
     coverage_confidence: 1,
-    taxonomy: { payoff: "convex", payoff_variance: 70 },
     descriptors: {
       "Work Context": {
         "Freedom to Make Decisions": { CX: { raw: 4.5, pct: 90 } },
@@ -121,12 +121,11 @@ describe("career side", async () => {
       "Work Activities": { "Thinking Creatively": { IM: { raw: 4.0, pct: 60 } } },
     },
   };
-  it("is the weighted mean of element percentiles, with reverse and taxonomy inputs", () => {
+  it("is the weighted mean of element percentiles, with reverse inputs", () => {
     const autonomy = careerDimension(ENVIRONMENT.find((d) => d.id === "autonomy")!, lane);
     expect(autonomy.value).toBeCloseTo((2 * 90 + 80 + 70) / 4);
     const variety = careerDimension(ENVIRONMENT.find((d) => d.id === "variety")!, lane);
     expect(variety.value).toBeCloseTo((100 - 20 + 60) / 2); // repetition reversed
-    expect(careerDimension(ENVIRONMENT.find((d) => d.id === "income_variance")!, lane).value).toBe(70);
   });
   it("leaves a dimension empty when under half its weight is in the profile", () => {
     const all = careerWorkDesign(lane);

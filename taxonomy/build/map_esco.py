@@ -143,6 +143,15 @@ def main(esco_path, review_threshold=0.30, isco_text_path=None):
             elif mg: sc[k] -= 0.04
         return roles[cand[int(np.argmax(sc))]][0]
 
+    # Output labels: the official ESCO v1.2.0 label per URI (taxonomy/build/fetch_esco_codes.py) where we have it.
+    # The bundled ESCO copy truncates labels at the first comma; matching above still uses the input text.
+    codes_path = os.path.join(ROOT, "reference", "crosswalks", "esco_uri_codes.json")
+    official = {}
+    if os.path.exists(codes_path):
+        for uri, rec in json.load(open(codes_path, encoding="utf-8"))["occupations"].items():
+            label = ((rec.get("crosswalk_version") or {}).get("label") or "").strip()
+            if label:
+                official[uri] = " ".join(label.split())
     out, low = [], []
     for i, o in enumerate(esco):
         combined = 0.50 * sim_role[i] + 0.20 * sim_lane[i][role_lane] + 0.30 * lane_isco[i][role_lane]
@@ -174,7 +183,7 @@ def main(esco_path, review_threshold=0.30, isco_text_path=None):
             method = "manual"
         if not (method == "manual" and ov and len(ov) > 1 and ov[1]):
             role_id = pick_role_in_lane(i, lane_id, o["label"].lower())
-        out.append([o["uri"], o["label"], lane_id, role_id, round(score, 3), method])
+        out.append([o["uri"], official.get(o["uri"], o["label"]), lane_id, role_id, round(score, 3), method])
         if method == "model" and score < review_threshold:
             low.append((score, key, o["label"], lane_id, role_id))
     with open(os.path.join(ROOT, "esco_mapping.csv"), "w", newline="", encoding="utf-8") as fh:

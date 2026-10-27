@@ -96,12 +96,6 @@ Top 8: Comedy *(low cov.)* 96 · PR & communications 93 · Tattoo & body art *(e
 
 Bottom 8: Tax advisory *(low cov.)* 13 · Pharmacy 17 · Accounting & audit 20 · Banking, lending & credit 20 · Wealth management & financial advice 26 · Administration & office support 27 · FP&A, controlling & corporate finance 28 · Paralegal & legal support 29
 
-### Income variance
-
-Top 8: Game development 95 · Trading & markets 95 · Politics & elected office *(est.)* 95 · Writing & authorship 95 · Film & TV production 95 · Fine art & illustration 95 · Fashion & styling 95 · Music production & industry 95
-
-Bottom 8: Veterinary medicine 10 · Pharmacy 10 · Dentistry 10 · Nursing & midwifery 10 · Medicine (doctors) *(low cov.)* 10 · Fisheries & aquaculture 10 · Power grid & utilities 10 · Offshore & oil and gas 10
-
 ### Cognitive challenge
 
 Top 8: Medicine (doctors) *(low cov.)* 91 · Organisational & work psychology *(est.)* 89 · Private equity, venture & principal investing *(low cov.)* 89 · Quantitative finance *(est.)* 88 · Diplomacy & international organisations 82 · Payments, fintech & crypto operations *(est.)* 82 · Intellectual property *(low cov.)* 81 · Data science & statistics 81

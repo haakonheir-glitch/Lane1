@@ -1,5 +1,5 @@
 {
-  "version": "wd-0.1",
+  "version": "wd-0.2",
   "elements": [
     {
       "file": "Work Activities",
@@ -185,12 +185,5 @@
       "file": "Abilities",
       "element": "Speed of Closure"
     }
-  ],
-  "payoffVariance": {
-    "linear_high_floor": 10,
-    "linear": 20,
-    "steep": 55,
-    "convex": 70,
-    "winner_take_all": 95
-  }
+  ]
 }

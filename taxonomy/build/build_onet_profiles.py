@@ -210,6 +210,23 @@ def weighted(onet: Onet, links: dict[str, float]) -> dict:
     return out
 
 
+def parse_link_overrides(path: Path) -> dict[str, dict]:
+    """Lane's own corrections to the official crosswalk: ESCO URI -> replacement O*NET-SOC codes, with a rationale.
+    Each row replaces all of that ESCO occupation's crosswalk links. Lines starting with # are comments."""
+    out: dict[str, dict] = {}
+    if not path.exists():
+        return out
+    with open(path, encoding="utf-8", newline="") as f:
+        for r in csv.DictReader(line for line in f if not line.startswith("#")):
+            uri, codes, why = r["esco_uri"].strip(), [c.strip() for c in r["onet_codes"].split(";") if c.strip()], (r.get("rationale") or "").strip()
+            if not codes or not why:
+                raise SystemExit(f"{path.name}: {uri} needs onet_codes and a rationale")
+            if uri in out:
+                raise SystemExit(f"{path.name}: {uri} appears twice")
+            out[uri] = {"codes": codes, "rationale": why, "label": r.get("esco_label", "")}
+    return out
+
+
 def parse_estimated(path: Path) -> dict[str, dict]:
     out = {}
     with open(path, encoding="utf-8", newline="") as f:
@@ -291,6 +308,15 @@ def build(args) -> dict:
             e["routes"].add(route)
             e["esco"] += 1 if esco else 0
 
+    overrides = parse_link_overrides(REF / "crosswalks" / "lane_link_overrides.csv")
+    mapped = {r["esco_uri"] for r in esco_rows}
+    for uri, ov in overrides.items():
+        if uri not in mapped:
+            raise SystemExit(f"lane_link_overrides.csv: {uri} is not in esco_mapping.csv")
+        bad = [c for c in ov["codes"] if c not in onet.rated(CORE_FILE)]
+        if bad:
+            raise SystemExit(f"lane_link_overrides.csv: {uri}: code(s) missing or without {CORE_FILE} ratings: {bad}")
+
     for r in esco_rows:
         uri, lane = r["esco_uri"], r["lane_id"]
         rec = occ_codes.get(uri) or {}
@@ -300,7 +326,10 @@ def build(args) -> dict:
             lookup_errors.append({"uri": uri, "crosswalk_version": cv.get("error"), "latest": latest.get("error")})
         elif cv and latest and (cv.get("code") != latest.get("code") or cv.get("label") != latest.get("label")):
             changed_since.append({"uri": uri, "crosswalk_version": cv, "latest": latest})
-        if code and code in xw_esco:
+        if uri in overrides:
+            esco_route[uri] = "override"
+            link(lane, overrides[uri]["codes"], weights["override"], "override", uri)
+        elif code and code in xw_esco:
             esco_route[uri] = "crosswalk"
             if (cv.get("label") or "").strip().lower() != xw_titles[code].strip().lower():
                 label_differs.append({"uri": uri, "code": code, "esco_api": cv.get("label"), "crosswalk": xw_titles[code]})
@@ -379,10 +408,8 @@ def build(args) -> dict:
     if needs_estimate:
         raise SystemExit("These career paths rest mostly on O*NET occupations without ratings; add an estimated profile:\n  " + "\n  ".join(needs_estimate))
 
-    payoff = wd["payoffVariance"]
     for lane_id, p in profiles.items():
         p["name"] = lanes[lane_id]["name"]
-        p["taxonomy"] = {"payoff": lanes[lane_id]["payoff"], "payoff_variance": payoff.get(lanes[lane_id]["payoff"])}
 
     route_counts: dict[str, int] = defaultdict(int)
     for v in esco_route.values():
@@ -393,7 +420,7 @@ def build(args) -> dict:
             lane_routes[p["provenance"]] += 1
         else:
             rs = {r for o in p["occupations"] for r in o["route"]}
-            lane_routes["crosswalk" if "crosswalk" in rs else ("fallback_isco" if "fallback_isco" in rs else "fallback_lane_isco")] += 1
+            lane_routes[next(r for r in ("crosswalk", "override", "fallback_isco", "fallback_lane_isco") if r in rs)] += 1
     rel = cfg["releases"]
     return {
         "release": {"onet": rel["primary"]["release"], "work_values": rel["work_values"]["release"], "esco_crosswalk_version": uri_codes["crosswalk_version"]},

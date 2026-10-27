@@ -135,5 +135,25 @@ class UseEstimate(unittest.TestCase):
         self.assertEqual(b.data_shares(FakeOnet(), {"a": 3.0, "b": 1.0}), {"Work Activities": 0.75, "Work Values": 0.0})
         self.assertEqual(b.data_shares(FakeOnet(), {}), {"Work Activities": 0.0, "Work Values": 0.0})
 
+
+class LinkOverrides(unittest.TestCase):
+    def write(self, text):
+        d = Path(tempfile.mkdtemp())
+        (d / "o.csv").write_text(text, encoding="utf-8")
+        return d / "o.csv"
+
+    def test_parses_and_skips_comments(self):
+        p = self.write("# Lane's corrections\nesco_uri,esco_label,onet_codes,rationale\nu1,analyst,13-2099.01; 11-3031.03,\"Because, reasons.\"\n")
+        self.assertEqual(b.parse_link_overrides(p), {"u1": {"codes": ["13-2099.01", "11-3031.03"], "rationale": "Because, reasons.", "label": "analyst"}})
+
+    def test_requires_rationale_and_unique_rows(self):
+        with self.assertRaises(SystemExit):
+            b.parse_link_overrides(self.write("esco_uri,esco_label,onet_codes,rationale\nu1,a,13-2099.01,\n"))
+        with self.assertRaises(SystemExit):
+            b.parse_link_overrides(self.write("esco_uri,esco_label,onet_codes,rationale\nu1,a,13-2099.01,x\nu1,a,11-1011.00,y\n"))
+
+    def test_missing_file_is_empty(self):
+        self.assertEqual(b.parse_link_overrides(Path(tempfile.mkdtemp()) / "none.csv"), {})
+
 if __name__ == "__main__":
     unittest.main()

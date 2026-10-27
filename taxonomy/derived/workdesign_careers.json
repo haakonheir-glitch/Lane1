@@ -102,12 +102,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 65.38333333333333,
@@ -209,12 +203,6 @@
    "variety": {
     "id": "variety",
     "value": 55.849999999999994,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -322,12 +310,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 55.333333333333336,
@@ -429,12 +411,6 @@
    "variety": {
     "id": "variety",
     "value": 57.75,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -542,12 +518,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 50.166666666666664,
@@ -649,12 +619,6 @@
    "variety": {
     "id": "variety",
     "value": 63.05,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "estimated"
    },
@@ -762,12 +726,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 32.833333333333336,
@@ -869,12 +827,6 @@
    "variety": {
     "id": "variety",
     "value": 48.75,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -982,12 +934,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 54.03333333333333,
@@ -1089,12 +1035,6 @@
    "variety": {
     "id": "variety",
     "value": 65.7,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -1202,12 +1142,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 69.5,
@@ -1309,12 +1243,6 @@
    "variety": {
     "id": "variety",
     "value": 71.2,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "estimated"
    },
@@ -1422,12 +1350,6 @@
     "coverage": 1,
     "provenance": "estimated"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
    "challenge": {
     "id": "challenge",
     "value": 75.83333333333334,
@@ -1529,12 +1451,6 @@
    "variety": {
     "id": "variety",
     "value": 60.4,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -1642,12 +1558,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 67.71666666666667,
@@ -1749,12 +1659,6 @@
    "variety": {
     "id": "variety",
     "value": 92.8,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -1862,12 +1766,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 75.13333333333334,
@@ -1969,12 +1867,6 @@
    "variety": {
     "id": "variety",
     "value": 66.35,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -2082,12 +1974,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 75.91666666666667,
@@ -2189,12 +2075,6 @@
    "variety": {
     "id": "variety",
     "value": 77.30000000000001,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -2302,12 +2182,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 72.83333333333333,
@@ -2409,12 +2283,6 @@
    "variety": {
     "id": "variety",
     "value": 72.69999999999999,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -2522,12 +2390,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 56.11666666666667,
@@ -2629,12 +2491,6 @@
    "variety": {
     "id": "variety",
     "value": 56.8,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -2742,12 +2598,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 77.01666666666665,
@@ -2849,12 +2699,6 @@
    "variety": {
     "id": "variety",
     "value": 55.3,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -2962,12 +2806,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 73.35000000000001,
@@ -3069,12 +2907,6 @@
    "variety": {
     "id": "variety",
     "value": 49.900000000000006,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -3182,12 +3014,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 70.33333333333333,
@@ -3289,12 +3115,6 @@
    "variety": {
     "id": "variety",
     "value": 44.45,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -3402,12 +3222,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 69.08333333333333,
@@ -3509,12 +3323,6 @@
    "variety": {
     "id": "variety",
     "value": 51.8,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -3622,12 +3430,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 77.23333333333333,
@@ -3729,12 +3531,6 @@
    "variety": {
     "id": "variety",
     "value": 69.6,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -3842,12 +3638,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 75.6,
@@ -3949,12 +3739,6 @@
    "variety": {
     "id": "variety",
     "value": 60.95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -4062,12 +3846,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 66.89999999999999,
@@ -4169,12 +3947,6 @@
    "variety": {
     "id": "variety",
     "value": 19.9,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -4282,12 +4054,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 78,
@@ -4389,12 +4155,6 @@
    "variety": {
     "id": "variety",
     "value": 33.599999999999994,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -4502,12 +4262,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 89.33333333333333,
@@ -4609,12 +4363,6 @@
    "variety": {
     "id": "variety",
     "value": 40.1,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -4722,12 +4470,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 70.06666666666666,
@@ -4829,12 +4571,6 @@
    "variety": {
     "id": "variety",
     "value": 76.05,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
     "coverage": 1,
     "provenance": "estimated"
    },
@@ -4942,12 +4678,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 54.11666666666667,
@@ -5049,12 +4779,6 @@
    "variety": {
     "id": "variety",
     "value": 25.900000000000002,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -5162,12 +4886,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 53.96666666666666,
@@ -5269,12 +4987,6 @@
    "variety": {
     "id": "variety",
     "value": 13.149999999999999,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -5382,12 +5094,6 @@
     "coverage": 1,
     "provenance": "estimated"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
    "challenge": {
     "id": "challenge",
     "value": 79.44999999999999,
@@ -5489,12 +5195,6 @@
    "variety": {
     "id": "variety",
     "value": 34.5,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "estimated"
    },
@@ -5602,12 +5302,6 @@
     "coverage": 1,
     "provenance": "estimated"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
    "challenge": {
     "id": "challenge",
     "value": 78.86666666666667,
@@ -5709,12 +5403,6 @@
    "variety": {
     "id": "variety",
     "value": 74.94999999999999,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "estimated"
    },
@@ -5822,12 +5510,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 74.85000000000001,
@@ -5929,12 +5611,6 @@
    "variety": {
     "id": "variety",
     "value": 50.75,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -6042,12 +5718,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 67.75000000000001,
@@ -6149,12 +5819,6 @@
    "variety": {
     "id": "variety",
     "value": 58.45,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -6262,12 +5926,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 72.83333333333333,
@@ -6369,12 +6027,6 @@
    "variety": {
     "id": "variety",
     "value": 26.650000000000002,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -6482,12 +6134,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 67.11666666666666,
@@ -6589,12 +6235,6 @@
    "variety": {
     "id": "variety",
     "value": 46.35,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -6702,12 +6342,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 72.91666666666667,
@@ -6809,12 +6443,6 @@
    "variety": {
     "id": "variety",
     "value": 75.25,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "estimated"
    },
@@ -6922,12 +6550,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 61.13333333333333,
@@ -7029,12 +6651,6 @@
    "variety": {
     "id": "variety",
     "value": 40.75,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -7142,12 +6758,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 61.71666666666667,
@@ -7249,12 +6859,6 @@
    "variety": {
     "id": "variety",
     "value": 28.900000000000002,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -7362,12 +6966,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 66.25,
@@ -7469,12 +7067,6 @@
    "variety": {
     "id": "variety",
     "value": 73.25,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -7582,12 +7174,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 61.03333333333333,
@@ -7689,12 +7275,6 @@
    "variety": {
     "id": "variety",
     "value": 29.150000000000002,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -7802,12 +7382,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 36.76666666666667,
@@ -7909,12 +7483,6 @@
    "variety": {
     "id": "variety",
     "value": 34.7,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -8022,12 +7590,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 18.566666666666666,
@@ -8129,12 +7691,6 @@
    "variety": {
     "id": "variety",
     "value": 42.6,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -8242,12 +7798,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 27.716666666666665,
@@ -8349,12 +7899,6 @@
    "variety": {
     "id": "variety",
     "value": 37.45,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -8462,12 +8006,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 57,
@@ -8569,12 +8107,6 @@
    "variety": {
     "id": "variety",
     "value": 77.05,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -8682,12 +8214,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 54.75,
@@ -8789,12 +8315,6 @@
    "variety": {
     "id": "variety",
     "value": 44.65,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -8902,12 +8422,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 69.03333333333333,
@@ -9009,12 +8523,6 @@
    "variety": {
     "id": "variety",
     "value": 57.3,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -9122,12 +8630,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 74.13333333333333,
@@ -9229,12 +8731,6 @@
    "variety": {
     "id": "variety",
     "value": 64.65,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -9342,12 +8838,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 73.71666666666667,
@@ -9449,12 +8939,6 @@
    "variety": {
     "id": "variety",
     "value": 63.1,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -9562,12 +9046,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 55.166666666666664,
@@ -9669,12 +9147,6 @@
    "variety": {
     "id": "variety",
     "value": 48.05,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -9782,12 +9254,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 67.85000000000001,
@@ -9889,12 +9355,6 @@
    "variety": {
     "id": "variety",
     "value": 84.2,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -10002,12 +9462,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 71.50000000000001,
@@ -10109,12 +9563,6 @@
    "variety": {
     "id": "variety",
     "value": 53.65,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -10222,12 +9670,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 44.650000000000006,
@@ -10329,12 +9771,6 @@
    "variety": {
     "id": "variety",
     "value": 51.2,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -10442,12 +9878,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 31.25,
@@ -10549,12 +9979,6 @@
    "variety": {
     "id": "variety",
     "value": 55.05,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -10662,12 +10086,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 25.5,
@@ -10769,12 +10187,6 @@
    "variety": {
     "id": "variety",
     "value": 46.4,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -10882,12 +10294,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 27.51666666666667,
@@ -10989,12 +10395,6 @@
    "variety": {
     "id": "variety",
     "value": 47.2,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -11102,12 +10502,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 45.76666666666667,
@@ -11209,12 +10603,6 @@
    "variety": {
     "id": "variety",
     "value": 47.25,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -11322,12 +10710,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 33.583333333333336,
@@ -11429,12 +10811,6 @@
    "variety": {
     "id": "variety",
     "value": 37.05,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -11542,12 +10918,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 35.53333333333333,
@@ -11649,12 +11019,6 @@
    "variety": {
     "id": "variety",
     "value": 31.950000000000003,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -11762,12 +11126,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 22.033333333333335,
@@ -11869,12 +11227,6 @@
    "variety": {
     "id": "variety",
     "value": 44.95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -11982,12 +11334,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 42.21666666666666,
@@ -12089,12 +11435,6 @@
    "variety": {
     "id": "variety",
     "value": 46.400000000000006,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -12202,12 +11542,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 39.3,
@@ -12309,12 +11643,6 @@
    "variety": {
     "id": "variety",
     "value": 46.95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -12422,12 +11750,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 41.93333333333333,
@@ -12529,12 +11851,6 @@
    "variety": {
     "id": "variety",
     "value": 50.75,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -12642,12 +11958,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 34.300000000000004,
@@ -12749,12 +12059,6 @@
    "variety": {
     "id": "variety",
     "value": 54.7,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -12862,12 +12166,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 59.68333333333334,
@@ -12969,12 +12267,6 @@
    "variety": {
     "id": "variety",
     "value": 82.5,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 55,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -13082,12 +12374,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 79.03333333333335,
@@ -13189,12 +12475,6 @@
    "variety": {
     "id": "variety",
     "value": 47.599999999999994,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -13302,12 +12582,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 76.68333333333332,
@@ -13409,12 +12683,6 @@
    "variety": {
     "id": "variety",
     "value": 62.6,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -13522,12 +12790,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 73.74999999999999,
@@ -13629,12 +12891,6 @@
    "variety": {
     "id": "variety",
     "value": 48.099999999999994,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -13742,12 +12998,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 75.63333333333333,
@@ -13849,12 +13099,6 @@
    "variety": {
     "id": "variety",
     "value": 37.15,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -13962,12 +13206,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 50.96666666666666,
@@ -14069,12 +13307,6 @@
    "variety": {
     "id": "variety",
     "value": 52,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -14182,12 +13414,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 59.9,
@@ -14289,12 +13515,6 @@
    "variety": {
     "id": "variety",
     "value": 68.6,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -14402,12 +13622,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 53.35,
@@ -14509,12 +13723,6 @@
    "variety": {
     "id": "variety",
     "value": 40.45,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 10,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -14622,12 +13830,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 65.76666666666667,
@@ -14729,12 +13931,6 @@
    "variety": {
     "id": "variety",
     "value": 52.150000000000006,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -14842,12 +14038,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 37.28333333333333,
@@ -14949,12 +14139,6 @@
    "variety": {
     "id": "variety",
     "value": 55.05,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -15062,12 +14246,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 58.43333333333334,
@@ -15169,12 +14347,6 @@
    "variety": {
     "id": "variety",
     "value": 78.65,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -15282,12 +14454,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 64.76666666666667,
@@ -15389,12 +14555,6 @@
    "variety": {
     "id": "variety",
     "value": 77.95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -15502,12 +14662,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 57.66666666666668,
@@ -15609,12 +14763,6 @@
    "variety": {
     "id": "variety",
     "value": 65.65,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -15722,12 +14870,6 @@
     "coverage": 1,
     "provenance": "estimated"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
    "challenge": {
     "id": "challenge",
     "value": 49.43333333333334,
@@ -15829,12 +14971,6 @@
    "variety": {
     "id": "variety",
     "value": 69.85,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -15942,12 +15078,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 64.51666666666667,
@@ -16049,12 +15179,6 @@
    "variety": {
     "id": "variety",
     "value": 41.900000000000006,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -16162,12 +15286,6 @@
     "coverage": 1,
     "provenance": "estimated"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
    "challenge": {
     "id": "challenge",
     "value": 80.64999999999999,
@@ -16269,12 +15387,6 @@
    "variety": {
     "id": "variety",
     "value": 74.95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -16382,12 +15494,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 53.78333333333333,
@@ -16489,12 +15595,6 @@
    "variety": {
     "id": "variety",
     "value": 47.45,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -16602,12 +15702,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 56.050000000000004,
@@ -16709,12 +15803,6 @@
    "variety": {
     "id": "variety",
     "value": 42.7,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -16822,12 +15910,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 51.95000000000001,
@@ -16929,12 +16011,6 @@
    "variety": {
     "id": "variety",
     "value": 36.25,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -17042,12 +16118,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 55.68333333333334,
@@ -17149,12 +16219,6 @@
    "variety": {
     "id": "variety",
     "value": 45.150000000000006,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -17262,12 +16326,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 48.13333333333333,
@@ -17369,12 +16427,6 @@
    "variety": {
     "id": "variety",
     "value": 31.150000000000002,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -17482,12 +16534,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 51.93333333333334,
@@ -17589,12 +16635,6 @@
    "variety": {
     "id": "variety",
     "value": 83.05,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -17702,12 +16742,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 35.06666666666666,
@@ -17809,12 +16843,6 @@
    "variety": {
     "id": "variety",
     "value": 75,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -17922,12 +16950,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 44.88333333333333,
@@ -18029,12 +17051,6 @@
    "variety": {
     "id": "variety",
     "value": 68,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -18142,12 +17158,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 48.849999999999994,
@@ -18249,12 +17259,6 @@
    "variety": {
     "id": "variety",
     "value": 67.8,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -18362,12 +17366,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 22.933333333333334,
@@ -18469,12 +17467,6 @@
    "variety": {
     "id": "variety",
     "value": 63.45,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -18582,12 +17574,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 20.75,
@@ -18689,12 +17675,6 @@
    "variety": {
     "id": "variety",
     "value": 70.75,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -18802,12 +17782,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 36.050000000000004,
@@ -18909,12 +17883,6 @@
    "variety": {
     "id": "variety",
     "value": 70.4,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -19022,12 +17990,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 21.5,
@@ -19129,12 +18091,6 @@
    "variety": {
     "id": "variety",
     "value": 62.050000000000004,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -19242,12 +18198,6 @@
     "coverage": 1,
     "provenance": "estimated"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
    "challenge": {
     "id": "challenge",
     "value": 36.51666666666666,
@@ -19349,12 +18299,6 @@
    "variety": {
     "id": "variety",
     "value": 57.35,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
     "coverage": 1,
     "provenance": "estimated"
    },
@@ -19462,12 +18406,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 60.43333333333334,
@@ -19569,12 +18507,6 @@
    "variety": {
     "id": "variety",
     "value": 57.5,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -19682,12 +18614,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 37.7,
@@ -19789,12 +18715,6 @@
    "variety": {
     "id": "variety",
     "value": 59.45,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -19902,12 +18822,6 @@
     "coverage": 1,
     "provenance": "estimated"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
    "challenge": {
     "id": "challenge",
     "value": 57.81666666666667,
@@ -20009,12 +18923,6 @@
    "variety": {
     "id": "variety",
     "value": 62.7,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -20122,12 +19030,6 @@
     "coverage": 1,
     "provenance": "estimated"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
    "challenge": {
     "id": "challenge",
     "value": 55.650000000000006,
@@ -20229,12 +19131,6 @@
    "variety": {
     "id": "variety",
     "value": 83.44999999999999,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -20342,12 +19238,6 @@
     "coverage": 1,
     "provenance": "estimated"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
    "challenge": {
     "id": "challenge",
     "value": 78.80000000000001,
@@ -20449,12 +19339,6 @@
    "variety": {
     "id": "variety",
     "value": 47.75,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -20562,12 +19446,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 62.099999999999994,
@@ -20669,12 +19547,6 @@
    "variety": {
     "id": "variety",
     "value": 70.15,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "estimated"
    },
@@ -20782,12 +19654,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 25.2,
@@ -20889,12 +19755,6 @@
    "variety": {
     "id": "variety",
     "value": 40.9,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -21002,12 +19862,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 27.683333333333334,
@@ -21109,12 +19963,6 @@
    "variety": {
     "id": "variety",
     "value": 53.95,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -21222,12 +20070,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 34.28333333333334,
@@ -21329,12 +20171,6 @@
    "variety": {
     "id": "variety",
     "value": 76.05,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -21442,12 +20278,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 31.48333333333333,
@@ -21549,12 +20379,6 @@
    "variety": {
     "id": "variety",
     "value": 55.349999999999994,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -21662,12 +20486,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 38.03333333333333,
@@ -21769,12 +20587,6 @@
    "variety": {
     "id": "variety",
     "value": 49.400000000000006,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -21882,12 +20694,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 21.96666666666667,
@@ -21989,12 +20795,6 @@
    "variety": {
     "id": "variety",
     "value": 88.05,
-    "coverage": 1,
-    "provenance": "estimated"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 70,
     "coverage": 1,
     "provenance": "estimated"
    },
@@ -22102,12 +20902,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 32.666666666666664,
@@ -22209,12 +21003,6 @@
    "variety": {
     "id": "variety",
     "value": 62.25,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
@@ -22322,12 +21110,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 32.81666666666667,
@@ -22432,12 +21214,6 @@
     "coverage": 1,
     "provenance": "onet"
    },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
-    "coverage": 1,
-    "provenance": "onet"
-   },
    "challenge": {
     "id": "challenge",
     "value": 37.666666666666664,
@@ -22539,12 +21315,6 @@
    "variety": {
     "id": "variety",
     "value": 51.9,
-    "coverage": 1,
-    "provenance": "onet"
-   },
-   "income_variance": {
-    "id": "income_variance",
-    "value": 20,
     "coverage": 1,
     "provenance": "onet"
    },
