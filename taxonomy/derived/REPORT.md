@@ -470,7 +470,7 @@ Stored Corsi trials at a length above 9: 22 of 187
 - All 8 rows are e2e test accounts.
 - **Dev, applied, then checked:** 8 rows updated; a rerun reports 0 above 9 (`corsi_migration_dev_after.txt`). Raw trials are kept as recorded.
 - **Production, dry run (run by you on 2026-10-27):** 2 S4 score rows, both with a Corsi span; **1 stored above 9** (`7a3cc155-fbfd-4261-a73e-1ddb5c54c065`, completed: span 10 → 9). 2 of 47 stored non-practice trials are at a length above 9.
-  - **Status:** not applied yet; it takes one command with `--apply`.
+  - **Applied by you on 2026-10-27:** "Updated 1 row(s)." A re-run shows `stored span above 9: 0`. The 2 raw trials stay as recorded, by design; scoring caps them.
   - `SCORING_VERSION` was deliberately not bumped, because that would re-score production sessions on the next load.
 
 To run it on production, do the dry run first, then decide on `--apply`:
@@ -509,4 +509,4 @@ DATABASE_URL=<Neon URL> npx tsx --conditions=react-server scripts/migrate-corsi-
 **Still open:**
 1. **Thin career paths.** Field sales (two energy sales reps), in-house legal (data protection officer), sports business (3 occupations) and B2B sales (4) have too few ESCO occupations for a solid profile. ESCO has no better candidates for in-house legal or field sales. Should I give these documented estimated profiles, as for management consulting?
 2. **The payoff labels in the live product.** v1's fit × payoff ordering and Career map texts such as "winner-take-all" and "Median income in this career is low" still use them. Should they come out of the product too? That changes v1 matching and the UI.
-3. **Production Corsi fix:** the dry run found one session. Run the same command with `--apply`, then re-run the dry run to confirm 0.
+3. **Production Corsi fix:** done (1 row, confirmed 0 above 9).
