@@ -8,7 +8,7 @@
  * src/lib/matching/v2/config.ts can be tuned to "a typical profile gets about 8–20 strong fits".
  */
 import { writeFileSync } from "node:fs";
-import { matchV2, rankV2, V2_CONFIG, facetShareBound, type MatchResultV2 } from "../src/lib/matching/v2";
+import { matchV2, rankV2, V2_CONFIG, type MatchResultV2 } from "../src/lib/matching/v2";
 import { TEST_PROFILES, population, synthetic } from "../src/lib/matching/v2/synthetic";
 import { getLane } from "../src/lib/taxonomy";
 
@@ -72,7 +72,6 @@ const out = {
   version: V2_CONFIG.version,
   draws: DRAWS,
   config: V2_CONFIG,
-  facetShareBound: facetShareBound().slice(0, 5),
   tests,
   population: {
     n: N,

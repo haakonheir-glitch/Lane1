@@ -10,7 +10,7 @@ import type { Lane, LaneId, LevelId, Role } from "../taxonomy/generated";
 import { constructTable, matchLanes, rankRoles, type Experience, type LaneMatch } from "../matching";
 import type { ProfileScores } from "../scoring/profile";
 import { matchingVersion } from "../matching/version";
-import { matchV2 } from "../matching/v2";
+import { LANE_PROFILES_V2_STAMP, V2_CONFIG, matchV2, profileSeed } from "../matching/v2";
 import { toV1Matches } from "../matching/v2/adapter";
 import { personInputs } from "../workdesign/person";
 import { TAG_NOUN } from "../matching/roles";
@@ -20,9 +20,29 @@ import type { ReportLane } from "../report/facts";
 
 const roleRef = (r: Role): RoleRef => ({ id: r.id, title: r.title, level: r.level, mode: r.mode, aka: r.aka });
 
+/** Which matching produced cached results: part of the cache key, so flipping MATCHING_VERSION or retuning v2 recomputes. */
+export const matchingCacheKey = () => (matchingVersion() === "v2" ? `v2:${V2_CONFIG.version}:${LANE_PROFILES_V2_STAMP}` : "v1");
+
+/**
+ * v2 results by profile (500 draws × 205 fits, about half a second), kept across requests so that
+ * opening a career path's detail doesn't rerun the Monte Carlo. Small: one entry per active profile.
+ */
+const v2Memo = new Map<string, ReturnType<typeof matchV2>>();
+function matchV2Memo(profile: ProfileScores) {
+  const person = { inputs: personInputs(profile) };
+  const key = `${V2_CONFIG.version}:${profileSeed(person)}`;
+  let r = v2Memo.get(key);
+  if (!r) {
+    r = matchV2(person);
+    if (v2Memo.size >= 64) v2Memo.delete(v2Memo.keys().next().value!);
+    v2Memo.set(key, r);
+  }
+  return r;
+}
+
 /** Matching is pure and costs ~205×205 pair checks (v1) or 500 draws × 205 fits (v2), so compute it once per request. */
 const matchesFor = cache((profile: ProfileScores) => {
-  const ms = matchingVersion() === "v2" ? toV1Matches(matchV2({ inputs: personInputs(profile) })) : matchLanes(profile, taxonomy);
+  const ms = matchingVersion() === "v2" ? toV1Matches(matchV2Memo(profile)) : matchLanes(profile, taxonomy);
   return new Map(ms.map((m) => [m.laneId, m]));
 });
 

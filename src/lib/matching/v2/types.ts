@@ -32,7 +32,11 @@ export type LaneProfilesFile = { workDesign: string; release: Record<string, str
 /** The person: every Work Design input with its value and standard error (0–100). */
 export type PersonProfile = { inputs: Partial<Record<PersonConstructId, Estimate>> };
 
-/** A fit as a distribution over Monte Carlo draws of the person's scores (0–100). */
+/**
+ * A fit as a distribution over Monte Carlo draws of the person's scores. Fulfilment fit is on a
+ * T-like scale relative to the person's own career paths (50 = their average career path, ±10 ≈
+ * one SD of a component); ability fit is 0–100 (100 = no shortfall).
+ */
 export type Distribution = { mean: number; sd: number; p10: number; p50: number; p90: number };
 
 /** Something that makes a career path fit (or rub), relative to the average career path, in fulfilment points. */
@@ -88,7 +92,12 @@ export type ArchetypeBlend = {
   tentative: boolean;
   /** Why the blend is tentative, when it is. */
   reason: string | null;
+  /** A caveat that holds even when the blend isn't tentative (e.g. the top two share most inputs). */
+  caveat: string | null;
 };
+
+/** The facet guard's action for one person: facets shrunk towards their domain score, and why. */
+export type FacetGuard = { facet: string; shrink: number; maxShareBefore: number; maxShareAfter: number };
 
 export type MatchResultV2 = {
   version: string;
@@ -96,6 +105,7 @@ export type MatchResultV2 = {
   lanes: LaneMatchV2[];
   bandCounts: Record<BandV2, number>;
   archetype: ArchetypeBlend | null;
+  guard: FacetGuard[];
   /** Plain-language notes about the result as a whole (e.g. a flat profile). */
-  notes: { code: "flat_profile" | "missing_interests" | "no_reasoning"; text: string }[];
+  notes: { code: "flat_profile" | "few_strong" | "missing_interests" | "no_reasoning" | "facet_guard"; text: string }[];
 };

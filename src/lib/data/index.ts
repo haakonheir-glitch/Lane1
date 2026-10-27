@@ -19,7 +19,7 @@ import { addSelfScores } from "../scoring/self";
 import type { SessionId } from "../bank/types";
 import type { YearsBand } from "../matching";
 import type { OnboardingAnswers, User } from "../types";
-import { buildCareerPicks, buildLaneDetail, buildLaneMap, laneName, reportLanes } from "./lanes";
+import { buildCareerPicks, buildLaneDetail, buildLaneMap, laneName, matchingCacheKey, reportLanes } from "./lanes";
 import { buildReportFacts, type ReportFacts } from "../report/facts";
 import { factsHash, latestReport } from "../report/service";
 import { BRAND } from "../brand";
@@ -178,7 +178,7 @@ const getMatching = cache(async () => {
   if (source === "sample") return { source, profile, exp, ...(await compute()) };
   const u = await requireUser();
   const fp = await profileFingerprint(u.id);
-  const data = await unstable_cache(compute, ["matching", u.id, fp, SCORING_VERSION, JSON.stringify(exp)], { tags: [`profile:${u.id}`], revalidate: 60 * 60 * 24 })();
+  const data = await unstable_cache(compute, ["matching", u.id, fp, SCORING_VERSION, matchingCacheKey(), JSON.stringify(exp)], { tags: [`profile:${u.id}`], revalidate: 60 * 60 * 24 })();
   return { source, profile, exp, ...data };
 });
 

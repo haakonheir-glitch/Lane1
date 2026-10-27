@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { LANE_PROFILES_V2, V2_CONFIG, bestByDirection, checkConfig, computeFit, facetShareBound, matchAllV2, matchV2, rankV2, topFive, type LaneProfileV2 } from "@/lib/matching/v2";
+import { LANE_PROFILES_V2, V2_CONFIG, bestByDirection, computeFit, facetShares, matchAllV2, matchV2, rankV2, topFive, type LaneProfileV2 } from "@/lib/matching/v2";
 import { TEST_PROFILES, population, synthetic } from "@/lib/matching/v2/synthetic";
 import { toV1Matches } from "@/lib/matching/v2/adapter";
 import { matchingVersion } from "@/lib/matching/version";
@@ -32,9 +32,14 @@ describe("matching v2: data and config", () => {
     for (const p of Object.values(LANE_PROFILES_V2)) expect(p.interests).toHaveLength(6);
   });
 
-  it("keeps every personality facet under the 15% cap, and refuses a config that doesn't", () => {
-    for (const f of facetShareBound()) expect(f.share).toBeLessThanOrEqual(V2_CONFIG.facetCap);
-    expect(() => checkConfig({ ...V2_CONFIG, weights: { interests: 0.05, values: 0, valueModes: 0, environment: 0.95, challenge: 0 } })).toThrow(/carry/);
+  it("keeps every personality facet at or under 15% of every fit, shrinking it when needed", () => {
+    // A profile built so that one facet would carry far more: everything flat except orderliness.
+    const lopsided = synthetic({ interests: { I: 60, C: 55 }, facets: { C2: 100 } });
+    for (const p of [lopsided, synthetic(TEST_PROFILES.analyst!.spec), ...population(4, 3)]) {
+      for (const [f, share] of facetShares(p, LANE_PROFILES_V2)) expect(share, f).toBeLessThanOrEqual(V2_CONFIG.facetCap + 0.01);
+    }
+    const r = matchV2(lopsided, { draws: 40 });
+    if (r.guard.length) expect(r.notes.map((n) => n.code)).toContain("facet_guard");
   });
 
   it("defaults to v1", () => {
@@ -54,7 +59,9 @@ describe("matching v2: fit", () => {
   it("returns ordered distributions, and computeFit agrees with matchAllV2", () => {
     const field = { a: lane({}), b: lane({ interests: [1, 6, 1, 2, 2, 5] }), c: lane({ interests: [6, 2, 1, 2, 3, 2] }) };
     const all = matchAllV2(person, field, { draws: DRAWS });
-    const one = computeFit(person, field.b, field, { draws: DRAWS });
+    const one = computeFit(person, "b", field, { draws: DRAWS });
+    // A copy of the profile is matched by content, not added twice.
+    expect(computeFit(person, structuredClone(field.b), field, { draws: DRAWS })).toEqual(one);
     const b = all.lanes.find((l) => l.laneId === "b")!;
     expect(one.fulfilmentFit).toEqual(b.fulfilmentFit);
     expect(b.fulfilmentFit.p10).toBeLessThanOrEqual(b.fulfilmentFit.p50);
@@ -99,6 +106,8 @@ describe("matching v2: fit", () => {
     expect(top.drivers.length).toBeGreaterThan(0);
     for (const d of [...top.drivers, ...top.frictions]) expect(d.sources.length).toBeGreaterThan(0);
     expect(top.drivers.every((d) => d.contribution > 0)).toBe(true);
+    // A friction never reads as a plain strength.
+    for (const l of r.lanes) for (const f of l.frictions) expect(f.label).not.toMatch(/^(\w+ interests|Work value: \w+)$/);
   });
 });
 
@@ -109,14 +118,14 @@ describe("matching v2: the six test profiles", () => {
       if (id === "flat") {
         expect(r.bandCounts.strong).toBeLessThanOrEqual(3);
         expect(r.notes.map((n) => n.code)).toContain("flat_profile");
-        expect(r.archetype!.tentative).toBe(true);
+        expect(r.bandCounts.unlikely).toBeLessThan(20);
         return;
       }
       const top10 = rankV2(r.lanes).slice(0, 10);
       const hits = top10.filter((l) => t.expectFamilies.includes(getLane(l.laneId)!.family)).length;
       expect(hits).toBeGreaterThanOrEqual(6);
       expect(r.bandCounts.strong).toBeGreaterThanOrEqual(8);
-      expect(r.bandCounts.strong).toBeLessThanOrEqual(25);
+      expect(r.bandCounts.strong).toBeLessThanOrEqual(22);
     });
   }
 
@@ -128,13 +137,19 @@ describe("matching v2: the six test profiles", () => {
     expect(r.archetype!.top2[0]!.archetype).toBe("Maker");
   });
 
-  it("marks an inseparable leading pair as tentative", () => {
-    const r = matchV2(synthetic(TEST_PROFILES.hunter!.spec), { draws: DRAWS });
-    const ids = r.archetype!.top2.map((x) => x.id).sort();
-    if (ids.join() === "influence,lead") {
-      expect(r.archetype!.tentative).toBe(true);
-      expect(r.archetype!.reason).toMatch(/same scores/);
-    }
+  it("marks the blend tentative from the draws, and notes a shared-input pair separately", () => {
+    const carer = matchV2(synthetic(TEST_PROFILES.carer!.spec), { draws: DRAWS }).archetype!;
+    expect(carer.top2.map((x) => x.archetype)).toEqual(["Healer", "Teacher"]);
+    expect(carer.tentative).toBe(false);
+    expect(carer.caveat).toMatch(/same scores/);
+    const hunter = matchV2(synthetic(TEST_PROFILES.hunter!.spec), { draws: DRAWS }).archetype!;
+    expect(hunter.tentative).toBe(true);
+    expect(hunter.reason).toMatch(/of draws/);
+  });
+
+  it("explains few strong fits even when the profile isn't flat", () => {
+    const r = matchV2(synthetic({ interests: { I: 62, A: 58, S: 45, E: 44, R: 48, C: 46 } }), { draws: DRAWS });
+    if (r.bandCounts.strong < V2_CONFIG.flat.minStrong) expect(r.notes.some((n) => n.code === "flat_profile" || n.code === "few_strong")).toBe(true);
   });
 });
 
@@ -164,9 +179,9 @@ describe("matching v2: presentation and adapter", () => {
 
 describe("matching v2: small population", () => {
   it("no career path is a strong fit for more than 30% of people", () => {
-    const people = population(40, 7);
+    const people = population(60, 7);
     const strong = new Map<string, number>();
     for (const p of people) for (const l of matchV2(p, { draws: 80 }).lanes) if (l.band === "strong") strong.set(l.laneId, (strong.get(l.laneId) ?? 0) + 1);
-    expect(Math.max(...strong.values()) / people.length).toBeLessThanOrEqual(0.4);
+    expect(Math.max(...strong.values()) / people.length).toBeLessThanOrEqual(0.3);
   });
 });
