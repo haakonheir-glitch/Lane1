@@ -367,11 +367,47 @@ The fixes in revision 2 addressed the assignment and crosswalk causes. What rema
 
 ## 3. Person-side Work Design profile
 
-**Your account, LN-20261023-H2C: not computed.** It lives in the hosted (Neon) database, which this environment can't reach; the local database has only test accounts. To produce it, run this read-only command (it writes nothing):
+**Your account, LN-20261023-H2C** (production, read-only run by you on 2026-10-27, `wd-0.2`, sessions S1–S5):
 
 ```
-DATABASE_URL=<Neon URL> npx tsx --conditions=react-server scripts/workdesign-profile.mts LN-20261023-H2C --force
+Value modes (0–100, SE, 90% range; relative = BLUEPRINT reliability rule)
+  Influence (Hunter)        59 ± 5.0 (90%: 51–68)  none  coverage 100%
+  Analyse (Scout)           57 ± 5.7 (90%: 47–66)  none  coverage 100%
+  Build (Maker)             48 ± 7.4 (90%: 36–60)  none  coverage 100%
+  Organise (Gatherer)       30 ± 5.8 (90%: 20–39)  weakness  coverage 100%
+  Care (Healer)             59 ± 5.8 (90%: 49–68)  none  coverage 100%
+  Teach (Teacher)           61 ± 5.7 (90%: 52–70)  none  coverage 100%
+  Create (Storyteller)      50 ± 5.8 (90%: 41–60)  none  coverage 100%
+  Lead (Chief)              63 ± 4.9 (90%: 55–71)  strength  coverage 100%
+  Protect (Guardian)        48 ± 5.0 (90%: 40–56)  none  coverage 100%
+
+Environment dimensions
+  Autonomy                              93 ± 6.8 (90%: 81–100)  coverage 100%
+  Social contact                        49 ± 5.2 (90%: 40–57)  coverage 100%
+  Pace and time pressure                37 ± 5.3 (90%: 29–46)  coverage 100%
+  Conflict and friction                 69 ± 4.5 (90%: 62–77)  coverage 100%
+  Competition                           43 ± 7.2 (90%: 31–55)  coverage 100%
+  Precision and consequence of error    51 ± 5.4 (90%: 43–60)  coverage 100%
+  Variety vs. routine                   80 ± 6.0 (90%: 70–90)  coverage 100%
+  Cognitive challenge                   80 ± 9.1 (90%: 65–95)  coverage 100%
+
+Inseparable by design (shared inputs): influence + lead, organise + protect, care + teach
 ```
+
+How to read it:
+- **Strengths and weaknesses:** only two value modes pass the reliability rule:
+  - **Lead** is a relative strength (63, against your own mean of about 53).
+  - **Organise** is a relative weakness (30).
+  - The other seven overlap within their error bars, so they shouldn't be ranked against each other.
+- **Inseparable pairs:** Organise and Protect share inputs, as do Lead and Influence. "Low Organise" therefore partly means low Protect (48), and "Lead" partly means Influence (59).
+- **The strongest environment signals:**
+  - **Autonomy 93** (90% range 81–100);
+  - **Variety 80**;
+  - **Cognitive challenge 80**: your reasoning percentile, the only normed input, so the widest SE here (±9.1) still comes from real norms;
+  - **Pace 37:** a lower preferred deadline pressure.
+
+  Conflict tolerance (69) is above the midpoint. Social contact, competition and precision sit near 50.
+- **Provisional:** personality and interests are anchored at the scale midpoint until the norms are transcribed (Phase 2 decision 3). Absolute levels like "Autonomy 93" can move when norms arrive; the ordering within the profile is the more stable part.
 
 **A complete dev test account, to show the output** (`workdesign_profile_dev_example.txt`, regenerated with `wd-0.2`). This is the e2e persona: a script answers its questionnaires and rapid-guesses its reasoning items, so reasoning is "not measured". It is not a real person.
 
@@ -433,7 +469,9 @@ Stored Corsi trials at a length above 9: 22 of 187
 
 - All 8 rows are e2e test accounts.
 - **Dev, applied, then checked:** 8 rows updated; a rerun reports 0 above 9 (`corsi_migration_dev_after.txt`). Raw trials are kept as recorded.
-- **Production: not touched.** `SCORING_VERSION` was deliberately not bumped, because that would re-score production sessions on the next load.
+- **Production, dry run (run by you on 2026-10-27):** 2 S4 score rows, both with a Corsi span; **1 stored above 9** (`7a3cc155-fbfd-4261-a73e-1ddb5c54c065`, completed: span 10 → 9). 2 of 47 stored non-practice trials are at a length above 9.
+  - **Status:** not applied yet; it takes one command with `--apply`.
+  - `SCORING_VERSION` was deliberately not bumped, because that would re-score production sessions on the next load.
 
 To run it on production, do the dry run first, then decide on `--apply`:
 
@@ -471,4 +509,4 @@ DATABASE_URL=<Neon URL> npx tsx --conditions=react-server scripts/migrate-corsi-
 **Still open:**
 1. **Thin career paths.** Field sales (two energy sales reps), in-house legal (data protection officer), sports business (3 occupations) and B2B sales (4) have too few ESCO occupations for a solid profile. ESCO has no better candidates for in-house legal or field sales. Should I give these documented estimated profiles, as for management consulting?
 2. **The payoff labels in the live product.** v1's fit × payoff ordering and Career map texts such as "winner-take-all" and "Median income in this career is low" still use them. Should they come out of the product too? That changes v1 matching and the UI.
-3. **Your account's profile and the production Corsi migration** need the production `DATABASE_URL` (see the steps in the chat).
+3. **Production Corsi fix:** the dry run found one session. Run the same command with `--apply`, then re-run the dry run to confirm 0.
