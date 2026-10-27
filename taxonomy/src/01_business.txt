@@ -3,7 +3,7 @@
 # ======================================================================
 @family sales | Sales & business development | Finding customers, closing deals and growing revenue.
 
-@lane b2b_sales | B2B sales | isco 3322 2434 1221 | riasec ES | payoff convex | entry open | sprint direct | modes employed freelance | ladder corporate | tags hunting persuasion variable_pay competition
+@lane b2b_sales | B2B sales | isco 3322 2434 1221 | riasec ES | entry open | sprint direct | modes employed freelance | ladder corporate | tags hunting persuasion competition
 > Selling products or services to other businesses, from first contact to signed contract.
 - Sales development representative (SDR) | entry | aka SDR; lead development representative | +routine
 - Business development representative (BDR) | entry | aka BDR; outbound prospector | +routine
@@ -26,7 +26,7 @@
 - Fractional head of sales | lead | mode freelance | +autonomy
 - Sales outsourcing / lead generation agency owner | owner
 
-@lane solutions_sales | Technical & solutions sales | isco 2434 2433 2511 | riasec EIS | payoff convex | entry degree | sprint simulated | modes employed | ladder corporate | tags technical persuasion relationship analytical
+@lane solutions_sales | Technical & solutions sales | isco 2434 2433 2511 | riasec EIS | entry degree | sprint simulated | modes employed | ladder corporate | tags technical persuasion relationship analytical
 > Selling complex technical products by understanding the buyer's problem and designing the solution.
 - Solutions engineer | mid | aka presales engineer; sales engineer | +analytical
 - Sales systems engineer | mid | aka systems engineer (sales)
@@ -44,7 +44,7 @@
 - Head of solutions engineering | director | +leadership
 - VP of solutions / field CTO | exec | +leadership
 
-@lane account_management | Account management & customer success | isco 3322 2434 1221 | riasec ESC | payoff convex | entry open | sprint direct | modes employed | ladder corporate | tags relationship persuasion team
+@lane account_management | Account management & customer success | isco 3322 2434 1221 | riasec ESC | entry open | sprint direct | modes employed | ladder corporate | tags relationship persuasion team
 > Keeping and growing existing customers: renewals, upsell, onboarding and making sure the customer gets value.
 - Customer success associate | entry
 - Onboarding / implementation specialist | entry | +technical +teaching
@@ -53,14 +53,14 @@
 - Key account manager | senior | aka KAM | +negotiation
 - Strategic / global account manager | lead | +negotiation +travel
 - Renewals specialist | mid | +negotiation +numbers
-- Expansion / upsell account executive | mid | +hunting +variable_pay
+- Expansion / upsell account executive | mid | +hunting
 - Client partner (agency / consulting) | senior
 - Customer success team lead | manager | +leadership
 - Head of customer success | director | +leadership
 - Head of account management | director | +leadership
 - VP of customer success / chief customer officer | exec | +leadership
 
-@lane field_sales | Field & territory sales | isco 3322 2433 5242 | riasec ES | payoff convex | entry open | sprint direct | modes employed freelance | ladder corporate | tags hunting persuasion travel variable_pay autonomy
+@lane field_sales | Field & territory sales | isco 3322 2433 5242 | riasec ES | entry open | sprint direct | modes employed freelance | ladder corporate | tags hunting persuasion travel autonomy
 > Visiting customers in a territory: shops, workshops, construction sites, clinics, farms.
 - Field sales representative | entry | aka territory sales rep; utesalg
 - Merchandiser / retail field representative | entry | +routine
@@ -72,7 +72,7 @@
 - Regional sales director | director | +leadership
 - Independent manufacturers' agent | senior | mode freelance | aka agenturselger | +risk
 
-@lane consumer_sales | Consumer & direct sales | isco 5243 5244 5223 5242 5249 | riasec ES | payoff convex | entry open | sprint direct | modes employed freelance gig | ladder frontline | tags hunting persuasion variable_pay visible
+@lane consumer_sales | Consumer & direct sales | isco 5243 5244 5223 5242 5249 | riasec ES | entry open | sprint direct | modes employed freelance gig | ladder frontline | tags hunting persuasion visible
 > Selling directly to private customers: in person, door to door, by phone, at events or in showrooms.
 - Door-to-door salesperson | entry | aka dørselger | +outdoor +risk
 - Telesales agent (B2C) | entry | aka telemarketer; contact centre salesperson | +routine
@@ -89,7 +89,7 @@
 - Dealership general manager | director | +leadership
 - Dealership owner | owner
 
-@lane partnerships | Partnerships, channel & business development | isco 2431 1221 3322 3339 | riasec ES | payoff convex | entry degree | sprint simulated | modes employed | ladder corporate | tags relationship negotiation persuasion analytical
+@lane partnerships | Partnerships, channel & business development | isco 2431 1221 3322 3339 | riasec ES | entry degree | sprint simulated | modes employed | ladder corporate | tags relationship negotiation persuasion analytical
 > Building revenue through partners, resellers, alliances and strategic deals rather than direct selling.
 - Partnerships associate | entry
 - Partner manager | mid | aka channel partner manager
@@ -102,7 +102,7 @@
 - Head of partnerships | director | +leadership
 - VP of business development | exec | +leadership
 
-@lane media_ad_sales | Media, advertising & sponsorship sales | isco 3322 2431 3339 | riasec ES | payoff convex | entry open | sprint direct | modes employed | ladder corporate | tags hunting persuasion relationship variable_pay
+@lane media_ad_sales | Media, advertising & sponsorship sales | isco 3322 2431 3339 | riasec ES | entry open | sprint direct | modes employed | ladder corporate | tags hunting persuasion relationship
 > Selling advertising space, sponsorships and media packages.
 - Media sales executive | entry | aka annonseselger
 - Digital ad sales manager | mid
@@ -111,7 +111,7 @@
 - Brand partnerships manager (publisher / creator agency) | mid
 - Head of commercial / ad sales director | director | +leadership
 
-@lane sales_ops | Sales operations & enablement | isco 2421 2431 2511 4110 | riasec CEI | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical numbers detail team
+@lane sales_ops | Sales operations & enablement | isco 2421 2431 2511 4110 | riasec CEI | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical numbers detail team
 > Making the sales team effective: CRM, data, territories, pricing, commission plans and training.
 - Sales operations analyst | entry
 - CRM administrator (Salesforce / HubSpot) | entry | +technical
@@ -123,12 +123,12 @@
 - Sales operations manager | manager | +leadership
 - Head of revenue operations | director | +leadership
 
-@lane trade_brokerage | International trade & brokerage | isco 3324 3331 3339 1324 2433 | riasec EC | payoff convex | entry open | sprint simulated | modes employed freelance owner | ladder corporate | tags negotiation relationship numbers travel
+@lane trade_brokerage | International trade & brokerage | isco 3324 3331 3339 1324 2433 | riasec EC | entry open | sprint simulated | modes employed freelance owner | ladder corporate | tags negotiation relationship numbers travel
 > Buying and selling goods across borders and between companies: import, export, wholesale and commodity broking.
 - Import / export coordinator | entry | +detail +routine
 - Customs broker | mid | aka tollekspeditør | +detail
 - Export sales manager | senior | +hunting
-- Trade broker / commodity broker | mid | +risk +variable_pay
+- Trade broker / commodity broker | mid | +risk
 - Seafood trader / exporter | mid | aka fiskeeksportør
 - Wholesale buyer and trader | mid
 - Sourcing agent | mid | mode freelance
@@ -139,7 +139,7 @@
 # ======================================================================
 @family marketing | Marketing, brand & communications | Building demand, brands and reputation.
 
-@lane brand_marketing | Brand marketing | isco 2431 1221 | riasec EAS | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags creative persuasion analytical team
+@lane brand_marketing | Brand marketing | isco 2431 1221 | riasec EAS | entry degree | sprint simulated | modes employed | ladder corporate | tags creative persuasion analytical team
 > Defining what a brand stands for and how it shows up across campaigns, products and channels.
 - Marketing coordinator | entry | +detail
 - Brand assistant / assistant brand manager | entry
@@ -152,7 +152,7 @@
 - Chief marketing officer (CMO) | exec | +leadership
 - Fractional CMO | lead | mode freelance | +autonomy
 
-@lane growth_marketing | Performance & growth marketing | isco 2431 2513 | riasec ECI | payoff convex | entry open | sprint direct | modes employed freelance | ladder corporate | tags analytical numbers creative autonomy
+@lane growth_marketing | Performance & growth marketing | isco 2431 2513 | riasec ECI | entry open | sprint direct | modes employed freelance | ladder corporate | tags analytical numbers creative autonomy
 > Acquiring customers through paid ads, search, experiments and funnels, measured in hard numbers.
 - Digital marketing specialist | entry
 - Paid social specialist (Meta, TikTok) | entry
@@ -164,11 +164,11 @@
 - App store / mobile growth specialist | mid
 - Performance marketing manager | senior
 - Head of growth | director | +leadership
-- Freelance media buyer | mid | mode freelance | +risk +variable_pay
+- Freelance media buyer | mid | mode freelance | +risk
 - Freelance SEO consultant | senior | mode freelance
 - Performance marketing agency owner | owner | +risk
 
-@lane lifecycle_marketing | CRM, lifecycle & marketing operations | isco 2431 2511 | riasec CEI | payoff linear | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags analytical detail technical writing
+@lane lifecycle_marketing | CRM, lifecycle & marketing operations | isco 2431 2511 | riasec CEI | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags analytical detail technical writing
 > Email, automation, segmentation and the systems that run marketing.
 - Email marketing specialist | entry | +writing
 - CRM / lifecycle marketing manager | mid
@@ -178,7 +178,7 @@
 - Marketing technologist | senior | +technical
 - Head of CRM | director | +leadership
 
-@lane product_marketing | Product marketing | isco 2431 | riasec EIA | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags persuasion writing analytical team
+@lane product_marketing | Product marketing | isco 2431 | riasec EIA | entry degree | sprint simulated | modes employed | ladder corporate | tags persuasion writing analytical team
 > Positioning products, understanding competitors and arming sales with the right story.
 - Product marketing associate | entry
 - Product marketing manager (PMM) | mid
@@ -187,7 +187,7 @@
 - Senior / principal product marketing manager | lead
 - Head of product marketing | director | +leadership
 
-@lane content_social | Content, copy & social media | isco 2431 2641 2432 | riasec AE | payoff linear | entry open | sprint direct | modes employed freelance | ladder independent | tags writing creative autonomy
+@lane content_social | Content, copy & social media | isco 2431 2641 2432 | riasec AE | entry open | sprint direct | modes employed freelance | ladder independent | tags writing creative autonomy
 > Writing and producing the content companies publish: copy, articles, social posts and community.
 - Copywriter | entry | aka tekstforfatter
 - Content writer / content marketer | entry
@@ -202,7 +202,7 @@
 - Freelance social media manager | mid | mode freelance | +risk
 - Content agency owner | owner
 
-@lane advertising_agency | Advertising & creative agencies | isco 2431 1222 2166 2641 | riasec AE | payoff steep | entry degree | sprint simulated | modes employed | ladder professional_firm | tags creative persuasion pressure team
+@lane advertising_agency | Advertising & creative agencies | isco 2431 1222 2166 2641 | riasec AE | entry degree | sprint simulated | modes employed | ladder professional_firm | tags creative persuasion pressure team
 > Agencies that create campaigns for client brands: strategy, creative, accounts and media.
 - Agency account executive | entry | +relationship
 - Account manager / account director (agency) | mid | +relationship
@@ -217,7 +217,7 @@
 - Agency producer | mid | +detail
 - Agency managing director | exec | +leadership
 
-@lane pr_comms | PR & communications | isco 2432 1222 | riasec EAS | payoff linear | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags writing persuasion relationship pressure
+@lane pr_comms | PR & communications | isco 2432 1222 | riasec EAS | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags writing persuasion relationship pressure
 > Managing reputation and how organisations communicate with media, employees and the public.
 - Communications adviser | entry | aka kommunikasjonsrådgiver
 - PR executive / press officer | entry | +relationship
@@ -232,7 +232,7 @@
 - PR agency partner | exec | +leadership
 - Independent communications consultant | senior | mode freelance
 
-@lane market_research | Market research & consumer insights | isco 2431 2632 4227 3314 | riasec IC | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical numbers writing detail
+@lane market_research | Market research & consumer insights | isco 2431 2632 4227 3314 | riasec IC | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical numbers writing detail
 > Finding out what customers think and do, through surveys, interviews and data.
 - Survey / market research interviewer | entry | +routine
 - Research analyst (market research) | entry
@@ -242,7 +242,7 @@
 - Insights manager | senior
 - Head of insights | director | +leadership
 
-@lane events | Events & experiential | isco 3332 1439 | riasec ESC | payoff linear | entry open | sprint direct | modes employed freelance owner | ladder corporate | tags detail pressure relationship shift
+@lane events | Events & experiential | isco 3332 1439 | riasec ESC | entry open | sprint direct | modes employed freelance owner | ladder corporate | tags detail pressure relationship shift
 > Planning and running conferences, festivals, weddings, launches and corporate events.
 - Event assistant / runner | entry | +physical
 - Event coordinator | entry
@@ -259,7 +259,7 @@
 # ======================================================================
 @family product_design | Product, design & UX | Deciding what gets built and how it looks and works.
 
-@lane product_management | Product management | isco 2421 2511 1223 | riasec EIS | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical leadership team persuasion
+@lane product_management | Product management | isco 2421 2511 1223 | riasec EIS | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical leadership team persuasion
 > Deciding what a product should do, for whom and why, and getting a team to ship it.
 - Associate product manager (APM) | entry
 - Product owner | mid
@@ -274,7 +274,7 @@
 - Chief product officer (CPO) | exec
 - Fractional product leader | lead | mode freelance | +autonomy
 
-@lane product_design | Product & UX/UI design | isco 2166 2513 | riasec AIE | payoff linear | entry open | sprint simulated | modes employed freelance | ladder corporate | tags creative aesthetic analytical team
+@lane product_design | Product & UX/UI design | isco 2166 2513 | riasec AIE | entry open | sprint simulated | modes employed freelance | ladder corporate | tags creative aesthetic analytical team
 > Designing how digital products work and look: flows, interfaces and interaction.
 - Junior product designer | entry
 - UX designer | mid
@@ -291,7 +291,7 @@
 - VP of design / chief design officer | exec
 - Freelance UX/UI designer | mid | mode freelance | +autonomy
 
-@lane ux_research | UX research | isco 2632 2634 2421 | riasec IAS | payoff linear | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags analytical relationship writing
+@lane ux_research | UX research | isco 2632 2634 2421 | riasec IAS | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags analytical relationship writing
 > Studying how people use products and turning it into decisions.
 - UX research assistant | entry
 - UX researcher | mid
@@ -303,7 +303,7 @@
 - Head of research | director | +leadership
 - Freelance UX researcher | senior | mode freelance
 
-@lane graphic_design | Graphic & brand design | isco 2166 3432 7316 | riasec AE | payoff linear | entry open | sprint direct | modes employed freelance owner | ladder independent | tags creative aesthetic solo detail
+@lane graphic_design | Graphic & brand design | isco 2166 3432 7316 | riasec AE | entry open | sprint direct | modes employed freelance owner | ladder independent | tags creative aesthetic solo detail
 > Visual identities, layouts, packaging and print and digital graphics.
 - Junior graphic designer | entry
 - Graphic designer | mid | aka grafisk designer
@@ -318,7 +318,7 @@
 - Sign maker / large-format print designer | mid | +building
 - Design studio owner | owner | +risk
 
-@lane industrial_design | Industrial & product design | isco 2163 3118 | riasec ARI | payoff linear | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags creative technical aesthetic building
+@lane industrial_design | Industrial & product design | isco 2163 3118 | riasec ARI | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags creative technical aesthetic building
 > Designing physical products: furniture, devices, tools, vehicles.
 - Junior industrial designer | entry
 - Industrial designer | mid | aka produktdesigner
@@ -334,7 +334,7 @@
 # ======================================================================
 @family software | Software, IT & cybersecurity | Building and running software and IT systems.
 
-@lane software_engineering | Software engineering | isco 2512 2513 2514 2519 | riasec IRC | payoff linear_high_floor | entry open | sprint simulated | modes employed freelance | ladder corporate | tags technical analytical practice team
+@lane software_engineering | Software engineering | isco 2512 2513 2514 2519 | riasec IRC | entry open | sprint simulated | modes employed freelance | ladder corporate | tags technical analytical practice team
 > Writing, testing and maintaining software: web, mobile, backend and systems.
 - Software engineering intern | trainee
 - Junior developer | entry | aka utvikler
@@ -356,7 +356,7 @@
 - Low-code / no-code developer | entry | mode freelance
 - Software agency owner | owner | +risk
 
-@lane embedded_systems | Embedded & hardware-near software | isco 2512 2152 3114 | riasec IRC | payoff linear_high_floor | entry degree | sprint simulated | modes employed | ladder corporate | tags technical analytical precision practice
+@lane embedded_systems | Embedded & hardware-near software | isco 2512 2152 3114 | riasec IRC | entry degree | sprint simulated | modes employed | ladder corporate | tags technical analytical precision practice
 > Software for devices, machines, vehicles and electronics.
 - Junior embedded developer | entry
 - Embedded software engineer | mid
@@ -368,7 +368,7 @@
 - Embedded systems architect | lead
 - Embedded team lead / manager | manager | +leadership
 
-@lane devops_cloud | DevOps, cloud & site reliability | isco 2522 2523 2529 3513 | riasec ICR | payoff linear_high_floor | entry course | sprint simulated | modes employed freelance | ladder corporate | tags technical analytical pressure detail
+@lane devops_cloud | DevOps, cloud & site reliability | isco 2522 2523 2529 3513 | riasec ICR | entry course | sprint simulated | modes employed freelance | ladder corporate | tags technical analytical pressure detail
 > Keeping software running: infrastructure, deployment, cloud platforms and reliability.
 - Junior DevOps engineer | entry
 - DevOps engineer | mid
@@ -380,12 +380,12 @@
 - Head of platform / infrastructure | director | +leadership
 - Freelance cloud consultant | senior | mode freelance
 
-@lane cybersecurity | Cybersecurity | isco 2529 2523 2522 3511 0110 | riasec ICR | payoff linear_high_floor | entry course | sprint simulated | modes employed freelance public | ladder corporate | tags technical analytical pressure detail
+@lane cybersecurity | Cybersecurity | isco 2529 2523 2522 3511 0110 | riasec ICR | entry course | sprint simulated | modes employed freelance public | ladder corporate | tags technical analytical pressure detail
 > Protecting systems and data from attackers.
 - SOC analyst (tier 1) | entry | +shift +routine
 - Security analyst | mid
 - Penetration tester / ethical hacker | mid | +creative
-- Bug bounty hunter | mid | mode freelance | +risk +variable_pay +autonomy
+- Bug bounty hunter | mid | mode freelance | +risk +autonomy
 - Security engineer | mid
 - Cloud security engineer | senior
 - Incident responder / digital forensics analyst | mid | +pressure
@@ -399,7 +399,7 @@
 - Military / government cyber operator | mid | mode public
 - Independent security consultant | senior | mode freelance
 
-@lane it_support | IT support & infrastructure | isco 3512 3513 3511 2522 2523 7422 1330 | riasec RCI | payoff linear | entry course | sprint simulated | modes employed | ladder corporate | tags technical care routine team
+@lane it_support | IT support & infrastructure | isco 3512 3513 3511 2522 2523 7422 1330 | riasec RCI | entry course | sprint simulated | modes employed | ladder corporate | tags technical care routine team
 > Helping people with their computers and keeping networks, servers and devices working.
 - IT support technician / helpdesk | entry | aka brukerstøtte | +care
 - Desktop / field support technician | entry | +physical +travel
@@ -414,7 +414,7 @@
 - Chief information officer (CIO) | exec | +leadership
 - Managed IT services business owner | owner
 
-@lane qa_testing | Software testing & quality assurance | isco 2519 3514 | riasec CIR | payoff linear | entry course | sprint simulated | modes employed freelance | ladder corporate | tags detail technical analytical routine
+@lane qa_testing | Software testing & quality assurance | isco 2519 3514 | riasec CIR | entry course | sprint simulated | modes employed freelance | ladder corporate | tags detail technical analytical routine
 > Finding bugs and making sure software works before users see it.
 - Manual QA tester | entry
 - Game tester | entry | +routine
@@ -424,7 +424,7 @@
 - QA lead | lead | +leadership
 - Head of quality engineering | director | +leadership
 
-@lane enterprise_systems | Enterprise systems & IT consulting | isco 2511 2519 2421 | riasec ICE | payoff convex | entry degree | sprint simulated | modes employed freelance | ladder professional_firm | tags technical analytical relationship travel
+@lane enterprise_systems | Enterprise systems & IT consulting | isco 2511 2519 2421 | riasec ICE | entry degree | sprint simulated | modes employed freelance | ladder professional_firm | tags technical analytical relationship travel
 > Implementing large business systems (ERP, CRM, HR, finance) for companies.
 - Junior IT consultant | entry
 - Business analyst (IT) | mid
@@ -437,9 +437,9 @@
 - IT project manager | manager | +leadership
 - IT consulting manager / director | director | +leadership
 - IT consulting partner | exec
-- Freelance ERP consultant | senior | mode freelance | +autonomy +variable_pay
+- Freelance ERP consultant | senior | mode freelance | +autonomy
 
-@lane game_development | Game development | isco 2512 2513 2166 2654 | riasec AIR | payoff winner_take_all | entry open | sprint simulated | modes employed freelance owner | ladder corporate | tags creative technical practice team
+@lane game_development | Game development | isco 2512 2513 2166 2654 | riasec AIR | entry open | sprint simulated | modes employed freelance owner | ladder corporate | tags creative technical practice team
 > Designing, programming and producing video games.
 - Junior game developer | entry
 - Gameplay programmer | mid
@@ -455,7 +455,7 @@
 - Studio head | exec | +leadership
 - Indie game developer | owner | +risk +solo +autonomy
 
-@lane devrel_techwriting | Developer relations & technical writing | isco 2641 2512 2356 | riasec IAS | payoff linear | entry degree | sprint direct | modes employed freelance | ladder corporate | tags writing technical teaching
+@lane devrel_techwriting | Developer relations & technical writing | isco 2641 2512 2356 | riasec IAS | entry degree | sprint direct | modes employed freelance | ladder corporate | tags writing technical teaching
 > Explaining technology: documentation, tutorials, talks and developer communities.
 - Technical writer | entry | aka teknisk skribent
 - Documentation engineer | mid
@@ -470,7 +470,7 @@
 # ======================================================================
 @family data_ai | Data, analytics & AI | Turning data into decisions and building intelligent systems.
 
-@lane data_analysis | Data analysis & business intelligence | isco 2511 2120 3314 2421 | riasec ICE | payoff linear | entry open | sprint simulated | modes employed freelance | ladder corporate | tags analytical numbers detail
+@lane data_analysis | Data analysis & business intelligence | isco 2511 2120 3314 2421 | riasec ICE | entry open | sprint simulated | modes employed freelance | ladder corporate | tags analytical numbers detail
 > Answering business questions with data: dashboards, reporting and analysis.
 - Junior data analyst | entry
 - Data analyst | mid | aka dataanalytiker
@@ -484,7 +484,7 @@
 - Head of analytics | director | +leadership
 - Freelance data analyst | mid | mode freelance
 
-@lane data_science | Data science & statistics | isco 2120 2511 3314 | riasec IRC | payoff linear_high_floor | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical numbers technical
+@lane data_science | Data science & statistics | isco 2120 2511 3314 | riasec IRC | entry degree | sprint simulated | modes employed | ladder corporate | tags analytical numbers technical
 > Modelling, statistics and experiments to predict and explain.
 - Junior data scientist | entry
 - Data scientist | mid
@@ -497,7 +497,7 @@
 - Head of data science | director | +leadership
 - Chief data officer (CDO) | exec | +leadership
 
-@lane ml_ai_engineering | Machine learning & AI engineering | isco 2512 2120 2519 | riasec IRC | payoff convex | entry degree | sprint simulated | modes employed freelance owner | ladder corporate | tags technical analytical practice
+@lane ml_ai_engineering | Machine learning & AI engineering | isco 2512 2120 2519 | riasec IRC | entry degree | sprint simulated | modes employed freelance owner | ladder corporate | tags technical analytical practice
 > Building and deploying machine learning models and AI products.
 - Machine learning engineer | mid
 - AI engineer (LLM applications) | mid
@@ -512,7 +512,7 @@
 - Head of AI / ML | director | +leadership
 - AI automation freelancer / agency owner | owner | +risk +hunting
 
-@lane data_engineering | Data engineering & databases | isco 2521 2529 2512 | riasec IRC | payoff linear_high_floor | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags technical detail analytical
+@lane data_engineering | Data engineering & databases | isco 2521 2529 2512 | riasec IRC | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags technical detail analytical
 > Building the pipelines, warehouses and databases data runs on.
 - Junior data engineer | entry
 - Data engineer | mid
@@ -522,7 +522,7 @@
 - Data governance / data quality specialist | mid | +detail -technical
 - Head of data engineering | director | +leadership
 
-@lane gis_geodata | GIS & geospatial analysis | isco 2165 3112 2511 | riasec IRC | payoff linear | entry degree | sprint simulated | modes employed public | ladder corporate | tags technical analytical detail
+@lane gis_geodata | GIS & geospatial analysis | isco 2165 3112 2511 | riasec IRC | entry degree | sprint simulated | modes employed public | ladder corporate | tags technical analytical detail
 > Maps, location data and spatial analysis for planning, energy, defence and logistics.
 - GIS technician | entry
 - GIS analyst | mid | aka geodataanalytiker

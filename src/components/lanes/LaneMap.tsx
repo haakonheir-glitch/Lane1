@@ -10,19 +10,18 @@ import { Button } from "@/components/ui/Button";
 import { LaneRow } from "./LaneRow";
 import { LaneDetailPanel } from "./LaneDetailPanel";
 import { BAND_ORDER, bandLabel, sortMatches, type Band } from "@/lib/matching/fit";
-import { entryLabel, entryTerm, modeLabel, payoffLabel, payoffTerm } from "@/lib/lanes/labels";
-import type { LaneDetail, LaneFilterVocab, LaneRowData, LaneSort, LaneView } from "@/lib/lanes/types";
-import type { EntryId, ModeId, PayoffId } from "@/lib/taxonomy/generated";
+import { entryLabel, entryTerm, modeLabel } from "@/lib/lanes/labels";
+import type { LaneDetail, LaneFilterVocab, LaneRowData, LaneView } from "@/lib/lanes/types";
+import type { EntryId, ModeId } from "@/lib/taxonomy/generated";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 import { useFocusTrap } from "@/lib/hooks/useFocusTrap";
 import { cn } from "@/lib/cn";
 
-type Filters = { family: string; mode: ModeId | "all"; payoff: PayoffId | "all"; entry: EntryId | "all" };
-type ChipKey = "mode" | "payoff" | "entry";
+type Filters = { family: string; mode: ModeId | "all"; entry: EntryId | "all" };
+type ChipKey = "mode" | "entry";
 
 const CHIPS: { key: ChipKey; label: string; labels: Record<string, string>; terms?: Record<string, string> }[] = [
   { key: "mode", label: "Work mode", labels: modeLabel },
-  { key: "payoff", label: "Pay", labels: payoffLabel, terms: payoffTerm },
   { key: "entry", label: "Getting in", labels: entryLabel, terms: entryTerm },
 ];
 
@@ -32,7 +31,6 @@ function matches(l: LaneRowData, f: Filters, skip?: keyof Filters) {
   return (
     (skip === "family" || f.family === "all" || l.familyId === f.family) &&
     (skip === "mode" || f.mode === "all" || l.modes.includes(f.mode)) &&
-    (skip === "payoff" || f.payoff === "all" || l.payoff === f.payoff) &&
     (skip === "entry" || f.entry === "all" || l.entry === f.entry)
   );
 }
@@ -91,13 +89,11 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
   const panelRef = useRef<HTMLDivElement>(null);
   const headingId = useId();
 
-  const sort: LaneSort = params.get("sort") === "fit-payoff" ? "fit-payoff" : "fit";
   const view: LaneView = params.get("view") === "band" ? "band" : "family";
   const familyParam = params.get("family");
   const f: Filters = {
     family: familyParam && vocab.families.some((x) => x.id === familyParam) ? familyParam : "all",
     mode: pick<ModeId>(params.get("mode"), modeLabel),
-    payoff: pick<PayoffId>(params.get("payoff"), payoffLabel),
     entry: pick<EntryId>(params.get("entry"), entryLabel),
   };
   const selectedId = detail?.row.id;
@@ -122,7 +118,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
   // Opening a lane fetches its detail from the server.
   const openLane = useCallback((id: string | null) => router.replace(qs({ lane: id, from: null }), { scroll: false }), [router, qs]);
 
-  const sorted = useMemo(() => sortMatches(rows.map((r) => ({ match: r, name: r.name, row: r })), sort).map((x) => x.row), [rows, sort]);
+  const sorted = useMemo(() => sortMatches(rows.map((r) => ({ match: r, name: r.name, row: r }))).map((x) => x.row), [rows]);
   const visible = sorted.filter((l) => matches(l, f));
 
   const close = useCallback(() => openLane(null), [openLane]);
@@ -137,32 +133,20 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
     };
   }, [modalOpen]);
 
-  // Families in order of their best lane under the current sort.
+  // Families in order of their best lane.
   const familyOrder: string[] = [];
   for (const l of visible) if (!familyOrder.includes(l.familyId)) familyOrder.push(l.familyId);
   const families = familyOrder.map((id) => ({ id, name: vocab.families.find((x) => x.id === id)!.name, rows: visible.filter((l) => l.familyId === id) }));
 
-  const anyFilter = f.family !== "all" || f.mode !== "all" || f.payoff !== "all" || f.entry !== "all";
+  const anyFilter = f.family !== "all" || f.mode !== "all" || f.entry !== "all";
 
-  const panel = detail ? <LaneDetailPanel detail={detail} sort={sort} onClose={close} headingId={headingId} /> : null;
+  const panel = detail ? <LaneDetailPanel detail={detail} onClose={close} headingId={headingId} /> : null;
 
   return (
     <div className={cn("grid gap-8", detail && docked && "xl:grid-cols-[minmax(0,1fr)_440px]")}>
       <div className="min-w-0">
         <div className="flex flex-col gap-6">
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-            <div className="flex items-center gap-4">
-              <span className="w-20 shrink-0 label text-ink-3">Order by</span>
-              <SegmentedControl<LaneSort>
-                label="Order by"
-                value={sort}
-                onChange={(v) => setView({ sort: v === "fit" ? null : v })}
-                options={[
-                  { value: "fit", label: "Relative fit" },
-                  { value: "fit-payoff", label: "Fit × payoff" },
-                ]}
-              />
-            </div>
             <div className="flex items-center gap-4">
               <span className="w-20 shrink-0 label text-ink-3 xl:w-auto">Group by</span>
               <SegmentedControl<LaneView>
@@ -218,7 +202,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
             {visible.length} of {rows.length} career paths · {bandCounts(visible)}
           </span>
           {anyFilter ? (
-            <button type="button" className="label text-ink-3 underline-offset-4 hover:text-ink hover:underline" onClick={() => setView({ family: null, mode: null, payoff: null, entry: null })}>
+            <button type="button" className="label text-ink-3 underline-offset-4 hover:text-ink hover:underline" onClick={() => setView({ family: null, mode: null, entry: null })}>
               Clear filters
             </button>
           ) : null}
@@ -228,9 +212,9 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
           <EmptyState
             className="mt-8"
             title="No career paths match these filters."
-            body="Some combinations don't exist, for example winner-take-all career paths you can enter through an apprenticeship."
+            body="Some combinations of family, work mode and entry route don't exist."
             action={
-              <Button variant="secondary" size="sm" onClick={() => setView({ family: null, mode: null, payoff: null, entry: null })}>
+              <Button variant="secondary" size="sm" onClick={() => setView({ family: null, mode: null, entry: null })}>
                 Clear filters
               </Button>
             }
@@ -275,9 +259,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
         )}
 
         <p className="mt-8 max-w-reading text-small text-ink-3">
-          {sort === "fit"
-            ? "Bands compare each career path with your other career paths, not with other people. A career path is a strong fit only when it's clearly above more than half of yours after allowing for measurement error; most can't be told apart that precisely, so they're possible fits. The dot shows fit against your average career path, with a 90% range."
-            : "Fit × payoff reorders career paths within each band by how each pays at the level you'd likely reach. Winner-take-all careers drop unless you're likely to reach the top group."}
+          Bands compare each career path with your other career paths, not with other people. A career path is a strong fit only when it&apos;s clearly above more than half of yours after allowing for measurement error; most can&apos;t be told apart that precisely, so they&apos;re possible fits. The dot shows fit against your average career path, with a 90% range.
         </p>
       </div>
 

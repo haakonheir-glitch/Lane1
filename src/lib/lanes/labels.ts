@@ -3,25 +3,11 @@
  * and are shown in the career path detail). Keyed by the generated ids, so a taxonomy rebuild
  * that adds a value fails the type check until it has a label here.
  *
- * Payoff and entry are shown in plain language everywhere; the technical terms (convex, open
- * entry, …) are kept for tooltips and the method page.
+ * Entry is shown in plain language everywhere; the technical terms (open entry, …) are kept for
+ * tooltips and the method page.
  */
-import type { EntryId, LevelId, ModeId, PayoffId } from "../taxonomy/generated";
+import type { EntryId, LevelId, ModeId } from "../taxonomy/generated";
 import type { EntryNote } from "../matching";
-import { payoffLabel as payoffTermLabel } from "../matching/payoff";
-
-export { WINNER_TAKE_ALL_NOTE } from "../matching/payoff";
-
-/** The technical payoff term ("Convex"), for tooltips. */
-export const payoffTerm: Record<PayoffId, string> = payoffTermLabel;
-
-export const payoffLabel: Record<PayoffId, string> = {
-  linear: "Steady pay",
-  linear_high_floor: "Good pay from the start",
-  convex: "Uneven pay, high upside",
-  steep: "Pay rises steeply with seniority",
-  winner_take_all: "Few earn most",
-};
 
 export const modeLabel: Record<ModeId, string> = {
   employed: "Employed",

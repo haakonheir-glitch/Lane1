@@ -37,7 +37,7 @@ export default async function SamplePage() {
         <h2 id="map-h" className="mt-3 text-h2 font-medium text-ink">
           The sample&apos;s five best fits
         </h2>
-        <p className="mt-2 max-w-reading text-body text-ink-2">In your own Career map, each opens to its day-to-day work, how people get in, how it pays and where you&apos;d start.</p>
+        <p className="mt-2 max-w-reading text-body text-ink-2">In your own Career map, each opens to its day-to-day work, how people get in and where you&apos;d start.</p>
         <ul className="mt-6 divide-y divide-rule border-y border-rule">
           {picks.slice(0, 5).map((p) => (
             <li key={p.row.id}>

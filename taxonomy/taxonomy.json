@@ -66,13 +66,6 @@
   "performer",
   "gig"
  ],
- "payoffs": {
-  "linear": "Pay rises steadily with experience; narrow spread between people.",
-  "linear_high_floor": "Secure, well-paid floor from the start (licensed or scarce skills); moderate ceiling.",
-  "convex": "Base plus variable pay (commission, bonus); top performers earn several times the median.",
-  "steep": "Up-or-out or equity-heavy; a minority reaches very high pay (partner, founder, PE carry).",
-  "winner_take_all": "A small top group captures most of the income; the median earns little or nothing."
- },
  "entry": {
   "open": "No formal requirement; you can start by doing the work.",
   "course": "Short course or certificate (weeks to months).",
@@ -108,7 +101,6 @@
   "visible": "Working in front of an audience or the public eye",
   "solo": "Mostly working alone",
   "team": "Mostly working in a close team",
-  "variable_pay": "A large share of pay depends on results",
   "risk": "Income or outcomes are uncertain; real downside",
   "routine": "Repeatable, structured tasks",
   "shift": "Shift, night or weekend work",
@@ -221,10 +213,6 @@
   "team": [
    "dispositions.team_orientation",
    "neo.A4"
-  ],
-  "variable_pay": [
-   "dispositions.variance_tolerance",
-   "values_ext.upside"
   ],
   "risk": [
    "dispositions.variance_tolerance",
@@ -675,7 +663,6 @@
       "1221"
      ],
      "riasec": "ES",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -686,7 +673,6 @@
      "tags": [
       "hunting",
       "persuasion",
-      "variable_pay",
       "competition"
      ],
      "status": "curated",
@@ -710,8 +696,7 @@
         "competition",
         "hunting",
         "persuasion",
-        "routine",
-        "variable_pay"
+        "routine"
        ]
       },
       {
@@ -728,8 +713,7 @@
         "competition",
         "hunting",
         "persuasion",
-        "routine",
-        "variable_pay"
+        "routine"
        ]
       },
       {
@@ -744,8 +728,7 @@
        "tags": [
         "competition",
         "hunting",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -760,8 +743,7 @@
        "tags": [
         "competition",
         "hunting",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -776,8 +758,7 @@
        "tags": [
         "competition",
         "hunting",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -795,8 +776,7 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -814,8 +794,7 @@
         "negotiation",
         "persuasion",
         "relationship",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -831,8 +810,7 @@
        "tags": [
         "competition",
         "hunting",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -845,8 +823,7 @@
        "tags": [
         "competition",
         "hunting",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -861,8 +838,7 @@
         "competition",
         "hunting",
         "persuasion",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -876,8 +852,7 @@
         "competition",
         "hunting",
         "leadership",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -892,8 +867,7 @@
         "hunting",
         "leadership",
         "persuasion",
-        "teaching",
-        "variable_pay"
+        "teaching"
        ]
       },
       {
@@ -909,8 +883,7 @@
         "competition",
         "hunting",
         "leadership",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -925,8 +898,7 @@
         "hunting",
         "leadership",
         "persuasion",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -942,8 +914,7 @@
         "competition",
         "hunting",
         "leadership",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -957,8 +928,7 @@
         "competition",
         "hunting",
         "leadership",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -972,8 +942,7 @@
         "competition",
         "hunting",
         "leadership",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -991,8 +960,7 @@
         "competition",
         "hunting",
         "persuasion",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -1006,8 +974,7 @@
         "autonomy",
         "competition",
         "hunting",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       },
       {
@@ -1020,8 +987,7 @@
        "tags": [
         "competition",
         "hunting",
-        "persuasion",
-        "variable_pay"
+        "persuasion"
        ]
       }
      ]
@@ -1037,7 +1003,6 @@
       "2511"
      ],
      "riasec": "EIS",
-     "payoff": "convex",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -1303,7 +1268,6 @@
       "1221"
      ],
      "riasec": "ESC",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -1435,8 +1399,7 @@
         "hunting",
         "persuasion",
         "relationship",
-        "team",
-        "variable_pay"
+        "team"
        ]
       },
       {
@@ -1521,7 +1484,6 @@
       "5242"
      ],
      "riasec": "ES",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -1533,7 +1495,6 @@
       "hunting",
       "persuasion",
       "travel",
-      "variable_pay",
       "autonomy"
      ],
      "status": "curated",
@@ -1557,8 +1518,7 @@
         "autonomy",
         "hunting",
         "persuasion",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -1573,8 +1533,7 @@
         "hunting",
         "persuasion",
         "routine",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -1590,8 +1549,7 @@
         "autonomy",
         "hunting",
         "persuasion",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -1605,8 +1563,7 @@
         "autonomy",
         "hunting",
         "persuasion",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -1621,8 +1578,7 @@
         "hunting",
         "outdoor",
         "persuasion",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -1636,8 +1592,7 @@
         "autonomy",
         "hunting",
         "persuasion",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -1652,8 +1607,7 @@
         "hunting",
         "leadership",
         "persuasion",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -1668,8 +1622,7 @@
         "hunting",
         "leadership",
         "persuasion",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -1686,8 +1639,7 @@
         "hunting",
         "persuasion",
         "risk",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       }
      ]
@@ -1705,7 +1657,6 @@
       "5249"
      ],
      "riasec": "ES",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -1717,7 +1668,6 @@
      "tags": [
       "hunting",
       "persuasion",
-      "variable_pay",
       "visible"
      ],
      "status": "curated",
@@ -1743,7 +1693,6 @@
         "outdoor",
         "persuasion",
         "risk",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1761,7 +1710,6 @@
         "hunting",
         "persuasion",
         "routine",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1778,7 +1726,6 @@
        "tags": [
         "hunting",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1792,7 +1739,6 @@
        "tags": [
         "hunting",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1809,7 +1755,6 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1824,7 +1769,6 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1838,7 +1782,6 @@
        "tags": [
         "hunting",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1852,7 +1795,6 @@
        "tags": [
         "hunting",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1867,7 +1809,6 @@
         "hunting",
         "persuasion",
         "technical",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1881,7 +1822,6 @@
        "tags": [
         "hunting",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1898,7 +1838,6 @@
         "hunting",
         "persuasion",
         "risk",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1913,7 +1852,6 @@
         "hunting",
         "leadership",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1928,7 +1866,6 @@
         "hunting",
         "leadership",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -1942,7 +1879,6 @@
        "tags": [
         "hunting",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       }
@@ -1960,7 +1896,6 @@
       "3339"
      ],
      "riasec": "ES",
-     "payoff": "convex",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -2141,7 +2076,6 @@
       "3339"
      ],
      "riasec": "ES",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -2151,8 +2085,7 @@
      "tags": [
       "hunting",
       "persuasion",
-      "relationship",
-      "variable_pay"
+      "relationship"
      ],
      "status": "curated",
      "isco_labels": {
@@ -2173,8 +2106,7 @@
        "tags": [
         "hunting",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -2187,8 +2119,7 @@
        "tags": [
         "hunting",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -2203,8 +2134,7 @@
         "numbers",
         "persuasion",
         "relationship",
-        "technical",
-        "variable_pay"
+        "technical"
        ]
       },
       {
@@ -2217,8 +2147,7 @@
        "tags": [
         "hunting",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -2231,8 +2160,7 @@
        "tags": [
         "hunting",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -2246,8 +2174,7 @@
         "hunting",
         "leadership",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       }
      ]
@@ -2264,7 +2191,6 @@
       "4110"
      ],
      "riasec": "CEI",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -2431,7 +2357,6 @@
       "2433"
      ],
      "riasec": "EC",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -2515,8 +2440,7 @@
         "numbers",
         "relationship",
         "risk",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -2597,7 +2521,6 @@
       "1221"
      ],
      "riasec": "EAS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -2776,7 +2699,6 @@
       "2513"
      ],
      "riasec": "ECI",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -2953,8 +2875,7 @@
         "autonomy",
         "creative",
         "numbers",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -2998,7 +2919,6 @@
       "2511"
      ],
      "riasec": "CEI",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -3129,7 +3049,6 @@
       "2431"
      ],
      "riasec": "EIA",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -3245,7 +3164,6 @@
       "2432"
      ],
      "riasec": "AE",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -3449,7 +3367,6 @@
       "2641"
      ],
      "riasec": "AE",
-     "payoff": "steep",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -3661,7 +3578,6 @@
       "1222"
      ],
      "riasec": "EAS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -3873,7 +3789,6 @@
       "3314"
      ],
      "riasec": "IC",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -4007,7 +3922,6 @@
       "1439"
      ],
      "riasec": "ESC",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -4181,7 +4095,6 @@
       "1223"
      ],
      "riasec": "EIS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -4384,7 +4297,6 @@
       "2513"
      ],
      "riasec": "AIE",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -4616,7 +4528,6 @@
       "2421"
      ],
      "riasec": "IAS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -4770,7 +4681,6 @@
       "7316"
      ],
      "riasec": "AE",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -4980,7 +4890,6 @@
       "3118"
      ],
      "riasec": "ARI",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -5136,7 +5045,6 @@
       "2519"
      ],
      "riasec": "IRC",
-     "payoff": "linear_high_floor",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -5453,7 +5361,6 @@
       "3114"
      ],
      "riasec": "IRC",
-     "payoff": "linear_high_floor",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -5614,7 +5521,6 @@
       "3513"
      ],
      "riasec": "ICR",
-     "payoff": "linear_high_floor",
      "entry": "course",
      "sprint": "simulated",
      "modes": [
@@ -5779,7 +5685,6 @@
       "0110"
      ],
      "riasec": "ICR",
-     "payoff": "linear_high_floor",
      "entry": "course",
      "sprint": "simulated",
      "modes": [
@@ -5861,8 +5766,7 @@
         "detail",
         "pressure",
         "risk",
-        "technical",
-        "variable_pay"
+        "technical"
        ]
       },
       {
@@ -6052,7 +5956,6 @@
       "1330"
      ],
      "riasec": "RCI",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "simulated",
      "modes": [
@@ -6269,7 +6172,6 @@
       "3514"
      ],
      "riasec": "CIR",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "simulated",
      "modes": [
@@ -6402,7 +6304,6 @@
       "2421"
      ],
      "riasec": "ICE",
-     "payoff": "convex",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -6591,8 +6492,7 @@
         "autonomy",
         "relationship",
         "technical",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       }
      ]
@@ -6609,7 +6509,6 @@
       "2654"
      ],
      "riasec": "AIR",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -6837,7 +6736,6 @@
       "2356"
      ],
      "riasec": "IAS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "direct",
      "modes": [
@@ -6975,7 +6873,6 @@
       "2421"
      ],
      "riasec": "ICE",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -7158,7 +7055,6 @@
       "3314"
      ],
      "riasec": "IRC",
-     "payoff": "linear_high_floor",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -7325,7 +7221,6 @@
       "2519"
      ],
      "riasec": "IRC",
-     "payoff": "convex",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -7520,7 +7415,6 @@
       "2512"
      ],
      "riasec": "IRC",
-     "payoff": "linear_high_floor",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -7644,7 +7538,6 @@
       "2511"
      ],
      "riasec": "IRC",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -7754,7 +7647,6 @@
       "4312"
      ],
      "riasec": "CEI",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -8000,7 +7892,6 @@
       "1211"
      ],
      "riasec": "CEI",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -8198,7 +8089,6 @@
       "3311"
      ],
      "riasec": "ECI",
-     "payoff": "steep",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -8402,7 +8292,6 @@
       "1211"
      ],
      "riasec": "EIC",
-     "payoff": "steep",
      "entry": "advanced",
      "sprint": "simulated",
      "modes": [
@@ -8621,7 +8510,6 @@
       "2412"
      ],
      "riasec": "ICE",
-     "payoff": "steep",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -8765,7 +8653,6 @@
         "analytical",
         "numbers",
         "pressure",
-        "variable_pay",
         "writing"
        ]
       },
@@ -8781,7 +8668,6 @@
         "numbers",
         "pressure",
         "risk",
-        "variable_pay",
         "writing"
        ]
       }
@@ -8797,7 +8683,6 @@
       "2413"
      ],
      "riasec": "ECI",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -8809,8 +8694,7 @@
       "risk",
       "numbers",
       "pressure",
-      "competition",
-      "variable_pay"
+      "competition"
      ],
      "status": "curated",
      "isco_labels": {
@@ -8829,8 +8713,7 @@
         "competition",
         "numbers",
         "pressure",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -8845,8 +8728,7 @@
         "numbers",
         "pressure",
         "relationship",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -8860,8 +8742,7 @@
         "competition",
         "numbers",
         "pressure",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -8876,8 +8757,7 @@
         "competition",
         "numbers",
         "pressure",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -8891,8 +8771,7 @@
         "competition",
         "numbers",
         "pressure",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -8908,8 +8787,7 @@
         "competition",
         "numbers",
         "pressure",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -8923,8 +8801,7 @@
         "competition",
         "numbers",
         "pressure",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -8940,8 +8817,7 @@
         "numbers",
         "pressure",
         "risk",
-        "solo",
-        "variable_pay"
+        "solo"
        ]
       },
       {
@@ -8960,8 +8836,7 @@
         "numbers",
         "pressure",
         "risk",
-        "solo",
-        "variable_pay"
+        "solo"
        ]
       },
       {
@@ -8976,8 +8851,7 @@
         "leadership",
         "numbers",
         "pressure",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -8995,8 +8869,7 @@
         "numbers",
         "pressure",
         "relationship",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       }
      ]
@@ -9012,7 +8885,6 @@
       "2512"
      ],
      "riasec": "IRC",
-     "payoff": "steep",
      "entry": "advanced",
      "sprint": "simulated",
      "modes": [
@@ -9135,7 +9007,6 @@
       "4214"
      ],
      "riasec": "ECS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -9340,8 +9211,7 @@
         "hunting",
         "numbers",
         "relationship",
-        "routine",
-        "variable_pay"
+        "routine"
        ]
       }
      ]
@@ -9356,7 +9226,6 @@
       "1346"
      ],
      "riasec": "ESC",
-     "payoff": "convex",
      "entry": "certificate",
      "sprint": "simulated",
      "modes": [
@@ -9475,8 +9344,7 @@
         "hunting",
         "numbers",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -9507,7 +9375,6 @@
       "1346"
      ],
      "riasec": "CEI",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -9558,8 +9425,7 @@
         "hunting",
         "numbers",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -9638,8 +9504,7 @@
         "detail",
         "negotiation",
         "numbers",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -9714,7 +9579,6 @@
       "3352"
      ],
      "riasec": "CIE",
-     "payoff": "steep",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -9862,7 +9726,6 @@
       "2421"
      ],
      "riasec": "ICE",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -9973,7 +9836,6 @@
       "2511"
      ],
      "riasec": "CEI",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -10092,7 +9954,6 @@
       "1219"
      ],
      "riasec": "EIC",
-     "payoff": "steep",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -10279,7 +10140,6 @@
       "1219"
      ],
      "riasec": "EI",
-     "payoff": "convex",
      "entry": "selection",
      "sprint": "direct",
      "modes": [
@@ -10417,7 +10277,6 @@
       "1219"
      ],
      "riasec": "EIC",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -10556,7 +10415,6 @@
       "1349"
      ],
      "riasec": "ES",
-     "payoff": "steep",
      "entry": "selection",
      "sprint": "shadow",
      "modes": [
@@ -10723,7 +10581,6 @@
       "1330"
      ],
      "riasec": "ECS",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "simulated",
      "modes": [
@@ -10890,7 +10747,6 @@
       "2141"
      ],
      "riasec": "CEI",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -11007,7 +10863,6 @@
       "2263"
      ],
      "riasec": "ISE",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -11144,7 +10999,6 @@
       "4414"
      ],
      "riasec": "CS",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -11346,7 +11200,6 @@
       "1212"
      ],
      "riasec": "ESC",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -11406,8 +11259,7 @@
         "competition",
         "hunting",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -11420,8 +11272,7 @@
        "tags": [
         "hunting",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -11461,8 +11312,7 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -11563,7 +11413,6 @@
       "4416"
      ],
      "riasec": "SEC",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -11776,7 +11625,6 @@
       "2356"
      ],
      "riasec": "SAE",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -11902,7 +11750,6 @@
       "2423"
      ],
      "riasec": "ISA",
-     "payoff": "linear",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -12006,7 +11853,6 @@
       "2611"
      ],
      "riasec": "EIS",
-     "payoff": "steep",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -12330,7 +12176,6 @@
       "2619"
      ],
      "riasec": "EIC",
-     "payoff": "linear",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -12458,7 +12303,6 @@
       "3411"
      ],
      "riasec": "ESI",
-     "payoff": "linear_high_floor",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -12583,7 +12427,6 @@
       "2619"
      ],
      "riasec": "CS",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "direct",
      "modes": [
@@ -12695,7 +12538,6 @@
       "3359"
      ],
      "riasec": "CEI",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -12835,7 +12677,6 @@
       "2611"
      ],
      "riasec": "ICE",
-     "payoff": "steep",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -12947,7 +12788,6 @@
       "2421"
      ],
      "riasec": "CEI",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -13098,7 +12938,6 @@
       "2421"
      ],
      "riasec": "ECI",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -13245,7 +13084,6 @@
       "3331"
      ],
      "riasec": "RC",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -13464,7 +13302,6 @@
       "3119"
      ],
      "riasec": "CIR",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -13656,7 +13493,6 @@
       "1219"
      ],
      "riasec": "RC",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -13841,7 +13677,6 @@
       "9623"
      ],
      "riasec": "RC",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -13995,7 +13830,6 @@
       "9331"
      ],
      "riasec": "RC",
-     "payoff": "linear",
      "entry": "certificate",
      "sprint": "shadow",
      "modes": [
@@ -14286,7 +14120,6 @@
       "3359"
      ],
      "riasec": "RC",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "shadow",
      "modes": [
@@ -14396,7 +14229,6 @@
       "4323"
      ],
      "riasec": "RIE",
-     "payoff": "linear_high_floor",
      "entry": "selection",
      "sprint": "shadow",
      "modes": [
@@ -14628,7 +14460,6 @@
       "3334"
      ],
      "riasec": "ES",
-     "payoff": "convex",
      "entry": "certificate",
      "sprint": "simulated",
      "modes": [
@@ -14640,7 +14471,6 @@
       "hunting",
       "persuasion",
       "negotiation",
-      "variable_pay",
       "visible"
      ],
      "status": "curated",
@@ -14659,7 +14489,6 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -14676,7 +14505,6 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -14692,7 +14520,6 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -14707,7 +14534,6 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -14724,7 +14550,6 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -14739,7 +14564,6 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -14756,7 +14580,6 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -14772,7 +14595,6 @@
         "leadership",
         "negotiation",
         "persuasion",
-        "variable_pay",
         "visible"
        ]
       },
@@ -14788,7 +14610,6 @@
         "negotiation",
         "persuasion",
         "risk",
-        "variable_pay",
         "visible"
        ]
       }
@@ -14806,7 +14627,6 @@
       "1120"
      ],
      "riasec": "EC",
-     "payoff": "steep",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -14943,7 +14763,6 @@
       "1219"
      ],
      "riasec": "CES",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "simulated",
      "modes": [
@@ -15112,7 +14931,6 @@
       "3118"
      ],
      "riasec": "IR",
-     "payoff": "linear_high_floor",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -15340,7 +15158,6 @@
       "3522"
      ],
      "riasec": "IR",
-     "payoff": "linear_high_floor",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -15526,7 +15343,6 @@
       "2165"
      ],
      "riasec": "IRC",
-     "payoff": "linear_high_floor",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -15736,7 +15552,6 @@
       "2146"
      ],
      "riasec": "IRC",
-     "payoff": "linear_high_floor",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -15875,7 +15690,6 @@
       "3122"
      ],
      "riasec": "IEC",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -16001,7 +15815,6 @@
       "2149"
      ],
      "riasec": "IRS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -16116,7 +15929,6 @@
       "3214"
      ],
      "riasec": "IRS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -16262,7 +16074,6 @@
       "1322"
      ],
      "riasec": "RI",
-     "payoff": "linear_high_floor",
      "entry": "open",
      "sprint": "shadow",
      "modes": [
@@ -16442,7 +16253,6 @@
       "3118"
      ],
      "riasec": "AIR",
-     "payoff": "linear",
      "entry": "advanced",
      "sprint": "simulated",
      "modes": [
@@ -16595,7 +16405,6 @@
       "2163"
      ],
      "riasec": "AE",
-     "payoff": "convex",
      "entry": "course",
      "sprint": "simulated",
      "modes": [
@@ -16708,7 +16517,6 @@
       "2165"
      ],
      "riasec": "IAE",
-     "payoff": "linear",
      "entry": "advanced",
      "sprint": "simulated",
      "modes": [
@@ -16841,7 +16649,6 @@
       "3112"
      ],
      "riasec": "ERC",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -17036,7 +16843,6 @@
       "7413"
      ],
      "riasec": "RC",
-     "payoff": "linear_high_floor",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -17251,7 +17057,6 @@
       "7127"
      ],
      "riasec": "RC",
-     "payoff": "linear_high_floor",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -17416,7 +17221,6 @@
       "7214"
      ],
      "riasec": "R",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -17623,7 +17427,6 @@
       "7123"
      ],
      "riasec": "R",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -17797,7 +17600,6 @@
       "7213"
      ],
      "riasec": "R",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -17953,7 +17755,6 @@
       "8341"
      ],
      "riasec": "R",
-     "payoff": "linear_high_floor",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -18120,7 +17921,6 @@
       "7224"
      ],
      "riasec": "R",
-     "payoff": "linear_high_floor",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -18328,7 +18128,6 @@
       "7421"
      ],
      "riasec": "RI",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -18550,7 +18349,6 @@
       "7421"
      ],
      "riasec": "RI",
-     "payoff": "linear_high_floor",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -18726,7 +18524,6 @@
       "9622"
      ],
      "riasec": "R",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "shadow",
      "modes": [
@@ -18877,7 +18674,6 @@
       "7113"
      ],
      "riasec": "R",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "direct",
      "modes": [
@@ -19036,7 +18832,6 @@
       "1321"
      ],
      "riasec": "RC",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -19274,7 +19069,6 @@
       "1321"
      ],
      "riasec": "RC",
-     "payoff": "linear_high_floor",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -19470,7 +19264,6 @@
       "7516"
      ],
      "riasec": "RC",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "direct",
      "modes": [
@@ -19651,7 +19444,6 @@
       "9121"
      ],
      "riasec": "RC",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -19796,7 +19588,6 @@
       "5120"
      ],
      "riasec": "RC",
-     "payoff": "linear_high_floor",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -20031,7 +19822,6 @@
       "3117"
      ],
      "riasec": "RI",
-     "payoff": "linear_high_floor",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -20272,7 +20062,6 @@
       "3131"
      ],
      "riasec": "RI",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -20416,7 +20205,6 @@
       "1219"
      ],
      "riasec": "RIC",
-     "payoff": "linear_high_floor",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -20551,7 +20339,6 @@
       "3331"
      ],
      "riasec": "EC",
-     "payoff": "steep",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -20600,8 +20387,7 @@
         "negotiation",
         "numbers",
         "relationship",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -20615,8 +20401,7 @@
         "negotiation",
         "numbers",
         "relationship",
-        "risk",
-        "variable_pay"
+        "risk"
        ]
       },
       {
@@ -20744,7 +20529,6 @@
       "2132"
      ],
      "riasec": "R",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "direct",
      "modes": [
@@ -20986,7 +20770,6 @@
       "6340"
      ],
      "riasec": "R",
-     "payoff": "linear_high_floor",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -21172,7 +20955,6 @@
       "9624"
      ],
      "riasec": "R",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "shadow",
      "modes": [
@@ -21320,7 +21102,6 @@
       "3240"
      ],
      "riasec": "RS",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -21495,7 +21276,6 @@
       "2131"
      ],
      "riasec": "RIS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -21603,7 +21383,6 @@
       "1345"
      ],
      "riasec": "IAS",
-     "payoff": "steep",
      "entry": "advanced",
      "sprint": "simulated",
      "modes": [
@@ -21787,7 +21566,6 @@
       "2269"
      ],
      "riasec": "IR",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -21971,7 +21749,6 @@
       "2619"
      ],
      "riasec": "ISC",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -22129,7 +21906,6 @@
       "3111"
      ],
      "riasec": "IR",
-     "payoff": "linear",
      "entry": "advanced",
      "sprint": "simulated",
      "modes": [
@@ -22314,7 +22090,6 @@
       "3111"
      ],
      "riasec": "IR",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -22458,7 +22233,6 @@
       "2634"
      ],
      "riasec": "IAS",
-     "payoff": "linear",
      "entry": "advanced",
      "sprint": "simulated",
      "modes": [
@@ -22660,7 +22434,6 @@
       "1342"
      ],
      "riasec": "ISR",
-     "payoff": "linear_high_floor",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -23083,7 +22856,6 @@
       "3222"
      ],
      "riasec": "SI",
-     "payoff": "linear_high_floor",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -23297,8 +23069,7 @@
         "pressure",
         "shift",
         "team",
-        "travel",
-        "variable_pay"
+        "travel"
        ]
       },
       {
@@ -23346,7 +23117,6 @@
       "3214"
      ],
      "riasec": "IRS",
-     "payoff": "linear_high_floor",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -23476,7 +23246,6 @@
       "3213"
      ],
      "riasec": "ICS",
-     "payoff": "linear_high_floor",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -23586,7 +23355,6 @@
       "2240"
      ],
      "riasec": "SIR",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -23837,7 +23605,6 @@
       "2269"
      ],
      "riasec": "IRS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -23959,7 +23726,6 @@
       "3412"
      ],
      "riasec": "SIA",
-     "payoff": "linear",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -24115,7 +23881,6 @@
       "3253"
      ],
      "riasec": "CSE",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "simulated",
      "modes": [
@@ -24258,7 +24023,6 @@
       "3240"
      ],
      "riasec": "IRS",
-     "payoff": "linear_high_floor",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -24374,7 +24138,6 @@
       "3259"
      ],
      "riasec": "SA",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "shadow",
      "modes": [
@@ -24483,7 +24246,6 @@
       "3412"
      ],
      "riasec": "S",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "direct",
      "modes": [
@@ -24657,7 +24419,6 @@
       "5162"
      ],
      "riasec": "S",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -24773,7 +24534,6 @@
       "1344"
      ],
      "riasec": "SE",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -24914,7 +24674,6 @@
       "2422"
      ],
      "riasec": "SE",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -25079,7 +24838,6 @@
       "3413"
      ],
      "riasec": "SA",
-     "payoff": "linear",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -25210,7 +24968,6 @@
       "1341"
      ],
      "riasec": "SA",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -25307,7 +25064,6 @@
       "2359"
      ],
      "riasec": "SA",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -25489,7 +25245,6 @@
       "2354"
      ],
      "riasec": "SA",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -25648,7 +25403,6 @@
       "3423"
      ],
      "riasec": "SE",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -25838,7 +25592,6 @@
       "3153"
      ],
      "riasec": "SR",
-     "payoff": "linear",
      "entry": "certificate",
      "sprint": "shadow",
      "modes": [
@@ -25954,7 +25707,6 @@
       "2631"
      ],
      "riasec": "IES",
-     "payoff": "linear",
      "entry": "advanced",
      "sprint": "simulated",
      "modes": [
@@ -26103,7 +25855,6 @@
       "1112"
      ],
      "riasec": "CS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -26257,7 +26008,6 @@
       "2263"
      ],
      "riasec": "CIR",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -26390,7 +26140,6 @@
       "1114"
      ],
      "riasec": "ES",
-     "payoff": "winner_take_all",
      "entry": "selection",
      "sprint": "direct",
      "modes": [
@@ -26529,7 +26278,6 @@
       "2643"
      ],
      "riasec": "ESI",
-     "payoff": "linear",
      "entry": "advanced",
      "sprint": "shadow",
      "modes": [
@@ -26648,7 +26396,6 @@
       "4411"
      ],
      "riasec": "CIA",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -26786,7 +26533,6 @@
       "0310"
      ],
      "riasec": "RE",
-     "payoff": "linear",
      "entry": "selection",
      "sprint": "shadow",
      "modes": [
@@ -27023,7 +26769,6 @@
       "3351"
      ],
      "riasec": "SER",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -27204,7 +26949,6 @@
       "4229"
      ],
      "riasec": "RS",
-     "payoff": "linear",
      "entry": "selection",
      "sprint": "shadow",
      "modes": [
@@ -27335,7 +27079,6 @@
       "5413"
      ],
      "riasec": "SR",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "shadow",
      "modes": [
@@ -27418,7 +27161,6 @@
       "5419"
      ],
      "riasec": "RE",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "shadow",
      "modes": [
@@ -27567,7 +27309,6 @@
       "3431"
      ],
      "riasec": "AIE",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "direct",
      "modes": [
@@ -27800,7 +27541,6 @@
       "1219"
      ],
      "riasec": "AEC",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -27944,7 +27684,6 @@
       "2641"
      ],
      "riasec": "AI",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -28129,7 +27868,6 @@
       "2643"
      ],
      "riasec": "AIC",
-     "payoff": "linear",
      "entry": "certificate",
      "sprint": "direct",
      "modes": [
@@ -28288,7 +28026,6 @@
       "2659"
      ],
      "riasec": "AE",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -28590,7 +28327,6 @@
       "2651"
      ],
      "riasec": "AIR",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -28764,7 +28500,6 @@
       "2166"
      ],
      "riasec": "AR",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -28935,7 +28670,6 @@
       "3435"
      ],
      "riasec": "A",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -29139,7 +28873,6 @@
       "5142"
      ],
      "riasec": "AE",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -29312,7 +29045,6 @@
       "1431"
      ],
      "riasec": "AE",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -29527,7 +29259,6 @@
       "2659"
      ],
      "riasec": "AR",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -29683,7 +29414,6 @@
       "3433"
      ],
      "riasec": "EAS",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -29804,7 +29534,6 @@
       "2659"
      ],
      "riasec": "AS",
-     "payoff": "winner_take_all",
      "entry": "selection",
      "sprint": "direct",
      "modes": [
@@ -29943,7 +29672,6 @@
       "2659"
      ],
      "riasec": "AS",
-     "payoff": "winner_take_all",
      "entry": "selection",
      "sprint": "direct",
      "modes": [
@@ -30130,7 +29858,6 @@
       "2641"
      ],
      "riasec": "AE",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -30232,7 +29959,6 @@
       "2656"
      ],
      "riasec": "AES",
-     "payoff": "winner_take_all",
      "entry": "selection",
      "sprint": "direct",
      "modes": [
@@ -30342,7 +30068,6 @@
       "2653"
      ],
      "riasec": "AS",
-     "payoff": "winner_take_all",
      "entry": "selection",
      "sprint": "direct",
      "modes": [
@@ -30431,7 +30156,6 @@
       "5241"
      ],
      "riasec": "AE",
-     "payoff": "winner_take_all",
      "entry": "selection",
      "sprint": "direct",
      "modes": [
@@ -30517,7 +30241,6 @@
       "2659"
      ],
      "riasec": "AE",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -30620,7 +30343,6 @@
       "3421"
      ],
      "riasec": "RE",
-     "payoff": "winner_take_all",
      "entry": "selection",
      "sprint": "direct",
      "modes": [
@@ -30876,7 +30598,6 @@
       "3422"
      ],
      "riasec": "RE",
-     "payoff": "winner_take_all",
      "entry": "selection",
      "sprint": "direct",
      "modes": [
@@ -30997,7 +30718,6 @@
       "3421"
      ],
      "riasec": "IEC",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -31148,7 +30868,6 @@
       "2264"
      ],
      "riasec": "SE",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "direct",
      "modes": [
@@ -31304,7 +31023,6 @@
       "1431"
      ],
      "riasec": "SE",
-     "payoff": "convex",
      "entry": "course",
      "sprint": "direct",
      "modes": [
@@ -31480,7 +31198,6 @@
       "9332"
      ],
      "riasec": "RS",
-     "payoff": "linear",
      "entry": "certificate",
      "sprint": "direct",
      "modes": [
@@ -31659,7 +31376,6 @@
       "3339"
      ],
      "riasec": "ES",
-     "payoff": "convex",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -31743,8 +31459,7 @@
         "hunting",
         "negotiation",
         "persuasion",
-        "relationship",
-        "variable_pay"
+        "relationship"
        ]
       },
       {
@@ -31781,7 +31496,6 @@
       "2659"
      ],
      "riasec": "AE",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -32045,7 +31759,6 @@
       "2642"
      ],
      "riasec": "AI",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -32148,7 +31861,6 @@
       "2641"
      ],
      "riasec": "ES",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -32258,7 +31970,6 @@
       "3339"
      ],
      "riasec": "AE",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -32394,7 +32105,6 @@
       "1120"
      ],
      "riasec": "EI",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -32586,7 +32296,6 @@
       "9520"
      ],
      "riasec": "EC",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "simulated",
      "modes": [
@@ -32788,7 +32497,6 @@
       "5249"
      ],
      "riasec": "EC",
-     "payoff": "winner_take_all",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -32950,7 +32658,6 @@
       "1349"
      ],
      "riasec": "EA",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -33080,7 +32787,6 @@
       "5246"
      ],
      "riasec": "RA",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "direct",
      "modes": [
@@ -33358,7 +33064,6 @@
       "5246"
      ],
      "riasec": "SE",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -33539,7 +33244,6 @@
       "5162"
      ],
      "riasec": "SE",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -33690,7 +33394,6 @@
       "3339"
      ],
      "riasec": "SE",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -33829,7 +33532,6 @@
       "9334"
      ],
      "riasec": "ESC",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -34081,7 +33783,6 @@
       "2431"
      ],
      "riasec": "EC",
-     "payoff": "linear",
      "entry": "degree",
      "sprint": "simulated",
      "modes": [
@@ -34218,7 +33919,6 @@
       "5244"
      ],
      "riasec": "SC",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -34382,7 +34082,6 @@
       "5142"
      ],
      "riasec": "ARS",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "direct",
      "modes": [
@@ -34596,7 +34295,6 @@
       "9629"
      ],
      "riasec": "SR",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -34722,7 +34420,6 @@
       "5163"
      ],
      "riasec": "SC",
-     "payoff": "linear",
      "entry": "course",
      "sprint": "shadow",
      "modes": [
@@ -34815,7 +34512,6 @@
       "7521"
      ],
      "riasec": "RA",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "direct",
      "modes": [
@@ -34969,7 +34665,6 @@
       "7319"
      ],
      "riasec": "AR",
-     "payoff": "convex",
      "entry": "open",
      "sprint": "shadow",
      "modes": [
@@ -35082,7 +34777,6 @@
       "7316"
      ],
      "riasec": "RA",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "direct",
      "modes": [
@@ -35209,7 +34903,6 @@
       "7318"
      ],
      "riasec": "RA",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "direct",
      "modes": [
@@ -35363,7 +35056,6 @@
       "7312"
      ],
      "riasec": "RA",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [
@@ -35483,7 +35175,6 @@
       "7515"
      ],
      "riasec": "RA",
-     "payoff": "linear",
      "entry": "apprenticeship",
      "sprint": "direct",
      "modes": [
@@ -35665,7 +35356,6 @@
       "3433"
      ],
      "riasec": "RA",
-     "payoff": "linear",
      "entry": "open",
      "sprint": "direct",
      "modes": [

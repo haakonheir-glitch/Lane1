@@ -134,7 +134,7 @@ export function ReportDocument({ profile, person, picks, effort, written, own, t
         <TraitConnections data={connections(profile, picks.slice(0, 5))} />
         <div className="doc-screen mt-8 flex flex-wrap items-center gap-4">
           <ButtonLink href="/lanes">Open your Career map</ButtonLink>
-          <span className="text-small text-ink-3">All 205 career paths, with day-to-day work, entry routes, pay and where you&apos;d start.</span>
+          <span className="text-small text-ink-3">All 205 career paths, with day-to-day work, entry routes and where you&apos;d start.</span>
         </div>
       </Chapter>
 

@@ -87,7 +87,6 @@ export const TAG_NOUN: Record<TagId, string> = {
   visible: "Being visible to an audience",
   solo: "Working alone",
   team: "Close teamwork",
-  variable_pay: "Variable pay",
   risk: "Taking risks",
   routine: "Repeatable, structured work",
   shift: "Shifts and irregular hours",

@@ -3,7 +3,7 @@ import { normed } from "@/lib/scoring/core";
 import type { ProfileScores } from "@/lib/scoring/profile";
 import type { ScaleScore } from "@/lib/scoring/types";
 import type { Family, Lane, Role, Taxonomy } from "@/lib/taxonomy/generated";
-import { entryPoint, matchLanes, payoffCurve, rankRoles, resolveConstruct, sortMatches } from "@/lib/matching";
+import { entryPoint, matchLanes, rankRoles, resolveConstruct, sortMatches } from "@/lib/matching";
 import { LANES, taxonomy } from "@/lib/taxonomy";
 import { sampleProfile } from "@/lib/mock/profile";
 
@@ -60,7 +60,6 @@ function lane(id: string, riasec: string, tags: Lane["tags"], extra: Partial<Lan
     description: "",
     isco: [],
     riasec,
-    payoff: "linear",
     entry: "open",
     sprint: "direct",
     modes: ["employed"],
@@ -205,11 +204,15 @@ describe("matchLanes", () => {
     expect(matchLanes(p, t)).toEqual(matchLanes(p, t));
   });
 
-  it("sorts by band first; the payoff toggle only reorders within a band", () => {
+  it("sorts by band first, then by fit within a band", () => {
     const named = matchLanes(enterprising, tax).map((match) => ({ match, name: match.laneId }));
-    for (const sort of ["fit", "fit-payoff"] as const) {
-      const bands = sortMatches(named, sort).map((x) => x.match.band);
-      expect(bands).toEqual([...bands].sort((a, b) => ["strong", "testing", "unlikely", "insufficient"].indexOf(a) - ["strong", "testing", "unlikely", "insufficient"].indexOf(b)));
+    const sorted = sortMatches(named);
+    const order = ["strong", "testing", "unlikely", "insufficient"];
+    const bands = sorted.map((x) => x.match.band);
+    expect(bands).toEqual([...bands].sort((a, b) => order.indexOf(a) - order.indexOf(b)));
+    for (let i = 1; i < sorted.length; i++) {
+      const [a, b] = [sorted[i - 1]!.match, sorted[i]!.match];
+      if (a.band === b.band && a.vsAverage !== null && b.vsAverage !== null) expect(a.vsAverage).toBeGreaterThanOrEqual(b.vsAverage);
     }
   });
 
@@ -271,14 +274,15 @@ describe("entry point and starting roles", () => {
   });
 });
 
-/* ---------- payoff ---------- */
+/* ---------- no income labels ---------- */
 
-describe("payoff curves", () => {
-  it("are increasing, and winner-take-all leaves the median with almost nothing", () => {
-    for (const c of Object.keys(taxonomy.payoffs) as (keyof typeof taxonomy.payoffs)[]) {
-      for (let x = 0; x < 1; x += 0.1) expect(payoffCurve(c, x + 0.1)).toBeGreaterThanOrEqual(payoffCurve(c, x));
-    }
-    expect(payoffCurve("winner_take_all", 0.5)).toBeLessThan(0.05);
-    expect(payoffCurve("linear_high_floor", 0)).toBeGreaterThan(payoffCurve("linear", 0));
+describe("income labels", () => {
+  it("are absent from the taxonomy and the matching output", () => {
+    expect(taxonomy).not.toHaveProperty("payoffs");
+    expect(Object.keys(taxonomy.tags)).not.toContain("variable_pay");
+    for (const l of LANES) expect(l).not.toHaveProperty("payoff");
+    const m = matchLanes(sampleProfile, taxonomy)[0]!;
+    expect(m).not.toHaveProperty("fitPayoff");
+    expect(m).not.toHaveProperty("expectedPayoff");
   });
 });

@@ -8,7 +8,6 @@ import { cache } from "react";
 import { FAMILIES, LANES, LEVELS, getFamily, getLane, ladderOf, laneModes, taxonomy } from "../taxonomy";
 import type { Lane, LaneId, LevelId, Role } from "../taxonomy/generated";
 import { constructTable, matchLanes, rankRoles, type Experience, type LaneMatch } from "../matching";
-import { normalCdf, Z90 } from "../scoring/core";
 import type { ProfileScores } from "../scoring/profile";
 import { TAG_NOUN } from "../matching/roles";
 import type { CareerCategory, CareerPick, CareerPicks, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, MatchOverlay, RoleRef } from "../lanes/types";
@@ -26,13 +25,11 @@ function toRow(lane: Lane, m: LaneMatch, exp: ExperienceAnswers): LaneRowData {
     name: lane.name,
     familyId: lane.family,
     familyName: getFamily(lane.family)!.name,
-    payoff: lane.payoff,
     entry: lane.entry,
     modes: laneModes(lane),
     band: m.band,
     vsAverage: m.vsAverage,
     se: m.se,
-    fitPayoff: m.fitPayoff,
     considering: exp.considering.some((c) => c.laneId === lane.id),
     current: exp.current?.laneId === lane.id,
   };
@@ -119,12 +116,10 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
   if (!lane) return null;
   const m = matchesFor(profile).get(lane.id)!;
   const ranked = rankRoles(lane, profile, taxonomy, toExperience(exp));
-  const half = m.se !== null ? Z90 * m.se : null;
   return {
     row: toRow(lane, m, exp),
     description: lane.description,
     riasec: lane.riasec,
-    payoffText: taxonomy.payoffs[lane.payoff],
     entryText: taxonomy.entry[lane.entry],
     dayToDay: lane.tags.map((t) => TAG_NOUN[t]),
     ladderName: ladderOf(lane).name,
@@ -133,8 +128,6 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
     topRoles: ranked.top.map((t) => ({ role: roleRef(t.role), reason: t.reason })),
     drivers: m.drivers.filter((d) => Math.abs(d.contribution) >= 0.01),
     unscoredTags: m.unscoredTags.map((t) => TAG_NOUN[t]),
-    payoffPosition: m.vsAverage !== null ? normalCdf(m.vsAverage) : null,
-    payoffRange: m.vsAverage !== null && half !== null ? [normalCdf(m.vsAverage - half), normalCdf(m.vsAverage + half)] : null,
     isco: Object.entries(lane.isco_labels).map(([code, label]) => ({ code, label })),
     overlay: matchOverlay(lane, profile),
   };
@@ -184,8 +177,6 @@ export function reportLanes(profile: ProfileScores, exp: ExperienceAnswers): Rep
         family: getFamily(lane.family)!.name,
         band: m.band,
         drivers: m.drivers.filter((d) => d.contribution > 0).map((d) => d.label),
-        payoff: taxonomy.payoffs[lane.payoff],
-        winnerTakeAll: lane.payoff === "winner_take_all",
         entry: taxonomy.entry[lane.entry],
         dayToDay: lane.tags.map((t) => TAG_NOUN[t]),
         listedBecause: why,

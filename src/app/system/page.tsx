@@ -8,8 +8,6 @@ import { Accordion } from "@/components/ui/Accordion";
 import { DataLabel } from "@/components/data/DataLabel";
 import { ScoreBar } from "@/components/data/ScoreBar";
 import { ConfidenceBadge } from "@/components/data/ConfidenceBadge";
-import { PayoffGlyph } from "@/components/data/PayoffGlyph";
-import { PayoffCurve } from "@/components/data/PayoffCurve";
 import { RadarProfile } from "@/components/data/RadarProfile";
 import { MarkLegend, ProfileMark } from "@/components/brand/ProfileMark";
 import type { MarkInput } from "@/lib/view/mark";
@@ -94,10 +92,8 @@ export default async function SystemPage() {
   // A development tool only: production has no link to it and no route.
   if (process.env.NODE_ENV === "production") notFound();
   const [{ rows }, profile] = await Promise.all([getSampleLaneMap(), getProfile()]);
-  // One lane from each band (taxonomy order), plus a winner-take-all lane.
-  const bandSamples = BAND_ORDER.flatMap((b) => rows.filter((r) => r.band === b).slice(0, 1));
-  const wta = rows.find((r) => r.payoff === "winner_take_all" && !bandSamples.includes(r));
-  const laneRows = wta ? [...bandSamples, wta] : bandSamples;
+  // One lane from each band (taxonomy order).
+  const laneRows = BAND_ORDER.flatMap((b) => rows.filter((r) => r.band === b).slice(0, 1));
   const allItems = (["S1", "S2", "S5"] as const).flatMap((id) => sessionPlan(id).blocks.flatMap((b) => b.items));
   const find = (pred: (f: string) => boolean) => allItems.find((i) => pred(i.format.type) && !i.validity)!;
   const asPublic = (i: (typeof allItems)[number]): Extract<PublicStep, { kind: "item" }>["item"] => ({ token: "specimen", text: i.text, format: i.format });
@@ -269,15 +265,6 @@ export default async function SystemPage() {
                 <ConfidenceBadge level="low" />
               </div>
             </Specimen>
-            <Specimen name="PayoffGlyph · linear / high floor / convex / steep / winner-take-all">
-              <div className="flex flex-wrap gap-8">
-                <PayoffGlyph type="linear" position={0.6} />
-                <PayoffGlyph type="linear_high_floor" position={0.6} />
-                <PayoffGlyph type="convex" position={0.6} />
-                <PayoffGlyph type="steep" position={0.6} />
-                <PayoffGlyph type="winner_take_all" position={0.6} emphasis />
-              </div>
-            </Specimen>
             <Specimen name="BandTag · FitIndicator">
               <div className="flex flex-col gap-3">
                 {BAND_ORDER.map((b, i) => (
@@ -293,11 +280,6 @@ export default async function SystemPage() {
             </Specimen>
             <Specimen name="ProgressBar (assessment)">
               <ProgressBar value={34} max={120} label="Example" />
-            </Specimen>
-            <Specimen name="PayoffCurve">
-              <div className="rounded-sm border border-rule bg-surface p-3">
-                <PayoffCurve type="convex" position={0.68} positionCi={[0.55, 0.79]} />
-              </div>
             </Specimen>
             <Specimen name="RadarProfile">
               {profile.interests ? <RadarProfile dimensions={radarDims(profile.interests)} showCi={false} /> : null}
@@ -325,7 +307,7 @@ export default async function SystemPage() {
         </Block>
 
         <Block index="06" label="Composite" title="Domain components">
-          <Specimen name="LaneRow · one per band, and a winner-take-all lane">
+          <Specimen name="LaneRow · one per band">
             <ul className="border-t border-rule-strong">
               {laneRows.map((l) => (
                 <li key={l.id} className="border-b border-rule">

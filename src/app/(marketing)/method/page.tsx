@@ -16,21 +16,19 @@ const references = [
   { id: 4, text: "Barrick, M. R., & Mount, M. K. (1991). The Big Five personality dimensions and job performance: A meta-analysis. Personnel Psychology, 44(1), 1–26." },
   { id: 5, text: "Schmidt, F. L., & Hunter, J. E. (1998). The validity and utility of selection methods in personnel psychology: Practical and theoretical implications of 85 years of research findings. Psychological Bulletin, 124(2), 262–274." },
   { id: 6, text: "Sackett, P. R., Zhang, C., Berry, C. M., & Lievens, F. (2022). Revisiting meta-analytic estimates of validity in personnel selection: Addressing systematic overcorrection for restriction of range. Journal of Applied Psychology, 107(11), 2040–2068." },
-  { id: 7, text: "Rosen, S. (1981). The economics of superstars. American Economic Review, 71(5), 845–858." },
-  { id: 8, text: "Frank, R. H., & Cook, P. J. (1995). The Winner-Take-All Society. Free Press." },
-  { id: 9, text: "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory: Development of the IPIP-NEO-120. Journal of Research in Personality, 51, 78–89." },
-  { id: 10, text: "Sibley, C. G., et al. (2011). The Mini-IPIP6: Validation and extension of a short measure of the Big-Six factors of personality in New Zealand. New Zealand Journal of Psychology, 40, 142–159." },
-  { id: 11, text: "National Center for O*NET Development. O*NET® Interest Profiler Short Form; O*NET® Work Importance Locator. U.S. Department of Labor, Employment and Training Administration. https://www.onetcenter.org" },
-  { id: 12, text: "Hoff, K. A., Song, Q. C., Wee, C. J. M., Phan, W. M. J., & Rounds, J. (2020). Interest fit and job satisfaction: A systematic review and meta-analysis. Journal of Vocational Behavior, 123, 103503." },
-  { id: 13, text: "Condon, D. M., & Revelle, W. (2014). The International Cognitive Ability Resource: Development and initial validation of a public-domain measure. Intelligence, 43, 52–64." },
-  { id: 14, text: "Lejuez, C. W., et al. (2002). Evaluation of a behavioral measure of risk taking: The Balloon Analogue Risk Task (BART). Journal of Experimental Psychology: Applied, 8, 75–84." },
-  { id: 15, text: "Blais, A.-R., & Weber, E. U. (2006). A Domain-Specific Risk-Taking (DOSPERT) scale for adult populations. Judgment and Decision Making, 1, 33–47." },
-  { id: 16, text: "Huang, J. L., Curran, P. G., Keeney, J., Poposki, E. M., & DeShon, R. P. (2012). Detecting and deterring insufficient effort responding to surveys. Journal of Business and Psychology, 27, 99–114." },
-  { id: 17, text: "Curran, P. G. (2016). Methods for the detection of carelessly invalid responses in survey data. Journal of Experimental Social Psychology, 66, 4–19." },
-  { id: 18, text: "Connelly, B. S., & Ones, D. S. (2010). An other perspective on personality: Meta-analytic integration of observers' accuracy and predictive validity. Psychological Bulletin, 136, 1092–1122." },
-  { id: 19, text: "Credé, M., Tynan, M. C., & Harms, P. D. (2017). Much ado about grit: A meta-analytic synthesis of the grit literature. Journal of Personality and Social Psychology, 113, 492–511." },
-  { id: 20, text: "MacCann, C., & Roberts, R. D. (2008). New paradigms for assessing emotional intelligence: Theory and data. Emotion, 8, 540–551." },
-  { id: 21, text: "Beaty, R. E., & Johnson, D. R. (2021). Automating creativity assessment with SemDis: An open platform for computing semantic distance. Behavior Research Methods, 53, 757–780." },
+  { id: 7, text: "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory: Development of the IPIP-NEO-120. Journal of Research in Personality, 51, 78–89." },
+  { id: 8, text: "Sibley, C. G., et al. (2011). The Mini-IPIP6: Validation and extension of a short measure of the Big-Six factors of personality in New Zealand. New Zealand Journal of Psychology, 40, 142–159." },
+  { id: 9, text: "National Center for O*NET Development. O*NET® Interest Profiler Short Form; O*NET® Work Importance Locator. U.S. Department of Labor, Employment and Training Administration. https://www.onetcenter.org" },
+  { id: 10, text: "Hoff, K. A., Song, Q. C., Wee, C. J. M., Phan, W. M. J., & Rounds, J. (2020). Interest fit and job satisfaction: A systematic review and meta-analysis. Journal of Vocational Behavior, 123, 103503." },
+  { id: 11, text: "Condon, D. M., & Revelle, W. (2014). The International Cognitive Ability Resource: Development and initial validation of a public-domain measure. Intelligence, 43, 52–64." },
+  { id: 12, text: "Lejuez, C. W., et al. (2002). Evaluation of a behavioral measure of risk taking: The Balloon Analogue Risk Task (BART). Journal of Experimental Psychology: Applied, 8, 75–84." },
+  { id: 13, text: "Blais, A.-R., & Weber, E. U. (2006). A Domain-Specific Risk-Taking (DOSPERT) scale for adult populations. Judgment and Decision Making, 1, 33–47." },
+  { id: 14, text: "Huang, J. L., Curran, P. G., Keeney, J., Poposki, E. M., & DeShon, R. P. (2012). Detecting and deterring insufficient effort responding to surveys. Journal of Business and Psychology, 27, 99–114." },
+  { id: 15, text: "Curran, P. G. (2016). Methods for the detection of carelessly invalid responses in survey data. Journal of Experimental Social Psychology, 66, 4–19." },
+  { id: 16, text: "Connelly, B. S., & Ones, D. S. (2010). An other perspective on personality: Meta-analytic integration of observers' accuracy and predictive validity. Psychological Bulletin, 136, 1092–1122." },
+  { id: 17, text: "Credé, M., Tynan, M. C., & Harms, P. D. (2017). Much ado about grit: A meta-analytic synthesis of the grit literature. Journal of Personality and Social Psychology, 113, 492–511." },
+  { id: 18, text: "MacCann, C., & Roberts, R. D. (2008). New paradigms for assessing emotional intelligence: Theory and data. Emotion, 8, 540–551." },
+  { id: 19, text: "Beaty, R. E., & Johnson, D. R. (2021). Automating creativity assessment with SemDis: An open platform for computing semantic distance. Behavior Research Methods, 53, 757–780." },
 ];
 
 function Cite({ n }: { n: number | number[] }) {
@@ -74,10 +72,9 @@ export default function MethodPage() {
             ["02", "The profile", "#m-02"],
             ["02b", "Norms and intervals", "#norms"],
             ["03", "Career paths and fit bands", "#m-03"],
-            ["04", "Payoff structure", "#m-04"],
-            ["05", "What you get", "#m-05"],
-            ["06", "What we don't do", "#m-06"],
-            ["07", "References", "#references"],
+            ["04", "What you get", "#m-04"],
+            ["05", "What we don't do", "#m-05"],
+            ["06", "References", "#references"],
           ].map(([n, t, href]) => (
             <li key={t}>
               <a href={href} className="grid grid-cols-[36px_1fr] text-small text-ink-2 transition-quiet hover:text-ink">
@@ -114,43 +111,43 @@ export default function MethodPage() {
             </p>
             <p>
               <strong className="font-medium text-ink">Personality</strong> uses the IPIP-NEO-120, the public-domain counterpart
-              of the most researched facet-level inventory: five domains and 30 facets.<Cite n={[3, 9]} /> One facet
+              of the most researched facet-level inventory: five domains and 30 facets.<Cite n={[3, 7]} /> One facet
               (political attitudes) is not used: it is irrelevant to work and inappropriate for anything selection-adjacent. A
-              sixth factor, Honesty-Humility, comes from the Mini-IPIP6.<Cite n={10} /> Facets have four items each, so they
-              are shown with wide intervals and never used on their own.<Cite n={9} />
+              sixth factor, Honesty-Humility, comes from the Mini-IPIP6.<Cite n={8} /> Facets have four items each, so they
+              are shown with wide intervals and never used on their own.<Cite n={7} />
             </p>
             <p>
               <strong className="font-medium text-ink">Interests and values</strong> use the O*NET® Interest Profiler (60 work
               activities, Holland&apos;s RIASEC model) and the O*NET® Work Importance Locator, a 20-card sort that stops
-              everything being rated &ldquo;very important&rdquo;.<Cite n={[1, 11]} /> Interest fit predicts satisfaction modestly
-              and career-path satisfaction and performance more strongly.<Cite n={[2, 12]} />
+              everything being rated &ldquo;very important&rdquo;.<Cite n={[1, 9]} /> Interest fit predicts satisfaction modestly
+              and career-path satisfaction and performance more strongly.<Cite n={[2, 10]} />
             </p>
             <p>
               <strong className="font-medium text-ink">Reasoning</strong> uses item types from decades of ability research
               (matrices, number and letter series, word problems, rotation, memory span, processing speed), the same types as the
-              open ICAR battery.<Cite n={13} /> Every item is generated fresh from a seed, so nobody can look up answers and no
+              open ICAR battery.<Cite n={11} /> Every item is generated fresh from a seed, so nobody can look up answers and no
               commercial test is reproduced. Classic estimates put cognitive ability among the strongest predictors of job
               performance;<Cite n={5} /> a 2022 re-analysis argued those estimates were inflated and the true figures are lower.
               <Cite n={6} /> There is no IQ number: results are a percentile range and a profile of relative strengths.
             </p>
             <p>
               <strong className="font-medium text-ink">Behaviour tasks</strong> measure what you do rather than what you say:
-              how fast you learn a new mapping, how you take risks in the balloon task,<Cite n={14} /> and how you trade money
+              how fast you learn a new mapping, how you take risks in the balloon task,<Cite n={12} /> and how you trade money
               now against money later. Risk is domain-specific, so no single &ldquo;risk tolerance&rdquo; number is claimed.
-              <Cite n={15} />
+              <Cite n={13} />
             </p>
             <p>
               <strong className="font-medium text-ink">Data quality</strong> is checked in every session: a few
               absurd or instructed statements, answer speed, long runs of identical answers, and consistency between opposite
-              statements.<Cite n={[16, 17]} /> Two or more flags mark a session &ldquo;low confidence&rdquo;; you see why and can
+              statements.<Cite n={[14, 15]} /> Two or more flags mark a session &ldquo;low confidence&rdquo;; you see why and can
               retake it. Nothing is discarded silently.
             </p>
             <p>
               <strong className="font-medium text-ink">{BRAND.name}&apos;s own scales</strong> cover what the standard instruments
               miss for non-corporate career paths: extra interests and values, ten work dispositions (such as variance tolerance and
-              setback resilience), an emotion-judgement test,<Cite n={20} /> idea tasks<Cite n={21} /> and life history. They are
+              setback resilience), an emotion-judgement test,<Cite n={18} /> idea tasks<Cite n={19} /> and life history. They are
               experimental. Your answers are collected for the pilot, but these scales are not shown as results until they meet a
-              reliability bar and add something beyond the established scales.<Cite n={19} />
+              reliability bar and add something beyond the established scales.<Cite n={17} />
             </p>
           </Section>
 
@@ -199,23 +196,7 @@ export default function MethodPage() {
             </p>
           </Section>
 
-          <Section n="04" title="Payoff structure">
-            <p>
-              Career paths pay out differently. In <strong className="font-medium text-ink">linear</strong> career paths, a competent
-              practitioner earns a decent living, and <strong className="font-medium text-ink">high-floor</strong> career paths pay
-              well from the start. In <strong className="font-medium text-ink">convex</strong> career paths, rewards accelerate with
-              skill; <strong className="font-medium text-ink">steep</strong> career paths are up-or-out or equity-heavy. In{" "}
-              <strong className="font-medium text-ink">winner-take-all</strong> career paths, a small top tier captures most of the
-              reward and the median earns little, and we say so on every one of them.<Cite n={[7, 8]} />
-            </p>
-            <p>
-              &ldquo;Fit × payoff&rdquo; places you on each curve at a realistic skill level, with an interval, and
-              discounts career paths accordingly. This is not a judgement about which career paths are worth pursuing. It is a way to
-              see the bet you are making.
-            </p>
-          </Section>
-
-          <Section n="05" title="What you get">
+          <Section n="04" title="What you get">
             <p>
               <strong className="font-medium text-ink">A profile report.</strong> Every score with its 90% interval, the relative
               strengths and weaknesses that pass a reliability test, a short written summary, and the limits of what the
@@ -223,12 +204,12 @@ export default function MethodPage() {
             </p>
             <p>
               <strong className="font-medium text-ink">A Career map.</strong> All 205 career paths in fit bands, with what the
-              work involves day to day, how people get in, how it pays and the role you could realistically start in. It is a
+              work involves day to day, how people get in and the role you could realistically start in. It is a
               way to decide which careers to look into first, not a plan you have to follow.
             </p>
           </Section>
 
-          <Section n="06" title="What we don't do">
+          <Section n="05" title="What we don't do">
             <ul className="flex flex-col gap-3">
               {[
                 "We do not use genetic, DNA, hormonal or brain-chemistry data. The science does not support using it to choose a career, and we would not use it if it did.",

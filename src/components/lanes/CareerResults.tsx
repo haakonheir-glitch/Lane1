@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import type { CareerPick } from "@/lib/lanes/types";
-import { entryLabel, entryTerm, payoffLabel, payoffTerm, WINNER_TAKE_ALL_NOTE } from "@/lib/lanes/labels";
+import { entryLabel, entryTerm } from "@/lib/lanes/labels";
 import { pad2 } from "@/lib/format";
 import { BandTag, FitIndicator, fitWords } from "./FitIndicator";
 import { cn } from "@/lib/cn";
@@ -36,8 +36,6 @@ function Why({ items, className }: { items: string[]; className?: string }) {
 function Meta({ p, className }: { p: CareerPick; className?: string }) {
   return (
     <p className={cn("flex flex-wrap gap-x-2 gap-y-1 text-small text-ink-2", className)}>
-      <span title={`Pay pattern: ${payoffTerm[p.row.payoff]}`}>{payoffLabel[p.row.payoff]}</span>
-      <span aria-hidden className="text-ink-4">·</span>
       <span title={`Entry: ${entryTerm[p.row.entry]}`}>{entryLabel[p.row.entry]}</span>
     </p>
   );
@@ -117,7 +115,6 @@ export function HeroCareer({ p }: { p: CareerPick }) {
             <p className="mt-2 text-small text-ink-2">{fitWords(p.row.vsAverage, p.row.band)}</p>
           </div>
           <Meta p={p} />
-          {p.row.payoff === "winner_take_all" ? <p className="text-small text-ink-3">{WINNER_TAKE_ALL_NOTE}</p> : null}
           <Ladder p={p} />
           <span className="mt-2 inline-flex items-center gap-2 text-small font-medium text-ink">
             Explore this career path

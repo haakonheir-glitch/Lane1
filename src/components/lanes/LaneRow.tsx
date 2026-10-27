@@ -1,18 +1,15 @@
 import { ChevronRight } from "lucide-react";
-import { PayoffGlyph } from "@/components/data/PayoffGlyph";
-import { normalCdf } from "@/lib/scoring/core";
-import { entryLabel, entryTerm, payoffLabel, payoffTerm } from "@/lib/lanes/labels";
+import { entryLabel, entryTerm } from "@/lib/lanes/labels";
 import { bandLabel } from "@/lib/matching/fit";
 import type { LaneRowData } from "@/lib/lanes/types";
 import { BandTag, FitIndicator, fitWords } from "./FitIndicator";
 import { cn } from "@/lib/cn";
 
 /**
- * Lane Map row: name and facts · band · relative-fit indicator · payoff glyph · chevron.
+ * Lane Map row: name and facts · band · relative-fit indicator · chevron.
  * Renders as a button when `onSelect` is given, otherwise as static content.
  */
 export function LaneRow({ lane, active, onSelect, showFamily }: { lane: LaneRowData; active?: boolean; onSelect?: () => void; showFamily?: boolean }) {
-  const position = lane.vsAverage !== null ? normalCdf(lane.vsAverage) : undefined;
   const body = (
     <>
       <span className="flex min-w-0 flex-col gap-1">
@@ -22,10 +19,8 @@ export function LaneRow({ lane, active, onSelect, showFamily }: { lane: LaneRowD
         </span>
         <span className="label text-ink-3">
           {showFamily ? `${lane.familyName} · ` : ""}
-          <span title={`Pay pattern: ${payoffTerm[lane.payoff]}`}>{payoffLabel[lane.payoff]}</span> ·{" "}
           <span title={`Entry: ${entryTerm[lane.entry]}`}>{entryLabel[lane.entry]}</span>
         </span>
-        {lane.payoff === "winner_take_all" ? <span className="text-small text-caution">Median income in this career is low.</span> : null}
       </span>
       <span className="col-start-1 row-start-2 flex items-center gap-3 md:col-start-auto md:row-start-auto">
         <BandTag band={lane.band} />
@@ -33,9 +28,6 @@ export function LaneRow({ lane, active, onSelect, showFamily }: { lane: LaneRowD
           {bandLabel[lane.band]}: fit {fitWords(lane.vsAverage, lane.band)}.
         </span>
         <FitIndicator vsAverage={lane.vsAverage} se={lane.se} className="min-w-16 flex-1" />
-      </span>
-      <span className="hidden md:flex md:justify-center">
-        <PayoffGlyph type={lane.payoff} position={position} />
       </span>
       {onSelect ? (
         <ChevronRight
@@ -47,7 +39,7 @@ export function LaneRow({ lane, active, onSelect, showFamily }: { lane: LaneRowD
     </>
   );
 
-  const grid = "grid w-full items-center gap-x-4 gap-y-2 py-4 text-left grid-cols-[minmax(0,1fr)_16px] md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_64px_16px]";
+  const grid = "grid w-full items-center gap-x-4 gap-y-2 py-4 text-left grid-cols-[minmax(0,1fr)_16px] md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_16px]";
 
   if (onSelect) {
     return (
@@ -61,5 +53,5 @@ export function LaneRow({ lane, active, onSelect, showFamily }: { lane: LaneRowD
       </button>
     );
   }
-  return <div className={cn(grid, "md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_64px]")}>{body}</div>;
+  return <div className={cn(grid, "md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]")}>{body}</div>;
 }

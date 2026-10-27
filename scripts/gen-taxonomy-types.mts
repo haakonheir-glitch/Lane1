@@ -9,7 +9,7 @@
  *
  * Object shapes (Family, Lane, Role, Ladder, …) are inferred from every instance in the JSON:
  * a key missing from some instances becomes optional. String fields whose values come from one
- * of the taxonomy's vocabularies (levels, modes, payoffs, …) become literal unions, so a typo in
+ * of the taxonomy's vocabularies (levels, modes, entry routes, …) become literal unions, so a typo in
  * a component is a type error and a rebuilt taxonomy with a new value changes the types.
  */
 import { readFileSync, writeFileSync } from "node:fs";
@@ -31,7 +31,6 @@ const vocab: Record<string, string[]> = {
   LevelId: Object.keys(tax.levels),
   TrackId: Object.values(tax.levels as Record<string, { track: string }>).map((l) => l.track),
   ModeId: tax.modes,
-  PayoffId: Object.keys(tax.payoffs),
   EntryId: Object.keys(tax.entry),
   SprintId: Object.keys(tax.sprint),
   TagId: Object.keys(tax.tags),
@@ -44,7 +43,7 @@ const vocab: Record<string, string[]> = {
 /** Which vocabulary a field holds, per object type (field → union name). */
 const fieldVocab: Record<string, Record<string, string>> = {
   Family: { id: "FamilyId" },
-  Lane: { id: "LaneId", family: "FamilyId", payoff: "PayoffId", entry: "EntryId", sprint: "SprintId", modes: "ModeId", ladder: "LadderId", tags: "TagId", status: "LaneStatus" },
+  Lane: { id: "LaneId", family: "FamilyId", entry: "EntryId", sprint: "SprintId", modes: "ModeId", ladder: "LadderId", tags: "TagId", status: "LaneStatus" },
   Role: { level: "LevelId", track: "TrackId", mode: "ModeId", tags: "TagId" },
 };
 /** Nested object fields that are themselves named types. */
@@ -106,7 +105,6 @@ export interface Taxonomy {
   meta: { name: string; version: string; counts: Record<string, number>; structure: string };
   levels: Record<LevelId, { track: TrackId; label: string; typical_years: string }>;
   modes: ModeId[];
-  payoffs: Record<PayoffId, string>;
   entry: Record<EntryId, string>;
   sprint: Record<SprintId, string>;
   tags: Record<TagId, string>;

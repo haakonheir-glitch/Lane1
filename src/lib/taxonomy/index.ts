@@ -18,7 +18,6 @@ export function validateTaxonomy(t: unknown): Taxonomy {
     .object({
       levels: z.record(z.string(), z.object({ track: z.string(), label: z.string(), typical_years: z.string() })),
       modes: z.array(z.string()),
-      payoffs: z.record(z.string(), z.string()),
       entry: z.record(z.string(), z.string()),
       sprint: z.record(z.string(), z.string()),
       tags: z.record(z.string(), z.string()),
@@ -47,7 +46,6 @@ export function validateTaxonomy(t: unknown): Taxonomy {
     description: z.string(),
     isco: z.array(z.string()),
     riasec: z.string().regex(/^[RIASEC]{1,3}$/),
-    payoff: oneOf(Object.keys(base.payoffs)),
     entry: oneOf(Object.keys(base.entry)),
     sprint: oneOf(Object.keys(base.sprint)),
     modes: z.array(mode).min(1),
@@ -97,7 +95,7 @@ export const isLaneId = (id: string): id is LaneId => laneById.has(id);
 export const laneModes = (lane: Lane): ModeId[] => taxonomy.modes.filter((m) => lane.modes.includes(m) || lane.roles.some((r) => r.mode === m));
 
 /** What the browser needs to list and filter a lane: no roles, no ISCO detail. */
-export type LaneSummary = Pick<Lane, "id" | "name" | "family" | "description" | "riasec" | "payoff" | "entry" | "sprint" | "ladder"> & {
+export type LaneSummary = Pick<Lane, "id" | "name" | "family" | "description" | "riasec" | "entry" | "sprint" | "ladder"> & {
   modes: ModeId[];
   roleCount: number;
 };
@@ -107,7 +105,6 @@ export const laneSummary = (l: Lane): LaneSummary => ({
   family: l.family,
   description: l.description,
   riasec: l.riasec,
-  payoff: l.payoff,
   entry: l.entry,
   sprint: l.sprint,
   ladder: l.ladder,

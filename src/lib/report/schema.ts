@@ -17,7 +17,7 @@ export const WrittenReportSchema = z.object({
     .describe("One section per part of the profile that has data, in the order listed in the instructions."),
   pathsToLookInto: z
     .array(z.string())
-    .describe("Exactly three bullets, one sentence each, saying what is worth finding out about the top career paths: how people get in, what the day-to-day work is, and how the pay works. Information, not instructions."),
+    .describe("Exactly three bullets, one sentence each, saying what is worth finding out about the top career paths: how people get in, what the day-to-day work is, and which of the person's measured strengths the work draws on. Information, not instructions."),
   caveats: z.array(z.string()).describe("What this report can't tell the person, specific to their data."),
 });
 

@@ -9,7 +9,7 @@ Reads the human-editable source files in ../src/*.txt and writes:
 Source format (one family per block, any number of blocks per file):
 
   @family <id> | <Name> | <one-line description>
-  @lane <id> | <Name> | isco 2433 3322 | riasec ES | payoff convex | entry open | sprint direct | modes employed freelance | ladder corporate | tags hunting persuasion
+  @lane <id> | <Name> | isco 2433 3322 | riasec ES | entry open | sprint direct | modes employed freelance | ladder corporate | tags hunting persuasion
   > One-line description of the lane.
   - <Role title> | <level> | aka alias one; alias two | mode freelance | +tag -tag
 
@@ -34,13 +34,6 @@ LEVEL_INFO = {
     "owner":    {"track": "owner", "label": "Owner / founder of own business","typical_years": "varies"},
 }
 MODES = ["employed", "public", "freelance", "owner", "performer", "gig"]
-PAYOFFS = {
-    "linear": "Pay rises steadily with experience; narrow spread between people.",
-    "linear_high_floor": "Secure, well-paid floor from the start (licensed or scarce skills); moderate ceiling.",
-    "convex": "Base plus variable pay (commission, bonus); top performers earn several times the median.",
-    "steep": "Up-or-out or equity-heavy; a minority reaches very high pay (partner, founder, PE carry).",
-    "winner_take_all": "A small top group captures most of the income; the median earns little or nothing.",
-}
 ENTRY = {
     "open": "No formal requirement; you can start by doing the work.",
     "course": "Short course or certificate (weeks to months).",
@@ -76,7 +69,6 @@ TAGS = {
     "visible": "Working in front of an audience or the public eye",
     "solo": "Mostly working alone",
     "team": "Mostly working in a close team",
-    "variable_pay": "A large share of pay depends on results",
     "risk": "Income or outcomes are uncertain; real downside",
     "routine": "Repeatable, structured tasks",
     "shift": "Shift, night or weekend work",
@@ -109,7 +101,6 @@ TAG_TO_CONSTRUCTS = {
     "visible": ["dispositions.visibility_comfort", "neo.N4(-)", "neo.E2"],
     "solo": ["dispositions.team_orientation(-)", "dispositions.self_direction"],
     "team": ["dispositions.team_orientation", "neo.A4"],
-    "variable_pay": ["dispositions.variance_tolerance", "values_ext.upside"],
     "risk": ["dispositions.variance_tolerance", "behaviour.balloon", "neo.E5"],
     "routine": ["interests.C", "neo.O4(-)", "neo.C2"],
     "shift": ["values.working_conditions", "neo.E4"],
@@ -202,15 +193,14 @@ def build(isco_path=None):
                 lane = {
                     "id": lid, "name": parts[1], "family": fam["id"], "description": "",
                     "isco": kv.get("isco", "").split(), "riasec": kv.get("riasec", ""),
-                    "payoff": kv.get("payoff", "linear"), "entry": kv.get("entry", "open"), "sprint": kv.get("sprint", "simulated"),
+                    "entry": kv.get("entry", "open"), "sprint": kv.get("sprint", "simulated"),
                     "modes": kv.get("modes", "employed").split(), "ladder": kv.get("ladder", "corporate"),
                     "tags": kv.get("tags", "").split(), "status": kv.get("status", "curated"), "roles": [],
                 }
                 for k in kv:
-                    if k not in ("isco", "riasec", "payoff", "entry", "sprint", "modes", "ladder", "tags", "status"):
+                    if k not in ("isco", "riasec", "entry", "sprint", "modes", "ladder", "tags", "status"):
                         errors.append(f"{where}: unknown lane key '{k}'")
                 v = lane
-                if v["payoff"] not in PAYOFFS: errors.append(f"{where}: bad payoff {v['payoff']}")
                 if v["entry"] not in ENTRY: errors.append(f"{where}: bad entry {v['entry']}")
                 if v["sprint"] not in SPRINT: errors.append(f"{where}: bad sprint {v['sprint']}")
                 if v["ladder"] not in LADDERS: errors.append(f"{where}: bad ladder {v['ladder']}")
@@ -267,7 +257,7 @@ def write_outputs(families, lanes, isco):
                    "isco_unit_groups_covered": len(covered), "isco_unit_groups_total": sum(1 for c in isco if len(c) == 4) if isco else None},
         "structure": "family > lane > role. Seniority is the role's level plus the lane's ladder template. Work mode is per role.",
     }
-    out = {"meta": meta, "levels": LEVEL_INFO, "modes": MODES, "payoffs": PAYOFFS, "entry": ENTRY, "sprint": SPRINT,
+    out = {"meta": meta, "levels": LEVEL_INFO, "modes": MODES, "entry": ENTRY, "sprint": SPRINT,
            "tags": TAGS, "tag_to_constructs": TAG_TO_CONSTRUCTS, "ladders": LADDERS,
            "families": [{**{k: v for k, v in f.items() if k != "lanes"},
                          "lanes": [{**{k: v for k, v in l.items() if k != "roles"},
@@ -277,18 +267,18 @@ def write_outputs(families, lanes, isco):
     json.dump(out, open(os.path.join(ROOT, "taxonomy.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     with open(os.path.join(ROOT, "roles.csv"), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["role_id", "role", "level", "track", "mode", "also_called", "lane_id", "lane", "family", "payoff", "entry", "sprint", "riasec", "tags", "isco"])
+        w.writerow(["role_id", "role", "level", "track", "mode", "also_called", "lane_id", "lane", "family", "entry", "sprint", "riasec", "tags", "isco"])
         famname = {f["id"]: f["name"] for f in families}
         for l in lanes.values():
             for r in l["roles"]:
                 w.writerow([r["id"], r["title"], r["level"], r["track"], r["mode"], "; ".join(r["aka"]), l["id"], l["name"], famname[l["family"]],
-                            l["payoff"], l["entry"], l["sprint"], l["riasec"], " ".join(r["tags"]), " ".join(l["isco"])])
+                            l["entry"], l["sprint"], l["riasec"], " ".join(r["tags"]), " ".join(l["isco"])])
     with open(os.path.join(ROOT, "lanes.csv"), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["lane_id", "lane", "family", "description", "roles", "modes", "payoff", "entry", "sprint", "ladder", "riasec", "tags", "isco"])
+        w.writerow(["lane_id", "lane", "family", "description", "roles", "modes", "entry", "sprint", "ladder", "riasec", "tags", "isco"])
         famname = {f["id"]: f["name"] for f in families}
         for l in lanes.values():
-            w.writerow([l["id"], l["name"], famname[l["family"]], l["description"], len(l["roles"]), " ".join(l["modes"]), l["payoff"], l["entry"],
+            w.writerow([l["id"], l["name"], famname[l["family"]], l["description"], len(l["roles"]), " ".join(l["modes"]), l["entry"],
                         l["sprint"], l["ladder"], l["riasec"], " ".join(l["tags"]), " ".join(l["isco"])])
     return meta, covered
 

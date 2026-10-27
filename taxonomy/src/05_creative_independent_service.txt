@@ -3,7 +3,7 @@
 # ======================================================================
 @family media | Media, journalism & writing | Reporting, editing, writing and translating.
 
-@lane journalism | Journalism | isco 2642 2656 3431 | riasec AIE | payoff linear | entry degree | sprint direct | modes employed freelance | ladder corporate | tags writing pressure analytical
+@lane journalism | Journalism | isco 2642 2656 3431 | riasec AIE | entry degree | sprint direct | modes employed freelance | ladder corporate | tags writing pressure analytical
 > Finding out what is happening and reporting it.
 - Journalism intern / summer temp | trainee
 - Reporter / journalist | entry | aka journalist
@@ -20,7 +20,7 @@
 - Editor-in-chief | exec | +leadership
 - Freelance journalist | mid | mode freelance | +risk +autonomy
 
-@lane publishing | Publishing & editorial | isco 2641 2642 4413 1219 | riasec AEC | payoff linear | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags writing detail analytical
+@lane publishing | Publishing & editorial | isco 2641 2642 4413 1219 | riasec AEC | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags writing detail analytical
 > Choosing, editing and producing books, magazines and online publications.
 - Editorial assistant | entry
 - Proofreader / copy editor | entry | +solo
@@ -31,7 +31,7 @@
 - Publisher / publishing director | director | +leadership
 - Independent publisher | owner | +risk
 
-@lane authorship | Writing & authorship | isco 2641 | riasec AI | payoff winner_take_all | entry open | sprint direct | modes freelance owner | ladder creator | tags writing creative solo autonomy practice
+@lane authorship | Writing & authorship | isco 2641 | riasec AI | entry open | sprint direct | modes freelance owner | ladder creator | tags writing creative solo autonomy practice
 > Earning a living from your own writing.
 - Freelance writer | entry
 - Ghostwriter | mid
@@ -44,7 +44,7 @@
 - Poet / lyricist | mid | +risk
 - Self-published author | owner | +hunting
 
-@lane translation | Translation & interpreting | isco 2643 | riasec AIC | payoff linear | entry certificate | sprint direct | modes freelance employed | ladder independent | tags writing detail solo precision
+@lane translation | Translation & interpreting | isco 2643 | riasec AIC | entry certificate | sprint direct | modes freelance employed | ladder independent | tags writing detail solo precision
 > Moving meaning between languages, in writing or live.
 - Translator | mid | aka oversetter
 - State-authorised translator | senior
@@ -60,7 +60,7 @@
 # ======================================================================
 @family creative | Creative arts, film & culture | Making images, films, music, fashion and culture.
 
-@lane film_tv | Film & TV production | isco 2654 3521 2659 | riasec AE | payoff winner_take_all | entry open | sprint direct | modes freelance employed | ladder independent | tags creative team pressure travel
+@lane film_tv | Film & TV production | isco 2654 3521 2659 | riasec AE | entry open | sprint direct | modes freelance employed | ladder independent | tags creative team pressure travel
 > Making films, series, documentaries and commercials.
 - Production assistant / runner | entry | +physical
 - Camera assistant / focus puller | entry
@@ -81,7 +81,7 @@
 - Commercial / corporate video producer | mid | mode owner
 - Production company owner | owner | +risk
 
-@lane animation_vfx | Animation, VFX & 3D | isco 2166 2651 | riasec AIR | payoff linear | entry open | sprint simulated | modes employed freelance | ladder corporate | tags creative technical aesthetic practice
+@lane animation_vfx | Animation, VFX & 3D | isco 2166 2651 | riasec AIR | entry open | sprint simulated | modes employed freelance | ladder corporate | tags creative technical aesthetic practice
 > Animated films, visual effects, 3D and motion graphics.
 - Junior 3D artist | entry
 - 2D / 3D animator | mid
@@ -94,7 +94,7 @@
 - VFX supervisor | director | +leadership
 - Freelance 3D / motion artist | mid | mode freelance | +autonomy
 
-@lane photography | Photography | isco 3431 2166 | riasec AR | payoff convex | entry open | sprint direct | modes freelance owner employed | ladder independent | tags aesthetic creative autonomy
+@lane photography | Photography | isco 3431 2166 | riasec AR | entry open | sprint direct | modes freelance owner employed | ladder independent | tags aesthetic creative autonomy
 > Taking and editing photos for clients and publications.
 - Photo assistant | entry
 - Photo retoucher / photo editor | entry | +solo +detail
@@ -107,7 +107,7 @@
 - Drone photographer / videographer | mid
 - Photography studio owner | owner
 
-@lane visual_arts | Fine art & illustration | isco 2651 7316 3435 | riasec A | payoff winner_take_all | entry open | sprint direct | modes freelance owner | ladder creator | tags creative aesthetic solo autonomy practice risk
+@lane visual_arts | Fine art & illustration | isco 2651 7316 3435 | riasec A | entry open | sprint direct | modes freelance owner | ladder creator | tags creative aesthetic solo autonomy practice risk
 > Making and selling art and illustration.
 - Illustrator | mid
 - Children's book illustrator | mid
@@ -120,7 +120,7 @@
 - Art teacher (independent) | mid | +teaching
 - Gallery owner / art dealer | owner | +hunting +negotiation
 
-@lane fashion | Fashion & styling | isco 2163 7532 3435 5142 | riasec AE | payoff winner_take_all | entry open | sprint simulated | modes employed freelance owner | ladder corporate | tags creative aesthetic team
+@lane fashion | Fashion & styling | isco 2163 7532 3435 5142 | riasec AE | entry open | sprint simulated | modes employed freelance owner | ladder corporate | tags creative aesthetic team
 > Designing, making and styling clothes.
 - Fashion design assistant | entry
 - Fashion designer | mid
@@ -133,7 +133,7 @@
 - Head designer / creative director (fashion) | director | +leadership
 - Fashion brand founder | owner | +risk
 
-@lane music_production | Music production & industry | isco 2652 3521 2654 1431 | riasec AE | payoff winner_take_all | entry open | sprint direct | modes freelance employed owner | ladder independent | tags creative technical practice autonomy
+@lane music_production | Music production & industry | isco 2652 3521 2654 1431 | riasec AE | entry open | sprint direct | modes freelance employed owner | ladder independent | tags creative technical practice autonomy
 > Producing, recording and managing music and the business around it.
 - Studio assistant | entry
 - Beatmaker / music producer | mid | +solo
@@ -148,7 +148,7 @@
 - Concert promoter | owner | +risk
 - Record label / studio owner | owner | +risk
 
-@lane stage_production | Theatre & live production | isco 2654 3435 3521 2659 | riasec AR | payoff linear | entry open | sprint direct | modes employed freelance | ladder independent | tags creative team building shift
+@lane stage_production | Theatre & live production | isco 2654 3435 3521 2659 | riasec AR | entry open | sprint direct | modes employed freelance | ladder independent | tags creative team building shift
 > Making live shows happen behind the scenes.
 - Stagehand / theatre technician | entry | +physical
 - Lighting designer / technician | mid | +technical
@@ -159,7 +159,7 @@
 - Theatre director | lead | +leadership
 - Theatre producer / artistic director | director | +leadership
 
-@lane arts_admin | Arts & culture management | isco 1431 2621 2654 3433 | riasec EAS | payoff linear | entry degree | sprint simulated | modes employed public | ladder corporate | tags relationship detail creative
+@lane arts_admin | Arts & culture management | isco 1431 2621 2654 3433 | riasec EAS | entry degree | sprint simulated | modes employed public | ladder corporate | tags relationship detail creative
 > Running cultural institutions, festivals and arts organisations.
 - Arts administrator | entry
 - Programme / festival coordinator | mid
@@ -173,7 +173,7 @@
 # ======================================================================
 @family performance | Performance & entertainment | Earning a living by performing for an audience.
 
-@lane acting | Acting | isco 2655 2659 | riasec AS | payoff winner_take_all | entry selection | sprint direct | modes performer | ladder performer | tags visible creative competition practice risk
+@lane acting | Acting | isco 2655 2659 | riasec AS | entry selection | sprint direct | modes performer | ladder performer | tags visible creative competition practice risk
 > Acting on stage, in film and TV, in ads and with your voice.
 - Extra / background actor | entry
 - Commercial actor | entry
@@ -183,7 +183,7 @@
 - Stunt performer | mid | +physical
 - Lead actor | lead
 
-@lane music_performance | Music performance | isco 2652 2659 | riasec AS | payoff winner_take_all | entry selection | sprint direct | modes performer freelance | ladder performer | tags visible creative practice risk travel
+@lane music_performance | Music performance | isco 2652 2659 | riasec AS | entry selection | sprint direct | modes performer freelance | ladder performer | tags visible creative practice risk travel
 > Singing and playing music live and on record.
 - Session musician | mid
 - Cover / wedding band musician | entry
@@ -196,7 +196,7 @@
 - Opera / classical singer | senior
 - Headline artist | lead
 
-@lane comedy | Comedy | isco 2659 2641 | riasec AE | payoff winner_take_all | entry open | sprint direct | modes performer | ladder performer | tags visible creative risk practice
+@lane comedy | Comedy | isco 2659 2641 | riasec AE | entry open | sprint direct | modes performer | ladder performer | tags visible creative risk practice
 > Making people laugh: stand-up, sketch, improv and comedy writing.
 - Open-mic comedian | trainee
 - Stand-up comedian | mid
@@ -204,7 +204,7 @@
 - Comedy writer | mid | -visible +writing
 - Touring comedian | lead | +travel
 
-@lane broadcasting | Hosting & broadcasting | isco 2656 | riasec AES | payoff winner_take_all | entry selection | sprint direct | modes employed performer freelance | ladder performer | tags visible persuasion pressure
+@lane broadcasting | Hosting & broadcasting | isco 2656 | riasec AES | entry selection | sprint direct | modes employed performer freelance | ladder performer | tags visible persuasion pressure
 > Presenting on radio, TV, podcasts and events.
 - Radio host | mid
 - TV presenter | senior
@@ -213,21 +213,21 @@
 - Event host / MC | mid | mode freelance
 - Keynote / motivational speaker | senior | mode freelance | +hunting
 
-@lane dance | Dance | isco 2653 | riasec AS | payoff winner_take_all | entry selection | sprint direct | modes performer freelance | ladder performer | tags physical visible practice competition
+@lane dance | Dance | isco 2653 | riasec AS | entry selection | sprint direct | modes performer freelance | ladder performer | tags physical visible practice competition
 > Performing and creating dance.
 - Dancer (commercial / music videos) | entry
 - Ballet / contemporary dancer | mid | mode employed
 - Choreographer | senior | +creative +leadership
 - Dance teacher / studio owner | owner | +teaching
 
-@lane modelling | Modelling | isco 5241 | riasec AE | payoff winner_take_all | entry selection | sprint direct | modes performer | ladder performer | tags visible aesthetic travel risk
+@lane modelling | Modelling | isco 5241 | riasec AE | entry selection | sprint direct | modes performer | ladder performer | tags visible aesthetic travel risk
 > Modelling for fashion, brands and advertising.
 - Commercial model | entry
 - Fashion model | mid
 - Fitness model | mid | +physical
 - Brand ambassador / promotional model | entry
 
-@lane variety | Variety & live entertainment | isco 2659 | riasec AE | payoff winner_take_all | entry open | sprint direct | modes performer | ladder performer | tags visible creative practice
+@lane variety | Variety & live entertainment | isco 2659 | riasec AE | entry open | sprint direct | modes performer | ladder performer | tags visible creative practice
 > Magic, circus, street performance and entertainment.
 - Children's entertainer | entry
 - Magician / illusionist | mid
@@ -240,7 +240,7 @@
 # ======================================================================
 @family sport | Sport, fitness & competition | Competing, coaching and the business of sport and fitness.
 
-@lane pro_sport | Professional sport | isco 3421 | riasec RE | payoff winner_take_all | entry selection | sprint direct | modes performer | ladder performer | tags physical competition practice pressure visible
+@lane pro_sport | Professional sport | isco 3421 | riasec RE | entry selection | sprint direct | modes performer | ladder performer | tags physical competition practice pressure visible
 > Competing as an athlete for prize money, salary or sponsorship.
 - Youth / academy athlete | trainee
 - Semi-professional athlete | entry
@@ -257,7 +257,7 @@
 - Para-athlete | mid
 - Elite / national team athlete | lead
 
-@lane esports | Esports | isco 3421 3422 | riasec RE | payoff winner_take_all | entry selection | sprint direct | modes performer employed | ladder performer | tags competition practice team pressure
+@lane esports | Esports | isco 3421 3422 | riasec RE | entry selection | sprint direct | modes performer employed | ladder performer | tags competition practice team pressure
 > Competing in video games professionally, and the jobs around it.
 - Semi-pro esports player | entry
 - Professional esports player | mid
@@ -266,7 +266,7 @@
 - Esports caster / commentator | mid | +visible
 - Esports team / tournament manager | manager | +leadership
 
-@lane strategy_games | Professional strategy games | isco 4212 3421 | riasec IEC | payoff winner_take_all | entry open | sprint direct | modes performer | ladder performer | tags competition risk numbers practice solo autonomy
+@lane strategy_games | Professional strategy games | isco 4212 3421 | riasec IEC | entry open | sprint direct | modes performer | ladder performer | tags competition risk numbers practice solo autonomy
 > Earning from poker, chess and other skill games.
 - Recreational / semi-pro poker player | entry
 - Professional online poker player | mid
@@ -276,7 +276,7 @@
 - Professional sports bettor / betting trader | mid
 - Croupier / casino dealer | entry | mode employed | -risk +routine +shift
 
-@lane sports_coaching | Sports coaching & performance | isco 3422 2634 2264 | riasec SE | payoff linear | entry course | sprint direct | modes employed freelance | ladder corporate | tags teaching leadership competition
+@lane sports_coaching | Sports coaching & performance | isco 3422 2634 2264 | riasec SE | entry course | sprint direct | modes employed freelance | ladder corporate | tags teaching leadership competition
 > Coaching athletes and teams and supporting their performance.
 - Youth / grassroots coach | entry
 - Club coach | mid
@@ -288,7 +288,7 @@
 - Referee / sports official | mid | +pressure +visible
 - Sports director | director | +leadership
 
-@lane fitness | Fitness & wellness coaching | isco 3423 2265 1431 | riasec SE | payoff convex | entry course | sprint direct | modes freelance employed owner | ladder independent | tags physical teaching visible care autonomy
+@lane fitness | Fitness & wellness coaching | isco 3423 2265 1431 | riasec SE | entry course | sprint direct | modes freelance employed owner | ladder independent | tags physical teaching visible care autonomy
 > Helping people get fit, strong and healthy.
 - Gym instructor / floor trainer | entry | mode employed
 - Group fitness instructor | entry | +visible
@@ -300,7 +300,7 @@
 - Gym manager | manager | mode employed | +leadership
 - Gym / fitness studio owner | owner | +risk
 
-@lane outdoor_guiding | Outdoor guiding & instruction | isco 3423 5113 9332 | riasec RS | payoff linear | entry certificate | sprint direct | modes freelance employed owner | ladder independent | tags outdoor physical teaching risk
+@lane outdoor_guiding | Outdoor guiding & instruction | isco 3423 5113 9332 | riasec RS | entry certificate | sprint direct | modes freelance employed owner | ladder independent | tags outdoor physical teaching risk
 > Leading people safely through mountains, snow, water and wilderness.
 - Ski instructor | entry
 - Climbing instructor | mid
@@ -313,13 +313,13 @@
 - Outdoor school / friluftsliv instructor | mid
 - Adventure company owner | owner | +hunting
 
-@lane sports_business | Sports business | isco 1431 2431 3339 | riasec ES | payoff convex | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags relationship negotiation persuasion
+@lane sports_business | Sports business | isco 1431 2431 3339 | riasec ES | entry degree | sprint simulated | modes employed freelance | ladder corporate | tags relationship negotiation persuasion
 > Clubs, federations, agents and sports marketing.
 - Club / federation administrator | entry
 - Sports marketing manager | mid
 - Sponsorship manager (club) | mid | +hunting
 - Sports event manager | mid
-- Player agent | senior | +hunting +negotiation +variable_pay
+- Player agent | senior | +hunting +negotiation
 - Club general manager / CEO | exec | +leadership
 
 # ======================================================================
@@ -327,7 +327,7 @@
 # ======================================================================
 @family creator | Creator economy | Building an audience online and earning from it.
 
-@lane content_creation | Content creation | isco 2656 2641 2659 | riasec AE | payoff winner_take_all | entry open | sprint direct | modes owner | ladder creator | tags visible creative autonomy risk solo practice
+@lane content_creation | Content creation | isco 2656 2641 2659 | riasec AE | entry open | sprint direct | modes owner | ladder creator | tags visible creative autonomy risk solo practice
 > Making videos, streams and posts for your own audience.
 - YouTuber (long-form video) | entry
 - Short-form creator (TikTok, Reels, Shorts) | entry
@@ -344,7 +344,7 @@
 - Full-time creator | senior
 - Creator-led brand / media company founder | owner | +leadership
 
-@lane written_creator | Newsletters, blogs & niche publishing | isco 2641 2642 | riasec AI | payoff winner_take_all | entry open | sprint direct | modes owner | ladder creator | tags writing autonomy solo risk
+@lane written_creator | Newsletters, blogs & niche publishing | isco 2641 2642 | riasec AI | entry open | sprint direct | modes owner | ladder creator | tags writing autonomy solo risk
 > Earning from writing for your own audience and niche websites.
 - Blogger | entry
 - Newsletter writer (Substack, Beehiiv) | entry
@@ -352,7 +352,7 @@
 - Paid newsletter publisher | senior
 - Niche media company founder | owner
 
-@lane course_creation | Courses, digital products & communities | isco 2359 2356 2641 | riasec ES | payoff winner_take_all | entry open | sprint direct | modes owner | ladder creator | tags teaching persuasion visible autonomy risk
+@lane course_creation | Courses, digital products & communities | isco 2359 2356 2641 | riasec ES | entry open | sprint direct | modes owner | ladder creator | tags teaching persuasion visible autonomy risk
 > Selling knowledge as courses, templates, memberships and cohorts.
 - Digital product seller (templates, presets, e-books) | entry | -visible
 - Online course creator | mid
@@ -360,7 +360,7 @@
 - Paid community / membership owner | senior | +relationship
 - Info-product / education business founder | owner | +leadership
 
-@lane creator_services | Creator services | isco 2654 2431 3339 | riasec AE | payoff linear | entry open | sprint direct | modes freelance employed owner | ladder independent | tags creative technical autonomy
+@lane creator_services | Creator services | isco 2654 2431 3339 | riasec AE | entry open | sprint direct | modes freelance employed owner | ladder independent | tags creative technical autonomy
 > The jobs behind creators: editing, thumbnails, management and brand deals.
 - Video editor for creators | entry
 - Thumbnail designer | entry | +aesthetic
@@ -375,7 +375,7 @@
 # ======================================================================
 @family entrepreneurship | Entrepreneurship & business ownership | Starting, buying and running your own business.
 
-@lane startup_founder | Startup founding | isco 1120 | riasec EI | payoff winner_take_all | entry open | sprint direct | modes owner | ladder founder | tags risk autonomy leadership persuasion hunting
+@lane startup_founder | Startup founding | isco 1120 | riasec EI | entry open | sprint direct | modes owner | ladder founder | tags risk autonomy leadership persuasion hunting
 > Building a new, scalable company, usually with investors.
 - Founding team member / early employee | trainee | mode employed | -leadership
 - Solo founder / indie hacker | entry | +solo +technical
@@ -388,7 +388,7 @@
 - Founder in residence / venture builder | senior
 - Serial founder | lead
 
-@lane small_business | Small business ownership | isco 1120 1420 1439 5221 1412 5212 9510 9520 | riasec EC | payoff convex | entry open | sprint simulated | modes owner | ladder founder | tags risk autonomy leadership relationship
+@lane small_business | Small business ownership | isco 1120 1420 1439 5221 1412 5212 9510 9520 | riasec EC | entry open | sprint simulated | modes owner | ladder founder | tags risk autonomy leadership relationship
 > Owning and running a local or service business.
 - Small business owner (service) | owner
 - Shop owner | owner | +routine
@@ -402,7 +402,7 @@
 - Street vendor (non-food) | owner | +outdoor
 - Street services worker (shoe shining, parking, flyers) | entry | mode gig | +outdoor
 
-@lane ecommerce | E-commerce | isco 1420 2431 5249 | riasec EC | payoff winner_take_all | entry open | sprint direct | modes owner employed | ladder founder | tags risk analytical autonomy numbers
+@lane ecommerce | E-commerce | isco 1420 2431 5249 | riasec EC | entry open | sprint direct | modes owner employed | ladder founder | tags risk analytical autonomy numbers
 > Selling products online through your own store or marketplaces.
 - Marketplace seller (Amazon, Etsy, Finn.no) | entry
 - Dropshipping store owner | entry
@@ -414,7 +414,7 @@
 - E-commerce specialist / marketplace manager | entry | mode employed | -risk
 - Head of e-commerce | director | mode employed | -risk +leadership
 
-@lane agency_ownership | Agency & studio ownership | isco 1120 1222 1349 | riasec EA | payoff convex | entry open | sprint direct | modes owner | ladder founder | tags hunting leadership risk relationship
+@lane agency_ownership | Agency & studio ownership | isco 1120 1222 1349 | riasec EA | entry open | sprint direct | modes owner | ladder founder | tags hunting leadership risk relationship
 > Running a service agency with a team: marketing, design, development, recruitment.
 - Freelancer turned studio owner | entry
 - Marketing / social media agency owner | owner
@@ -428,7 +428,7 @@
 # ======================================================================
 @family hospitality | Hospitality, food & tourism | Feeding, hosting and guiding people.
 
-@lane culinary | Culinary | isco 3434 5120 9411 9412 5246 | riasec RA | payoff linear | entry apprenticeship | sprint direct | modes employed owner freelance | ladder trades | tags physical pressure team shift creative practice
+@lane culinary | Culinary | isco 3434 5120 9411 9412 5246 | riasec RA | entry apprenticeship | sprint direct | modes employed owner freelance | ladder trades | tags physical pressure team shift creative practice
 > Cooking professionally, from kitchen porter to head chef.
 - Kitchen porter / dishwasher | entry | -creative +routine
 - Fast food crew member | entry | -creative +routine
@@ -445,7 +445,7 @@
 - Food truck owner | owner | +risk
 - Restaurant chef-owner | owner | +risk
 
-@lane restaurant_service | Restaurant, bar & café service | isco 5131 5132 1412 5246 | riasec SE | payoff linear | entry open | sprint direct | modes employed | ladder frontline | tags care team shift visible physical
+@lane restaurant_service | Restaurant, bar & café service | isco 5131 5132 1412 5246 | riasec SE | entry open | sprint direct | modes employed | ladder frontline | tags care team shift visible physical
 > Serving guests in restaurants, bars and cafés.
 - Waiter / server | entry | aka servitør
 - Bartender | entry
@@ -457,7 +457,7 @@
 - Food and beverage director | director | +leadership
 - Bar / café owner | owner | +risk
 
-@lane hotels | Hotels & accommodation | isco 1411 4224 5151 9112 5162 | riasec SE | payoff linear | entry open | sprint direct | modes employed | ladder frontline | tags care team shift
+@lane hotels | Hotels & accommodation | isco 1411 4224 5151 9112 5162 | riasec SE | entry open | sprint direct | modes employed | ladder frontline | tags care team shift
 > Running hotels and accommodation.
 - Housekeeper / room attendant | entry | +physical +routine
 - Hotel receptionist | entry | +visible
@@ -468,7 +468,7 @@
 - Hotel general manager | director | aka hotelldirektør | +leadership
 - Guesthouse / B&B owner | owner | +autonomy
 
-@lane tourism | Tourism & travel | isco 5113 4221 5111 3339 | riasec SE | payoff linear | entry open | sprint direct | modes employed freelance owner | ladder frontline | tags care visible travel relationship
+@lane tourism | Tourism & travel | isco 5113 4221 5111 3339 | riasec SE | entry open | sprint direct | modes employed freelance owner | ladder frontline | tags care visible travel relationship
 > Planning, selling and guiding trips.
 - Tour guide | entry | aka guide | +outdoor
 - Travel consultant / travel agent | entry | +persuasion
@@ -482,7 +482,7 @@
 # ======================================================================
 @family retail_service | Retail & customer service | Serving customers in stores, online and on the phone.
 
-@lane store_retail | Store retail | isco 5223 5230 5222 5221 1420 5245 5211 9334 | riasec ESC | payoff linear | entry open | sprint direct | modes employed | ladder frontline | tags care routine visible team shift
+@lane store_retail | Store retail | isco 5223 5230 5222 5221 1420 5245 5211 9334 | riasec ESC | entry open | sprint direct | modes employed | ladder frontline | tags care routine visible team shift
 > Selling to customers and running shops.
 - Sales assistant | entry | aka butikkmedarbeider
 - Cashier | entry
@@ -498,7 +498,7 @@
 - Area / district manager | director | +leadership +travel
 - Retail operations director | exec | +leadership
 
-@lane retail_buying | Retail buying & merchandising | isco 3323 1420 2431 | riasec EC | payoff linear | entry degree | sprint simulated | modes employed | ladder corporate | tags numbers negotiation analytical aesthetic
+@lane retail_buying | Retail buying & merchandising | isco 3323 1420 2431 | riasec EC | entry degree | sprint simulated | modes employed | ladder corporate | tags numbers negotiation analytical aesthetic
 > Deciding what shops sell, how much to buy and at what price.
 - Merchandising assistant | entry
 - Allocator / replenishment analyst | entry | +routine
@@ -508,7 +508,7 @@
 - Pricing manager | senior
 - Head of buying | director | +leadership
 
-@lane customer_service | Customer service & support | isco 4222 4223 4225 4229 5244 | riasec SC | payoff linear | entry open | sprint direct | modes employed | ladder frontline | tags care routine pressure team
+@lane customer_service | Customer service & support | isco 4222 4223 4225 4229 5244 | riasec SC | entry open | sprint direct | modes employed | ladder frontline | tags care routine pressure team
 > Helping customers by phone, chat and email.
 - Customer service representative | entry | aka kundeservicemedarbeider
 - Contact centre agent | entry | +shift
@@ -524,7 +524,7 @@
 # ======================================================================
 @family personal_services | Personal services & beauty | Services for people's appearance, homes and everyday lives.
 
-@lane hair_beauty | Hair, beauty & cosmetics | isco 5141 5142 | riasec ARS | payoff linear | entry apprenticeship | sprint direct | modes employed freelance owner | ladder trades | tags aesthetic care physical practice
+@lane hair_beauty | Hair, beauty & cosmetics | isco 5141 5142 | riasec ARS | entry apprenticeship | sprint direct | modes employed freelance owner | ladder trades | tags aesthetic care physical practice
 > Cutting hair and providing beauty treatments.
 - Hairdressing apprentice | trainee | aka frisørlærling
 - Hairdresser | entry | aka frisør
@@ -539,7 +539,7 @@
 - Salon manager | manager | +leadership
 - Salon owner | owner | +risk
 
-@lane household_services | Household & personal assistance | isco 5152 5162 5169 5161 9629 | riasec SR | payoff linear | entry open | sprint direct | modes freelance employed | ladder independent | tags care routine autonomy
+@lane household_services | Household & personal assistance | isco 5152 5162 5169 5161 9629 | riasec SR | entry open | sprint direct | modes freelance employed | ladder independent | tags care routine autonomy
 > Helping people run their homes and lives.
 - Domestic housekeeper | entry
 - Personal assistant / household manager | mid
@@ -549,7 +549,7 @@
 - Tarot reader / astrologer | entry | +visible
 - Concierge / lifestyle manager | mid
 
-@lane funeral_services | Funeral services | isco 5163 | riasec SC | payoff linear | entry course | sprint shadow | modes employed owner | ladder frontline | tags care detail pressure
+@lane funeral_services | Funeral services | isco 5163 | riasec SC | entry course | sprint shadow | modes employed owner | ladder frontline | tags care detail pressure
 > Caring for the dead and supporting the bereaved.
 - Funeral assistant | entry
 - Funeral director | mid | aka begravelsesagent
@@ -561,7 +561,7 @@
 # ======================================================================
 @family craft | Craft & artisan making | Making things by hand and selling them.
 
-@lane woodcraft | Furniture & woodcraft | isco 7522 7317 7521 | riasec RA | payoff linear | entry apprenticeship | sprint direct | modes owner employed freelance | ladder trades | tags building aesthetic practice solo
+@lane woodcraft | Furniture & woodcraft | isco 7522 7317 7521 | riasec RA | entry apprenticeship | sprint direct | modes owner employed freelance | ladder trades | tags building aesthetic practice solo
 > Making furniture, boats, instruments and objects in wood.
 - Joinery / furniture apprentice | trainee
 - Cabinetmaker / joiner | entry | aka møbelsnekker; snekker
@@ -572,7 +572,7 @@
 - Furniture restorer | mid | +detail
 - Woodworking studio owner | owner
 
-@lane tattoo | Tattoo & body art | isco 5142 3435 7319 | riasec AR | payoff convex | entry open | sprint shadow | modes freelance owner | ladder independent | tags aesthetic precision practice care autonomy
+@lane tattoo | Tattoo & body art | isco 5142 3435 7319 | riasec AR | entry open | sprint shadow | modes freelance owner | ladder independent | tags aesthetic precision practice care autonomy
 > Tattooing and piercing.
 - Tattoo apprentice | trainee
 - Tattoo artist | mid
@@ -580,7 +580,7 @@
 - Piercer | entry
 - Tattoo studio owner | owner | +risk
 
-@lane metal_jewellery | Jewellery, metal & precision craft | isco 7313 7221 7311 7316 | riasec RA | payoff linear | entry apprenticeship | sprint direct | modes owner employed | ladder trades | tags building precision aesthetic practice
+@lane metal_jewellery | Jewellery, metal & precision craft | isco 7313 7221 7311 7316 | riasec RA | entry apprenticeship | sprint direct | modes owner employed | ladder trades | tags building precision aesthetic practice
 > Gold, silver, iron, watches and engraving.
 - Goldsmith / silversmith | mid | aka gullsmed
 - Jewellery designer-maker | mid
@@ -589,7 +589,7 @@
 - Engraver | mid
 - Jewellery store / workshop owner | owner
 
-@lane textile_leather | Textiles, leather & upholstery | isco 7531 7533 7534 7535 7536 7318 | riasec RA | payoff linear | entry apprenticeship | sprint direct | modes owner employed freelance | ladder trades | tags building aesthetic detail practice
+@lane textile_leather | Textiles, leather & upholstery | isco 7531 7533 7534 7535 7536 7318 | riasec RA | entry apprenticeship | sprint direct | modes owner employed freelance | ladder trades | tags building aesthetic detail practice
 > Tailoring, sewing, leather and upholstery by hand.
 - Seamstress / alterations tailor | entry | aka skredder
 - Bespoke tailor | mid
@@ -600,7 +600,7 @@
 - Bunad maker | mid
 - Textile workshop owner | owner
 
-@lane ceramics_glass | Ceramics, glass & instrument making | isco 7314 7315 7312 | riasec RA | payoff linear | entry open | sprint direct | modes owner | ladder trades | tags building aesthetic practice solo
+@lane ceramics_glass | Ceramics, glass & instrument making | isco 7314 7315 7312 | riasec RA | entry open | sprint direct | modes owner | ladder trades | tags building aesthetic practice solo
 > Pottery, glass and handmade instruments.
 - Potter / ceramicist | mid
 - Glassblower | mid
@@ -609,7 +609,7 @@
 - Piano tuner / instrument repairer | mid | mode freelance
 - Ceramics / glass studio owner | owner
 
-@lane food_drink_craft | Food & drink craft | isco 7512 7511 7513 7514 7515 | riasec RA | payoff linear | entry apprenticeship | sprint direct | modes owner employed | ladder trades | tags building practice physical aesthetic
+@lane food_drink_craft | Food & drink craft | isco 7512 7511 7513 7514 7515 | riasec RA | entry apprenticeship | sprint direct | modes owner employed | ladder trades | tags building practice physical aesthetic
 > Small-batch bread, cheese, beer, spirits, coffee and chocolate.
 - Artisan baker | entry | aka baker (fagbrev)
 - Pastry cook / confectioner | entry | aka konditor
@@ -622,7 +622,7 @@
 - Cider / wine maker | mid
 - Bakery / microbrewery owner | owner | +risk
 
-@lane restoration_signs | Restoration & decorative crafts | isco 7316 7319 7549 3433 | riasec RA | payoff linear | entry open | sprint direct | modes owner freelance employed | ladder independent | tags building detail aesthetic
+@lane restoration_signs | Restoration & decorative crafts | isco 7316 7319 7549 3433 | riasec RA | entry open | sprint direct | modes owner freelance employed | ladder independent | tags building detail aesthetic
 > Restoring old things and decorative work.
 - Antique / furniture restorer | mid
 - Classic car restorer | mid | +technical

@@ -184,6 +184,8 @@ Example starting priors (to be replaced by outcome data):
 | Skilled trades | Realistic interest, physical orientation, 2D/3D spatial ability, self-efficacy | Linear, high floor |
 | Coach / trainer | Social + Enterprising interest, emotion management, persuasion, visibility comfort | Linear to convex |
 
+> **Superseded 2026-10-27:** income labels were removed from the product (payoff curves, "Fit × payoff", the `variable_pay` tag). Only relative fit is shown. The text below is kept as the original design record; see `design/REMOVED.md`.
+
 **Two separate numbers per lane**, matching the app's "Relative fit" and "Fit × payoff" views:
 1. **Relative fit.** How well the person's strongest relative attributes match what the lane demands, compared with the other lanes for the same person.
 2. **Fit × payoff.** An estimate of where the person would land within the lane's own population (a percentile), read off the lane's payoff curve. In winner-take-all lanes a good-but-not-top fit can pay little. The app must say this plainly.

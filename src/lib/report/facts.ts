@@ -11,8 +11,6 @@ export type ReportLane = {
   family: string;
   band: "strong" | "testing" | "unlikely" | "insufficient";
   drivers: string[];
-  payoff: string;
-  winnerTakeAll: boolean;
   entry: string;
   /** What the work demands day to day (the career path's demand tags, in words). */
   dayToDay: string[];

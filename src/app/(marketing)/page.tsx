@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const method = [
   { n: "01", title: "Assessment", body: "Five short sessions: validated questionnaires on interests, personality and work values, and reasoning tasks generated fresh for you." },
   { n: "02", title: "Profile report", body: "Every score with its measurement error, what clearly stands out, a written summary, and what the results can't tell you." },
-  { n: "03", title: "Career map", body: "205 career paths in fit bands against your own strengths, with the day-to-day work, how people get in, how it pays and where you'd start." },
+  { n: "03", title: "Career map", body: "205 career paths in fit bands against your own strengths, with the day-to-day work, how people get in and where you'd start." },
 ];
 
 const faq = [
@@ -44,7 +44,7 @@ const faq = [
   },
   {
     q: "What do I get at the end?",
-    a: "Two things. A profile report: your interests, values, personality and reasoning, each with its measurement error, a short written summary, and the limits of what it can say. And a Career map: all 205 career paths sorted into fit bands, each with the day-to-day work, how people get in, how it pays and the role you could realistically start in.",
+    a: "Two things. A profile report: your interests, values, personality and reasoning, each with its measurement error, a short written summary, and the limits of what it can say. And a Career map: all 205 career paths sorted into fit bands, each with the day-to-day work, how people get in and the role you could realistically start in.",
   },
   {
     q: "What does “fit relative to me” mean?",

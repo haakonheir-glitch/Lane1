@@ -1,6 +1,6 @@
 # Lane Taxonomy v0.1
 
-The complete map of the work Lane recommends: **34 families · 205 lanes · 1,883 roles**, each with seniority, work mode, payoff curve, entry route and sprint feasibility. It is checked against the official occupation classifications so nothing that people are paid to do is missing.
+The complete map of the work Lane recommends: **34 families · 205 lanes · 1,883 roles**, each with seniority, work mode, entry route and sprint feasibility. It is checked against the official occupation classifications so nothing that people are paid to do is missing.
 
 | File | What it is |
 |---|---|
@@ -33,7 +33,6 @@ Family (34)        e.g. Sales & business development
 **Every lane carries:**
 - **ISCO-08 codes**: the international standard, which Norway uses as STYRK-08.
 - **RIASEC code**.
-- **payoff curve**: linear, high floor, convex, steep or winner-take-all.
 - **entry route**: open, short course, licence, apprenticeship (fagbrev), degree, advanced degree, or talent selection.
 - **sprint feasibility**:
   - *direct*: you can do the real work in a 1-3 week sprint.
@@ -73,7 +72,7 @@ These rules matter more than the size of the list.
 
    The person's relative strengths on those constructs choose the role, and the reason can be shown ("SDR: your setback resilience is your strongest disposition").
 3. **Treat seniority as a path, never a recommendation.** Show the entry point the user can reach today (trainee/entry, or their level if they report experience) and the ladder above it. Never recommend "Head of sales" to someone with no sales experience.
-4. **Show payoff next to fit.** "Fit × payoff" uses the lane's payoff curve. Winner-take-all lanes (23 of 205) need the warning that the median income is low.
+4. *(Removed 2026-10-27.)* Lane shows no income labels: the payoff curves, the "Fit × payoff" ordering and the `variable_pay` tag were taken out of the taxonomy and the product. See `design/REMOVED.md`.
 5. **Use sprint feasibility to decide what to offer next.**
    - *direct* lanes get a real sprint;
    - *simulated* lanes get practice tasks;

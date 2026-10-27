@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/ui/Checkbox";
 
 /** Interactive primitive specimens for the /system page. */
 export function SystemDemos() {
-  const [sort, setSort] = useState<"fit" | "fit-payoff">("fit");
+  const [view, setView] = useState<"family" | "band">("family");
   const [checked, setChecked] = useState(true);
 
   return (
@@ -15,11 +15,11 @@ export function SystemDemos() {
         <p className="mb-3 label text-ink-3">SegmentedControl</p>
         <SegmentedControl
           label="Example"
-          value={sort}
-          onChange={setSort}
+          value={view}
+          onChange={setView}
           options={[
-            { value: "fit", label: "Relative fit" },
-            { value: "fit-payoff", label: "Fit × payoff" },
+            { value: "family", label: "Family" },
+            { value: "band", label: "Fit band" },
           ]}
         />
       </div>

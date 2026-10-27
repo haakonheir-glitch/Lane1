@@ -1,5 +1,5 @@
 /**
- * Lane fit: the single pure function the Lane Map uses (taxonomy matching rules 1, 4 and 6).
+ * Lane fit: the single pure function the Lane Map uses (taxonomy matching rules 1 and 6).
  *
  *   matchLanes(profile, taxonomy) → one LaneMatch per lane
  *
@@ -10,10 +10,9 @@
  * reliability rule instead of being ranked 1–205.
  */
 import type { ProfileScores } from "../scoring/profile";
-import { normalCdf, Z95 } from "../scoring/core";
+import { Z95 } from "../scoring/core";
 import type { Lane, LaneId, TagId, Taxonomy } from "../taxonomy/generated";
 import { isResolved, resolveConstruct, type Resolved } from "./constructs";
-import { payoffCurve } from "./payoff";
 
 export type Band = "strong" | "testing" | "unlikely" | "insufficient";
 export type Driver = { id: string; label: string; contribution: number };
@@ -31,9 +30,6 @@ export type LaneMatch = {
   drivers: Driver[];
   /** Lane tags that couldn't be scored yet (only experimental or unbuilt constructs behind them). */
   unscoredTags: TagId[];
-  /** Expected position on the lane's payoff curve (0–1) and the fit × payoff sort key. */
-  expectedPayoff: number | null;
-  fitPayoff: number | null;
 };
 
 export type TaxonomyForMatching = Pick<Taxonomy, "families" | "tag_to_constructs">;
@@ -134,7 +130,7 @@ export function matchLanes(profile: ProfileScores, taxonomy: TaxonomyForMatching
 
   return scored.map(({ lane, unscored, weights, s }): LaneMatch => {
     if (!s || !weights) {
-      return { laneId: lane.id, band: "insufficient", fit: null, se: null, vsAverage: null, drivers: [], unscoredTags: unscored, expectedPayoff: null, fitPayoff: null };
+      return { laneId: lane.id, band: "insufficient", fit: null, se: null, vsAverage: null, drivers: [], unscoredTags: unscored };
     }
     // BLUEPRINT §7 reliability rule, applied to lanes: a lane is a strong fit when it is clearly
     // above more than half of the person's other lanes, unlikely when clearly below more than
@@ -151,9 +147,6 @@ export function matchLanes(profile: ProfileScores, taxonomy: TaxonomyForMatching
     const half = (comparable.length - 1) / 2;
     const band: Band = above > half ? "strong" : below > half ? "unlikely" : "testing";
     const vs = s.fit - average;
-    // Where a person like this might realistically land on the lane's payoff curve (conceptual).
-    const position = normalCdf(vs);
-    const expectedPayoff = payoffCurve(lane.payoff, position);
     return {
       laneId: lane.id,
       band,
@@ -162,9 +155,6 @@ export function matchLanes(profile: ProfileScores, taxonomy: TaxonomyForMatching
       vsAverage: vs,
       drivers: s.drivers.slice(0, 4),
       unscoredTags: unscored,
-      expectedPayoff,
-      // Payoff weighs, but never fully erases, fit: the factor ranges 0.35–1.
-      fitPayoff: position * (0.35 + 0.65 * expectedPayoff),
     };
   });
 }
@@ -177,9 +167,9 @@ export const bandLabel: Record<Band, string> = {
   insufficient: "Not enough data",
 };
 
-/** Sort within a band by the active toggle; ties broken by name so the order is stable. */
-type Sortable = Pick<LaneMatch, "band" | "vsAverage" | "fitPayoff">;
-export function sortMatches<T extends { match: Sortable; name: string }>(xs: T[], sort: "fit" | "fit-payoff"): T[] {
-  const key = (m: Sortable) => (sort === "fit" ? (m.vsAverage ?? -Infinity) : (m.fitPayoff ?? -Infinity));
+/** Sort by band, then by fit within a band; ties broken by name so the order is stable. */
+type Sortable = Pick<LaneMatch, "band" | "vsAverage">;
+export function sortMatches<T extends { match: Sortable; name: string }>(xs: T[]): T[] {
+  const key = (m: Sortable) => m.vsAverage ?? -Infinity;
   return [...xs].sort((a, b) => BAND_ORDER.indexOf(a.match.band) - BAND_ORDER.indexOf(b.match.band) || key(b.match) - key(a.match) || a.name.localeCompare(b.name));
 }

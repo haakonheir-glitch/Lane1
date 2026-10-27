@@ -1,10 +1,9 @@
 "use client";
 
 import { X } from "lucide-react";
-import { PayoffCurve } from "@/components/data/PayoffCurve";
 import { bandLabel } from "@/lib/matching/fit";
-import { WINNER_TAKE_ALL_NOTE, entryLabel, entryNoteText, entryTerm, levelShort, modeLabel, payoffLabel, payoffTerm } from "@/lib/lanes/labels";
-import type { LadderRow, LaneDetail, LaneSort, RoleRef } from "@/lib/lanes/types";
+import { entryLabel, entryNoteText, entryTerm, levelShort, modeLabel } from "@/lib/lanes/labels";
+import type { LadderRow, LaneDetail, RoleRef } from "@/lib/lanes/types";
 import { BandTag, FitIndicator, fitWords } from "./FitIndicator";
 import { MatchOverlay } from "./MatchOverlay";
 import { cn } from "@/lib/cn";
@@ -49,7 +48,7 @@ function LadderStep({ row }: { row: LadderRow }) {
   );
 }
 
-export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: LaneDetail; sort: LaneSort; onClose: () => void; headingId: string }) {
+export function LaneDetailPanel({ detail, onClose, headingId }: { detail: LaneDetail; onClose: () => void; headingId: string }) {
   const { row } = detail;
   // The path is read bottom-up: the entry point, then the ladder above it.
   const ladder = [...detail.ladder].reverse();
@@ -58,13 +57,13 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
       <div className="flex items-start justify-between gap-4 border-b border-rule px-6 py-5">
         <div className="min-w-0">
           <p className="label text-ink-3">
-            {row.familyName} · {sort === "fit" ? "Relative fit" : "Fit × payoff"}
+            {row.familyName} · Relative fit
           </p>
           <h2 id={headingId} className="mt-2 text-h3 font-medium text-ink">
             {row.name}
           </h2>
           <p className="mt-1 label text-ink-3">
-            RIASEC {detail.riasec} · {payoffLabel[row.payoff]} · {entryLabel[row.entry]}
+            RIASEC {detail.riasec} · {entryLabel[row.entry]}
           </p>
         </div>
         <button
@@ -78,13 +77,6 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
       </div>
 
       <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6" tabIndex={0} role="region" aria-label="Career path detail">
-        {row.payoff === "winner_take_all" ? (
-          <p className="mb-6 rounded-sm border border-caution/50 p-3 text-small text-ink">
-            <span className="label text-caution">Low median income</span>
-            <br />
-            {WINNER_TAKE_ALL_NOTE}
-          </p>
-        ) : null}
         <p className="text-body text-ink-2">{detail.description}</p>
 
         <section className="mt-8 rounded-sm border border-rule bg-bg p-4" aria-labelledby={`${headingId}-about`}>
@@ -100,12 +92,6 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
               <dt className="text-ink">How people get in</dt>
               <dd className="text-ink-2">
                 <span title={`Entry: ${entryTerm[row.entry]}`}>{entryLabel[row.entry]}</span>. {detail.entryText}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-ink">How it pays</dt>
-              <dd className="text-ink-2">
-                <span title={`Pay pattern: ${payoffTerm[row.payoff]}`}>{payoffLabel[row.payoff]}</span>. {detail.payoffText}
               </dd>
             </div>
             <div>
@@ -182,17 +168,6 @@ export function LaneDetailPanel({ detail, sort, onClose, headingId }: { detail: 
           <p className="mt-3 text-small text-ink-3">Seniority is a path, not a recommendation: {BRAND.name} never suggests starting in a management role.</p>
         </section>
 
-        {detail.payoffPosition !== null && detail.payoffRange ? (
-          <section className="mt-8" aria-labelledby={`${headingId}-payoff`}>
-            <h3 id={`${headingId}-payoff`} className="label text-ink-3">
-              Payoff structure · {payoffLabel[row.payoff]}
-            </h3>
-            <div className="mt-4 rounded-sm border border-rule bg-surface p-3">
-              <PayoffCurve type={row.payoff} position={detail.payoffPosition} positionCi={detail.payoffRange} />
-            </div>
-            <p className="mt-2 text-small text-ink-3">Your position is a rough estimate from fit, not a prediction of earnings.</p>
-          </section>
-        ) : null}
 
 
 

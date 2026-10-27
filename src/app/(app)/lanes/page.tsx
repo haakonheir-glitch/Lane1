@@ -90,7 +90,7 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
           ) : null}
 
           {!full ? (
-            <CareerSection index="02" label="Detail" id="detail-h" title="Your three career paths in detail" lead="Open any of the three for its day-to-day work, how people get in, how it pays and where you'd start.">
+            <CareerSection index="02" label="Detail" id="detail-h" title="Your three career paths in detail" lead="Open any of the three for its day-to-day work, how people get in and where you'd start.">
               <Suspense fallback={<Skeleton lines={4} />}>
                 <LaneMap rows={rows.filter((r) => picks.overall.slice(0, 3).some((p) => p.row.id === r.id))} vocab={vocab} detail={detail} />
               </Suspense>
@@ -158,7 +158,7 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
               label="Explore"
               id="all-h"
               title="All career paths"
-              lead="Filter by how you'd work, how it pays and how you get in. Open any career path for its roles, day-to-day work and where you'd start."
+              lead="Filter by how you'd work and how you get in. Open any career path for its roles, day-to-day work and where you'd start."
             >
               <Suspense fallback={<Skeleton lines={8} />}>
                 <LaneMap rows={rows} vocab={vocab} detail={detail} />
