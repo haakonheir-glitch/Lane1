@@ -389,8 +389,10 @@ def build(args) -> dict:
             profiles[lane_id] = {"provenance": "unlinked", "n_occupations": 0, "occupations": [], "coverage_confidence": 0.0, "descriptors": {}}
             continue
         total = sum(e["weight"] for e in ls.values())
-        via_xw = sum(e["weight"] for e in ls.values() if "crosswalk" in e["routes"])
-        n_esco_xw = sum(1 for r in esco_rows if r["lane_id"] == lane_id and esco_route.get(r["esco_uri"]) == "crosswalk")
+        # Reviewed overrides point at the exact O*NET occupation, so they count like official crosswalk links here.
+        direct = {"crosswalk", "override"}
+        via_xw = sum(e["weight"] for e in ls.values() if e["routes"] & direct)
+        n_esco_xw = sum(1 for r in esco_rows if r["lane_id"] == lane_id and esco_route.get(r["esco_uri"]) in direct)
         conf = min(1.0, n_esco_xw / cfg["confidence"]["full_occupations"]) * (via_xw / total) * shares[CORE_FILE]
         profiles[lane_id] = {
             "provenance": "onet",

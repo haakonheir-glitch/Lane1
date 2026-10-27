@@ -33,6 +33,12 @@ These were not used, and nothing was substituted for them silently:
   - Instead of the ESCO bulk CSV, the build uses the official ESCO API on `ec.europa.eu`.
   - Instead of the BLS crosswalk, the ISCO fallback uses the ISCO-08 unit-group rows of the O\*NET-hosted ESCO crosswalk (913 rows; same file).
 
+## Lane's own corrections (not downloaded sources)
+
+- `taxonomy/reference/crosswalks/lane_link_overrides.csv`: 27 ESCO occupations whose official crosswalk links misrepresent the job, each with replacement O\*NET codes (rated in 31.0) and a rationale. They show as route "override" in the profiles.
+- `taxonomy/reference/esco_overrides.csv`: manual career-path assignments for `taxonomy/build/map_esco.py`. The 2026-10-27 review added or edited 46 lines (41 moves, 5 role fixes).
+- `taxonomy/reference/onet/estimated_profiles.csv`: the 18 estimated profiles.
+
 ## Licence and attribution
 
 The O\*NET database is licensed under **CC BY 4.0**. The text below is taken word for word from onetcenter.org/license_db.html (checked 2026-10-27), in the form for "If you make edits or additions to O\*NET information". Lane fills in the release numbers and its own name.

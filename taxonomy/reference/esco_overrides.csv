@@ -112,7 +112,7 @@ bc61af54,carpentry
 f84aae41,household_services
 92df4ee3,mental_health
 92371348,warehouse_logistics
-d18a8976,strategy_games
+d18a8976,administration,administration.data_entry_clerk
 3b1ea27c,devops_cloud
 bd9d395a,enterprise_systems
 c66b4569,private_security
@@ -148,7 +148,7 @@ c467efc2,specialist_trades
 812c217d,ml_ai_engineering
 b874b541,industrial_maintenance
 08f5481e,industrial_maintenance
-30641348,biomedical_engineering
+30641348,biomedical_engineering,biomedical_engineering.medical_equipment_technician
 903dc1bf,learning_development
 0ba95ace,process_operation
 c0c1364d,specialist_trades
@@ -274,7 +274,7 @@ eb198788,strategy_games
 e297ec12,data_science
 d0e85fe6,trading_markets
 4be4ea31,aviation
-146f2c99,strategy_games
+146f2c99,general_management,general_management.general_manager
 93dfef83,animal_care
 02ff199e,specialist_trades
 adf9257e,specialist_trades
@@ -638,7 +638,7 @@ d261a6a4,real_estate_agency
 a9b20949,industrial_maintenance
 16bf6d6f,industrial_maintenance
 5c9dea76,vehicle_mechanics
-49ca9fe4,strategy_games
+49ca9fe4,general_management,general_management.general_manager
 aac0c510,funeral_services
 1999bdfa,process_operation
 15ab8475,hotels
@@ -646,12 +646,12 @@ aac0c510,funeral_services
 1a8bda86,facilities
 d7607255,funeral_services
 3b4eb248,vehicle_mechanics
-87e40e79,strategy_games
+87e40e79,store_retail,store_retail.store_manager
 9a99a5fe,rail
 a74f6c51,content_social
 bc1c82a5,urban_planning
 3e1a2f3c,corporate_finance
-379a4f3f,inspection_regulation
+379a4f3f,strategy_games,strategy_games.croupier_casino_dealer
 491cf76d,qa_testing
 11830794,game_development
 2c9939ef,procurement
@@ -668,7 +668,7 @@ bcffa133,animal_care
 f4c997b5,textile_print_production
 85acc7e9,textile_print_production
 bd206ee9,hair_beauty
-15419750,biomedical_engineering
+15419750,biomedical_engineering,biomedical_engineering.prosthetist_orthotist
 3c0c688b,textile_print_production
 262d4e45,textile_print_production
 7ff7ab7d,trade_brokerage
@@ -773,3 +773,12 @@ ada3fc30,fashion
 f7450c1f,diplomacy,diplomacy.diplomat_embassy_secretary
 8bf76ba6,diplomacy,diplomacy.international_organisation_officer_un_nato_eu
 cbde2432,tutoring,tutoring.art_dance_teacher_private
+# 2026-10-27 Phase 1 review, second pass (strategy games, aviation, fire and rescue, biomedical engineering, legal, field sales)
+4ea620f2,road_transport,road_transport.fleet_manager
+f56e33a3,road_transport,road_transport.fleet_manager
+c9a5f7c5,civil_engineering,civil_engineering.civil_engineering_technician
+7153a12d,rail,rail.conductor_train_host
+24a170fc,machine_operation,machine_operation.production_worker_assembly_operator
+bca063d2,industrial_maintenance,industrial_maintenance.precision_instrument_maker
+ab3c4d3e,electrical_engineering,electrical_engineering.electronics_hardware_engineer
+778c1d37,electrical_engineering,electrical_engineering.electronics_hardware_engineer
