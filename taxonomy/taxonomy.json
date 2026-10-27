@@ -101,7 +101,7 @@
   "visible": "Working in front of an audience or the public eye",
   "solo": "Mostly working alone",
   "team": "Mostly working in a close team",
-  "risk": "Income or outcomes are uncertain; real downside",
+  "risk": "Outcomes are uncertain; real downside",
   "routine": "Repeatable, structured tasks",
   "shift": "Shift, night or weekend work",
   "travel": "Frequent travel or time away from home",
@@ -369,11 +369,11 @@
    "steps": [
     [
      "trainee",
-     "Side project, first paid jobs"
+     "Side project, first client jobs"
     ],
     [
      "entry",
-     "Part-time freelance income"
+     "Part-time freelance"
     ],
     [
      "mid",
@@ -381,7 +381,7 @@
     ],
     [
      "senior",
-     "Established: waitlist, premium rates, referrals"
+     "Established: waitlist and referrals"
     ],
     [
      "lead",
@@ -402,11 +402,11 @@
     ],
     [
      "entry",
-     "First income (affiliate, small sponsors)"
+     "First sponsors or affiliate partners"
     ],
     [
      "mid",
-     "Part-time income"
+     "Part-time creator"
     ],
     [
      "senior",
@@ -414,7 +414,7 @@
     ],
     [
      "lead",
-     "Top creator in niche; multiple income streams"
+     "Top creator in niche; several products and channels"
     ],
     [
      "owner",
@@ -431,7 +431,7 @@
     ],
     [
      "entry",
-     "Semi-professional, first paid work"
+     "Semi-professional, first professional work"
     ],
     [
      "mid",

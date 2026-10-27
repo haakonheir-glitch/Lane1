@@ -24,4 +24,26 @@ export const WrittenReportSchema = z.object({
 export type WrittenReport = z.infer<typeof WrittenReportSchema>;
 
 /** All prose in a report, for checks. */
+/**
+ * Reports written before REPORT_FORMAT 3 could describe pay ("winner-take-all", "how the pay
+ * works"); Lane no longer shows income labels. Until such a report is rewritten, drop every
+ * sentence that talks about pay, income or earnings. Pure.
+ */
+const PAY = /\b(pay|pays|paid|income|incomes|earn|earns|earning|earnings|salary|salaries|wage|wages|commission|winner-take-all)\b/i;
+const dropPaySentences = (t: string) =>
+  t
+    .split(/(?<=[.!?])\s+/)
+    .filter((s) => !PAY.test(s))
+    .join(" ");
+export function withoutPay(r: WrittenReport): WrittenReport {
+  const para = (xs: string[]) => xs.map(dropPaySentences).filter((x) => x.trim());
+  return {
+    ...r,
+    overview: para(r.overview),
+    sections: r.sections.map((s) => ({ ...s, paragraphs: para(s.paragraphs) })),
+    pathsToLookInto: r.pathsToLookInto ? para(r.pathsToLookInto) : r.pathsToLookInto,
+    caveats: para(r.caveats),
+  };
+}
+
 export const reportText = (r: WrittenReport) => [r.headline, ...r.overview, ...r.sections.flatMap((s) => [s.title, ...s.paragraphs]), ...(r.pathsToLookInto ?? []), ...r.caveats].join("\n");

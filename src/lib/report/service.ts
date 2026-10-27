@@ -7,7 +7,7 @@ import { createHash } from "node:crypto";
 import { desc, eq } from "drizzle-orm";
 import { getDb, schema } from "../db";
 import type { ReportFacts } from "./facts";
-import type { WrittenReport } from "./schema";
+import { withoutPay, type WrittenReport } from "./schema";
 import { writeReport } from "./generate";
 
 /** Bump when the report's instructions or shape change, so stored reports are written again. */
@@ -17,10 +17,16 @@ export const factsHash = (facts: ReportFacts) => createHash("sha256").update(`${
 
 export type StoredReport = { report: WrittenReport; model: string; createdAt: Date; factsHash: string };
 
+/** True when a stored report was written under an older REPORT_FORMAT: its hash doesn't match its own facts any more. */
+export const olderFormat = (row: { facts: unknown; factsHash: string }) => factsHash(row.facts as ReportFacts) !== row.factsHash;
+
 export async function latestReport(userId: string): Promise<StoredReport | null> {
   const db = await getDb();
   const [row] = await db.select().from(schema.profileReports).where(eq(schema.profileReports.userId, userId)).orderBy(desc(schema.profileReports.createdAt)).limit(1);
-  return row ? { report: row.report as WrittenReport, model: row.model, createdAt: row.createdAt, factsHash: row.factsHash } : null;
+  if (!row) return null;
+  // Older formats could talk about pay; show them without it until /profile rewrites them.
+  const report = olderFormat(row) ? withoutPay(row.report as WrittenReport) : (row.report as WrittenReport);
+  return { report, model: row.model, createdAt: row.createdAt, factsHash: row.factsHash };
 }
 
 /** Returns the stored report for these exact facts, or writes and stores a new one. */

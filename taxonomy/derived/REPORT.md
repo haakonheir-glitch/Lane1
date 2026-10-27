@@ -506,7 +506,7 @@ DATABASE_URL=<Neon URL> npx tsx --conditions=react-server scripts/migrate-corsi-
 3. Transcribe the IPIP-NEO-120 and Interest Profiler norms.
 4. Income labels are not part of Work Design.
 
-**Still open:**
-1. **Thin career paths.** Field sales (two energy sales reps), in-house legal (data protection officer), sports business (3 occupations) and B2B sales (4) have too few ESCO occupations for a solid profile. ESCO has no better candidates for in-house legal or field sales. Should I give these documented estimated profiles, as for management consulting?
-2. **The payoff labels in the live product.** v1's fit × payoff ordering and Career map texts such as "winner-take-all" and "Median income in this career is low" still use them. Should they come out of the product too? That changes v1 matching and the UI.
+**Answered after revision 2:**
+1. **Thin career paths:** decided. No estimated profiles. Field sales, in-house legal, sports business and B2B sales keep their real links and are flagged where coverage confidence is low.
+2. **Income labels in the live product:** decided and done. Income labels don't exist anywhere in Lane now (taxonomy, v1 matching, Career map, report, copy); see `design/REMOVED.md`.
 3. **Production Corsi fix:** done (1 row, confirmed 0 above 9).

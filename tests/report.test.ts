@@ -3,7 +3,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { addSelfScores } from "@/lib/scoring/self";
 import { sampleProfile } from "@/lib/mock/profile";
 import { buildReportFacts, type ReportLane } from "@/lib/report/facts";
-import type { WrittenReport } from "@/lib/report/schema";
+import { withoutPay, type WrittenReport } from "@/lib/report/schema";
 import { relativeOf } from "@/lib/view/profile";
 
 vi.stubEnv("PGLITE_DATA", "memory");
@@ -38,6 +38,19 @@ function fakeClient(...drafts: (WrittenReport | "refusal")[]) {
   });
   return { client: { beta: { messages: { parse } } } as never, parse };
 }
+
+describe("older reports without pay", () => {
+  it("drops every sentence about pay, income or earnings and keeps the rest", () => {
+    const old = report("You lean toward persuading. In B2B sales most income is commission. Your values fit sales work.");
+    old.pathsToLookInto = ["How people get in: an entry-level role.", "How the pay works: a base plus commission.", "Day to day: finding customers."];
+    old.sections[0]!.paragraphs = ["Most people in esports earn little; a winner-take-all career."];
+    const clean = withoutPay(old);
+    expect(clean.overview).toEqual(["You lean toward persuading. Your values fit sales work."]);
+    expect(clean.pathsToLookInto).toEqual(["How people get in: an entry-level role.", "Day to day: finding customers."]);
+    expect(clean.sections[0]!.paragraphs).toEqual([]);
+    expect(withoutPay(report("Learning and patience are measured by tasks."))).toEqual(report("Learning and patience are measured by tasks."));
+  });
+});
 
 describe("report facts", () => {
   it("are relative to the person, rounded, and free of identity", () => {

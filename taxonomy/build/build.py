@@ -69,7 +69,7 @@ TAGS = {
     "visible": "Working in front of an audience or the public eye",
     "solo": "Mostly working alone",
     "team": "Mostly working in a close team",
-    "risk": "Income or outcomes are uncertain; real downside",
+    "risk": "Outcomes are uncertain; real downside",
     "routine": "Repeatable, structured tasks",
     "shift": "Shift, night or weekend work",
     "travel": "Frequent travel or time away from home",
@@ -125,14 +125,14 @@ LADDERS = {
         ["mid", "Experienced tradesperson"], ["senior", "Specialist / authorised installer"], ["lead", "Master craftsman (mesterbrev)"],
         ["manager", "Foreman / site lead (bas, formann)"], ["director", "Operations / project manager at a contractor"], ["owner", "Own contracting business"]]},
     "independent": {"name": "Independent / freelance", "steps": [
-        ["trainee", "Side project, first paid jobs"], ["entry", "Part-time freelance income"], ["mid", "Full-time freelance, steady clients"],
-        ["senior", "Established: waitlist, premium rates, referrals"], ["lead", "Recognised expert: productised offer, teaching others"],
+        ["trainee", "Side project, first client jobs"], ["entry", "Part-time freelance"], ["mid", "Full-time freelance, steady clients"],
+        ["senior", "Established: waitlist and referrals"], ["lead", "Recognised expert: productised offer, teaching others"],
         ["owner", "Studio / agency with employees or subcontractors"]]},
     "creator": {"name": "Creator", "steps": [
-        ["trainee", "Hobbyist, publishing consistently"], ["entry", "First income (affiliate, small sponsors)"], ["mid", "Part-time income"],
-        ["senior", "Full-time creator"], ["lead", "Top creator in niche; multiple income streams"], ["owner", "Media business / brand with a team"]]},
+        ["trainee", "Hobbyist, publishing consistently"], ["entry", "First sponsors or affiliate partners"], ["mid", "Part-time creator"],
+        ["senior", "Full-time creator"], ["lead", "Top creator in niche; several products and channels"], ["owner", "Media business / brand with a team"]]},
     "performer": {"name": "Performer / athlete", "steps": [
-        ["trainee", "Youth / amateur / student"], ["entry", "Semi-professional, first paid work"], ["mid", "Professional"],
+        ["trainee", "Youth / amateur / student"], ["entry", "Semi-professional, first professional work"], ["mid", "Professional"],
         ["senior", "Established professional"], ["lead", "Elite / headline / international"], ["owner", "Post-career: own brand, coaching, broadcasting"]]},
     "academic": {"name": "Academic", "steps": [
         ["trainee", "Research assistant / master's student"], ["entry", "PhD candidate (stipendiat)"], ["mid", "Postdoc / researcher"],

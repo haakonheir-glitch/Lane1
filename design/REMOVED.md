@@ -72,6 +72,11 @@ Product decision: income labels should not exist in Lane at all. Removed:
   - The design-system page lost its payoff specimens.
 - **Work Design (layer 2):** the Income variance dimension, which read the payoff labels (see `docs/WORK_DESIGN.md`).
 
+- **Follow-ups from the independent review:**
+  - Career ladder steps no longer describe stages by income. On the independent, creator and performer ladders, "first paid jobs", "Part-time freelance income", "premium rates", "First income", "Part-time income", "multiple income streams" and "first paid work" are reworded to describe the work.
+  - The `risk` tag's description is now "Outcomes are uncertain; real downside".
+  - Stored reports written before `REPORT_FORMAT` 3 are shown without any sentence about pay, income or earnings (`withoutPay` in `src/lib/report/schema.ts`) until they are rewritten.
+
 **Not removed:** the balloon (risk) and delay-discounting (patience) tasks. They are behaviour measures, not income labels, and they are still scored and shown in the profile.
 
 **Database:** nothing to migrate. Stored session scores never contained payoff data.
