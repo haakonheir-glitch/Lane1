@@ -322,6 +322,9 @@ def build(args) -> dict:
         bad = [c for c in est["analogs"] if c not in codes]
         if bad:
             raise SystemExit(f"{lane_id}: analog O*NET-SOC code(s) not in this release: {bad}")
+        unrated = [c for c in est["analogs"] if c not in onet.rated(CORE_FILE)]
+        if unrated:
+            raise SystemExit(f"{lane_id}: analog O*NET-SOC code(s) without {CORE_FILE} ratings in this release: {unrated}")
         for a in est["adjustments"]:
             if a["element"] not in onet.elements(a["file"]):
                 raise SystemExit(f"{lane_id}: adjustment element not in this release: {a['file']}: {a['element']}")

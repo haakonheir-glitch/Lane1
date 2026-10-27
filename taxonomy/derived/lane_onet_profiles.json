@@ -287,13 +287,13 @@
   ],
   "unknown_onet_codes_in_crosswalk": [],
   "lanes_by_provenance": {
-   "onet": 191,
-   "estimated": 14,
+   "onet": 187,
+   "estimated": 18,
    "unlinked": 0
   },
   "lanes_by_best_route": {
-   "crosswalk": 191,
-   "estimated": 14
+   "crosswalk": 187,
+   "estimated": 18
   }
  },
  "changed_since_crosswalk_version": [
@@ -14699,291 +14699,341 @@
    }
   },
   "partnerships": {
-   "provenance": "onet",
-   "n_occupations": 2,
+   "provenance": "estimated",
+   "n_occupations": 4,
    "occupations": [
     {
-     "soc": "11-9199.00",
-     "title": "Managers, All Other",
-     "weight": 0.5,
+     "soc": "41-4011.00",
+     "title": "Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products",
+     "weight": 0.3,
      "route": [
-      "crosswalk"
+      "analog"
      ]
     },
     {
-     "soc": "13-1082.00",
-     "title": "Project Management Specialists",
-     "weight": 0.5,
+     "soc": "11-2022.00",
+     "title": "Sales Managers",
+     "weight": 0.3,
      "route": [
-      "crosswalk"
+      "analog"
+     ]
+    },
+    {
+     "soc": "41-4012.00",
+     "title": "Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products",
+     "weight": 0.2,
+     "route": [
+      "analog"
+     ]
+    },
+    {
+     "soc": "13-1161.00",
+     "title": "Market Research Analysts and Marketing Specialists",
+     "weight": 0.2,
+     "route": [
+      "analog"
      ]
     }
    ],
-   "esco_linked": 2,
-   "data_share": {
-    "Interests": 0.5,
-    "Work Values": 0.0,
-    "Work Activities": 0.5,
-    "Work Context": 0.5,
-    "Abilities": 0.5,
-    "Work Styles": 0.5,
-    "Job Zones": 0.5
-   },
-   "coverage_confidence": 0.2,
+   "coverage_confidence": null,
+   "rationale": "Replaces the crosswalk links. 'business developer' (2431.5) crosswalks only to Project Management Specialists and 'ICT business development manager' to the unrated Managers, All Other, so the linked profile described project management (rank 1 on Organise, rank 66 on Influence). Business development and channel partnerships is deal-making and relationship selling: sales representatives (technical and general), sales managers, and marketing specialists for partner programmes. No adjustment.",
+   "linked_but_replaced": [
+    "11-9199.00",
+    "13-1082.00"
+   ],
+   "linked_data_share": 0.5,
    "descriptors": {
     "Interests": {
      "Realistic": {
       "OI": {
-       "raw": 1.48,
-       "pct": 8.2
+       "raw": 2.029,
+       "pct": 14.3
       }
      },
      "Investigative": {
       "OI": {
-       "raw": 2.75,
-       "pct": 46.9
+       "raw": 2.814,
+       "pct": 42.2
       }
      },
      "Artistic": {
       "OI": {
-       "raw": 1.57,
-       "pct": 52.3
+       "raw": 1.682,
+       "pct": 54.2
       }
      },
      "Social": {
       "OI": {
-       "raw": 3.32,
-       "pct": 66.3
+       "raw": 2.979,
+       "pct": 60.4
       }
      },
      "Enterprising": {
       "OI": {
-       "raw": 6.3,
-       "pct": 95.6
+       "raw": 6.009,
+       "pct": 93.5
       }
      },
      "Conventional": {
       "OI": {
-       "raw": 5.55,
-       "pct": 84.5
+       "raw": 5.109,
+       "pct": 72.8
+      }
+     }
+    },
+    "Work Values": {
+     "Achievement": {
+      "EX": {
+       "raw": 4.868,
+       "pct": 62.3
+      }
+     },
+     "Working Conditions": {
+      "EX": {
+       "raw": 4.851,
+       "pct": 70.7
+      }
+     },
+     "Recognition": {
+      "EX": {
+       "raw": 4.069,
+       "pct": 60.0
+      }
+     },
+     "Relationships": {
+      "EX": {
+       "raw": 4.165,
+       "pct": 42.5
+      }
+     },
+     "Support": {
+      "EX": {
+       "raw": 4.3,
+       "pct": 45.9
+      }
+     },
+     "Independence": {
+      "EX": {
+       "raw": 4.935,
+       "pct": 62.5
       }
      }
     },
     "Work Activities": {
      "Getting Information": {
       "IM": {
-       "raw": 4.58,
-       "pct": 84.0
+       "raw": 4.259,
+       "pct": 51.9
       },
       "LV": {
-       "raw": 5.18,
-       "pct": 83.3
+       "raw": 4.355,
+       "pct": 53.5
       }
      },
      "Monitoring Processes, Materials, or Surroundings": {
       "IM": {
-       "raw": 3.67,
-       "pct": 50.5
+       "raw": 3.128,
+       "pct": 25.6
       },
       "LV": {
-       "raw": 4.64,
-       "pct": 72.3
+       "raw": 3.329,
+       "pct": 21.1
       }
      },
      "Identifying Objects, Actions, and Events": {
       "IM": {
-       "raw": 3.79,
-       "pct": 40.3
+       "raw": 3.565,
+       "pct": 41.8
       },
       "LV": {
-       "raw": 5.0,
-       "pct": 83.0
+       "raw": 3.873,
+       "pct": 40.3
       }
      },
      "Inspecting Equipment, Structures, or Materials": {
       "IM": {
-       "raw": 2.61,
-       "pct": 28.0
+       "raw": 1.796,
+       "pct": 7.8
       },
       "LV": {
-       "raw": 3.12,
-       "pct": 47.3
+       "raw": 1.219,
+       "pct": 7.6
       }
      },
      "Estimating the Quantifiable Characteristics of Products, Events, or Information": {
       "IM": {
-       "raw": 3.55,
-       "pct": 82.2
+       "raw": 2.829,
+       "pct": 40.7
       },
       "LV": {
-       "raw": 4.21,
-       "pct": 93.0
+       "raw": 2.508,
+       "pct": 35.3
       }
      },
      "Judging the Qualities of Objects, Services, or People": {
       "IM": {
-       "raw": 3.45,
-       "pct": 60.9
+       "raw": 3.237,
+       "pct": 45.3
       },
       "LV": {
-       "raw": 4.21,
-       "pct": 78.3
+       "raw": 3.534,
+       "pct": 47.3
       }
      },
      "Processing Information": {
       "IM": {
-       "raw": 3.82,
-       "pct": 56.5
+       "raw": 3.543,
+       "pct": 47.1
       },
       "LV": {
-       "raw": 4.85,
-       "pct": 71.7
+       "raw": 3.691,
+       "pct": 38.3
       }
      },
      "Evaluating Information to Determine Compliance with Standards": {
       "IM": {
-       "raw": 3.91,
-       "pct": 69.4
+       "raw": 3.083,
+       "pct": 21.1
       },
       "LV": {
-       "raw": 4.48,
-       "pct": 77.8
+       "raw": 3.071,
+       "pct": 28.0
       }
      },
      "Analyzing Data or Information": {
       "IM": {
-       "raw": 3.94,
-       "pct": 71.6
+       "raw": 3.463,
+       "pct": 49.0
       },
       "LV": {
-       "raw": 5.0,
-       "pct": 82.2
+       "raw": 3.915,
+       "pct": 53.3
       }
      },
      "Making Decisions and Solving Problems": {
       "IM": {
-       "raw": 4.36,
-       "pct": 74.2
+       "raw": 3.983,
+       "pct": 53.4
       },
       "LV": {
-       "raw": 5.18,
-       "pct": 76.8
+       "raw": 4.505,
+       "pct": 51.7
       }
      },
      "Thinking Creatively": {
       "IM": {
-       "raw": 3.36,
-       "pct": 48.1
+       "raw": 3.469,
+       "pct": 55.5
       },
       "LV": {
-       "raw": 4.33,
-       "pct": 62.2
+       "raw": 3.802,
+       "pct": 45.7
       }
      },
      "Updating and Using Relevant Knowledge": {
       "IM": {
-       "raw": 3.88,
-       "pct": 49.7
+       "raw": 3.676,
+       "pct": 47.8
       },
       "LV": {
-       "raw": 4.91,
-       "pct": 57.8
+       "raw": 4.282,
+       "pct": 38.3
       }
      },
      "Developing Objectives and Strategies": {
       "IM": {
-       "raw": 3.73,
-       "pct": 83.4
+       "raw": 3.489,
+       "pct": 64.5
       },
       "LV": {
-       "raw": 4.39,
-       "pct": 86.8
+       "raw": 3.483,
+       "pct": 56.2
       }
      },
      "Scheduling Work and Activities": {
       "IM": {
-       "raw": 4.15,
-       "pct": 96.8
+       "raw": 3.055,
+       "pct": 39.7
       },
       "LV": {
-       "raw": 5.3,
-       "pct": 98.6
+       "raw": 3.585,
+       "pct": 50.8
       }
      },
      "Organizing, Planning, and Prioritizing Work": {
       "IM": {
-       "raw": 4.36,
-       "pct": 94.1
+       "raw": 3.865,
+       "pct": 58.4
       },
       "LV": {
-       "raw": 5.7,
-       "pct": 94.2
+       "raw": 4.979,
+       "pct": 64.8
       }
      },
      "Performing General Physical Activities": {
       "IM": {
-       "raw": 1.76,
-       "pct": 15.6
+       "raw": 1.888,
+       "pct": 20.1
       },
       "LV": {
-       "raw": 1.36,
-       "pct": 16.4
+       "raw": 1.136,
+       "pct": 15.7
       }
      },
      "Handling and Moving Objects": {
       "IM": {
-       "raw": 1.7,
-       "pct": 16.7
+       "raw": 1.72,
+       "pct": 16.4
       },
       "LV": {
-       "raw": 1.27,
-       "pct": 11.0
+       "raw": 1.076,
+       "pct": 13.9
       }
      },
      "Controlling Machines and Processes": {
       "IM": {
-       "raw": 1.79,
-       "pct": 21.9
+       "raw": 1.669,
+       "pct": 15.7
       },
       "LV": {
-       "raw": 1.3,
-       "pct": 18.6
+       "raw": 1.25,
+       "pct": 18.5
       }
      },
      "Operating Vehicles, Mechanized Devices, or Equipment": {
       "IM": {
-       "raw": 1.42,
-       "pct": 17.8
+       "raw": 2.211,
+       "pct": 44.4
       },
       "LV": {
-       "raw": 0.91,
-       "pct": 26.2
+       "raw": 1.464,
+       "pct": 43.0
       }
      },
      "Working with Computers": {
       "IM": {
-       "raw": 4.45,
-       "pct": 79.1
+       "raw": 3.895,
+       "pct": 55.4
       },
       "LV": {
-       "raw": 4.36,
-       "pct": 88.0
+       "raw": 3.289,
+       "pct": 48.4
       }
      },
      "Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment": {
       "IM": {
-       "raw": 1.91,
-       "pct": 46.2
+       "raw": 1.25,
+       "pct": 12.3
       },
       "LV": {
-       "raw": 1.91,
-       "pct": 57.0
+       "raw": 0.201,
+       "pct": 15.0
       }
      },
      "Repairing and Maintaining Mechanical Equipment": {
       "IM": {
-       "raw": 1.36,
-       "pct": 21.1
+       "raw": 1.086,
+       "pct": 7.4
       },
       "LV": {
        "raw": 0.0,
@@ -14992,832 +15042,832 @@
      },
      "Repairing and Maintaining Electronic Equipment": {
       "IM": {
-       "raw": 1.61,
-       "pct": 28.2
+       "raw": 1.152,
+       "pct": 4.2
       },
       "LV": {
-       "raw": 1.24,
-       "pct": 36.2
+       "raw": 0.0,
+       "pct": 8.0
       }
      },
      "Documenting/Recording Information": {
       "IM": {
-       "raw": 4.12,
-       "pct": 71.5
+       "raw": 3.369,
+       "pct": 36.5
       },
       "LV": {
-       "raw": 4.58,
-       "pct": 81.5
+       "raw": 3.425,
+       "pct": 41.8
       }
      },
      "Interpreting the Meaning of Information for Others": {
       "IM": {
-       "raw": 3.85,
-       "pct": 75.4
+       "raw": 3.321,
+       "pct": 44.3
       },
       "LV": {
-       "raw": 4.06,
-       "pct": 74.0
+       "raw": 3.188,
+       "pct": 45.8
       }
      },
      "Communicating with Supervisors, Peers, or Subordinates": {
       "IM": {
-       "raw": 4.73,
-       "pct": 97.7
+       "raw": 4.16,
+       "pct": 59.1
       },
       "LV": {
-       "raw": 5.73,
-       "pct": 97.2
+       "raw": 4.827,
+       "pct": 65.0
       }
      },
      "Communicating with People Outside the Organization": {
       "IM": {
-       "raw": 3.7,
-       "pct": 68.9
+       "raw": 3.998,
+       "pct": 79.1
       },
       "LV": {
-       "raw": 4.33,
-       "pct": 69.0
+       "raw": 4.459,
+       "pct": 71.0
       }
      },
      "Establishing and Maintaining Interpersonal Relationships": {
       "IM": {
-       "raw": 4.0,
-       "pct": 69.3
+       "raw": 4.403,
+       "pct": 88.2
       },
       "LV": {
-       "raw": 5.42,
-       "pct": 87.4
+       "raw": 5.264,
+       "pct": 79.8
       }
      },
      "Assisting and Caring for Others": {
       "IM": {
-       "raw": 2.15,
-       "pct": 15.8
+       "raw": 2.471,
+       "pct": 36.0
       },
       "LV": {
-       "raw": 1.82,
-       "pct": 13.8
+       "raw": 2.391,
+       "pct": 37.6
       }
      },
      "Selling or Influencing Others": {
       "IM": {
-       "raw": 2.61,
-       "pct": 67.1
+       "raw": 4.012,
+       "pct": 92.7
       },
       "LV": {
-       "raw": 2.88,
-       "pct": 71.9
+       "raw": 4.739,
+       "pct": 93.3
       }
      },
      "Resolving Conflicts and Negotiating with Others": {
       "IM": {
-       "raw": 3.42,
-       "pct": 72.8
+       "raw": 3.435,
+       "pct": 67.9
       },
       "LV": {
-       "raw": 4.3,
-       "pct": 78.0
+       "raw": 4.274,
+       "pct": 68.8
       }
      },
      "Performing for or Working Directly with the Public": {
       "IM": {
-       "raw": 1.58,
-       "pct": 9.4
+       "raw": 2.841,
+       "pct": 49.3
       },
       "LV": {
-       "raw": 1.12,
-       "pct": 10.5
+       "raw": 2.923,
+       "pct": 48.2
       }
      },
      "Coordinating the Work and Activities of Others": {
       "IM": {
-       "raw": 4.06,
-       "pct": 95.1
+       "raw": 3.12,
+       "pct": 44.5
       },
       "LV": {
-       "raw": 4.97,
-       "pct": 94.3
+       "raw": 3.561,
+       "pct": 47.5
       }
      },
      "Developing and Building Teams": {
       "IM": {
-       "raw": 3.85,
-       "pct": 90.6
+       "raw": 3.056,
+       "pct": 39.7
       },
       "LV": {
-       "raw": 4.3,
-       "pct": 91.5
+       "raw": 2.988,
+       "pct": 45.3
       }
      },
      "Training and Teaching Others": {
       "IM": {
-       "raw": 3.24,
-       "pct": 41.0
+       "raw": 2.956,
+       "pct": 33.1
       },
       "LV": {
-       "raw": 3.42,
-       "pct": 42.9
+       "raw": 3.256,
+       "pct": 38.0
       }
      },
      "Guiding, Directing, and Motivating Subordinates": {
       "IM": {
-       "raw": 3.42,
-       "pct": 78.4
+       "raw": 2.92,
+       "pct": 44.3
       },
       "LV": {
-       "raw": 4.27,
-       "pct": 84.7
+       "raw": 3.221,
+       "pct": 47.7
       }
      },
      "Coaching and Developing Others": {
       "IM": {
-       "raw": 3.06,
-       "pct": 49.4
+       "raw": 2.953,
+       "pct": 36.7
       },
       "LV": {
-       "raw": 3.61,
-       "pct": 53.2
+       "raw": 3.369,
+       "pct": 41.8
       }
      },
      "Providing Consultation and Advice to Others": {
       "IM": {
-       "raw": 3.12,
-       "pct": 59.0
+       "raw": 3.177,
+       "pct": 53.7
       },
       "LV": {
-       "raw": 4.12,
-       "pct": 70.1
+       "raw": 4.093,
+       "pct": 62.2
       }
      },
      "Performing Administrative Activities": {
       "IM": {
-       "raw": 3.42,
-       "pct": 83.7
+       "raw": 3.069,
+       "pct": 64.8
       },
       "LV": {
-       "raw": 3.75,
-       "pct": 81.0
+       "raw": 3.242,
+       "pct": 62.2
       }
      },
      "Staffing Organizational Units": {
       "IM": {
-       "raw": 2.55,
-       "pct": 74.4
+       "raw": 2.205,
+       "pct": 40.7
       },
       "LV": {
-       "raw": 2.85,
-       "pct": 76.9
+       "raw": 2.186,
+       "pct": 48.3
       }
      },
      "Monitoring and Controlling Resources": {
       "IM": {
-       "raw": 3.55,
-       "pct": 94.6
+       "raw": 2.627,
+       "pct": 55.0
       },
       "LV": {
-       "raw": 3.91,
-       "pct": 86.3
+       "raw": 2.836,
+       "pct": 51.3
       }
      }
     },
     "Work Context": {
      "Public Speaking": {
       "CX": {
-       "raw": 2.64,
-       "pct": 71.6
+       "raw": 2.33,
+       "pct": 56.0
       }
      },
      "Telephone Conversations": {
       "CX": {
-       "raw": 4.36,
-       "pct": 53.0
+       "raw": 4.828,
+       "pct": 86.3
       }
      },
      "E-Mail": {
       "CX": {
-       "raw": 4.79,
-       "pct": 59.3
+       "raw": 4.934,
+       "pct": 81.5
       }
      },
      "Written Letters and Memos": {
       "CX": {
-       "raw": 3.0,
-       "pct": 45.0
+       "raw": 3.557,
+       "pct": 72.5
       }
      },
      "Face-to-Face Discussions with Individuals and Within Teams": {
       "CX": {
-       "raw": 4.24,
-       "pct": 15.6
+       "raw": 4.393,
+       "pct": 41.0
       }
      },
      "Contact With Others": {
       "CX": {
-       "raw": 4.27,
-       "pct": 40.2
+       "raw": 4.559,
+       "pct": 68.3
       }
      },
      "Work With or Contribute to a Work Group or Team": {
       "CX": {
-       "raw": 4.58,
-       "pct": 78.6
+       "raw": 4.435,
+       "pct": 64.3
       }
      },
      "Deal With External Customers or the Public in General": {
       "CX": {
-       "raw": 3.25,
-       "pct": 42.8
+       "raw": 4.108,
+       "pct": 74.1
       }
      },
      "Coordinate or Lead Others in Accomplishing Work Activities": {
       "CX": {
-       "raw": 4.03,
-       "pct": 79.1
+       "raw": 3.878,
+       "pct": 67.9
       }
      },
      "Health and Safety of Other Workers": {
       "CX": {
-       "raw": 2.67,
-       "pct": 25.5
+       "raw": 2.284,
+       "pct": 16.9
       }
      },
      "Work Outcomes and Results of Other Workers": {
       "CX": {
-       "raw": 4.09,
-       "pct": 88.5
+       "raw": 3.287,
+       "pct": 46.7
       }
      },
      "Conflict Situations": {
       "CX": {
-       "raw": 3.09,
-       "pct": 67.4
+       "raw": 3.21,
+       "pct": 69.7
       }
      },
      "Dealing With Unpleasant, Angry, or Discourteous People": {
       "CX": {
-       "raw": 2.76,
-       "pct": 49.7
+       "raw": 3.157,
+       "pct": 66.4
       }
      },
      "Dealing with Violent or Physically Aggressive People": {
       "CX": {
-       "raw": 1.18,
-       "pct": 26.6
+       "raw": 1.164,
+       "pct": 24.0
       }
      },
      "Indoors, Environmentally Controlled": {
       "CX": {
-       "raw": 4.42,
-       "pct": 59.8
+       "raw": 4.156,
+       "pct": 48.6
       }
      },
      "Indoors, Not Environmentally Controlled": {
       "CX": {
-       "raw": 1.82,
-       "pct": 42.3
+       "raw": 1.979,
+       "pct": 44.4
       }
      },
      "Outdoors, Exposed to All Weather Conditions": {
       "CX": {
-       "raw": 1.58,
-       "pct": 40.9
+       "raw": 1.969,
+       "pct": 46.6
       }
      },
      "Outdoors, Under Cover": {
       "CX": {
-       "raw": 1.55,
-       "pct": 49.3
+       "raw": 1.277,
+       "pct": 29.6
       }
      },
      "In an Open Vehicle or Operating Equipment": {
       "CX": {
-       "raw": 1.33,
-       "pct": 58.1
+       "raw": 1.259,
+       "pct": 45.6
       }
      },
      "In an Enclosed Vehicle or Operate Enclosed Equipment": {
       "CX": {
-       "raw": 1.76,
-       "pct": 48.4
+       "raw": 3.281,
+       "pct": 72.6
       }
      },
      "Physical Proximity": {
       "CX": {
-       "raw": 2.56,
-       "pct": 8.2
+       "raw": 2.873,
+       "pct": 28.4
       }
      },
      "Exposed to Sounds, Noise Levels that are Distracting or Uncomfortable": {
       "CX": {
-       "raw": 1.88,
-       "pct": 10.0
+       "raw": 2.215,
+       "pct": 22.2
       }
      },
      "Exposed to Very Hot or Cold Temperatures": {
       "CX": {
-       "raw": 1.21,
-       "pct": 19.5
+       "raw": 1.844,
+       "pct": 42.3
       }
      },
      "Exposed to Extremely Bright or Inadequate Lighting Conditions": {
       "CX": {
-       "raw": 1.28,
-       "pct": 21.3
+       "raw": 1.529,
+       "pct": 34.2
       }
      },
      "Exposed to Contaminants": {
       "CX": {
-       "raw": 1.15,
-       "pct": 6.6
+       "raw": 2.069,
+       "pct": 33.8
       }
      },
      "Exposed to Cramped Work Space, Awkward Positions": {
       "CX": {
-       "raw": 1.55,
-       "pct": 38.7
+       "raw": 1.378,
+       "pct": 27.2
       }
      },
      "Exposed to Whole Body Vibration": {
       "CX": {
-       "raw": 1.0,
-       "pct": 16.9
+       "raw": 1.021,
+       "pct": 31.2
       }
      },
      "Exposed to Radiation": {
       "CX": {
-       "raw": 1.16,
-       "pct": 67.6
+       "raw": 1.033,
+       "pct": 31.3
       }
      },
      "Exposed to Disease or Infections": {
       "CX": {
-       "raw": 1.24,
-       "pct": 42.3
+       "raw": 1.128,
+       "pct": 27.4
       }
      },
      "Exposed to High Places": {
       "CX": {
-       "raw": 1.33,
-       "pct": 56.5
+       "raw": 1.243,
+       "pct": 39.1
       }
      },
      "Exposed to Hazardous Conditions": {
       "CX": {
-       "raw": 1.25,
-       "pct": 32.2
+       "raw": 1.302,
+       "pct": 29.2
       }
      },
      "Exposed to Hazardous Equipment": {
       "CX": {
-       "raw": 1.0,
-       "pct": 6.7
+       "raw": 1.537,
+       "pct": 39.4
       }
      },
      "Exposed to Minor Burns, Cuts, Bites, or Stings": {
       "CX": {
-       "raw": 1.3,
-       "pct": 27.8
+       "raw": 1.257,
+       "pct": 22.1
       }
      },
      "Spend Time Sitting": {
       "CX": {
-       "raw": 4.52,
-       "pct": 88.5
+       "raw": 3.782,
+       "pct": 67.8
       }
      },
      "Spend Time Standing": {
       "CX": {
-       "raw": 2.45,
-       "pct": 31.1
+       "raw": 2.431,
+       "pct": 30.4
       }
      },
      "Spend Time Climbing Ladders, Scaffolds, or Poles": {
       "CX": {
-       "raw": 1.33,
-       "pct": 61.6
+       "raw": 1.109,
+       "pct": 30.9
       }
      },
      "Spend Time Walking or Running": {
       "CX": {
-       "raw": 1.7,
-       "pct": 16.4
+       "raw": 1.936,
+       "pct": 29.5
       }
      },
      "Spend Time Kneeling, Crouching, Stooping, or Crawling": {
       "CX": {
-       "raw": 1.36,
-       "pct": 27.4
+       "raw": 1.296,
+       "pct": 22.1
       }
      },
      "Spend Time Keeping or Regaining Balance": {
       "CX": {
-       "raw": 1.27,
-       "pct": 33.2
+       "raw": 1.134,
+       "pct": 17.8
       }
      },
      "Spend Time Using Your Hands to Handle, Control, or Feel Objects, Tools, or Controls": {
       "CX": {
-       "raw": 2.82,
-       "pct": 34.4
+       "raw": 2.167,
+       "pct": 17.6
       }
      },
      "Spend Time Bending or Twisting Your Body": {
       "CX": {
-       "raw": 1.64,
-       "pct": 30.4
+       "raw": 1.578,
+       "pct": 25.9
       }
      },
      "Spend Time Making Repetitive Motions": {
       "CX": {
-       "raw": 2.76,
-       "pct": 40.2
+       "raw": 2.162,
+       "pct": 18.7
       }
      },
      "Wear Common Protective or Safety Equipment such as Safety Shoes, Glasses, Gloves, Hearing Protection, Hard Hats, or Life Jackets": {
       "CX": {
-       "raw": 1.52,
-       "pct": 24.5
+       "raw": 1.723,
+       "pct": 27.4
       }
      },
      "Wear Specialized Protective or Safety Equipment such as Breathing Apparatus, Safety Harness, Full Protection Suits, or Radiation Protection": {
       "CX": {
-       "raw": 1.33,
-       "pct": 45.6
+       "raw": 1.048,
+       "pct": 19.6
       }
      },
      "Consequence of Error": {
       "CX": {
-       "raw": 2.61,
-       "pct": 31.6
+       "raw": 2.146,
+       "pct": 13.4
       }
      },
      "Impact of Decisions on Co-workers or Company Results": {
       "CX": {
-       "raw": 3.76,
-       "pct": 49.0
+       "raw": 4.031,
+       "pct": 66.3
       }
      },
      "Frequency of Decision Making": {
       "CX": {
-       "raw": 3.55,
-       "pct": 35.1
+       "raw": 4.191,
+       "pct": 70.7
       }
      },
      "Freedom to Make Decisions": {
       "CX": {
-       "raw": 4.15,
-       "pct": 52.1
+       "raw": 4.305,
+       "pct": 66.3
       }
      },
      "Degree of Automation": {
       "CX": {
-       "raw": 2.18,
-       "pct": 61.5
+       "raw": 2.282,
+       "pct": 68.2
       }
      },
      "Importance of Being Exact or Accurate": {
       "CX": {
-       "raw": 4.12,
-       "pct": 41.4
+       "raw": 3.962,
+       "pct": 37.2
       }
      },
      "Importance of Repeating Same Tasks": {
       "CX": {
-       "raw": 3.33,
-       "pct": 52.6
+       "raw": 2.818,
+       "pct": 29.4
       }
      },
      "Determine Tasks, Priorities and Goals": {
       "CX": {
-       "raw": 4.21,
-       "pct": 65.1
+       "raw": 4.506,
+       "pct": 84.5
       }
      },
      "Level of Competition": {
       "CX": {
-       "raw": 3.33,
-       "pct": 68.3
+       "raw": 3.898,
+       "pct": 88.3
       }
      },
      "Time Pressure": {
       "CX": {
-       "raw": 3.88,
-       "pct": 51.5
+       "raw": 3.835,
+       "pct": 48.0
       }
      },
      "Pace Determined by Speed of Equipment": {
       "CX": {
-       "raw": 1.27,
-       "pct": 31.6
+       "raw": 1.316,
+       "pct": 30.5
       }
      }
     },
     "Abilities": {
      "Oral Comprehension": {
       "IM": {
-       "raw": 4.12,
-       "pct": 89.1
+       "raw": 3.976,
+       "pct": 64.5
       },
       "LV": {
-       "raw": 3.88,
-       "pct": 39.7
+       "raw": 4.314,
+       "pct": 71.8
       }
      },
      "Written Comprehension": {
       "IM": {
-       "raw": 4.0,
-       "pct": 73.7
+       "raw": 3.89,
+       "pct": 60.6
       },
       "LV": {
-       "raw": 3.88,
-       "pct": 51.9
+       "raw": 4.076,
+       "pct": 63.5
       }
      },
      "Oral Expression": {
       "IM": {
-       "raw": 3.88,
-       "pct": 50.0
+       "raw": 4.126,
+       "pct": 72.8
       },
       "LV": {
-       "raw": 3.75,
-       "pct": 35.9
+       "raw": 4.286,
+       "pct": 70.0
       }
      },
      "Written Expression": {
       "IM": {
-       "raw": 4.12,
-       "pct": 93.5
+       "raw": 3.849,
+       "pct": 72.3
       },
       "LV": {
-       "raw": 3.75,
-       "pct": 55.1
+       "raw": 4.014,
+       "pct": 67.3
       }
      },
      "Fluency of Ideas": {
       "IM": {
-       "raw": 3.25,
-       "pct": 74.8
+       "raw": 3.485,
+       "pct": 80.3
       },
       "LV": {
-       "raw": 3.38,
-       "pct": 68.2
+       "raw": 3.698,
+       "pct": 79.5
       }
      },
      "Originality": {
       "IM": {
-       "raw": 3.12,
-       "pct": 74.7
+       "raw": 3.301,
+       "pct": 76.9
       },
       "LV": {
-       "raw": 3.25,
-       "pct": 68.3
+       "raw": 3.526,
+       "pct": 75.8
       }
      },
      "Problem Sensitivity": {
       "IM": {
-       "raw": 3.62,
-       "pct": 45.3
+       "raw": 3.424,
+       "pct": 36.7
       },
       "LV": {
-       "raw": 3.5,
-       "pct": 47.6
+       "raw": 3.624,
+       "pct": 53.6
       }
      },
      "Deductive Reasoning": {
       "IM": {
-       "raw": 3.62,
-       "pct": 52.3
+       "raw": 3.638,
+       "pct": 57.4
       },
       "LV": {
-       "raw": 3.5,
-       "pct": 46.6
+       "raw": 3.864,
+       "pct": 63.8
       }
      },
      "Inductive Reasoning": {
       "IM": {
-       "raw": 3.5,
-       "pct": 54.5
+       "raw": 3.464,
+       "pct": 51.3
       },
       "LV": {
-       "raw": 3.5,
-       "pct": 54.5
+       "raw": 3.623,
+       "pct": 61.2
       }
      },
      "Information Ordering": {
       "IM": {
-       "raw": 3.38,
-       "pct": 54.9
+       "raw": 3.16,
+       "pct": 30.9
       },
       "LV": {
-       "raw": 3.25,
-       "pct": 48.7
+       "raw": 3.223,
+       "pct": 42.0
       }
      },
      "Category Flexibility": {
       "IM": {
-       "raw": 3.12,
-       "pct": 56.0
+       "raw": 3.199,
+       "pct": 59.5
       },
       "LV": {
-       "raw": 3.12,
-       "pct": 52.1
+       "raw": 3.31,
+       "pct": 54.9
       }
      },
      "Mathematical Reasoning": {
       "IM": {
-       "raw": 2.75,
-       "pct": 59.7
+       "raw": 2.828,
+       "pct": 65.7
       },
       "LV": {
-       "raw": 2.5,
-       "pct": 53.5
+       "raw": 3.15,
+       "pct": 72.6
       }
      },
      "Number Facility": {
       "IM": {
-       "raw": 2.75,
-       "pct": 62.4
+       "raw": 2.828,
+       "pct": 68.7
       },
       "LV": {
-       "raw": 2.75,
-       "pct": 60.6
+       "raw": 3.222,
+       "pct": 79.7
       }
      },
      "Memorization": {
       "IM": {
-       "raw": 2.5,
-       "pct": 55.5
+       "raw": 2.714,
+       "pct": 74.3
       },
       "LV": {
-       "raw": 2.25,
-       "pct": 43.8
+       "raw": 2.81,
+       "pct": 78.4
       }
      },
      "Speed of Closure": {
       "IM": {
-       "raw": 2.75,
-       "pct": 68.8
+       "raw": 2.728,
+       "pct": 69.1
       },
       "LV": {
-       "raw": 2.75,
-       "pct": 64.6
+       "raw": 2.764,
+       "pct": 68.7
       }
      },
      "Flexibility of Closure": {
       "IM": {
-       "raw": 2.88,
-       "pct": 40.8
+       "raw": 2.789,
+       "pct": 37.3
       },
       "LV": {
-       "raw": 3.0,
-       "pct": 54.3
+       "raw": 2.763,
+       "pct": 37.7
       }
      },
      "Perceptual Speed": {
       "IM": {
-       "raw": 2.62,
-       "pct": 25.8
+       "raw": 2.51,
+       "pct": 22.0
       },
       "LV": {
-       "raw": 2.5,
-       "pct": 26.5
+       "raw": 2.259,
+       "pct": 17.3
       }
      },
      "Spatial Orientation": {
       "IM": {
-       "raw": 1.38,
-       "pct": 47.0
+       "raw": 1.25,
+       "pct": 33.0
       },
       "LV": {
-       "raw": 0.62,
-       "pct": 52.0
+       "raw": 0.336,
+       "pct": 38.0
       }
      },
      "Visualization": {
       "IM": {
-       "raw": 2.5,
-       "pct": 32.1
+       "raw": 2.273,
+       "pct": 22.3
       },
       "LV": {
-       "raw": 2.38,
-       "pct": 28.6
+       "raw": 2.375,
+       "pct": 28.4
       }
      },
      "Selective Attention": {
       "IM": {
-       "raw": 3.12,
-       "pct": 69.7
+       "raw": 2.75,
+       "pct": 18.4
       },
       "LV": {
-       "raw": 2.75,
-       "pct": 17.3
+       "raw": 2.6,
+       "pct": 22.2
       }
      },
      "Time Sharing": {
       "IM": {
-       "raw": 2.62,
-       "pct": 45.1
+       "raw": 2.472,
+       "pct": 34.2
       },
       "LV": {
-       "raw": 2.62,
-       "pct": 54.5
+       "raw": 2.12,
+       "pct": 19.7
       }
      },
      "Arm-Hand Steadiness": {
       "IM": {
-       "raw": 1.62,
-       "pct": 19.7
+       "raw": 1.312,
+       "pct": 13.7
       },
       "LV": {
-       "raw": 0.88,
-       "pct": 20.5
+       "raw": 0.45,
+       "pct": 13.6
       }
      },
      "Manual Dexterity": {
       "IM": {
-       "raw": 1.62,
-       "pct": 21.9
+       "raw": 1.414,
+       "pct": 17.4
       },
       "LV": {
-       "raw": 0.88,
-       "pct": 22.9
+       "raw": 0.49,
+       "pct": 16.6
       }
      },
      "Finger Dexterity": {
       "IM": {
-       "raw": 1.75,
-       "pct": 16.0
+       "raw": 1.964,
+       "pct": 24.0
       },
       "LV": {
-       "raw": 1.12,
-       "pct": 14.6
+       "raw": 1.426,
+       "pct": 22.6
       }
      },
      "Control Precision": {
       "IM": {
-       "raw": 1.62,
-       "pct": 23.2
+       "raw": 1.714,
+       "pct": 28.0
       },
       "LV": {
-       "raw": 0.88,
-       "pct": 23.6
+       "raw": 1.13,
+       "pct": 27.5
       }
      },
      "Multilimb Coordination": {
       "IM": {
-       "raw": 1.0,
-       "pct": 9.8
+       "raw": 1.575,
+       "pct": 29.1
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 12.6
+       "raw": 0.964,
+       "pct": 28.5
       }
      },
      "Response Orientation": {
       "IM": {
-       "raw": 1.0,
-       "pct": 13.5
+       "raw": 1.15,
+       "pct": 20.5
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 17.8
+       "raw": 0.2,
+       "pct": 23.7
       }
      },
      "Rate Control": {
       "IM": {
-       "raw": 1.0,
-       "pct": 15.1
+       "raw": 1.1,
+       "pct": 20.2
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 18.1
+       "raw": 0.124,
+       "pct": 23.0
       }
      },
      "Reaction Time": {
       "IM": {
-       "raw": 1.0,
-       "pct": 12.9
+       "raw": 1.124,
+       "pct": 18.1
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 16.1
+       "raw": 0.15,
+       "pct": 20.6
       }
      },
      "Wrist-Finger Speed": {
       "IM": {
-       "raw": 1.75,
-       "pct": 37.5
+       "raw": 1.336,
+       "pct": 15.0
       },
       "LV": {
-       "raw": 1.0,
-       "pct": 40.0
+       "raw": 0.31,
+       "pct": 14.3
       }
      },
      "Speed of Limb Movement": {
       "IM": {
-       "raw": 1.0,
-       "pct": 20.2
+       "raw": 1.05,
+       "pct": 25.9
       },
       "LV": {
        "raw": 0.0,
@@ -15826,68 +15876,68 @@
      },
      "Static Strength": {
       "IM": {
-       "raw": 1.0,
-       "pct": 12.9
+       "raw": 1.076,
+       "pct": 16.5
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 14.9
+       "raw": 0.124,
+       "pct": 18.6
       }
      },
      "Explosive Strength": {
       "IM": {
-       "raw": 1.0,
-       "pct": 15.7
+       "raw": 1.076,
+       "pct": 22.5
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 22.7
+       "raw": 0.1,
+       "pct": 28.4
       }
      },
      "Dynamic Strength": {
       "IM": {
-       "raw": 1.5,
-       "pct": 36.1
+       "raw": 1.076,
+       "pct": 12.7
       },
       "LV": {
-       "raw": 0.5,
-       "pct": 33.4
+       "raw": 0.1,
+       "pct": 17.5
       }
      },
      "Trunk Strength": {
       "IM": {
-       "raw": 2.0,
-       "pct": 30.4
+       "raw": 1.94,
+       "pct": 26.0
       },
       "LV": {
-       "raw": 1.62,
-       "pct": 30.3
+       "raw": 1.474,
+       "pct": 25.6
       }
      },
      "Stamina": {
       "IM": {
-       "raw": 1.0,
-       "pct": 14.0
+       "raw": 1.1,
+       "pct": 18.5
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 16.8
+       "raw": 0.15,
+       "pct": 21.3
       }
      },
      "Extent Flexibility": {
       "IM": {
-       "raw": 1.0,
-       "pct": 12.1
+       "raw": 1.124,
+       "pct": 17.2
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 14.9
+       "raw": 0.15,
+       "pct": 19.3
       }
      },
      "Dynamic Flexibility": {
       "IM": {
-       "raw": 1.0,
-       "pct": 32.0
+       "raw": 1.024,
+       "pct": 39.5
       },
       "LV": {
        "raw": 0.0,
@@ -15896,270 +15946,270 @@
      },
      "Gross Body Coordination": {
       "IM": {
-       "raw": 1.0,
-       "pct": 14.9
+       "raw": 1.1,
+       "pct": 19.5
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 17.1
+       "raw": 0.124,
+       "pct": 21.4
       }
      },
      "Gross Body Equilibrium": {
       "IM": {
-       "raw": 1.0,
-       "pct": 15.2
+       "raw": 1.076,
+       "pct": 19.4
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 17.6
+       "raw": 0.076,
+       "pct": 21.3
       }
      },
      "Near Vision": {
       "IM": {
-       "raw": 3.62,
-       "pct": 45.8
+       "raw": 3.259,
+       "pct": 17.1
       },
       "LV": {
-       "raw": 3.62,
-       "pct": 42.4
+       "raw": 3.474,
+       "pct": 33.9
       }
      },
      "Far Vision": {
       "IM": {
-       "raw": 3.12,
-       "pct": 79.9
+       "raw": 2.65,
+       "pct": 21.4
       },
       "LV": {
-       "raw": 3.38,
-       "pct": 88.2
+       "raw": 2.676,
+       "pct": 23.2
       }
      },
      "Visual Color Discrimination": {
       "IM": {
-       "raw": 2.5,
-       "pct": 43.7
+       "raw": 2.012,
+       "pct": 18.9
       },
       "LV": {
-       "raw": 2.5,
-       "pct": 50.1
+       "raw": 1.812,
+       "pct": 20.1
       }
      },
      "Night Vision": {
       "IM": {
-       "raw": 1.0,
-       "pct": 25.3
+       "raw": 1.1,
+       "pct": 32.9
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 28.7
+       "raw": 0.124,
+       "pct": 35.8
       }
      },
      "Peripheral Vision": {
       "IM": {
-       "raw": 1.0,
-       "pct": 22.4
+       "raw": 1.124,
+       "pct": 30.7
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 27.1
+       "raw": 0.15,
+       "pct": 34.4
       }
      },
      "Depth Perception": {
       "IM": {
-       "raw": 1.88,
-       "pct": 32.3
+       "raw": 1.666,
+       "pct": 23.1
       },
       "LV": {
-       "raw": 1.25,
-       "pct": 31.3
+       "raw": 0.926,
+       "pct": 23.6
       }
      },
      "Glare Sensitivity": {
       "IM": {
-       "raw": 1.0,
-       "pct": 23.4
+       "raw": 1.124,
+       "pct": 31.2
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 26.4
+       "raw": 0.15,
+       "pct": 33.3
       }
      },
      "Hearing Sensitivity": {
       "IM": {
-       "raw": 1.75,
-       "pct": 12.3
+       "raw": 1.81,
+       "pct": 21.4
       },
       "LV": {
-       "raw": 1.25,
-       "pct": 15.3
+       "raw": 1.262,
+       "pct": 17.5
       }
      },
      "Auditory Attention": {
       "IM": {
-       "raw": 2.0,
-       "pct": 21.7
+       "raw": 1.94,
+       "pct": 16.0
       },
       "LV": {
-       "raw": 1.62,
-       "pct": 17.4
+       "raw": 1.572,
+       "pct": 16.2
       }
      },
      "Sound Localization": {
       "IM": {
-       "raw": 1.0,
-       "pct": 22.5
+       "raw": 1.076,
+       "pct": 29.1
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 27.3
+       "raw": 0.1,
+       "pct": 33.3
       }
      },
      "Speech Recognition": {
       "IM": {
-       "raw": 3.75,
-       "pct": 78.8
+       "raw": 3.725,
+       "pct": 76.9
       },
       "LV": {
-       "raw": 3.75,
-       "pct": 76.6
+       "raw": 3.96,
+       "pct": 88.9
       }
      },
      "Speech Clarity": {
       "IM": {
-       "raw": 3.62,
-       "pct": 60.3
+       "raw": 3.825,
+       "pct": 76.6
       },
       "LV": {
-       "raw": 3.5,
-       "pct": 64.6
+       "raw": 3.936,
+       "pct": 83.8
       }
      }
     },
     "Work Styles": {
      "Innovation": {
       "WI": {
-       "raw": 1.47,
-       "pct": 75.3
+       "raw": 1.496,
+       "pct": 74.2
       }
      },
      "Achievement Orientation": {
       "WI": {
-       "raw": 2.21,
-       "pct": 94.9
+       "raw": 2.292,
+       "pct": 93.7
       }
      },
      "Intellectual Curiosity": {
       "WI": {
-       "raw": 1.44,
-       "pct": 61.0
+       "raw": 1.535,
+       "pct": 62.5
       }
      },
      "Tolerance for Ambiguity": {
       "WI": {
-       "raw": 1.78,
-       "pct": 94.5
+       "raw": 1.472,
+       "pct": 78.7
       }
      },
      "Initiative": {
       "WI": {
-       "raw": 2.0,
-       "pct": 95.1
+       "raw": 1.921,
+       "pct": 91.3
       }
      },
      "Adaptability": {
       "WI": {
-       "raw": 2.09,
-       "pct": 90.3
+       "raw": 1.867,
+       "pct": 79.7
       }
      },
      "Self-Confidence": {
       "WI": {
-       "raw": 2.09,
-       "pct": 94.2
+       "raw": 2.172,
+       "pct": 89.6
       }
      },
      "Perseverance": {
       "WI": {
-       "raw": 2.3,
-       "pct": 97.1
+       "raw": 2.566,
+       "pct": 89.9
       }
      },
      "Leadership Orientation": {
       "WI": {
-       "raw": 2.55,
-       "pct": 96.1
+       "raw": 1.748,
+       "pct": 80.0
       }
      },
      "Humility": {
       "WI": {
-       "raw": 0.53,
-       "pct": 57.8
+       "raw": -0.716,
+       "pct": 9.3
       }
      },
      "Sincerity": {
       "WI": {
-       "raw": 1.07,
-       "pct": 62.7
+       "raw": 0.916,
+       "pct": 55.5
       }
      },
      "Empathy": {
       "WI": {
-       "raw": 1.22,
-       "pct": 68.4
+       "raw": 1.268,
+       "pct": 69.6
       }
      },
      "Cooperation": {
       "WI": {
-       "raw": 2.3,
-       "pct": 84.7
+       "raw": 1.56,
+       "pct": 54.0
       }
      },
      "Optimism": {
       "WI": {
-       "raw": 1.23,
-       "pct": 73.2
+       "raw": 1.534,
+       "pct": 79.3
       }
      },
      "Social Orientation": {
       "WI": {
-       "raw": 2.11,
-       "pct": 78.9
+       "raw": 2.479,
+       "pct": 92.5
       }
      },
      "Cautiousness": {
       "WI": {
-       "raw": 1.82,
-       "pct": 48.9
+       "raw": 0.373,
+       "pct": 6.8
       }
      },
      "Attention to Detail": {
       "WI": {
-       "raw": 2.53,
-       "pct": 58.0
+       "raw": 1.829,
+       "pct": 20.6
       }
      },
      "Dependability": {
       "WI": {
-       "raw": 2.74,
-       "pct": 90.7
+       "raw": 2.206,
+       "pct": 23.5
       }
      },
      "Integrity": {
       "WI": {
-       "raw": 2.17,
-       "pct": 69.5
+       "raw": 1.64,
+       "pct": 38.3
       }
      },
      "Stress Tolerance": {
       "WI": {
-       "raw": 2.21,
-       "pct": 88.6
+       "raw": 1.602,
+       "pct": 60.1
       }
      },
      "Self-Control": {
       "WI": {
-       "raw": 2.06,
-       "pct": 82.0
+       "raw": 1.629,
+       "pct": 62.2
       }
      }
     },
@@ -73962,8 +74012,8 @@
      ]
     },
     {
-     "soc": "13-2051.00",
-     "title": "Financial and Investment Analysts",
+     "soc": "11-3031.03",
+     "title": "Investment Fund Managers",
      "weight": 0.15,
      "route": [
       "analog"
@@ -73971,7 +74021,7 @@
     }
    ],
    "coverage_confidence": null,
-   "rationale": "No ESCO occupation. Quantitative finance is the work of financial quantitative analysts, drawing on statistics and data science, inside investment analysis. No adjustment: the analogs are direct.",
+   "rationale": "No ESCO occupation. Quantitative finance is the work of financial quantitative analysts, drawing on statistics and data science, inside investment analysis (investment fund managers; Financial and Investment Analysts, 13-2051, has no O*NET 31.0 ratings). No adjustment: the analogs are direct.",
    "linked_but_replaced": [
     "13-2051.00",
     "13-2054.00",
@@ -73990,234 +74040,234 @@
     "Interests": {
      "Realistic": {
       "OI": {
-       "raw": 1.718,
-       "pct": 10.0
+       "raw": 1.79,
+       "pct": 11.0
       }
      },
      "Investigative": {
       "OI": {
-       "raw": 6.457,
-       "pct": 93.6
+       "raw": 6.263,
+       "pct": 91.2
       }
      },
      "Artistic": {
       "OI": {
-       "raw": 1.938,
-       "pct": 63.7
+       "raw": 1.918,
+       "pct": 63.0
       }
      },
      "Social": {
       "OI": {
-       "raw": 1.718,
-       "pct": 31.2
+       "raw": 1.784,
+       "pct": 32.6
       }
      },
      "Enterprising": {
       "OI": {
-       "raw": 3.109,
-       "pct": 60.2
+       "raw": 3.388,
+       "pct": 61.8
       }
      },
      "Conventional": {
       "OI": {
-       "raw": 5.74,
-       "pct": 87.2
+       "raw": 5.691,
+       "pct": 86.1
       }
      }
     },
     "Work Values": {
      "Achievement": {
       "EX": {
-       "raw": 5.094,
-       "pct": 67.7
+       "raw": 5.254,
+       "pct": 72.3
       }
      },
      "Working Conditions": {
       "EX": {
-       "raw": 4.906,
-       "pct": 72.0
+       "raw": 4.981,
+       "pct": 74.3
       }
      },
      "Recognition": {
       "EX": {
-       "raw": 5.0,
-       "pct": 80.7
+       "raw": 5.118,
+       "pct": 83.1
       }
      },
      "Relationships": {
       "EX": {
-       "raw": 4.427,
-       "pct": 51.2
+       "raw": 4.528,
+       "pct": 54.3
       }
      },
      "Support": {
       "EX": {
-       "raw": 3.95,
-       "pct": 34.9
+       "raw": 4.017,
+       "pct": 36.7
       }
      },
      "Independence": {
       "EX": {
-       "raw": 5.427,
-       "pct": 77.4
+       "raw": 5.41,
+       "pct": 76.8
       }
      }
     },
     "Work Activities": {
      "Getting Information": {
       "IM": {
-       "raw": 4.441,
-       "pct": 68.6
+       "raw": 4.5,
+       "pct": 73.1
       },
       "LV": {
-       "raw": 5.46,
-       "pct": 90.5
+       "raw": 5.518,
+       "pct": 91.5
       }
      },
      "Monitoring Processes, Materials, or Surroundings": {
       "IM": {
-       "raw": 2.739,
-       "pct": 6.6
+       "raw": 2.774,
+       "pct": 7.4
       },
       "LV": {
-       "raw": 3.245,
-       "pct": 19.4
+       "raw": 3.277,
+       "pct": 19.7
       }
      },
      "Identifying Objects, Actions, and Events": {
       "IM": {
-       "raw": 3.631,
-       "pct": 28.5
+       "raw": 3.744,
+       "pct": 37.8
       },
       "LV": {
-       "raw": 4.719,
-       "pct": 71.7
+       "raw": 4.787,
+       "pct": 74.1
       }
      },
      "Inspecting Equipment, Structures, or Materials": {
       "IM": {
-       "raw": 1.738,
+       "raw": 1.742,
        "pct": 7.0
       },
       "LV": {
-       "raw": 1.216,
-       "pct": 9.4
+       "raw": 1.183,
+       "pct": 8.7
       }
      },
      "Estimating the Quantifiable Characteristics of Products, Events, or Information": {
       "IM": {
-       "raw": 3.562,
-       "pct": 80.6
+       "raw": 3.594,
+       "pct": 82.2
       },
       "LV": {
-       "raw": 4.511,
-       "pct": 95.0
+       "raw": 4.521,
+       "pct": 95.3
       }
      },
      "Judging the Qualities of Objects, Services, or People": {
       "IM": {
-       "raw": 2.692,
-       "pct": 13.6
+       "raw": 2.84,
+       "pct": 23.5
       },
       "LV": {
-       "raw": 3.427,
-       "pct": 45.4
+       "raw": 3.64,
+       "pct": 52.9
       }
      },
      "Processing Information": {
       "IM": {
-       "raw": 4.605,
-       "pct": 96.8
+       "raw": 4.582,
+       "pct": 96.2
       },
       "LV": {
-       "raw": 6.227,
-       "pct": 98.5
+       "raw": 6.151,
+       "pct": 97.7
       }
      },
      "Evaluating Information to Determine Compliance with Standards": {
       "IM": {
-       "raw": 3.2,
-       "pct": 28.3
+       "raw": 3.242,
+       "pct": 30.1
       },
       "LV": {
-       "raw": 3.658,
-       "pct": 46.8
+       "raw": 3.733,
+       "pct": 49.9
       }
      },
      "Analyzing Data or Information": {
       "IM": {
-       "raw": 4.723,
-       "pct": 96.9
+       "raw": 4.727,
+       "pct": 97.1
       },
       "LV": {
-       "raw": 6.311,
-       "pct": 98.5
+       "raw": 6.255,
+       "pct": 98.2
       }
      },
      "Making Decisions and Solving Problems": {
       "IM": {
-       "raw": 4.395,
-       "pct": 76.0
+       "raw": 4.409,
+       "pct": 77.2
       },
       "LV": {
-       "raw": 5.634,
-       "pct": 90.5
+       "raw": 5.612,
+       "pct": 90.0
       }
      },
      "Thinking Creatively": {
       "IM": {
-       "raw": 3.911,
-       "pct": 76.7
+       "raw": 3.884,
+       "pct": 75.5
       },
       "LV": {
-       "raw": 5.558,
-       "pct": 92.5
+       "raw": 5.449,
+       "pct": 90.3
       }
      },
      "Updating and Using Relevant Knowledge": {
       "IM": {
-       "raw": 4.188,
-       "pct": 73.6
+       "raw": 4.154,
+       "pct": 71.0
       },
       "LV": {
-       "raw": 5.731,
-       "pct": 87.7
+       "raw": 5.651,
+       "pct": 85.0
       }
      },
      "Developing Objectives and Strategies": {
       "IM": {
-       "raw": 3.231,
-       "pct": 55.5
+       "raw": 3.287,
+       "pct": 58.8
       },
       "LV": {
-       "raw": 4.204,
+       "raw": 4.199,
        "pct": 79.4
       }
      },
      "Scheduling Work and Activities": {
       "IM": {
-       "raw": 2.739,
-       "pct": 20.0
+       "raw": 2.743,
+       "pct": 20.1
       },
       "LV": {
-       "raw": 3.44,
-       "pct": 44.0
+       "raw": 3.405,
+       "pct": 42.8
       }
      },
      "Organizing, Planning, and Prioritizing Work": {
       "IM": {
-       "raw": 3.584,
-       "pct": 34.9
+       "raw": 3.647,
+       "pct": 40.3
       },
       "LV": {
-       "raw": 4.819,
-       "pct": 57.8
+       "raw": 4.785,
+       "pct": 56.3
       }
      },
      "Performing General Physical Activities": {
       "IM": {
-       "raw": 1.155,
-       "pct": 1.9
+       "raw": 1.162,
+       "pct": 2.0
       },
       "LV": {
        "raw": 0.0,
@@ -74226,7 +74276,7 @@
      },
      "Handling and Moving Objects": {
       "IM": {
-       "raw": 1.113,
+       "raw": 1.12,
        "pct": 1.1
       },
       "LV": {
@@ -74236,18 +74286,18 @@
      },
      "Controlling Machines and Processes": {
       "IM": {
-       "raw": 1.41,
-       "pct": 6.8
+       "raw": 1.386,
+       "pct": 6.2
       },
       "LV": {
-       "raw": 0.786,
-       "pct": 9.4
+       "raw": 0.734,
+       "pct": 9.0
       }
      },
      "Operating Vehicles, Mechanized Devices, or Equipment": {
       "IM": {
-       "raw": 1.06,
-       "pct": 2.8
+       "raw": 1.072,
+       "pct": 3.2
       },
       "LV": {
        "raw": 0.0,
@@ -74256,18 +74306,18 @@
      },
      "Working with Computers": {
       "IM": {
-       "raw": 4.756,
-       "pct": 93.7
+       "raw": 4.707,
+       "pct": 91.2
       },
       "LV": {
-       "raw": 5.068,
-       "pct": 96.4
+       "raw": 4.925,
+       "pct": 94.2
       }
      },
      "Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment": {
       "IM": {
-       "raw": 1.279,
-       "pct": 13.3
+       "raw": 1.246,
+       "pct": 11.8
       },
       "LV": {
        "raw": 0.0,
@@ -74276,8 +74326,8 @@
      },
      "Repairing and Maintaining Mechanical Equipment": {
       "IM": {
-       "raw": 1.048,
-       "pct": 5.4
+       "raw": 1.041,
+       "pct": 4.8
       },
       "LV": {
        "raw": 0.0,
@@ -74286,350 +74336,350 @@
      },
      "Repairing and Maintaining Electronic Equipment": {
       "IM": {
-       "raw": 1.213,
-       "pct": 6.6
+       "raw": 1.19,
+       "pct": 5.8
       },
       "LV": {
-       "raw": 0.167,
-       "pct": 10.7
+       "raw": 0.142,
+       "pct": 10.3
       }
      },
      "Documenting/Recording Information": {
       "IM": {
-       "raw": 3.532,
-       "pct": 40.7
+       "raw": 3.492,
+       "pct": 38.6
       },
       "LV": {
-       "raw": 4.339,
-       "pct": 70.1
+       "raw": 4.303,
+       "pct": 69.2
       }
      },
      "Interpreting the Meaning of Information for Others": {
       "IM": {
-       "raw": 4.279,
-       "pct": 90.3
+       "raw": 4.197,
+       "pct": 87.0
       },
       "LV": {
-       "raw": 5.412,
-       "pct": 95.5
+       "raw": 5.292,
+       "pct": 93.8
       }
      },
      "Communicating with Supervisors, Peers, or Subordinates": {
       "IM": {
-       "raw": 4.124,
-       "pct": 54.9
+       "raw": 4.136,
+       "pct": 56.2
       },
       "LV": {
-       "raw": 5.138,
-       "pct": 79.3
+       "raw": 5.108,
+       "pct": 77.8
       }
      },
      "Communicating with People Outside the Organization": {
       "IM": {
-       "raw": 3.245,
-       "pct": 46.5
+       "raw": 3.364,
+       "pct": 52.2
       },
       "LV": {
-       "raw": 4.181,
-       "pct": 65.6
+       "raw": 4.332,
+       "pct": 69.5
       }
      },
      "Establishing and Maintaining Interpersonal Relationships": {
       "IM": {
-       "raw": 3.361,
-       "pct": 28.8
+       "raw": 3.417,
+       "pct": 32.1
       },
       "LV": {
-       "raw": 4.348,
-       "pct": 39.7
+       "raw": 4.429,
+       "pct": 43.8
       }
      },
      "Assisting and Caring for Others": {
       "IM": {
-       "raw": 1.652,
-       "pct": 1.5
+       "raw": 1.678,
+       "pct": 1.9
       },
       "LV": {
-       "raw": 1.319,
-       "pct": 3.1
+       "raw": 1.331,
+       "pct": 3.2
       }
      },
      "Selling or Influencing Others": {
       "IM": {
-       "raw": 2.722,
-       "pct": 68.7
+       "raw": 2.78,
+       "pct": 71.2
       },
       "LV": {
-       "raw": 3.234,
-       "pct": 79.0
+       "raw": 3.358,
+       "pct": 80.9
       }
      },
      "Resolving Conflicts and Negotiating with Others": {
       "IM": {
-       "raw": 2.242,
-       "pct": 10.2
+       "raw": 2.298,
+       "pct": 12.7
       },
       "LV": {
-       "raw": 2.875,
-       "pct": 30.9
+       "raw": 2.933,
+       "pct": 33.0
       }
      },
      "Performing for or Working Directly with the Public": {
       "IM": {
-       "raw": 1.427,
-       "pct": 5.7
+       "raw": 1.516,
+       "pct": 8.4
       },
       "LV": {
-       "raw": 0.496,
-       "pct": 7.7
+       "raw": 0.681,
+       "pct": 9.7
       }
      },
      "Coordinating the Work and Activities of Others": {
       "IM": {
        "raw": 2.653,
-       "pct": 22.6
+       "pct": 22.2
       },
       "LV": {
-       "raw": 3.522,
-       "pct": 51.0
+       "raw": 3.466,
+       "pct": 48.9
       }
      },
      "Developing and Building Teams": {
       "IM": {
-       "raw": 2.904,
-       "pct": 38.6
+       "raw": 2.938,
+       "pct": 40.7
       },
       "LV": {
-       "raw": 3.487,
-       "pct": 67.1
+       "raw": 3.467,
+       "pct": 66.4
       }
      },
      "Training and Teaching Others": {
       "IM": {
-       "raw": 3.029,
-       "pct": 28.3
+       "raw": 3.04,
+       "pct": 28.5
       },
       "LV": {
-       "raw": 4.227,
-       "pct": 73.5
+       "raw": 4.204,
+       "pct": 72.7
       }
      },
      "Guiding, Directing, and Motivating Subordinates": {
       "IM": {
-       "raw": 2.861,
-       "pct": 46.9
+       "raw": 2.848,
+       "pct": 46.0
       },
       "LV": {
-       "raw": 3.733,
-       "pct": 69.1
+       "raw": 3.635,
+       "pct": 66.5
       }
      },
      "Coaching and Developing Others": {
       "IM": {
-       "raw": 2.888,
-       "pct": 38.5
+       "raw": 2.917,
+       "pct": 40.4
       },
       "LV": {
-       "raw": 4.032,
-       "pct": 67.4
+       "raw": 4.021,
+       "pct": 67.0
       }
      },
      "Providing Consultation and Advice to Others": {
       "IM": {
-       "raw": 3.488,
-       "pct": 76.4
+       "raw": 3.403,
+       "pct": 72.1
       },
       "LV": {
-       "raw": 4.824,
-       "pct": 87.3
+       "raw": 4.706,
+       "pct": 84.5
       }
      },
      "Performing Administrative Activities": {
       "IM": {
-       "raw": 1.978,
-       "pct": 11.5
+       "raw": 1.992,
+       "pct": 11.7
       },
       "LV": {
-       "raw": 2.001,
-       "pct": 23.0
+       "raw": 2.022,
+       "pct": 23.5
       }
      },
      "Staffing Organizational Units": {
       "IM": {
-       "raw": 2.004,
-       "pct": 42.5
+       "raw": 2.002,
+       "pct": 42.3
       },
       "LV": {
-       "raw": 2.356,
-       "pct": 63.1
+       "raw": 2.294,
+       "pct": 61.2
       }
      },
      "Monitoring and Controlling Resources": {
       "IM": {
-       "raw": 2.073,
-       "pct": 18.5
+       "raw": 2.094,
+       "pct": 19.4
       },
       "LV": {
-       "raw": 2.254,
-       "pct": 31.7
+       "raw": 2.294,
+       "pct": 33.0
       }
      }
     },
     "Work Context": {
      "Public Speaking": {
       "CX": {
-       "raw": 2.512,
-       "pct": 65.6
+       "raw": 2.538,
+       "pct": 67.0
       }
      },
      "Telephone Conversations": {
       "CX": {
-       "raw": 4.257,
-       "pct": 49.4
+       "raw": 4.357,
+       "pct": 55.5
       }
      },
      "E-Mail": {
       "CX": {
-       "raw": 4.942,
-       "pct": 79.0
+       "raw": 4.951,
+       "pct": 81.1
       }
      },
      "Written Letters and Memos": {
       "CX": {
-       "raw": 3.182,
-       "pct": 53.8
+       "raw": 3.213,
+       "pct": 55.4
       }
      },
      "Face-to-Face Discussions with Individuals and Within Teams": {
       "CX": {
-       "raw": 4.285,
-       "pct": 18.7
+       "raw": 4.357,
+       "pct": 26.5
       }
      },
      "Contact With Others": {
       "CX": {
-       "raw": 3.486,
-       "pct": 5.9
+       "raw": 3.598,
+       "pct": 10.5
       }
      },
      "Work With or Contribute to a Work Group or Team": {
       "CX": {
-       "raw": 4.125,
-       "pct": 39.3
+       "raw": 4.104,
+       "pct": 37.5
       }
      },
      "Deal With External Customers or the Public in General": {
       "CX": {
-       "raw": 2.218,
-       "pct": 10.9
+       "raw": 2.373,
+       "pct": 15.7
       }
      },
      "Coordinate or Lead Others in Accomplishing Work Activities": {
       "CX": {
-       "raw": 3.112,
-       "pct": 19.2
+       "raw": 3.16,
+       "pct": 21.9
       }
      },
      "Health and Safety of Other Workers": {
       "CX": {
-       "raw": 1.566,
-       "pct": 2.9
+       "raw": 1.579,
+       "pct": 3.0
       }
      },
      "Work Outcomes and Results of Other Workers": {
       "CX": {
-       "raw": 3.042,
-       "pct": 32.9
+       "raw": 3.136,
+       "pct": 38.6
       }
      },
      "Conflict Situations": {
       "CX": {
-       "raw": 2.274,
-       "pct": 15.4
+       "raw": 2.368,
+       "pct": 21.3
       }
      },
      "Dealing With Unpleasant, Angry, or Discourteous People": {
       "CX": {
-       "raw": 2.006,
-       "pct": 8.0
+       "raw": 2.099,
+       "pct": 12.9
       }
      },
      "Dealing with Violent or Physically Aggressive People": {
       "CX": {
-       "raw": 1.081,
-       "pct": 12.0
+       "raw": 1.09,
+       "pct": 13.2
       }
      },
      "Indoors, Environmentally Controlled": {
       "CX": {
-       "raw": 4.326,
-       "pct": 53.4
+       "raw": 4.373,
+       "pct": 56.5
       }
      },
      "Indoors, Not Environmentally Controlled": {
       "CX": {
-       "raw": 1.136,
+       "raw": 1.134,
        "pct": 9.7
       }
      },
      "Outdoors, Exposed to All Weather Conditions": {
       "CX": {
-       "raw": 1.039,
-       "pct": 7.8
+       "raw": 1.056,
+       "pct": 9.5
       }
      },
      "Outdoors, Under Cover": {
       "CX": {
-       "raw": 1.045,
-       "pct": 10.1
+       "raw": 1.048,
+       "pct": 10.9
       }
      },
      "In an Open Vehicle or Operating Equipment": {
       "CX": {
-       "raw": 1.012,
-       "pct": 18.7
+       "raw": 1.01,
+       "pct": 17.9
       }
      },
      "In an Enclosed Vehicle or Operate Enclosed Equipment": {
       "CX": {
-       "raw": 1.069,
-       "pct": 10.2
+       "raw": 1.147,
+       "pct": 14.9
       }
      },
      "Physical Proximity": {
       "CX": {
-       "raw": 2.59,
-       "pct": 9.4
+       "raw": 2.598,
+       "pct": 9.7
       }
      },
      "Exposed to Sounds, Noise Levels that are Distracting or Uncomfortable": {
       "CX": {
-       "raw": 1.991,
-       "pct": 14.9
+       "raw": 2.058,
+       "pct": 17.3
       }
      },
      "Exposed to Very Hot or Cold Temperatures": {
       "CX": {
-       "raw": 1.063,
-       "pct": 8.5
+       "raw": 1.061,
+       "pct": 8.3
       }
      },
      "Exposed to Extremely Bright or Inadequate Lighting Conditions": {
       "CX": {
-       "raw": 1.048,
-       "pct": 4.4
+       "raw": 1.05,
+       "pct": 4.5
       }
      },
      "Exposed to Contaminants": {
       "CX": {
-       "raw": 1.031,
-       "pct": 1.9
+       "raw": 1.04,
+       "pct": 2.2
       }
      },
      "Exposed to Cramped Work Space, Awkward Positions": {
       "CX": {
-       "raw": 1.055,
-       "pct": 7.0
+       "raw": 1.064,
+       "pct": 7.7
       }
      },
      "Exposed to Whole Body Vibration": {
@@ -74646,8 +74696,8 @@
      },
      "Exposed to Disease or Infections": {
       "CX": {
-       "raw": 1.024,
-       "pct": 10.0
+       "raw": 1.02,
+       "pct": 9.3
       }
      },
      "Exposed to High Places": {
@@ -74670,38 +74720,38 @@
      },
      "Exposed to Minor Burns, Cuts, Bites, or Stings": {
       "CX": {
-       "raw": 1.0,
-       "pct": 3.0
+       "raw": 1.003,
+       "pct": 3.6
       }
      },
      "Spend Time Sitting": {
       "CX": {
-       "raw": 4.713,
-       "pct": 93.7
+       "raw": 4.719,
+       "pct": 93.9
       }
      },
      "Spend Time Standing": {
       "CX": {
-       "raw": 1.836,
-       "pct": 7.1
+       "raw": 1.816,
+       "pct": 6.5
       }
      },
      "Spend Time Climbing Ladders, Scaffolds, or Poles": {
       "CX": {
-       "raw": 1.007,
-       "pct": 13.1
+       "raw": 1.006,
+       "pct": 12.7
       }
      },
      "Spend Time Walking or Running": {
       "CX": {
-       "raw": 1.188,
-       "pct": 1.2
+       "raw": 1.199,
+       "pct": 1.3
       }
      },
      "Spend Time Kneeling, Crouching, Stooping, or Crawling": {
       "CX": {
-       "raw": 1.019,
-       "pct": 3.2
+       "raw": 1.016,
+       "pct": 2.9
       }
      },
      "Spend Time Keeping or Regaining Balance": {
@@ -74712,276 +74762,276 @@
      },
      "Spend Time Using Your Hands to Handle, Control, or Feel Objects, Tools, or Controls": {
       "CX": {
-       "raw": 2.109,
-       "pct": 16.7
+       "raw": 2.108,
+       "pct": 16.1
       }
      },
      "Spend Time Bending or Twisting Your Body": {
       "CX": {
-       "raw": 1.063,
-       "pct": 3.1
+       "raw": 1.056,
+       "pct": 2.7
       }
      },
      "Spend Time Making Repetitive Motions": {
       "CX": {
-       "raw": 2.576,
-       "pct": 32.2
+       "raw": 2.547,
+       "pct": 30.9
       }
      },
      "Wear Common Protective or Safety Equipment such as Safety Shoes, Glasses, Gloves, Hearing Protection, Hard Hats, or Life Jackets": {
       "CX": {
-       "raw": 1.045,
-       "pct": 5.8
+       "raw": 1.041,
+       "pct": 6.1
       }
      },
      "Wear Specialized Protective or Safety Equipment such as Breathing Apparatus, Safety Harness, Full Protection Suits, or Radiation Protection": {
       "CX": {
-       "raw": 1.033,
-       "pct": 14.1
+       "raw": 1.028,
+       "pct": 13.2
       }
      },
      "Consequence of Error": {
       "CX": {
-       "raw": 2.921,
-       "pct": 47.1
+       "raw": 3.044,
+       "pct": 52.2
       }
      },
      "Impact of Decisions on Co-workers or Company Results": {
       "CX": {
-       "raw": 3.699,
-       "pct": 44.0
+       "raw": 3.796,
+       "pct": 50.6
       }
      },
      "Frequency of Decision Making": {
       "CX": {
-       "raw": 3.262,
-       "pct": 22.2
+       "raw": 3.446,
+       "pct": 32.0
       }
      },
      "Freedom to Make Decisions": {
       "CX": {
-       "raw": 3.964,
-       "pct": 35.8
+       "raw": 4.048,
+       "pct": 42.9
       }
      },
      "Degree of Automation": {
       "CX": {
-       "raw": 2.589,
-       "pct": 81.1
+       "raw": 2.569,
+       "pct": 80.7
       }
      },
      "Importance of Being Exact or Accurate": {
       "CX": {
-       "raw": 4.275,
-       "pct": 54.0
+       "raw": 4.27,
+       "pct": 53.6
       }
      },
      "Importance of Repeating Same Tasks": {
       "CX": {
-       "raw": 2.808,
-       "pct": 24.1
+       "raw": 2.787,
+       "pct": 23.4
       }
      },
      "Determine Tasks, Priorities and Goals": {
       "CX": {
-       "raw": 4.054,
-       "pct": 49.7
+       "raw": 4.122,
+       "pct": 55.1
       }
      },
      "Level of Competition": {
       "CX": {
-       "raw": 3.974,
-       "pct": 85.9
+       "raw": 4.058,
+       "pct": 88.0
       }
      },
      "Time Pressure": {
       "CX": {
-       "raw": 3.601,
-       "pct": 31.4
+       "raw": 3.662,
+       "pct": 36.1
       }
      },
      "Pace Determined by Speed of Equipment": {
       "CX": {
-       "raw": 1.261,
-       "pct": 28.0
+       "raw": 1.242,
+       "pct": 26.6
       }
      }
     },
     "Abilities": {
      "Oral Comprehension": {
       "IM": {
-       "raw": 3.885,
-       "pct": 50.6
+       "raw": 3.903,
+       "pct": 53.3
       },
       "LV": {
-       "raw": 4.905,
-       "pct": 89.9
+       "raw": 4.826,
+       "pct": 87.9
       }
      },
      "Written Comprehension": {
       "IM": {
-       "raw": 4.028,
-       "pct": 77.4
+       "raw": 4.024,
+       "pct": 76.9
       },
       "LV": {
-       "raw": 4.782,
-       "pct": 87.3
+       "raw": 4.722,
+       "pct": 86.1
       }
      },
      "Oral Expression": {
       "IM": {
-       "raw": 3.786,
-       "pct": 47.1
+       "raw": 3.818,
+       "pct": 50.1
       },
       "LV": {
-       "raw": 4.335,
+       "raw": 4.322,
        "pct": 73.9
       }
      },
      "Written Expression": {
       "IM": {
-       "raw": 3.908,
-       "pct": 73.9
+       "raw": 3.885,
+       "pct": 72.3
       },
       "LV": {
-       "raw": 4.251,
-       "pct": 77.2
+       "raw": 4.271,
+       "pct": 78.4
       }
      },
      "Fluency of Ideas": {
       "IM": {
-       "raw": 3.475,
-       "pct": 82.6
+       "raw": 3.461,
+       "pct": 82.4
       },
       "LV": {
-       "raw": 3.834,
-       "pct": 84.0
+       "raw": 3.802,
+       "pct": 82.9
       }
      },
      "Originality": {
       "IM": {
-       "raw": 3.138,
-       "pct": 73.9
+       "raw": 3.174,
+       "pct": 75.7
       },
       "LV": {
-       "raw": 3.666,
-       "pct": 81.6
+       "raw": 3.641,
+       "pct": 80.8
       }
      },
      "Problem Sensitivity": {
       "IM": {
-       "raw": 3.655,
-       "pct": 51.4
+       "raw": 3.669,
+       "pct": 52.2
       },
       "LV": {
-       "raw": 3.882,
-       "pct": 67.8
+       "raw": 3.938,
+       "pct": 70.8
       }
      },
      "Deductive Reasoning": {
       "IM": {
-       "raw": 3.945,
-       "pct": 74.7
+       "raw": 3.972,
+       "pct": 77.7
       },
       "LV": {
-       "raw": 4.781,
-       "pct": 94.0
+       "raw": 4.721,
+       "pct": 93.0
       }
      },
      "Inductive Reasoning": {
       "IM": {
-       "raw": 3.897,
-       "pct": 74.6
+       "raw": 3.894,
+       "pct": 74.3
       },
       "LV": {
-       "raw": 4.634,
-       "pct": 92.5
+       "raw": 4.556,
+       "pct": 90.9
       }
      },
      "Information Ordering": {
       "IM": {
-       "raw": 3.815,
-       "pct": 81.7
+       "raw": 3.825,
+       "pct": 82.7
       },
       "LV": {
-       "raw": 3.951,
-       "pct": 81.9
+       "raw": 3.94,
+       "pct": 81.0
       }
      },
      "Category Flexibility": {
       "IM": {
-       "raw": 3.425,
+       "raw": 3.419,
        "pct": 79.0
       },
       "LV": {
-       "raw": 3.826,
-       "pct": 83.7
+       "raw": 3.815,
+       "pct": 83.3
       }
      },
      "Mathematical Reasoning": {
       "IM": {
-       "raw": 4.421,
-       "pct": 99.3
+       "raw": 4.34,
+       "pct": 98.8
       },
       "LV": {
-       "raw": 4.891,
-       "pct": 99.1
+       "raw": 4.795,
+       "pct": 98.6
       }
      },
      "Number Facility": {
       "IM": {
-       "raw": 3.952,
-       "pct": 98.5
+       "raw": 3.902,
+       "pct": 98.2
       },
       "LV": {
-       "raw": 4.705,
-       "pct": 98.8
+       "raw": 4.636,
+       "pct": 98.7
       }
      },
      "Memorization": {
       "IM": {
-       "raw": 2.467,
-       "pct": 54.7
+       "raw": 2.529,
+       "pct": 59.7
       },
       "LV": {
-       "raw": 2.368,
-       "pct": 50.0
+       "raw": 2.463,
+       "pct": 56.5
       }
      },
      "Speed of Closure": {
       "IM": {
-       "raw": 2.748,
-       "pct": 68.9
+       "raw": 2.768,
+       "pct": 70.7
       },
       "LV": {
-       "raw": 2.792,
-       "pct": 67.7
+       "raw": 2.841,
+       "pct": 71.3
       }
      },
      "Flexibility of Closure": {
       "IM": {
-       "raw": 3.018,
-       "pct": 53.7
+       "raw": 3.072,
+       "pct": 59.2
       },
       "LV": {
-       "raw": 3.116,
-       "pct": 63.0
+       "raw": 3.174,
+       "pct": 66.3
       }
      },
      "Perceptual Speed": {
       "IM": {
-       "raw": 2.656,
-       "pct": 31.4
+       "raw": 2.708,
+       "pct": 36.7
       },
       "LV": {
-       "raw": 2.656,
-       "pct": 36.3
+       "raw": 2.708,
+       "pct": 40.9
       }
      },
      "Spatial Orientation": {
       "IM": {
-       "raw": 1.044,
-       "pct": 18.9
+       "raw": 1.037,
+       "pct": 18.2
       },
       "LV": {
        "raw": 0.0,
@@ -74990,72 +75040,72 @@
      },
      "Visualization": {
       "IM": {
-       "raw": 2.255,
-       "pct": 20.0
+       "raw": 2.329,
+       "pct": 23.8
       },
       "LV": {
-       "raw": 2.286,
-       "pct": 23.1
+       "raw": 2.356,
+       "pct": 25.9
       }
      },
      "Selective Attention": {
       "IM": {
-       "raw": 3.086,
-       "pct": 60.1
+       "raw": 3.091,
+       "pct": 61.5
       },
       "LV": {
-       "raw": 2.974,
-       "pct": 45.2
+       "raw": 3.015,
+       "pct": 51.4
       }
      },
      "Time Sharing": {
       "IM": {
-       "raw": 2.159,
-       "pct": 12.7
+       "raw": 2.248,
+       "pct": 19.9
       },
       "LV": {
-       "raw": 1.996,
-       "pct": 10.6
+       "raw": 2.129,
+       "pct": 20.9
       }
      },
      "Arm-Hand Steadiness": {
       "IM": {
-       "raw": 1.426,
-       "pct": 15.2
+       "raw": 1.362,
+       "pct": 13.6
       },
       "LV": {
-       "raw": 0.471,
-       "pct": 14.8
+       "raw": 0.4,
+       "pct": 13.6
       }
      },
      "Manual Dexterity": {
       "IM": {
-       "raw": 1.404,
-       "pct": 16.1
+       "raw": 1.343,
+       "pct": 14.4
       },
       "LV": {
-       "raw": 0.426,
-       "pct": 16.1
+       "raw": 0.362,
+       "pct": 14.8
       }
      },
      "Finger Dexterity": {
       "IM": {
-       "raw": 1.643,
-       "pct": 11.7
+       "raw": 1.734,
+       "pct": 15.2
       },
       "LV": {
-       "raw": 0.776,
-       "pct": 9.6
+       "raw": 0.942,
+       "pct": 12.7
       }
      },
      "Control Precision": {
       "IM": {
-       "raw": 1.453,
-       "pct": 18.4
+       "raw": 1.385,
+       "pct": 16.4
       },
       "LV": {
-       "raw": 0.453,
-       "pct": 17.4
+       "raw": 0.385,
+       "pct": 15.9
       }
      },
      "Multilimb Coordination": {
@@ -75100,12 +75150,12 @@
      },
      "Wrist-Finger Speed": {
       "IM": {
-       "raw": 1.861,
-       "pct": 47.8
+       "raw": 1.732,
+       "pct": 40.7
       },
       "LV": {
-       "raw": 1.118,
-       "pct": 44.2
+       "raw": 0.95,
+       "pct": 38.3
       }
      },
      "Speed of Limb Movement": {
@@ -75140,22 +75190,22 @@
      },
      "Dynamic Strength": {
       "IM": {
-       "raw": 1.214,
-       "pct": 21.5
+       "raw": 1.182,
+       "pct": 19.5
       },
       "LV": {
-       "raw": 0.067,
-       "pct": 16.3
+       "raw": 0.057,
+       "pct": 15.9
       }
      },
      "Trunk Strength": {
       "IM": {
-       "raw": 2.044,
-       "pct": 33.2
+       "raw": 1.887,
+       "pct": 28.3
       },
       "LV": {
-       "raw": 1.586,
-       "pct": 29.4
+       "raw": 1.349,
+       "pct": 25.0
       }
      },
      "Stamina": {
@@ -75210,32 +75260,32 @@
      },
      "Near Vision": {
       "IM": {
-       "raw": 3.614,
-       "pct": 49.2
+       "raw": 3.615,
+       "pct": 48.7
       },
       "LV": {
-       "raw": 3.614,
-       "pct": 47.8
+       "raw": 3.654,
+       "pct": 50.8
       }
      },
      "Far Vision": {
       "IM": {
-       "raw": 2.433,
-       "pct": 11.5
+       "raw": 2.5,
+       "pct": 16.4
       },
       "LV": {
-       "raw": 2.586,
-       "pct": 21.0
+       "raw": 2.63,
+       "pct": 23.5
       }
      },
      "Visual Color Discrimination": {
       "IM": {
-       "raw": 1.956,
-       "pct": 15.3
+       "raw": 1.98,
+       "pct": 17.1
       },
       "LV": {
-       "raw": 1.613,
-       "pct": 15.4
+       "raw": 1.633,
+       "pct": 15.6
       }
      },
      "Night Vision": {
@@ -75260,12 +75310,12 @@
      },
      "Depth Perception": {
       "IM": {
-       "raw": 1.599,
-       "pct": 19.8
+       "raw": 1.602,
+       "pct": 19.9
       },
       "LV": {
-       "raw": 0.675,
-       "pct": 18.7
+       "raw": 0.706,
+       "pct": 19.6
       }
      },
      "Glare Sensitivity": {
@@ -75280,22 +75330,22 @@
      },
      "Hearing Sensitivity": {
       "IM": {
-       "raw": 1.884,
-       "pct": 27.6
+       "raw": 1.901,
+       "pct": 29.1
       },
       "LV": {
-       "raw": 1.25,
-       "pct": 17.0
+       "raw": 1.305,
+       "pct": 18.9
       }
      },
      "Auditory Attention": {
       "IM": {
-       "raw": 1.928,
-       "pct": 16.0
+       "raw": 1.956,
+       "pct": 18.9
       },
       "LV": {
-       "raw": 1.147,
-       "pct": 5.8
+       "raw": 1.2,
+       "pct": 7.0
       }
      },
      "Sound Localization": {
@@ -75310,120 +75360,120 @@
      },
      "Speech Recognition": {
       "IM": {
-       "raw": 3.366,
-       "pct": 50.4
+       "raw": 3.386,
+       "pct": 51.7
       },
       "LV": {
-       "raw": 3.514,
-       "pct": 64.5
+       "raw": 3.549,
+       "pct": 66.3
       }
      },
      "Speech Clarity": {
       "IM": {
-       "raw": 3.549,
-       "pct": 56.0
+       "raw": 3.58,
+       "pct": 58.1
       },
       "LV": {
-       "raw": 3.549,
-       "pct": 66.6
+       "raw": 3.58,
+       "pct": 68.0
       }
      }
     },
     "Work Styles": {
      "Innovation": {
       "WI": {
-       "raw": 1.909,
-       "pct": 83.7
+       "raw": 1.893,
+       "pct": 82.8
       }
      },
      "Achievement Orientation": {
       "WI": {
-       "raw": 2.205,
-       "pct": 93.6
+       "raw": 2.259,
+       "pct": 94.1
       }
      },
      "Intellectual Curiosity": {
       "WI": {
-       "raw": 2.524,
-       "pct": 90.7
+       "raw": 2.536,
+       "pct": 90.9
       }
      },
      "Tolerance for Ambiguity": {
       "WI": {
-       "raw": 1.835,
-       "pct": 93.4
+       "raw": 1.872,
+       "pct": 94.1
       }
      },
      "Initiative": {
       "WI": {
-       "raw": 1.139,
-       "pct": 52.1
+       "raw": 1.203,
+       "pct": 55.8
       }
      },
      "Adaptability": {
       "WI": {
-       "raw": 1.401,
-       "pct": 55.6
+       "raw": 1.458,
+       "pct": 59.1
       }
      },
      "Self-Confidence": {
       "WI": {
-       "raw": 1.23,
-       "pct": 49.3
+       "raw": 1.311,
+       "pct": 51.9
       }
      },
      "Perseverance": {
       "WI": {
-       "raw": 1.746,
-       "pct": 65.9
+       "raw": 1.81,
+       "pct": 69.1
       }
      },
      "Leadership Orientation": {
       "WI": {
-       "raw": 0.365,
-       "pct": 45.8
+       "raw": 0.548,
+       "pct": 50.1
       }
      },
      "Humility": {
       "WI": {
-       "raw": -0.11,
-       "pct": 23.3
+       "raw": -0.163,
+       "pct": 22.3
       }
      },
      "Sincerity": {
       "WI": {
-       "raw": 0.319,
-       "pct": 25.9
+       "raw": 0.299,
+       "pct": 24.7
       }
      },
      "Empathy": {
       "WI": {
-       "raw": 0.136,
-       "pct": 35.6
+       "raw": 0.101,
+       "pct": 34.6
       }
      },
      "Cooperation": {
       "WI": {
-       "raw": 0.857,
-       "pct": 27.2
+       "raw": 0.834,
+       "pct": 26.2
       }
      },
      "Optimism": {
       "WI": {
-       "raw": 0.06,
-       "pct": 18.1
+       "raw": 0.111,
+       "pct": 20.5
       }
      },
      "Social Orientation": {
       "WI": {
-       "raw": 0.347,
-       "pct": 33.7
+       "raw": 0.329,
+       "pct": 33.1
       }
      },
      "Cautiousness": {
       "WI": {
-       "raw": 2.083,
-       "pct": 63.6
+       "raw": 2.073,
+       "pct": 62.8
       }
      },
      "Attention to Detail": {
@@ -75434,34 +75484,34 @@
      },
      "Dependability": {
       "WI": {
-       "raw": 2.429,
-       "pct": 45.2
+       "raw": 2.434,
+       "pct": 45.7
       }
      },
      "Integrity": {
       "WI": {
-       "raw": 2.275,
-       "pct": 73.7
+       "raw": 2.288,
+       "pct": 73.9
       }
      },
      "Stress Tolerance": {
       "WI": {
-       "raw": 1.541,
-       "pct": 55.7
+       "raw": 1.607,
+       "pct": 58.5
       }
      },
      "Self-Control": {
       "WI": {
-       "raw": 1.096,
-       "pct": 37.2
+       "raw": 1.175,
+       "pct": 40.7
       }
      }
     },
     "Job Zones": {
      "Job Zone": {
       "JZ": {
-       "raw": 4.7,
-       "pct": 85.6
+       "raw": 4.85,
+       "pct": 88.7
       }
      }
     }
@@ -84900,1117 +84950,1121 @@
    }
   },
   "management_consulting": {
-   "provenance": "onet",
-   "n_occupations": 2,
+   "provenance": "estimated",
+   "n_occupations": 3,
    "occupations": [
     {
-     "soc": "13-1082.00",
-     "title": "Project Management Specialists",
-     "weight": 0.5,
+     "soc": "13-1111.00",
+     "title": "Management Analysts",
+     "weight": 0.6,
      "route": [
-      "crosswalk"
+      "analog"
+     ]
+    },
+    {
+     "soc": "11-1021.00",
+     "title": "General and Operations Managers",
+     "weight": 0.2,
+     "route": [
+      "analog"
      ]
     },
     {
      "soc": "15-2031.00",
      "title": "Operations Research Analysts",
-     "weight": 0.5,
+     "weight": 0.2,
      "route": [
-      "crosswalk"
+      "analog"
      ]
     }
    ],
-   "esco_linked": 1,
-   "data_share": {
-    "Interests": 1.0,
-    "Work Values": 0.5,
-    "Work Activities": 1.0,
-    "Work Context": 1.0,
-    "Abilities": 1.0,
-    "Work Styles": 1.0,
-    "Job Zones": 1.0
-   },
-   "coverage_confidence": 0.2,
+   "coverage_confidence": null,
+   "rationale": "Replaces the crosswalk links. The ESCO occupation 'business consultant' (2421.1) crosswalks to Project Management Specialists and Operations Research Analysts, and its other ESCO occupation is unrated, so the linked profile described project management (Freedom to Make Decisions at rank 176 of 205). O*NET's Management Analysts are the consulting occupation; general and operations managers add the client-side change work, and operations research analysts the quantitative strand. No adjustment.",
+   "linked_but_replaced": [
+    "13-1082.00",
+    "15-2031.00"
+   ],
+   "linked_data_share": 1.0,
    "descriptors": {
     "Interests": {
      "Realistic": {
       "OI": {
-       "raw": 1.69,
-       "pct": 9.8
+       "raw": 1.642,
+       "pct": 9.6
       }
      },
      "Investigative": {
       "OI": {
-       "raw": 4.505,
-       "pct": 70.4
+       "raw": 4.99,
+       "pct": 76.9
       }
      },
      "Artistic": {
       "OI": {
-       "raw": 1.875,
-       "pct": 61.7
+       "raw": 1.672,
+       "pct": 55.0
       }
      },
      "Social": {
       "OI": {
-       "raw": 2.67,
-       "pct": 53.7
+       "raw": 2.772,
+       "pct": 56.3
       }
      },
      "Enterprising": {
       "OI": {
-       "raw": 4.72,
-       "pct": 80.9
+       "raw": 4.914,
+       "pct": 84.4
       }
      },
      "Conventional": {
       "OI": {
-       "raw": 5.655,
-       "pct": 86.2
+       "raw": 5.85,
+       "pct": 88.5
       }
      }
     },
     "Work Values": {
      "Achievement": {
       "EX": {
-       "raw": 6.0,
-       "pct": 93.5
+       "raw": 5.464,
+       "pct": 78.0
       }
      },
      "Working Conditions": {
       "EX": {
-       "raw": 5.17,
-       "pct": 79.4
+       "raw": 5.336,
+       "pct": 83.0
       }
      },
      "Recognition": {
       "EX": {
-       "raw": 5.0,
-       "pct": 80.7
+       "raw": 5.134,
+       "pct": 83.4
       }
      },
      "Relationships": {
       "EX": {
-       "raw": 2.0,
-       "pct": 0.9
+       "raw": 5.266,
+       "pct": 72.2
       }
      },
      "Support": {
       "EX": {
-       "raw": 3.33,
-       "pct": 15.4
+       "raw": 3.802,
+       "pct": 28.9
       }
      },
      "Independence": {
       "EX": {
-       "raw": 5.67,
-       "pct": 86.3
+       "raw": 5.532,
+       "pct": 80.5
       }
      }
     },
     "Work Activities": {
      "Getting Information": {
       "IM": {
-       "raw": 4.69,
-       "pct": 90.6
+       "raw": 4.664,
+       "pct": 87.4
       },
       "LV": {
-       "raw": 5.365,
-       "pct": 87.9
+       "raw": 5.212,
+       "pct": 81.8
       }
      },
      "Monitoring Processes, Materials, or Surroundings": {
       "IM": {
-       "raw": 3.595,
-       "pct": 45.0
+       "raw": 3.802,
+       "pct": 61.4
       },
       "LV": {
-       "raw": 4.44,
-       "pct": 62.3
+       "raw": 4.326,
+       "pct": 57.3
       }
      },
      "Identifying Objects, Actions, and Events": {
       "IM": {
-       "raw": 4.06,
-       "pct": 64.3
+       "raw": 4.11,
+       "pct": 70.6
       },
       "LV": {
-       "raw": 5.165,
-       "pct": 86.9
+       "raw": 4.634,
+       "pct": 67.6
       }
      },
      "Inspecting Equipment, Structures, or Materials": {
       "IM": {
-       "raw": 2.355,
-       "pct": 21.4
+       "raw": 2.144,
+       "pct": 16.1
       },
       "LV": {
-       "raw": 2.49,
-       "pct": 32.3
+       "raw": 2.118,
+       "pct": 21.8
       }
      },
      "Estimating the Quantifiable Characteristics of Products, Events, or Information": {
       "IM": {
-       "raw": 3.655,
-       "pct": 86.6
+       "raw": 3.51,
+       "pct": 78.2
       },
       "LV": {
-       "raw": 4.555,
-       "pct": 95.8
+       "raw": 3.94,
+       "pct": 81.3
       }
      },
      "Judging the Qualities of Objects, Services, or People": {
       "IM": {
-       "raw": 3.39,
-       "pct": 55.7
+       "raw": 3.646,
+       "pct": 72.8
       },
       "LV": {
-       "raw": 4.01,
-       "pct": 69.3
+       "raw": 4.088,
+       "pct": 72.7
       }
      },
      "Processing Information": {
       "IM": {
-       "raw": 4.15,
-       "pct": 75.4
+       "raw": 4.202,
+       "pct": 81.6
       },
       "LV": {
-       "raw": 5.425,
-       "pct": 84.2
+       "raw": 5.2,
+       "pct": 80.5
       }
      },
      "Evaluating Information to Determine Compliance with Standards": {
       "IM": {
-       "raw": 3.43,
-       "pct": 41.4
+       "raw": 3.648,
+       "pct": 53.2
       },
       "LV": {
-       "raw": 3.835,
-       "pct": 53.7
+       "raw": 4.036,
+       "pct": 61.0
       }
      },
      "Analyzing Data or Information": {
       "IM": {
-       "raw": 4.305,
-       "pct": 84.4
+       "raw": 4.382,
+       "pct": 88.0
       },
       "LV": {
-       "raw": 5.595,
-       "pct": 90.3
+       "raw": 5.464,
+       "pct": 88.1
       }
      },
      "Making Decisions and Solving Problems": {
       "IM": {
-       "raw": 4.515,
-       "pct": 84.5
+       "raw": 4.572,
+       "pct": 88.3
       },
       "LV": {
-       "raw": 5.54,
-       "pct": 86.4
+       "raw": 5.756,
+       "pct": 90.5
       }
      },
      "Thinking Creatively": {
       "IM": {
-       "raw": 3.73,
-       "pct": 65.9
+       "raw": 4.044,
+       "pct": 81.4
       },
       "LV": {
-       "raw": 5.045,
-       "pct": 78.7
+       "raw": 5.17,
+       "pct": 82.3
       }
      },
      "Updating and Using Relevant Knowledge": {
       "IM": {
-       "raw": 4.06,
-       "pct": 63.6
+       "raw": 4.152,
+       "pct": 70.7
       },
       "LV": {
-       "raw": 5.31,
-       "pct": 73.0
+       "raw": 5.348,
+       "pct": 74.9
       }
      },
      "Developing Objectives and Strategies": {
       "IM": {
-       "raw": 3.815,
-       "pct": 86.5
+       "raw": 4.176,
+       "pct": 94.7
       },
       "LV": {
-       "raw": 4.36,
-       "pct": 85.6
+       "raw": 4.832,
+       "pct": 88.4
       }
      },
      "Scheduling Work and Activities": {
       "IM": {
-       "raw": 3.93,
-       "pct": 89.2
+       "raw": 3.544,
+       "pct": 70.4
       },
       "LV": {
-       "raw": 5.125,
-       "pct": 97.0
+       "raw": 4.474,
+       "pct": 82.0
       }
      },
      "Organizing, Planning, and Prioritizing Work": {
       "IM": {
-       "raw": 4.085,
-       "pct": 73.2
+       "raw": 4.176,
+       "pct": 82.2
       },
       "LV": {
-       "raw": 5.54,
-       "pct": 89.1
+       "raw": 5.422,
+       "pct": 83.2
       }
      },
      "Performing General Physical Activities": {
       "IM": {
-       "raw": 1.57,
-       "pct": 10.4
+       "raw": 1.724,
+       "pct": 14.7
       },
       "LV": {
-       "raw": 1.13,
-       "pct": 12.9
+       "raw": 1.35,
+       "pct": 16.5
       }
      },
      "Handling and Moving Objects": {
       "IM": {
-       "raw": 1.565,
-       "pct": 12.0
+       "raw": 1.712,
+       "pct": 16.8
       },
       "LV": {
-       "raw": 1.16,
-       "pct": 9.9
+       "raw": 1.76,
+       "pct": 18.7
       }
      },
      "Controlling Machines and Processes": {
       "IM": {
-       "raw": 1.655,
-       "pct": 16.1
+       "raw": 1.66,
+       "pct": 15.4
       },
       "LV": {
-       "raw": 1.175,
-       "pct": 16.2
+       "raw": 1.384,
+       "pct": 20.8
       }
      },
      "Operating Vehicles, Mechanized Devices, or Equipment": {
       "IM": {
-       "raw": 1.47,
-       "pct": 20.6
+       "raw": 1.686,
+       "pct": 31.4
       },
       "LV": {
-       "raw": 0.885,
-       "pct": 25.5
+       "raw": 1.258,
+       "pct": 37.9
       }
      },
      "Working with Computers": {
       "IM": {
-       "raw": 4.56,
-       "pct": 85.0
+       "raw": 4.4,
+       "pct": 75.5
       },
       "LV": {
-       "raw": 4.585,
-       "pct": 90.9
+       "raw": 4.306,
+       "pct": 86.0
       }
      },
      "Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment": {
       "IM": {
-       "raw": 1.86,
-       "pct": 44.4
+       "raw": 1.698,
+       "pct": 35.9
       },
       "LV": {
-       "raw": 1.645,
-       "pct": 49.2
+       "raw": 1.398,
+       "pct": 42.5
       }
      },
      "Repairing and Maintaining Mechanical Equipment": {
       "IM": {
-       "raw": 1.37,
-       "pct": 21.7
+       "raw": 1.386,
+       "pct": 22.6
       },
       "LV": {
-       "raw": 0.45,
-       "pct": 19.8
+       "raw": 0.562,
+       "pct": 22.7
       }
      },
      "Repairing and Maintaining Electronic Equipment": {
       "IM": {
-       "raw": 1.53,
-       "pct": 23.4
+       "raw": 1.466,
+       "pct": 19.5
       },
       "LV": {
-       "raw": 1.025,
-       "pct": 29.0
+       "raw": 0.536,
+       "pct": 20.5
       }
      },
      "Documenting/Recording Information": {
       "IM": {
-       "raw": 3.775,
-       "pct": 52.4
+       "raw": 3.904,
+       "pct": 59.0
       },
       "LV": {
-       "raw": 4.315,
-       "pct": 72.0
+       "raw": 4.286,
+       "pct": 70.9
       }
      },
      "Interpreting the Meaning of Information for Others": {
       "IM": {
-       "raw": 4.045,
-       "pct": 83.7
+       "raw": 4.22,
+       "pct": 88.8
       },
       "LV": {
-       "raw": 4.745,
-       "pct": 85.0
+       "raw": 4.496,
+       "pct": 78.6
       }
      },
      "Communicating with Supervisors, Peers, or Subordinates": {
       "IM": {
-       "raw": 4.39,
-       "pct": 72.7
+       "raw": 4.468,
+       "pct": 82.2
       },
       "LV": {
-       "raw": 5.53,
-       "pct": 92.9
+       "raw": 5.486,
+       "pct": 89.2
       }
      },
      "Communicating with People Outside the Organization": {
       "IM": {
-       "raw": 3.525,
-       "pct": 59.7
+       "raw": 3.982,
+       "pct": 78.7
       },
       "LV": {
-       "raw": 4.425,
-       "pct": 72.4
+       "raw": 5.19,
+       "pct": 87.7
       }
      },
      "Establishing and Maintaining Interpersonal Relationships": {
       "IM": {
-       "raw": 3.74,
-       "pct": 52.3
+       "raw": 4.342,
+       "pct": 82.4
       },
       "LV": {
-       "raw": 5.185,
-       "pct": 78.5
+       "raw": 5.87,
+       "pct": 90.0
       }
      },
      "Assisting and Caring for Others": {
       "IM": {
-       "raw": 2.3,
-       "pct": 23.5
+       "raw": 2.582,
+       "pct": 38.4
       },
       "LV": {
-       "raw": 2.03,
-       "pct": 21.2
+       "raw": 2.656,
+       "pct": 45.8
       }
      },
      "Selling or Influencing Others": {
       "IM": {
-       "raw": 2.735,
-       "pct": 72.7
+       "raw": 3.658,
+       "pct": 92.9
       },
       "LV": {
-       "raw": 3.2,
-       "pct": 79.0
+       "raw": 4.426,
+       "pct": 94.3
       }
      },
      "Resolving Conflicts and Negotiating with Others": {
       "IM": {
-       "raw": 3.115,
-       "pct": 55.3
+       "raw": 3.708,
+       "pct": 81.3
       },
       "LV": {
-       "raw": 4.055,
-       "pct": 71.6
+       "raw": 4.914,
+       "pct": 89.4
       }
      },
      "Performing for or Working Directly with the Public": {
       "IM": {
-       "raw": 1.74,
-       "pct": 13.8
+       "raw": 2.628,
+       "pct": 41.3
       },
       "LV": {
-       "raw": 1.465,
-       "pct": 16.7
+       "raw": 2.916,
+       "pct": 47.1
       }
      },
      "Coordinating the Work and Activities of Others": {
       "IM": {
-       "raw": 3.455,
-       "pct": 63.7
+       "raw": 3.528,
+       "pct": 72.8
       },
       "LV": {
-       "raw": 4.27,
-       "pct": 73.8
+       "raw": 4.398,
+       "pct": 81.5
       }
      },
      "Developing and Building Teams": {
       "IM": {
-       "raw": 3.59,
-       "pct": 78.5
+       "raw": 3.768,
+       "pct": 86.3
       },
       "LV": {
-       "raw": 4.055,
-       "pct": 85.3
+       "raw": 4.226,
+       "pct": 88.6
       }
      },
      "Training and Teaching Others": {
       "IM": {
-       "raw": 3.17,
-       "pct": 35.4
+       "raw": 3.558,
+       "pct": 62.5
       },
       "LV": {
-       "raw": 3.615,
-       "pct": 50.5
+       "raw": 4.46,
+       "pct": 76.2
       }
      },
      "Guiding, Directing, and Motivating Subordinates": {
       "IM": {
-       "raw": 3.14,
-       "pct": 62.8
+       "raw": 3.296,
+       "pct": 67.0
       },
       "LV": {
-       "raw": 3.92,
-       "pct": 74.5
+       "raw": 4.134,
+       "pct": 79.6
       }
      },
      "Coaching and Developing Others": {
       "IM": {
-       "raw": 2.935,
-       "pct": 41.2
+       "raw": 3.6,
+       "pct": 77.3
       },
       "LV": {
-       "raw": 3.47,
-       "pct": 48.5
+       "raw": 4.572,
+       "pct": 82.1
       }
      },
      "Providing Consultation and Advice to Others": {
       "IM": {
-       "raw": 3.49,
-       "pct": 75.8
+       "raw": 4.174,
+       "pct": 95.6
       },
       "LV": {
-       "raw": 4.8,
-       "pct": 83.9
+       "raw": 5.802,
+       "pct": 94.8
       }
      },
      "Performing Administrative Activities": {
       "IM": {
-       "raw": 2.855,
-       "pct": 52.2
+       "raw": 3.052,
+       "pct": 64.3
       },
       "LV": {
-       "raw": 3.115,
-       "pct": 58.3
+       "raw": 3.722,
+       "pct": 78.8
       }
      },
      "Staffing Organizational Units": {
       "IM": {
-       "raw": 2.3,
-       "pct": 60.3
+       "raw": 2.578,
+       "pct": 69.2
       },
       "LV": {
-       "raw": 2.57,
-       "pct": 69.1
+       "raw": 3.154,
+       "pct": 80.0
       }
      },
      "Monitoring and Controlling Resources": {
       "IM": {
-       "raw": 3.085,
-       "pct": 73.1
+       "raw": 3.216,
+       "pct": 80.9
       },
       "LV": {
-       "raw": 3.43,
-       "pct": 71.6
+       "raw": 4.134,
+       "pct": 87.6
       }
      }
     },
     "Work Context": {
      "Public Speaking": {
       "CX": {
-       "raw": 2.58,
-       "pct": 69.0
+       "raw": 2.652,
+       "pct": 72.9
       }
      },
      "Telephone Conversations": {
       "CX": {
-       "raw": 4.23,
-       "pct": 47.0
+       "raw": 4.706,
+       "pct": 76.1
       }
      },
      "E-Mail": {
       "CX": {
-       "raw": 4.8,
-       "pct": 60.0
+       "raw": 4.934,
+       "pct": 81.0
       }
      },
      "Written Letters and Memos": {
       "CX": {
-       "raw": 3.05,
-       "pct": 47.3
+       "raw": 3.72,
+       "pct": 80.5
       }
      },
      "Face-to-Face Discussions with Individuals and Within Teams": {
       "CX": {
-       "raw": 4.265,
-       "pct": 17.3
+       "raw": 4.674,
+       "pct": 60.8
       }
      },
      "Contact With Others": {
       "CX": {
-       "raw": 3.945,
-       "pct": 23.8
+       "raw": 4.2,
+       "pct": 38.9
       }
      },
      "Work With or Contribute to a Work Group or Team": {
       "CX": {
-       "raw": 4.455,
-       "pct": 66.3
+       "raw": 4.4,
+       "pct": 61.1
       }
      },
      "Deal With External Customers or the Public in General": {
       "CX": {
-       "raw": 2.815,
-       "pct": 28.7
+       "raw": 3.546,
+       "pct": 56.1
       }
      },
      "Coordinate or Lead Others in Accomplishing Work Activities": {
       "CX": {
-       "raw": 3.73,
-       "pct": 58.1
+       "raw": 4.048,
+       "pct": 77.1
       }
      },
      "Health and Safety of Other Workers": {
       "CX": {
-       "raw": 2.405,
-       "pct": 18.5
+       "raw": 2.806,
+       "pct": 32.8
       }
      },
      "Work Outcomes and Results of Other Workers": {
       "CX": {
-       "raw": 3.52,
-       "pct": 57.9
+       "raw": 3.622,
+       "pct": 65.5
       }
      },
      "Conflict Situations": {
       "CX": {
-       "raw": 2.69,
-       "pct": 41.3
+       "raw": 2.898,
+       "pct": 53.9
       }
      },
      "Dealing With Unpleasant, Angry, or Discourteous People": {
       "CX": {
-       "raw": 2.285,
-       "pct": 26.2
+       "raw": 2.684,
+       "pct": 45.7
       }
      },
      "Dealing with Violent or Physically Aggressive People": {
       "CX": {
-       "raw": 1.21,
-       "pct": 30.7
+       "raw": 1.472,
+       "pct": 58.1
       }
      },
      "Indoors, Environmentally Controlled": {
       "CX": {
-       "raw": 4.64,
-       "pct": 75.1
+       "raw": 4.406,
+       "pct": 59.5
       }
      },
      "Indoors, Not Environmentally Controlled": {
       "CX": {
-       "raw": 1.745,
-       "pct": 39.5
+       "raw": 1.838,
+       "pct": 42.7
       }
      },
      "Outdoors, Exposed to All Weather Conditions": {
       "CX": {
-       "raw": 1.48,
-       "pct": 37.1
+       "raw": 1.912,
+       "pct": 48.9
       }
      },
      "Outdoors, Under Cover": {
       "CX": {
-       "raw": 1.465,
-       "pct": 45.2
+       "raw": 1.546,
+       "pct": 48.9
       }
      },
      "In an Open Vehicle or Operating Equipment": {
       "CX": {
-       "raw": 1.235,
-       "pct": 51.4
+       "raw": 1.334,
+       "pct": 53.9
       }
      },
      "In an Enclosed Vehicle or Operate Enclosed Equipment": {
       "CX": {
-       "raw": 1.545,
-       "pct": 38.1
+       "raw": 2.648,
+       "pct": 65.2
       }
      },
      "Physical Proximity": {
       "CX": {
-       "raw": 2.445,
-       "pct": 5.7
+       "raw": 2.816,
+       "pct": 22.7
       }
      },
      "Exposed to Sounds, Noise Levels that are Distracting or Uncomfortable": {
       "CX": {
-       "raw": 1.75,
-       "pct": 7.1
+       "raw": 2.082,
+       "pct": 18.5
       }
      },
      "Exposed to Very Hot or Cold Temperatures": {
       "CX": {
-       "raw": 1.2,
-       "pct": 18.6
+       "raw": 1.694,
+       "pct": 40.4
       }
      },
      "Exposed to Extremely Bright or Inadequate Lighting Conditions": {
       "CX": {
-       "raw": 1.235,
-       "pct": 18.0
+       "raw": 1.452,
+       "pct": 31.7
       }
      },
      "Exposed to Contaminants": {
       "CX": {
-       "raw": 1.145,
-       "pct": 6.3
+       "raw": 1.378,
+       "pct": 14.6
       }
      },
      "Exposed to Cramped Work Space, Awkward Positions": {
       "CX": {
-       "raw": 1.375,
-       "pct": 27.9
+       "raw": 1.288,
+       "pct": 22.9
       }
      },
      "Exposed to Whole Body Vibration": {
       "CX": {
-       "raw": 1.0,
-       "pct": 16.9
+       "raw": 1.076,
+       "pct": 44.2
       }
      },
      "Exposed to Radiation": {
       "CX": {
-       "raw": 1.13,
-       "pct": 63.3
+       "raw": 1.02,
+       "pct": 26.8
       }
      },
      "Exposed to Disease or Infections": {
       "CX": {
-       "raw": 1.17,
-       "pct": 34.1
+       "raw": 1.218,
+       "pct": 39.3
       }
      },
      "Exposed to High Places": {
       "CX": {
-       "raw": 1.215,
-       "pct": 47.1
+       "raw": 1.202,
+       "pct": 47.4
       }
      },
      "Exposed to Hazardous Conditions": {
       "CX": {
-       "raw": 1.175,
-       "pct": 27.6
+       "raw": 1.28,
+       "pct": 33.5
       }
      },
      "Exposed to Hazardous Equipment": {
       "CX": {
-       "raw": 1.07,
-       "pct": 16.3
+       "raw": 1.28,
+       "pct": 35.3
       }
      },
      "Exposed to Minor Burns, Cuts, Bites, or Stings": {
       "CX": {
-       "raw": 1.175,
-       "pct": 19.4
+       "raw": 1.212,
+       "pct": 21.7
       }
      },
      "Spend Time Sitting": {
       "CX": {
-       "raw": 4.475,
-       "pct": 87.4
+       "raw": 4.018,
+       "pct": 74.6
       }
      },
      "Spend Time Standing": {
       "CX": {
-       "raw": 2.175,
-       "pct": 19.9
+       "raw": 2.13,
+       "pct": 17.8
       }
      },
      "Spend Time Climbing Ladders, Scaffolds, or Poles": {
       "CX": {
-       "raw": 1.19,
-       "pct": 45.8
+       "raw": 1.134,
+       "pct": 40.9
       }
      },
      "Spend Time Walking or Running": {
       "CX": {
-       "raw": 1.54,
-       "pct": 10.5
+       "raw": 1.922,
+       "pct": 27.4
       }
      },
      "Spend Time Kneeling, Crouching, Stooping, or Crawling": {
       "CX": {
-       "raw": 1.255,
-       "pct": 20.0
+       "raw": 1.33,
+       "pct": 25.0
       }
      },
      "Spend Time Keeping or Regaining Balance": {
       "CX": {
-       "raw": 1.16,
-       "pct": 21.5
+       "raw": 1.074,
+       "pct": 12.7
       }
      },
      "Spend Time Using Your Hands to Handle, Control, or Feel Objects, Tools, or Controls": {
       "CX": {
-       "raw": 2.21,
-       "pct": 19.1
+       "raw": 1.776,
+       "pct": 8.1
       }
      },
      "Spend Time Bending or Twisting Your Body": {
       "CX": {
-       "raw": 1.345,
+       "raw": 1.352,
        "pct": 16.5
       }
      },
      "Spend Time Making Repetitive Motions": {
       "CX": {
-       "raw": 2.205,
-       "pct": 20.9
+       "raw": 2.044,
+       "pct": 11.9
       }
      },
      "Wear Common Protective or Safety Equipment such as Safety Shoes, Glasses, Gloves, Hearing Protection, Hard Hats, or Life Jackets": {
       "CX": {
-       "raw": 1.475,
-       "pct": 23.4
+       "raw": 1.828,
+       "pct": 30.0
       }
      },
      "Wear Specialized Protective or Safety Equipment such as Breathing Apparatus, Safety Harness, Full Protection Suits, or Radiation Protection": {
       "CX": {
-       "raw": 1.315,
-       "pct": 44.6
+       "raw": 1.21,
+       "pct": 38.3
       }
      },
      "Consequence of Error": {
       "CX": {
-       "raw": 2.48,
-       "pct": 26.0
+       "raw": 2.648,
+       "pct": 33.5
       }
      },
      "Impact of Decisions on Co-workers or Company Results": {
       "CX": {
-       "raw": 3.665,
-       "pct": 41.3
+       "raw": 4.08,
+       "pct": 68.3
       }
      },
      "Frequency of Decision Making": {
       "CX": {
-       "raw": 3.225,
-       "pct": 21.8
+       "raw": 3.814,
+       "pct": 50.1
       }
      },
      "Freedom to Make Decisions": {
       "CX": {
-       "raw": 3.955,
-       "pct": 36.6
+       "raw": 4.198,
+       "pct": 53.8
       }
      },
      "Degree of Automation": {
       "CX": {
-       "raw": 2.235,
-       "pct": 65.5
+       "raw": 2.45,
+       "pct": 77.0
       }
      },
      "Importance of Being Exact or Accurate": {
       "CX": {
-       "raw": 4.18,
-       "pct": 46.1
+       "raw": 4.156,
+       "pct": 43.9
       }
      },
      "Importance of Repeating Same Tasks": {
       "CX": {
-       "raw": 2.715,
-       "pct": 27.8
+       "raw": 2.662,
+       "pct": 20.8
       }
      },
      "Determine Tasks, Priorities and Goals": {
       "CX": {
-       "raw": 4.13,
-       "pct": 57.6
+       "raw": 4.36,
+       "pct": 74.2
       }
      },
      "Level of Competition": {
       "CX": {
-       "raw": 3.49,
-       "pct": 76.9
+       "raw": 3.534,
+       "pct": 79.9
       }
      },
      "Time Pressure": {
       "CX": {
-       "raw": 3.725,
-       "pct": 39.7
+       "raw": 3.93,
+       "pct": 56.2
       }
      },
      "Pace Determined by Speed of Equipment": {
       "CX": {
-       "raw": 1.3,
-       "pct": 33.8
+       "raw": 1.194,
+       "pct": 25.4
       }
      }
     },
     "Abilities": {
      "Oral Comprehension": {
       "IM": {
-       "raw": 4.06,
-       "pct": 79.0
+       "raw": 4.072,
+       "pct": 81.0
       },
       "LV": {
-       "raw": 4.315,
-       "pct": 61.3
+       "raw": 4.324,
+       "pct": 73.8
       }
      },
      "Written Comprehension": {
       "IM": {
-       "raw": 4.0,
-       "pct": 73.7
+       "raw": 4.072,
+       "pct": 83.2
       },
       "LV": {
-       "raw": 4.315,
-       "pct": 68.9
+       "raw": 4.222,
+       "pct": 71.9
       }
      },
      "Oral Expression": {
       "IM": {
-       "raw": 3.94,
-       "pct": 58.8
+       "raw": 4.072,
+       "pct": 78.4
       },
       "LV": {
-       "raw": 4.125,
-       "pct": 57.9
+       "raw": 4.574,
+       "pct": 80.7
       }
      },
      "Written Expression": {
       "IM": {
-       "raw": 4.06,
-       "pct": 88.4
+       "raw": 4.0,
+       "pct": 83.4
       },
       "LV": {
-       "raw": 3.875,
-       "pct": 62.1
+       "raw": 4.15,
+       "pct": 77.3
       }
      },
      "Fluency of Ideas": {
       "IM": {
-       "raw": 3.435,
-       "pct": 81.5
+       "raw": 3.624,
+       "pct": 87.9
       },
       "LV": {
-       "raw": 3.75,
-       "pct": 82.1
+       "raw": 3.9,
+       "pct": 87.6
       }
      },
      "Originality": {
       "IM": {
-       "raw": 3.37,
-       "pct": 83.2
+       "raw": 3.298,
+       "pct": 82.4
       },
       "LV": {
-       "raw": 3.625,
-       "pct": 81.2
+       "raw": 3.75,
+       "pct": 84.3
       }
      },
      "Problem Sensitivity": {
       "IM": {
-       "raw": 3.81,
-       "pct": 64.0
+       "raw": 4.048,
+       "pct": 86.1
       },
       "LV": {
-       "raw": 3.81,
-       "pct": 65.2
+       "raw": 4.048,
+       "pct": 77.6
       }
      },
      "Deductive Reasoning": {
       "IM": {
-       "raw": 3.87,
-       "pct": 73.5
+       "raw": 4.0,
+       "pct": 83.1
       },
       "LV": {
-       "raw": 4.0,
-       "pct": 68.1
+       "raw": 4.274,
+       "pct": 83.4
       }
      },
      "Inductive Reasoning": {
       "IM": {
-       "raw": 3.81,
-       "pct": 74.1
+       "raw": 3.924,
+       "pct": 80.1
       },
       "LV": {
-       "raw": 4.06,
-       "pct": 73.4
+       "raw": 4.096,
+       "pct": 78.3
       }
      },
      "Information Ordering": {
       "IM": {
-       "raw": 3.63,
-       "pct": 71.7
+       "raw": 3.648,
+       "pct": 70.8
       },
       "LV": {
-       "raw": 3.685,
-       "pct": 71.6
+       "raw": 3.876,
+       "pct": 77.3
       }
      },
      "Category Flexibility": {
       "IM": {
-       "raw": 3.37,
-       "pct": 72.1
+       "raw": 3.35,
+       "pct": 76.2
       },
       "LV": {
-       "raw": 3.56,
-       "pct": 71.6
+       "raw": 3.7,
+       "pct": 79.1
       }
      },
      "Mathematical Reasoning": {
       "IM": {
-       "raw": 3.625,
-       "pct": 79.6
+       "raw": 3.276,
+       "pct": 79.1
       },
       "LV": {
-       "raw": 3.625,
-       "pct": 76.0
+       "raw": 3.446,
+       "pct": 83.1
       }
      },
      "Number Facility": {
       "IM": {
-       "raw": 3.375,
-       "pct": 80.8
+       "raw": 3.104,
+       "pct": 76.3
       },
       "LV": {
-       "raw": 3.565,
-       "pct": 79.7
+       "raw": 3.348,
+       "pct": 83.3
       }
      },
      "Memorization": {
       "IM": {
-       "raw": 2.69,
-       "pct": 71.8
+       "raw": 2.754,
+       "pct": 78.5
       },
       "LV": {
        "raw": 2.5,
-       "pct": 57.0
+       "pct": 55.7
       }
      },
      "Speed of Closure": {
       "IM": {
-       "raw": 2.625,
-       "pct": 59.0
+       "raw": 2.548,
+       "pct": 52.8
       },
       "LV": {
-       "raw": 2.625,
-       "pct": 57.9
+       "raw": 2.6,
+       "pct": 57.1
       }
      },
      "Flexibility of Closure": {
       "IM": {
-       "raw": 3.0,
-       "pct": 56.4
+       "raw": 2.948,
+       "pct": 52.0
       },
       "LV": {
-       "raw": 3.125,
-       "pct": 65.5
+       "raw": 2.95,
+       "pct": 52.1
       }
      },
      "Perceptual Speed": {
       "IM": {
-       "raw": 2.685,
-       "pct": 30.7
+       "raw": 2.598,
+       "pct": 25.6
       },
       "LV": {
-       "raw": 2.5,
-       "pct": 26.5
+       "raw": 2.222,
+       "pct": 15.4
       }
      },
      "Spatial Orientation": {
       "IM": {
-       "raw": 1.19,
-       "pct": 30.5
+       "raw": 1.1,
+       "pct": 21.6
       },
       "LV": {
-       "raw": 0.31,
-       "pct": 37.4
+       "raw": 0.124,
+       "pct": 28.6
       }
      },
      "Visualization": {
       "IM": {
-       "raw": 2.31,
-       "pct": 23.8
+       "raw": 2.246,
+       "pct": 21.4
       },
       "LV": {
-       "raw": 2.5,
-       "pct": 32.2
+       "raw": 2.646,
+       "pct": 37.0
       }
      },
      "Selective Attention": {
       "IM": {
-       "raw": 3.06,
-       "pct": 55.7
+       "raw": 2.976,
+       "pct": 36.9
       },
       "LV": {
-       "raw": 2.875,
-       "pct": 35.1
+       "raw": 2.976,
+       "pct": 48.2
       }
      },
      "Time Sharing": {
       "IM": {
-       "raw": 2.31,
-       "pct": 24.6
+       "raw": 2.6,
+       "pct": 49.4
       },
       "LV": {
-       "raw": 2.31,
-       "pct": 31.7
+       "raw": 2.476,
+       "pct": 44.9
       }
      },
      "Arm-Hand Steadiness": {
       "IM": {
-       "raw": 1.31,
-       "pct": 12.2
+       "raw": 1.124,
+       "pct": 7.7
       },
       "LV": {
-       "raw": 0.44,
-       "pct": 13.7
+       "raw": 0.176,
+       "pct": 9.5
       }
      },
      "Manual Dexterity": {
       "IM": {
-       "raw": 1.31,
-       "pct": 13.3
+       "raw": 1.1,
+       "pct": 7.6
       },
       "LV": {
-       "raw": 0.44,
-       "pct": 15.2
+       "raw": 0.1,
+       "pct": 9.6
       }
      },
      "Finger Dexterity": {
       "IM": {
-       "raw": 1.565,
-       "pct": 10.1
+       "raw": 1.548,
+       "pct": 8.7
       },
       "LV": {
-       "raw": 0.75,
-       "pct": 9.2
+       "raw": 0.548,
+       "pct": 6.5
       }
      },
      "Control Precision": {
       "IM": {
-       "raw": 1.31,
-       "pct": 14.2
+       "raw": 1.024,
+       "pct": 6.6
       },
       "LV": {
-       "raw": 0.44,
-       "pct": 15.7
+       "raw": 0.0,
+       "pct": 7.7
       }
      },
      "Multilimb Coordination": {
       "IM": {
-       "raw": 1.0,
-       "pct": 9.8
+       "raw": 1.1,
+       "pct": 13.6
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 12.6
+       "raw": 0.1,
+       "pct": 15.7
       }
      },
      "Response Orientation": {
@@ -86035,22 +86089,22 @@
      },
      "Reaction Time": {
       "IM": {
-       "raw": 1.0,
-       "pct": 12.9
+       "raw": 1.124,
+       "pct": 18.1
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 16.1
+       "raw": 0.124,
+       "pct": 20.2
       }
      },
      "Wrist-Finger Speed": {
       "IM": {
-       "raw": 1.565,
-       "pct": 25.6
+       "raw": 1.676,
+       "pct": 32.8
       },
       "LV": {
-       "raw": 0.69,
-       "pct": 25.6
+       "raw": 0.78,
+       "pct": 30.4
       }
      },
      "Speed of Limb Movement": {
@@ -86065,58 +86119,58 @@
      },
      "Static Strength": {
       "IM": {
-       "raw": 1.0,
-       "pct": 12.9
+       "raw": 1.1,
+       "pct": 17.0
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 14.9
+       "raw": 0.176,
+       "pct": 19.2
       }
      },
      "Explosive Strength": {
       "IM": {
-       "raw": 1.0,
-       "pct": 15.7
+       "raw": 1.076,
+       "pct": 22.5
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 22.7
+       "raw": 0.076,
+       "pct": 27.6
       }
      },
      "Dynamic Strength": {
       "IM": {
-       "raw": 1.25,
-       "pct": 22.2
+       "raw": 1.024,
+       "pct": 10.3
       },
       "LV": {
-       "raw": 0.25,
-       "pct": 23.5
+       "raw": 0.0,
+       "pct": 13.6
       }
      },
      "Trunk Strength": {
       "IM": {
-       "raw": 1.875,
-       "pct": 22.0
+       "raw": 1.974,
+       "pct": 28.8
       },
       "LV": {
-       "raw": 1.37,
-       "pct": 21.7
+       "raw": 1.5,
+       "pct": 26.4
       }
      },
      "Stamina": {
       "IM": {
-       "raw": 1.0,
-       "pct": 14.0
+       "raw": 1.124,
+       "pct": 18.9
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 16.8
+       "raw": 0.176,
+       "pct": 21.6
       }
      },
      "Extent Flexibility": {
       "IM": {
-       "raw": 1.0,
-       "pct": 12.1
+       "raw": 1.05,
+       "pct": 15.5
       },
       "LV": {
        "raw": 0.0,
@@ -86135,58 +86189,58 @@
      },
      "Gross Body Coordination": {
       "IM": {
-       "raw": 1.0,
-       "pct": 14.9
+       "raw": 1.1,
+       "pct": 19.5
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 17.1
+       "raw": 0.124,
+       "pct": 21.4
       }
      },
      "Gross Body Equilibrium": {
       "IM": {
-       "raw": 1.0,
-       "pct": 15.2
+       "raw": 1.076,
+       "pct": 19.4
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 17.6
+       "raw": 0.076,
+       "pct": 21.3
       }
      },
      "Near Vision": {
       "IM": {
-       "raw": 3.685,
-       "pct": 53.4
+       "raw": 3.478,
+       "pct": 33.0
       },
       "LV": {
-       "raw": 3.685,
-       "pct": 48.0
+       "raw": 3.754,
+       "pct": 57.0
       }
      },
      "Far Vision": {
       "IM": {
-       "raw": 2.935,
-       "pct": 52.7
+       "raw": 2.802,
+       "pct": 34.9
       },
       "LV": {
-       "raw": 3.0,
-       "pct": 52.3
+       "raw": 2.802,
+       "pct": 30.4
       }
      },
      "Visual Color Discrimination": {
       "IM": {
-       "raw": 2.125,
-       "pct": 24.1
+       "raw": 1.926,
+       "pct": 13.3
       },
       "LV": {
-       "raw": 1.81,
-       "pct": 27.5
+       "raw": 1.324,
+       "pct": 8.5
       }
      },
      "Night Vision": {
       "IM": {
-       "raw": 1.0,
-       "pct": 25.3
+       "raw": 1.024,
+       "pct": 30.7
       },
       "LV": {
        "raw": 0.0,
@@ -86195,8 +86249,8 @@
      },
      "Peripheral Vision": {
       "IM": {
-       "raw": 1.0,
-       "pct": 22.4
+       "raw": 1.05,
+       "pct": 28.5
       },
       "LV": {
        "raw": 0.0,
@@ -86205,12 +86259,12 @@
      },
      "Depth Perception": {
       "IM": {
-       "raw": 1.565,
-       "pct": 20.0
+       "raw": 1.454,
+       "pct": 14.7
       },
       "LV": {
-       "raw": 0.625,
-       "pct": 17.9
+       "raw": 0.624,
+       "pct": 17.2
       }
      },
      "Glare Sensitivity": {
@@ -86225,28 +86279,28 @@
      },
      "Hearing Sensitivity": {
       "IM": {
-       "raw": 1.685,
-       "pct": 8.7
+       "raw": 1.874,
+       "pct": 26.0
       },
       "LV": {
-       "raw": 1.0,
-       "pct": 9.3
+       "raw": 1.2,
+       "pct": 14.7
       }
      },
      "Auditory Attention": {
       "IM": {
-       "raw": 1.875,
-       "pct": 13.0
+       "raw": 1.974,
+       "pct": 21.0
       },
       "LV": {
-       "raw": 1.185,
-       "pct": 9.3
+       "raw": 1.3,
+       "pct": 12.0
       }
      },
      "Sound Localization": {
       "IM": {
-       "raw": 1.0,
-       "pct": 22.5
+       "raw": 1.05,
+       "pct": 28.6
       },
       "LV": {
        "raw": 0.0,
@@ -86255,158 +86309,158 @@
      },
      "Speech Recognition": {
       "IM": {
-       "raw": 3.435,
-       "pct": 56.0
+       "raw": 3.676,
+       "pct": 73.7
       },
       "LV": {
-       "raw": 3.375,
-       "pct": 54.1
+       "raw": 3.55,
+       "pct": 65.0
       }
      },
      "Speech Clarity": {
       "IM": {
-       "raw": 3.435,
-       "pct": 50.8
+       "raw": 3.754,
+       "pct": 73.0
       },
       "LV": {
-       "raw": 3.375,
-       "pct": 60.2
+       "raw": 3.774,
+       "pct": 77.4
       }
      }
     },
     "Work Styles": {
      "Innovation": {
       "WI": {
-       "raw": 1.81,
-       "pct": 81.7
+       "raw": 2.094,
+       "pct": 86.8
       }
      },
      "Achievement Orientation": {
       "WI": {
-       "raw": 2.19,
-       "pct": 94.3
+       "raw": 2.278,
+       "pct": 96.7
       }
      },
      "Intellectual Curiosity": {
       "WI": {
-       "raw": 2.035,
-       "pct": 77.1
+       "raw": 2.134,
+       "pct": 80.0
       }
      },
      "Tolerance for Ambiguity": {
       "WI": {
-       "raw": 1.795,
-       "pct": 94.8
+       "raw": 1.776,
+       "pct": 93.9
       }
      },
      "Initiative": {
       "WI": {
-       "raw": 1.69,
-       "pct": 77.6
+       "raw": 1.938,
+       "pct": 90.0
       }
      },
      "Adaptability": {
       "WI": {
-       "raw": 1.905,
-       "pct": 80.6
+       "raw": 1.984,
+       "pct": 84.6
       }
      },
      "Self-Confidence": {
       "WI": {
-       "raw": 1.845,
-       "pct": 81.9
+       "raw": 1.856,
+       "pct": 86.2
       }
      },
      "Perseverance": {
       "WI": {
-       "raw": 1.94,
-       "pct": 70.2
+       "raw": 1.834,
+       "pct": 72.4
       }
      },
      "Leadership Orientation": {
       "WI": {
-       "raw": 1.775,
-       "pct": 78.7
+       "raw": 1.854,
+       "pct": 83.1
       }
      },
      "Humility": {
       "WI": {
-       "raw": 0.545,
-       "pct": 59.0
+       "raw": 0.502,
+       "pct": 57.1
       }
      },
      "Sincerity": {
       "WI": {
-       "raw": 0.82,
-       "pct": 49.5
+       "raw": 0.932,
+       "pct": 55.5
       }
      },
      "Empathy": {
       "WI": {
-       "raw": 0.735,
-       "pct": 54.9
+       "raw": 0.894,
+       "pct": 59.9
       }
      },
      "Cooperation": {
       "WI": {
-       "raw": 1.68,
-       "pct": 60.2
+       "raw": 1.558,
+       "pct": 54.2
       }
      },
      "Optimism": {
       "WI": {
-       "raw": 0.765,
-       "pct": 54.4
+       "raw": 0.734,
+       "pct": 54.9
       }
      },
      "Social Orientation": {
       "WI": {
-       "raw": 1.45,
-       "pct": 61.8
+       "raw": 1.65,
+       "pct": 67.8
       }
      },
      "Cautiousness": {
       "WI": {
-       "raw": 1.94,
-       "pct": 56.0
+       "raw": 1.594,
+       "pct": 38.6
       }
      },
      "Attention to Detail": {
       "WI": {
-       "raw": 2.55,
-       "pct": 59.6
+       "raw": 2.422,
+       "pct": 53.3
       }
      },
      "Dependability": {
       "WI": {
-       "raw": 2.45,
-       "pct": 54.6
+       "raw": 2.282,
+       "pct": 33.1
       }
      },
      "Integrity": {
       "WI": {
-       "raw": 2.115,
-       "pct": 63.9
+       "raw": 2.306,
+       "pct": 77.1
       }
      },
      "Stress Tolerance": {
       "WI": {
-       "raw": 1.725,
-       "pct": 63.0
+       "raw": 1.63,
+       "pct": 62.3
       }
      },
      "Self-Control": {
       "WI": {
-       "raw": 1.515,
-       "pct": 56.0
+       "raw": 1.522,
+       "pct": 57.3
       }
      }
     },
     "Job Zones": {
      "Job Zone": {
       "JZ": {
-       "raw": 4.5,
-       "pct": 81.5
+       "raw": 4.2,
+       "pct": 75.4
       }
      }
     }
@@ -292521,1601 +292575,1536 @@
    }
   },
   "strategy_games": {
-   "provenance": "onet",
-   "n_occupations": 13,
+   "provenance": "estimated",
+   "n_occupations": 4,
    "occupations": [
     {
-     "soc": "11-9071.00",
-     "title": "Gambling Managers",
-     "weight": 0.1676,
+     "soc": "27-2021.00",
+     "title": "Athletes and Sports Competitors",
+     "weight": 0.5,
      "route": [
-      "crosswalk"
+      "analog"
      ]
     },
     {
-     "soc": "39-3012.00",
-     "title": "Gambling and Sports Book Writers and Runners",
-     "weight": 0.1429,
+     "soc": "27-2022.00",
+     "title": "Coaches and Scouts",
+     "weight": 0.2,
      "route": [
-      "crosswalk"
+      "analog"
      ]
     },
     {
-     "soc": "39-1013.00",
-     "title": "First-Line Supervisors of Gambling Services Workers",
-     "weight": 0.1295,
+     "soc": "13-2099.01",
+     "title": "Financial Quantitative Analysts",
+     "weight": 0.15,
      "route": [
-      "crosswalk"
+      "analog"
      ]
     },
     {
-     "soc": "39-3011.00",
-     "title": "Gambling Dealers",
-     "weight": 0.1095,
+     "soc": "27-3043.00",
+     "title": "Writers and Authors",
+     "weight": 0.15,
      "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "41-2012.00",
-     "title": "Gambling Change Persons and Booth Cashiers",
-     "weight": 0.1095,
-     "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "43-3041.00",
-     "title": "Gambling Cage Workers",
-     "weight": 0.1095,
-     "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "33-9031.00",
-     "title": "Gambling Surveillance Officers and Gambling Investigators",
-     "weight": 0.0986,
-     "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "43-9111.00",
-     "title": "Statistical Assistants",
-     "weight": 0.05,
-     "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "11-9072.00",
-     "title": "Entertainment and Recreation Managers, Except Gambling",
-     "weight": 0.02,
-     "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "39-1014.00",
-     "title": "First-Line Supervisors of Entertainment and Recreation Workers, Except Gambling Services",
-     "weight": 0.02,
-     "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "41-2011.00",
-     "title": "Cashiers",
-     "weight": 0.0143,
-     "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "43-2011.00",
-     "title": "Switchboard Operators, Including Answering Service",
-     "weight": 0.0143,
-     "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "49-9091.00",
-     "title": "Coin, Vending, and Amusement Machine Servicers and Repairers",
-     "weight": 0.0143,
-     "route": [
-      "crosswalk"
+      "analog"
      ]
     }
    ],
-   "esco_linked": 10,
-   "data_share": {
-    "Interests": 1.0,
-    "Work Values": 0.96,
-    "Work Activities": 1.0,
-    "Work Context": 1.0,
-    "Abilities": 1.0,
-    "Work Styles": 1.0,
-    "Job Zones": 1.0
-   },
-   "coverage_confidence": 1.0,
+   "coverage_confidence": null,
+   "rationale": "Replaces the crosswalk links. Every ESCO occupation assigned to this career path is casino or betting staff (gaming dealer, bingo caller, bookmaker, lottery operator, pit boss), so the linked profile described gambling-floor work, not professional chess or poker players. O*NET has no occupation for professional game players. Analogs: athletes and sports competitors (competitive performance, ranking, self-directed training), coaches (study and analysis of opponents), financial quantitative analysts (probabilistic decision-making) and writers (content and commentary that many professionals live on). No adjustment. The ESCO assignment itself is listed as an open question in REPORT.md.",
+   "linked_but_replaced": [
+    "11-9071.00",
+    "11-9072.00",
+    "33-9031.00",
+    "39-1013.00",
+    "39-1014.00",
+    "39-3011.00",
+    "39-3012.00",
+    "41-2011.00",
+    "41-2012.00",
+    "43-2011.00",
+    "43-3041.00",
+    "43-9111.00",
+    "49-9091.00"
+   ],
+   "linked_data_share": 1.0,
    "descriptors": {
     "Interests": {
      "Realistic": {
       "OI": {
-       "raw": 3.238,
-       "pct": 29.1
+       "raw": 3.834,
+       "pct": 37.6
       }
      },
      "Investigative": {
       "OI": {
-       "raw": 1.385,
-       "pct": 10.3
+       "raw": 2.618,
+       "pct": 33.9
       }
      },
      "Artistic": {
       "OI": {
-       "raw": 1.071,
-       "pct": 24.5
+       "raw": 2.836,
+       "pct": 74.3
       }
      },
      "Social": {
       "OI": {
-       "raw": 2.654,
-       "pct": 53.6
+       "raw": 3.878,
+       "pct": 69.6
       }
      },
      "Enterprising": {
       "OI": {
-       "raw": 5.095,
-       "pct": 84.9
+       "raw": 4.525,
+       "pct": 82.4
       }
      },
      "Conventional": {
       "OI": {
-       "raw": 5.783,
-       "pct": 86.8
+       "raw": 3.564,
+       "pct": 18.5
       }
      }
     },
     "Work Values": {
      "Achievement": {
       "EX": {
-       "raw": 3.268,
-       "pct": 32.1
+       "raw": 5.7,
+       "pct": 85.0
       }
      },
      "Working Conditions": {
       "EX": {
-       "raw": 3.355,
-       "pct": 31.8
+       "raw": 4.175,
+       "pct": 51.5
       }
      },
      "Recognition": {
       "EX": {
-       "raw": 2.919,
-       "pct": 32.9
+       "raw": 4.935,
+       "pct": 78.7
       }
      },
      "Relationships": {
       "EX": {
-       "raw": 4.881,
-       "pct": 62.4
+       "raw": 5.284,
+       "pct": 71.6
       }
      },
      "Support": {
       "EX": {
-       "raw": 4.817,
-       "pct": 65.2
+       "raw": 4.533,
+       "pct": 54.7
       }
      },
      "Independence": {
       "EX": {
-       "raw": 4.034,
-       "pct": 42.6
+       "raw": 4.715,
+       "pct": 56.9
       }
      }
     },
     "Work Activities": {
      "Getting Information": {
       "IM": {
-       "raw": 3.959,
-       "pct": 31.1
+       "raw": 4.287,
+       "pct": 50.1
       },
       "LV": {
-       "raw": 3.687,
-       "pct": 33.2
+       "raw": 4.728,
+       "pct": 64.2
       }
      },
      "Monitoring Processes, Materials, or Surroundings": {
       "IM": {
-       "raw": 3.275,
-       "pct": 31.1
+       "raw": 3.13,
+       "pct": 21.1
       },
       "LV": {
-       "raw": 3.5,
-       "pct": 28.8
+       "raw": 3.558,
+       "pct": 26.5
       }
      },
      "Identifying Objects, Actions, and Events": {
       "IM": {
-       "raw": 3.477,
-       "pct": 26.0
+       "raw": 3.824,
+       "pct": 43.9
       },
       "LV": {
-       "raw": 3.535,
-       "pct": 31.2
+       "raw": 4.62,
+       "pct": 68.0
       }
      },
      "Inspecting Equipment, Structures, or Materials": {
       "IM": {
-       "raw": 2.72,
-       "pct": 32.3
+       "raw": 2.758,
+       "pct": 34.4
       },
       "LV": {
-       "raw": 2.496,
-       "pct": 33.2
+       "raw": 2.392,
+       "pct": 32.4
       }
      },
      "Estimating the Quantifiable Characteristics of Products, Events, or Information": {
       "IM": {
-       "raw": 2.431,
-       "pct": 20.7
+       "raw": 3.109,
+       "pct": 56.9
       },
       "LV": {
-       "raw": 2.233,
-       "pct": 28.8
+       "raw": 3.118,
+       "pct": 56.7
       }
      },
      "Judging the Qualities of Objects, Services, or People": {
       "IM": {
-       "raw": 2.972,
-       "pct": 30.8
+       "raw": 3.285,
+       "pct": 45.6
       },
       "LV": {
-       "raw": 2.883,
-       "pct": 24.6
+       "raw": 3.802,
+       "pct": 60.0
       }
      },
      "Processing Information": {
       "IM": {
-       "raw": 3.403,
-       "pct": 36.3
+       "raw": 3.845,
+       "pct": 56.5
       },
       "LV": {
-       "raw": 3.635,
-       "pct": 37.1
+       "raw": 4.798,
+       "pct": 68.3
       }
      },
      "Evaluating Information to Determine Compliance with Standards": {
       "IM": {
-       "raw": 3.536,
-       "pct": 48.9
+       "raw": 3.241,
+       "pct": 28.4
       },
       "LV": {
-       "raw": 3.431,
-       "pct": 41.8
+       "raw": 3.425,
+       "pct": 38.4
       }
      },
      "Analyzing Data or Information": {
       "IM": {
-       "raw": 2.927,
-       "pct": 30.4
+       "raw": 4.008,
+       "pct": 73.9
       },
       "LV": {
-       "raw": 2.839,
-       "pct": 28.5
+       "raw": 4.818,
+       "pct": 75.8
       }
      },
      "Making Decisions and Solving Problems": {
       "IM": {
-       "raw": 3.519,
-       "pct": 25.9
+       "raw": 4.089,
+       "pct": 51.6
       },
       "LV": {
-       "raw": 3.518,
-       "pct": 21.3
+       "raw": 4.755,
+       "pct": 59.9
       }
      },
      "Thinking Creatively": {
       "IM": {
-       "raw": 2.573,
-       "pct": 17.9
+       "raw": 3.78,
+       "pct": 66.9
       },
       "LV": {
-       "raw": 2.535,
-       "pct": 16.8
+       "raw": 4.71,
+       "pct": 68.1
       }
      },
      "Updating and Using Relevant Knowledge": {
       "IM": {
-       "raw": 3.286,
-       "pct": 24.2
+       "raw": 3.852,
+       "pct": 49.0
       },
       "LV": {
-       "raw": 3.716,
-       "pct": 24.1
+       "raw": 4.648,
+       "pct": 48.9
       }
      },
      "Developing Objectives and Strategies": {
       "IM": {
-       "raw": 2.463,
-       "pct": 23.1
+       "raw": 3.673,
+       "pct": 78.4
       },
       "LV": {
-       "raw": 2.256,
-       "pct": 24.6
+       "raw": 4.34,
+       "pct": 82.1
       }
      },
      "Scheduling Work and Activities": {
       "IM": {
-       "raw": 2.788,
-       "pct": 29.9
+       "raw": 3.485,
+       "pct": 65.4
       },
       "LV": {
-       "raw": 2.769,
-       "pct": 28.3
+       "raw": 4.25,
+       "pct": 75.1
       }
      },
      "Organizing, Planning, and Prioritizing Work": {
       "IM": {
-       "raw": 3.074,
-       "pct": 23.2
+       "raw": 3.842,
+       "pct": 53.5
       },
       "LV": {
-       "raw": 3.356,
-       "pct": 23.3
+       "raw": 5.157,
+       "pct": 70.3
       }
      },
      "Performing General Physical Activities": {
       "IM": {
-       "raw": 2.528,
-       "pct": 37.7
+       "raw": 3.097,
+       "pct": 59.4
       },
       "LV": {
-       "raw": 2.249,
-       "pct": 33.5
+       "raw": 3.613,
+       "pct": 63.4
       }
      },
      "Handling and Moving Objects": {
       "IM": {
-       "raw": 2.508,
-       "pct": 39.8
+       "raw": 2.729,
+       "pct": 45.0
       },
       "LV": {
-       "raw": 2.749,
-       "pct": 33.6
+       "raw": 3.486,
+       "pct": 53.6
       }
      },
      "Controlling Machines and Processes": {
       "IM": {
-       "raw": 2.422,
-       "pct": 41.5
+       "raw": 2.372,
+       "pct": 39.2
       },
       "LV": {
-       "raw": 1.965,
-       "pct": 34.4
+       "raw": 2.462,
+       "pct": 44.1
       }
      },
      "Operating Vehicles, Mechanized Devices, or Equipment": {
       "IM": {
-       "raw": 1.528,
-       "pct": 22.8
+       "raw": 2.243,
+       "pct": 46.1
       },
       "LV": {
-       "raw": 0.634,
-       "pct": 22.1
+       "raw": 1.91,
+       "pct": 52.0
       }
      },
      "Working with Computers": {
       "IM": {
-       "raw": 3.567,
-       "pct": 46.0
+       "raw": 3.286,
+       "pct": 40.4
       },
       "LV": {
-       "raw": 2.751,
-       "pct": 37.4
+       "raw": 3.34,
+       "pct": 47.7
       }
      },
      "Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment": {
       "IM": {
-       "raw": 1.678,
-       "pct": 33.4
+       "raw": 2.051,
+       "pct": 49.7
       },
       "LV": {
-       "raw": 0.944,
-       "pct": 31.8
+       "raw": 1.48,
+       "pct": 44.8
       }
      },
      "Repairing and Maintaining Mechanical Equipment": {
       "IM": {
-       "raw": 1.801,
-       "pct": 39.7
+       "raw": 1.813,
+       "pct": 37.9
       },
       "LV": {
-       "raw": 1.232,
-       "pct": 36.6
+       "raw": 1.205,
+       "pct": 35.9
       }
      },
      "Repairing and Maintaining Electronic Equipment": {
       "IM": {
-       "raw": 2.012,
-       "pct": 48.6
+       "raw": 1.842,
+       "pct": 39.5
       },
       "LV": {
-       "raw": 1.439,
-       "pct": 44.4
+       "raw": 1.274,
+       "pct": 38.7
       }
      },
      "Documenting/Recording Information": {
       "IM": {
-       "raw": 3.357,
-       "pct": 37.4
+       "raw": 3.406,
+       "pct": 33.6
       },
       "LV": {
-       "raw": 2.939,
-       "pct": 30.4
+       "raw": 3.849,
+       "pct": 54.8
       }
      },
      "Interpreting the Meaning of Information for Others": {
       "IM": {
-       "raw": 3.008,
-       "pct": 32.7
+       "raw": 3.427,
+       "pct": 51.5
       },
       "LV": {
-       "raw": 2.582,
-       "pct": 28.5
+       "raw": 4.011,
+       "pct": 68.7
       }
      },
      "Communicating with Supervisors, Peers, or Subordinates": {
       "IM": {
-       "raw": 3.96,
-       "pct": 44.4
+       "raw": 3.937,
+       "pct": 37.0
       },
       "LV": {
-       "raw": 4.116,
-       "pct": 37.2
+       "raw": 4.853,
+       "pct": 66.0
       }
      },
      "Communicating with People Outside the Organization": {
       "IM": {
-       "raw": 2.987,
-       "pct": 35.1
+       "raw": 3.552,
+       "pct": 59.8
       },
       "LV": {
-       "raw": 2.938,
-       "pct": 32.0
+       "raw": 4.617,
+       "pct": 75.3
       }
      },
      "Establishing and Maintaining Interpersonal Relationships": {
       "IM": {
-       "raw": 3.572,
-       "pct": 42.0
+       "raw": 3.944,
+       "pct": 64.3
       },
       "LV": {
-       "raw": 4.213,
-       "pct": 36.3
+       "raw": 4.978,
+       "pct": 67.8
       }
      },
      "Assisting and Caring for Others": {
       "IM": {
-       "raw": 2.762,
-       "pct": 48.7
+       "raw": 2.49,
+       "pct": 38.0
       },
       "LV": {
-       "raw": 2.759,
-       "pct": 48.9
+       "raw": 2.583,
+       "pct": 44.3
       }
      },
      "Selling or Influencing Others": {
       "IM": {
-       "raw": 2.149,
-       "pct": 38.2
+       "raw": 2.905,
+       "pct": 79.5
       },
       "LV": {
-       "raw": 1.822,
-       "pct": 37.7
+       "raw": 3.345,
+       "pct": 81.3
       }
      },
      "Resolving Conflicts and Negotiating with Others": {
       "IM": {
-       "raw": 3.297,
-       "pct": 61.7
+       "raw": 2.912,
+       "pct": 45.1
       },
       "LV": {
-       "raw": 3.429,
-       "pct": 49.6
+       "raw": 3.338,
+       "pct": 47.6
       }
      },
      "Performing for or Working Directly with the Public": {
       "IM": {
-       "raw": 3.832,
-       "pct": 78.4
+       "raw": 2.817,
+       "pct": 48.7
       },
       "LV": {
-       "raw": 4.05,
-       "pct": 73.6
+       "raw": 3.166,
+       "pct": 56.9
       }
      },
      "Coordinating the Work and Activities of Others": {
       "IM": {
-       "raw": 2.997,
-       "pct": 46.1
+       "raw": 3.15,
+       "pct": 53.0
       },
       "LV": {
-       "raw": 3.073,
-       "pct": 37.8
+       "raw": 3.527,
+       "pct": 51.5
       }
      },
      "Developing and Building Teams": {
       "IM": {
-       "raw": 3.026,
-       "pct": 47.7
+       "raw": 3.421,
+       "pct": 66.8
       },
       "LV": {
-       "raw": 2.568,
-       "pct": 35.1
+       "raw": 3.759,
+       "pct": 76.1
       }
      },
      "Training and Teaching Others": {
       "IM": {
-       "raw": 3.212,
-       "pct": 42.9
+       "raw": 3.007,
+       "pct": 28.7
       },
       "LV": {
-       "raw": 3.164,
-       "pct": 35.8
+       "raw": 3.838,
+       "pct": 59.2
       }
      },
      "Guiding, Directing, and Motivating Subordinates": {
       "IM": {
-       "raw": 2.964,
-       "pct": 52.5
+       "raw": 3.019,
+       "pct": 54.6
       },
       "LV": {
-       "raw": 2.974,
-       "pct": 47.7
+       "raw": 3.566,
+       "pct": 64.2
       }
      },
      "Coaching and Developing Others": {
       "IM": {
-       "raw": 3.122,
-       "pct": 52.1
+       "raw": 3.523,
+       "pct": 70.1
       },
       "LV": {
-       "raw": 3.242,
-       "pct": 41.6
+       "raw": 4.313,
+       "pct": 74.7
       }
      },
      "Providing Consultation and Advice to Others": {
       "IM": {
-       "raw": 2.609,
-       "pct": 32.4
+       "raw": 3.216,
+       "pct": 63.7
       },
       "LV": {
-       "raw": 2.473,
-       "pct": 27.0
+       "raw": 4.254,
+       "pct": 73.3
       }
      },
      "Performing Administrative Activities": {
       "IM": {
-       "raw": 2.883,
-       "pct": 56.3
+       "raw": 2.518,
+       "pct": 35.7
       },
       "LV": {
-       "raw": 2.494,
-       "pct": 39.7
+       "raw": 2.834,
+       "pct": 48.4
       }
      },
      "Staffing Organizational Units": {
       "IM": {
-       "raw": 2.26,
-       "pct": 49.7
+       "raw": 2.202,
+       "pct": 55.3
       },
       "LV": {
-       "raw": 1.926,
-       "pct": 46.5
+       "raw": 2.003,
+       "pct": 51.6
       }
      },
      "Monitoring and Controlling Resources": {
       "IM": {
-       "raw": 2.446,
-       "pct": 41.2
+       "raw": 2.827,
+       "pct": 63.2
       },
       "LV": {
-       "raw": 2.324,
-       "pct": 35.4
+       "raw": 3.273,
+       "pct": 67.4
       }
      }
     },
     "Work Context": {
      "Public Speaking": {
       "CX": {
-       "raw": 2.36,
-       "pct": 55.9
+       "raw": 2.733,
+       "pct": 68.3
       }
      },
      "Telephone Conversations": {
       "CX": {
-       "raw": 3.621,
-       "pct": 36.2
+       "raw": 4.014,
+       "pct": 39.1
       }
      },
      "E-Mail": {
       "CX": {
-       "raw": 3.318,
-       "pct": 32.0
+       "raw": 4.415,
+       "pct": 49.9
       }
      },
      "Written Letters and Memos": {
       "CX": {
-       "raw": 2.976,
-       "pct": 48.5
+       "raw": 2.86,
+       "pct": 40.0
       }
      },
      "Face-to-Face Discussions with Individuals and Within Teams": {
       "CX": {
-       "raw": 4.508,
-       "pct": 45.9
+       "raw": 4.32,
+       "pct": 40.2
       }
      },
      "Contact With Others": {
       "CX": {
-       "raw": 4.723,
-       "pct": 78.8
+       "raw": 4.187,
+       "pct": 40.3
       }
      },
      "Work With or Contribute to a Work Group or Team": {
       "CX": {
-       "raw": 4.394,
-       "pct": 63.4
+       "raw": 4.277,
+       "pct": 54.5
       }
      },
      "Deal With External Customers or the Public in General": {
       "CX": {
-       "raw": 4.292,
-       "pct": 81.6
+       "raw": 2.869,
+       "pct": 31.7
       }
      },
      "Coordinate or Lead Others in Accomplishing Work Activities": {
       "CX": {
-       "raw": 3.624,
-       "pct": 49.4
+       "raw": 3.248,
+       "pct": 30.1
       }
      },
      "Health and Safety of Other Workers": {
       "CX": {
-       "raw": 3.2,
-       "pct": 45.5
+       "raw": 2.885,
+       "pct": 38.6
       }
      },
      "Work Outcomes and Results of Other Workers": {
       "CX": {
-       "raw": 3.256,
-       "pct": 46.0
+       "raw": 3.172,
+       "pct": 42.0
       }
      },
      "Conflict Situations": {
       "CX": {
-       "raw": 3.373,
-       "pct": 71.7
+       "raw": 2.929,
+       "pct": 55.1
       }
      },
      "Dealing With Unpleasant, Angry, or Discourteous People": {
       "CX": {
-       "raw": 3.862,
-       "pct": 86.6
+       "raw": 2.661,
+       "pct": 44.9
       }
      },
      "Dealing with Violent or Physically Aggressive People": {
       "CX": {
-       "raw": 1.926,
-       "pct": 77.0
+       "raw": 1.504,
+       "pct": 55.3
       }
      },
      "Indoors, Environmentally Controlled": {
       "CX": {
-       "raw": 4.651,
-       "pct": 76.3
+       "raw": 3.663,
+       "pct": 31.4
       }
      },
      "Indoors, Not Environmentally Controlled": {
       "CX": {
-       "raw": 1.435,
-       "pct": 24.7
+       "raw": 2.345,
+       "pct": 52.3
       }
      },
      "Outdoors, Exposed to All Weather Conditions": {
       "CX": {
-       "raw": 1.402,
-       "pct": 27.5
+       "raw": 3.131,
+       "pct": 64.7
       }
      },
      "Outdoors, Under Cover": {
       "CX": {
-       "raw": 1.345,
-       "pct": 31.8
+       "raw": 1.962,
+       "pct": 56.1
       }
      },
      "In an Open Vehicle or Operating Equipment": {
       "CX": {
-       "raw": 1.144,
-       "pct": 33.3
+       "raw": 1.678,
+       "pct": 62.8
       }
      },
      "In an Enclosed Vehicle or Operate Enclosed Equipment": {
       "CX": {
-       "raw": 1.325,
-       "pct": 20.4
+       "raw": 2.282,
+       "pct": 57.0
       }
      },
      "Physical Proximity": {
       "CX": {
-       "raw": 4.03,
-       "pct": 77.6
+       "raw": 3.157,
+       "pct": 43.1
       }
      },
      "Exposed to Sounds, Noise Levels that are Distracting or Uncomfortable": {
       "CX": {
-       "raw": 3.614,
-       "pct": 68.7
+       "raw": 2.696,
+       "pct": 39.2
       }
      },
      "Exposed to Very Hot or Cold Temperatures": {
       "CX": {
-       "raw": 1.424,
-       "pct": 30.3
+       "raw": 2.599,
+       "pct": 56.4
       }
      },
      "Exposed to Extremely Bright or Inadequate Lighting Conditions": {
       "CX": {
-       "raw": 2.078,
-       "pct": 59.4
+       "raw": 2.387,
+       "pct": 60.4
       }
      },
      "Exposed to Contaminants": {
       "CX": {
-       "raw": 2.859,
-       "pct": 56.6
+       "raw": 1.925,
+       "pct": 31.6
       }
      },
      "Exposed to Cramped Work Space, Awkward Positions": {
       "CX": {
-       "raw": 1.526,
-       "pct": 36.5
+       "raw": 1.449,
+       "pct": 32.7
       }
      },
      "Exposed to Whole Body Vibration": {
       "CX": {
-       "raw": 1.093,
-       "pct": 36.0
+       "raw": 1.248,
+       "pct": 59.4
       }
      },
      "Exposed to Radiation": {
       "CX": {
-       "raw": 1.047,
-       "pct": 27.9
+       "raw": 1.132,
+       "pct": 58.5
       }
      },
      "Exposed to Disease or Infections": {
       "CX": {
-       "raw": 1.746,
-       "pct": 66.7
+       "raw": 1.211,
+       "pct": 36.9
       }
      },
      "Exposed to High Places": {
       "CX": {
-       "raw": 1.08,
-       "pct": 26.7
+       "raw": 1.118,
+       "pct": 33.6
       }
      },
      "Exposed to Hazardous Conditions": {
       "CX": {
-       "raw": 1.169,
-       "pct": 20.3
+       "raw": 1.24,
+       "pct": 29.8
       }
      },
      "Exposed to Hazardous Equipment": {
       "CX": {
-       "raw": 1.23,
-       "pct": 28.3
+       "raw": 1.355,
+       "pct": 36.1
       }
      },
      "Exposed to Minor Burns, Cuts, Bites, or Stings": {
       "CX": {
-       "raw": 1.367,
-       "pct": 28.3
+       "raw": 1.902,
+       "pct": 46.9
       }
      },
      "Spend Time Sitting": {
       "CX": {
-       "raw": 2.629,
-       "pct": 35.5
+       "raw": 3.106,
+       "pct": 48.6
       }
      },
      "Spend Time Standing": {
       "CX": {
-       "raw": 3.639,
-       "pct": 66.0
+       "raw": 3.337,
+       "pct": 56.1
       }
      },
      "Spend Time Climbing Ladders, Scaffolds, or Poles": {
       "CX": {
-       "raw": 1.115,
-       "pct": 33.6
+       "raw": 1.206,
+       "pct": 46.2
       }
      },
      "Spend Time Walking or Running": {
       "CX": {
-       "raw": 2.875,
-       "pct": 64.5
+       "raw": 2.602,
+       "pct": 54.5
       }
      },
      "Spend Time Kneeling, Crouching, Stooping, or Crawling": {
       "CX": {
-       "raw": 1.559,
-       "pct": 39.0
+       "raw": 1.393,
+       "pct": 28.7
       }
      },
      "Spend Time Keeping or Regaining Balance": {
       "CX": {
-       "raw": 1.612,
-       "pct": 55.4
+       "raw": 2.19,
+       "pct": 62.4
       }
      },
      "Spend Time Using Your Hands to Handle, Control, or Feel Objects, Tools, or Controls": {
       "CX": {
-       "raw": 3.526,
-       "pct": 55.5
+       "raw": 3.062,
+       "pct": 42.5
       }
      },
      "Spend Time Bending or Twisting Your Body": {
       "CX": {
-       "raw": 2.309,
-       "pct": 53.7
+       "raw": 2.356,
+       "pct": 51.4
       }
      },
      "Spend Time Making Repetitive Motions": {
       "CX": {
-       "raw": 3.648,
-       "pct": 72.3
+       "raw": 3.374,
+       "pct": 63.2
       }
      },
      "Wear Common Protective or Safety Equipment such as Safety Shoes, Glasses, Gloves, Hearing Protection, Hard Hats, or Life Jackets": {
       "CX": {
-       "raw": 1.457,
-       "pct": 21.8
+       "raw": 2.297,
+       "pct": 34.5
       }
      },
      "Wear Specialized Protective or Safety Equipment such as Breathing Apparatus, Safety Harness, Full Protection Suits, or Radiation Protection": {
       "CX": {
-       "raw": 1.082,
-       "pct": 19.5
+       "raw": 1.603,
+       "pct": 47.2
       }
      },
      "Consequence of Error": {
       "CX": {
-       "raw": 3.0,
-       "pct": 49.1
+       "raw": 2.608,
+       "pct": 31.8
       }
      },
      "Impact of Decisions on Co-workers or Company Results": {
       "CX": {
-       "raw": 3.996,
-       "pct": 63.5
+       "raw": 3.821,
+       "pct": 53.7
       }
      },
      "Frequency of Decision Making": {
       "CX": {
-       "raw": 4.093,
-       "pct": 66.7
+       "raw": 3.623,
+       "pct": 41.1
       }
      },
      "Freedom to Make Decisions": {
       "CX": {
-       "raw": 3.57,
-       "pct": 28.5
+       "raw": 4.133,
+       "pct": 49.5
       }
      },
      "Degree of Automation": {
       "CX": {
-       "raw": 2.276,
-       "pct": 64.8
+       "raw": 1.751,
+       "pct": 29.6
       }
      },
      "Importance of Being Exact or Accurate": {
       "CX": {
-       "raw": 4.559,
-       "pct": 75.3
+       "raw": 3.913,
+       "pct": 30.0
       }
      },
      "Importance of Repeating Same Tasks": {
       "CX": {
-       "raw": 4.127,
-       "pct": 85.2
+       "raw": 3.273,
+       "pct": 52.2
       }
      },
      "Determine Tasks, Priorities and Goals": {
       "CX": {
-       "raw": 3.527,
-       "pct": 26.1
+       "raw": 4.118,
+       "pct": 55.0
       }
      },
      "Level of Competition": {
       "CX": {
-       "raw": 3.067,
-       "pct": 51.6
+       "raw": 4.299,
+       "pct": 97.8
       }
      },
      "Time Pressure": {
       "CX": {
-       "raw": 3.402,
-       "pct": 30.8
+       "raw": 3.918,
+       "pct": 52.4
       }
      },
      "Pace Determined by Speed of Equipment": {
       "CX": {
-       "raw": 2.003,
-       "pct": 60.3
+       "raw": 1.409,
+       "pct": 36.7
       }
      }
     },
     "Abilities": {
      "Oral Comprehension": {
       "IM": {
-       "raw": 3.841,
-       "pct": 49.6
+       "raw": 3.988,
+       "pct": 66.4
       },
       "LV": {
-       "raw": 3.755,
-       "pct": 36.5
+       "raw": 4.084,
+       "pct": 51.8
       }
      },
      "Written Comprehension": {
       "IM": {
-       "raw": 3.199,
-       "pct": 32.7
+       "raw": 3.575,
+       "pct": 50.3
       },
       "LV": {
-       "raw": 3.23,
-       "pct": 32.5
+       "raw": 3.646,
+       "pct": 47.7
       }
      },
      "Oral Expression": {
       "IM": {
-       "raw": 3.762,
-       "pct": 47.1
+       "raw": 4.008,
+       "pct": 58.4
       },
       "LV": {
-       "raw": 3.799,
-       "pct": 42.3
+       "raw": 4.108,
+       "pct": 56.3
       }
      },
      "Written Expression": {
       "IM": {
-       "raw": 3.179,
-       "pct": 40.9
+       "raw": 3.407,
+       "pct": 46.9
       },
       "LV": {
-       "raw": 2.931,
-       "pct": 33.2
+       "raw": 3.54,
+       "pct": 50.3
       }
      },
      "Fluency of Ideas": {
       "IM": {
-       "raw": 2.473,
-       "pct": 28.5
+       "raw": 3.315,
+       "pct": 67.8
       },
       "LV": {
-       "raw": 2.36,
-       "pct": 27.0
+       "raw": 3.458,
+       "pct": 68.3
       }
      },
      "Originality": {
       "IM": {
-       "raw": 2.319,
-       "pct": 25.4
+       "raw": 3.266,
+       "pct": 70.5
       },
       "LV": {
-       "raw": 2.269,
-       "pct": 25.0
+       "raw": 3.419,
+       "pct": 70.5
       }
      },
      "Problem Sensitivity": {
       "IM": {
-       "raw": 3.546,
-       "pct": 44.1
+       "raw": 3.702,
+       "pct": 55.7
       },
       "LV": {
-       "raw": 3.416,
-       "pct": 43.5
+       "raw": 3.368,
+       "pct": 41.0
       }
      },
      "Deductive Reasoning": {
       "IM": {
-       "raw": 3.36,
-       "pct": 39.4
+       "raw": 3.49,
+       "pct": 47.8
       },
       "LV": {
-       "raw": 3.292,
-       "pct": 38.0
+       "raw": 3.504,
+       "pct": 47.4
       }
      },
      "Inductive Reasoning": {
       "IM": {
-       "raw": 3.284,
-       "pct": 40.7
+       "raw": 3.49,
+       "pct": 54.5
       },
       "LV": {
-       "raw": 3.191,
-       "pct": 36.7
+       "raw": 3.56,
+       "pct": 57.9
       }
      },
      "Information Ordering": {
       "IM": {
-       "raw": 3.297,
-       "pct": 45.9
+       "raw": 3.413,
+       "pct": 53.6
       },
       "LV": {
-       "raw": 3.207,
-       "pct": 41.0
+       "raw": 3.332,
+       "pct": 43.6
       }
      },
      "Category Flexibility": {
       "IM": {
-       "raw": 2.909,
-       "pct": 26.1
+       "raw": 3.08,
+       "pct": 41.9
       },
       "LV": {
-       "raw": 2.837,
-       "pct": 23.2
+       "raw": 3.058,
+       "pct": 37.8
       }
      },
      "Mathematical Reasoning": {
       "IM": {
-       "raw": 2.951,
-       "pct": 67.9
+       "raw": 2.374,
+       "pct": 37.1
       },
       "LV": {
-       "raw": 2.434,
-       "pct": 48.4
+       "raw": 1.975,
+       "pct": 26.9
       }
      },
      "Number Facility": {
       "IM": {
-       "raw": 3.012,
-       "pct": 75.1
+       "raw": 2.249,
+       "pct": 31.5
       },
       "LV": {
-       "raw": 2.775,
-       "pct": 60.9
+       "raw": 1.961,
+       "pct": 26.3
       }
      },
      "Memorization": {
       "IM": {
-       "raw": 2.537,
-       "pct": 60.2
+       "raw": 2.397,
+       "pct": 48.4
       },
       "LV": {
-       "raw": 2.458,
-       "pct": 56.3
+       "raw": 2.216,
+       "pct": 41.9
       }
      },
      "Speed of Closure": {
       "IM": {
-       "raw": 2.639,
-       "pct": 60.8
+       "raw": 2.481,
+       "pct": 49.9
       },
       "LV": {
-       "raw": 2.607,
-       "pct": 58.6
+       "raw": 2.446,
+       "pct": 49.1
       }
      },
      "Flexibility of Closure": {
       "IM": {
-       "raw": 2.856,
-       "pct": 44.6
+       "raw": 2.844,
+       "pct": 39.0
       },
       "LV": {
-       "raw": 2.771,
-       "pct": 41.2
+       "raw": 2.887,
+       "pct": 43.8
       }
      },
      "Perceptual Speed": {
       "IM": {
-       "raw": 2.915,
-       "pct": 55.9
+       "raw": 2.657,
+       "pct": 33.4
       },
       "LV": {
-       "raw": 2.868,
-       "pct": 53.3
+       "raw": 2.739,
+       "pct": 46.3
       }
      },
      "Spatial Orientation": {
       "IM": {
-       "raw": 1.214,
-       "pct": 34.3
+       "raw": 1.59,
+       "pct": 48.8
       },
       "LV": {
-       "raw": 0.191,
-       "pct": 31.1
+       "raw": 0.966,
+       "pct": 55.6
       }
      },
      "Visualization": {
       "IM": {
-       "raw": 2.255,
-       "pct": 21.0
+       "raw": 2.776,
+       "pct": 53.1
       },
       "LV": {
-       "raw": 2.102,
-       "pct": 19.6
+       "raw": 2.953,
+       "pct": 49.9
       }
      },
      "Selective Attention": {
       "IM": {
-       "raw": 3.174,
-       "pct": 57.6
+       "raw": 3.12,
+       "pct": 69.7
       },
       "LV": {
-       "raw": 3.197,
-       "pct": 64.4
+       "raw": 3.054,
+       "pct": 62.0
       }
      },
      "Time Sharing": {
       "IM": {
-       "raw": 2.798,
-       "pct": 67.4
+       "raw": 2.671,
+       "pct": 58.3
       },
       "LV": {
-       "raw": 2.8,
-       "pct": 69.8
+       "raw": 2.622,
+       "pct": 59.5
       }
      },
      "Arm-Hand Steadiness": {
       "IM": {
-       "raw": 2.301,
-       "pct": 39.6
+       "raw": 2.599,
+       "pct": 52.6
       },
       "LV": {
-       "raw": 1.868,
-       "pct": 36.0
+       "raw": 2.16,
+       "pct": 53.1
       }
      },
      "Manual Dexterity": {
       "IM": {
-       "raw": 2.339,
-       "pct": 43.6
+       "raw": 2.486,
+       "pct": 51.4
       },
       "LV": {
-       "raw": 1.878,
-       "pct": 41.0
+       "raw": 2.151,
+       "pct": 57.4
       }
      },
      "Finger Dexterity": {
       "IM": {
-       "raw": 2.5,
-       "pct": 45.9
+       "raw": 2.243,
+       "pct": 33.6
       },
       "LV": {
-       "raw": 2.219,
-       "pct": 40.6
+       "raw": 2.044,
+       "pct": 43.3
       }
      },
      "Control Precision": {
       "IM": {
-       "raw": 1.984,
-       "pct": 36.6
+       "raw": 2.094,
+       "pct": 39.1
       },
       "LV": {
-       "raw": 1.64,
-       "pct": 36.2
+       "raw": 1.569,
+       "pct": 36.9
       }
      },
      "Multilimb Coordination": {
       "IM": {
-       "raw": 1.904,
-       "pct": 38.6
+       "raw": 2.49,
+       "pct": 59.2
       },
       "LV": {
-       "raw": 1.337,
-       "pct": 36.9
+       "raw": 2.001,
+       "pct": 57.3
       }
      },
      "Response Orientation": {
       "IM": {
-       "raw": 1.455,
-       "pct": 38.4
+       "raw": 1.875,
+       "pct": 51.3
       },
       "LV": {
-       "raw": 0.617,
-       "pct": 36.1
+       "raw": 1.31,
+       "pct": 51.3
       }
      },
      "Rate Control": {
       "IM": {
-       "raw": 1.448,
-       "pct": 38.6
+       "raw": 1.69,
+       "pct": 47.0
       },
       "LV": {
-       "raw": 0.499,
-       "pct": 35.4
+       "raw": 1.0,
+       "pct": 45.6
       }
      },
      "Reaction Time": {
       "IM": {
-       "raw": 1.603,
-       "pct": 39.9
+       "raw": 1.94,
+       "pct": 47.4
       },
       "LV": {
-       "raw": 0.691,
-       "pct": 34.8
+       "raw": 1.19,
+       "pct": 43.2
       }
      },
      "Wrist-Finger Speed": {
       "IM": {
-       "raw": 1.696,
-       "pct": 38.7
+       "raw": 1.705,
+       "pct": 35.3
       },
       "LV": {
-       "raw": 0.823,
-       "pct": 32.3
+       "raw": 0.991,
+       "pct": 36.6
       }
      },
      "Speed of Limb Movement": {
       "IM": {
-       "raw": 1.47,
-       "pct": 56.2
+       "raw": 1.975,
+       "pct": 66.8
       },
       "LV": {
-       "raw": 0.496,
-       "pct": 49.2
+       "raw": 1.41,
+       "pct": 67.9
       }
      },
      "Static Strength": {
       "IM": {
-       "raw": 1.798,
-       "pct": 41.7
+       "raw": 2.816,
+       "pct": 69.3
       },
       "LV": {
-       "raw": 1.159,
-       "pct": 40.3
+       "raw": 2.516,
+       "pct": 68.8
       }
      },
      "Explosive Strength": {
       "IM": {
-       "raw": 1.52,
-       "pct": 54.6
+       "raw": 2.486,
+       "pct": 70.8
       },
       "LV": {
-       "raw": 0.647,
-       "pct": 51.6
+       "raw": 2.25,
+       "pct": 73.2
       }
      },
      "Dynamic Strength": {
       "IM": {
-       "raw": 1.83,
-       "pct": 50.8
+       "raw": 2.666,
+       "pct": 73.4
       },
       "LV": {
-       "raw": 0.958,
-       "pct": 44.0
+       "raw": 2.476,
+       "pct": 71.6
       }
      },
      "Trunk Strength": {
       "IM": {
-       "raw": 2.38,
-       "pct": 49.6
+       "raw": 2.783,
+       "pct": 68.5
       },
       "LV": {
-       "raw": 2.205,
-       "pct": 50.6
+       "raw": 2.752,
+       "pct": 71.1
       }
      },
      "Stamina": {
       "IM": {
-       "raw": 1.978,
-       "pct": 54.7
+       "raw": 2.764,
+       "pct": 70.6
       },
       "LV": {
-       "raw": 1.426,
-       "pct": 52.0
+       "raw": 2.524,
+       "pct": 72.5
       }
      },
      "Extent Flexibility": {
       "IM": {
-       "raw": 1.749,
-       "pct": 41.4
+       "raw": 2.39,
+       "pct": 61.6
       },
       "LV": {
-       "raw": 1.157,
-       "pct": 39.6
+       "raw": 2.199,
+       "pct": 62.0
       }
      },
      "Dynamic Flexibility": {
       "IM": {
-       "raw": 1.13,
-       "pct": 55.8
+       "raw": 1.675,
+       "pct": 75.1
       },
       "LV": {
-       "raw": 0.042,
-       "pct": 46.6
+       "raw": 1.125,
+       "pct": 70.7
       }
      },
      "Gross Body Coordination": {
       "IM": {
-       "raw": 1.853,
-       "pct": 52.8
+       "raw": 2.45,
+       "pct": 66.2
       },
       "LV": {
-       "raw": 1.138,
-       "pct": 46.2
+       "raw": 2.476,
+       "pct": 72.2
       }
      },
      "Gross Body Equilibrium": {
       "IM": {
-       "raw": 1.678,
-       "pct": 47.7
+       "raw": 2.325,
+       "pct": 67.2
       },
       "LV": {
-       "raw": 0.816,
-       "pct": 44.4
+       "raw": 2.036,
+       "pct": 72.7
       }
      },
      "Near Vision": {
       "IM": {
-       "raw": 3.601,
-       "pct": 45.4
+       "raw": 3.488,
+       "pct": 32.9
       },
       "LV": {
-       "raw": 3.437,
-       "pct": 33.3
+       "raw": 3.47,
+       "pct": 33.8
       }
      },
      "Far Vision": {
       "IM": {
-       "raw": 3.051,
-       "pct": 61.8
+       "raw": 2.977,
+       "pct": 64.5
       },
       "LV": {
-       "raw": 3.098,
-       "pct": 59.0
+       "raw": 3.028,
+       "pct": 61.8
       }
      },
      "Visual Color Discrimination": {
       "IM": {
-       "raw": 2.415,
-       "pct": 41.0
+       "raw": 2.314,
+       "pct": 34.4
       },
       "LV": {
-       "raw": 2.16,
-       "pct": 36.1
+       "raw": 1.968,
+       "pct": 27.0
       }
      },
      "Night Vision": {
       "IM": {
-       "raw": 1.116,
-       "pct": 34.7
+       "raw": 1.375,
+       "pct": 51.0
       },
       "LV": {
-       "raw": 0.174,
-       "pct": 36.4
+       "raw": 0.5,
+       "pct": 52.1
       }
      },
      "Peripheral Vision": {
       "IM": {
-       "raw": 1.217,
-       "pct": 43.8
+       "raw": 1.65,
+       "pct": 61.6
       },
       "LV": {
-       "raw": 0.239,
-       "pct": 37.3
+       "raw": 1.0,
+       "pct": 64.8
       }
      },
      "Depth Perception": {
       "IM": {
-       "raw": 1.797,
-       "pct": 32.6
+       "raw": 2.143,
+       "pct": 53.9
       },
       "LV": {
-       "raw": 1.005,
-       "pct": 26.4
+       "raw": 1.752,
+       "pct": 54.5
       }
      },
      "Glare Sensitivity": {
       "IM": {
-       "raw": 1.142,
-       "pct": 31.7
+       "raw": 1.464,
+       "pct": 53.0
       },
       "LV": {
-       "raw": 0.25,
-       "pct": 34.2
+       "raw": 0.625,
+       "pct": 49.1
       }
      },
      "Hearing Sensitivity": {
       "IM": {
-       "raw": 2.031,
-       "pct": 39.3
+       "raw": 2.157,
+       "pct": 50.8
       },
       "LV": {
-       "raw": 1.701,
-       "pct": 37.7
+       "raw": 1.843,
+       "pct": 49.6
       }
      },
      "Auditory Attention": {
       "IM": {
-       "raw": 2.489,
-       "pct": 61.0
+       "raw": 2.4,
+       "pct": 53.4
       },
       "LV": {
-       "raw": 2.459,
-       "pct": 64.0
+       "raw": 2.345,
+       "pct": 56.9
       }
      },
      "Sound Localization": {
       "IM": {
-       "raw": 1.196,
-       "pct": 37.5
+       "raw": 1.334,
+       "pct": 48.7
       },
       "LV": {
-       "raw": 0.227,
-       "pct": 37.7
+       "raw": 0.375,
+       "pct": 46.3
       }
      },
      "Speech Recognition": {
       "IM": {
-       "raw": 3.474,
-       "pct": 58.5
+       "raw": 3.522,
+       "pct": 61.8
       },
       "LV": {
-       "raw": 3.318,
-       "pct": 51.3
+       "raw": 3.369,
+       "pct": 54.4
       }
      },
      "Speech Clarity": {
       "IM": {
-       "raw": 3.519,
-       "pct": 56.0
+       "raw": 3.66,
+       "pct": 64.3
       },
       "LV": {
-       "raw": 3.214,
-       "pct": 48.7
+       "raw": 3.392,
+       "pct": 60.0
       }
      }
     },
     "Work Styles": {
      "Innovation": {
       "WI": {
-       "raw": -0.335,
-       "pct": 15.0
+       "raw": 1.471,
+       "pct": 69.6
       }
      },
      "Achievement Orientation": {
       "WI": {
-       "raw": 0.849,
-       "pct": 23.9
+       "raw": 2.527,
+       "pct": 94.5
       }
      },
      "Intellectual Curiosity": {
       "WI": {
-       "raw": 0.203,
-       "pct": 21.3
+       "raw": 1.09,
+       "pct": 49.3
       }
      },
      "Tolerance for Ambiguity": {
       "WI": {
-       "raw": 0.297,
-       "pct": 36.8
+       "raw": 1.363,
+       "pct": 70.1
       }
      },
      "Initiative": {
       "WI": {
-       "raw": 0.464,
-       "pct": 26.9
+       "raw": 1.688,
+       "pct": 80.3
       }
      },
      "Adaptability": {
       "WI": {
-       "raw": 0.879,
-       "pct": 35.4
+       "raw": 1.707,
+       "pct": 71.6
       }
      },
      "Self-Confidence": {
       "WI": {
-       "raw": 1.162,
-       "pct": 48.4
+       "raw": 2.176,
+       "pct": 88.0
       }
      },
      "Perseverance": {
       "WI": {
-       "raw": 0.955,
-       "pct": 20.9
+       "raw": 2.28,
+       "pct": 86.1
       }
      },
      "Leadership Orientation": {
       "WI": {
-       "raw": 0.529,
-       "pct": 39.1
+       "raw": 1.338,
+       "pct": 70.1
       }
      },
      "Humility": {
       "WI": {
-       "raw": 0.145,
-       "pct": 36.7
+       "raw": -0.33,
+       "pct": 18.0
       }
      },
      "Sincerity": {
       "WI": {
-       "raw": 0.438,
-       "pct": 31.8
+       "raw": 0.866,
+       "pct": 51.3
       }
      },
      "Empathy": {
       "WI": {
-       "raw": 0.525,
-       "pct": 45.8
+       "raw": 0.711,
+       "pct": 54.3
       }
      },
      "Cooperation": {
       "WI": {
-       "raw": 1.327,
-       "pct": 45.6
+       "raw": 1.224,
+       "pct": 42.0
       }
      },
      "Optimism": {
       "WI": {
-       "raw": 0.808,
-       "pct": 55.3
+       "raw": 1.644,
+       "pct": 76.7
       }
      },
      "Social Orientation": {
       "WI": {
-       "raw": 1.559,
-       "pct": 66.0
+       "raw": 1.542,
+       "pct": 67.0
       }
      },
      "Cautiousness": {
       "WI": {
-       "raw": 1.75,
-       "pct": 48.7
+       "raw": -0.122,
+       "pct": 12.4
       }
      },
      "Attention to Detail": {
       "WI": {
-       "raw": 2.43,
-       "pct": 55.3
+       "raw": 1.556,
+       "pct": 16.0
       }
      },
      "Dependability": {
       "WI": {
-       "raw": 2.47,
-       "pct": 52.8
+       "raw": 2.298,
+       "pct": 34.3
       }
      },
      "Integrity": {
       "WI": {
-       "raw": 2.502,
-       "pct": 81.1
+       "raw": 1.483,
+       "pct": 33.2
       }
      },
      "Stress Tolerance": {
       "WI": {
-       "raw": 1.697,
-       "pct": 64.1
+       "raw": 2.111,
+       "pct": 79.6
       }
      },
      "Self-Control": {
       "WI": {
-       "raw": 1.814,
-       "pct": 70.5
+       "raw": 1.942,
+       "pct": 73.6
       }
      }
     },
     "Job Zones": {
      "Job Zone": {
       "JZ": {
-       "raw": 2.14,
-       "pct": 22.0
+       "raw": 3.15,
+       "pct": 47.8
       }
      }
     }
@@ -330620,1295 +330609,1292 @@
    }
   },
   "tattoo": {
-   "provenance": "onet",
+   "provenance": "estimated",
    "n_occupations": 3,
    "occupations": [
     {
+     "soc": "27-1012.00",
+     "title": "Craft Artists",
+     "weight": 0.4,
+     "route": [
+      "analog"
+     ]
+    },
+    {
+     "soc": "27-1013.00",
+     "title": "Fine Artists, Including Painters, Sculptors, and Illustrators",
+     "weight": 0.3,
+     "route": [
+      "analog"
+     ]
+    },
+    {
      "soc": "39-5091.00",
      "title": "Makeup Artists, Theatrical and Performance",
-     "weight": 0.3333,
+     "weight": 0.3,
      "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "39-5092.00",
-     "title": "Manicurists and Pedicurists",
-     "weight": 0.3333,
-     "route": [
-      "crosswalk"
-     ]
-    },
-    {
-     "soc": "41-9012.00",
-     "title": "Models",
-     "weight": 0.3333,
-     "route": [
-      "crosswalk"
+      "analog"
      ]
     }
    ],
-   "esco_linked": 1,
-   "data_share": {
-    "Interests": 1.0,
-    "Work Values": 1.0,
-    "Work Activities": 1.0,
-    "Work Context": 1.0,
-    "Abilities": 1.0,
-    "Work Styles": 1.0,
-    "Job Zones": 1.0
-   },
-   "coverage_confidence": 0.2,
+   "coverage_confidence": null,
+   "rationale": "Replaces the crosswalk links. The ESCO occupation 'tattooist' crosswalks to Models (41-9012) among others, which put Tattoo near the bottom of Analyse, Conflict and Precision. Tattooing is design and drawing work done by hand on clients: craft artists, fine artists and illustrators, and makeup artists (applied skin work with a client in the chair). No adjustment.",
+   "linked_but_replaced": [
+    "39-5091.00",
+    "39-5092.00",
+    "41-9012.00"
+   ],
+   "linked_data_share": 1.0,
    "descriptors": {
     "Interests": {
      "Realistic": {
       "OI": {
-       "raw": 4.99,
-       "pct": 53.1
+       "raw": 4.87,
+       "pct": 51.8
       }
      },
      "Investigative": {
       "OI": {
-       "raw": 1.253,
-       "pct": 7.5
+       "raw": 1.955,
+       "pct": 24.7
       }
      },
      "Artistic": {
       "OI": {
-       "raw": 5.307,
-       "pct": 90.4
+       "raw": 6.488,
+       "pct": 98.8
       }
      },
      "Social": {
       "OI": {
-       "raw": 2.85,
-       "pct": 58.5
+       "raw": 2.256,
+       "pct": 44.4
       }
      },
      "Enterprising": {
       "OI": {
-       "raw": 3.047,
-       "pct": 62.9
+       "raw": 2.779,
+       "pct": 58.9
       }
      },
      "Conventional": {
       "OI": {
-       "raw": 2.98,
-       "pct": 8.5
+       "raw": 2.669,
+       "pct": 1.4
       }
      }
     },
     "Work Values": {
      "Achievement": {
       "EX": {
-       "raw": 2.557,
-       "pct": 18.1
+       "raw": 5.301,
+       "pct": 76.3
       }
      },
      "Working Conditions": {
       "EX": {
-       "raw": 2.947,
-       "pct": 22.2
+       "raw": 4.12,
+       "pct": 50.4
       }
      },
      "Recognition": {
       "EX": {
-       "raw": 3.333,
-       "pct": 43.5
+       "raw": 3.702,
+       "pct": 53.0
       }
      },
      "Relationships": {
       "EX": {
-       "raw": 5.223,
-       "pct": 72.5
+       "raw": 3.269,
+       "pct": 28.7
       }
      },
      "Support": {
       "EX": {
-       "raw": 2.223,
-       "pct": 3.3
+       "raw": 2.0,
+       "pct": 0.8
       }
      },
      "Independence": {
       "EX": {
-       "raw": 2.67,
-       "pct": 13.9
+       "raw": 4.934,
+       "pct": 64.6
       }
      }
     },
     "Work Activities": {
      "Getting Information": {
       "IM": {
-       "raw": 3.287,
-       "pct": 20.2
+       "raw": 3.971,
+       "pct": 27.1
       },
       "LV": {
-       "raw": 2.563,
-       "pct": 15.3
+       "raw": 3.599,
+       "pct": 29.2
       }
      },
      "Monitoring Processes, Materials, or Surroundings": {
       "IM": {
-       "raw": 2.46,
-       "pct": 23.0
+       "raw": 3.609,
+       "pct": 47.5
       },
       "LV": {
-       "raw": 2.063,
-       "pct": 10.8
+       "raw": 3.652,
+       "pct": 29.6
       }
      },
      "Identifying Objects, Actions, and Events": {
       "IM": {
-       "raw": 2.68,
-       "pct": 2.8
+       "raw": 3.043,
+       "pct": 4.3
       },
       "LV": {
-       "raw": 1.653,
-       "pct": 2.2
+       "raw": 2.671,
+       "pct": 6.2
       }
      },
      "Inspecting Equipment, Structures, or Materials": {
       "IM": {
-       "raw": 2.35,
-       "pct": 22.7
+       "raw": 3.251,
+       "pct": 46.4
       },
       "LV": {
-       "raw": 1.633,
-       "pct": 20.6
+       "raw": 2.862,
+       "pct": 40.5
       }
      },
      "Estimating the Quantifiable Characteristics of Products, Events, or Information": {
       "IM": {
-       "raw": 2.02,
-       "pct": 10.5
+       "raw": 2.8,
+       "pct": 33.3
       },
       "LV": {
-       "raw": 1.243,
-       "pct": 10.4
+       "raw": 2.261,
+       "pct": 20.5
       }
      },
      "Judging the Qualities of Objects, Services, or People": {
       "IM": {
-       "raw": 2.61,
-       "pct": 19.9
+       "raw": 3.026,
+       "pct": 28.1
       },
       "LV": {
-       "raw": 2.24,
-       "pct": 10.1
+       "raw": 2.982,
+       "pct": 23.9
       }
      },
      "Processing Information": {
       "IM": {
-       "raw": 2.16,
-       "pct": 4.3
+       "raw": 2.794,
+       "pct": 8.4
       },
       "LV": {
-       "raw": 1.86,
-       "pct": 6.7
+       "raw": 2.863,
+       "pct": 13.9
       }
      },
      "Evaluating Information to Determine Compliance with Standards": {
       "IM": {
-       "raw": 2.137,
-       "pct": 3.0
+       "raw": 2.32,
+       "pct": 3.4
       },
       "LV": {
-       "raw": 1.607,
-       "pct": 2.8
+       "raw": 1.932,
+       "pct": 4.5
       }
      },
      "Analyzing Data or Information": {
       "IM": {
-       "raw": 1.713,
-       "pct": 3.2
+       "raw": 2.463,
+       "pct": 9.1
       },
       "LV": {
-       "raw": 0.93,
-       "pct": 3.3
+       "raw": 2.254,
+       "pct": 12.4
       }
      },
      "Making Decisions and Solving Problems": {
       "IM": {
-       "raw": 2.773,
-       "pct": 21.2
+       "raw": 3.943,
+       "pct": 40.7
       },
       "LV": {
-       "raw": 2.507,
-       "pct": 12.4
+       "raw": 3.91,
+       "pct": 27.7
       }
      },
      "Thinking Creatively": {
       "IM": {
-       "raw": 3.587,
-       "pct": 55.3
+       "raw": 4.655,
+       "pct": 97.5
       },
       "LV": {
-       "raw": 3.813,
-       "pct": 46.6
+       "raw": 5.429,
+       "pct": 90.5
       }
      },
      "Updating and Using Relevant Knowledge": {
       "IM": {
-       "raw": 2.83,
-       "pct": 14.5
+       "raw": 3.468,
+       "pct": 26.4
       },
       "LV": {
-       "raw": 2.72,
-       "pct": 11.9
+       "raw": 4.092,
+       "pct": 29.2
       }
      },
      "Developing Objectives and Strategies": {
       "IM": {
-       "raw": 2.06,
-       "pct": 12.2
+       "raw": 2.564,
+       "pct": 22.5
       },
       "LV": {
-       "raw": 1.777,
-       "pct": 14.7
+       "raw": 2.458,
+       "pct": 28.7
       }
      },
      "Scheduling Work and Activities": {
       "IM": {
-       "raw": 3.077,
+       "raw": 3.046,
        "pct": 42.4
       },
       "LV": {
-       "raw": 2.657,
-       "pct": 26.1
+       "raw": 3.15,
+       "pct": 37.5
       }
      },
      "Organizing, Planning, and Prioritizing Work": {
       "IM": {
-       "raw": 3.02,
-       "pct": 23.0
+       "raw": 3.757,
+       "pct": 48.1
       },
       "LV": {
-       "raw": 3.277,
-       "pct": 21.0
+       "raw": 4.662,
+       "pct": 50.6
       }
      },
      "Performing General Physical Activities": {
       "IM": {
-       "raw": 3.357,
-       "pct": 63.2
+       "raw": 3.024,
+       "pct": 51.1
       },
       "LV": {
-       "raw": 3.597,
-       "pct": 60.2
+       "raw": 3.294,
+       "pct": 53.6
       }
      },
      "Handling and Moving Objects": {
       "IM": {
-       "raw": 2.573,
-       "pct": 41.2
+       "raw": 3.413,
+       "pct": 64.2
       },
       "LV": {
-       "raw": 3.133,
-       "pct": 39.7
+       "raw": 4.172,
+       "pct": 58.4
       }
      },
      "Controlling Machines and Processes": {
       "IM": {
-       "raw": 1.74,
-       "pct": 19.1
+       "raw": 2.808,
+       "pct": 52.7
       },
       "LV": {
-       "raw": 0.963,
-       "pct": 16.1
+       "raw": 2.89,
+       "pct": 51.7
       }
      },
      "Operating Vehicles, Mechanized Devices, or Equipment": {
       "IM": {
-       "raw": 1.667,
-       "pct": 29.5
+       "raw": 1.64,
+       "pct": 28.8
       },
       "LV": {
-       "raw": 0.803,
-       "pct": 26.8
+       "raw": 0.887,
+       "pct": 29.6
       }
      },
      "Working with Computers": {
       "IM": {
-       "raw": 1.983,
-       "pct": 8.2
+       "raw": 3.045,
+       "pct": 26.9
       },
       "LV": {
-       "raw": 1.123,
-       "pct": 7.8
+       "raw": 2.75,
+       "pct": 29.1
       }
      },
      "Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment": {
       "IM": {
-       "raw": 1.56,
-       "pct": 29.1
+       "raw": 2.198,
+       "pct": 58.5
       },
       "LV": {
-       "raw": 0.9,
-       "pct": 31.0
+       "raw": 2.029,
+       "pct": 58.8
       }
      },
      "Repairing and Maintaining Mechanical Equipment": {
       "IM": {
-       "raw": 1.54,
-       "pct": 29.9
+       "raw": 1.917,
+       "pct": 42.8
       },
       "LV": {
-       "raw": 0.727,
-       "pct": 25.5
+       "raw": 1.502,
+       "pct": 42.0
       }
      },
      "Repairing and Maintaining Electronic Equipment": {
       "IM": {
-       "raw": 1.55,
-       "pct": 25.1
+       "raw": 1.672,
+       "pct": 31.5
       },
       "LV": {
-       "raw": 0.657,
-       "pct": 21.0
+       "raw": 1.24,
+       "pct": 36.3
       }
      },
      "Documenting/Recording Information": {
       "IM": {
-       "raw": 2.643,
-       "pct": 13.6
+       "raw": 2.862,
+       "pct": 18.3
       },
       "LV": {
-       "raw": 1.817,
-       "pct": 11.4
+       "raw": 2.53,
+       "pct": 17.9
       }
      },
      "Interpreting the Meaning of Information for Others": {
       "IM": {
-       "raw": 2.167,
-       "pct": 4.6
+       "raw": 2.33,
+       "pct": 5.8
       },
       "LV": {
-       "raw": 1.373,
-       "pct": 3.8
+       "raw": 1.878,
+       "pct": 9.6
       }
      },
      "Communicating with Supervisors, Peers, or Subordinates": {
       "IM": {
-       "raw": 3.033,
-       "pct": 28.7
+       "raw": 2.979,
+       "pct": 25.9
       },
       "LV": {
-       "raw": 2.78,
-       "pct": 17.5
+       "raw": 2.772,
+       "pct": 16.0
       }
      },
      "Communicating with People Outside the Organization": {
       "IM": {
-       "raw": 2.283,
-       "pct": 16.3
+       "raw": 3.056,
+       "pct": 36.5
       },
       "LV": {
-       "raw": 2.03,
-       "pct": 18.8
+       "raw": 3.676,
+       "pct": 51.4
       }
      },
      "Establishing and Maintaining Interpersonal Relationships": {
       "IM": {
-       "raw": 3.653,
-       "pct": 44.3
+       "raw": 3.7,
+       "pct": 47.6
       },
       "LV": {
-       "raw": 4.303,
-       "pct": 40.0
+       "raw": 4.623,
+       "pct": 52.4
       }
      },
      "Assisting and Caring for Others": {
       "IM": {
-       "raw": 2.82,
-       "pct": 48.8
+       "raw": 2.391,
+       "pct": 27.8
       },
       "LV": {
-       "raw": 2.53,
-       "pct": 39.2
+       "raw": 2.166,
+       "pct": 27.5
       }
      },
      "Selling or Influencing Others": {
       "IM": {
-       "raw": 2.273,
-       "pct": 45.6
+       "raw": 2.911,
+       "pct": 70.8
       },
       "LV": {
-       "raw": 1.83,
-       "pct": 35.6
+       "raw": 2.958,
+       "pct": 63.6
       }
      },
      "Resolving Conflicts and Negotiating with Others": {
       "IM": {
-       "raw": 2.663,
-       "pct": 40.3
+       "raw": 2.418,
+       "pct": 24.7
       },
       "LV": {
-       "raw": 2.71,
-       "pct": 32.5
+       "raw": 2.627,
+       "pct": 30.1
       }
      },
      "Performing for or Working Directly with the Public": {
       "IM": {
-       "raw": 2.953,
-       "pct": 51.9
+       "raw": 2.97,
+       "pct": 52.3
       },
       "LV": {
-       "raw": 2.997,
-       "pct": 48.6
+       "raw": 3.384,
+       "pct": 57.9
       }
      },
      "Coordinating the Work and Activities of Others": {
       "IM": {
-       "raw": 2.577,
-       "pct": 28.5
+       "raw": 2.348,
+       "pct": 24.2
       },
       "LV": {
-       "raw": 2.337,
-       "pct": 23.4
+       "raw": 2.242,
+       "pct": 21.7
       }
      },
      "Developing and Building Teams": {
       "IM": {
-       "raw": 2.293,
-       "pct": 26.4
+       "raw": 2.196,
+       "pct": 23.6
       },
       "LV": {
-       "raw": 1.49,
-       "pct": 21.2
+       "raw": 1.51,
+       "pct": 19.6
       }
      },
      "Training and Teaching Others": {
       "IM": {
-       "raw": 2.383,
-       "pct": 19.2
+       "raw": 2.684,
+       "pct": 25.7
       },
       "LV": {
-       "raw": 1.957,
-       "pct": 14.1
+       "raw": 2.492,
+       "pct": 25.5
       }
      },
      "Guiding, Directing, and Motivating Subordinates": {
       "IM": {
-       "raw": 2.207,
-       "pct": 23.5
+       "raw": 2.078,
+       "pct": 19.7
       },
       "LV": {
-       "raw": 1.777,
-       "pct": 21.6
+       "raw": 1.825,
+       "pct": 20.7
       }
      },
      "Coaching and Developing Others": {
       "IM": {
-       "raw": 2.267,
-       "pct": 20.8
+       "raw": 2.434,
+       "pct": 23.8
       },
       "LV": {
-       "raw": 1.74,
-       "pct": 15.7
+       "raw": 2.53,
+       "pct": 22.9
       }
      },
      "Providing Consultation and Advice to Others": {
       "IM": {
-       "raw": 2.37,
-       "pct": 24.6
+       "raw": 2.372,
+       "pct": 21.9
       },
       "LV": {
-       "raw": 2.21,
-       "pct": 22.0
+       "raw": 2.258,
+       "pct": 21.1
       }
      },
      "Performing Administrative Activities": {
       "IM": {
-       "raw": 2.207,
-       "pct": 27.6
+       "raw": 2.62,
+       "pct": 42.1
       },
       "LV": {
-       "raw": 2.073,
-       "pct": 31.1
+       "raw": 2.798,
+       "pct": 50.8
       }
      },
      "Staffing Organizational Units": {
       "IM": {
-       "raw": 1.917,
-       "pct": 37.7
+       "raw": 1.666,
+       "pct": 25.7
       },
       "LV": {
-       "raw": 1.4,
-       "pct": 36.8
+       "raw": 0.87,
+       "pct": 26.7
       }
      },
      "Monitoring and Controlling Resources": {
       "IM": {
-       "raw": 2.273,
-       "pct": 39.4
+       "raw": 2.954,
+       "pct": 69.8
       },
       "LV": {
-       "raw": 1.83,
-       "pct": 32.8
+       "raw": 3.235,
+       "pct": 65.6
       }
      }
     },
     "Work Context": {
      "Public Speaking": {
       "CX": {
-       "raw": 1.727,
-       "pct": 27.3
+       "raw": 1.865,
+       "pct": 31.4
       }
      },
      "Telephone Conversations": {
       "CX": {
-       "raw": 3.367,
-       "pct": 23.7
+       "raw": 3.653,
+       "pct": 27.9
       }
      },
      "E-Mail": {
       "CX": {
-       "raw": 3.163,
-       "pct": 29.6
+       "raw": 4.363,
+       "pct": 44.6
       }
      },
      "Written Letters and Memos": {
       "CX": {
-       "raw": 2.153,
-       "pct": 18.8
+       "raw": 2.805,
+       "pct": 36.5
       }
      },
      "Face-to-Face Discussions with Individuals and Within Teams": {
       "CX": {
-       "raw": 4.227,
-       "pct": 31.0
+       "raw": 3.667,
+       "pct": 24.8
       }
      },
      "Contact With Others": {
       "CX": {
-       "raw": 4.603,
-       "pct": 68.7
+       "raw": 3.326,
+       "pct": 21.6
       }
      },
      "Work With or Contribute to a Work Group or Team": {
       "CX": {
-       "raw": 3.787,
-       "pct": 30.8
+       "raw": 2.915,
+       "pct": 23.5
       }
      },
      "Deal With External Customers or the Public in General": {
       "CX": {
-       "raw": 2.537,
-       "pct": 19.9
+       "raw": 3.024,
+       "pct": 34.8
       }
      },
      "Coordinate or Lead Others in Accomplishing Work Activities": {
       "CX": {
-       "raw": 2.91,
-       "pct": 12.8
+       "raw": 2.321,
+       "pct": 7.5
       }
      },
      "Health and Safety of Other Workers": {
       "CX": {
-       "raw": 3.077,
-       "pct": 49.3
+       "raw": 2.721,
+       "pct": 33.5
       }
      },
      "Work Outcomes and Results of Other Workers": {
       "CX": {
-       "raw": 2.683,
-       "pct": 22.4
+       "raw": 2.246,
+       "pct": 12.9
       }
      },
      "Conflict Situations": {
       "CX": {
-       "raw": 1.883,
-       "pct": 9.2
+       "raw": 2.041,
+       "pct": 9.5
       }
      },
      "Dealing With Unpleasant, Angry, or Discourteous People": {
       "CX": {
-       "raw": 2.073,
-       "pct": 17.1
+       "raw": 2.027,
+       "pct": 16.2
       }
      },
      "Dealing with Violent or Physically Aggressive People": {
       "CX": {
-       "raw": 1.227,
-       "pct": 32.3
+       "raw": 1.115,
+       "pct": 16.4
       }
      },
      "Indoors, Environmentally Controlled": {
       "CX": {
-       "raw": 4.41,
-       "pct": 60.3
+       "raw": 4.103,
+       "pct": 43.7
       }
      },
      "Indoors, Not Environmentally Controlled": {
       "CX": {
-       "raw": 1.987,
-       "pct": 37.3
+       "raw": 2.113,
+       "pct": 44.1
       }
      },
      "Outdoors, Exposed to All Weather Conditions": {
       "CX": {
-       "raw": 2.017,
-       "pct": 38.7
+       "raw": 2.254,
+       "pct": 53.6
       }
      },
      "Outdoors, Under Cover": {
       "CX": {
-       "raw": 2.013,
-       "pct": 48.7
+       "raw": 2.218,
+       "pct": 65.6
       }
      },
      "In an Open Vehicle or Operating Equipment": {
       "CX": {
-       "raw": 1.13,
-       "pct": 34.0
+       "raw": 1.114,
+       "pct": 27.6
       }
      },
      "In an Enclosed Vehicle or Operate Enclosed Equipment": {
       "CX": {
-       "raw": 1.48,
-       "pct": 30.0
+       "raw": 1.705,
+       "pct": 43.5
       }
      },
      "Physical Proximity": {
       "CX": {
-       "raw": 4.29,
-       "pct": 81.2
+       "raw": 2.68,
+       "pct": 30.2
       }
      },
      "Exposed to Sounds, Noise Levels that are Distracting or Uncomfortable": {
       "CX": {
-       "raw": 2.093,
-       "pct": 22.2
+       "raw": 2.52,
+       "pct": 32.9
       }
      },
      "Exposed to Very Hot or Cold Temperatures": {
       "CX": {
-       "raw": 1.873,
-       "pct": 37.3
+       "raw": 1.968,
+       "pct": 44.8
       }
      },
      "Exposed to Extremely Bright or Inadequate Lighting Conditions": {
       "CX": {
-       "raw": 2.61,
-       "pct": 66.1
+       "raw": 1.942,
+       "pct": 40.7
       }
      },
      "Exposed to Contaminants": {
       "CX": {
-       "raw": 3.27,
-       "pct": 65.6
+       "raw": 2.559,
+       "pct": 50.0
       }
      },
      "Exposed to Cramped Work Space, Awkward Positions": {
       "CX": {
-       "raw": 2.263,
-       "pct": 59.9
+       "raw": 1.834,
+       "pct": 40.1
       }
      },
      "Exposed to Whole Body Vibration": {
       "CX": {
-       "raw": 1.05,
-       "pct": 30.7
+       "raw": 1.061,
+       "pct": 39.2
       }
      },
      "Exposed to Radiation": {
       "CX": {
-       "raw": 1.023,
-       "pct": 30.6
+       "raw": 1.0,
+       "pct": 18.8
       }
      },
      "Exposed to Disease or Infections": {
       "CX": {
-       "raw": 1.65,
-       "pct": 56.2
+       "raw": 1.259,
+       "pct": 29.5
       }
      },
      "Exposed to High Places": {
       "CX": {
-       "raw": 1.167,
-       "pct": 32.5
+       "raw": 1.189,
+       "pct": 36.0
       }
      },
      "Exposed to Hazardous Conditions": {
       "CX": {
-       "raw": 1.637,
-       "pct": 46.7
+       "raw": 1.79,
+       "pct": 52.7
       }
      },
      "Exposed to Hazardous Equipment": {
       "CX": {
-       "raw": 1.32,
-       "pct": 25.8
+       "raw": 2.109,
+       "pct": 59.5
       }
      },
      "Exposed to Minor Burns, Cuts, Bites, or Stings": {
       "CX": {
-       "raw": 1.95,
-       "pct": 49.9
+       "raw": 2.188,
+       "pct": 60.3
       }
      },
      "Spend Time Sitting": {
       "CX": {
-       "raw": 3.24,
-       "pct": 52.3
+       "raw": 3.163,
+       "pct": 49.8
       }
      },
      "Spend Time Standing": {
       "CX": {
-       "raw": 2.917,
-       "pct": 44.1
+       "raw": 3.107,
+       "pct": 52.0
       }
      },
      "Spend Time Climbing Ladders, Scaffolds, or Poles": {
       "CX": {
-       "raw": 1.117,
-       "pct": 31.6
+       "raw": 1.166,
+       "pct": 43.2
       }
      },
      "Spend Time Walking or Running": {
       "CX": {
-       "raw": 1.783,
-       "pct": 23.3
+       "raw": 1.853,
+       "pct": 24.1
       }
      },
      "Spend Time Kneeling, Crouching, Stooping, or Crawling": {
       "CX": {
-       "raw": 1.65,
-       "pct": 45.4
+       "raw": 1.521,
+       "pct": 37.4
       }
      },
      "Spend Time Keeping or Regaining Balance": {
       "CX": {
-       "raw": 2.077,
-       "pct": 64.8
+       "raw": 1.476,
+       "pct": 43.7
       }
      },
      "Spend Time Using Your Hands to Handle, Control, or Feel Objects, Tools, or Controls": {
       "CX": {
-       "raw": 3.343,
-       "pct": 51.4
+       "raw": 4.544,
+       "pct": 86.5
       }
      },
      "Spend Time Bending or Twisting Your Body": {
       "CX": {
-       "raw": 2.83,
-       "pct": 70.0
+       "raw": 2.34,
+       "pct": 53.6
       }
      },
      "Spend Time Making Repetitive Motions": {
       "CX": {
-       "raw": 3.41,
-       "pct": 60.9
+       "raw": 3.659,
+       "pct": 75.1
       }
      },
      "Wear Common Protective or Safety Equipment such as Safety Shoes, Glasses, Gloves, Hearing Protection, Hard Hats, or Life Jackets": {
       "CX": {
-       "raw": 2.283,
-       "pct": 35.1
+       "raw": 2.916,
+       "pct": 48.7
       }
      },
      "Wear Specialized Protective or Safety Equipment such as Breathing Apparatus, Safety Harness, Full Protection Suits, or Radiation Protection": {
       "CX": {
-       "raw": 1.263,
-       "pct": 35.2
+       "raw": 1.599,
+       "pct": 56.9
       }
      },
      "Consequence of Error": {
       "CX": {
-       "raw": 2.113,
-       "pct": 13.3
+       "raw": 2.122,
+       "pct": 13.1
       }
      },
      "Impact of Decisions on Co-workers or Company Results": {
       "CX": {
-       "raw": 2.737,
-       "pct": 7.9
+       "raw": 2.843,
+       "pct": 7.8
       }
      },
      "Frequency of Decision Making": {
       "CX": {
-       "raw": 2.72,
-       "pct": 8.9
+       "raw": 2.986,
+       "pct": 16.6
       }
      },
      "Freedom to Make Decisions": {
       "CX": {
-       "raw": 3.927,
-       "pct": 33.5
+       "raw": 4.435,
+       "pct": 72.8
       }
      },
      "Degree of Automation": {
       "CX": {
-       "raw": 1.23,
-       "pct": 3.8
+       "raw": 1.459,
+       "pct": 13.0
       }
      },
      "Importance of Being Exact or Accurate": {
       "CX": {
-       "raw": 3.48,
-       "pct": 14.7
+       "raw": 3.921,
+       "pct": 27.6
       }
      },
      "Importance of Repeating Same Tasks": {
       "CX": {
-       "raw": 2.267,
-       "pct": 8.6
+       "raw": 2.703,
+       "pct": 21.4
       }
      },
      "Determine Tasks, Priorities and Goals": {
       "CX": {
-       "raw": 3.427,
-       "pct": 24.3
+       "raw": 4.393,
+       "pct": 77.4
       }
      },
      "Level of Competition": {
       "CX": {
-       "raw": 2.837,
-       "pct": 40.2
+       "raw": 3.448,
+       "pct": 66.7
       }
      },
      "Time Pressure": {
       "CX": {
-       "raw": 2.8,
-       "pct": 30.7
+       "raw": 3.412,
+       "pct": 32.7
       }
      },
      "Pace Determined by Speed of Equipment": {
       "CX": {
-       "raw": 1.367,
-       "pct": 34.1
+       "raw": 1.254,
+       "pct": 30.3
       }
      }
     },
     "Abilities": {
      "Oral Comprehension": {
       "IM": {
-       "raw": 3.253,
-       "pct": 24.0
+       "raw": 3.336,
+       "pct": 28.1
       },
       "LV": {
-       "raw": 3.25,
-       "pct": 20.8
+       "raw": 3.498,
+       "pct": 28.6
       }
      },
      "Written Comprehension": {
       "IM": {
-       "raw": 2.75,
-       "pct": 16.4
+       "raw": 3.15,
+       "pct": 28.6
       },
       "LV": {
-       "raw": 2.543,
-       "pct": 11.2
+       "raw": 3.0,
+       "pct": 25.1
       }
      },
      "Oral Expression": {
       "IM": {
-       "raw": 3.21,
-       "pct": 20.5
+       "raw": 3.264,
+       "pct": 22.6
       },
       "LV": {
-       "raw": 3.083,
-       "pct": 15.3
+       "raw": 3.378,
+       "pct": 25.2
       }
      },
      "Written Expression": {
       "IM": {
-       "raw": 2.54,
-       "pct": 18.5
+       "raw": 2.848,
+       "pct": 26.5
       },
       "LV": {
-       "raw": 2.333,
-       "pct": 17.3
+       "raw": 2.848,
+       "pct": 30.0
       }
      },
      "Fluency of Ideas": {
       "IM": {
-       "raw": 2.667,
-       "pct": 39.9
+       "raw": 3.698,
+       "pct": 90.4
       },
       "LV": {
-       "raw": 2.58,
-       "pct": 35.7
+       "raw": 3.822,
+       "pct": 84.1
       }
      },
      "Originality": {
       "IM": {
-       "raw": 2.873,
-       "pct": 52.3
+       "raw": 4.012,
+       "pct": 96.6
       },
       "LV": {
-       "raw": 2.62,
-       "pct": 42.2
+       "raw": 4.12,
+       "pct": 92.6
       }
      },
      "Problem Sensitivity": {
       "IM": {
-       "raw": 2.793,
-       "pct": 11.2
+       "raw": 3.114,
+       "pct": 15.8
       },
       "LV": {
-       "raw": 2.583,
-       "pct": 13.6
+       "raw": 3.027,
+       "pct": 22.2
       }
      },
      "Deductive Reasoning": {
       "IM": {
-       "raw": 2.583,
-       "pct": 12.5
+       "raw": 3.075,
+       "pct": 22.4
       },
       "LV": {
-       "raw": 2.587,
-       "pct": 15.6
+       "raw": 3.114,
+       "pct": 30.7
       }
      },
      "Inductive Reasoning": {
       "IM": {
-       "raw": 2.623,
-       "pct": 9.9
+       "raw": 3.0,
+       "pct": 25.5
       },
       "LV": {
-       "raw": 2.417,
-       "pct": 11.9
+       "raw": 2.952,
+       "pct": 26.5
       }
      },
      "Information Ordering": {
       "IM": {
-       "raw": 2.707,
-       "pct": 18.5
+       "raw": 3.114,
+       "pct": 26.1
       },
       "LV": {
-       "raw": 2.373,
-       "pct": 8.1
+       "raw": 3.0,
+       "pct": 23.0
       }
      },
      "Category Flexibility": {
       "IM": {
-       "raw": 2.71,
-       "pct": 25.6
+       "raw": 3.111,
+       "pct": 51.7
       },
       "LV": {
-       "raw": 2.913,
-       "pct": 29.9
+       "raw": 3.461,
+       "pct": 70.0
       }
      },
      "Mathematical Reasoning": {
       "IM": {
-       "raw": 1.75,
-       "pct": 13.3
+       "raw": 2.359,
+       "pct": 41.0
       },
       "LV": {
-       "raw": 1.087,
-       "pct": 11.5
+       "raw": 1.862,
+       "pct": 27.9
       }
      },
      "Number Facility": {
       "IM": {
-       "raw": 1.873,
-       "pct": 13.9
+       "raw": 2.211,
+       "pct": 35.2
       },
       "LV": {
-       "raw": 1.33,
-       "pct": 15.9
+       "raw": 2.311,
+       "pct": 43.5
       }
      },
      "Memorization": {
       "IM": {
-       "raw": 1.917,
-       "pct": 14.2
+       "raw": 2.0,
+       "pct": 17.4
       },
       "LV": {
-       "raw": 1.417,
-       "pct": 15.4
+       "raw": 1.85,
+       "pct": 23.4
       }
      },
      "Speed of Closure": {
       "IM": {
-       "raw": 1.877,
-       "pct": 16.9
+       "raw": 2.15,
+       "pct": 22.5
       },
       "LV": {
-       "raw": 1.417,
-       "pct": 19.3
+       "raw": 2.114,
+       "pct": 25.3
       }
      },
      "Flexibility of Closure": {
       "IM": {
-       "raw": 2.163,
-       "pct": 10.8
+       "raw": 2.45,
+       "pct": 17.7
       },
       "LV": {
-       "raw": 1.79,
-       "pct": 11.7
+       "raw": 2.411,
+       "pct": 18.4
       }
      },
      "Perceptual Speed": {
       "IM": {
-       "raw": 2.043,
-       "pct": 12.8
+       "raw": 2.375,
+       "pct": 17.6
       },
       "LV": {
-       "raw": 1.667,
-       "pct": 12.5
+       "raw": 2.261,
+       "pct": 17.0
       }
      },
      "Spatial Orientation": {
       "IM": {
-       "raw": 1.207,
-       "pct": 28.1
+       "raw": 1.048,
+       "pct": 21.8
       },
       "LV": {
-       "raw": 0.293,
-       "pct": 34.6
+       "raw": 0.0,
+       "pct": 22.8
       }
      },
      "Visualization": {
       "IM": {
-       "raw": 2.747,
-       "pct": 47.2
+       "raw": 3.734,
+       "pct": 95.6
       },
       "LV": {
-       "raw": 2.667,
-       "pct": 40.0
+       "raw": 4.123,
+       "pct": 97.8
       }
      },
      "Selective Attention": {
       "IM": {
-       "raw": 2.96,
-       "pct": 37.6
+       "raw": 3.03,
+       "pct": 39.8
       },
       "LV": {
-       "raw": 2.583,
-       "pct": 30.9
+       "raw": 3.075,
+       "pct": 62.9
       }
      },
      "Time Sharing": {
       "IM": {
-       "raw": 2.413,
-       "pct": 29.4
+       "raw": 2.225,
+       "pct": 16.8
       },
       "LV": {
-       "raw": 2.08,
-       "pct": 16.1
+       "raw": 2.036,
+       "pct": 12.2
       }
      },
      "Arm-Hand Steadiness": {
       "IM": {
-       "raw": 2.96,
-       "pct": 63.8
+       "raw": 3.841,
+       "pct": 94.6
       },
       "LV": {
-       "raw": 2.913,
-       "pct": 69.2
+       "raw": 3.925,
+       "pct": 97.3
       }
      },
      "Manual Dexterity": {
       "IM": {
-       "raw": 2.707,
-       "pct": 57.9
+       "raw": 3.6,
+       "pct": 90.3
       },
       "LV": {
-       "raw": 2.127,
-       "pct": 54.7
+       "raw": 3.536,
+       "pct": 95.4
       }
      },
      "Finger Dexterity": {
       "IM": {
-       "raw": 2.75,
-       "pct": 59.5
+       "raw": 3.691,
+       "pct": 94.2
       },
       "LV": {
-       "raw": 2.293,
-       "pct": 55.2
+       "raw": 3.673,
+       "pct": 92.9
       }
      },
      "Control Precision": {
       "IM": {
-       "raw": 2.087,
-       "pct": 39.8
+       "raw": 2.826,
+       "pct": 65.2
       },
       "LV": {
-       "raw": 1.5,
-       "pct": 35.7
+       "raw": 2.775,
+       "pct": 63.3
       }
      },
      "Multilimb Coordination": {
       "IM": {
-       "raw": 2.417,
-       "pct": 53.8
+       "raw": 2.826,
+       "pct": 69.5
       },
       "LV": {
-       "raw": 2.0,
-       "pct": 48.1
+       "raw": 2.664,
+       "pct": 66.2
       }
      },
      "Response Orientation": {
       "IM": {
-       "raw": 1.207,
-       "pct": 27.4
+       "raw": 1.473,
+       "pct": 35.8
       },
       "LV": {
-       "raw": 0.207,
-       "pct": 25.0
+       "raw": 0.814,
+       "pct": 40.6
       }
      },
      "Rate Control": {
       "IM": {
-       "raw": 1.123,
-       "pct": 27.2
+       "raw": 1.577,
+       "pct": 41.9
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 18.1
+       "raw": 1.023,
+       "pct": 47.8
       }
      },
      "Reaction Time": {
       "IM": {
-       "raw": 1.123,
-       "pct": 23.5
+       "raw": 1.625,
+       "pct": 38.8
       },
       "LV": {
-       "raw": 0.0,
-       "pct": 16.1
+       "raw": 1.25,
+       "pct": 45.1
       }
      },
      "Wrist-Finger Speed": {
       "IM": {
-       "raw": 1.5,
-       "pct": 29.7
+       "raw": 2.024,
+       "pct": 63.5
       },
       "LV": {
-       "raw": 0.707,
-       "pct": 28.0
+       "raw": 1.786,
+       "pct": 67.6
       }
      },
      "Speed of Limb Movement": {
       "IM": {
-       "raw": 1.29,
-       "pct": 44.0
+       "raw": 1.222,
+       "pct": 40.0
       },
       "LV": {
-       "raw": 0.25,
-       "pct": 37.5
+       "raw": 0.225,
+       "pct": 36.3
       }
      },
      "Static Strength": {
       "IM": {
-       "raw": 1.753,
-       "pct": 39.7
+       "raw": 2.338,
+       "pct": 61.5
       },
       "LV": {
-       "raw": 1.21,
-       "pct": 41.5
+       "raw": 1.961,
+       "pct": 55.1
       }
      },
      "Explosive Strength": {
       "IM": {
-       "raw": 1.25,
-       "pct": 38.2
+       "raw": 1.5,
+       "pct": 57.3
       },
       "LV": {
-       "raw": 0.167,
-       "pct": 32.1
+       "raw": 0.548,
+       "pct": 52.4
       }
      },
      "Dynamic Strength": {
       "IM": {
-       "raw": 1.917,
-       "pct": 57.8
+       "raw": 2.15,
+       "pct": 70.6
       },
       "LV": {
-       "raw": 1.377,
-       "pct": 53.5
+       "raw": 1.889,
+       "pct": 66.9
       }
      },
      "Trunk Strength": {
       "IM": {
-       "raw": 2.377,
-       "pct": 46.8
+       "raw": 2.714,
+       "pct": 64.6
       },
       "LV": {
-       "raw": 2.083,
-       "pct": 46.0
+       "raw": 2.548,
+       "pct": 62.2
       }
      },
      "Stamina": {
       "IM": {
-       "raw": 1.79,
-       "pct": 51.2
+       "raw": 1.916,
+       "pct": 46.5
       },
       "LV": {
-       "raw": 1.167,
-       "pct": 46.1
+       "raw": 1.362,
+       "pct": 49.8
       }
      },
      "Extent Flexibility": {
       "IM": {
-       "raw": 2.04,
-       "pct": 51.7
+       "raw": 2.386,
+       "pct": 65.6
       },
       "LV": {
-       "raw": 1.71,
-       "pct": 51.5
+       "raw": 2.128,
+       "pct": 59.6
       }
      },
      "Dynamic Flexibility": {
       "IM": {
-       "raw": 1.333,
-       "pct": 70.5
+       "raw": 1.225,
+       "pct": 63.4
       },
       "LV": {
-       "raw": 0.373,
-       "pct": 73.1
+       "raw": 0.15,
+       "pct": 55.5
       }
      },
      "Gross Body Coordination": {
       "IM": {
-       "raw": 1.877,
-       "pct": 51.2
+       "raw": 1.928,
+       "pct": 52.1
       },
       "LV": {
-       "raw": 1.247,
-       "pct": 51.6
+       "raw": 1.1,
+       "pct": 46.1
       }
      },
      "Gross Body Equilibrium": {
       "IM": {
-       "raw": 1.917,
-       "pct": 57.9
+       "raw": 1.773,
+       "pct": 50.8
       },
       "LV": {
-       "raw": 1.167,
-       "pct": 52.1
+       "raw": 0.737,
+       "pct": 43.1
       }
      },
      "Near Vision": {
       "IM": {
-       "raw": 3.333,
-       "pct": 44.1
+       "raw": 3.822,
+       "pct": 67.8
       },
       "LV": {
-       "raw": 3.12,
-       "pct": 34.5
+       "raw": 3.9,
+       "pct": 69.1
       }
      },
      "Far Vision": {
       "IM": {
-       "raw": 2.583,
-       "pct": 30.7
+       "raw": 2.884,
+       "pct": 49.6
       },
       "LV": {
-       "raw": 2.497,
-       "pct": 30.5
+       "raw": 3.089,
+       "pct": 61.0
       }
      },
      "Visual Color Discrimination": {
       "IM": {
-       "raw": 2.96,
-       "pct": 65.0
+       "raw": 3.489,
+       "pct": 93.5
       },
       "LV": {
-       "raw": 3.04,
-       "pct": 58.5
+       "raw": 4.448,
+       "pct": 98.5
       }
      },
      "Night Vision": {
@@ -331923,8 +331909,8 @@
      },
      "Peripheral Vision": {
       "IM": {
-       "raw": 1.083,
-       "pct": 32.6
+       "raw": 1.0,
+       "pct": 22.4
       },
       "LV": {
        "raw": 0.0,
@@ -331933,42 +331919,42 @@
      },
      "Depth Perception": {
       "IM": {
-       "raw": 1.707,
-       "pct": 29.5
+       "raw": 2.12,
+       "pct": 56.7
       },
       "LV": {
-       "raw": 1.167,
-       "pct": 29.7
+       "raw": 1.961,
+       "pct": 55.2
       }
      },
      "Glare Sensitivity": {
       "IM": {
-       "raw": 1.54,
-       "pct": 57.1
+       "raw": 1.336,
+       "pct": 43.3
       },
       "LV": {
-       "raw": 0.623,
-       "pct": 52.1
+       "raw": 0.375,
+       "pct": 40.0
       }
      },
      "Hearing Sensitivity": {
       "IM": {
-       "raw": 1.71,
-       "pct": 20.0
+       "raw": 1.789,
+       "pct": 15.3
       },
       "LV": {
-       "raw": 1.083,
-       "pct": 20.0
+       "raw": 1.464,
+       "pct": 22.9
       }
      },
      "Auditory Attention": {
       "IM": {
-       "raw": 1.92,
-       "pct": 26.1
+       "raw": 2.078,
+       "pct": 28.7
       },
       "LV": {
-       "raw": 1.417,
-       "pct": 24.0
+       "raw": 1.913,
+       "pct": 32.4
       }
      },
      "Sound Localization": {
@@ -331983,158 +331969,158 @@
      },
      "Speech Recognition": {
       "IM": {
-       "raw": 3.043,
-       "pct": 24.5
+       "raw": 3.114,
+       "pct": 29.0
       },
       "LV": {
-       "raw": 2.957,
-       "pct": 29.3
+       "raw": 3.072,
+       "pct": 38.8
       }
      },
      "Speech Clarity": {
       "IM": {
-       "raw": 2.917,
-       "pct": 15.2
+       "raw": 3.036,
+       "pct": 24.4
       },
       "LV": {
-       "raw": 2.707,
-       "pct": 13.8
+       "raw": 2.841,
+       "pct": 19.7
       }
      }
     },
     "Work Styles": {
      "Innovation": {
       "WI": {
-       "raw": 1.11,
-       "pct": 59.0
+       "raw": 2.603,
+       "pct": 96.1
       }
      },
      "Achievement Orientation": {
       "WI": {
-       "raw": 0.903,
-       "pct": 24.6
+       "raw": 1.735,
+       "pct": 60.1
       }
      },
      "Intellectual Curiosity": {
       "WI": {
-       "raw": 0.333,
-       "pct": 25.5
+       "raw": 1.363,
+       "pct": 57.9
       }
      },
      "Tolerance for Ambiguity": {
       "WI": {
-       "raw": 0.32,
-       "pct": 36.1
+       "raw": 1.397,
+       "pct": 70.9
       }
      },
      "Initiative": {
       "WI": {
-       "raw": 0.453,
-       "pct": 25.1
+       "raw": 1.591,
+       "pct": 74.6
       }
      },
      "Adaptability": {
       "WI": {
-       "raw": 1.153,
-       "pct": 45.4
+       "raw": 1.461,
+       "pct": 59.5
       }
      },
      "Self-Confidence": {
       "WI": {
-       "raw": 1.64,
-       "pct": 69.6
+       "raw": 1.122,
+       "pct": 45.8
       }
      },
      "Perseverance": {
       "WI": {
-       "raw": 0.823,
-       "pct": 14.0
+       "raw": 1.589,
+       "pct": 49.6
       }
      },
      "Leadership Orientation": {
       "WI": {
-       "raw": -0.12,
-       "pct": 23.9
+       "raw": 0.263,
+       "pct": 41.0
       }
      },
      "Humility": {
       "WI": {
-       "raw": -0.077,
-       "pct": 35.4
+       "raw": -0.13,
+       "pct": 22.4
       }
      },
      "Sincerity": {
       "WI": {
-       "raw": 0.663,
-       "pct": 41.2
+       "raw": 0.428,
+       "pct": 31.1
       }
      },
      "Empathy": {
       "WI": {
-       "raw": 1.003,
-       "pct": 62.0
+       "raw": 0.605,
+       "pct": 52.5
       }
      },
      "Cooperation": {
       "WI": {
-       "raw": 1.507,
-       "pct": 52.7
+       "raw": 0.699,
+       "pct": 22.5
       }
      },
      "Optimism": {
       "WI": {
-       "raw": 1.383,
-       "pct": 77.6
+       "raw": 1.052,
+       "pct": 67.8
       }
      },
      "Social Orientation": {
       "WI": {
-       "raw": 1.963,
-       "pct": 75.6
+       "raw": 1.017,
+       "pct": 51.4
       }
      },
      "Cautiousness": {
       "WI": {
-       "raw": 0.41,
-       "pct": 10.2
+       "raw": 0.271,
+       "pct": 6.5
       }
      },
      "Attention to Detail": {
       "WI": {
-       "raw": 1.903,
-       "pct": 38.9
+       "raw": 2.112,
+       "pct": 41.0
       }
      },
      "Dependability": {
       "WI": {
-       "raw": 1.847,
-       "pct": 9.8
+       "raw": 1.334,
+       "pct": 7.0
       }
      },
      "Integrity": {
       "WI": {
-       "raw": 0.687,
-       "pct": 6.6
+       "raw": 0.969,
+       "pct": 14.7
       }
      },
      "Stress Tolerance": {
       "WI": {
-       "raw": 1.08,
-       "pct": 29.0
+       "raw": 0.63,
+       "pct": 16.8
       }
      },
      "Self-Control": {
       "WI": {
-       "raw": 1.207,
-       "pct": 41.6
+       "raw": 0.735,
+       "pct": 20.0
       }
      }
     },
     "Job Zones": {
      "Job Zone": {
       "JZ": {
-       "raw": 2.333,
-       "pct": 28.1
+       "raw": 3.0,
+       "pct": 47.8
       }
      }
     }

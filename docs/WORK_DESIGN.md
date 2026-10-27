@@ -62,7 +62,13 @@ The O\*NET-hosted crosswalk has **no match-type column** (exact, close, broad an
 
 Every descriptor is kept raw and as a 0–100 **percentile across all O\*NET occupations**, so files with different scales (Importance 1–5, Level 0–7, Context 1–5, Extent 1–7, Job Zone 1–5) share one scale. A dimension's career score is the weighted mean of its elements' percentiles ("reverse" uses 100 − percentile).
 
-**Career paths with no linked occupations** (10, plus Content creation, forced; see `taxonomy/reference/onet/estimated_profiles.csv`) get a profile from 2–4 named analog occupations plus explicit percentile adjustments, each with a written rationale. They are marked `"provenance": "estimated"` in the data and must be marked in the UI.
+**Unrated occupations.** About 100 of O\*NET's 1,016 codes carry no ratings ("All Other" codes, Legislators, some 2019 codes). They are dropped per descriptor and the rest renormalised; a descriptor needs at least half the link weight rated. Each profile records its `data_share`, and coverage confidence is multiplied by the Work Activities share.
+
+**Estimated profiles** (18; `taxonomy/reference/onet/estimated_profiles.csv`) are built from 2–5 named, rated analog occupations, plus explicit percentile adjustments, each with a written rationale. They are marked `"provenance": "estimated"` in the data and must be marked in the UI. A career path gets one when:
+- it has no ESCO occupation (10);
+- its one ESCO occupation can't represent it (content creation);
+- less than half its link weight is rated (risk management, vocational instruction, politics). The build fails without an estimate here;
+- its crosswalk links describe a different job (management consulting, partnerships, professional strategy games, tattoo).
 
 ## A. Value modes: how you add value
 
