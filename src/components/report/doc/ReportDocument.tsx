@@ -9,12 +9,12 @@ import { ValuesList } from "@/components/results/ValuesList";
 import { ScaleTable } from "@/components/results/ScaleTable";
 import { ReasoningProfile } from "@/components/results/ReasoningProfile";
 import { BehaviourSummary } from "@/components/results/BehaviourSummary";
-import { TraitConnections } from "@/components/lanes/TraitConnections";
 import type { ProfileScores } from "@/lib/scoring/profile";
 import type { CareerPick } from "@/lib/lanes/types";
-import type { WrittenReport as Written } from "@/lib/report/schema";
+import type { StoredWrittenReport as Written } from "@/lib/report/schema";
+import type { WorkBest } from "@/lib/workdesign/best";
 import { effortLine, type Effort } from "@/lib/data/effort";
-import { formatIsoDot } from "@/lib/format";
+import { formatIsoDot, pad2 } from "@/lib/format";
 import { summarise } from "@/lib/view/profile";
 import { chapterTitles } from "@/lib/view/chapters";
 import { connections } from "@/lib/view/connections";
@@ -24,11 +24,15 @@ import { SummarySheet } from "./SummarySheet";
 import { Chapter } from "./Chapter";
 import { ChapterRail, type RailItem } from "./ChapterRail";
 import { MethodChapter } from "./MethodChapter";
+import { WorkBestBody } from "./WorkBestBody";
+import { CareerPathsBody } from "./CareerPathsBody";
 
 export type ReportDocumentProps = {
   profile: ProfileScores;
   person: { name: string; reportId: string };
   picks: CareerPick[];
+  /** "How you work best" (chapter 01); null when the profile has no Work Design data. */
+  workBest: WorkBest | null;
   effort: Effort;
   written: { report: Written; model: string; createdAt: Date } | null;
   /** The signed-in person's own report (shows the written-analysis chapter and its controls). */
@@ -42,29 +46,42 @@ export type ReportDocumentProps = {
 };
 
 /** The whole report as a document: cover, summary sheet, chapters, method and limits. */
-export function ReportDocument({ profile, person, picks, effort, written, own, tier, reportConfigured = false, mode = "screen", status, reveal }: ReportDocumentProps) {
+/** Chapter 01's headline: the archetype blend in words (a metaphor, so it names, never types). */
+function workBestTitle(wb: WorkBest | null): string {
+  const a = wb?.archetype;
+  if (!a) return "How you work best";
+  const [x, y] = a.top2;
+  return a.tentative || a.caveat ? `You sit between ${x!.archetype} and ${y!.archetype}` : `Mostly ${x!.archetype}, with ${y!.archetype} close behind`;
+}
+
+export function ReportDocument({ profile, person, picks, workBest, effort, written, own, tier, reportConfigured = false, mode = "screen", status, reveal }: ReportDocumentProps) {
   const print = mode === "print";
   const full = tier === "full";
   const lastSession = profile.sessions.filter((s) => s.completedAt).map((s) => s.completedAt!).sort().pop();
   const normed = profile.norms.status === "provisional";
   // Locked chapters show their name, not their finding.
   const titles = full ? chapterTitles(profile) : { interests: "Interests", values: "Work values", personality: "Personality", reasoning: "Reasoning", behaviour: "Behaviour tasks" };
-  const words = (id: string) => (written ? written.report.sections.find((s) => s.id === id)?.paragraphs : null);
+  // Reports before REPORT_FORMAT 4 called the career paths section "lanes".
+  const words = (id: string) => (written ? written.report.sections.find((s) => s.id === id || (id === "careers" && (s.id as string) === "lanes"))?.paragraphs : null);
   const answered = (xs: { answered: number }[]) => xs.reduce((n, x) => n + x.answered, 0);
   // The sheet's three lines: interests, personality and reasoning (values and paths have their own place on it).
   const brief = summarise(profile).filter((_, i, all) => all.length <= 3 || i !== 1);
   const lowConfidence = profile.sessions.filter((s) => s.confidence === "low");
   const hasAnalysis = own || !!written;
-  const chapters: RailItem[] = [
-    { id: "interests", n: "01", title: "Interests" },
-    { id: "values", n: "02", title: "Work values" },
-    { id: "personality", n: "03", title: "Personality" },
-    { id: "reasoning", n: "04", title: "Reasoning" },
-    { id: "behaviour", n: "05", title: "Behaviour tasks" },
-    { id: "fit", n: "06", title: "Your career fit" },
-    ...(hasAnalysis ? [{ id: "analysis", n: "07", title: "Written analysis" }] : []),
-    { id: "method", n: hasAnalysis ? "08" : "07", title: "Method and limits" },
-  ].map((c) => ({ ...c, locked: !full && c.id !== "method" ? true : undefined }));
+  // The answer first (how you work best, where that work exists), then the scores as the evidence behind it.
+  const order = [
+    { id: "workbest", title: "How you work best" },
+    { id: "careers", title: "Where this work exists" },
+    { id: "interests", title: "Interests" },
+    { id: "values", title: "Work values" },
+    { id: "personality", title: "Personality" },
+    { id: "reasoning", title: "Reasoning" },
+    { id: "behaviour", title: "Behaviour tasks" },
+    ...(hasAnalysis ? [{ id: "analysis", title: "Written analysis" }] : []),
+    { id: "method", title: "Method and limits" },
+  ];
+  const chapters: RailItem[] = order.map((c, i) => ({ ...c, n: pad2(i + 1), locked: !full && c.id !== "method" ? true : undefined }));
+  const n = (id: string) => chapters.find((c) => c.id === id)!.n;
   const rail: RailItem[] = [{ id: "cover", n: "—", title: "Cover" }, { id: "summary", n: "—", title: "Summary" }, ...chapters];
   const lock = (id: string) => (!full && id !== "method" ? `${LOCKED_TEXT[id]} Included in the full report.` : undefined);
 
@@ -92,7 +109,31 @@ export function ReportDocument({ profile, person, picks, effort, written, own, t
       ) : null}
       <SummarySheet profile={profile} name={person.name} reportId={person.reportId} paths={picks} brief={brief} />
 
-      <Chapter id="interests" n="01" kicker="Interests · O*NET® Interest Profiler" title={titles.interests} words={words("interests")} locked={lock("interests")}>
+      <Chapter id="workbest" n={n("workbest")} kicker="How you work best · Work Design model (provisional)" title={full ? workBestTitle(workBest) : "How you work best"} words={words("workbest")} locked={lock("workbest")}>
+        {workBest && workBest.modes.some((m) => m.value !== null) ? (
+          <WorkBestBody
+            wb={workBest}
+            workday={written?.report.bestWorkday}
+            workdayEmpty={
+              <p className="text-body text-ink-2">
+                {written
+                  ? "Your best workday couldn't be written to the standard this time (every sentence must trace to your results), so it is left out. It is tried again when your written report next updates."
+                  : own
+                    ? "Your best workday is written by Claude from these results once you ask for the written report (in the Written analysis chapter)."
+                    : "In a real report, Claude describes the person's best workday here, from these results only."}
+              </p>
+            }
+          />
+        ) : (
+          <EmptyState title="Not done yet." body="Sessions S1 and S2 unlock this chapter." action={<ButtonLink href="/assess" size="sm">Open assessment</ButtonLink>} />
+        )}
+      </Chapter>
+
+      <Chapter id="careers" n={n("careers")} kicker="Career paths · O*NET® occupational data" title="Where this work exists" words={words("careers")} locked={lock("careers")}>
+        {picks.length ? <CareerPathsBody picks={picks} connections={connections(profile, picks.slice(0, 5))} print={print} /> : <EmptyState title="Not done yet." body="Sessions S1 and S2 unlock your career paths." />}
+      </Chapter>
+
+      <Chapter id="interests" n={n("interests")} kicker="Interests · O*NET® Interest Profiler" title={titles.interests} words={words("interests")} locked={lock("interests")}>
         {profile.interests ? (
           <>
             <InterestPanel interests={profile.interests} />
@@ -103,11 +144,11 @@ export function ReportDocument({ profile, person, picks, effort, written, own, t
         )}
       </Chapter>
 
-      <Chapter id="values" n="02" kicker="Work values · O*NET® Work Importance Locator" title={titles.values} words={words("values")} locked={lock("values")}>
+      <Chapter id="values" n={n("values")} kicker="Work values · O*NET® Work Importance Locator" title={titles.values} words={words("values")} locked={lock("values")}>
         {profile.values ? <ValuesList values={profile.values} /> : <EmptyState title="Not done yet." body="Session S1 unlocks this chapter." />}
       </Chapter>
 
-      <Chapter id="personality" n="03" kicker="Personality · IPIP-NEO-120 + Honesty-Humility" title={titles.personality} words={words("personality")} locked={lock("personality")}>
+      <Chapter id="personality" n={n("personality")} kicker="Personality · IPIP-NEO-120 + Honesty-Humility" title={titles.personality} words={words("personality")} locked={lock("personality")}>
         {profile.personality ? (
           <>
             <ScaleTable domains={profile.personality.domains} facets={profile.personality.facets} extra={profile.personality.honestyHumility} />
@@ -118,7 +159,7 @@ export function ReportDocument({ profile, person, picks, effort, written, own, t
         )}
       </Chapter>
 
-      <Chapter id="reasoning" n="04" kicker="Reasoning · generated tasks · provisional norms" title={titles.reasoning} words={words("reasoning")} locked={lock("reasoning")}>
+      <Chapter id="reasoning" n={n("reasoning")} kicker="Reasoning · generated tasks · provisional norms" title={titles.reasoning} words={words("reasoning")} locked={lock("reasoning")}>
         {profile.reasoning ? (
           <ReasoningProfile reasoning={profile.reasoning} />
         ) : (
@@ -126,20 +167,12 @@ export function ReportDocument({ profile, person, picks, effort, written, own, t
         )}
       </Chapter>
 
-      <Chapter id="behaviour" n="05" kicker="Behaviour tasks" title={titles.behaviour} words={words("behaviour")} locked={lock("behaviour")}>
+      <Chapter id="behaviour" n={n("behaviour")} kicker="Behaviour tasks" title={titles.behaviour} words={words("behaviour")} locked={lock("behaviour")}>
         {profile.behaviour ? <BehaviourSummary behaviour={profile.behaviour} /> : <EmptyState title="Not done yet." body="Session S4 unlocks this chapter." />}
       </Chapter>
 
-      <Chapter id="fit" n="06" kicker="Your career fit" title="How your profile connects to career paths" words={words("lanes")} locked={lock("fit")}>
-        <TraitConnections data={connections(profile, picks.slice(0, 5))} />
-        <div className="doc-screen mt-8 flex flex-wrap items-center gap-4">
-          <ButtonLink href="/lanes">Open your Career map</ButtonLink>
-          <span className="text-small text-ink-3">All 205 career paths, with day-to-day work, entry routes and where you&apos;d start.</span>
-        </div>
-      </Chapter>
-
       {hasAnalysis ? (
-        <Chapter id="analysis" n="07" kicker="Written analysis · Claude" title={written && full ? written.report.headline : "Your profile, in words"} locked={lock("analysis")}>
+        <Chapter id="analysis" n={n("analysis")} kicker="Written analysis · Claude" title={written && full ? written.report.headline : "Your profile, in words"} locked={lock("analysis")}>
           {written ? (
             <details className="group border-y border-rule-strong" open={print || undefined}>
               <summary className="flex cursor-pointer list-none items-center gap-3 py-4 text-body text-ink [&::-webkit-details-marker]:hidden">
@@ -167,7 +200,7 @@ export function ReportDocument({ profile, person, picks, effort, written, own, t
         </Chapter>
       ) : null}
 
-      <MethodChapter n={hasAnalysis ? "08" : "07"} profile={profile} />
+      <MethodChapter n={n("method")} profile={profile} />
     </article>
   );
   if (print) return article;

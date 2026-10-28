@@ -2,12 +2,18 @@ import { beforeAll, describe, expect, it, vi } from "vitest";
 import Anthropic from "@anthropic-ai/sdk";
 import { addSelfScores } from "@/lib/scoring/self";
 import { sampleProfile } from "@/lib/mock/profile";
-import { buildReportFacts, type ReportLane } from "@/lib/report/facts";
-import { withoutPay, type WrittenReport } from "@/lib/report/schema";
+import { buildReportFacts, type ReportCareerPath } from "@/lib/report/facts";
+import { withoutPay, type BestWorkday, type WrittenReport } from "@/lib/report/schema";
+import { claimProblems } from "@/lib/report/claims";
+import { workdayProblems } from "@/lib/report/workday";
 import { relativeOf } from "@/lib/view/profile";
+import { personWorkDesign } from "@/lib/workdesign/person";
+import { workBest } from "@/lib/workdesign/best";
+import { LANE_PROFILES_V2, matchV2 } from "@/lib/matching/v2";
+import { personInputs } from "@/lib/workdesign/person";
 
 vi.stubEnv("PGLITE_DATA", "memory");
-const { ReportError, REPORT_MODEL, unsupportedNumbers, writeReport } = await import("@/lib/report/generate");
+const { ReportError, REPORT_MODEL, unsupportedNumbers, writeReport, writeWorkday } = await import("@/lib/report/generate");
 const { reportFor } = await import("@/lib/report/service");
 const { getDb, schema } = await import("@/lib/db");
 
@@ -19,8 +25,93 @@ const unnormed = addSelfScores({
   interests: sampleProfile.interests && { ...sampleProfile.interests, scales: sampleProfile.interests.scales.map(strip) },
   personality: sampleProfile.personality && { ...sampleProfile.personality, facets: sampleProfile.personality.facets.map(strip), domains: sampleProfile.personality.domains.map(strip) },
 });
-const lane: ReportLane = { name: "B2B sales", family: "Sales", band: "strong", drivers: ["Enterprising interests"], entry: "Open", dayToDay: ["Finding new customers"], listedBecause: "strong_fit" };
+const lane: ReportCareerPath = {
+  name: "B2B sales",
+  family: "Sales",
+  band: "strong",
+  fulfilmentFit: { mean: 65.2, p10: 62.1, p90: 68 },
+  abilityFit: null,
+  estimatedProfile: false,
+  drivers: ["Enterprising interests"],
+  frictions: ["Autonomy: less than you need"],
+  entry: "Open",
+  dayToDay: ["Selling or Influencing Others"],
+  listedBecause: "strong_fit",
+};
 const facts = buildReportFacts(unnormed, [lane], { current: "salgssjef", considering: ["YouTuber"] });
+const wb = workBest(personWorkDesign(unnormed), matchV2({ inputs: personInputs(unnormed) }, { draws: 60 }), LANE_PROFILES_V2);
+const factsWd = buildReportFacts(unnormed, [lane], { current: null, considering: [] }, wb);
+const [first, second] = wb.archetype!.top2;
+const other = wb.modes.find((m) => m.archetype !== first!.archetype && m.archetype !== second!.archetype)!;
+
+/** A best workday that passes: about 150 words, every sentence sourced, nothing named without its id. */
+const goodDay = (): BestWorkday => ({
+  sentences: [
+    { text: "Your day starts with a problem worth taking apart, and you get to choose how to approach it.", sources: ["mode.analyse", "env.autonomy"] },
+    { text: "Most of the morning goes on finding out what is really going on, reading, comparing and asking good questions.", sources: ["mode.analyse"] },
+    { text: "Around midday you share what you found with a small group who want to hear it, and the conversation sharpens the idea.", sources: ["env.social", "mode.teach"] },
+    { text: "Nobody stands over you; the deadline is real but far enough away that you can do the work properly.", sources: ["env.autonomy", "env.pace"] },
+    { text: "In the afternoon the problem changes shape, so the work never settles into the same loop for long.", sources: ["env.variety"] },
+    { text: "You end the day having made something clearer than it was, which is the kind of value your profile leans toward.", sources: ["mode.analyse", "mode.create"] },
+    { text: `As a blend, you sit between ${first!.archetype} and ${second!.archetype}, a metaphor for that measured pattern.`, sources: [first!.id, second!.id] },
+  ],
+});
+
+describe("claims check", () => {
+  it("rejects brain, prediction, pay and lane wording, and allows the metaphor and measured scale names", () => {
+    expect(claimProblems("Your dopamine spikes when you sell.")).toHaveLength(1);
+    expect(claimProblems("You will succeed as a founder.")).toHaveLength(1);
+    expect(claimProblems("This lane pays well.").length).toBe(2);
+    expect(claimProblems("You're wired for variety, and your Neuroticism is low relative to your other traits.")).toEqual([]);
+  });
+});
+
+describe("best workday check", () => {
+  it("accepts a passage where every sentence traces to the Work Design JSON", () => {
+    expect(workdayProblems(goodDay(), wb)).toEqual([]);
+  });
+
+  it("rejects unsourced sentences, unknown ids, and modes, conditions or archetypes named without their id", () => {
+    const d = goodDay();
+    d.sentences[0]!.sources = [];
+    d.sentences[1]!.sources = ["mode.juggle"];
+    d.sentences[2]!.text = "You get plenty of autonomy over lunch.";
+    d.sentences[3]!.text = `A ${other.archetype} would love this afternoon.`;
+    const p = workdayProblems(d, wb).join("\n");
+    expect(p).toMatch(/Sentence 1 lists no dimension ids/);
+    expect(p).toMatch(/mode\.juggle/);
+    expect(p).toMatch(/Sentence 3 names autonomy without listing env\.autonomy/);
+    expect(p).toMatch(new RegExp(`Sentence 4 names the archetype ${other.archetype}`));
+  });
+
+  it("rejects figures, comparisons with others, banned claims, several sentences in one item, and the wrong length", () => {
+    const d = goodDay();
+    d.sentences[0]!.text = "You beat 87% of people at this.";
+    d.sentences[1]!.text = "Unlike most people, you thrive on it.";
+    d.sentences[2]!.text = "Your brain lights up in a new lane.";
+    d.sentences[3]!.text = "You work alone. Then you meet people.";
+    const p = workdayProblems(d, wb).join("\n");
+    expect(p).toMatch(/figures .*87/);
+    expect(p).toMatch(/most people/);
+    expect(p).toMatch(/brain/);
+    expect(p).toMatch(/"lane"/);
+    expect(p).toMatch(/Sentence 4 is more than one sentence/);
+    expect(workdayProblems({ sentences: goodDay().sentences.slice(0, 2) }, wb).join(" ")).toMatch(/words; it must be/);
+  });
+
+  it("is written from the Work Design JSON only, rewritten once with the problems listed, and left out if it still fails", async () => {
+    const bad: BestWorkday = { sentences: [{ text: "You thrive.", sources: [] }] };
+    const { client, parse } = fakeClient(bad as never, goodDay() as never);
+    expect(await writeWorkday(factsWd, client)).toEqual(goodDay());
+    const req = JSON.stringify((parse.mock.calls[0] as unknown[])[0]);
+    expect(req).toContain("mode.analyse");
+    expect(req).not.toContain("salgssjef");
+    expect(req).not.toContain("B2B sales");
+    expect(JSON.stringify((parse.mock.calls[1] as unknown[])[0])).toContain("lists no dimension ids");
+    const again = fakeClient(bad as never, bad as never);
+    expect(await writeWorkday(factsWd, again.client)).toBeNull();
+  });
+});
 
 const report = (text: string): WrittenReport => ({
   headline: "You lean toward persuading and leading.",
@@ -49,6 +140,8 @@ describe("older reports without pay", () => {
     expect(clean.pathsToLookInto).toEqual(["How people get in: an entry-level role.", "Day to day: finding customers."]);
     expect(clean.sections[0]!.paragraphs).toEqual([]);
     expect(withoutPay(report("Learning and patience are measured by tasks."))).toEqual(report("Learning and patience are measured by tasks."));
+    const withDay = { ...report("Fine."), bestWorkday: { sentences: [{ text: "You earn well.", sources: ["mode.influence"] }, { text: "You like a puzzle.", sources: ["mode.analyse"] }] } };
+    expect(withoutPay(withDay).bestWorkday!.sentences.map((x) => x.text)).toEqual(["You like a puzzle."]);
   });
 });
 
@@ -63,7 +156,8 @@ describe("report facts", () => {
     const label = { strength: "relative strength", weakness: "relative weakness", none: null };
     for (const a of facts.interests!.areas) expect(a.tag).toBe(label[rel[unnormed.interests!.scales.find((s) => s.label === a.area)!.id]!]);
     expect(facts.interests!.areas.some((a) => a.tag)).toBe(true);
-    expect(facts.lanes).toEqual([lane]);
+    expect(facts.careerPaths).toEqual([lane]);
+    expect(JSON.stringify(factsWd.workDesign)).not.toMatch(/\d\.\d{3,}/);
   });
 });
 
@@ -91,6 +185,20 @@ describe("writeReport", () => {
     expect(parse).toHaveBeenCalledTimes(2);
     expect(JSON.stringify((parse.mock.calls[1] as unknown[])[0])).toContain("87");
     expect(r.report.overview[0]).toMatch(/strongest/);
+  });
+
+  it("rewrites once when a draft makes a claim the report never makes", async () => {
+    const { client, parse } = fakeClient(report("Your brain is built for selling."), report("Selling draws on your strongest interest."));
+    await writeReport(facts, client);
+    expect(parse).toHaveBeenCalledTimes(2);
+    expect(JSON.stringify((parse.mock.calls[1] as unknown[])[0])).toContain("brain");
+  });
+
+  it("stores the best workday with the report when the Work Design data allows one", async () => {
+    const { client, parse } = fakeClient(report("Clean draft."), goodDay() as never);
+    const r = await writeReport(factsWd, client);
+    expect(parse).toHaveBeenCalledTimes(2);
+    expect(r.report.bestWorkday).toEqual(goodDay());
   });
 
   it("rejects the report if the rewrite still invents figures", async () => {

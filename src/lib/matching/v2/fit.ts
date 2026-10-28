@@ -241,10 +241,11 @@ function modesR(pt: PersonPoint, l: LaneCtx, cfg: V2Config): number | null {
   return b ? dot(regularised(pairs.map((p) => p[0]), cfg.correlationFloor), b) : 0;
 }
 
-const penaltyOf = (shape: Dimension["penalty"], p: number, c: number): number => (shape === "deficit" ? Math.max(0, p - c) : shape === "excess" ? Math.max(0, c - p) : Math.abs(p - c));
+/** Penalty points for a career value c against the person's p, on the side that can hurt (0 = no shortfall). Pure. */
+export const penaltyOf = (shape: Dimension["penalty"], p: number, c: number): number => (shape === "deficit" ? Math.max(0, p - c) : shape === "excess" ? Math.max(0, c - p) : Math.abs(p - c));
 
 /** How strong the need is on this dimension, given which side of it can hurt. */
-const needWeight = (shape: Dimension["penalty"], p: number, floor: number) =>
+export const needWeight = (shape: Dimension["penalty"], p: number, floor: number) =>
   floor + (shape === "deficit" ? Math.max(0, p - 50) : shape === "excess" ? Math.max(0, 50 - p) : Math.abs(p - 50)) / 50;
 
 /* ------------------------------------------------------------------ fit ---- */

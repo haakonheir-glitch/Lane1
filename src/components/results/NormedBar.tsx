@@ -2,25 +2,7 @@ import type { Normed } from "@/lib/scoring/core";
 import type { SelfScore } from "@/lib/scoring/types";
 import { fmtPct, pctBand, tToBar } from "@/lib/view/profile";
 import { cn } from "@/lib/cn";
-
-/**
- * The instrument scale shared by every score bar: a hairline with minor ticks (like a dial),
- * the 90% interval as a solid band, the score as a crisp point, and the reference (median or
- * the person's own average) as a full-height tick. Positions are 0–100 (% of the width).
- */
-function Gauge({ point, lo, hi, ticks, refTitle, emphasis }: { point: number; lo: number; hi: number; ticks: number[]; refTitle: string; emphasis?: boolean }) {
-  return (
-    <>
-      <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-rule-strong" />
-      {ticks.map((t) => (
-        <div key={t} className="absolute top-1/2 h-1.5 w-px -translate-y-1/2 bg-rule-strong" style={{ left: `${t}%` }} />
-      ))}
-      <div className={cn("absolute top-1/2 h-2 -translate-y-1/2", emphasis ? "bg-accent-wash" : "bg-data-band")} style={{ left: `${lo}%`, width: `${Math.max(0.5, hi - lo)}%` }} />
-      <div className="absolute inset-y-0 w-px bg-data-ref" style={{ left: "50%" }} title={refTitle} />
-      <div className={cn("absolute inset-y-0 w-[2px] -translate-x-1/2", emphasis ? "bg-accent" : "bg-ink")} style={{ left: `${point}%` }} />
-    </>
-  );
-}
+import { IntervalScale as Gauge } from "@/components/data/IntervalScale";
 
 const T_TICKS = [30, 40, 60, 70].map(tToBar);
 

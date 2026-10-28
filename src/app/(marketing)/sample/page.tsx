@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 /** The main marketing asset: a full report, built by the real report components from a fictional profile. */
 export default async function SamplePage() {
-  const { profile, picks, person, effort } = await getSampleReport();
+  const { profile, picks, workBest, person, effort } = await getSampleReport();
   return (
     <div className="page pt-12 pb-24 sm:pt-16">
       <div className="mb-10 flex flex-col gap-6 border-b border-rule pb-10 md:flex-row md:items-end md:justify-between">
@@ -31,7 +31,7 @@ export default async function SamplePage() {
           </ButtonLink>
         </div>
       </div>
-      <ReportDocument profile={profile} person={person} picks={picks} effort={effort} written={null} own={false} tier="full" />
+      <ReportDocument profile={profile} person={person} picks={picks} workBest={workBest} effort={effort} written={null} own={false} tier="full" />
       <section aria-labelledby="map-h" className="mt-8 border border-paper-edge bg-paper p-8 sm:p-12">
         <p className="text-small text-ink-3">Career map · excerpt</p>
         <h2 id="map-h" className="mt-3 text-h2 font-medium text-ink">

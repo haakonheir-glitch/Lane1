@@ -5,16 +5,25 @@
 import type { ProfileScores } from "../scoring/profile";
 import type { ScaleScore } from "../scoring/types";
 import { pctBand, relativeOf } from "../view/profile";
+import type { WorkBest } from "../workdesign/best";
 
-export type ReportLane = {
+type Range = { mean: number; p10: number; p90: number };
+
+export type ReportCareerPath = {
   name: string;
   family: string;
-  band: "strong" | "testing" | "unlikely" | "insufficient";
+  band: "strong" | "possible" | "unlikely" | "insufficient";
+  /** Matching v2: fulfilment fit (50 = the person's average career path) and ability fit (0–100), 10th–90th percentile of the draws. */
+  fulfilmentFit: Range | null;
+  abilityFit: Range | null;
+  /** True when the career's O*NET profile is estimated from analog occupations, not linked. */
+  estimatedProfile: boolean;
   drivers: string[];
+  frictions: string[];
   entry: string;
-  /** What the work demands day to day (the career path's demand tags, in words). */
+  /** What the work involves day to day: the career's top O*NET work activities (or, without them, its demand tags). */
   dayToDay: string[];
-  /** Why this lane is in the facts: a strong fit, or one the person said they're considering / work in now. */
+  /** Why this career path is in the facts: a strong fit, or one the person said they're considering / work in now. */
   listedBecause: "strong_fit" | "considering" | "current_job";
 };
 
@@ -26,7 +35,11 @@ const vs = (s: ScaleScore) => (s.normed ? r1(s.normed.z) : s.self ? r1(s.self.z)
 
 const TAG = { strength: "relative strength", weakness: "relative weakness", none: null } as const;
 
-export function buildReportFacts(p: ProfileScores, lanes: ReportLane[], situation: { current: string | null; considering: string[] }) {
+/**
+ * `workDesign` is the "How you work best" data (src/lib/workdesign/best.ts) with its dimension ids;
+ * the best workday is written from it alone (src/lib/report/workday.ts).
+ */
+export function buildReportFacts(p: ProfileScores, careerPaths: ReportCareerPath[], situation: { current: string | null; considering: string[] }, workDesign: WorkBest | null = null) {
   const basis = p.norms.status === "provisional" ? "population" : "self";
   const interestTags = p.interests ? relativeOf(p.interests.scales) : {};
   const domainTags = p.personality ? relativeOf(p.personality.domains) : {};
@@ -81,7 +94,8 @@ export function buildReportFacts(p: ProfileScores, lanes: ReportLane[], situatio
     dataQuality: p.sessions.filter((s) => s.confidence === "low").map((s) => ({ session: s.id, issues: s.flags })),
     missingSessions: p.completeness.missing,
     situation,
-    lanes,
+    workDesign,
+    careerPaths,
   };
 }
 

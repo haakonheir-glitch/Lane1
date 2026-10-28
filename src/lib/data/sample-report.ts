@@ -4,9 +4,9 @@
  */
 import "server-only";
 import { bankEffort } from ".";
-import { getSamplePicks, getSampleProfile, getSampleUser } from "./sample";
+import { getSamplePicks, getSampleProfile, getSampleUser, getSampleWorkBest } from "./sample";
 
 export async function getSampleReport() {
-  const [profile, picks, user] = await Promise.all([getSampleProfile(), getSamplePicks(), getSampleUser()]);
-  return { profile, picks, person: { name: user.name, reportId: user.reportId }, effort: bankEffort() };
+  const [profile, picks, user, workBest] = await Promise.all([getSampleProfile(), getSamplePicks(), getSampleUser(), getSampleWorkBest()]);
+  return { profile, picks, workBest, person: { name: user.name, reportId: user.reportId }, effort: bankEffort() };
 }

@@ -1,7 +1,8 @@
 /** The written report's fixed shape (structured output), so every report reads the same way. */
 import { z } from "zod";
 
-export const REPORT_SECTIONS = ["interests", "values", "personality", "reasoning", "behaviour", "lanes"] as const;
+/** Section ids: "workbest" is "How you work best", "careers" is "Where this work exists" (reports before REPORT_FORMAT 4 used "lanes" for it). */
+export const REPORT_SECTIONS = ["workbest", "careers", "interests", "values", "personality", "reasoning", "behaviour"] as const;
 
 export const WrittenReportSchema = z.object({
   headline: z.string().describe("One sentence that captures the profile, in plain words."),
@@ -23,19 +24,38 @@ export const WrittenReportSchema = z.object({
 
 export type WrittenReport = z.infer<typeof WrittenReportSchema>;
 
-/** All prose in a report, for checks. */
+/**
+ * The best workday (Phase 3): about 150 words in sentences, each carrying the ids of the Work Design
+ * dimensions it relies on ("mode.analyse", "env.autonomy"). Written in a separate call from the Work
+ * Design JSON alone, and checked sentence by sentence (src/lib/report/workday.ts).
+ */
+export const BestWorkdaySchema = z.object({
+  sentences: z
+    .array(
+      z.object({
+        text: z.string().describe("One sentence."),
+        sources: z.array(z.string()).describe('The ids of the dimensions in the JSON this sentence relies on, e.g. "mode.analyse" or "env.autonomy". At least one.'),
+      }),
+    )
+    .describe("About 150 words in total, as single sentences in reading order."),
+});
+export type BestWorkday = z.infer<typeof BestWorkdaySchema>;
+
+/** What is stored: the report, plus the best workday when it passed its check (older reports have none). */
+export type StoredWrittenReport = WrittenReport & { bestWorkday?: BestWorkday | null };
+
 /**
  * Reports written before REPORT_FORMAT 3 could describe pay ("winner-take-all", "how the pay
  * works"); Lane no longer shows income labels. Until such a report is rewritten, drop every
  * sentence that talks about pay, income or earnings. Pure.
  */
-const PAY = /\b(pay|pays|paid|income|incomes|earn|earns|earning|earnings|salary|salaries|wage|wages|commission|winner-take-all)\b/i;
+export const PAY = /\b(pay|pays|paid|income|incomes|earn|earns|earning|earnings|salary|salaries|wage|wages|commission|winner-take-all)\b/i;
 const dropPaySentences = (t: string) =>
   t
     .split(/(?<=[.!?])\s+/)
     .filter((s) => !PAY.test(s))
     .join(" ");
-export function withoutPay(r: WrittenReport): WrittenReport {
+export function withoutPay<R extends StoredWrittenReport>(r: R): R {
   const para = (xs: string[]) => xs.map(dropPaySentences).filter((x) => x.trim());
   return {
     ...r,
@@ -43,7 +63,9 @@ export function withoutPay(r: WrittenReport): WrittenReport {
     sections: r.sections.map((s) => ({ ...s, paragraphs: para(s.paragraphs) })),
     pathsToLookInto: r.pathsToLookInto ? para(r.pathsToLookInto) : r.pathsToLookInto,
     caveats: para(r.caveats),
+    ...(r.bestWorkday ? { bestWorkday: { sentences: r.bestWorkday.sentences.filter((x) => !PAY.test(x.text)) } } : {}),
   };
 }
 
+/** All prose in a report, for checks. */
 export const reportText = (r: WrittenReport) => [r.headline, ...r.overview, ...r.sections.flatMap((s) => [s.title, ...s.paragraphs]), ...(r.pathsToLookInto ?? []), ...r.caveats].join("\n");

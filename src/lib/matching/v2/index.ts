@@ -7,7 +7,7 @@ import offsetsFile from "../../../../taxonomy/derived/lane_offsets_v2.json";
 import type { FitV2, LaneProfileV2, LaneProfilesFile, PersonProfile } from "./types";
 import { computeFit as computeFitIn, matchAllV2, type MatchOptions, type Offsets } from "./fit";
 
-export { matchAllV2, facetShares, profileSeed, populationOffsets, type Offsets } from "./fit";
+export { matchAllV2, facetShares, profileSeed, populationOffsets, penaltyOf, needWeight, type Offsets } from "./fit";
 export { topFive, bestByDirection, rankV2, type TopPick } from "./present";
 export { V2_CONFIG } from "./config";
 export * from "./types";

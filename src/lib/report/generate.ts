@@ -5,9 +5,13 @@
 import "server-only";
 import Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
+import type { z } from "zod";
 import { numbersIn, type ReportFacts } from "./facts";
 import { REPORT_SYSTEM, reportUserMessage } from "./prompt";
-import { WrittenReportSchema, reportText, type WrittenReport } from "./schema";
+import { BestWorkdaySchema, WrittenReportSchema, reportText, type BestWorkday, type StoredWrittenReport, type WrittenReport } from "./schema";
+import { claimProblems } from "./claims";
+import { WORKDAY_SYSTEM, canWriteWorkday, workdayProblems, workdayUserMessage } from "./workday";
+import { BRAND } from "../brand";
 
 export const REPORT_MODEL = "claude-opus-5-5";
 
@@ -34,8 +38,11 @@ export function unsupportedNumbers(report: WrittenReport, facts: ReportFacts): s
   return [...new Set(found.filter((n) => !allowed.has(n) && !(Number.isInteger(Number(n)) && Number(n) <= 10)))];
 }
 
-async function ask(c: ParseClient, facts: ReportFacts, correction?: string) {
-  const content = reportUserMessage(JSON.stringify(facts, null, 1)) + (correction ? `\n\n${correction}` : "");
+/** Everything the report must not say, beyond numbers (claims.ts), across all its prose. */
+export const reportClaimProblems = (report: WrittenReport) => claimProblems(reportText(report));
+
+/** One structured-output call; API failures become ReportErrors the person can read. */
+async function askParsed<S extends z.ZodType>(c: ParseClient, schema: S, system: string, content: string): Promise<{ parsed: z.infer<S>; model: string }> {
   try {
     const res = await c.beta.messages.parse({
       model: REPORT_MODEL,
@@ -44,13 +51,13 @@ async function ask(c: ParseClient, facts: ReportFacts, correction?: string) {
       // fallback model inside the same call (enabled by default for this model).
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
-      output_config: { effort: "high", format: betaZodOutputFormat(WrittenReportSchema) },
-      system: REPORT_SYSTEM,
+      output_config: { effort: "high", format: betaZodOutputFormat(schema) },
+      system,
       messages: [{ role: "user", content }],
     });
     if (res.stop_reason === "refusal") throw new ReportError("The report couldn't be written this time. Try again later.");
     if (res.stop_reason === "max_tokens" || !res.parsed_output) throw new ReportError("The report came back incomplete. Try again.");
-    return { report: res.parsed_output, model: res.model };
+    return { parsed: res.parsed_output as z.infer<S>, model: res.model };
   } catch (e) {
     if (e instanceof ReportError) throw e;
     if (e instanceof Anthropic.BadRequestError && /workspace/i.test(e.message))
@@ -66,15 +73,44 @@ async function ask(c: ParseClient, facts: ReportFacts, correction?: string) {
   }
 }
 
+async function ask(c: ParseClient, facts: ReportFacts, correction?: string) {
+  const r = await askParsed(c, WrittenReportSchema, REPORT_SYSTEM, reportUserMessage(JSON.stringify(facts, null, 1)) + (correction ? `\n\n${correction}` : ""));
+  return { report: r.parsed, model: r.model };
+}
+
+const reportProblems = (report: WrittenReport, facts: ReportFacts) => {
+  const nums = unsupportedNumbers(report, facts);
+  return [...(nums.length ? [`numbers that aren't in the scores: ${nums.join(", ")}`] : []), ...reportClaimProblems(report)];
+};
+
 /**
- * Writes the report. If it cites a number that isn't in the scores, it is rewritten once with
- * the offending numbers named; if it still does, it is rejected rather than shown.
+ * Writes the best workday from the Work Design JSON alone. If any sentence fails the check
+ * (workday.ts), it is rewritten once with the problems listed; if it still fails, null: the
+ * report is saved without it and the chapter says the passage couldn't be written to standard.
  */
-export async function writeReport(facts: ReportFacts, c: ParseClient = client()): Promise<{ report: WrittenReport; model: string }> {
-  const first = await ask(c, facts);
-  const bad = unsupportedNumbers(first.report, facts);
+export async function writeWorkday(facts: ReportFacts, c: ParseClient): Promise<BestWorkday | null> {
+  const wb = facts.workDesign;
+  if (!canWriteWorkday(wb)) return null;
+  const message = workdayUserMessage(JSON.stringify(wb, null, 1));
+  const first = (await askParsed(c, BestWorkdaySchema, WORKDAY_SYSTEM, message)).parsed;
+  const bad = workdayProblems(first, wb);
   if (!bad.length) return first;
-  const second = await ask(c, facts, `Your previous draft used numbers that aren't in the scores: ${bad.join(", ")}. Write the report again without any number that isn't in the scores.`);
-  if (unsupportedNumbers(second.report, facts).length) throw new ReportError("The report didn't pass Lane's accuracy check (it cited figures that aren't in your scores), so it wasn't saved. Try again.");
-  return second;
+  const second = (await askParsed(c, BestWorkdaySchema, WORKDAY_SYSTEM, `${message}\n\nYour previous draft failed the check:\n- ${bad.join("\n- ")}\nWrite it again so that every sentence passes.`)).parsed;
+  return workdayProblems(second, wb).length ? null : second;
+}
+
+/**
+ * Writes the report, then the best workday. If the report cites a number that isn't in the scores
+ * or makes a claim it may never make (claims.ts), it is rewritten once with the problems named;
+ * if it still does, it is rejected rather than shown.
+ */
+export async function writeReport(facts: ReportFacts, c: ParseClient = client()): Promise<{ report: StoredWrittenReport; model: string }> {
+  let written = await ask(c, facts);
+  const bad = reportProblems(written.report, facts);
+  if (bad.length) {
+    written = await ask(c, facts, `Your previous draft broke the rules: ${bad.join("; ")}. Write the report again without any of these.`);
+    if (reportProblems(written.report, facts).length)
+      throw new ReportError(`The report didn't pass ${BRAND.name}'s accuracy check (it cited figures or made claims your scores don't support), so it wasn't saved. Try again.`);
+  }
+  return { report: { ...written.report, bestWorkday: await writeWorkday(facts, c) }, model: written.model };
 }

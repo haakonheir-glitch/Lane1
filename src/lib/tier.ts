@@ -9,6 +9,8 @@ export const reportTier = (): ReportTier => (process.env.REPORT_TIER === "free" 
 
 /** One sentence per locked chapter: what the full report adds. */
 export const LOCKED_TEXT: Record<string, string> = {
+  workbest: "Your archetype blend, your nine value modes with their ranges, your best workday in words, and what drains you.",
+  careers: "Your closest career paths with fulfilment fit and ability fit, and how your strengths connect to them.",
   interests: "Your six interest areas on the radar, with scores, ranges and what stands out.",
   values: "All six work values in the order you ranked them.",
   personality: "Five personality domains and 30 facets, each with its 90% range.",

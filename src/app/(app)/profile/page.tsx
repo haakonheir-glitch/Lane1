@@ -5,13 +5,13 @@ import { SampleBanner } from "@/components/report/SampleBanner";
 import { ReportDocument } from "@/components/report/doc/ReportDocument";
 import { ReportRefresher } from "@/components/report/doc/ReportRefresher";
 import { PrintButton } from "@/components/report/doc/PrintButton";
-import { getEffort, getMyReport, getProfileView, getSampleUser, getTopCareerPaths, getUser } from "@/lib/data";
+import { getEffort, getMyReport, getProfileView, getSampleUser, getTopCareerPaths, getUser, getWorkBest } from "@/lib/data";
 import { reportTier } from "@/lib/tier";
 
 export const metadata: Metadata = { title: "Profile report" };
 
 export default async function ProfilePage() {
-  const [{ profile, source }, me, sample, written, picks, effort] = await Promise.all([getProfileView(), getUser(), getSampleUser(), getMyReport(), getTopCareerPaths(), getEffort()]);
+  const [{ profile, source }, me, sample, written, picks, effort, workBest] = await Promise.all([getProfileView(), getUser(), getSampleUser(), getMyReport(), getTopCareerPaths(), getEffort(), getWorkBest()]);
   const own = source === "own";
   const person = own ? me : sample;
   const tier = reportTier();
@@ -39,6 +39,7 @@ export default async function ProfilePage() {
         profile={profile}
         person={person}
         picks={picks}
+        workBest={workBest}
         effort={effort}
         written={written}
         own={own}

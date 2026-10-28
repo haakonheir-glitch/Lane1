@@ -4,6 +4,7 @@ import { BRAND } from "@/lib/brand";
 import { LIMITATIONS } from "@/lib/view/profile";
 import { basisLine } from "@/lib/view/findings";
 import { OnetAttribution } from "@/components/report/OnetAttribution";
+import { OnetDbAttribution } from "@/components/report/OnetDbAttribution";
 import { Chapter } from "./Chapter";
 
 const answered = (xs: { answered: number }[]) => xs.reduce((n, x) => n + x.answered, 0);
@@ -32,6 +33,13 @@ export function MethodChapter({ n, profile }: { n: string; profile: ProfileScore
       norms: p.reasoning.norms?.provisional ? "Provisional: adults 18–35, Norway" : "Population norms",
     },
     p.behaviour && { instrument: "Behaviour tasks", measures: "Learning, risk, patience", items: "3 tasks", reliability: "—", norms: "None yet: described, not compared" },
+    (p.interests || p.personality) && {
+      instrument: "Work Design model (provisional)",
+      measures: "Nine value modes, eight working conditions",
+      items: "Built from the scores above",
+      reliability: "90% ranges carried through",
+      norms: "Scale midpoint; careers from O*NET® data",
+    },
   ].filter((r): r is NonNullable<typeof r> => !!r);
 
   return (
@@ -86,7 +94,22 @@ export function MethodChapter({ n, profile }: { n: string; profile: ProfileScore
           </li>
         ) : null}
         <li>{BRAND.name}&apos;s own experimental scales (extra interests and values, work dispositions, emotion judgement, idea tasks and life history) are collected but not shown until a pilot validates them.</li>
-        <li>The written report is drafted by Claude from the scores in this report only. A check rejects any draft that cites a figure not in your scores. It can still be wrong: the scores are the source.</li>
+        <li>
+          How you work best: value modes and working conditions are weighted combinations of your interests, personality, values and tasks (a provisional model,
+          fixed before any outcome data). Your scores sit on the questionnaire scales, while careers&apos; levels are percentiles across O*NET occupations: the two are
+          placed side by side, not on one ruler. The archetypes are a metaphor for a measured pattern of value modes.
+        </li>
+        <li>
+          Career fit (matching v2): fulfilment fit is the headline and is relative to you (50 = your average career path); ability fit compares your reasoning range with
+          what each career demands. Both are recomputed over 500 draws of your scores, which is where their ranges and the fit bands come from. Fit describes a match,
+          not a prediction of success.
+        </li>
+        <li>
+          The written report is drafted by Claude from the scores in this report only. A check rejects any draft that cites a figure not in your scores, or that makes a
+          claim about the brain, predicts success or mentions pay. Your best workday is written from your Work Design results alone, and each sentence must name the
+          dimensions it rests on; any sentence without a source, or that names something not in those results, fails the check. It can still be wrong: the scores are
+          the source.
+        </li>
       </ul>
 
       <dl className="mt-12 grid max-w-[760px] gap-x-8 gap-y-2 border-t border-rule pt-4 text-small sm:grid-cols-[160px_1fr]">
@@ -100,6 +123,7 @@ export function MethodChapter({ n, profile }: { n: string; profile: ProfileScore
         </dd>
       </dl>
       <OnetAttribution className="mt-8" />
+      <OnetDbAttribution className="mt-4" />
     </Chapter>
   );
 }

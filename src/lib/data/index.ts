@@ -19,7 +19,7 @@ import { addSelfScores } from "../scoring/self";
 import type { SessionId } from "../bank/types";
 import type { YearsBand } from "../matching";
 import type { OnboardingAnswers, User } from "../types";
-import { buildCareerPicks, buildLaneDetail, buildLaneMap, laneName, matchingCacheKey, reportLanes } from "./lanes";
+import { buildCareerPicks, buildLaneDetail, buildLaneMap, laneName, matchingCacheKey, reportLanes, workBestFor } from "./lanes";
 import { buildReportFacts, type ReportFacts } from "../report/facts";
 import { factsHash, latestReport } from "../report/service";
 import { BRAND } from "../brand";
@@ -187,6 +187,9 @@ export async function getLaneMap(selected?: string | null) {
   return { source, rows, vocab, picks, detail: selected ? buildLaneDetail(selected, profile, exp) : null };
 }
 
+/** "How you work best" for the profile the pages show (own, or the labelled sample). */
+export const getWorkBest = cache(async () => workBestFor((await getProfileView()).profile));
+
 /** The best-fitting career paths overall (the Career map's top five), for the report. */
 export const getTopCareerPaths = cache(async (): Promise<CareerPick[]> => (await getMatching()).picks.overall);
 
@@ -242,10 +245,12 @@ export const getEffort = cache(async (): Promise<Effort> => {
 export async function getReportFacts(): Promise<ReportFacts | null> {
   const [profile, exp] = await Promise.all([getMyProfile(), getExperience()]);
   if (!profile) return null;
-  return buildReportFacts(profile, reportLanes(profile, exp), {
-    current: exp.current ? exp.current.title : null,
-    considering: exp.considering.map((c) => c.title),
-  });
+  return buildReportFacts(
+    profile,
+    reportLanes(profile, exp),
+    { current: exp.current ? exp.current.title : null, considering: exp.considering.map((c) => c.title) },
+    workBestFor(profile),
+  );
 }
 
 /** The person's latest written report, and whether their scores have changed since. */

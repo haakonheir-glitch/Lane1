@@ -4,8 +4,14 @@
  */
 import type { Band, Driver, EntryNote } from "../matching";
 import type { EntryId, FamilyId, LaneId, LevelId, ModeId } from "../taxonomy/generated";
+import type { Penalty } from "../workdesign/model";
+import type { TypicalDay } from "../workdesign/day";
 
-export type LaneView = "family" | "band";
+/** "map" = the fulfilment × ability 2×2 (matching v2 with ability data); the list views group by family or fit band. */
+export type LaneView = "map" | "family" | "band";
+
+/** A v2 fit's expected value and the range 80% of the draws fall in (10th–90th percentile), rounded. */
+export type FitRange = { mean: number; p10: number; p90: number };
 
 export type LaneRowData = {
   id: LaneId;
@@ -21,6 +27,12 @@ export type LaneRowData = {
   /** Lanes the person said they're considering, and the lane of their current job. */
   considering: boolean;
   current: boolean;
+  /** Matching v2 only (null under v1 or without enough data): fulfilment fit, 50 = the person's average career path. */
+  fulfilment: FitRange | null;
+  /** Matching v2 only: ability fit, 0–100 (100 = no shortfall); null without the reasoning tasks. */
+  ability: FitRange | null;
+  /** Where the career's O*NET profile comes from ("estimated" profiles are marked in the UI); null under v1. */
+  provenance: "onet" | "estimated" | "unlinked" | null;
 };
 
 export type RoleRef = { id: string; title: string; level: LevelId; mode: ModeId; aka: string[] };
@@ -52,6 +64,41 @@ export type LaneDetail = {
   overlay: MatchOverlay;
   /** How to read the drivers' contributions (differs between matching v1 and v2). */
   driversNote: string;
+  /** O*NET's picture of the work (Work Activities and Work Context); null without an O*NET profile. */
+  day: TypicalDay | null;
+  /** Matching v2's own view of this career path; null under v1 (MATCHING_VERSION=v1). */
+  v2: LaneDetailV2 | null;
+};
+
+/** One driver or friction from matching v2, in fulfilment points against your average career path. */
+export type FitDriver = { id: string; label: string; contribution: number };
+
+/** You against the career on one value mode or working condition, both on 0–100 (different rulers: see DimOverlay). */
+export type DimRow = {
+  id: string;
+  group: "mode" | "condition";
+  name: string;
+  archetype?: string;
+  poles: [string, string];
+  /** Your score and its 90% interval; null when not measured. */
+  you: number | null;
+  lo: number | null;
+  hi: number | null;
+  /** The career's O*NET-based level (percentile across occupations); null when O*NET has no data. */
+  career: number | null;
+  /** Working conditions only: which side of a mismatch hurts, and the gap on that side in points. */
+  penalty?: Penalty;
+  gap?: number | null;
+};
+
+export type LaneDetailV2 = {
+  fulfilment: FitRange | null;
+  ability: FitRange | null;
+  /** Share of draws in which this career path is in your top 10% (the strong-fit rule). */
+  pTop: number;
+  drivers: FitDriver[];
+  frictions: FitDriver[];
+  dims: DimRow[];
 };
 
 /** One axis per construct the matching uses for a path. `you` is z relative to your own average (null = not measured). */
