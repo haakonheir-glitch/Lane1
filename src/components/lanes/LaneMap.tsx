@@ -90,9 +90,11 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
   const panelRef = useRef<HTMLDivElement>(null);
   const headingId = useId();
 
-  // The 2×2 needs both v2 fits: under v1 (MATCHING_VERSION=v1) or without the reasoning tasks, the lists are the default.
-  const hasMap = rows.some((r) => r.fulfilment && r.ability);
-  const hasV2 = rows.some((r) => r.fulfilment);
+  // The 2×2 needs both v2 fits for most career paths: under v1 (MATCHING_VERSION=v1), without the reasoning
+  // tasks, or with too few reasoning areas measured to cover most careers' demands, the lists are the default.
+  const withFit = rows.filter((r) => r.fulfilment).length;
+  const hasMap = withFit > 0 && rows.filter((r) => r.fulfilment && r.ability).length >= withFit / 2;
+  const hasV2 = withFit > 0;
   const defaultView: LaneView = hasMap ? "map" : "family";
   const asked = params.get("view");
   const view: LaneView = asked === "band" || asked === "family" || (asked === "map" && hasMap) ? asked : defaultView;
@@ -166,7 +168,9 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
                 ]}
               />
             </div>
-            {hasV2 && !hasMap ? <p className="text-small text-ink-3">The fit map needs ability fit, which comes from the reasoning tasks (sessions S3 and S4).</p> : null}
+            {hasV2 && !hasMap ? (
+              <p className="text-small text-ink-3">The fit map needs ability fit for most career paths. It comes from the reasoning tasks (sessions S3 and S4), once enough reasoning areas have a result.</p>
+            ) : null}
           </div>
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-4">

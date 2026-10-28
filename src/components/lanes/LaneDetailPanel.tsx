@@ -65,7 +65,7 @@ function FitV2({ v2, row, headingId }: { v2: LaneDetailV2; row: LaneDetail["row"
         </div>
         <div>
           <dt className="flex justify-between gap-3 text-small text-ink">
-            Ability fit <span className="font-mono text-label text-ink-3">{v2.ability ? fitText(v2.ability) : "needs the reasoning tasks"}</span>
+            Ability fit <span className="font-mono text-label text-ink-3">{v2.ability ? fitText(v2.ability) : "not enough reasoning data"}</span>
           </dt>
           <dd className="mt-1">
             <FitRangeBar range={v2.ability} kind="ability" label="Ability fit" />
@@ -94,7 +94,7 @@ function FitV2({ v2, row, headingId }: { v2: LaneDetailV2; row: LaneDetail["row"
 
       <h4 className="mt-6 text-small font-medium text-ink">You and this career path</h4>
       <p className="mt-1 text-small text-ink-3">
-        The band is your score with its 90% range; the dark tick is the career&apos;s level from O*NET data. Your scores sit on the questionnaire scales and the career&apos;s are
+        Blue is you: your score and its 90% range. The dark tick is the career&apos;s level from O*NET data. Your scores sit on the questionnaire scales and the career&apos;s are
         percentiles across occupations, so read them side by side, not as one ruler.
       </p>
       <p className="mt-4 label text-ink-3">Value modes</p>

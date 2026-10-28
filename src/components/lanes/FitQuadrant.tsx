@@ -19,9 +19,9 @@ import { cn } from "@/lib/cn";
 export const ABILITY_SPLIT = 80;
 
 const W = 720;
-const H = 480;
-const M = { l: 48, r: 24, t: 16, b: 44 };
-const Y = { lo: 30, hi: 70 };
+const H = 520;
+// Quadrant captions sit outside the frame (above it, and under the axis numbers), so dots and labels never cover them.
+const M = { l: 48, r: 24, t: 30, b: 72 };
 const LABELS = 5;
 
 export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[]; selected?: string; onSelect: (id: string) => void }) {
@@ -30,6 +30,9 @@ export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[];
   const missing = rows.length - plotted.length;
   const minAbility = Math.min(40, ...plotted.map((r) => Math.floor((r.ability!.mean - 5) / 10) * 10));
   const X = { lo: Math.max(0, minAbility), hi: 100 };
+  const maxF = Math.max(70, ...plotted.map((r) => Math.ceil(r.fulfilment!.mean + 2)));
+  const minF = Math.min(30, ...plotted.map((r) => Math.floor(r.fulfilment!.mean - 2)));
+  const Y = { lo: minF, hi: maxF };
   const x = (v: number) => M.l + ((Math.min(X.hi, Math.max(X.lo, v)) - X.lo) / (X.hi - X.lo)) * (W - M.l - M.r);
   const y = (v: number) => M.t + (1 - (Math.min(Y.hi, Math.max(Y.lo, v)) - Y.lo) / (Y.hi - Y.lo)) * (H - M.t - M.b);
   const top = [...plotted].sort((a, b) => b.fulfilment!.mean - a.fulfilment!.mean).slice(0, LABELS);
@@ -60,10 +63,10 @@ export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[];
         <line y1={M.t} y2={H - M.b} x1={sx} x2={sx} className="stroke-data-ref" strokeDasharray="3 3" />
 
         <g aria-hidden className="fill-ink-3" style={{ fontSize: 11 }}>
-          <text x={W - M.r - 8} y={M.t + 16} textAnchor="end">Gives you what you need · within your range</text>
-          <text x={M.l + 8} y={M.t + 16}>Gives you what you need · stretches your range</text>
-          <text x={W - M.r - 8} y={H - M.b - 8} textAnchor="end">Within your range · gives you less</text>
-          <text x={M.l + 8} y={H - M.b - 8}>Stretches your range · gives you less</text>
+          <text x={W - M.r} y={M.t - 10} textAnchor="end">↑ Gives you what you need · within your range →</text>
+          <text x={M.l} y={M.t - 10}>↑ Gives you what you need · stretches your range</text>
+          <text x={W - M.r} y={H - M.b + 34} textAnchor="end">↓ Gives you less · within your range →</text>
+          <text x={M.l} y={H - M.b + 34}>↓ Gives you less · stretches your range</text>
         </g>
 
         <g aria-hidden className="fill-ink-3" style={{ fontSize: 11 }}>
@@ -77,7 +80,7 @@ export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[];
               {t}
             </text>
           ))}
-          <text x={(M.l + W - M.r) / 2} y={H - 6} textAnchor="middle" style={{ fontFamily: "var(--font-sans)" }}>
+          <text x={(M.l + W - M.r) / 2} y={H - 8} textAnchor="middle" style={{ fontFamily: "var(--font-sans)" }}>
             Ability fit → (can you meet what it demands)
           </text>
           <text transform={`translate(12 ${(M.t + H - M.b) / 2}) rotate(-90)`} textAnchor="middle" style={{ fontFamily: "var(--font-sans)" }}>
@@ -142,7 +145,9 @@ export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[];
               x={Math.min(x(r.ability!.mean) + 16, W - M.r - 4)}
               y={ly + 4}
               textAnchor={x(r.ability!.mean) + 16 > W - M.r - 160 ? "end" : "start"}
-              className={cn("fill-ink", r.id === selected && "fill-accent")}
+              className={cn("fill-ink stroke-bg", r.id === selected && "fill-accent")}
+              strokeWidth={3}
+              paintOrder="stroke"
               style={{ fontFamily: "var(--font-sans)", fontSize: 12 }}
             >
               {r.name}

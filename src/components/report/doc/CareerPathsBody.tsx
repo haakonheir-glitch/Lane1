@@ -50,7 +50,7 @@ export function CareerPathsBody({ picks, connections, print }: { picks: CareerPi
                   </div>
                   <div>
                     <dt className="flex justify-between gap-3 text-small text-ink-2">
-                      Ability fit <span className="font-mono text-label text-ink-3">{p.row.ability ? fitText(p.row.ability) : "needs the reasoning tasks"}</span>
+                      Ability fit <span className="font-mono text-label text-ink-3">{p.row.ability ? fitText(p.row.ability) : "not enough reasoning data"}</span>
                     </dt>
                     <dd className="mt-1">
                       <FitRangeBar range={p.row.ability} kind="ability" label={`${p.row.name}: ability fit`} />
@@ -64,7 +64,7 @@ export function CareerPathsBody({ picks, connections, print }: { picks: CareerPi
         <p className={cn("mt-3 max-w-[72ch] text-small text-ink-3", !v2 && "hidden")}>
           Fulfilment fit is the headline: does the work give you what you need (interests, values, value modes, working conditions, challenge)? It is relative to you: 50 is
           your average career path, so it can&apos;t be compared with anyone else&apos;s. Ability fit is secondary: 100 means the work demands nothing beyond your measured
-          reasoning range.{anyAbility ? "" : " It needs the reasoning tasks (sessions S3 and S4)."} The bands come from how stable each career path&apos;s rank is across 500
+          reasoning range.{anyAbility ? "" : " It needs results in enough reasoning areas (sessions S3 and S4)."} The bands come from how stable each career path&apos;s rank is across 500
           draws of your scores. A good fit is not a prediction of success.
         </p>
       </section>

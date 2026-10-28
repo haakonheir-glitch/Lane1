@@ -89,7 +89,7 @@ export function WorkBestBody({ wb, workday, workdayEmpty }: { wb: WorkBest; work
             </p>
           </>
         ) : (
-          <p className="mt-4 max-w-[64ch] text-body text-ink-2">No working condition stands out clearly enough to name: your needs sit near the middle, or their ranges are still wide.</p>
+          <p className="mt-4 max-w-[64ch] text-body text-ink-2">No working condition clearly drains you: where your needs stand out, they stand out on the side where a mismatch doesn&apos;t cost you (a high tolerance for pressure, say); the rest sit near the middle or are still uncertain.</p>
         )}
         <div className="mt-8">
           <DimensionIntervals

@@ -13,7 +13,7 @@ export type DimensionRow = {
   lo: number | null;
   hi: number | null;
   relative?: Relative;
-  /** A second reference on the same scale (the career's level), drawn as an ink tick. */
+  /** A second reference on the same scale (the career's level), drawn as an ink tick; your score then shows in the "your data" blue. */
   marker?: number | null;
 };
 
@@ -61,7 +61,7 @@ export function DimensionIntervals({ rows, label, markerLabel, markerShort, comp
                 aria-valuetext={`${r0(r.value)} of 100, 90% range ${r0(r.lo!)} to ${r0(r.hi!)}${r.marker !== null && r.marker !== undefined ? `; ${markerLabel ?? "reference"} ${r0(r.marker)}` : ""}`}
                 className="relative h-4 w-full"
               >
-                <IntervalScale point={r.value} lo={r.lo!} hi={r.hi!} ticks={[25, 75]} refTitle="Middle of the scale" marker={r.marker} markerTitle={markerLabel} />
+                <IntervalScale point={r.value} lo={r.lo!} hi={r.hi!} ticks={[25, 75]} refTitle="Middle of the scale" marker={r.marker} markerTitle={markerLabel} emphasis={r.marker !== undefined} />
               </div>
             )}
             <div className="mt-1 flex justify-between gap-4 text-label text-ink-3">
