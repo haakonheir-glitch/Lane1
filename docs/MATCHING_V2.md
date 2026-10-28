@@ -8,7 +8,8 @@ Version `v2-0.3`.
 - **Validation and tuning:** `taxonomy/derived/MATCHING_V2_REPORT.md`.
 
 **Selecting it:**
-- `MATCHING_VERSION=v2` makes the app use v2; anything else keeps **v1**. v2 was approved on 2026-10-28; v1 stays the default until you choose to switch, and stays in the code until its deletion is approved.
+- **v2 is the default** (approved and made live on 2026-10-28).
+- `MATCHING_VERSION=v1` switches the app back to v1, which stays in the code until its deletion is approved.
 - v1 is unchanged and still selectable.
 - Until Phase 3 builds the v2 views, the current Career map reads v2 through an adapter (`src/lib/matching/v2/adapter.ts`).
 - Cached matching results are keyed by the version, the v2 config version and the O\*NET build, so switching recomputes.

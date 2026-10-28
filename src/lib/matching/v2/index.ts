@@ -1,6 +1,6 @@
 /**
- * Matching v2 (docs/MATCHING_V2.md). Selected with MATCHING_VERSION=v2; v1 stays the default
- * until v2 is approved.
+ * Matching v2 (docs/MATCHING_V2.md). The default since 2026-10-28; MATCHING_VERSION=v1 selects v1
+ * (kept until its deletion is approved).
  */
 import lanesFile from "../../../../taxonomy/derived/lane_profiles_v2.json";
 import offsetsFile from "../../../../taxonomy/derived/lane_offsets_v2.json";

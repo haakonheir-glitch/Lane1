@@ -62,8 +62,17 @@ describe("matching v2: data and config", () => {
     if (r.guard.length) expect(r.notes.map((n) => n.code)).toContain("facet_guard");
   });
 
-  it("defaults to v1", () => {
-    expect(matchingVersion()).toBe("v1");
+  it("defaults to v2, and MATCHING_VERSION=v1 still selects v1", () => {
+    const before = process.env.MATCHING_VERSION;
+    try {
+      delete process.env.MATCHING_VERSION;
+      expect(matchingVersion()).toBe("v2");
+      process.env.MATCHING_VERSION = "v1";
+      expect(matchingVersion()).toBe("v1");
+    } finally {
+      if (before === undefined) delete process.env.MATCHING_VERSION;
+      else process.env.MATCHING_VERSION = before;
+    }
   });
 });
 

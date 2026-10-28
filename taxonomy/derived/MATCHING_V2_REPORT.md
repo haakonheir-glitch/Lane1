@@ -5,7 +5,7 @@ Status, 2026-10-28: **Phase 2 is complete and v2 is approved. Phase 3 has not be
 **Your decisions (2026-10-28):**
 1. **v2 is approved.** Phase 3 builds the native v2 views.
    - v1 stays in the code until you approve deleting it.
-   - v1 also stays the default (`MATCHING_VERSION` unset) until you say to switch.
+   - v2 was made the default on 2026-10-28, at your request. `MATCHING_VERSION=v1` switches back.
 2. **Tentative archetype blends** keep the 90% rule. They are phrased "You sit between X and Y", not as a warning. This is done in `v2-0.3`.
 3. **"Fit × payoff" is dropped** from Phase 3, because income labels no longer exist.
 4. **Niche career paths at the top are left as the data puts them.** There is no interest minimum and no hiding.
