@@ -170,15 +170,59 @@ Why Politics & elected office fits: Enterprising interests (+3.6); Competition: 
 - **Fewer sales roles at the top.** v1's top 15 is almost all sales and commercial roles. v2 keeps the Enterprising core but adds communication, brand, IP, policy and investing. The value modes and environment now carry real weight, not just interests.
 - **"(est.)"** marks career paths whose O\*NET profile is estimated from documented analogs (Phase 1). Provenance is visible.
 
-### Your account (production)
+### Your account (production, LN-20261023-H2C, all five sessions)
 
-The production database can't be reached from here, so this needs one command from you. In the terminal, in the project folder:
+Run by you on 2026-10-28 against the production database (read-only).
 
-1. Run `git pull`.
-2. Export the **new** `DATABASE_URL`, the one after your password reset, from Neon.
-3. Run `npx tsx --conditions=react-server scripts/compare-matching.mts LN-20261023-H2C --force`.
+```
+Band counts   v1: strong 50 · possible 106 · unlikely 49 · not enough data 0
+              v2: strong 19 · possible 113 · unlikely 73 · not enough data 0
 
-It reads only, and it prints the database host (never the password) before anything else. Paste the output back and I'll add it here.
+ #  v1 (relative fit)                            v2 (fulfilment fit, 90% range · ability fit · P(top 10%))
+ 1  S B2B sales                                  S Religious & spiritual work · 66 (62.8–68.9) · 92.3 · 0.974
+ 2  S Media, advertising & sponsorship sales     S Politics & elected office (est.) · 65 (60.5–68.6) · 86.4 · 0.988
+ 3  S Field & territory sales                    S Intellectual property · 63.4 (59.1–67.1) · 83.2 · 0.946
+ 4  S Sports business                            S Learning & development · 62.7 (59–66) · 85.2 · 0.882
+ 5  S Real estate brokerage                      S Courses, digital products & communities (est.) · 62.4 (58.2–66.3) · 94.1 · 0.828
+ 6  S Coaching                                   S Private equity, venture & principal investing · 62.4 (58.2–66.3) · 70.5 · 0.834
+ 7  S Consumer & direct sales                    S B2B sales · 62 (58.3–64.9) · 85.9 · 0.884
+ 8  S Partnerships, channel & business developm… S Startup founding (est.) · 61.8 (57.6–65.3) · 83.8 · 0.804
+ 9  S General management & executive leadership  S Early childhood education · 61.5 (56.9–66.2) · 91 · 0.722
+10  S Courses, digital products & communities    S General management & executive leadership · 61.3 (58.3–63.9) · 83.7 · 0.816
+11  S Recruiting & talent acquisition            S Outdoor guiding & instruction · 61.3 (57.1–65.1) · 97.5 · 0.714
+12  S Nonprofits, NGOs & humanitarian work       S Agency & studio ownership (est.) · 61.1 (56.9–64.6) · 87.8 · 0.718
+13  S Politics & elected office                  S Brand marketing · 60.8 (56.7–64) · 85.3 · 0.696
+14  S Social work & welfare                      S Advertising & creative agencies · 60.7 (56.5–64.3) · 89.7 · 0.662
+15  S Startup founding                           S Academic research & university teaching · 60.5 (56.1–64.7) · 92.5 · 0.624
+
+Overlap of the two top 15s: 5 career paths.
+
+Archetype blend (v2): Chief 24.6% · Teacher 19.7% — tentative: Chief leads Teacher in 52% of draws.
+  full blend: Chief 24.6, Teacher 19.7, Hunter 16.2, Healer 14.8, Scout 11.4, Storyteller 5.2, Guardian 3.9, Maker 3.8, Gatherer 0.4
+
+Best in each direction (v2): Care: Religious & spiritual work; Influence: Politics & elected office; Teach: Learning & development;
+  Analyse: Private equity, venture & principal investing; Create: Courses, digital products & communities;
+  Lead: General management & executive leadership; Organise: Project & programme management; Protect: Aviation; Build: Renewable energy
+
+Why Religious & spiritual work fits: Social interests (+3.7); Autonomy: close to what you need (+3.6);
+  Variety vs. routine: as much as you need (+2); Enterprising interests (+1.6)
+Where it rubs: Emphasis on Relationships, which matters less to you (-0.5); Little use of your Analyse (Scout) side (-0.5);
+  Competition: less than suits you (-0.4)
+```
+
+**What changed for you:**
+- **Fewer strong fits.** 50 → 19. v1 called a quarter of all career paths strong.
+- **v1 is sales-led; v2 is a mix.** v1's top 9 are sales or commercial. v2's top 15 mixes three strands:
+  - Enterprising: politics, B2B sales, startup founding, general management, agency ownership, brand, advertising.
+  - Social and teaching: learning & development, early childhood education, outdoor guiding, religious & spiritual work.
+  - Analytic: intellectual property, private equity, academic research.
+- **The archetype blend is genuinely mixed.** Five archetypes sit between 11% and 25%, and Chief leads Teacher in only 52% of draws. This is the "you sit between" case from open question 2.
+- **Ability fit now shows**, because all five sessions are complete. Private equity has the lowest (70.5) of the top 15.
+- **A face-validity question for you.** Religious & spiritual work at #1 comes from:
+  - Social interests;
+  - autonomy and variety close to what you need.
+
+  It is a legitimate reading of the O\*NET profile (clergy), but a career path most people would never consider can top the list on work-design fit alone. Whether this is acceptable, or whether some career paths should only appear when the person's interests point at them specifically, is open question 6 below.
 
 ## 5. Judgment calls I made
 
@@ -202,6 +246,12 @@ It reads only, and it prints the database host (never the password) before anyth
 3. **Phase 3 conflict with the income ruling.** The Phase 3 brief says "keep the list views and the fit × payoff option". Income labels no longer exist, by your ruling, so there is no payoff axis. I suggest dropping that option, or replacing it with fit × ability. Please decide before Phase 3.
 4. **The validation population is synthetic.** Real thresholds should be refitted once there are outcome check-ins (Phase 3).
 5. **Until Phase 3:** the Career map's overlay and trait connections are still computed the v1 way, even when v2 drives the ranking.
+6. **Niche career paths at the top.** Your own #1 is Religious & spiritual work. Options:
+   - leave it, since it's what the data says;
+   - require a minimum interest fit before a career path can be strong;
+   - let you hide career paths you rule out.
+
+   My suggestion: leave the ranking honest, and add "not for me" hiding in Phase 3.
 
 ## 7. Files
 
