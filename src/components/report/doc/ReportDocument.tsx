@@ -54,7 +54,7 @@ function workBestTitle(wb: WorkBest | null): string {
   const a = wb?.archetype;
   if (!a) return "How you work best";
   const [x, y] = a.top2;
-  return a.tentative || a.caveat ? `You sit between ${x!.archetype} and ${y!.archetype}` : `Mostly ${x!.archetype}, with ${y!.archetype} close behind`;
+  return a.tentative || a.caveat ? `You sit between ${x!.archetype} and ${y!.archetype}` : `Mostly ${x!.archetype}, then ${y!.archetype}`;
 }
 
 export function ReportDocument({ profile, person, picks, workBest, effort, written, own, tier, reportConfigured = false, mode = "screen", status, reveal, outcome }: ReportDocumentProps) {
@@ -203,7 +203,7 @@ export function ReportDocument({ profile, person, picks, workBest, effort, writt
         </Chapter>
       ) : null}
 
-      <MethodChapter n={n("method")} profile={profile} />
+      <MethodChapter n={n("method")} profile={profile} v2={!!workBest?.matching} />
 
       {own && outcome && !print ? (
         <section aria-labelledby="outcome-h" className="doc-screen border border-paper-edge bg-paper p-8 sm:p-12">

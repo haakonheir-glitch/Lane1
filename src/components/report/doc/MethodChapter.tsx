@@ -12,7 +12,7 @@ const meanRel = (xs: { reliability: number }[]) => (xs.length ? (xs.reduce((n, x
 const rels = (xs: ScaleScore[]): { reliability: number }[] => xs.flatMap((s) => (s.normed ? [{ reliability: s.normed.reliability }] : s.self ? [{ reliability: s.self.reliability }] : []));
 
 /** Method and limits: the instruments, how much each rests on, its reliability and norms, and every caveat, once. */
-export function MethodChapter({ n, profile }: { n: string; profile: ProfileScores }) {
+export function MethodChapter({ n, profile, v2 = true }: { n: string; profile: ProfileScores; v2?: boolean }) {
   const p = profile;
   const selfBasis = !(p.personality?.domains.some((d) => d.normed) || p.interests?.scales.some((s) => s.normed));
   const rows = [
@@ -99,11 +99,19 @@ export function MethodChapter({ n, profile }: { n: string; profile: ProfileScore
           fixed before any outcome data). Your scores sit on the questionnaire scales, while careers&apos; levels are percentiles across O*NET occupations: the two are
           placed side by side, not on one ruler. The archetypes are a metaphor for a measured pattern of value modes.
         </li>
-        <li>
-          Career fit (matching v2): fulfilment fit is the headline and is relative to you (50 = your average career path); ability fit compares your reasoning range with
-          what each career demands. Both are recomputed over 500 draws of your scores, which is where their ranges and the fit bands come from. Fit describes a match,
-          not a prediction of success.
-        </li>
+        {v2 ? (
+          <li>
+            Career fit (matching v2): fulfilment fit is the headline and is relative to you (50 = your average career path); ability fit compares your reasoning range
+            with what each career demands. Both are recomputed over 500 draws of your scores, which is where their ranges and the fit bands come from. Fit describes a
+            match, not a prediction of success.
+          </li>
+        ) : (
+          <li>
+            Career fit (matching v1): half from how your interests match each career path&apos;s interest code, half from the scales behind what the work demands, relative
+            to your own average; a band is strong only when it is clearly ahead after allowing for measurement error. The archetype blend is not checked against
+            measurement error under v1. Fit describes a match, not a prediction of success.
+          </li>
+        )}
         <li>
           The written report is drafted by Claude from the scores in this report only. A check rejects any draft that cites a figure not in your scores, or that makes a
           claim about the brain, predicts success or mentions pay. Your best workday is written from your Work Design results alone, and each sentence must name the

@@ -9,7 +9,8 @@ import { setOutcomeConsent } from "@/app/actions/outcome";
 
 /**
  * The outcome check-in opt-in at the end of the report: an unticked box, stored only on an
- * explicit yes. `consentedAt` and `next` are ISO dates when the person has already opted in.
+ * explicit yes. `consentedAt` is set when the person has already opted in; `next` is the next
+ * check-in's date, already formatted on the server (so server and browser render the same text).
  */
 export function OutcomeOptIn({ consentedAt, next, due }: { consentedAt: string | null; next: string | null; due: boolean }) {
   const router = useRouter();
@@ -17,7 +18,6 @@ export function OutcomeOptIn({ consentedAt, next, due }: { consentedAt: string |
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState("");
   const [pending, start] = useTransition();
-  const fmt = (iso: string) => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(new Date(iso));
 
   if (consentedAt) {
     return (
@@ -31,7 +31,7 @@ export function OutcomeOptIn({ consentedAt, next, due }: { consentedAt: string |
             .
           </>
         ) : next ? (
-          <>You&apos;re signed up. Your next check-in opens on {fmt(next)}; it appears here and on your report when it&apos;s due.</>
+          <>You&apos;re signed up. Your next check-in opens on {next}; it appears here and on your report when it&apos;s due.</>
         ) : (
           <>Thank you: you&apos;ve answered both check-ins.</>
         )}{" "}

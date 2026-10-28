@@ -3,10 +3,11 @@ import { AppPage } from "@/components/shell/AppPage";
 import { ButtonLink } from "@/components/ui/Button";
 import { CheckInForm } from "@/components/outcome/CheckInForm";
 import { getOutcome, getUser } from "@/lib/data";
+import { formatLongDate } from "@/lib/outcome";
 
 export const metadata: Metadata = { title: "Check-in" };
 
-const fmt = (d: Date) => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(d);
+const fmt = (d: Date) => formatLongDate(d, process.env.APP_TIMEZONE);
 
 /** The outcome check-in: two questions, open 6 and 12 months after the person opted in. */
 export default async function CheckInPage() {

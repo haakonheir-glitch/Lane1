@@ -7,6 +7,7 @@ import { ReportRefresher } from "@/components/report/doc/ReportRefresher";
 import { PrintButton } from "@/components/report/doc/PrintButton";
 import { getEffort, getMyReport, getOutcome, getProfileView, getSampleUser, getTopCareerPaths, getUser, getWorkBest } from "@/lib/data";
 import { reportTier } from "@/lib/tier";
+import { formatLongDate } from "@/lib/outcome";
 
 export const metadata: Metadata = { title: "Profile report" };
 
@@ -54,7 +55,7 @@ export default async function ProfilePage() {
         tier={tier}
         reportConfigured={reportConfigured}
         status={written?.stale && reportConfigured ? <ReportRefresher /> : null}
-        outcome={{ consentedAt: outcome.consentedAt?.toISOString() ?? null, next: outcome.next?.toISOString() ?? null, due: !!outcome.due }}
+        outcome={{ consentedAt: outcome.consentedAt?.toISOString() ?? null, next: outcome.next ? formatLongDate(outcome.next, process.env.APP_TIMEZONE) : null, due: !!outcome.due }}
       />
     </AppPage>
   );

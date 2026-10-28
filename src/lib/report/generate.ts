@@ -38,9 +38,6 @@ export function unsupportedNumbers(report: WrittenReport, facts: ReportFacts): s
   return [...new Set(found.filter((n) => !allowed.has(n) && !(Number.isInteger(Number(n)) && Number(n) <= 10)))];
 }
 
-/** Everything the report must not say, beyond numbers (claims.ts), across all its prose. */
-export const reportClaimProblems = (report: WrittenReport) => claimProblems(reportText(report));
-
 /** One structured-output call; API failures become ReportErrors the person can read. */
 async function askParsed<S extends z.ZodType>(c: ParseClient, schema: S, system: string, content: string): Promise<{ parsed: z.infer<S>; model: string }> {
   try {
@@ -78,9 +75,16 @@ async function ask(c: ParseClient, facts: ReportFacts, correction?: string) {
   return { report: r.parsed, model: r.model };
 }
 
+/** Strings the report may quote as they are: the person's own job titles and the facts' labels. */
+const quotable = (facts: ReportFacts) => [
+  ...(facts.situation.current ? [facts.situation.current] : []),
+  ...facts.situation.considering,
+  ...facts.careerPaths.flatMap((c) => [c.name, c.family, c.entry, ...c.drivers, ...c.frictions, ...c.dayToDay]),
+];
+
 const reportProblems = (report: WrittenReport, facts: ReportFacts) => {
   const nums = unsupportedNumbers(report, facts);
-  return [...(nums.length ? [`numbers that aren't in the scores: ${nums.join(", ")}`] : []), ...reportClaimProblems(report)];
+  return [...(nums.length ? [`numbers that aren't in the scores: ${nums.join(", ")}`] : []), ...claimProblems(reportText(report), quotable(facts))];
 };
 
 /**
@@ -95,7 +99,8 @@ export async function writeWorkday(facts: ReportFacts, c: ParseClient): Promise<
   const first = (await askParsed(c, BestWorkdaySchema, WORKDAY_SYSTEM, message)).parsed;
   const bad = workdayProblems(first, wb);
   if (!bad.length) return first;
-  const second = (await askParsed(c, BestWorkdaySchema, WORKDAY_SYSTEM, `${message}\n\nYour previous draft failed the check:\n- ${bad.join("\n- ")}\nWrite it again so that every sentence passes.`)).parsed;
+  const retry = `${message}\n\nYour previous draft was:\n<draft>\n${JSON.stringify(first, null, 1)}\n</draft>\nIt failed the check:\n- ${bad.join("\n- ")}\nWrite it again so that every sentence passes.`;
+  const second = (await askParsed(c, BestWorkdaySchema, WORKDAY_SYSTEM, retry)).parsed;
   return workdayProblems(second, wb).length ? null : second;
 }
 
@@ -112,5 +117,13 @@ export async function writeReport(facts: ReportFacts, c: ParseClient = client())
     if (reportProblems(written.report, facts).length)
       throw new ReportError(`The report didn't pass ${BRAND.name}'s accuracy check (it cited figures or made claims your scores don't support), so it wasn't saved. Try again.`);
   }
-  return { report: { ...written.report, bestWorkday: await writeWorkday(facts, c) }, model: written.model };
+  // The checked report is kept even if the workday call fails (rate limit, refusal): it is left out instead.
+  let bestWorkday: BestWorkday | null = null;
+  try {
+    bestWorkday = await writeWorkday(facts, c);
+  } catch (e) {
+    if (!(e instanceof ReportError)) throw e;
+    console.error("best workday not written:", e.message);
+  }
+  return { report: { ...written.report, bestWorkday }, model: written.model };
 }

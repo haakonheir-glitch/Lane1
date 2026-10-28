@@ -1,29 +1,37 @@
 /**
  * Claims the written prose may never make (VISION.md non-negotiables; Phase 3 prompt rules), as
  * checks the code runs on every draft before it is saved:
- * - no brain, neurochemistry, genetics or ancestry claims ("how you're wired" stays a metaphor, so
- *   "wired" alone is allowed; "Neuroticism", a measured scale, is not matched);
+ * - no brain, neurochemistry, genetics, biology or ancestry claims ("how you're wired" stays a
+ *   metaphor, so "wired" alone is allowed; "Neuroticism", a measured scale, is not matched);
  * - no predictions of success;
- * - no pay, income or earnings (the facts contain none);
- * - never the word "lane": careers are "career paths".
- * Pure.
+ * - no pay, income or earnings (the facts contain none); money words only, so "pay attention" or
+ *   "earn their trust" pass;
+ * - never the word "lane" (lower case): careers are "career paths". The brand name "Lane" is fine.
+ * `allowed` strings (the person's own job titles, career path names and labels from the facts) are
+ * removed first, so quoting the facts never fails the check. Pure.
  */
-import { PAY } from "./schema";
+const BRAIN =
+  /\b(brains?|neuro(?:chemi\w*|science\w*|transmitter\w*|logic\w*|biolog\w*|ns?)|neural\w*|dopamine|serotonin|oxytocin|cortisol|adrenaline|hormon\w*|DNA|genes?|genetic\w*|biologic\w*|innate\w*|hard-?wired|born (?:to|with)|ancest\w*|caveman|cavemen|tribal)\b/i;
+const PREDICT =
+  /\b(predict\w*|guarantee\w*|destined|bound to (?:succeed|thrive|excel)|(?:will|'ll|’ll|would) (?:\w+ )?(?:succeed|thrive|excel|flourish|be successful|do well)|(?:likely|sure|certain) to (?:succeed|thrive|excel|flourish|be successful|do well))\b/i;
+const MONEY =
+  /\b(income|incomes|salary|salaries|wages?|earnings|commission|winner-take-all|pay ?(?:rise|cut|grade|level|scale|check|cheque)|paychecks?|(?:well|badly|poorly|highly|better|best|worst|under|over)[- ]paid|pays? (?:well|badly|poorly|more|less|little|a lot)|earn(?:s|ing|ed)? (?:money|a living|more|less|well|a lot|little))\b/i;
+const LANE = /\blanes?\b/;
 
-const BRAIN = /\b(brains?|neuro(?:chemi\w*|science\w*|transmitter\w*|logic\w*|biolog\w*|ns?)|dopamine|serotonin|oxytocin|cortisol|adrenaline|hormon\w*|DNA|genes?|genetic\w*|hard-?wired|ancest\w*|evolved|caveman|cavemen|tribal)\b/i;
-const PREDICT = /\b(predict\w*|guarantee\w*|destined|will (?:definitely |certainly )?(?:succeed|thrive|excel|flourish|be successful|do well))\b/i;
-const LANE = /\blanes?\b/i;
+const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 /** Each rule a piece of prose breaks, in words a rewrite request can quote. */
-export function claimProblems(text: string): string[] {
+export function claimProblems(text: string, allowed: string[] = []): string[] {
+  let t = text;
+  for (const a of [...allowed].filter((x) => x.trim().length > 2).sort((p, q) => q.length - p.length)) t = t.replace(new RegExp(esc(a), "gi"), " ");
   const out: string[] = [];
   const hit = (re: RegExp, why: string) => {
-    const m = text.match(re);
+    const m = t.match(re);
     if (m) out.push(`${why} ("${m[0]}")`);
   };
   hit(BRAIN, "claims about the brain, biology or ancestry");
   hit(PREDICT, "a prediction of success");
-  hit(PAY, "pay, income or earnings");
+  hit(MONEY, "pay, income or earnings");
   hit(LANE, 'the word "lane" (say "career path")');
   return out;
 }

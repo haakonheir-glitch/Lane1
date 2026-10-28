@@ -59,7 +59,7 @@ export async function saveOutcomeCheckIn(input: z.input<typeof answer>): Promise
     .insert(schema.outcomeCheckIns)
     .values({ userId: user.id, wave: a.wave, laneId: a.current?.laneId ?? null, roleId: a.current?.roleId ?? null, title: a.current?.title ?? null, fulfilment: a.fulfilment })
     .onConflictDoNothing();
-  // Make sure it landed (a double submit is a no-op, not an error).
+  // A double submit inserts nothing the second time; either way the stored answer is there.
   const [row] = await db.select().from(schema.outcomeCheckIns).where(and(eq(schema.outcomeCheckIns.userId, user.id), eq(schema.outcomeCheckIns.wave, a.wave))).limit(1);
   revalidate();
   return row ? { ok: true } : { ok: false, error: "The answer couldn't be saved. Try again." };

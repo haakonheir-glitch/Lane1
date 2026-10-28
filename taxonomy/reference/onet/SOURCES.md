@@ -60,10 +60,11 @@ The licence page's other requirements:
 In code, the text is `ONET_DB_ATTRIBUTION` in `src/lib/workdesign/attribution.ts`. It goes in:
 
 - this file;
-- the report's Method and limits chapter;
-- the Career map footer.
+- the report's Method and limits chapter, and its "Where this work exists" chapter;
+- the Career map footer (the map, the career path detail and its typical day use O\*NET data);
+- the public method page (`/method`).
 
-The last two go in once O\*NET data reaches those pages (matching v2, Phase 2/3). Showing it before then would claim the pages use O\*NET data when they don't.
+It is rendered by `src/components/report/OnetDbAttribution.tsx`, with a line on what Lane changed.
 
 The existing O\*NET *Tools* attribution, for the Interest Profiler and Work Importance Locator items, is a separate licence and stays as it is.
 

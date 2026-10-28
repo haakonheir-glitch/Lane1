@@ -64,8 +64,10 @@ describe("career map under MATCHING_VERSION=v1", () => {
     expect(d.v2).toBeNull();
     expect(d.overlay.axes.length).toBeGreaterThan(0);
     expect(buildCareerPicks(sampleProfile, none).overall.length).toBe(5);
-    // How you work best still has the person side; there is no v2 archetype blend.
-    expect(workBestFor(sampleProfile).archetype).toBeNull();
+    // How you work best still has the person side; the blend has no draws to check it, so it is always tentative.
+    const a = workBestFor(sampleProfile).archetype!;
+    expect(a.tentative).toBe(true);
+    expect(a.reason).toMatch(/^You sit between \w+ and \w+: with matching v1 selected/);
   });
 });
 
@@ -109,6 +111,9 @@ describe("how you work best", () => {
     expect(w.drains[0]).toMatchObject({ side: "too_little", drainedBy: "Clear direction and set procedures" });
     expect(w.drains[1]).toMatchObject({ side: "too_much", drainedBy: "Constant deadlines" });
     expect(w.drains[0]!.common).toBeGreaterThan(0);
+    // Cognitive challenge is its own fit component, not need-weighted, so it never ranks as a drain.
+    const keen = { ...tweak, environment: tweak.environment.map((e) => (e.id === "challenge" ? { ...e, value: 98, se: 2 } : e)) };
+    expect(workBest(keen, null, LANE_PROFILES_V2).drains.map((d) => d.id)).toEqual(["env.autonomy", "env.pace"]);
     expect(DRAIN_GAP).toBeGreaterThan(0);
   });
 });

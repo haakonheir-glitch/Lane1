@@ -13,11 +13,18 @@ export const WAVES: { id: Wave; months: number }[] = [
 export const FULFILMENT_QUESTION = "All in all, how fulfilled are you by the work you do now?";
 export const FULFILMENT_ANCHORS = { 1: "Not at all", 7: "Completely" } as const;
 
+/** Calendar months later, clamped to the month's last day (31 August + 6 months = 28 or 29 February). */
 export const addMonths = (d: Date, months: number) => {
   const x = new Date(d);
+  const day = x.getUTCDate();
+  x.setUTCDate(1);
   x.setUTCMonth(x.getUTCMonth() + months);
+  x.setUTCDate(Math.min(day, new Date(Date.UTC(x.getUTCFullYear(), x.getUTCMonth() + 1, 0)).getUTCDate()));
   return x;
 };
+
+/** A date as people read it ("28 February 2027"), in the app's time zone so server and browser agree. */
+export const formatLongDate = (d: Date, timeZone = "Europe/Oslo") => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone }).format(d);
 
 /**
  * The wave to answer now: the latest one whose date has passed and that isn't answered yet. A

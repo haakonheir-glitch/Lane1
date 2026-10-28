@@ -16,6 +16,7 @@ export function LaneRow({ lane, active, onSelect, showFamily }: { lane: LaneRowD
         <span className="flex flex-wrap items-baseline gap-x-2 text-body text-ink">
           {lane.name}
           {lane.current ? <span className="label text-accent">Your current career</span> : lane.considering ? <span className="label text-accent">Considering</span> : null}
+          {lane.provenance === "estimated" ? <span className="label text-caution">Estimated career data</span> : null}
         </span>
         <span className="label text-ink-3">
           {showFamily ? `${lane.familyName} · ` : ""}

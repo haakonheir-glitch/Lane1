@@ -63,6 +63,11 @@ describe("claims check", () => {
     expect(claimProblems("You will succeed as a founder.")).toHaveLength(1);
     expect(claimProblems("This lane pays well.").length).toBe(2);
     expect(claimProblems("You're wired for variety, and your Neuroticism is low relative to your other traits.")).toEqual([]);
+    expect(claimProblems("Lane measures this; pay attention to the details, which evolved over the year, and earn their trust.")).toEqual([]);
+    expect(claimProblems("You'll thrive here, and you are likely to excel.")).toHaveLength(1);
+    expect(claimProblems("Your neural wiring shows it.")).toHaveLength(1);
+    // The person's own job title is quoted as it is, even when it contains a banned word.
+    expect(claimProblems("You work as a commission sales agent now.", ["commission sales agent"])).toEqual([]);
   });
 });
 
@@ -78,10 +83,10 @@ describe("best workday check", () => {
     d.sentences[2]!.text = "You get plenty of autonomy over lunch.";
     d.sentences[3]!.text = `A ${other.archetype} would love this afternoon.`;
     const p = workdayProblems(d, wb).join("\n");
-    expect(p).toMatch(/Sentence 1 lists no dimension ids/);
+    expect(p).toMatch(/Sentence 1 \(.*\) lists no dimension ids/);
     expect(p).toMatch(/mode\.juggle/);
-    expect(p).toMatch(/Sentence 3 names autonomy without listing env\.autonomy/);
-    expect(p).toMatch(new RegExp(`Sentence 4 names the archetype ${other.archetype}`));
+    expect(p).toMatch(/Sentence 3 \(.*\) uses "autonomy" without listing env\.autonomy/);
+    expect(p).toMatch(new RegExp(`Sentence 4 \\(.*\\) names the archetype ${other.archetype}`));
   });
 
   it("rejects figures, comparisons with others, banned claims, several sentences in one item, and the wrong length", () => {
@@ -95,8 +100,32 @@ describe("best workday check", () => {
     expect(p).toMatch(/most people/);
     expect(p).toMatch(/brain/);
     expect(p).toMatch(/"lane"/);
-    expect(p).toMatch(/Sentence 4 is more than one sentence/);
+    expect(p).toMatch(/Sentence 4 \(.*\) is more than one sentence/);
     expect(workdayProblems({ sentences: goodDay().sentences.slice(0, 2) }, wb).join(" ")).toMatch(/words; it must be/);
+  });
+
+  it("passes ordinary wording that only looks like a banned or tracked word", () => {
+    const d = goodDay();
+    d.sentences[1]!.text = "You pay close attention to what you find, and earn the trust of the people who rely on it.";
+    d.sentences[2]!.text = "Your chief concern by midday is getting the answer right, and you are the decision-maker on how.";
+    d.sentences[5]!.text = "You end the day having helped other people see something more clearly, and that pays off.";
+    expect(workdayProblems(d, wb)).toEqual([]);
+  });
+
+  it("rejects job titles, numbers in words, unmeasured dimensions, and mode or condition words without their id", () => {
+    const d = goodDay();
+    d.sentences[0]!.text = "You spend the morning as a nurse on the ward.";
+    d.sentences[1]!.text = "Seventy percent of the morning goes on reading.";
+    d.sentences[2]!.text = "You spend an hour leading a small group through what you found.";
+    d.sentences[3]!.text = "Nobody sets you tight deadlines, so the work gets done properly.";
+    d.sentences[3]!.sources = ["env.autonomy"];
+    const unmeasured = wb.conditions.find((c) => c.value === null);
+    const p = workdayProblems(d, unmeasured ? wb : { ...wb, conditions: wb.conditions.map((c) => (c.id === "env.variety" ? { ...c, value: null, lo: null, hi: null } : c)) }).join("\n");
+    expect(p).toMatch(/Sentence 1 .* names a career or job title \("a nurse"\)/);
+    expect(p).toMatch(/Sentence 2 .* figures .*Seventy/);
+    expect(p).toMatch(/Sentence 3 .* uses "leading" .* without listing mode\.lead/);
+    expect(p).toMatch(/Sentence 4 .* uses "deadlines" without listing env\.pace/);
+    expect(p).toMatch(/weren't measured/);
   });
 
   it("is written from the Work Design JSON only, rewritten once with the problems listed, and left out if it still fails", async () => {
@@ -108,6 +137,7 @@ describe("best workday check", () => {
     expect(req).not.toContain("salgssjef");
     expect(req).not.toContain("B2B sales");
     expect(JSON.stringify((parse.mock.calls[1] as unknown[])[0])).toContain("lists no dimension ids");
+    expect(JSON.stringify((parse.mock.calls[1] as unknown[])[0])).toContain("You thrive.");
     const again = fakeClient(bad as never, bad as never);
     expect(await writeWorkday(factsWd, again.client)).toBeNull();
   });
@@ -199,6 +229,13 @@ describe("writeReport", () => {
     const r = await writeReport(factsWd, client);
     expect(parse).toHaveBeenCalledTimes(2);
     expect(r.report.bestWorkday).toEqual(goodDay());
+  });
+
+  it("keeps the checked report when the best workday call fails", async () => {
+    const { client } = fakeClient(report("Clean draft."), "refusal");
+    const r = await writeReport(factsWd, client);
+    expect(r.report.overview).toEqual(["Clean draft."]);
+    expect(r.report.bestWorkday).toBeNull();
   });
 
   it("rejects the report if the rewrite still invents figures", async () => {

@@ -15,7 +15,7 @@ import { cn } from "@/lib/cn";
  * views are the full accessible equivalent.
  */
 
-/** Ability fit at or above which the work's demands sit within your measured reasoning range (a mean shortfall under 20 percentile points). Provisional. */
+/** Ability fit at or above which the work asks little beyond your measured reasoning range (a mean shortfall under 20 percentile points). Provisional. */
 export const ABILITY_SPLIT = 80;
 
 const W = 720;
@@ -63,9 +63,9 @@ export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[];
         <line y1={M.t} y2={H - M.b} x1={sx} x2={sx} className="stroke-data-ref" strokeDasharray="3 3" />
 
         <g aria-hidden className="fill-ink-3" style={{ fontSize: 11 }}>
-          <text x={W - M.r} y={M.t - 10} textAnchor="end">↑ Gives you what you need · within your range →</text>
+          <text x={W - M.r} y={M.t - 10} textAnchor="end">↑ Gives you what you need · mostly within your range →</text>
           <text x={M.l} y={M.t - 10}>↑ Gives you what you need · stretches your range</text>
-          <text x={W - M.r} y={H - M.b + 34} textAnchor="end">↓ Gives you less · within your range →</text>
+          <text x={W - M.r} y={H - M.b + 34} textAnchor="end">↓ Gives you less · mostly within your range →</text>
           <text x={M.l} y={H - M.b + 34}>↓ Gives you less · stretches your range</text>
         </g>
 
@@ -112,11 +112,11 @@ export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[];
               <title>{`${r.name}: ${bandLabel[r.band]} · fulfilment ${Math.round(r.fulfilment!.mean)} · ability ${Math.round(r.ability!.mean)}${r.provenance === "estimated" ? " · estimated career data" : ""}`}</title>
               <circle cx={cx} cy={cy} r={10} className="fill-transparent" />
               {mine ? <circle cx={cx} cy={cy} r={7} className="fill-none stroke-accent" strokeWidth={1.5} /> : null}
+              {r.provenance === "estimated" ? <circle cx={cx} cy={cy} r={mine ? 9.5 : 7} className="fill-none stroke-caution" strokeWidth={1.25} strokeDasharray="2 2" /> : null}
               <circle
                 cx={cx}
                 cy={cy}
                 r={active ? 5.5 : r.band === "strong" ? 4 : 3.5}
-                strokeDasharray={r.provenance === "estimated" ? "1.5 1.5" : undefined}
                 className={cn(
                   active ? "fill-you-5 stroke-you-5" : r.band === "strong" ? "fill-ink stroke-ink" : r.band === "testing" ? "fill-data-band stroke-ink-4" : "fill-rule-strong stroke-rule-strong",
                 )}
@@ -130,7 +130,7 @@ export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[];
             key={r.id}
             role="button"
             tabIndex={0}
-            aria-label={`${r.name}: ${bandLabel[r.band]}, fulfilment fit ${Math.round(r.fulfilment!.mean)}, ability fit ${Math.round(r.ability!.mean)}. Open details.`}
+            aria-label={`${r.name}: ${bandLabel[r.band]}, fulfilment fit ${Math.round(r.fulfilment!.mean)}, ability fit ${Math.round(r.ability!.mean)}${r.provenance === "estimated" ? ", estimated career data" : ""}. Open details.`}
             className="cursor-pointer outline-none [&:focus-visible_text]:underline"
             onClick={() => onSelect(r.id)}
             onKeyDown={(e) => {
@@ -180,7 +180,12 @@ export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[];
           </svg>
           Your current or considered career path
         </span>
-        <span>Dotted outline: estimated career data</span>
+        <span className="flex items-center gap-2">
+          <svg width="16" height="16" aria-hidden>
+            <circle cx="8" cy="8" r="6" className="fill-none stroke-caution" strokeWidth={1.25} strokeDasharray="2 2" />
+          </svg>
+          Estimated career data
+        </span>
         {missing ? <span>{missing} not plotted (not enough data)</span> : null}
       </figcaption>
     </figure>

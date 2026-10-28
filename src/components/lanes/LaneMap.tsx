@@ -278,7 +278,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
             career path is a strong fit when it lands in your top 10% in at least half of the draws. Fulfilment fit (does the work give you what you need) is the
             headline; 50 is your average career path.{" "}
             {view === "map"
-              ? `Ability fit (can you meet what it demands) runs across; to the right of ${ABILITY_SPLIT}, the work's demands sit within your measured reasoning range. Hover a dot for its fits; the cross shows the range 80% of the draws fall in.`
+              ? `Ability fit (can you meet what it demands) runs across; to the right of ${ABILITY_SPLIT}, the work asks little beyond your measured reasoning range (an average shortfall under 20 points). Hover a dot for its fits; the cross shows the range 80% of the draws fall in.`
               : "In the lists, the dot shows fulfilment fit against your average career path, with its range."}
           </p>
         ) : (
