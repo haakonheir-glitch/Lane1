@@ -9,6 +9,7 @@ import { logout } from "@/app/actions/auth";
 import type { User } from "@/lib/types";
 import { BRAND } from "@/lib/brand";
 import { ReportConsent } from "./ReportConsent";
+import { OutcomeConsent } from "@/components/outcome/OutcomeConsent";
 
 const AGE_RANGES = ["18–24", "25–34", "35–44", "45–54", "55 or over"];
 
@@ -24,7 +25,7 @@ function Row({ label, description, children }: { label: string; description: str
   );
 }
 
-export function SettingsForm({ user, hasReport = false }: { user: User; hasReport?: boolean }) {
+export function SettingsForm({ user, hasReport = false, outcomeConsented = false }: { user: User; hasReport?: boolean; outcomeConsented?: boolean }) {
   const [profileState, saveProfile, saving] = useActionState<FormState, FormData>(updateProfile, undefined);
   const [deleteState, doDelete, deleting] = useActionState<FormState, FormData>(deleteAccount, undefined);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -69,6 +70,10 @@ export function SettingsForm({ user, hasReport = false }: { user: User; hasRepor
 
       <Row label="Written report" description="Drafted by Claude from your scores, with your consent.">
         <ReportConsent hasReport={hasReport} />
+      </Row>
+
+      <Row label="Outcome check-in" description="Two questions, 6 and 12 months after you opt in.">
+        <OutcomeConsent consented={outcomeConsented} />
       </Row>
 
       <Row label="Your data" description={`Everything ${BRAND.name} holds about you, in one file.`}>

@@ -5,13 +5,13 @@ import { SampleBanner } from "@/components/report/SampleBanner";
 import { ReportDocument } from "@/components/report/doc/ReportDocument";
 import { ReportRefresher } from "@/components/report/doc/ReportRefresher";
 import { PrintButton } from "@/components/report/doc/PrintButton";
-import { getEffort, getMyReport, getProfileView, getSampleUser, getTopCareerPaths, getUser, getWorkBest } from "@/lib/data";
+import { getEffort, getMyReport, getOutcome, getProfileView, getSampleUser, getTopCareerPaths, getUser, getWorkBest } from "@/lib/data";
 import { reportTier } from "@/lib/tier";
 
 export const metadata: Metadata = { title: "Profile report" };
 
 export default async function ProfilePage() {
-  const [{ profile, source }, me, sample, written, picks, effort, workBest] = await Promise.all([getProfileView(), getUser(), getSampleUser(), getMyReport(), getTopCareerPaths(), getEffort(), getWorkBest()]);
+  const [{ profile, source }, me, sample, written, picks, effort, workBest, outcome] = await Promise.all([getProfileView(), getUser(), getSampleUser(), getMyReport(), getTopCareerPaths(), getEffort(), getWorkBest(), getOutcome()]);
   const own = source === "own";
   const person = own ? me : sample;
   const tier = reportTier();
@@ -35,6 +35,14 @@ export default async function ProfilePage() {
       }
     >
       {own ? null : <SampleBanner className="mb-8" />}
+      {own && outcome.due ? (
+        <p className="mb-8 border border-accent bg-accent-wash px-4 py-3 text-small text-ink">
+          Your {outcome.due === "6m" ? "6-month" : "12-month"} check-in is open: two questions.{" "}
+          <a href="/check-in" className="underline underline-offset-4">
+            Answer now
+          </a>
+        </p>
+      ) : null}
       <ReportDocument
         profile={profile}
         person={person}
@@ -46,6 +54,7 @@ export default async function ProfilePage() {
         tier={tier}
         reportConfigured={reportConfigured}
         status={written?.stale && reportConfigured ? <ReportRefresher /> : null}
+        outcome={{ consentedAt: outcome.consentedAt?.toISOString() ?? null, next: outcome.next?.toISOString() ?? null, due: !!outcome.due }}
       />
     </AppPage>
   );

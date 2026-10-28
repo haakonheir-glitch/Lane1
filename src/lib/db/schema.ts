@@ -121,6 +121,41 @@ export const profileReports = pgTable("profile_reports", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
+/**
+ * Outcome check-in consent (Phase 3): the person opted in, at the end of their report, to two
+ * questions 6 and 12 months later. Deleting the row withdraws consent. No email is sent yet: the
+ * check-in is offered in the app when it is due (consentedAt + 6 or 12 months).
+ */
+export const outcomeConsents = pgTable("outcome_consents", {
+  userId: uuid("user_id")
+    .primaryKey()
+    .references(() => users.id, { onDelete: "cascade" }),
+  consentedAt: timestamp("consented_at", { withTimezone: true }).notNull(),
+});
+
+/**
+ * One outcome check-in answer per wave: what the person does now (resolved through the job-title
+ * search, stored like profiles.current_*; null = not working) and how fulfilled they are, 1–7.
+ * Not the same as the removed sprint table check_ins.
+ */
+export const outcomeCheckIns = pgTable(
+  "outcome_check_ins",
+  {
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    wave: text("wave", { enum: ["6m", "12m"] }).notNull(),
+    laneId: text("lane_id"),
+    roleId: text("role_id"),
+    /** The matched job title as the person picked it; null when not working. */
+    title: text("title"),
+    /** 1 (not at all) – 7 (completely). */
+    fulfilment: integer("fulfilment").notNull(),
+    answeredAt: timestamp("answered_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.wave] })],
+);
+
 export const sprints = pgTable("sprints", {
   id: uuid("id").primaryKey().defaultRandom(),
   userId: uuid("user_id")

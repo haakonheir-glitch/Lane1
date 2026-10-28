@@ -28,6 +28,7 @@ import { personWorkDesign } from "../workdesign/person";
 import { logShadow, shadowRecord } from "../workdesign/shadow";
 import type { CareerPick } from "../lanes/types";
 import type { Effort } from "./effort";
+import { dueWave, nextDate, type Wave } from "../outcome";
 export { effortLine, type Effort } from "./effort";
 
 const TIME_ZONE = process.env.APP_TIMEZONE ?? "Europe/Oslo";
@@ -262,6 +263,18 @@ export async function getMyReport() {
 }
 
 
+/* ------------------------------------------------------------- outcome ---- */
+
+/** The person's outcome check-in state: consent, the wave due now (if any) and the next date. */
+export const getOutcome = cache(async (): Promise<{ consentedAt: Date | null; due: Wave | null; next: Date | null; answered: Wave[] }> => {
+  const u = await requireUser();
+  const db = await getDb();
+  const [consent] = await db.select().from(schema.outcomeConsents).where(eq(schema.outcomeConsents.userId, u.id)).limit(1);
+  if (!consent) return { consentedAt: null, due: null, next: null, answered: [] };
+  const answered = (await db.select({ wave: schema.outcomeCheckIns.wave }).from(schema.outcomeCheckIns).where(eq(schema.outcomeCheckIns.userId, u.id))).map((r) => r.wave as Wave);
+  return { consentedAt: consent.consentedAt, due: dueWave(consent.consentedAt, answered), next: nextDate(consent.consentedAt, answered), answered };
+});
+
 /* -------------------------------------------------------------- export ---- */
 
 export async function getExport() {
@@ -286,5 +299,7 @@ export async function getExport() {
     onboarding: profile ?? null,
     sessions: out,
     writtenReports: await db.select().from(schema.profileReports).where(eq(schema.profileReports.userId, u.id)),
+    outcomeConsent: (await db.select().from(schema.outcomeConsents).where(eq(schema.outcomeConsents.userId, u.id)))[0] ?? null,
+    outcomeCheckIns: await db.select().from(schema.outcomeCheckIns).where(eq(schema.outcomeCheckIns.userId, u.id)),
   };
 }

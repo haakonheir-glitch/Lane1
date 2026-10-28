@@ -26,6 +26,7 @@ import { ChapterRail, type RailItem } from "./ChapterRail";
 import { MethodChapter } from "./MethodChapter";
 import { WorkBestBody } from "./WorkBestBody";
 import { CareerPathsBody } from "./CareerPathsBody";
+import { OutcomeOptIn } from "@/components/outcome/OutcomeOptIn";
 
 export type ReportDocumentProps = {
   profile: ProfileScores;
@@ -43,6 +44,8 @@ export type ReportDocumentProps = {
   mode?: "screen" | "print";
   status?: ReactNode;
   reveal?: boolean;
+  /** The person's own report only: the outcome check-in opt-in at the end (ISO dates). */
+  outcome?: { consentedAt: string | null; next: string | null; due: boolean } | null;
 };
 
 /** The whole report as a document: cover, summary sheet, chapters, method and limits. */
@@ -54,7 +57,7 @@ function workBestTitle(wb: WorkBest | null): string {
   return a.tentative || a.caveat ? `You sit between ${x!.archetype} and ${y!.archetype}` : `Mostly ${x!.archetype}, with ${y!.archetype} close behind`;
 }
 
-export function ReportDocument({ profile, person, picks, workBest, effort, written, own, tier, reportConfigured = false, mode = "screen", status, reveal }: ReportDocumentProps) {
+export function ReportDocument({ profile, person, picks, workBest, effort, written, own, tier, reportConfigured = false, mode = "screen", status, reveal, outcome }: ReportDocumentProps) {
   const print = mode === "print";
   const full = tier === "full";
   const lastSession = profile.sessions.filter((s) => s.completedAt).map((s) => s.completedAt!).sort().pop();
@@ -201,6 +204,18 @@ export function ReportDocument({ profile, person, picks, workBest, effort, writt
       ) : null}
 
       <MethodChapter n={n("method")} profile={profile} />
+
+      {own && outcome && !print ? (
+        <section aria-labelledby="outcome-h" className="doc-screen border border-paper-edge bg-paper p-8 sm:p-12">
+          <p className="text-small text-ink-3">Outcome check-in · optional</p>
+          <h2 id="outcome-h" className="mt-3 text-h3 font-medium text-ink">
+            Two questions in 6 and 12 months
+          </h2>
+          <div className="mt-4 max-w-[760px]">
+            <OutcomeOptIn {...outcome} />
+          </div>
+        </section>
+      ) : null}
     </article>
   );
   if (print) return article;
