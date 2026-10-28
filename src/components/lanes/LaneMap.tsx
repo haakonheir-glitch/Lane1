@@ -9,6 +9,7 @@ import { EmptyState } from "@/components/report/EmptyState";
 import { Button } from "@/components/ui/Button";
 import { LaneRow } from "./LaneRow";
 import { LaneDetailPanel } from "./LaneDetailPanel";
+import { ABILITY_SPLIT, FitQuadrant } from "./FitQuadrant";
 import { BAND_ORDER, bandLabel, sortMatches, type Band } from "@/lib/matching/fit";
 import { entryLabel, entryTerm, modeLabel } from "@/lib/lanes/labels";
 import type { LaneDetail, LaneFilterVocab, LaneRowData, LaneView } from "@/lib/lanes/types";
@@ -89,7 +90,12 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
   const panelRef = useRef<HTMLDivElement>(null);
   const headingId = useId();
 
-  const view: LaneView = params.get("view") === "band" ? "band" : "family";
+  // The 2×2 needs both v2 fits: under v1 (MATCHING_VERSION=v1) or without the reasoning tasks, the lists are the default.
+  const hasMap = rows.some((r) => r.fulfilment && r.ability);
+  const hasV2 = rows.some((r) => r.fulfilment);
+  const defaultView: LaneView = hasMap ? "map" : "family";
+  const asked = params.get("view");
+  const view: LaneView = asked === "band" || asked === "family" || (asked === "map" && hasMap) ? asked : defaultView;
   const familyParam = params.get("family");
   const f: Filters = {
     family: familyParam && vocab.families.some((x) => x.id === familyParam) ? familyParam : "all",
@@ -148,17 +154,19 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
         <div className="flex flex-col gap-6">
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
             <div className="flex items-center gap-4">
-              <span className="w-20 shrink-0 label text-ink-3 xl:w-auto">Group by</span>
+              <span className="w-20 shrink-0 label text-ink-3 xl:w-auto">View</span>
               <SegmentedControl<LaneView>
-                label="Group by"
+                label="View"
                 value={view}
-                onChange={(v) => setView({ view: v === "family" ? null : v })}
+                onChange={(v) => setView({ view: v === defaultView ? null : v })}
                 options={[
+                  ...(hasMap ? [{ value: "map" as const, label: "Fit map" }] : []),
                   { value: "family", label: "Family" },
                   { value: "band", label: "Fit band" },
                 ]}
               />
             </div>
+            {hasV2 && !hasMap ? <p className="text-small text-ink-3">The fit map needs ability fit, which comes from the reasoning tasks (sessions S3 and S4).</p> : null}
           </div>
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-4">
@@ -219,6 +227,8 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
               </Button>
             }
           />
+        ) : view === "map" ? (
+          <FitQuadrant rows={visible} selected={selectedId} onSelect={openLane} />
         ) : view === "band" ? (
           BAND_ORDER.map((b) => {
             const inBand = visible.filter((l) => l.band === b);
@@ -258,9 +268,20 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
           })
         )}
 
-        <p className="mt-8 max-w-reading text-small text-ink-3">
-          Bands compare each career path with your other career paths, not with other people. A career path is a strong fit only when it&apos;s clearly above more than half of yours after allowing for measurement error; most can&apos;t be told apart that precisely, so they&apos;re possible fits. The dot shows fit against your average career path, with a 90% range.
-        </p>
+        {hasV2 ? (
+          <p className="mt-8 max-w-reading text-small text-ink-3">
+            Bands compare each career path with your other career paths, not with other people: your scores are redrawn 500 times within their measurement error, and a
+            career path is a strong fit when it lands in your top 10% in at least half of the draws. Fulfilment fit (does the work give you what you need) is the
+            headline; 50 is your average career path.{" "}
+            {view === "map"
+              ? `Ability fit (can you meet what it demands) runs across; to the right of ${ABILITY_SPLIT}, the work's demands sit within your measured reasoning range. Hover a dot for its fits; the cross shows the range 80% of the draws fall in.`
+              : "In the lists, the dot shows fulfilment fit against your average career path, with its range."}
+          </p>
+        ) : (
+          <p className="mt-8 max-w-reading text-small text-ink-3">
+            Bands compare each career path with your other career paths, not with other people. A career path is a strong fit only when it&apos;s clearly above more than half of yours after allowing for measurement error; most can&apos;t be told apart that precisely, so they&apos;re possible fits. The dot shows fit against your average career path, with a 90% range.
+          </p>
+        )}
       </div>
 
       {docked && detail ? (

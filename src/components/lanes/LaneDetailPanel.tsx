@@ -3,21 +3,121 @@
 import { X } from "lucide-react";
 import { bandLabel } from "@/lib/matching/fit";
 import { entryLabel, entryNoteText, entryTerm, levelShort, modeLabel } from "@/lib/lanes/labels";
-import type { LadderRow, LaneDetail, RoleRef } from "@/lib/lanes/types";
+import type { FitDriver, LadderRow, LaneDetail, LaneDetailV2, RoleRef } from "@/lib/lanes/types";
 import { BandTag, FitIndicator, fitWords } from "./FitIndicator";
 import { MatchOverlay } from "./MatchOverlay";
+import { FitRangeBar, fitText } from "./FitRangeBar";
+import { DimensionIntervals } from "@/components/workdesign/DimensionIntervals";
 import { cn } from "@/lib/cn";
 import { BRAND } from "@/lib/brand";
 
-function DriverBar({ value }: { value: number }) {
-  // Signed contribution on a −0.6…+0.6 scale (z units), drawn from a centre line.
-  const pct = Math.min(1, Math.abs(value) / 0.6) * 50;
+function DriverBar({ value, max = 0.6 }: { value: number; max?: number }) {
+  // Signed contribution on a −max…+max scale (z units under v1, fulfilment points under v2), drawn from a centre line.
+  const pct = Math.min(1, Math.abs(value) / max) * 50;
   return (
     <div className="relative h-3 w-full" aria-hidden>
       <div className="absolute inset-x-0 top-1/2 h-px bg-rule" />
       <div className="absolute left-1/2 top-0 h-3 w-px bg-ink-4" />
-      <div className={cn("absolute top-1/2 h-1 -translate-y-1/2", value >= 0 ? "bg-ink" : "bg-ink-4")} style={value >= 0 ? { left: "50%", width: `${pct}%` } : { right: "50%", width: `${pct}%` }} />
+      <div
+        className={cn("absolute top-1/2 h-1 -translate-y-1/2", value >= 0 ? "bg-ink" : "bg-ink-4")}
+        style={value >= 0 ? { left: "50%", width: `${pct}%` } : { right: "50%", width: `${pct}%` }}
+      />
     </div>
+  );
+}
+
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+/** v2 drivers or frictions, in fulfilment points against your average career path. */
+function DriverList({ items, label }: { items: FitDriver[]; label: string }) {
+  return (
+    <ul className="mt-3 flex flex-col gap-3" aria-label={label}>
+      {items.map((d) => (
+        <li key={d.id} className="grid grid-cols-[1fr_80px_40px] items-center gap-3">
+          <span className="text-small text-ink">{cap(d.label)}</span>
+          <DriverBar value={d.contribution} max={5} />
+          <span className="text-right font-mono text-label text-ink-2">{`${d.contribution >= 0 ? "+" : "−"}${Math.abs(d.contribution).toFixed(1)}`}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Matching v2's view of the career path: both fits with their ranges, why it fits, where it rubs, and you against it. */
+function FitV2({ v2, row, headingId }: { v2: LaneDetailV2; row: LaneDetail["row"]; headingId: string }) {
+  const modes = v2.dims.filter((d) => d.group === "mode");
+  const conditions = v2.dims.filter((d) => d.group === "condition");
+  return (
+    <>
+      <div className="mt-3 flex flex-wrap items-center gap-3">
+        <BandTag band={row.band} />
+        <span className="text-small text-ink-2">In your top 10% in {Math.round(v2.pTop * 100)}% of draws</span>
+      </div>
+      <dl className="mt-4 grid gap-4">
+        <div>
+          <dt className="flex justify-between gap-3 text-small text-ink">
+            Fulfilment fit <span className="font-mono text-label text-ink-3">{v2.fulfilment ? fitText(v2.fulfilment) : "not enough data"}</span>
+          </dt>
+          <dd className="mt-1">
+            <FitRangeBar range={v2.fulfilment} kind="fulfilment" label="Fulfilment fit" />
+            <p className="mt-1 text-label text-ink-3">Does the work give you what you need? 50 is your average career path.</p>
+          </dd>
+        </div>
+        <div>
+          <dt className="flex justify-between gap-3 text-small text-ink">
+            Ability fit <span className="font-mono text-label text-ink-3">{v2.ability ? fitText(v2.ability) : "needs the reasoning tasks"}</span>
+          </dt>
+          <dd className="mt-1">
+            <FitRangeBar range={v2.ability} kind="ability" label="Ability fit" />
+            <p className="mt-1 text-label text-ink-3">Can you meet what it demands? 100 means nothing beyond your measured reasoning range.</p>
+          </dd>
+        </div>
+      </dl>
+
+      <h4 id={`${headingId}-why`} className="mt-6 text-small font-medium text-ink">
+        Why it fits
+      </h4>
+      {v2.drivers.length ? (
+        <DriverList items={v2.drivers} label="Why it fits" />
+      ) : (
+        <p className="mt-2 text-small text-ink-3">Nothing lifts it clearly above your average career path.</p>
+      )}
+      <h4 id={`${headingId}-rubs`} className="mt-5 text-small font-medium text-ink">
+        Where it rubs
+      </h4>
+      {v2.frictions.length ? (
+        <DriverList items={v2.frictions} label="Where it rubs" />
+      ) : (
+        <p className="mt-2 text-small text-ink-3">Nothing pulls it clearly below your average career path.</p>
+      )}
+      <p className="mt-3 text-small text-ink-3">Fulfilment points, against the same part averaged over all your career paths.</p>
+
+      <h4 className="mt-6 text-small font-medium text-ink">You and this career path</h4>
+      <p className="mt-1 text-small text-ink-3">
+        The band is your score with its 90% range; the dark tick is the career&apos;s level from O*NET data. Your scores sit on the questionnaire scales and the career&apos;s are
+        percentiles across occupations, so read them side by side, not as one ruler.
+      </p>
+      <p className="mt-4 label text-ink-3">Value modes</p>
+      <div className="mt-2">
+        <DimensionIntervals
+          compact
+          label="Value modes: you and this career path"
+          markerLabel="This career path"
+          markerShort="career"
+          rows={modes.map((d) => ({ id: d.id, name: d.name, archetype: d.archetype, poles: d.poles, value: d.you, lo: d.lo, hi: d.hi, marker: d.career }))}
+        />
+      </div>
+      <p className="mt-4 label text-ink-3">Working conditions</p>
+      <div className="mt-2">
+        <DimensionIntervals
+          compact
+          label="Working conditions: you and this career path"
+          markerLabel="This career path"
+          markerShort="career"
+          rows={conditions.map((d) => ({ id: d.id, name: d.name, poles: d.poles, value: d.you, lo: d.lo, hi: d.hi, marker: d.career }))}
+        />
+      </div>
+    </>
   );
 }
 
@@ -36,7 +136,11 @@ function LadderStep({ row }: { row: LadderRow }) {
       <p className="flex flex-wrap items-baseline justify-between gap-x-3">
         {/* The ladder template's wording is specific to this kind of work; the generic level name is the fallback. */}
         <span className={cn("text-small font-medium", row.marker === "below" ? "text-ink-3" : "text-ink")}>{row.step ?? row.levelLabel}</span>
-        {row.marker === "start" ? <span className="label text-accent">You&apos;d start here</span> : row.marker === "current" ? <span className="label text-ink">You are here</span> : null}
+        {row.marker === "start" ? (
+          <span className="label text-accent">You&apos;d start here</span>
+        ) : row.marker === "current" ? (
+          <span className="label text-ink">You are here</span>
+        ) : null}
       </p>
       {row.roles.length ? (
         <p className={cn("mt-1 text-small", row.marker === "below" ? "text-ink-3" : "text-ink-2")}>
@@ -58,6 +162,7 @@ export function LaneDetailPanel({ detail, onClose, headingId }: { detail: LaneDe
         <div className="min-w-0">
           <p className="label text-ink-3">
             {row.familyName} · Relative fit
+            {row.provenance === "estimated" ? <span className="text-caution"> · Estimated career data</span> : null}
           </p>
           <h2 id={headingId} className="mt-2 text-h3 font-medium text-ink">
             {row.name}
@@ -79,15 +184,47 @@ export function LaneDetailPanel({ detail, onClose, headingId }: { detail: LaneDe
       <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6" tabIndex={0} role="region" aria-label="Career path detail">
         <p className="text-body text-ink-2">{detail.description}</p>
 
+        {detail.day && detail.day.activities.length ? (
+          <section className="mt-8" aria-labelledby={`${headingId}-day`}>
+            <h3 id={`${headingId}-day`} className="label text-ink-3">
+              A typical day in this career
+            </h3>
+            <ul className="mt-3 flex flex-col gap-3">
+              {detail.day.activities.map((a) => (
+                <li key={a.id}>
+                  <p className="text-small text-ink">{a.name}</p>
+                  <p className="text-small text-ink-3">{a.description}</p>
+                </li>
+              ))}
+            </ul>
+            {detail.day.context.length ? (
+              <dl className="mt-4 flex flex-col gap-2 border-t border-rule pt-3 text-small">
+                {detail.day.context.map((c) => (
+                  <div key={c.id} className="flex flex-wrap justify-between gap-x-3">
+                    <dt className="text-ink-2">{c.name}</dt>
+                    {c.label ? <dd className="text-ink-3">{c.label}</dd> : null}
+                  </div>
+                ))}
+              </dl>
+            ) : null}
+            <p className="mt-3 text-label text-ink-3">
+              The work activities and conditions this career stands out on compared with other occupations, from O*NET data
+              {detail.day.provenance === "estimated" ? ", estimated from similar occupations" : ""}.
+            </p>
+          </section>
+        ) : null}
+
         <section className="mt-8 rounded-sm border border-rule bg-bg p-4" aria-labelledby={`${headingId}-about`}>
           <h3 id={`${headingId}-about`} className="label text-ink-3">
             About this career path
           </h3>
           <dl className="mt-3 flex flex-col gap-3 text-small">
-            <div>
-              <dt className="text-ink">Day to day</dt>
-              <dd className="text-ink-2">{detail.dayToDay.join(" · ")}</dd>
-            </div>
+            {detail.day?.activities.length ? null : (
+              <div>
+                <dt className="text-ink">Day to day</dt>
+                <dd className="text-ink-2">{detail.dayToDay.join(" · ")}</dd>
+              </div>
+            )}
             <div>
               <dt className="text-ink">How people get in</dt>
               <dd className="text-ink-2">
@@ -105,35 +242,42 @@ export function LaneDetailPanel({ detail, onClose, headingId }: { detail: LaneDe
           <h3 id={`${headingId}-fit`} className="label text-ink-3">
             Fit
           </h3>
-          <div className="mt-3 flex items-center gap-3">
-            <BandTag band={row.band} />
-            <FitIndicator vsAverage={row.vsAverage} se={row.se} className="flex-1" />
-          </div>
-          <p className="mt-2 text-small text-ink-2">
-            {bandLabel[row.band]}: fit is {fitWords(row.vsAverage, row.band)}.
-          </p>
-          <div className="mt-5 rounded-sm border border-rule bg-paper p-4">
-            <MatchOverlay overlay={detail.overlay} name={row.name} />
-          </div>
-          {detail.drivers.length ? (
+          {detail.v2 ? (
+            <FitV2 v2={detail.v2} row={row} headingId={headingId} />
+          ) : (
             <>
-              <ul className="mt-5 flex flex-col gap-3" aria-label="What drives this fit">
-                {detail.drivers.map((d) => (
-                  <li key={d.label} className="grid grid-cols-[1fr_96px_48px] items-center gap-3">
-                    <span className="text-small text-ink">{d.label.charAt(0).toUpperCase() + d.label.slice(1)}</span>
-                    <DriverBar value={d.contribution} />
-                    <span className="text-right font-mono text-label text-ink-2">{`${d.contribution >= 0 ? "+" : "−"}${Math.abs(d.contribution).toFixed(2)}`}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-3 text-small text-ink-3">{detail.driversNote}</p>
+              <div className="mt-3 flex items-center gap-3">
+                <BandTag band={row.band} />
+                <FitIndicator vsAverage={row.vsAverage} se={row.se} className="flex-1" />
+              </div>
+              <p className="mt-2 text-small text-ink-2">
+                {bandLabel[row.band]}: fit is {fitWords(row.vsAverage, row.band)}.
+              </p>
+              <div className="mt-5 rounded-sm border border-rule bg-paper p-4">
+                <MatchOverlay overlay={detail.overlay} name={row.name} />
+              </div>
+              {detail.drivers.length ? (
+                <>
+                  <ul className="mt-5 flex flex-col gap-3" aria-label="What drives this fit">
+                    {detail.drivers.map((d) => (
+                      <li key={d.label} className="grid grid-cols-[1fr_96px_48px] items-center gap-3">
+                        <span className="text-small text-ink">{d.label.charAt(0).toUpperCase() + d.label.slice(1)}</span>
+                        <DriverBar value={d.contribution} />
+                        <span className="text-right font-mono text-label text-ink-2">{`${d.contribution >= 0 ? "+" : "−"}${Math.abs(d.contribution).toFixed(2)}`}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-3 text-small text-ink-3">{detail.driversNote}</p>
+                </>
+              ) : null}
+              {detail.unscoredTags.length ? (
+                <p className="mt-3 text-small text-ink-3">
+                  Not counted yet: {detail.unscoredTags.join(", ").toLowerCase()}. The scales behind them are still being validated, or need norm tables before they can be
+                  compared.
+                </p>
+              ) : null}
             </>
-          ) : null}
-          {detail.unscoredTags.length ? (
-            <p className="mt-3 text-small text-ink-3">
-              Not counted yet: {detail.unscoredTags.join(", ").toLowerCase()}. The scales behind them are still being validated, or need norm tables before they can be compared.
-            </p>
-          ) : null}
+          )}
         </section>
 
         <section className="mt-8" aria-labelledby={`${headingId}-start`}>
@@ -168,9 +312,6 @@ export function LaneDetailPanel({ detail, onClose, headingId }: { detail: LaneDe
           <p className="mt-3 text-small text-ink-3">Seniority is a path, not a recommendation: {BRAND.name} never suggests starting in a management role.</p>
         </section>
 
-
-
-
         {detail.isco.length ? (
           <section className="mt-8" aria-labelledby={`${headingId}-isco`}>
             <h3 id={`${headingId}-isco`} className="label text-ink-3">
@@ -186,7 +327,6 @@ export function LaneDetailPanel({ detail, onClose, headingId }: { detail: LaneDe
           </section>
         ) : null}
       </div>
-
     </div>
   );
 }

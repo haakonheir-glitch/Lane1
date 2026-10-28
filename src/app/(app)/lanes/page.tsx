@@ -17,6 +17,7 @@ import { LOCKED_TEXT, reportTier } from "@/lib/tier";
 import { SampleBanner } from "@/components/report/SampleBanner";
 import { OwnResultsNote } from "@/components/report/OwnResultsNote";
 import { OnetAttribution } from "@/components/report/OnetAttribution";
+import { OnetDbAttribution } from "@/components/report/OnetDbAttribution";
 
 export const metadata: Metadata = { title: "Career map" };
 
@@ -158,7 +159,7 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
               label="Explore"
               id="all-h"
               title="All career paths"
-              lead="Filter by how you'd work and how you get in. Open any career path for its roles, day-to-day work and where you'd start."
+              lead="Every career path on fulfilment fit and ability fit, or as lists. Filter by how you'd work and how you get in; open any career path for a typical day, what fits, what rubs and where you'd start."
             >
               <Suspense fallback={<Skeleton lines={8} />}>
                 <LaneMap rows={rows} vocab={vocab} detail={detail} />
@@ -167,6 +168,7 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
           ) : null}
         </div>
         <OnetAttribution className="mt-20" />
+        <OnetDbAttribution className="mt-4" />
       </div>
     </AppPage>
   );

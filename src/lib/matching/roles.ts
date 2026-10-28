@@ -6,6 +6,7 @@
  * - Starting roles are ranked by their tags through tag_to_constructs. Manager, director and
  *   exec roles are never starting roles; owner roles only on the founder ladder.
  */
+import { BRAND } from "../brand";
 import type { Lane, LevelId, Role, TagId, Taxonomy } from "../taxonomy/generated";
 import type { ProfileScores } from "../scoring/profile";
 import { constructTable, type TaxonomyForMatching } from "./fit";
@@ -126,7 +127,7 @@ export function rankRoles(lane: Lane, profile: ProfileScores, taxonomy: Taxonomy
       const top = own && own.s!.score > 0 ? own : best(scored);
       const reason = top
         ? `${TAG_NOUN[top.tag]} draws on your ${top.s!.best.label}, ${strength(top.s!.best.d)}.`
-        : "Its demands draw on scales Lane is still validating, so it can't be ranked for you yet.";
+        : `Its demands draw on scales ${BRAND.name} is still validating, so it can't be ranked for you yet.`;
       return { role, score, reason };
     })
     .sort((a, b) => (b.score ?? -Infinity) - (a.score ?? -Infinity) || levelPref(a.role.level) - levelPref(b.role.level) || a.role.title.localeCompare(b.role.title));

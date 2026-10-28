@@ -375,6 +375,12 @@ if (only.includes("S1") || only.includes("S2")) {
 
 // Career map: onboarding answers show up, filters work client-side, a lane opens, removed pages redirect
 await p.goto(base + "/lanes");
+// With ability fit (S3 and S4) the default view is the fit map; the list views carry the named lanes.
+if (await p.getByRole("radio", { name: "Fit map" }).count()) {
+  await p.locator("svg[aria-label^='Career paths by fulfilment fit']").waitFor();
+  log("lanes: fit map is the default view");
+}
+await p.goto(base + "/lanes?view=family");
 await p.getByText("Your current career").first().waitFor();
 // Count in the map's own lists (the summary at the top repeats named lanes).
 const considering = await p.locator("ul[aria-label] span.label", { hasText: /^Considering$/ }).count();

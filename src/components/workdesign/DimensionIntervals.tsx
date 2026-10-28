@@ -1,5 +1,6 @@
 import { IntervalScale } from "@/components/data/IntervalScale";
 import { RelativeTag } from "@/components/results/RelativeTag";
+import { cn } from "@/lib/cn";
 import type { Relative } from "@/lib/workdesign/person";
 
 export type DimensionRow = {
@@ -23,13 +24,14 @@ const r0 = Math.round;
  * in words under the scale, the scale midpoint as the reference tick (these scores are anchored
  * on the questionnaire scales, not population percentiles, so 50 is the middle of the scale, not
  * an average person). A relative strength or weakness is tagged only when it passed the 1.96·SE
- * test (BLUEPRINT §7). Server component.
+ * test (BLUEPRINT §7). `compact` stacks each row for narrow columns (the Career map's detail panel).
+ * No hooks, so it renders on the server or inside a client component.
  */
-export function DimensionIntervals({ rows, label, markerLabel }: { rows: DimensionRow[]; label: string; markerLabel?: string }) {
+export function DimensionIntervals({ rows, label, markerLabel, markerShort, compact }: { rows: DimensionRow[]; label: string; markerLabel?: string; markerShort?: string; compact?: boolean }) {
   return (
     <ul aria-label={label} className="divide-y divide-rule border-y border-rule">
       {rows.map((r) => (
-        <li key={r.id} className="grid gap-x-6 gap-y-2 py-3 sm:grid-cols-[minmax(0,1.1fr)_96px_minmax(0,2fr)] sm:items-center">
+        <li key={r.id} className={cn("grid gap-x-6 gap-y-2 py-3", compact ? "grid-cols-[minmax(0,1fr)_auto] items-baseline" : "sm:grid-cols-[minmax(0,1.1fr)_96px_minmax(0,2fr)] sm:items-center")}>
           <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
             <span className="text-body text-ink">{r.name}</span>
             {r.archetype ? <span className="text-small text-ink-3">· {r.archetype}</span> : null}
@@ -44,8 +46,9 @@ export function DimensionIntervals({ rows, label, markerLabel }: { rows: Dimensi
                 <span className="text-label text-ink-3"> {r0(r.lo!)}–{r0(r.hi!)}</span>
               </>
             )}
+            {markerShort && r.marker !== null && r.marker !== undefined ? <span className="text-label text-ink-3"> · {markerShort} {r0(r.marker)}</span> : null}
           </span>
-          <div>
+          <div className={cn(compact && "col-span-2")}>
             {r.value === null ? (
               <div className="h-4 rounded-xs border border-dashed border-rule" aria-hidden />
             ) : (
