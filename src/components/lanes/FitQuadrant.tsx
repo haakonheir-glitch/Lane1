@@ -63,8 +63,8 @@ export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[];
         <line y1={M.t} y2={H - M.b} x1={sx} x2={sx} className="stroke-data-ref" strokeDasharray="3 3" />
 
         <g aria-hidden className="fill-ink-3" style={{ fontSize: 11 }}>
-          <text x={W - M.r} y={M.t - 10} textAnchor="end">↑ Gives you what you need · mostly within your range →</text>
-          <text x={M.l} y={M.t - 10}>↑ Gives you what you need · stretches your range</text>
+          <text x={W - M.r} y={M.t - 10} textAnchor="end">↑ Meets your needs · mostly within your range →</text>
+          <text x={M.l} y={M.t - 10}>↑ Meets your needs · stretches your range</text>
           <text x={W - M.r} y={H - M.b + 34} textAnchor="end">↓ Gives you less · mostly within your range →</text>
           <text x={M.l} y={H - M.b + 34}>↓ Gives you less · stretches your range</text>
         </g>
