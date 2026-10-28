@@ -11,7 +11,6 @@ Version `v2-0.3`.
 - **v2 is the default** (approved and made live on 2026-10-28).
 - `MATCHING_VERSION=v1` switches the app back to v1, which stays in the code until its deletion is approved.
 - v1 is unchanged and still selectable.
-- Until Phase 3 builds the v2 views, the current Career map reads v2 through an adapter (`src/lib/matching/v2/adapter.ts`).
 - Cached matching results are keyed by the version, the v2 config version and the O\*NET build, so switching recomputes.
 
 **Status: provisional.** Every weight and threshold below is a reasoned starting point, to be fitted to outcome data later.
@@ -131,6 +130,8 @@ The thresholds are tuned on 1,000 simulated people (`MATCHING_V2_REPORT.md`).
   - The challenge driver says "enough for your reasoning range" only when the career is not under-challenging.
 - **Sources:** every driver lists the source score ids.
 
-## Not done in Phase 2
+## Where it is shown (Phase 3)
 
-The Career map's 2×2 view and detail overlays, the report's "How you work best" chapter, and the outcome check-in are Phase 3.
+- **Career map:** the default view is the fit map, fulfilment fit (vertical) × ability fit (horizontal), split at 50 (your average career path) and at ability fit 80 (`ABILITY_SPLIT` in `src/components/lanes/FitQuadrant.tsx`, provisional), dots styled by band. It is the default only when most career paths have ability fit; otherwise the Family list is. The detail shows both fits as the range 80% of the draws fall in, "Why it fits" (drivers), "Where it rubs" (frictions), and you against the career on the value modes and working conditions.
+- **Report:** chapter 02, "Where this work exists", lists the closest career paths with both fits. The facts for the written report carry both fits and the frictions.
+- **The adapter** (`adapter.ts`) still feeds the v1-shaped parts (bands in the lists, picks, trait connections); the native result is memoised next to it (`src/lib/data/lanes.ts`, `nativeFor`).

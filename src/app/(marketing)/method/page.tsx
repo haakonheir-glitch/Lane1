@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OnetDbAttribution } from "@/components/report/OnetDbAttribution";
 import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/Button";
 import { BRAND } from "@/lib/brand";
@@ -29,6 +30,7 @@ const references = [
   { id: 17, text: "Credé, M., Tynan, M. C., & Harms, P. D. (2017). Much ado about grit: A meta-analytic synthesis of the grit literature. Journal of Personality and Social Psychology, 113, 492–511." },
   { id: 18, text: "MacCann, C., & Roberts, R. D. (2008). New paradigms for assessing emotional intelligence: Theory and data. Emotion, 8, 540–551." },
   { id: 19, text: "Beaty, R. E., & Johnson, D. R. (2021). Automating creativity assessment with SemDis: An open platform for computing semantic distance. Behavior Research Methods, 53, 757–780." },
+  { id: 20, text: "National Center for O*NET Development. O*NET 31.0 Database (Work Values from O*NET 30.2). U.S. Department of Labor, Employment and Training Administration. Used under CC BY 4.0. https://www.onetcenter.org/database.html" },
 ];
 
 function Cite({ n }: { n: number | number[] }) {
@@ -72,6 +74,7 @@ export default function MethodPage() {
             ["02", "The profile", "#m-02"],
             ["02b", "Norms and intervals", "#norms"],
             ["03", "Career paths and fit bands", "#m-03"],
+            ["03b", "How you work best", "#m-03b"],
             ["04", "What you get", "#m-04"],
             ["05", "What we don't do", "#m-05"],
             ["06", "References", "#references"],
@@ -179,33 +182,65 @@ export default function MethodPage() {
               EU&apos;s ESCO) so that nothing people are paid to do is missing, plus the career paths those lists miss, such as creators and founders.
             </p>
             <p>
-              The Career map is <em>ipsative</em>: each career path is scored against your own spread of traits, not against other people. If your
-              strongest trait is average by population standards, it is still your strongest trait, and the career paths that use it fit you best.
-              Half of a career path&apos;s fit comes from your interests (its RIASEC code), half from what the work demands (persuasion, analysis,
-              precision and so on), each linked to the scales that measure it. {BRAND.name}&apos;s experimental scales don&apos;t count until a pilot
-              validates them.
+              Fit follows person–environment fit research, which has two parts. <strong className="font-medium text-ink">Fulfilment fit</strong> (needs–supplies:
+              does the work give you what you need) is the headline: your interests against each career&apos;s O*NET interest profile, your work values against its
+              work values, your value modes against the kinds of work it involves, your working-condition needs against its work context, and whether it challenges
+              your reasoning enough. <strong className="font-medium text-ink">Ability fit</strong> (demands–abilities: can you meet what it demands) is secondary:
+              your reasoning range against the abilities the work asks for. Every career path is described with empirical O*NET occupational data, not
+              invented descriptions; a few career paths with no matching occupation have profiles estimated from similar ones, and are marked as estimated.
             </p>
             <p>
-              We show bands, not ranks. With 205 career paths, number 5 and number 25 are often the same within measurement error. A career path is a{" "}
-              <strong className="font-medium text-ink">strong fit</strong> only when it is clearly ahead of more than half of your other career paths
-              after allowing for that error, and <strong className="font-medium text-ink">unlikely</strong> when it is clearly behind; the rest
-              are <strong className="font-medium text-ink">possible fits</strong> that the measurement can&apos;t separate.
+              Fit is relative to you: 50 is your average career path, so it says which careers suit you best, never how you compare with someone else. Each
+              career&apos;s general advantage (some careers suit almost everyone on paper) is removed, so a career counts only for fitting <em>you</em> better
+              than it fits people in general. No single personality facet may carry more than 15% of any fit. {BRAND.name}&apos;s experimental scales don&apos;t
+              count until a pilot validates them.
+            </p>
+            <p>
+              We show bands, not ranks. With 205 career paths, number 5 and number 25 are often the same within measurement error, so your scores are redrawn
+              500 times within their error and every career path is rescored each time. A career path is a{" "}
+              <strong className="font-medium text-ink">strong fit</strong> when it lands in your top 10% in at least half of the draws, and{" "}
+              <strong className="font-medium text-ink">unlikely</strong> when it lands in your bottom 40% in at least 70% of them; the rest are{" "}
+              <strong className="font-medium text-ink">possible fits</strong> that the measurement can&apos;t separate. All the weights and thresholds are
+              provisional, set before any outcome data, and will be refitted once people tell us how their careers turned out.
             </p>
             <p>
               We match you to career paths first, then to the specific role inside each one where you could realistically start, never at manager level. A questionnaire can tell sales from software, but not who will make a better head of sales: seniority is a path you grow along, not a result of a test.
             </p>
           </Section>
 
-          <Section n="04" title="What you get">
+          <Section n="03b" title="How you work best">
             <p>
-              <strong className="font-medium text-ink">A profile report.</strong> Every score with its 90% interval, the relative
-              strengths and weaknesses that pass a reliability test, a short written summary, and the limits of what the
-              measures can say about you.
+              Your scores are combined into nine <strong className="font-medium text-ink">value modes</strong> (the kind of value you create: influence, analyse,
+              build, organise, care, teach, create, lead, protect) and eight <strong className="font-medium text-ink">working conditions</strong> (autonomy, social
+              contact, pace, conflict, competition, precision, variety, challenge), each a weighted combination of measured scales, each with its 90% range.
+              Modes built from largely the same scales are shown together rather than contrasted.
             </p>
             <p>
-              <strong className="font-medium text-ink">A Career map.</strong> All 205 career paths in fit bands, with what the
-              work involves day to day, how people get in and the role you could realistically start in. It is a
-              way to decide which careers to look into first, not a plan you have to follow.
+              Your blend of modes is shown as a blend of nine archetypes, such as Hunter or Scout. They are a metaphor for a measured pattern, not a type, an
+              identity or a claim about where anyone comes from. When two archetypes can&apos;t be separated within measurement error, the report says you sit
+              between them. What drains you is computed, not written: the working conditions where a mismatch costs you most.
+            </p>
+            <p>
+              Your best workday is written by Claude from these structured results only. Every sentence must name the dimensions it rests on, and a check
+              rejects any sentence without a source, with a figure or name that isn&apos;t in your results, or with a claim about the brain, biology or success.
+            </p>
+          </Section>
+
+          <Section n="04" title="What you get">
+            <p>
+              <strong className="font-medium text-ink">A profile report.</strong> It opens with the answer: how you work best, and where that work exists, with
+              fulfilment fit and ability fit for your closest career paths. Then the evidence: every score with its 90% interval, the relative strengths and
+              weaknesses that pass a reliability test, a short written summary, and the limits of what the measures can say about you.
+            </p>
+            <p>
+              <strong className="font-medium text-ink">A Career map.</strong> All 205 career paths on fulfilment fit and ability fit, or as lists by family and fit
+              band. Each opens to a typical day from O*NET work activities and work context, why it fits, where it rubs, how you compare with it on value modes
+              and working conditions, how people get in and the role you could realistically start in. It is a way to decide which careers to look into first,
+              not a plan you have to follow.
+            </p>
+            <p>
+              <strong className="font-medium text-ink">An optional check-in.</strong> If you opt in, we ask two questions 6 and 12 months later: what you&apos;re
+              doing now, and how fulfilled you are by it. The answers are used to check and refit the matching.
             </p>
           </Section>
 
@@ -227,7 +262,7 @@ export default function MethodPage() {
           </Section>
 
           <section id="references" className="mt-16 scroll-mt-24 border-t border-ink pt-3" aria-labelledby="refs-h">
-            <p className="label text-ink">§ 07</p>
+            <p className="label text-ink">§ 06</p>
             <h2 id="refs-h" className="mt-4 text-h2 font-medium text-ink">
               References
             </h2>
@@ -240,6 +275,8 @@ export default function MethodPage() {
               ))}
             </ol>
           </section>
+
+          <OnetDbAttribution className="mt-16" />
 
           <div className="mt-16 flex flex-wrap items-center gap-4">
             <ButtonLink href="/signup">Start your profile</ButtonLink>
