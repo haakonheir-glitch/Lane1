@@ -3,10 +3,12 @@ import { AppPage } from "@/components/shell/AppPage";
 import { ButtonLink } from "@/components/ui/Button";
 import { CheckInForm } from "@/components/outcome/CheckInForm";
 import { getOutcome, getUser } from "@/lib/data";
-import { formatLongDate } from "@/lib/outcome";
+import { SATISFACTION_ITEM, formatLongDate } from "@/lib/outcome";
+import { outcomes } from "@/lib/bank/bank";
 
 export const metadata: Metadata = { title: "Check-in" };
 
+const QUESTION = outcomes.fit_and_wellbeing.find((q) => q.id === SATISFACTION_ITEM)!.text;
 const fmt = (d: Date) => formatLongDate(d);
 
 /** The outcome check-in: two questions, open 6 and 12 months after the person opted in. */
@@ -21,7 +23,7 @@ export default async function CheckInPage() {
           <>
             <p className="mt-4 text-body-l text-ink-2">Two questions. Your answers are stored with your account and used only to check how well the matches hold up.</p>
             <div className="mt-10">
-              <CheckInForm wave={o.due} />
+              <CheckInForm wave={o.due} question={QUESTION} />
             </div>
           </>
         ) : (

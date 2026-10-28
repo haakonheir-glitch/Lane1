@@ -82,3 +82,13 @@ Product decision: income labels should not exist in Lane at all. Removed:
 **Database:** nothing to migrate. Stored session scores never contained payoff data.
 
 **Historical documents:** `PLAN.md`, `taxonomy/CLAUDE_CODE_PROMPT.md` and `assessment/ITEMS_PREVIEW.md` still mention payoff as part of the original design record. `assessment/BLUEPRINT.md` carries a "superseded" note.
+
+## Matching v1 (removed 2026-10-28)
+
+Removed at the owner's request once matching v2 was approved and live (PLAN D57):
+- `matchLanes()` and its scoring (RIASEC congruence plus demand tags, `src/lib/matching/fit.ts`);
+- the `MATCHING_VERSION` flag (`src/lib/matching/version.ts`);
+- the v1 detail panel parts: the radar overlay (`MatchOverlay`), the z-scale driver list, "not counted yet" tags;
+- `scripts/compare-matching.mts` (v1 against v2) and the v1-only tests.
+
+Kept: the `LaneMatch` row shape (filled from v2 by `adapter.ts`), `constructTable` (the role ranking inside a career path uses it), band labels and sorting. The v1-vs-v2 comparisons stay on record in `taxonomy/derived/MATCHING_V2_REPORT.md`.

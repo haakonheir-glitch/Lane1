@@ -1,11 +1,10 @@
 /**
  * Phase 3 data: the Career map's native v2 fields (rows, detail, typical day), "How you work best"
- * (work design view, drains), and that MATCHING_VERSION=v1 still gives the v1 shapes with the v2
- * fields empty.
+ * (work design view, drains).
  */
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { sampleProfile } from "@/lib/mock/profile";
-import { buildCareerPicks, buildLaneDetail, buildLaneMap, reportLanes, workBestFor } from "@/lib/data/lanes";
+import { buildLaneDetail, buildLaneMap, reportLanes, workBestFor } from "@/lib/data/lanes";
 import { typicalDay } from "@/lib/workdesign/day";
 import { workBest, DRAIN_GAP } from "@/lib/workdesign/best";
 import { personWorkDesign } from "@/lib/workdesign/person";
@@ -52,22 +51,6 @@ describe("career map under matching v2", () => {
     expect(cps.length).toBeGreaterThan(0);
     expect(cps.every((c) => c.fulfilmentFit && ["strong", "possible", "unlikely", "insufficient"].includes(c.band))).toBe(true);
     expect(JSON.stringify(cps)).not.toMatch(/\blanes?\b/i);
-  });
-});
-
-describe("career map under MATCHING_VERSION=v1", () => {
-  it("keeps the v1 shapes and leaves the v2 fields empty", () => {
-    vi.stubEnv("MATCHING_VERSION", "v1");
-    const { rows } = buildLaneMap(sampleProfile, none);
-    expect(rows.every((r) => r.fulfilment === null && r.ability === null && r.provenance === null)).toBe(true);
-    const d = buildLaneDetail("b2b_sales", sampleProfile, none)!;
-    expect(d.v2).toBeNull();
-    expect(d.overlay.axes.length).toBeGreaterThan(0);
-    expect(buildCareerPicks(sampleProfile, none).overall.length).toBe(5);
-    // How you work best still has the person side; the blend has no draws to check it, so it is always tentative.
-    const a = workBestFor(sampleProfile).archetype!;
-    expect(a.tentative).toBe(true);
-    expect(a.reason).toMatch(/^You sit between \w+ and \w+: with matching v1 selected/);
   });
 });
 

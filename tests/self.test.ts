@@ -3,8 +3,9 @@ import { ASSUMED_RELIABILITY, addSelfScores } from "@/lib/scoring/self";
 import { Z90 } from "@/lib/scoring/core";
 import type { ProfileScores } from "@/lib/scoring/profile";
 import type { ScaleScore } from "@/lib/scoring/types";
-import { matchLanes, resolveConstruct } from "@/lib/matching";
-import { taxonomy } from "@/lib/taxonomy";
+import { resolveConstruct } from "@/lib/matching";
+import { matchV2 } from "@/lib/matching/v2";
+import { personInputs } from "@/lib/workdesign/person";
 import { relativeOf } from "@/lib/view/profile";
 
 const raw = (id: string, value: number | null): ScaleScore => ({ id, label: id, raw: value, rawRange: [1, 5], answered: 4, items: 4, normed: null, visibility: "user" });
@@ -67,7 +68,7 @@ describe("own results without norms", () => {
   });
 
   it("puts lanes in bands instead of 'not enough data'", () => {
-    const m = matchLanes(p, taxonomy);
+    const m = matchV2({ inputs: personInputs(p) }, { draws: 120 }).lanes;
     expect(m.some((x) => x.band === "strong")).toBe(true);
     expect(m.some((x) => x.band === "insufficient")).toBe(false);
     const best = m.find((x) => x.laneId === "b2b_sales")!;

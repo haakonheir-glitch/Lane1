@@ -44,7 +44,7 @@ export function OutcomeOptIn({ consentedAt, next, due }: { consentedAt: string |
       <label htmlFor={id} className="flex cursor-pointer items-start gap-3 text-small text-ink-2">
         <Checkbox id={id} checked={consent} onChange={(e) => setConsent(e.currentTarget.checked)} className="mt-0.5" />
         <span>
-          Ask me two questions in 6 and 12 months: what I&apos;m doing now, and how fulfilled I am by it. My answers help check how well these matches hold up. No
+          Ask me two questions in 6 and 12 months: what I&apos;m doing now, and how satisfied I am with it. My answers help check how well these matches hold up. No
           emails yet: the questions appear here when they&apos;re due. You can stop at any time in Settings.
         </span>
       </label>

@@ -1,7 +1,7 @@
 /**
- * Matching v2 in v1's LaneMatch shape, so the current Career map, report facts and picks work
- * with either version (MATCHING_VERSION). The v2-only data (distributions, ability fit, frictions,
- * archetype blend, provenance) is used directly from Phase 3 on. Pure.
+ * Matching v2 as `LaneMatch` rows, the shape the lists, picks, summary sheet and trait connections
+ * read. Everything else (distributions, ability fit, frictions, archetype blend, provenance) is read
+ * from the native result (src/lib/data/lanes.ts, `nativeFor`). Pure.
  *
  * - band: strong → strong, possible → testing ("Possible fit"), unlikely → unlikely.
  * - fit: expected fulfilment fit (T-like, 50 = the person's average career path).

@@ -1,18 +1,16 @@
 "use client";
 
 import { X } from "lucide-react";
-import { bandLabel } from "@/lib/matching/fit";
 import { entryLabel, entryNoteText, entryTerm, levelShort, modeLabel } from "@/lib/lanes/labels";
 import type { FitDriver, LadderRow, LaneDetail, LaneDetailV2, RoleRef } from "@/lib/lanes/types";
-import { BandTag, FitIndicator, fitWords } from "./FitIndicator";
-import { MatchOverlay } from "./MatchOverlay";
+import { BandTag } from "./FitIndicator";
 import { FitRangeBar, fitText } from "./FitRangeBar";
 import { DimensionIntervals } from "@/components/workdesign/DimensionIntervals";
 import { cn } from "@/lib/cn";
 import { BRAND } from "@/lib/brand";
 
-function DriverBar({ value, max = 0.6 }: { value: number; max?: number }) {
-  // Signed contribution on a −max…+max scale (z units under v1, fulfilment points under v2), drawn from a centre line.
+function DriverBar({ value, max }: { value: number; max: number }) {
+  // Signed contribution on a −max…+max scale (fulfilment points), drawn from a centre line.
   const pct = Math.min(1, Math.abs(value) / max) * 50;
   return (
     <div className="relative h-3 w-full" aria-hidden>
@@ -242,42 +240,7 @@ export function LaneDetailPanel({ detail, onClose, headingId }: { detail: LaneDe
           <h3 id={`${headingId}-fit`} className="label text-ink-3">
             Fit
           </h3>
-          {detail.v2 ? (
-            <FitV2 v2={detail.v2} row={row} headingId={headingId} />
-          ) : (
-            <>
-              <div className="mt-3 flex items-center gap-3">
-                <BandTag band={row.band} />
-                <FitIndicator vsAverage={row.vsAverage} se={row.se} className="flex-1" />
-              </div>
-              <p className="mt-2 text-small text-ink-2">
-                {bandLabel[row.band]}: fit is {fitWords(row.vsAverage, row.band)}.
-              </p>
-              <div className="mt-5 rounded-sm border border-rule bg-paper p-4">
-                <MatchOverlay overlay={detail.overlay} name={row.name} />
-              </div>
-              {detail.drivers.length ? (
-                <>
-                  <ul className="mt-5 flex flex-col gap-3" aria-label="What drives this fit">
-                    {detail.drivers.map((d) => (
-                      <li key={d.label} className="grid grid-cols-[1fr_96px_48px] items-center gap-3">
-                        <span className="text-small text-ink">{d.label.charAt(0).toUpperCase() + d.label.slice(1)}</span>
-                        <DriverBar value={d.contribution} />
-                        <span className="text-right font-mono text-label text-ink-2">{`${d.contribution >= 0 ? "+" : "−"}${Math.abs(d.contribution).toFixed(2)}`}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-3 text-small text-ink-3">{detail.driversNote}</p>
-                </>
-              ) : null}
-              {detail.unscoredTags.length ? (
-                <p className="mt-3 text-small text-ink-3">
-                  Not counted yet: {detail.unscoredTags.join(", ").toLowerCase()}. The scales behind them are still being validated, or need norm tables before they can be
-                  compared.
-                </p>
-              ) : null}
-            </>
-          )}
+          <FitV2 v2={detail.v2} row={row} headingId={headingId} />
         </section>
 
         <section className="mt-8" aria-labelledby={`${headingId}-start`}>

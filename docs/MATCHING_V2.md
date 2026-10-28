@@ -7,11 +7,7 @@ Version `v2-0.3`.
 - **Person data:** the Work Design inputs, each a 0–100 value with a standard error (`docs/WORK_DESIGN.md`).
 - **Validation and tuning:** `taxonomy/derived/MATCHING_V2_REPORT.md`.
 
-**Selecting it:**
-- **v2 is the default** (approved and made live on 2026-10-28).
-- `MATCHING_VERSION=v1` switches the app back to v1, which stays in the code until its deletion is approved.
-- v1 is unchanged and still selectable.
-- Cached matching results are keyed by the version, the v2 config version and the O\*NET build, so switching recomputes.
+**In use:** v2 is the app's only matching (approved and live on 2026-10-28). Matching v1 and the `MATCHING_VERSION` flag were removed the same day at your request (`design/REMOVED.md`). Cached matching results are keyed by the v2 config version and the O\*NET build, so retuning recomputes.
 
 **Status: provisional.** Every weight and threshold below is a reasoned starting point, to be fitted to outcome data later.
 

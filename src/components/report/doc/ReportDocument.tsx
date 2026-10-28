@@ -203,7 +203,7 @@ export function ReportDocument({ profile, person, picks, workBest, effort, writt
         </Chapter>
       ) : null}
 
-      <MethodChapter n={n("method")} profile={profile} v2={!!workBest?.matching} />
+      <MethodChapter n={n("method")} profile={profile} />
 
       {own && outcome && !print ? (
         <section aria-labelledby="outcome-h" className="doc-screen border border-paper-edge bg-paper p-8 sm:p-12">

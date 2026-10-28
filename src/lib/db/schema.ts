@@ -135,7 +135,7 @@ export const outcomeConsents = pgTable("outcome_consents", {
 
 /**
  * One outcome check-in answer per wave: what the person does now (resolved through the job-title
- * search, stored like profiles.current_*; null = not working) and how fulfilled they are, 1–7.
+ * search, stored like profiles.current_*; null = not working) and S5's satisfaction item (OUT_sat), 1–7, stored as `fulfilment`.
  * Not the same as the removed sprint table check_ins.
  */
 export const outcomeCheckIns = pgTable(

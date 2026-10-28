@@ -14,9 +14,8 @@
  * Pure.
  */
 import { ENVIRONMENT, VALUE_MODES, type Penalty } from "./model";
-import { overlappingModes, type Relative, type WorkDesignProfile } from "./person";
+import type { Relative, WorkDesignProfile } from "./person";
 import { needWeight, penaltyOf } from "../matching/v2/fit";
-import { V2_CONFIG } from "../matching/v2/config";
 import type { ArchetypeBlend, LaneProfileV2, MatchResultV2 } from "../matching/v2/types";
 
 export type ModeView = { id: string; name: string; archetype: string; poles: [string, string]; value: number | null; lo: number | null; hi: number | null; relative: Relative };
@@ -77,7 +76,7 @@ export function workBest(wd: WorkDesignProfile, result: MatchResultV2 | null, la
   })
     .sort((a, b) => b.need - a.need || a.id.localeCompare(b.id))
     .slice(0, 3);
-  const a = result?.archetype ?? (result ? null : unchecked(modes));
+  const a = result?.archetype ?? null;
   return {
     version: wd.version,
     matching: result?.version ?? null,
@@ -92,28 +91,6 @@ export function workBest(wd: WorkDesignProfile, result: MatchResultV2 | null, la
     conditions,
     inseparable: wd.inseparable.map(([x, y]) => [`mode.${x}`, `mode.${y}`]),
     drains,
-  };
-}
-
-/**
- * Without a matching v2 result (MATCHING_VERSION=v1) there are no draws to test the blend against
- * measurement error, so it is the same softmax over the point scores, always marked tentative.
- */
-function unchecked(modes: ModeView[]): ArchetypeBlend | null {
-  if (modes.some((m) => m.value === null)) return null;
-  const xs = modes.map((m) => m.value!);
-  const max = Math.max(...xs);
-  const e = xs.map((x) => Math.exp((x - max) / V2_CONFIG.archetypeTemperature));
-  const z = e.reduce((p, q) => p + q, 0);
-  const blend = modes.map((m, i) => ({ id: m.id.slice(5), archetype: m.archetype, name: m.name, share: Math.round((1000 * e[i]!) / z) / 10 })).sort((p, q) => q.share - p.share);
-  const [x, y] = blend;
-  const pair = overlappingModes().some(([u, v]) => (u === x!.id && v === y!.id) || (u === y!.id && v === x!.id));
-  return {
-    blend,
-    top2: [x!, y!].map((b) => ({ id: b.id, archetype: b.archetype, share: b.share })),
-    tentative: true,
-    reason: `You sit between ${x!.archetype} and ${y!.archetype}: with matching v1 selected, the blend isn't checked against measurement error, so read it as a leaning.`,
-    caveat: pair ? `${x!.archetype} and ${y!.archetype} are built from largely the same scores, so read them as one pattern.` : null,
   };
 }
 

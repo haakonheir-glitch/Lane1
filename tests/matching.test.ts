@@ -3,7 +3,10 @@ import { normed } from "@/lib/scoring/core";
 import type { ProfileScores } from "@/lib/scoring/profile";
 import type { ScaleScore } from "@/lib/scoring/types";
 import type { Family, Lane, Role, Taxonomy } from "@/lib/taxonomy/generated";
-import { entryPoint, matchLanes, rankRoles, resolveConstruct, sortMatches } from "@/lib/matching";
+import { entryPoint, rankRoles, resolveConstruct, sortMatches } from "@/lib/matching";
+import { matchV2 } from "@/lib/matching/v2";
+import { toV1Matches } from "@/lib/matching/v2/adapter";
+import { personInputs } from "@/lib/workdesign/person";
 import { LANES, taxonomy } from "@/lib/taxonomy";
 import { sampleProfile } from "@/lib/mock/profile";
 
@@ -78,14 +81,6 @@ function tiny(lanes: Lane[]): Pick<Taxonomy, "families" | "tag_to_constructs" | 
   return { families: [fam], tag_to_constructs: taxonomy.tag_to_constructs, levels: taxonomy.levels };
 }
 
-const deepFreeze = <T>(o: T): T => {
-  if (o && typeof o === "object") {
-    Object.freeze(o);
-    for (const v of Object.values(o)) deepFreeze(v);
-  }
-  return o;
-};
-
 /* ---------- constructs ---------- */
 
 describe("resolveConstruct", () => {
@@ -149,64 +144,14 @@ describe("reasoning in matching (PLAN D52)", () => {
   });
 });
 
-/* ---------- lane fit ---------- */
+/* ---------- match rows (matching v2, through the adapter) ---------- */
 
-describe("matchLanes", () => {
-  const tax = tiny([
-    lane("es_lane", "ES", ["persuasion"]),
-    lane("ec_lane", "EC", ["routine"]),
-    lane("ia_lane", "IA", ["analytical"]),
-    lane("rc_lane", "RC", ["physical"]),
-    lane("ri_lane", "RI", ["building"]),
-  ]);
-  const enterprising = profile({ interests: { E: 2, S: 1, R: -1.5, C: -0.5 }, facets: { E3: 1 }, r: 0.95 });
-
-  it("matches the person's interest code to the lane's", () => {
-    const m = Object.fromEntries(matchLanes(enterprising, tax).map((x) => [x.laneId, x]));
-    expect(m.es_lane!.fit!).toBeGreaterThan(m.ia_lane!.fit!);
-    expect(m.es_lane!.band).toBe("strong");
-    expect(m.rc_lane!.band).toBe("unlikely");
-    expect(m.es_lane!.drivers[0]!.label).toBe("E interests");
-  });
-
-  it("is relative to the person: shifting every scale by the same amount changes nothing", () => {
-    const shifted = profile({ interests: { E: 3, S: 2, R: -0.5, C: 0.5, I: 1, A: 1 }, facets: { E3: 2 }, r: 0.95 });
-    const a = matchLanes(enterprising, tax).map((x) => x.fit);
-    const b = matchLanes(shifted, tax).map((x) => x.fit);
-    a.forEach((v, i) => expect(b[i]).toBeCloseTo(v!, 6));
-  });
-
-  it("(-) constructs push in the opposite direction", () => {
-    const t = tiny([lane("calm", "E", ["pressure"]), lane("other", "E", [])]);
-    const anxious = matchLanes(profile({ facets: { N1: 1.5, N6: 1.5 } }), t).find((x) => (x.laneId as string) === "calm")!;
-    const steady = matchLanes(profile({ facets: { N1: -1.5, N6: -1.5 } }), t).find((x) => (x.laneId as string) === "calm")!;
-    expect(steady.fit!).toBeGreaterThan(anxious.fit!);
-  });
-
-  it("lists tags it can't score yet instead of guessing (only experimental constructs behind them)", () => {
-    const m = matchLanes(enterprising, tiny([lane("x", "E", ["competition", "persuasion"])]))[0]!;
-    expect(m.unscoredTags).toEqual(["competition"]);
-  });
-
-  it("calls everything a possible fit ('testing') when measurement can't separate lanes", () => {
-    const noisy = profile({ interests: { E: 2, S: 1, R: -1.5, C: -0.5 }, facets: { E3: 1 }, r: 0 });
-    expect(new Set(matchLanes(noisy, tax).map((x) => x.band))).toEqual(new Set(["testing"]));
-  });
-
-  it("says 'not enough data' without interest scores", () => {
-    const p = { ...profile(), interests: null };
-    expect(matchLanes(p, tax).every((x) => x.band === "insufficient" && x.fit === null)).toBe(true);
-  });
-
-  it("is pure and deterministic", () => {
-    const p = deepFreeze(structuredClone(enterprising));
-    const t = deepFreeze(structuredClone(tax));
-    expect(matchLanes(p, t)).toEqual(matchLanes(p, t));
-  });
+// Career fit is matching v2 (tests/matching-v2.test.ts); matching v1 was removed on 2026-10-28.
+describe("match rows", () => {
+  const rows = toV1Matches(matchV2({ inputs: personInputs(sampleProfile) }, { draws: 60 }));
 
   it("sorts by band first, then by fit within a band", () => {
-    const named = matchLanes(enterprising, tax).map((match) => ({ match, name: match.laneId }));
-    const sorted = sortMatches(named);
+    const sorted = sortMatches(rows.map((match) => ({ match, name: match.laneId })));
     const order = ["strong", "testing", "unlikely", "insufficient"];
     const bands = sorted.map((x) => x.match.band);
     expect(bands).toEqual([...bands].sort((a, b) => order.indexOf(a) - order.indexOf(b)));
@@ -216,10 +161,9 @@ describe("matchLanes", () => {
     }
   });
 
-  it("covers all 205 real lanes for the sample profile, every band in use", () => {
-    const m = matchLanes(sampleProfile, taxonomy);
-    expect(m).toHaveLength(LANES.length);
-    expect(new Set(m.map((x) => x.band))).toEqual(new Set(["strong", "testing", "unlikely"]));
+  it("covers all 205 real career paths for the sample profile, every band in use", () => {
+    expect(rows).toHaveLength(LANES.length);
+    expect(new Set(rows.map((x) => x.band))).toEqual(new Set(["strong", "testing", "unlikely"]));
   });
 });
 
@@ -281,7 +225,7 @@ describe("income labels", () => {
     expect(taxonomy).not.toHaveProperty("payoffs");
     expect(Object.keys(taxonomy.tags)).not.toContain("variable_pay");
     for (const l of LANES) expect(l).not.toHaveProperty("payoff");
-    const m = matchLanes(sampleProfile, taxonomy)[0]!;
+    const m = toV1Matches(matchV2({ inputs: personInputs(sampleProfile) }, { draws: 20 }))[0]!;
     expect(m).not.toHaveProperty("fitPayoff");
     expect(m).not.toHaveProperty("expectedPayoff");
   });

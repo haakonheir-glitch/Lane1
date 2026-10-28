@@ -1,5 +1,5 @@
 /**
- * Lane Map data: the taxonomy, matched against the profile through src/lib/matching.
+ * Career map data: the taxonomy, matched against the profile through matching v2 (src/lib/matching/v2).
  * The profile is the sample until norms exist (PLAN D1/D2); the person's own experience and
  * considered lanes are real (onboarding). Server only: returns small client-safe shapes.
  */
@@ -7,9 +7,8 @@ import "server-only";
 import { cache } from "react";
 import { FAMILIES, LANES, LEVELS, getFamily, getLane, ladderOf, laneModes, taxonomy } from "../taxonomy";
 import type { Lane, LaneId, LevelId, Role } from "../taxonomy/generated";
-import { constructTable, matchLanes, rankRoles, type Experience, type LaneMatch } from "../matching";
+import { rankRoles, type Experience, type LaneMatch } from "../matching";
 import type { ProfileScores } from "../scoring/profile";
-import { matchingVersion } from "../matching/version";
 import { LANE_PROFILES_V2, LANE_PROFILES_V2_STAMP, V2_CONFIG, matchV2, penaltyOf, profileSeed, type Distribution, type LaneMatchV2, type MatchResultV2 } from "../matching/v2";
 import { toV1Matches } from "../matching/v2/adapter";
 import { personInputs, personWorkDesign } from "../workdesign/person";
@@ -17,21 +16,21 @@ import { ENVIRONMENT, VALUE_MODES } from "../workdesign/model";
 import { workBest, type WorkBest } from "../workdesign/best";
 import { CAREER_DAYS_STAMP, typicalDay } from "../workdesign/day";
 import { TAG_NOUN } from "../matching/roles";
-import type { CareerCategory, CareerPick, CareerPicks, DimRow, FitDriver, FitRange, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, MatchOverlay, RoleRef } from "../lanes/types";
+import type { CareerCategory, CareerPick, CareerPicks, DimRow, FitDriver, FitRange, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, RoleRef } from "../lanes/types";
 import type { ExperienceAnswers } from ".";
 import type { ReportCareerPath } from "../report/facts";
 
 const roleRef = (r: Role): RoleRef => ({ id: r.id, title: r.title, level: r.level, mode: r.mode, aka: r.aka });
 
-/** Which matching produced cached results: part of the cache key, so flipping MATCHING_VERSION or retuning v2 recomputes. */
-export const matchingCacheKey = () => (matchingVersion() === "v2" ? `v2:${V2_CONFIG.version}:${LANE_PROFILES_V2_STAMP}:${CAREER_DAYS_STAMP}` : `v1:${CAREER_DAYS_STAMP}`);
+/** Which matching produced cached results: part of the cache key, so retuning v2 or rebuilding its data recomputes. */
+export const matchingCacheKey = () => `v2:${V2_CONFIG.version}:${LANE_PROFILES_V2_STAMP}:${CAREER_DAYS_STAMP}`;
 
 type V2Memo = { result: MatchResultV2; byLane: Map<string, LaneMatchV2>; adapted: LaneMatch[] };
 
 /**
  * v2 matches by profile (500 draws × 205 fits, about half a second), kept across requests so that
  * opening a career path's detail doesn't rerun the Monte Carlo. Holds the native result (the Career
- * map's 2×2, the detail and the report read it) and the v1-shaped rows the older views read, at most
+ * map's 2×2, the detail and the report read it) and the rows the lists and picks read, at most
  * 64 profiles.
  */
 const v2Memo = new Map<string, V2Memo>();
@@ -48,14 +47,11 @@ function matchV2Memo(profile: ProfileScores): V2Memo {
   return r;
 }
 
-/** Matching v2's native result for the profile; null under v1 (MATCHING_VERSION=v1). */
-export const nativeFor = cache((profile: ProfileScores): V2Memo | null => (matchingVersion() === "v2" ? matchV2Memo(profile) : null));
+/** Matching v2's native result for the profile, once per request. */
+export const nativeFor = cache((profile: ProfileScores): V2Memo => matchV2Memo(profile));
 
-/** Matching is pure and costs ~205×205 pair checks (v1) or 500 draws × 205 fits (v2), so compute it once per request. */
-const matchesFor = cache((profile: ProfileScores) => {
-  const ms = nativeFor(profile)?.adapted ?? matchLanes(profile, taxonomy);
-  return new Map(ms.map((m) => [m.laneId, m]));
-});
+/** The row-shaped matches (lists, picks, trait connections), by career path. */
+const matchesFor = cache((profile: ProfileScores) => new Map(nativeFor(profile).adapted.map((m) => [m.laneId, m])));
 
 const r1 = (x: number) => Math.round(x * 10) / 10;
 /** A distribution as a JSON-safe range (results pass through unstable_cache, which turns NaN into null). */
@@ -82,7 +78,7 @@ function toRow(lane: Lane, m: LaneMatch, exp: ExperienceAnswers, n?: LaneMatchV2
 
 export function buildLaneMap(profile: ProfileScores, exp: ExperienceAnswers): { rows: LaneRowData[]; vocab: LaneFilterVocab } {
   const matches = matchesFor(profile);
-  const native = nativeFor(profile)?.byLane;
+  const native = nativeFor(profile).byLane;
   return {
     rows: LANES.map((l) => toRow(l, matches.get(l.id)!, exp, native?.get(l.id))),
     vocab: { families: FAMILIES.map((f) => ({ id: f.id, name: f.name })) },
@@ -114,7 +110,7 @@ const PICKS = 5;
  */
 export function buildCareerPicks(profile: ProfileScores, exp: ExperienceAnswers): CareerPicks {
   const matches = matchesFor(profile);
-  const native = nativeFor(profile)?.byLane;
+  const native = nativeFor(profile).byLane;
   const bandOrder = ["strong", "testing", "unlikely", "insufficient"];
   const ordered = LANES.map((lane) => ({ lane, m: matches.get(lane.id)! }))
     .filter((x) => x.m.band !== "insufficient")
@@ -162,7 +158,7 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
   const lane = getLane(id);
   if (!lane) return null;
   const m = matchesFor(profile).get(lane.id)!;
-  const n = nativeFor(profile)?.byLane.get(lane.id);
+  const n = nativeFor(profile).byLane.get(lane.id)!;
   const ranked = rankRoles(lane, profile, taxonomy, toExperience(exp));
   return {
     row: toRow(lane, m, exp, n),
@@ -174,25 +170,16 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
     ladder: ladderRows(lane, ranked.entry.level, ranked.entry.current),
     entryNote: ranked.entry.note,
     topRoles: ranked.top.map((t) => ({ role: roleRef(t.role), reason: t.reason })),
-    drivers: m.drivers.filter((d) => Math.abs(d.contribution) >= 0.01),
-    unscoredTags: m.unscoredTags.map((t) => TAG_NOUN[t]),
     isco: Object.entries(lane.isco_labels).map(([code, label]) => ({ code, label })),
-    overlay: matchOverlay(lane, profile),
-    driversNote:
-      matchingVersion() === "v2"
-        ? "Contribution to fit, against the same part averaged over all your career paths."
-        : "Contribution to fit, relative to your own average across all scales.",
     day: typicalDay(lane.id),
-    v2: n
-      ? {
-          fulfilment: range(n.fulfilmentFit),
-          ability: range(n.abilityFit),
-          pTop: Math.round(n.pTop * 100) / 100,
-          drivers: n.drivers.map(fitDriver),
-          frictions: n.frictions.map(fitDriver),
-          dims: dimRows(lane.id, profile),
-        }
-      : null,
+    v2: {
+      fulfilment: range(n.fulfilmentFit),
+      ability: range(n.abilityFit),
+      pTop: Math.round(n.pTop * 100) / 100,
+      drivers: n.drivers.map(fitDriver),
+      frictions: n.frictions.map(fitDriver),
+      dims: dimRows(lane.id, profile),
+    },
   };
 }
 
@@ -225,27 +212,7 @@ function dimRows(laneId: string, profile: ProfileScores): DimRow[] {
 }
 
 /** "How you work best" for the profile: archetype blend, value modes, working conditions and drains. */
-export const workBestFor = cache((profile: ProfileScores): WorkBest => workBest(personWorkDesign(profile), nativeFor(profile)?.result ?? null, LANE_PROFILES_V2));
-
-const RIASEC_NAME: Record<string, string> = { R: "Realistic", I: "Investigative", A: "Artistic", S: "Social", E: "Enterprising", C: "Conventional" };
-/** How strongly the code asks for each of its letters, first letter outermost (presentation only). */
-const CODE_DEMAND = [1, 0.82, 0.66];
-
-/**
- * The match overlay: the career path's demands and the person's scores on the same axes, the
- * constructs the matching function uses for this path (its interest code and its demand tags).
- * The person's value is their score relative to their own average, exactly as matching reads it.
- */
-function matchOverlay(lane: Lane, profile: ProfileScores): MatchOverlay {
-  const t = constructTable(profile, taxonomy);
-  const you = (ids: string[]) => {
-    const zs = ids.map((id) => t.table.get(id)).filter((r) => !!r).map((r) => r!.z - t.mean);
-    return zs.length ? zs.reduce((a, b) => a + b, 0) / zs.length : null;
-  };
-  const axes: MatchOverlay["axes"] = lane.riasec.split("").map((l, i) => ({ label: `${RIASEC_NAME[l]} interests`, kind: "interest" as const, demand: CODE_DEMAND[i] ?? 0.66, you: you([`interests.${l}`]) }));
-  for (const tag of lane.tags) axes.push({ label: TAG_NOUN[tag], kind: "demand", demand: 0.82, you: you(taxonomy.tag_to_constructs[tag] ?? []) });
-  return { axes: axes.slice(0, 8) };
-}
+export const workBestFor = cache((profile: ProfileScores): WorkBest => workBest(personWorkDesign(profile), nativeFor(profile).result, LANE_PROFILES_V2));
 
 export const laneName = (id: string) => getLane(id)?.name ?? id;
 
@@ -258,7 +225,7 @@ export const isKnownLane = (id: string): id is LaneId => !!getLane(id);
  */
 export function reportLanes(profile: ProfileScores, exp: ExperienceAnswers): ReportCareerPath[] {
   const matches = matchesFor(profile);
-  const native = nativeFor(profile)?.byLane;
+  const native = nativeFor(profile).byLane;
   const strong = [...matches.values()].filter((m) => m.band === "strong").sort((a, b) => (b.vsAverage ?? 0) - (a.vsAverage ?? 0)).slice(0, 6);
   const picked = new Map<string, ReportCareerPath["listedBecause"]>(strong.map((m) => [m.laneId, "strong_fit"]));
   for (const c of exp.considering) picked.set(c.laneId, "considering");

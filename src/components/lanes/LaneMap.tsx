@@ -90,11 +90,10 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
   const panelRef = useRef<HTMLDivElement>(null);
   const headingId = useId();
 
-  // The 2×2 needs both v2 fits for most career paths: under v1 (MATCHING_VERSION=v1), without the reasoning
-  // tasks, or with too few reasoning areas measured to cover most careers' demands, the lists are the default.
+  // The 2×2 needs ability fit for most career paths: without the reasoning tasks, or with too few reasoning
+  // areas measured to cover most careers' demands, the lists are the default.
   const withFit = rows.filter((r) => r.fulfilment).length;
   const hasMap = withFit > 0 && rows.filter((r) => r.fulfilment && r.ability).length >= withFit / 2;
-  const hasV2 = withFit > 0;
   const defaultView: LaneView = hasMap ? "map" : "family";
   const asked = params.get("view");
   const view: LaneView = asked === "band" || asked === "family" || (asked === "map" && hasMap) ? asked : defaultView;
@@ -168,7 +167,7 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
                 ]}
               />
             </div>
-            {hasV2 && !hasMap ? (
+            {withFit > 0 && !hasMap ? (
               <p className="text-small text-ink-3">The fit map needs ability fit for most career paths. It comes from the reasoning tasks (sessions S3 and S4), once enough reasoning areas have a result.</p>
             ) : null}
           </div>
@@ -272,20 +271,14 @@ export function LaneMap({ rows, vocab, detail }: { rows: LaneRowData[]; vocab: L
           })
         )}
 
-        {hasV2 ? (
-          <p className="mt-8 max-w-reading text-small text-ink-3">
-            Bands compare each career path with your other career paths, not with other people: your scores are redrawn 500 times within their measurement error, and a
-            career path is a strong fit when it lands in your top 10% in at least half of the draws. Fulfilment fit (does the work give you what you need) is the
-            headline; 50 is your average career path.{" "}
-            {view === "map"
-              ? `Ability fit (can you meet what it demands) runs across; to the right of ${ABILITY_SPLIT}, the work asks little beyond your measured reasoning range (an average shortfall under 20 points). Hover a dot for its fits; the cross shows the range 80% of the draws fall in.`
-              : "In the lists, the dot shows fulfilment fit against your average career path, with its range."}
-          </p>
-        ) : (
-          <p className="mt-8 max-w-reading text-small text-ink-3">
-            Bands compare each career path with your other career paths, not with other people. A career path is a strong fit only when it&apos;s clearly above more than half of yours after allowing for measurement error; most can&apos;t be told apart that precisely, so they&apos;re possible fits. The dot shows fit against your average career path, with a 90% range.
-          </p>
-        )}
+        <p className="mt-8 max-w-reading text-small text-ink-3">
+          Bands compare each career path with your other career paths, not with other people: your scores are redrawn 500 times within their measurement error, and a
+          career path is a strong fit when it lands in your top 10% in at least half of the draws. Fulfilment fit (does the work give you what you need) is the
+          headline; 50 is your average career path.{" "}
+          {view === "map"
+            ? `Ability fit (can you meet what it demands) runs across; to the right of ${ABILITY_SPLIT}, the work asks little beyond your measured reasoning range (an average shortfall under 20 points). Hover a dot for its fits; the cross shows the range 80% of the draws fall in.`
+            : "In the lists, the dot shows fulfilment fit against your average career path, with its range."}
+        </p>
       </div>
 
       {docked && detail ? (

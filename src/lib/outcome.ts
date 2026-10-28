@@ -9,9 +9,12 @@ export const WAVES: { id: Wave; months: number }[] = [
   { id: "12m", months: 12 },
 ];
 
-/** The 1–7 fulfilment question and its end labels, shown exactly as stored. */
-export const FULFILMENT_QUESTION = "All in all, how fulfilled are you by the work you do now?";
-export const FULFILMENT_ANCHORS = { 1: "Not at all", 7: "Completely" } as const;
+/**
+ * The second question is S5's satisfaction item, asked the same way (its text from the item bank,
+ * 1–7 with no labels, as in S5), so each check-in can be compared with the person's own baseline.
+ * Stored in outcome_check_ins.fulfilment.
+ */
+export const SATISFACTION_ITEM = "OUT_sat";
 
 /** Calendar months later, clamped to the month's last day (31 August + 6 months = 28 or 29 February). */
 export const addMonths = (d: Date, months: number) => {

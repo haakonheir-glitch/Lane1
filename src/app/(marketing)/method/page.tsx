@@ -240,7 +240,7 @@ export default function MethodPage() {
             </p>
             <p>
               <strong className="font-medium text-ink">An optional check-in.</strong> If you opt in, we ask two questions 6 and 12 months later: what you&apos;re
-              doing now, and how fulfilled you are by it. The answers are used to check and refit the matching.
+              doing now, and how satisfied you are with it (the same question as at the end of the assessment). The answers are used to check and refit the matching.
             </p>
           </Section>
 

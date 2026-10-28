@@ -6,16 +6,17 @@ import { Button } from "@/components/ui/Button";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { JobTitleSearch } from "@/components/onboarding/JobTitleSearch";
 import { saveOutcomeCheckIn } from "@/app/actions/outcome";
-import { FULFILMENT_ANCHORS, FULFILMENT_QUESTION, type Wave } from "@/lib/outcome";
+import type { Wave } from "@/lib/outcome";
 import { cn } from "@/lib/cn";
 
 type Pick = { laneId: string; roleId: string | null; title: string; laneName: string };
 
 /**
  * The two check-in questions: what you're doing now (the job-title search, as in onboarding, or
- * "not working right now") and how fulfilled you are by it, 1–7. Nothing else is asked.
+ * "not working right now") and S5's satisfaction question, 1–7 with no labels as in S5 (its text
+ * comes from the item bank, passed in by the page). Nothing else is asked.
  */
-export function CheckInForm({ wave }: { wave: Wave }) {
+export function CheckInForm({ wave, question }: { wave: Wave; question: string }) {
   const router = useRouter();
   const notWorkingId = useId();
   const scaleId = useId();
@@ -54,7 +55,7 @@ export function CheckInForm({ wave }: { wave: Wave }) {
 
       <fieldset>
         <legend id={scaleId} className="text-body-l font-medium text-ink">
-          2. {FULFILMENT_QUESTION}
+          2. {question}
         </legend>
         <div role="radiogroup" aria-labelledby={scaleId} className="mt-4 grid max-w-[520px] grid-cols-7 gap-2">
           {[1, 2, 3, 4, 5, 6, 7].map((n) => (
@@ -63,17 +64,13 @@ export function CheckInForm({ wave }: { wave: Wave }) {
               type="button"
               role="radio"
               aria-checked={score === n}
-              aria-label={`${n}${n === 1 ? ` (${FULFILMENT_ANCHORS[1]})` : n === 7 ? ` (${FULFILMENT_ANCHORS[7]})` : ""}`}
+              aria-label={`${n} of 7`}
               onClick={() => setScore(n)}
               className={cn("h-11 rounded-xs border font-mono text-body tabular transition-quiet", score === n ? "border-ink bg-ink text-bg" : "border-rule-strong text-ink hover:border-ink")}
             >
               {n}
             </button>
           ))}
-        </div>
-        <div className="mt-2 flex max-w-[520px] justify-between text-label text-ink-3">
-          <span>{FULFILMENT_ANCHORS[1]}</span>
-          <span>{FULFILMENT_ANCHORS[7]}</span>
         </div>
       </fieldset>
 

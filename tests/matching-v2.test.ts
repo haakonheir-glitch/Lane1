@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import { LANE_OFFSETS_V2, LANE_PROFILES_V2, V2_CONFIG, bestByDirection, computeFit, facetShares, matchAllV2, matchV2, rankV2, topFive, type LaneProfileV2 } from "@/lib/matching/v2";
 import { TEST_PROFILES, population, synthetic } from "@/lib/matching/v2/synthetic";
 import { toV1Matches } from "@/lib/matching/v2/adapter";
-import { matchingVersion } from "@/lib/matching/version";
 import { LANES, getLane } from "@/lib/taxonomy";
 
 const DRAWS = 120;
@@ -60,19 +59,6 @@ describe("matching v2: data and config", () => {
     }
     const r = matchV2(lopsided, { draws: 40 });
     if (r.guard.length) expect(r.notes.map((n) => n.code)).toContain("facet_guard");
-  });
-
-  it("defaults to v2, and MATCHING_VERSION=v1 still selects v1", () => {
-    const before = process.env.MATCHING_VERSION;
-    try {
-      delete process.env.MATCHING_VERSION;
-      expect(matchingVersion()).toBe("v2");
-      process.env.MATCHING_VERSION = "v1";
-      expect(matchingVersion()).toBe("v1");
-    } finally {
-      if (before === undefined) delete process.env.MATCHING_VERSION;
-      else process.env.MATCHING_VERSION = before;
-    }
   });
 });
 

@@ -1,5 +1,7 @@
 # Phase 2 report: matching v2
 
+> **Update, 2026-10-28:** v2 is live and matching v1 has been deleted, together with the `MATCHING_VERSION` flag and `scripts/compare-matching.mts`. Below is the report as it stood at Phase 2; the v1-vs-v2 comparisons in §4 stay on record.
+
 Status, 2026-10-28: **Phase 2 is complete and v2 is approved. Phase 3 has not been started.**
 
 **Your decisions (2026-10-28):**

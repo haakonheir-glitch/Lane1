@@ -3,7 +3,7 @@
 Status, 2026-10-28: **Phase 3 is complete and waiting for your review. The brand/design brief has not been applied.**
 
 **Before this phase (your decisions):**
-- v2 was approved and made the default, and is live. `MATCHING_VERSION=v1` switches back; v1 is still in the code.
+- v2 was approved and made the default, and is live. v1 has since been deleted (§6).
 - A tentative archetype blend reads "You sit between X and Y".
 - "Fit × payoff" is dropped.
 - Niche career paths stay where the data puts them.
@@ -147,9 +147,9 @@ All are in `design/after/9-phase3/`:
 - **The best workday hasn't run against Claude yet** (there is no API key here). On 15 realistic hand-written passages the checker now rejects none, and the prompt lists every rule it enforces. Please still read the first few real ones. If several come back as "couldn't be written", tell me and I'll check the reason.
 - **The fit map needs reasoning results** in enough areas. People with only some areas get the lists.
 
-## 6. Open questions for you
+## 6. Your decisions after this report (2026-10-28)
 
-1. **Email reminders** for the check-in are not built (the brief said no email yet). Until they are, people only see a due check-in when they open their report.
-2. **Fulfilment question:** keep "how fulfilled", or reuse the S5 satisfaction item so answers compare with the baseline?
-3. **Delete v1?** It is still selectable. Deleting it needs your approval.
-4. **Next:** the brand/design brief. The new views use the existing tokens and components only.
+1. **No email reminders.** Check-ins stay in-app: a due check-in shows on the report page.
+2. **The check-in reuses the S5 satisfaction item** ("All in all, how satisfied are you with the work you do?", 1–7 unlabelled as in S5, text read from the item bank), so answers compare with each person's baseline. It is stored in the existing `fulfilment` column (no migration).
+3. **Matching v1 is deleted** (`design/REMOVED.md`, PLAN D57). This removes `matchLanes`, the `MATCHING_VERSION` flag, the v1 radar overlay and driver list, and the v1-vs-v2 comparison script. The shared row shape and the role ranking stay.
+4. **The brand/design work is next.**
