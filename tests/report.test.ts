@@ -121,11 +121,20 @@ describe("best workday check", () => {
     d.sentences[3]!.sources = ["env.autonomy"];
     const unmeasured = wb.conditions.find((c) => c.value === null);
     const p = workdayProblems(d, unmeasured ? wb : { ...wb, conditions: wb.conditions.map((c) => (c.id === "env.variety" ? { ...c, value: null, lo: null, hi: null } : c)) }).join("\n");
-    expect(p).toMatch(/Sentence 1 .* names a career or job title \("a nurse"\)/);
+    expect(p).toMatch(/Sentence 1 .* names a career or job title \("as a nurse"\)/);
     expect(p).toMatch(/Sentence 2 .* figures .*Seventy/);
-    expect(p).toMatch(/Sentence 3 .* uses "leading" .* without listing mode\.lead/);
+    expect(p).toMatch(/Sentence 3 .* uses "leading a small group" .* without listing mode\.lead/);
     expect(p).toMatch(/Sentence 4 .* uses "deadlines" without listing env\.pace/);
     expect(p).toMatch(/weren't measured/);
+  });
+
+  it("catches careers, comparisons and claims phrased the ways a model tends to, and passes everyday English", () => {
+    const flags = (t: string) => workdayProblems({ sentences: [{ text: t, sources: ["mode.lead"] }] }, wb).filter((x) => !/words; it must/.test(x));
+    for (const t of ["You would make a great nurse.", "You work as a senior lawyer.", "You'd be a natural manager.", "A career in sales suits you.", "You thrive at a startup.", "The CEO asks for your view.", "Evolution shaped you to lead from the front.", "You'll go far.", "Your peers can't keep up.", "You earn a bonus for it."])
+      expect(flags(t), t).not.toEqual([]);
+    for (const t of ["The people around you care about the outcome.", "It leads to a decision before lunch.", "They build on it themselves.", "You act as a guide for someone new.", "You explain it to a junior colleague.", "You set your own pace.", "You prefer predictable work.", "You commission a quick piece of research."])
+      expect(flags(t), t).toEqual([]);
+    expect(claimProblems("A strong fit is not a prediction of success, and nothing here is guaranteed.")).toEqual([]);
   });
 
   it("is written from the Work Design JSON only, rewritten once with the problems listed, and left out if it still fails", async () => {

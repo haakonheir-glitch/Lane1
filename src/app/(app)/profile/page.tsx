@@ -55,7 +55,7 @@ export default async function ProfilePage() {
         tier={tier}
         reportConfigured={reportConfigured}
         status={written?.stale && reportConfigured ? <ReportRefresher /> : null}
-        outcome={{ consentedAt: outcome.consentedAt?.toISOString() ?? null, next: outcome.next ? formatLongDate(outcome.next, process.env.APP_TIMEZONE) : null, due: !!outcome.due }}
+        outcome={{ consentedAt: outcome.consentedAt?.toISOString() ?? null, next: outcome.next ? formatLongDate(outcome.next) : null, due: !!outcome.due }}
       />
     </AppPage>
   );

@@ -11,11 +11,12 @@
  * removed first, so quoting the facts never fails the check. Pure.
  */
 const BRAIN =
-  /\b(brains?|neuro(?:chemi\w*|science\w*|transmitter\w*|logic\w*|biolog\w*|ns?)|neural\w*|dopamine|serotonin|oxytocin|cortisol|adrenaline|hormon\w*|DNA|genes?|genetic\w*|biologic\w*|innate\w*|hard-?wired|born (?:to|with)|ancest\w*|caveman|cavemen|tribal)\b/i;
+  /\b(brains?|neuro(?:chemi\w*|science\w*|transmitter\w*|logic\w*|biolog\w*|ns?)|neural\w*|dopamine|serotonin|oxytocin|cortisol|adrenaline|hormon\w*|DNA|genes?|genetic\w*|biologic\w*|innate\w*|hard-?wired|born (?:to|with)|ancest\w*|caveman|cavemen|tribal|evolution\w*|evolved to|in your (?:DNA|genes|blood))\b/i;
+/** Positive predictions only: "not a prediction of success" and "predictable work" pass. */
 const PREDICT =
-  /\b(predict\w*|guarantee\w*|destined|bound to (?:succeed|thrive|excel)|(?:will|'ll|’ll|would) (?:\w+ )?(?:succeed|thrive|excel|flourish|be successful|do well)|(?:likely|sure|certain) to (?:succeed|thrive|excel|flourish|be successful|do well))\b/i;
+  /\b((?:predicts?|guarantees?) (?:your |that you )?(?:success|will)|you(?:'re| are| will be) (?:guaranteed|destined|bound) to|destined (?:to|for)|bound to (?:succeed|thrive|excel)|(?:will|'ll|’ll|'d|would) (?:\w+ )?(?:succeed|thrive|excel|flourish|be successful|do well|go far|be promoted)|(?:likely|sure|certain) to (?:succeed|thrive|excel|flourish|be successful|do well|go far))\b/i;
 const MONEY =
-  /\b(income|incomes|salary|salaries|wages?|earnings|commission|winner-take-all|pay ?(?:rise|cut|grade|level|scale|check|cheque)|paychecks?|(?:well|badly|poorly|highly|better|best|worst|under|over)[- ]paid|pays? (?:well|badly|poorly|more|less|little|a lot)|earn(?:s|ing|ed)? (?:money|a living|more|less|well|a lot|little))\b/i;
+  /\b(income|incomes|salary|salaries|wages?|earnings|commission(?!s? (?:a|an|the|some)\b)|lucrative|bonus(?:es)?|compensation|money|winner-take-all|pay ?(?:rise|cut|grade|level|scale|check|cheque)|paychecks?|(?:well|badly|poorly|highly|better|best|worst|under|over)[- ]paid|pays? (?:well|badly|poorly|more|less|little|a lot)|earn(?:s|ing|ed)? (?:money|a living|more|less|well|a lot|little))\b/i;
 const LANE = /\blanes?\b/;
 
 const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -23,7 +24,8 @@ const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 /** Each rule a piece of prose breaks, in words a rewrite request can quote. */
 export function claimProblems(text: string, allowed: string[] = []): string[] {
   let t = text;
-  for (const a of [...allowed].filter((x) => x.trim().length > 2).sort((p, q) => q.length - p.length)) t = t.replace(new RegExp(esc(a), "gi"), " ");
+  // Only whole occurrences, and only of strings longer than one short word, so a title like "income" can't switch a check off.
+  for (const a of [...allowed].filter((x) => x.trim().length > 3 && x.trim().includes(" ")).sort((p, q) => q.length - p.length)) t = t.replace(new RegExp(`\\b${esc(a)}\\b`, "gi"), " ");
   const out: string[] = [];
   const hit = (re: RegExp, why: string) => {
     const m = t.match(re);

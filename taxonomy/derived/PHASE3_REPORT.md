@@ -13,7 +13,7 @@ Status, 2026-10-28: **Phase 3 is complete and waiting for your review. The brand
 - **Test items:** no item, item order, instrument or session change. `git diff` over `assessment/`, `src/lib/bank`, `src/lib/scoring`, `src/lib/assess` and `src/components/assess` is empty for Phase 3.
 - **Scoring and matching:** stay deterministic code. Claude writes prose only, from structured JSON.
 - **Taxonomy:** `taxonomy.json` is untouched. The new derived data (`career_days.json`) is built by a script in `taxonomy/build/`.
-- **Tests:** every new module has unit tests. The suite is 19 files and 197 tests, all passing. Typecheck, lint and the production build are clean.
+- **Tests:** every new module has unit tests. The suite is 19 files and 198 tests, all passing. Typecheck, lint and the production build are clean.
 - **Provenance:** estimated career data is marked on the fit map, in the lists, in the detail panel, in the report and in the written report's facts.
 
 ## 1. What was built
@@ -110,7 +110,17 @@ Low:
 - The check-in actions had no tests.
 - `SOURCES.md` was out of date.
 
-**Round 2** checked the fixes; see §5.
+**Round 2: two reviewers tried to break the fixes.** Eight findings, none high, all fixed:
+- **The workday check still rejected good passages over everyday words.** "care about", "leads to", "build on", "a junior colleague" and "set your own pace" all failed it. On 15 realistic passages written for a test profile, 5 were rejected.
+  - Now it tracks a mode or condition only where it is *named* ("leadership", "teaching", "autonomy", "deadlines"), not ordinary verbs.
+  - A job title counts only when the sentence casts you in the job ("as a senior lawyer", "you'd make a great nurse", "a career in sales", "at a startup", "CEO").
+  - The same 15 passages now all pass, and a set of bad sentences is still caught. Both are now tests.
+- **The rewrite message pushed the model to cite the wrong dimension.** It now says "reword it, or list the id only if the sentence is about that dimension".
+- **"Not a prediction of success" (which the prompt itself asks for), "predictable work" and "guaranteed" were rejected.** Only positive predictions are caught now.
+- **The prompt now states every rule the checker enforces,** including the 110–190 word bounds.
+- **More caught:** evolution claims, "your peers", "anyone else", money words (bonus, money, compensation) and "you'll go far".
+- **Quoting your own job title** can no longer switch a whole check off.
+- **Check-in dates** are shown on the same calendar the month maths uses.
 
 ## 3. Screenshots (1440×900, light and dark)
 
@@ -134,7 +144,7 @@ All are in `design/after/9-phase3/`:
 ## 5. What to watch after the deploy
 
 - **Every stored written report rewrites itself** on its owner's next visit: `REPORT_FORMAT` changed, plus the v2 facts. That is one report call plus one or two best-workday calls per person.
-- **The best workday hasn't run against Claude yet** (there is no API key here). The checker is strict on purpose. Please read the first few real ones. If many come back as "couldn't be written", the false-rejection rate needs tuning; the second review measured it on realistic passages (below).
+- **The best workday hasn't run against Claude yet** (there is no API key here). On 15 realistic hand-written passages the checker now rejects none, and the prompt lists every rule it enforces. Please still read the first few real ones. If several come back as "couldn't be written", tell me and I'll check the reason.
 - **The fit map needs reasoning results** in enough areas. People with only some areas get the lists.
 
 ## 6. Open questions for you

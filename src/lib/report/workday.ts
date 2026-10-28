@@ -22,18 +22,18 @@ import { LANES } from "../taxonomy";
 
 export const WORKDAY_WORDS = { min: 110, max: 190 } as const;
 
-export const WORKDAY_SYSTEM = `You write one short passage for ${BRAND.name}'s profile report: "Your best workday". The app has already measured the person and computed their Work Design profile; you receive it as JSON and describe, in about 150 words, what a working day that suits them looks like.
+export const WORKDAY_SYSTEM = `You write one short passage for ${BRAND.name}'s profile report: "Your best workday". The app has already measured the person and computed their Work Design profile; you receive it as JSON and describe, in 120–180 words (the checker allows 110–190), what a working day that suits them looks like.
 
 The JSON is the only source. Every sentence must rest on dimensions in it, and you must list the ids of those dimensions (the "id" fields, such as "mode.analyse" or "env.autonomy") with each sentence. A checker rejects the passage if:
 - a sentence lists no ids, or an id that isn't in the JSON;
 - a sentence lists the id of a dimension whose value is null (not measured);
-- a sentence uses any form of a value mode's word (influence, analyse, build, organise, care, teach, create, lead, protect: "leading", "built", "caring", "analysis" all count) or an archetype name, without listing that mode's id;
-- a sentence uses a working-condition word without listing its id: autonomy; social contact; pace, time pressure, deadlines, rush; conflict; competition, competitive, rivals; precision, precise; variety, varied, routine; cognitive challenge;
+- a sentence names a value mode (Influence, Analysis, Building, Organising, Caring, Teaching, Creating, Leadership or Leading, Protecting, capitalised or not) or an archetype name (capitalised: Hunter, Scout, Maker, Gatherer, Healer, Teacher, Storyteller, Chief, Guardian) without listing that mode's id;
+- a sentence names a working condition without listing its id: autonomy; social contact; time pressure or deadlines; conflict; competition; precision; variety or routine; cognitive challenge;
 - it names any archetype other than the two in "archetype.top2";
-- it names a career, job title or workplace type (the JSON has none);
-- it uses any number that isn't in the JSON, including numbers and percentages in words (write without numbers);
-- it compares the person with other people (no "most people", "others", percentiles or IQ): every score is about this person;
-- it claims anything about the brain, neurochemistry, genes, ancestry or evolution, predicts success, mentions pay or income, or uses the word "lane".
+- it names a career, job title or workplace ("as a nurse", "work as an engineer", "a career in sales", "at a startup", "CEO"): the JSON has none;
+- it uses any number that isn't in the JSON, including large numbers and percentages in words (write without numbers);
+- it compares the person with other people ("most people", "than others", "anyone else", "your peers", percentiles, IQ): every score is about this person;
+- it claims anything about the brain, neurochemistry, hormones, genes, biology, instinct of birth ("born to", "innate"), ancestry, tribes or evolution; predicts success ("you'll thrive", "likely to excel"); mentions pay, money, bonuses or commission; or uses the word "lane".
 
 How to read the JSON:
 - "modes" are the kinds of value the person creates. Higher means more of their profile points that way. "relative": "strength" or "weakness" passed a reliability test; without it, a difference is a leaning, so describe it gently. Values between "lo" and "hi" are equally consistent with the measurements.
@@ -50,56 +50,64 @@ export function workdayUserMessage(workDesignJson: string) {
 }
 
 const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-/** The words that name each value mode in prose, in any form (matched case-insensitively). */
+/**
+ * The words that name each value mode as a mode (nouns and "-ing" forms of the activity), matched
+ * case-insensitively. Plain verbs ("lead to", "care about", "build trust", "create space") are
+ * everyday English and aren't counted.
+ */
 const MODE_TERMS: Record<string, RegExp> = {
-  "mode.influence": /\binfluenc\w*/i,
-  "mode.analyse": /\banaly[sz]\w*/i,
-  "mode.build": /\bbuil(?:d|ds|ding|dings|t)\b/i,
-  "mode.organise": /\borgani[sz]\w*/i,
-  "mode.care": /\bcar(?:e|es|ed|ing)\b/i,
-  "mode.teach": /\b(?:teach\w*|taught)\b/i,
-  "mode.create": /\bcreat\w*/i,
-  "mode.lead": /\b(?:lead|leads|leading|leader\w*|led)\b/i,
-  "mode.protect": /\bprotect\w*/i,
+  "mode.influence": /\binfluenc(?:e|ing)\b/i,
+  "mode.analyse": /\b(?:analysis|analys[ei]s|analysing|analyzing|analytical)\b/i,
+  "mode.build": /\bbuilding things\b|\bmaking things\b|\bbuild mode\b/i,
+  "mode.organise": /\borganis(?:ing|ation)\b|\borganiz(?:ing|ation)\b/i,
+  "mode.care": /\bcaring for\b|\blooking after (?:people|others)\b/i,
+  "mode.teach": /\bteaching\b/i,
+  "mode.create": /\bcreating\b|\bcreativity\b|\binventing\b/i,
+  "mode.lead": /\bleadership\b|\bleading (?:a |the |your )?(?:\w+ )?(?:people|others|team|teams|group|groups|meeting|room|project)\b/i,
+  "mode.protect": /\bprotecting\b|\bsafeguarding\b/i,
 };
-/** The words that name each working condition in prose (matched case-insensitively). */
+/** The words that name each working condition, matched case-insensitively. */
 const CONDITION_TERMS: Record<string, RegExp> = {
   "env.autonomy": /\bautonom\w*/i,
   "env.social": /\bsocial contact\b/i,
-  "env.pace": /\b(?:pace|time pressure|deadlines?|rush\w*)\b/i,
-  "env.conflict": /\bconflict\w*/i,
-  "env.competition": /\b(?:competi\w*|rivals?|rivalr\w*)\b/i,
-  "env.precision": /\b(?:precision|precise\w*)\b/i,
-  "env.variety": /\b(?:variety|varied|routines?)\b/i,
+  "env.pace": /\b(?:time pressure|deadlines?)\b/i,
+  "env.conflict": /\bconflicts?\b/i,
+  "env.competition": /\bcompetition\b/i,
+  "env.precision": /\bprecision\b/i,
+  "env.variety": /\b(?:variety|routines?)\b/i,
   "env.challenge": /\bcognitive challenge\w*/i,
 };
-const OTHERS = /\b(most people|than other people|than others|than most|the average person|on average|percentile\w*|IQ)\b/i;
+const OTHERS = /\b(most people|than other people|than others|than most|the average person|on average|anyone else|your peers|few people|the majority|unlike others|percentile\w*|IQ)\b/i;
 const NUMBER_WORDS = /\b(twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundreds?|thousands?|percent|per cent)\b/i;
 
 /**
- * Career path names and role titles from the taxonomy (the JSON has none, so naming one is adding
- * a fact). Several-word titles match anywhere; one-word titles and the head nouns of longer ones only
- * after an article or "as" ("as a nurse", "the analyst"), so verbs like "coach" or "guide" still
- * pass. Archetype names are left out.
+ * Career path names and role titles from the taxonomy (the JSON has none, so naming one adds a
+ * fact). Titles are split on "/", "," and "(" so "Chief executive officer (CEO)" gives both
+ * parts. Several-word titles match anywhere. One-word titles and the head nouns of longer ones
+ * ("registered nurse" → "nurse") match only when the sentence casts the person in the job: "as a
+ * (senior) nurse", "work as …", "a career in …". A few common titles that aren't in that form are
+ * listed by hand. Role-in-the-room words ("a guide", "the host") pass.
  */
 let titleRe: RegExp | null = null;
 function titles(): RegExp {
   if (titleRe) return titleRe;
   const archetypes = new Set(["hunter", "scout", "maker", "gatherer", "healer", "teacher", "storyteller", "chief", "guardian"]);
-  const names = new Set<string>();
-  for (const l of LANES) {
-    names.add(l.name.toLowerCase());
-    for (const r of l.roles) names.add(r.title.toLowerCase());
-  }
-  const multi = [...names].filter((n) => n.includes(" ") && n.length > 5).sort((a, b) => b.length - a.length).map(esc);
-  // One-word titles, and the head noun of longer ones ("registered nurse" → "nurse"), when it names
-  // a person doing a job (agent nouns like "analyst", "designer", "nurse"), not words like "people"
-  // or "team" that a workday needs.
-  const heads = new Set([...names].map((n) => n.split(/\s+/).pop()!.replace(/[^a-z-]/g, "")));
-  const agent = /(?:er|or|ist|ian|ant|ent|man|nurse|chef|doctor|pilot|judge|guide|coach|host|clerk|cook|model|midwife|officer|smith|wright)$/;
-  const generic = new Set(["leader", "member", "partner", "owner", "player", "reader", "speaker", "server", "layer", "sitter", "runner", "setter", "worker", "employee", "professional", "specialist", "corner", "client", "customer", "parent", "student", "patient", "president", "different", "content", "development", "management", "government", "investment", "department", "environment", "equipment", "assessment", "treatment", "entertainment", "enablement", "procurement", "improvement", "assistance", "compliance", "insurance", "performance", "assurance", "maintenance", "guidance", "finance", "science", "practice", "service", "office", "police", "advice", "dance", "experience", "commerce", "home", "people", "team", "work", "support"]);
-  const single = [...heads].filter((n) => n.length > 3 && agent.test(n) && !generic.has(n) && !archetypes.has(n)).map(esc);
-  titleRe = new RegExp(`\\b(?:${multi.join("|")})\\b|\\b(?:a|an|the|as)\\s+(?:${single.join("|")})s?\\b`, "i");
+  const parts = new Set<string>();
+  for (const l of LANES) for (const t of [l.name, ...l.roles.map((r) => r.title)]) for (const p of t.toLowerCase().split(/\s*[/,(]\s*|\)/)) if (p.trim()) parts.add(p.trim().replace(/\s+/g, " "));
+  const multi = [...parts].filter((n) => n.includes(" ") && n.length > 5 && !/^(?:the|a|an) /.test(n)).sort((a, b) => b.length - a.length).map(esc);
+  const agent = /(?:er|or|ist|ian|ant|ent|man|nurse|chef|doctor|pilot|judge|clerk|cook|midwife|officer|smith|wright|ceo|cfo|cto)$/;
+  const heads = new Set([...parts].map((n) => n.split(" ").pop()!.replace(/[^a-z-]/g, "")).filter((n) => n.length > 2 && agent.test(n) && !archetypes.has(n)));
+  for (const h of ["ceo", "salesperson", "executive", "entrepreneur", "politician", "rep", "founder", "manager"]) heads.add(h);
+  const head = [...heads].map(esc).join("|");
+  titleRe = new RegExp(
+    [
+      `\\b(?:${multi.join("|")})\\b`,
+      `\\b(?:as|work(?:s|ed|ing)? as|job as|role as|make|makes|be|become|becomes|'d be|would be)\\s+(?:a|an|the)?\\s*(?:[a-z-]+\\s+){0,2}(?:${head})s?\\b`,
+      `\\b(?:a )?career (?:in|as)\\b`,
+      `\\b(?:ceos?|startups?|start-ups?|trading floor|law firm|hospital ward)\\b`,
+    ].join("|"),
+    "i",
+  );
   return titleRe;
 }
 const words = (t: string) => t.split(/\s+/).filter(Boolean).length;
@@ -124,14 +132,14 @@ export function workdayProblems(w: BestWorkday, wb: WorkBest): string[] {
     const cites = new Set(s.sources);
     for (const m of wb.modes) {
       // Archetypes as capitalised names ("Maker", not "decision-maker" or "your chief concern").
-      const arche = new RegExp(`(?<![-\\w])${esc(m.archetype)}s?\\b`).test(text);
+      const arche = new RegExp(`(?<![-\\w])${esc(m.archetype)}s?\\b|\\b(?:a|an|the) ${esc(m.archetype.toLowerCase())}s?\\b`).test(text);
       const word = text.match(MODE_TERMS[m.id]!)?.[0];
-      if ((word || arche) && !cites.has(m.id)) out.push(`${n} uses "${word ?? m.archetype}" (${m.name}, ${m.archetype}) without listing ${m.id}.`);
+      if ((word || arche) && !cites.has(m.id)) out.push(`${n} uses "${word ?? m.archetype}" (${m.name}, ${m.archetype}) without listing ${m.id}: reword it, or list ${m.id} only if the sentence is about that mode.`);
       if (arche && !top2.has(m.archetype)) out.push(`${n} names the archetype ${m.archetype}, which isn't one of the two shown.`);
     }
     for (const [id, re] of Object.entries(CONDITION_TERMS)) {
       const t = text.match(re)?.[0];
-      if (t && !cites.has(id)) out.push(`${n} uses "${t}" without listing ${id}.`);
+      if (t && !cites.has(id)) out.push(`${n} uses "${t}" without listing ${id}: reword it, or list ${id} only if the sentence is about that condition.`);
     }
     const title = text.match(titles())?.[0];
     if (title) out.push(`${n} names a career or job title ("${title.trim()}"), which isn't in the JSON.`);

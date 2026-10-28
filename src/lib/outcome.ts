@@ -23,8 +23,8 @@ export const addMonths = (d: Date, months: number) => {
   return x;
 };
 
-/** A date as people read it ("28 February 2027"), in the app's time zone so server and browser agree. */
-export const formatLongDate = (d: Date, timeZone = "Europe/Oslo") => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone }).format(d);
+/** A check-in date as people read it ("28 February 2027"), on the same UTC calendar the month maths uses. */
+export const formatLongDate = (d: Date) => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(d);
 
 /**
  * The wave to answer now: the latest one whose date has passed and that isn't answered yet. A
