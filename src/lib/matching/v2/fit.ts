@@ -532,7 +532,7 @@ function archetypeBlend(pt: PersonPoint, drawsModes: (number | null)[][], cfg: V
     blend,
     top2: [a!, b!].map((x) => ({ id: x.id, archetype: x.archetype, share: x.share })),
     tentative,
-    reason: tentative ? `${a!.archetype} leads ${b!.archetype} in ${Math.min(Math.floor(ahead * 100), Math.ceil(cfg.archetypeConfidence * 100) - 1)}% of draws once measurement error is allowed for, so the order of the two isn't certain.` : null,
+    reason: tentative ? `You sit between ${a!.archetype} and ${b!.archetype}: ${a!.archetype} comes out ahead in ${Math.min(Math.floor(ahead * 100), Math.ceil(cfg.archetypeConfidence * 100) - 1)}% of draws once measurement error is allowed for, so read the two together rather than as a ranking.` : null,
     caveat: pair ? `${a!.archetype} and ${b!.archetype} are built from largely the same scores, so read them as one pattern.` : null,
   };
 }

@@ -8,7 +8,7 @@ Version `v2-0.3`.
 - **Validation and tuning:** `taxonomy/derived/MATCHING_V2_REPORT.md`.
 
 **Selecting it:**
-- `MATCHING_VERSION=v2` makes the app use v2; anything else keeps **v1**, which stays the default until v2 is approved.
+- `MATCHING_VERSION=v2` makes the app use v2; anything else keeps **v1**. v2 was approved on 2026-10-28; v1 stays the default until you choose to switch, and stays in the code until its deletion is approved.
 - v1 is unchanged and still selectable.
 - Until Phase 3 builds the v2 views, the current Career map reads v2 through an adapter (`src/lib/matching/v2/adapter.ts`).
 - Cached matching results are keyed by the version, the v2 config version and the O\*NET build, so switching recomputes.
@@ -111,7 +111,7 @@ The thresholds are tuned on 1,000 simulated people (`MATCHING_V2_REPORT.md`).
 ### 7. Archetype blend
 
 - **The blend:** softmax over the nine mode scores, temperature 8 points. The top two are shown with percentages.
-- **Tentative:** when the leader beats the second in fewer than 90% of draws. The draws redraw shared inputs jointly, so this already accounts for modes built from the same scores.
+- **Tentative:** when the leader beats the second in fewer than 90% of draws. It is worded "You sit between X and Y", a reading rather than a warning. The draws redraw shared inputs jointly, so this already accounts for modes built from the same scores.
 - **Caveat:** when the top two are a pair built from largely the same inputs (Influence + Lead, Organise + Protect, Care + Teach), a separate caveat says to read them as one pattern.
 
 ### Drivers and frictions

@@ -1,6 +1,14 @@
 # Phase 2 report: matching v2
 
-Status, 2026-10-27: **Phase 2 is complete and waiting for your approval. Phase 3 has not been started.**
+Status, 2026-10-28: **Phase 2 is complete and v2 is approved. Phase 3 has not been started.**
+
+**Your decisions (2026-10-28):**
+1. **v2 is approved.** Phase 3 builds the native v2 views.
+   - v1 stays in the code until you approve deleting it.
+   - v1 also stays the default (`MATCHING_VERSION` unset) until you say to switch.
+2. **Tentative archetype blends** keep the 90% rule. They are phrased "You sit between X and Y", not as a warning. This is done in `v2-0.3`.
+3. **"Fit × payoff" is dropped** from Phase 3, because income labels no longer exist.
+4. **Niche career paths at the top are left as the data puts them.** There is no interest minimum and no hiding.
 
 - **v1 is unchanged and still the default.** v2 runs only with `MATCHING_VERSION=v2`. With the flag unset, v1's output is byte-identical to before Phase 2 (checked in review).
 - **Nothing was deleted.** v1 stays until you approve v2.
@@ -235,7 +243,7 @@ Where it rubs: Emphasis on Relationships, which matters less to you (-0.5); Litt
 - **"Fit" is relative to you.** 50 is your average career path. That keeps everyone's top list meaningful, but fits can't be compared between people. The bands are rank-based for the same reason.
 - **Possible is the adapter's "testing".** In the v1-shaped data the Career map reads today, v2's "possible" maps to v1's "testing" band. Phase 3 replaces this with native v2 views.
 
-## 6. Open questions for you
+## 6. Open questions (answered 2026-10-28, see the top of this report)
 
 1. **Approve v2?** If yes, Phase 3 builds the native views. v1 stays in the code until you also approve deleting it.
 2. **Archetype "tentative" rate.** The leader must beat the second in 90% of draws. In the population most blends are still tentative (see §3), because many people genuinely sit between two archetypes.

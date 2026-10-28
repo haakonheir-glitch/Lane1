@@ -165,6 +165,7 @@ describe("matching v2: the six test profiles", () => {
     const hunter = matchV2(synthetic(TEST_PROFILES.hunter!.spec), { draws: DRAWS }).archetype!;
     expect(hunter.tentative).toBe(true);
     expect(hunter.reason).toMatch(/of draws/);
+    expect(hunter.reason).toMatch(/^You sit between \w+ and \w+:/);
   });
 
   it("explains few strong fits even when the profile isn't flat", () => {
