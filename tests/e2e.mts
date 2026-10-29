@@ -108,9 +108,12 @@ await p.getByText("1–2 years").click();
 await p.getByRole("button", { name: "Continue" }).click();
 // How satisfied are you in this work: 1–7, advances on its own
 await p.waitForURL(/step=4/);
+// Wait for the step transition: the outgoing step stays on screen while it animates out.
+await p.waitForTimeout(500);
 await p.getByText("5", { exact: true }).click();
 // Any previous jobs: one, with its own satisfaction
 await p.waitForURL(/step=5/);
+await p.waitForTimeout(500);
 await p.getByRole("combobox").fill("lærer");
 await p.getByRole("option").first().waitFor();
 await p.getByRole("option").first().click();
@@ -118,6 +121,8 @@ await p.getByRole("group", { name: /How satisfied were you/ }).getByText("3", { 
 await p.getByRole("button", { name: "Continue" }).click();
 // What are you considering: two picks, one resolved through an alias
 await p.waitForURL(/step=6/);
+// The previous step's search box is still mounted while it animates out.
+await p.waitForTimeout(500);
 for (const q of ["YouTuber", "rørlegger"]) {
   await p.getByRole("combobox").fill(q);
   await p.getByRole("option").first().waitFor();

@@ -158,6 +158,8 @@ if (part === "roundtrip") {
     agree: people.length ? r3(people.filter((p) => p.agree).length / people.length) : null,
     contradict: people.length ? r3(people.filter((p) => p.contradict).length / people.length) : null,
   });
+  // The database client keeps the process alive.
+  process.exit(0);
 } else if (part === "report") {
   report();
 } else {

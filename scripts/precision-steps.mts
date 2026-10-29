@@ -61,7 +61,8 @@ for (const s of subjects) {
   for (let i = 0; i < 15; i++) L.push(`| ${i + 1} | ${tops.map((t) => (t[i] ? `${t[i]!.name} (${B[t[i]!.band]}, ${r1(t[i]!.fulfilmentFit.mean)})` : "")).join(" | ")} |`);
   const first = new Set(tops[0]!.map((l) => l.laneId));
   const lastTop = tops.at(-1)!;
-  L.push("", `Of v2-0.4's top 15, ${lastTop.filter((l) => first.has(l.laneId)).length} are still in v2-0.5's top 15.`, "");
+  const kept = lastTop.filter((l) => first.has(l.laneId)).length;
+  L.push("", `Of v2-0.4's top 15, ${kept} ${kept === 1 ? "is" : "are"} still in v2-0.5's top 15.`, "");
 
   // The inputs, anchored (v2-0.4) against normed / order statistics (v2-0.5).
   const a = s.person(V4).inputs;
