@@ -89,6 +89,8 @@ export type LaneMatchV2 = FitV2 & {
   pBottom: number;
   /** With the weight ensemble: the same shares under need-weighted and under flat environment weighting (bands need both). */
   pBy?: { need: { top: number; bottom: number }; flat: { top: number; bottom: number } };
+  /** With the ensemble: the share the band is decided on, the smaller of the two P(top 10%). */
+  pTopBand?: number;
   /** The career path's own leading value mode (its "direction"). */
   direction: string | null;
 };

@@ -33,13 +33,13 @@ if (account) {
   const { profile, sessions } = await loadAccountProfile(account);
   subjects.push({ id: account, label: `Account ${account} (sessions ${sessions.join(", ")})`, person: (cfg) => ({ inputs: personInputs(profile, cfg.inputs) }), profile });
 } else {
-  for (const [id, t] of Object.entries(TEST_PROFILES)) subjects.push({ id, label: t.label, person: (cfg) => synthetic(t.spec, cfg.inputs) });
+  for (const [id, t] of Object.entries(TEST_PROFILES)) subjects.push({ id, label: t.label, person: (cfg) => synthetic(t.spec, cfg.inputs, "percentile") });
 }
 
 const L: string[] = [];
 L.push(account ? `# Precision pass, step by step: ${account}` : "# Precision pass, step by step: the six test profiles", "");
 L.push(
-  `Generated ${new Date().toISOString().slice(0, 10)}. Each step is added on top of the previous one, starting from v2-0.4: ${STEPS.map((s) => s.label).join(" → ")}. ${V5.draws} draws each. Bands in the lists: S strong, P possible, U unlikely. Fit is the expected fulfilment fit (50 = the person's average career path).`,
+  `Generated ${new Date().toISOString().slice(0, 10)}.${account ? "" : " The test profiles are read as population percentiles (synthetic.ts, specAs \"percentile\"): the same people under each step's rules."} Each step is added on top of the previous one, starting from v2-0.4: ${STEPS.map((s) => s.label).join(" → ")}. ${V5.draws} draws each. Bands in the lists: S strong, P possible, U unlikely. Fit is the expected fulfilment fit (50 = the person's average career path).`,
   "",
 );
 

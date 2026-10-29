@@ -197,7 +197,9 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
     v2: {
       fulfilment: range(n.fulfilmentFit),
       ability: range(n.abilityFit),
-      pTop: Math.round(n.pTop * 100) / 100,
+      // The share the band rests on (with the ensemble, the smaller of need-weighted and flat), so the two always agree.
+      pTop: Math.round((n.pTopBand ?? n.pTop) * 100) / 100,
+      bothWeightings: n.pTopBand !== undefined,
       drivers: n.drivers.map(fitDriver),
       frictions: n.frictions.map(fitDriver),
       dims: dimRows(lane.id, profile),

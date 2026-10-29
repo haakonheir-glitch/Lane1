@@ -8,7 +8,7 @@ import type { FitV2, LaneProfileV2, LaneProfilesFile, PersonProfile, RoleProfile
 import { computeFit as computeFitIn, matchAllV2, type MatchOptions, type Offsets } from "./fit";
 import { V2_CONFIG, type V2Config } from "./config";
 
-export { matchAllV2, facetShares, profileSeed, populationOffsets, penaltyOf, needWeight, effectiveWeights, type Offsets } from "./fit";
+export { matchAllV2, facetShares, envGuardFor, profileSeed, populationOffsets, penaltyOf, needWeight, effectiveWeights, type Offsets } from "./fit";
 export { topFive, bestByDirection, rankV2, type TopPick } from "./present";
 export { V2_CONFIG, V2_CONFIGS, DEFAULT_V2_VERSION, selectConfig, type V2Config } from "./config";
 export * from "./types";
@@ -16,7 +16,14 @@ export * from "./types";
 /** The bundled career profiles (taxonomy/derived/lane_profiles_v2.json). */
 export const LANE_PROFILES_V2 = (lanesFile as LaneProfilesFile).lanes as Record<string, LaneProfileV2>;
 /** Which O*NET build the bundled profiles come from (for cache keys). */
-export const LANE_PROFILES_V2_STAMP = `${(lanesFile as LaneProfilesFile).workDesign}:${Object.values((lanesFile as LaneProfilesFile).release).join("/")}:${offsetsFile.population.seed}:${Object.keys((rolesFile as RoleProfilesFile).roles).length}`;
+/** A short content hash, so a rebuilt data file is a new cache key even when its shape is unchanged. */
+const hash = (x: unknown) => {
+  const text = JSON.stringify(x);
+  let h = 5381;
+  for (let i = 0; i < text.length; i++) h = ((h * 33) ^ text.charCodeAt(i)) >>> 0;
+  return h.toString(36);
+};
+export const LANE_PROFILES_V2_STAMP = `${(lanesFile as LaneProfilesFile).workDesign}:${Object.values((lanesFile as LaneProfilesFile).release).join("/")}:${hash(lanesFile)}:${hash(offsetsFile)}:${hash(rolesFile)}`;
 
 /** Roles with their own O*NET link (taxonomy/derived/role_profiles_v2.json), for ranking starting roles. */
 export const ROLE_PROFILES_V2 = (rolesFile as RoleProfilesFile).roles as Record<string, RoleProfileV2>;

@@ -82,8 +82,12 @@ describe("personality (file 01/02)", () => {
     expect(scorePersonality(neoItems, hhItems, r).honestyHumility!.raw).toBe(5);
   });
   test("no norms → no normed score (no invented percentiles)", () => {
-    const r = Object.fromEntries(neoItems.map((i) => [i.id, 3]));
-    expect(scorePersonality(neoItems, hhItems, r).facets.every((f) => f.normed === null)).toBe(true);
+    const r = Object.fromEntries([...neoItems, ...hhItems].map((i) => [i.id, 3]));
+    expect(scorePersonality(neoItems, hhItems, r, {}).facets.every((f) => f.normed === null)).toBe(true);
+    // With the published table: every facet and domain is normed; Honesty-Humility has no norm yet.
+    const p = scorePersonality(neoItems, hhItems, r);
+    expect([...p.facets, ...p.domains].every((f) => f.normed)).toBe(true);
+    expect(p.honestyHumility!.normed).toBeNull();
   });
 });
 

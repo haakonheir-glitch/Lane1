@@ -148,9 +148,11 @@ async function buildMyProfile(userId: string): Promise<ProfileScores | null> {
     scored[s.sessionId as SessionId] = { scores: current, completedAt: (s.completedAt ?? s.startedAt).toISOString() };
   }
   if (!scored.S1 && !scored.S2) return null;
-  const profile = addSelfScores(applyNorms(buildProfile(scored, "pending")));
+  // Norms apply only when the running matching config reads them, so v2-0.4 and earlier reproduce exactly.
+  const built = buildProfile(scored, "pending");
+  const profile = addSelfScores(V2_CONFIG.inputs.norms ? applyNorms(built) : applyNorms(built, {}));
   // Research scales in shadow mode: logged next to the Work Design dimensions, never shown.
-  logShadow(shadowRecord(Object.values(scored).map((x) => x!.scores), personWorkDesign(profile)), userId);
+  logShadow(shadowRecord(Object.values(scored).map((x) => x!.scores), personWorkDesign(profile, undefined, V2_CONFIG.inputs)), userId);
   return profile;
 }
 
@@ -188,6 +190,17 @@ const getMatching = cache(async () => {
   const data = await unstable_cache(compute, ["matching", u.id, fp, SCORING_VERSION, NORMS_STAMP, matchingCacheKey(), JSON.stringify(exp)], { tags: [`profile:${u.id}`], revalidate: 60 * 60 * 24 })();
   return { source, profile, exp, ...data };
 });
+
+/**
+ * Where a career path sits in the person's own top five (1–5), or null when it isn't there or the
+ * Career map shows the sample. The resonance answer is stored against this, never the client's rank.
+ */
+export async function ownTopFiveRank(laneId: string): Promise<number | null> {
+  const { source, picks } = await getMatching();
+  if (source !== "own") return null;
+  const i = picks.overall.slice(0, 5).findIndex((p) => p.row.id === laneId);
+  return i < 0 ? null : i + 1;
+}
 
 export async function getLaneMap(selected?: string | null) {
   const { source, profile, exp, rows, vocab, picks } = await getMatching();

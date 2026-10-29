@@ -49,7 +49,9 @@ function FitV2({ v2, row, headingId }: { v2: LaneDetailV2; row: LaneDetail["row"
     <>
       <div className="mt-3 flex flex-wrap items-center gap-3">
         <BandTag band={row.band} />
-        <span className="text-small text-ink-2">In your top 10% in {Math.round(v2.pTop * 100)}% of draws</span>
+        <span className="text-small text-ink-2">
+          In your top 10% in {Math.round(v2.pTop * 100)}% of draws{v2.bothWeightings ? ", under either way of weighting working conditions" : ""}
+        </span>
       </div>
       <dl className="mt-4 grid gap-4">
         <div>

@@ -3,7 +3,7 @@
  * Work Design inputs switching from anchored to normed on their own.
  */
 import { describe, expect, it } from "vitest";
-import { PSYCHOMETRICS, REQUIRED_KEYS, NORMS_STAMP } from "@/lib/scoring/psychometrics";
+import { PSYCHOMETRICS, REQUIRED_KEYS, NORMS_STAMP, OPENNESS_WITH_O6, opennessWithoutO6 } from "@/lib/scoring/psychometrics";
 import { applyNorms, normBasis } from "@/lib/scoring/norms";
 import { scoreInterests } from "@/lib/scoring/interests";
 import { itemIndex } from "@/lib/bank/bank";
@@ -58,6 +58,7 @@ describe("published norms", () => {
     }
     // Honesty-Humility (Mini-IPIP6) has no transcribed source.
     expect(PSYCHOMETRICS["hh.HH"]).toBeNull();
+    expect(REQUIRED_KEYS.filter((k) => !PSYCHOMETRICS[k])).toEqual(["hh.HH"]);
     expect(NORMS_STAMP).toMatch(/^\d+:[0-9a-z]+$/);
   });
 
@@ -69,6 +70,32 @@ describe("published norms", () => {
     expect(R.raw).toBe(30);
     expect(R.normed!.z).toBeCloseTo((30 - 27.9) / 8.5, 6);
     expect(R.normed!.reliability).toBe(0.88);
+  });
+});
+
+describe("IPIP-NEO-120 norms (Kajonius & Johnson 2019, Table A1)", () => {
+  it("are Table A1 on our item-mean metric: the facet-sum mean and SD ÷ 4, alpha as published", () => {
+    // N1 Anxiety 12.07 / 3.77 / .79 (p. 274); C6 Cautiousness 13.68 / 4.09 / .88 (p. 275).
+    expect(PSYCHOMETRICS["neo.N1"]).toMatchObject({ mean: 3.018, sd: 0.943, reliability: 0.79 });
+    expect(PSYCHOMETRICS["neo.N1"]!.source).toMatch(/Table A1 \(p\. 274\)/);
+    expect(PSYCHOMETRICS["neo.C6"]).toMatchObject({ mean: 3.42, sd: 1.023, reliability: 0.88 });
+    expect(PSYCHOMETRICS["neo.C6"]!.source).toMatch(/Table A1 \(p\. 275\)/);
+    // Domains: Neuroticism 11.10 / 2.66 / .90.
+    expect(PSYCHOMETRICS["neo.Neuroticism"]).toMatchObject({ mean: 2.775, sd: 0.665, reliability: 0.9 });
+  });
+
+  it("derive Openness without O6 from the table, with the planning reliability", () => {
+    const o = opennessWithoutO6();
+    expect(o.m).toBeCloseTo((14.6 + 14.67 + 15.2 + 12.28 + 14.5) / 5, 10);
+    expect(o.rbar).toBeGreaterThan(0.2);
+    expect(o.rbar).toBeLessThan(0.3);
+    // Back-check: with O6 and the same r̄, the six-facet SD is the table's 2.06.
+    const s6 = [3.41, 3.58, 3.01, 3.26, 3.55, OPENNESS_WITH_O6.o6.sd];
+    let v = s6.reduce((a, x) => a + x * x, 0);
+    for (let i = 0; i < 6; i++) for (let j = i + 1; j < 6; j++) v += 2 * o.rbar * s6[i]! * s6[j]!;
+    expect(Math.sqrt(v) / 6).toBeCloseTo(OPENNESS_WITH_O6.sd, 10);
+    expect(PSYCHOMETRICS["neo.Openness"]).toMatchObject({ mean: 3.563, sd: 0.525, reliability: 0.75 });
+    expect(PSYCHOMETRICS["neo.Openness"]!.source).toMatch(/O1–O5 only/);
   });
 });
 
@@ -86,13 +113,13 @@ describe("norms applied when a profile is read", () => {
   });
 
   it("switches personality too, as soon as its norms are in the table", () => {
-    const table = { ...PSYCHOMETRICS, "neo.E3": { mean: 3.2, sd: 0.8, reliability: 0.75, source: "test, Table X" }, "neo.Extraversion": { mean: 3.3, sd: 0.6, reliability: 0.9, source: "test, Table X" } };
-    const p = applyNorms(stored(), table);
-    const inputs = personInputs(p);
-    expect(inputs["neo.E3"]!.provenance).toBe("normed");
-    expect(inputs["neo.Extraversion"]!.provenance).toBe("normed");
-    // Facets without a norm stay anchored, and the instrument as a whole is not population-normed.
-    expect(inputs["neo.N1"]!.provenance).toBe("anchored");
+    const inputs = personInputs(applyNorms(stored()));
+    for (const k of ["neo.E3", "neo.N1", "neo.O5", "neo.Extraversion"] as const) expect(inputs[k]!.provenance, k).toBe("normed");
+    expect(normBasis(applyNorms(stored())).personality).toBe("population");
+    // A scale missing from the table stays anchored, and then the instrument as a whole is not population-normed.
+    const partial = { ...PSYCHOMETRICS, "neo.N1": null };
+    const p = applyNorms(stored(), partial);
+    expect(personInputs(p)["neo.N1"]!.provenance).toBe("anchored");
     expect(normBasis(p).personality).toBe("self");
   });
 
@@ -103,7 +130,8 @@ describe("norms applied when a profile is read", () => {
   });
 
   it("tells the report which ruler each instrument uses, and never mixes them under one name", () => {
-    const f = buildReportFacts(applyNorms(stored()), [], { current: null, considering: [] });
+    // Interests normed, personality not (one facet without a norm).
+    const f = buildReportFacts(applyNorms(stored(), { ...PSYCHOMETRICS, "neo.N1": null }), [], { current: null, considering: [] });
     expect(f.basis).toBe("mixed");
     expect(f.interests!.areas[0]).toHaveProperty("vsPopulation");
     expect(f.interests!.areas[0]).not.toHaveProperty("vsOwnAverage");

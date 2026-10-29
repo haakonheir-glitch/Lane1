@@ -591,6 +591,15 @@ function envGuard(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Config)
   return { envScale: scale, guard };
 }
 
+/** The environment guard for one person under cfg's own weighting (need or flat), after the facet guard (for tests and reports). */
+export function envGuardFor(person: PersonProfile, lanes: Record<string, LaneProfileV2>, cfg: V2Config = V2_CONFIG, offsets?: Offsets): EnvGuard[] {
+  const ctxs = Object.entries(lanes).map(([id, l]) => laneCtx(id, l, offsets));
+  const cp = compilePerson(person);
+  const v: Values = Object.fromEntries((Object.keys(person.inputs) as PersonConstructId[]).map((k) => [k, person.inputs[k]!.value]));
+  const { shrink } = facetGuard(cp, v, ctxs, cfg);
+  return envGuard(cp, applyShrink(v, shrink), ctxs, cfg).guard;
+}
+
 /** Every facet's largest share of any fit for this person, after the guard (for tests and reports). */
 export function facetShares(person: PersonProfile, lanes: Record<string, LaneProfileV2>, cfg: V2Config = V2_CONFIG, offsets?: Offsets): Map<string, number> {
   const ctxs = Object.entries(lanes).map(([id, l]) => laneCtx(id, l, offsets));
@@ -751,6 +760,9 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
   // Guard first, at the estimates; the same shrink applies to every draw.
   const { shrink, guard } = cp.hasInterests ? facetGuard(cp, est, ctxs, cfg) : { shrink: {}, guard: [] };
   const { envScale, guard: envGuardOut } = cp.hasInterests ? envGuard(cp, applyShrink(est, shrink), ctxs, cfg) : { envScale: ONES, guard: [] };
+  // Flat-weighted draws get their own cap: the shares differ when every dimension weighs the same.
+  const flatCfg: V2Config = { ...cfg, envWeighting: "flat" };
+  const flatScale = cfg.ensemble && cp.hasInterests ? envGuard(cp, applyShrink(est, shrink), ctxs, flatCfg).envScale : envScale;
   const pt = personPoint(cp, applyShrink(est, shrink), cfg, envScale);
 
   // Monte Carlo: redraw every input from its standard error, rescore every career path. With the
@@ -772,11 +784,13 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
   for (let d = 0; d < draws; d++) {
     const v: Values = {};
     for (const k of keys) v[k] = clamp(person.inputs[k]!.value + person.inputs[k]!.se * normal());
-    const dp = personPoint(cp, applyShrink(v, shrink), cfg, envScale);
+    const shrunk = applyShrink(v, shrink);
+    let dp = personPoint(cp, shrunk, cfg, envScale);
     drawModes.push(dp.modes);
     let dcfg = cfg;
     if (ens) {
       const flat = eu() < ens.flatEnvShare;
+      if (flat) dp = personPoint(cp, shrunk, cfg, flatScale);
       flatDraw[d] = flat ? 1 : 0;
       // Validation multipliers are already in `centre`, so the drawn weights are used as they are.
       dcfg = { ...cfg, weights: dirichlet(centre, ens.concentration, eu, en), validationMultiplier: { validated: 1, derived: 1, provisional: 1 }, envWeighting: flat ? "flat" : cfg.envWeighting };
@@ -845,7 +859,7 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
       band,
       pTop: Math.round(pTop[j]! * 1000) / 1000,
       pBottom: Math.round(pBottom[j]! * 1000) / 1000,
-      ...(split ? { pBy: { need: { top: r3(byTop[0]![j]!), bottom: r3(byBottom[0]![j]!) }, flat: { top: r3(byTop[1]![j]!), bottom: r3(byBottom[1]![j]!) } } } : {}),
+      ...(split ? { pBy: { need: { top: r3(byTop[0]![j]!), bottom: r3(byBottom[0]![j]!) }, flat: { top: r3(byTop[1]![j]!), bottom: r3(byBottom[1]![j]!) } }, pTopBand: r3(bandTop(j)) } : {}),
       direction: l.direction,
       fulfilmentFit: insufficient ? EMPTY : distribution(f),
       abilityFit: a.length ? distribution(a) : null,

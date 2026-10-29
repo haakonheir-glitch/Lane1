@@ -15,6 +15,9 @@
  * (c) literature: the span and speed norms in the difficulty table against published adult norms.
  * (d) population: 1,000 simulated people, strong fits, popularity bias, strong-fit survival.
  * Satisfaction: the share of people whose current job's band agrees with their satisfaction.
+ *
+ * Every synthetic person here is specified as population percentiles (synthetic.ts, specAs
+ * "percentile"), so each config reads the same people through its own rules.
  */
 import { mkdirSync, readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
 import { LANE_PROFILES_V2, V2_CONFIGS, matchAllV2, type MatchResultV2, type V2Config } from "../src/lib/matching/v2";
@@ -64,7 +67,7 @@ if (part === "roundtrip") {
   const top = Math.ceil(0.1 * ids.length);
   const t0 = Date.now();
   const rows = ids.map((id, i) => {
-    const person = synthetic(incumbent(id), cfg.inputs);
+    const person = synthetic(incumbent(id), cfg.inputs, "percentile");
     const clean = match(person, cfg, DRAWS);
     const noisy = Array.from({ length: REPS }, (_, k) => rankOf(match(withError(person, 7919 * (i + 1) + k), cfg, DRAWS), id));
     if ((i + 1) % 25 === 0) console.error(`${cfg.version} ${i + 1}/${ids.length} (${Math.round((Date.now() - t0) / 1000)}s)`);
@@ -87,7 +90,7 @@ if (part === "roundtrip") {
   const cfg = V5;
   const careers = ids.map((id) => ({ id, code: code3(LANE_PROFILES_V2[id]!.interests) }));
   const profiles = Object.entries(TEST_PROFILES).map(([pid, t]) => {
-    const person = synthetic(t.spec, cfg.inputs);
+    const person = synthetic(t.spec, cfg.inputs, "percentile");
     const interests = ["R", "I", "A", "S", "E", "C"].map((k) => person.inputs[`interests.${k}` as "interests.R"]!.value);
     const code = code3(interests);
     const r = match(person, cfg, 50);
@@ -109,7 +112,7 @@ if (part === "roundtrip") {
   const N = Number(arg("n", "1000"));
   const from = Number(arg("from", "0"));
   const to = Number(arg("to", String(N)));
-  const people = population(N, 20261027, cfg.inputs).slice(from, to);
+  const people = population(N, 20261027, cfg.inputs, "percentile").slice(from, to);
   const t0 = Date.now();
   const out = people.map((p, i) => {
     const r = match(p, cfg);

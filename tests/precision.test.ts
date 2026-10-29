@@ -4,7 +4,7 @@
  * that keeps v2-0.3 and v2-0.4 selectable.
  */
 import { describe, expect, it } from "vitest";
-import { DEFAULT_V2_VERSION, V2_CONFIGS, effectiveWeights, matchV2, offsetsFor, selectConfig, type V2Config } from "@/lib/matching/v2";
+import { DEFAULT_V2_VERSION, LANE_PROFILES_V2, V2_CONFIGS, effectiveWeights, envGuardFor, matchV2, offsetsFor, selectConfig, type V2Config } from "@/lib/matching/v2";
 import { synthetic, TEST_PROFILES } from "@/lib/matching/v2/synthetic";
 import { ORDER_STATS_6, VALUES_SHRINKAGE, personInputs, valueEstimates } from "@/lib/workdesign/person";
 import { normalCdf } from "@/lib/scoring/core";
@@ -63,6 +63,8 @@ describe("config registry", () => {
     expect(V3.weights.strengths).toBe(0);
     expect([V3, V4].every((c) => c.envCap === null && c.ensemble === null && !c.inputs.norms && c.inputs.values === "minmax")).toBe(true);
     for (const c of Object.values(V2_CONFIGS)) expect(Object.keys(offsetsFor(c)).length).toBe(205);
+    // v2-0.3 runs on the offsets it was released with (frozen), not ones rebuilt from today's code.
+    expect(offsetsFor(V3).b2b_sales).toEqual({ environment: -0.0679, challenge: 0.0577 });
   });
 
   it("has the step 4 weights and a validation status for every component", () => {
@@ -100,12 +102,20 @@ describe("environment cap (step 3)", () => {
   it("caps every environment dimension (and challenge) at 15% of every fit, reporting before and after", () => {
     expect(r.envGuard.map((g) => g.dimension)).toHaveLength(8);
     const autonomy = r.envGuard.find((g) => g.dimension === "autonomy")!;
-    expect(autonomy.maxShareBefore).toBeGreaterThan(0.25);
+    expect(autonomy.maxShareBefore).toBeGreaterThan(V5.envCap! + 0.03);
     expect(autonomy.scale).toBeLessThan(1);
     for (const g of r.envGuard) expect(g.maxShareAfter, g.dimension).toBeLessThanOrEqual(V5.envCap! + 0.005);
     // A dimension is shrunk only as far as the cap: it ends at the cap, not below it. (One under the cap
     // at first can still need shrinking, once shrinking another has made the totals smaller.)
     for (const g of r.envGuard) if (g.scale < 1) expect(g.maxShareAfter, g.dimension).toBeGreaterThan(V5.envCap! - 0.01);
+  });
+
+  it("holds the cap under flat environment weighting too (the ensemble's flat draws get their own guard)", () => {
+    const flat: V2Config = { ...V5, envWeighting: "flat" };
+    for (const k of ["analyst", "hunter"]) {
+      const g = envGuardFor(synthetic(TEST_PROFILES[k]!.spec, V5.inputs), LANE_PROFILES_V2, flat, offsetsFor(V5));
+      for (const x of g) expect(x.maxShareAfter, `${k} ${x.dimension}`).toBeLessThanOrEqual(V5.envCap! + 0.005);
+    }
   });
 
   it("holds the cap on the six test profiles", () => {
@@ -130,8 +140,10 @@ describe("weight ensemble (step 5)", () => {
     }
   });
 
-  it("calls a career strong (or unlikely) only when it is under both weightings", () => {
+  it("calls a career strong (or unlikely) only when it is under both weightings, and shows that share", () => {
     for (const x of r.lanes) {
+      expect(x.pTopBand).toBeCloseTo(Math.min(x.pBy!.need.top, x.pBy!.flat.top), 3);
+      expect(x.band === "strong").toBe(x.pTopBand! >= V5.bands.strong);
       if (x.band === "strong") expect(Math.min(x.pBy!.need.top, x.pBy!.flat.top)).toBeGreaterThanOrEqual(V5.bands.strong);
       if (x.band === "unlikely") expect(Math.min(x.pBy!.need.bottom, x.pBy!.flat.bottom)).toBeGreaterThanOrEqual(V5.bands.unlikely);
     }

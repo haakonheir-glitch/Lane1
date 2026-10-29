@@ -4,7 +4,7 @@
  * the same standard errors real profiles get (src/lib/workdesign/person.ts). Pure.
  */
 import type { PersonConstructId } from "../../workdesign/model";
-import { PLANNING_SD, fromScale, valueEstimates, type Estimate, type InputOptions } from "../../workdesign/person";
+import { PLANNING_SD, fromScale, probit, valueEstimates, type Estimate, type InputOptions } from "../../workdesign/person";
 import { normed } from "../../scoring/core";
 import { lookup } from "../../scoring/psychometrics";
 import { ASSUMED_RELIABILITY } from "../../scoring/self";
@@ -44,23 +44,35 @@ const ANCHORED: InputOptions = { norms: false, values: "minmax" };
 /**
  * A complete profile: every input at 50 unless the spec says otherwise; facets default to their domain.
  *
- * Interest and personality numbers in a spec are positions on the questionnaire's own scale (the
- * anchored 0–100: 50 = the scale midpoint), i.e. what the person answered. With `opts.norms` they
- * are turned back into the raw score and normed against the published table where it has an entry
- * (interests today), exactly as personInputs does for a real profile: same answers, other ruler.
+ * What an interest or personality number in a spec means (`specAs`):
+ * - "anchored" (the default, as matching v2 was validated through v2-0.4): a position on the
+ *   questionnaire's own scale, 50 = the scale midpoint, i.e. what the person answered.
+ * - "percentile": the person's level in the population. It is turned into the raw score a person at
+ *   that percentile gives (the published norm: raw = mean + SD · Φ⁻¹(p)), and from there read by
+ *   each config's own rule: anchored (v2-0.4) or normed (v2-0.5). The same people under two rulers.
+ *   Needed once norms exist, because the scale midpoint is not the population average
+ *   (Conscientiousness 3.0 is near the 10th percentile).
+ * Either way, with `opts.norms` the raw score is normed against the published table where it has
+ * an entry, exactly as personInputs does for a real profile. Scales without a norm stay anchored.
  * Work values are card-sort scores, mapped by `opts.values`.
  */
-export function synthetic(spec: SyntheticSpec, opts: InputOptions = ANCHORED): PersonProfile {
+export function synthetic(spec: SyntheticSpec, opts: InputOptions = ANCHORED, specAs: "anchored" | "percentile" = "anchored"): PersonProfile {
   const inputs: Partial<Record<PersonConstructId, Estimate>> = {};
   const put = (id: string, value: number, se: number, provenance: Estimate["provenance"]) => {
     inputs[id as PersonConstructId] = { value: Math.min(100, Math.max(0, value)), se, provenance, source: `synthetic.${id}` };
   };
   /** An anchored position → the estimate personInputs would make of the same raw score. */
   const scale = (id: string, key: string, anchored: number, range: [number, number], kind: "facet" | "scale", sd: number, se: number) => {
-    const a = Math.min(100, Math.max(0, anchored));
-    const p = opts.norms ? lookup(key) : null;
-    if (!p) return put(id, a, se, "anchored");
-    const raw = range[0] + (a / 100) * (range[1] - range[0]);
+    const level = Math.min(100, Math.max(0, anchored));
+    const norm = lookup(key);
+    // The raw score: from the anchored position, or from the population percentile through the norm.
+    const raw =
+      specAs === "percentile" && norm
+        ? Math.min(range[1], Math.max(range[0], norm.mean + norm.sd * probit(Math.min(0.995, Math.max(0.005, level / 100)))))
+        : range[0] + (level / 100) * (range[1] - range[0]);
+    const p = opts.norms ? norm : null;
+    // Anchored: the given position itself (exact, so v2-0.4 inputs are unchanged), or the raw score's.
+    if (!p) return put(id, specAs === "percentile" && norm ? ((raw - range[0]) / (range[1] - range[0])) * 100 : level, se, "anchored");
     const e = fromScale({ id, label: id, raw, rawRange: range, answered: 1, items: 1, normed: normed(raw, p), visibility: "user" }, kind, sd, id)!;
     put(id, e.value, e.se, e.provenance);
   };
@@ -150,7 +162,7 @@ export const TEST_PROFILES: Record<string, { label: string; spec: SyntheticSpec;
  * A plausible population for the simulation: three latent factors (people–things, data–ideas,
  * drive) shape interests, personality and values, plus independent noise. Seeded, deterministic.
  */
-export function population(n: number, seed = 1, opts: InputOptions = ANCHORED): PersonProfile[] {
+export function population(n: number, seed = 1, opts: InputOptions = ANCHORED, specAs: "anchored" | "percentile" = "anchored"): PersonProfile[] {
   let a = seed >>> 0;
   const u = () => {
     a = (a + 0x6d2b79f5) >>> 0;
@@ -178,7 +190,7 @@ export function population(n: number, seed = 1, opts: InputOptions = ANCHORED): 
         areas: { reasoning: area(0), quantitative: area(0.3 * ideas), spatial: area(-0.4 * people), memory: area(0), speed: area(0) },
         risk: s(0.4 * drive),
         patience: s(0.2 * ideas),
-      }, opts),
+      }, opts, specAs),
     );
   }
   return out;

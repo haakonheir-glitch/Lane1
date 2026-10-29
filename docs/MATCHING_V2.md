@@ -142,7 +142,11 @@ The thresholds are tuned on 1,000 simulated people (`MATCHING_V2_REPORT.md`).
 
 ## Precision pass (v2-0.5)
 
-Each change below is behind the config, so v2-0.3 and v2-0.4 reproduce exactly when selected. The step-by-step effect on the six test profiles is in `taxonomy/derived/PRECISION_STEPS.md`. The validation is in `taxonomy/derived/PRECISION_REPORT.md`.
+Each change below is behind the config, so v2-0.3 and v2-0.4 reproduce when selected.
+- **Checked against the old code.** The same inputs (the sample profile and the six test profiles) went through f5db165 (v2-0.3) and 0b9ef0a (v2-0.4) and through this code with that config selected, at 200 draws.
+  - v2-0.4 is byte-identical.
+  - v2-0.3 has identical fits, bands, drivers and frictions. It runs on the offsets it was released with, kept frozen in `taxonomy/derived/lane_offsets_v2-0.3.json`. The only differences are the strengths fields added in v2-0.4 (null) and the archetype sentence, which the Phase 3 copy reworded.
+- **Norms follow the config.** When the app runs v2-0.4 or earlier, stored scores are read without norms, so the profile, its starting roles and the report are exactly as before. The step-by-step effect on the six test profiles is in `taxonomy/derived/PRECISION_STEPS.md`. The validation is in `taxonomy/derived/PRECISION_REPORT.md`.
 
 1. **Published norms** (`src/lib/scoring/psychometrics.ts`, `src/lib/scoring/norms.ts`). Interests are normed against the O\*NET Interest Profiler Short Form norms:
    - Source: Rounds et al. (2016), Mini-IP report. Means and SDs from Table 8 (p. 36), Short-IP total, N = 575. Alphas from Table 9 (p. 37).
@@ -151,7 +155,7 @@ Each change below is behind the config, so v2-0.3 and v2-0.4 reproduce exactly w
    - The IPIP-NEO-120 norms (Kajonius & Johnson, 2019) and Honesty-Humility stay `null`: their source hosts are blocked from this build environment, and Honesty-Humility has no citable source here. Personality stays `anchored` until they are transcribed, then switches automatically.
    - Config: `inputs.norms`.
 2. **Work values by expected normal order statistics.** The six card-sort ranks map to ±1.267, ±0.642 and ±0.202 (n = 6; ties average the statistics they span). These are multiplied by a shrinkage of 0.7, then converted to a percentile, so the top value is the 81st percentile, not 100. Config: `inputs.values`.
-3. **Environment cap** (`envCap` 0.15). No working condition, and not challenge, may carry more than 15% of any fit. It is measured like the facet cap: the dimension's effect on the fit (the fit against the fit without it) over the summed effects of all inputs, floored at `guardMinTotal`. It is enforced by shrinking that dimension's need weight by bisection. Every dimension's largest share before and after is in the result (`envGuard`).
+3. **Environment cap** (`envCap` 0.15). The ensemble's flat-weighted draws get their own cap: the guard is run again under flat weighting. The Dirichlet-drawn weights vary around the capped estimate. No working condition, and not challenge, may carry more than 15% of any fit. It is measured like the facet cap: the dimension's effect on the fit (the fit against the fit without it) over the summed effects of all inputs, floored at `guardMinTotal`. It is enforced by shrinking that dimension's need weight by bisection. Every dimension's largest share before and after is in the result (`envGuard`).
 4. **Weights:** interests .45, values .20, value modes .15, environment .10, challenge .10, with reasoning strengths .08 renormalised as before.
    - Why: the validated instruments with the strongest evidence carry most. Interest congruence (the O\*NET Interest Profiler against O\*NET occupational interest profiles) is the best-replicated of these predictors of satisfaction and persistence. Work values come next (the O\*NET Work Importance Locator against O\*NET's occupational reinforcer profiles).
    - Value modes, working conditions and challenge are Lane's own derived constructs, so they carry less.
@@ -160,11 +164,14 @@ Each change below is behind the config, so v2-0.3 and v2-0.4 reproduce exactly w
    - The ensemble draws come from their own random stream, so the input noise is identical with and without it.
    - A band must hold under both weightings: strong needs P(top 10%) ≥ .5 among the need-weighted draws and among the flat ones.
    - Flat weighting has its own career offsets (`environmentFlat`).
+   - The detail panel shows the share the band rests on (`pTopBand`, the smaller of the two), so the band and the share always agree.
 6. **Starting roles from data** (`rolesFromData`, `src/lib/matching/roles.ts`).
    - 906 roles have their own ESCO→O\*NET link: the ESCO occupations mapped to the role in `esco_mapping.csv`, through the official crosswalk or a reviewed override (`taxonomy/derived/role_profiles_v2.json`).
    - These roles are ranked by interest fit (.75) and value-mode fit (.25), the same .45 : .15 ratio as above.
    - Roles without a link are ranked by their tags, after the data-ranked ones.
    - A role whose top O\*NET interest is one of the person's two lowest interests carries a note.
+
+**Synthetic people for validation.** v2-0.4 was validated on people whose interest and personality numbers are positions on the questionnaire's scale (50 = the scale midpoint). With norms, the midpoint is not the population average: Conscientiousness 3.0 is near the 10th percentile. So the precision validation specifies its people as population percentiles (`synthetic(spec, inputs, "percentile")`). These are turned into the raw scores a person at that percentile gives, and each config then reads them by its own rule. v2-0.5's career offsets come from that population; v2-0.3 and v2-0.4 keep theirs.
 
 **Ground truth** (stored, never used in matching):
 - onboarding asks "How satisfied are you in this work?" (1–7) for the current job and up to two previous jobs;

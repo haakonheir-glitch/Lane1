@@ -36,7 +36,7 @@ export function offsetsForConfig(cfg: V2Config): Offsets {
   if (V2_CONFIGS[cfg.version]) return offsetsFor(cfg);
   let o = built.get(cfg.version);
   if (!o) {
-    o = populationOffsets(population(1000, 424242, cfg.inputs), LANE_PROFILES_V2, cfg);
+    o = populationOffsets(population(1000, 424242, cfg.inputs, cfg.inputs.norms ? "percentile" : "anchored"), LANE_PROFILES_V2, cfg);
     built.set(cfg.version, o);
   }
   return o;

@@ -43,10 +43,15 @@ describe("addSelfScores", () => {
     expect(p.interests!.scales.find((s) => s.id === "E")!.self!.z).toBeGreaterThan(1);
   });
 
-  it("uses the assumed reliability, says so, and sizes the 90% range from it", () => {
+  it("uses the published reliability where there is one, the assumed one otherwise, says which, and sizes the 90% range from it", () => {
+    // E3 Assertiveness: Kajonius & Johnson (2019) Table A1 alpha .86.
     const f = p.personality!.facets[0]!.self!;
-    expect(f).toMatchObject({ reliability: ASSUMED_RELIABILITY.facet, assumedReliability: true });
-    expect(f.ci[1] - f.z).toBeCloseTo(Z90 * Math.sqrt(1 - ASSUMED_RELIABILITY.facet), 10);
+    expect(f).toMatchObject({ reliability: 0.86, assumedReliability: false });
+    expect(f.ci[1] - f.z).toBeCloseTo(Z90 * Math.sqrt(1 - 0.86), 10);
+    // A scale with no entry in the table falls back to the planning value and is marked as such.
+    const odd = addSelfScores(unnormed(RIASEC, { X1: 4.5, X2: 1.5, X3: 3 })).personality!.facets[0]!.self!;
+    expect(odd).toMatchObject({ reliability: ASSUMED_RELIABILITY.facet, assumedReliability: true });
+    expect(odd.ci[1] - odd.z).toBeCloseTo(Z90 * Math.sqrt(1 - ASSUMED_RELIABILITY.facet), 10);
   });
 
   it("gives no self score when there are too few scales or no spread", () => {

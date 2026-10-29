@@ -90,8 +90,14 @@ export type DimRow = {
 export type LaneDetailV2 = {
   fulfilment: FitRange | null;
   ability: FitRange | null;
-  /** Share of draws in which this career path is in your top 10% (the strong-fit rule). */
+  /**
+   * Share of draws in which this career path is in your top 10% (the strong-fit rule). With the
+   * weight ensemble, the smaller of the shares under need-weighted and flat environment weighting,
+   * which is what the band rests on.
+   */
   pTop: number;
+  /** True when pTop is the smaller of two weightings (the ensemble). */
+  bothWeightings?: boolean;
   drivers: FitDriver[];
   frictions: FitDriver[];
   dims: DimRow[];
