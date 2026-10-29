@@ -19,6 +19,8 @@ const SE = {
   facet: PLANNING_SD.personality * Math.sqrt(1 - ASSUMED_RELIABILITY.facet),
   values: PLANNING_SD.values * Math.sqrt(1 - ASSUMED_RELIABILITY.scale),
   reasoning: 7,
+  /** Single reasoning areas rest on one or two short tasks: real percentile bands give SEs of 14–22 points. */
+  area: 17,
   task: PLANNING_SD.task * Math.sqrt(1 - ASSUMED_RELIABILITY.scale),
 };
 
@@ -55,7 +57,7 @@ export function synthetic(spec: SyntheticSpec): PersonProfile {
   VALUES.forEach((v, i) => put(`values.${v}`, hi === lo ? 50 : ((raw[i]! - lo) / (hi - lo)) * 100, SE.values, "ipsative"));
   const g = spec.reasoning ?? 50;
   put("reasoning.general", g, SE.reasoning, "normed");
-  for (const a of AREAS) put(`reasoning.${a}`, spec.areas?.[a] ?? g, SE.reasoning + 2, "normed");
+  for (const a of AREAS) put(`reasoning.${a}`, spec.areas?.[a] ?? g, SE.area, "normed");
   put("behaviour.risk", spec.risk ?? 50, SE.task, "task");
   put("behaviour.patience", spec.patience ?? 50, SE.task, "task");
   put("behaviour.learning", spec.learning ?? 50, SE.task, "task");

@@ -62,7 +62,7 @@ export function CareerPathsBody({ picks, connections, print }: { picks: CareerPi
           ))}
         </ol>
         <p className={cn("mt-3 max-w-[72ch] text-small text-ink-3", !v2 && "hidden")}>
-          Fulfilment fit is the headline: does the work give you what you need (interests, values, value modes, working conditions, challenge)? It is relative to you: 50 is
+          Fulfilment fit is the headline: does the work give you what you need (interests, values, value modes, working conditions, challenge, and whether it leans on your own strongest reasoning areas)? It is relative to you: 50 is
           your average career path, so it can&apos;t be compared with anyone else&apos;s. Ability fit is secondary: 100 means the work demands nothing beyond your measured
           reasoning range.{anyAbility ? "" : " It needs results in enough reasoning areas (sessions S3 and S4)."} The bands come from how stable each career path&apos;s rank is across 500
           draws of your scores. A good fit is not a prediction of success.

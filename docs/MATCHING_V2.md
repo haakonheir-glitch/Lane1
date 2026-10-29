@@ -37,7 +37,9 @@ A single fit still needs the whole field, for three reasons:
 
 The weights are renormalised over the components you have, so they sum to 1 (with reasoning strengths, the six nominal weights sum to 1.08). Without reasoning results, reasoning strengths drops out and the other five weigh exactly what they did in v2-0.3.
 
-**Reasoning strengths** (v2-0.4, at your request) answers "does this work lean on what I'm relatively best at?". It credits career paths whose ability demands peak where your own reasoning results peak, and (being a correlation) also those that make little call on your least strong area. It looks at the *shape* only: your general level still works through challenge (above) and ability fit (below), so a uniformly high result doesn't lift every demanding career twice. Measurement error is carried through the draws, and an even profile (areas within about 10 points of each other) counts as neutral.
+**Reasoning strengths** (v2-0.4, at your request) answers "does this work lean on what I'm relatively best at?". It credits career paths whose ability demands peak where your own reasoning results peak, and (being a correlation) also those that make little call on your least strong area. It looks at the *shape* only: your general level still works through challenge (above) and ability fit (below), so a uniformly high result doesn't lift every demanding career twice. Measurement error counts twice over: it is carried through the draws, and the person's side is regularised by max(10, 2.5 × the areas' RMS standard error) per area, so areas that differ by less than their error count as an even profile (neutral). Real reasoning areas have SEs of 14–22 points, so in practice only large, clear differences move the fit. The career's side is regularised too (8 percentile points per area), so a career whose demands are nearly flat counts as neutral rather than "leaning on" an area.
+
+Measured trade-off (provisional): for simulated people whose true areas are equal, observed with realistic error, the component changes about 1.6 of their roughly 15 strong fits; a clear spatial strength adds about 4 spatial-heavy career paths to the strong band. A stronger shrinkage (factor 3) halves the noise effect but also the signal.
 
 - **Regularised correlations.** r = Σ ĉᵢ(xᵢ − x̄) / max(‖x − x̄‖, 10·√n), with ĉ the career's centred unit profile.
   - It is Pearson r when your profile has spread. When your scores are within about 10 points of each other, it shrinks towards 0 (neutral).
@@ -120,6 +122,7 @@ The thresholds are tuned on 1,000 simulated people (`MATCHING_V2_REPORT.md`).
 - **What they are:** each component is split into named parts (RIASEC letters, work values, modes, environment dimensions, challenge) on the same scale as the fit. Each part is compared with the same part averaged over all 205 career paths.
   - **Drivers** make this career path fit better than your typical one; shared strengths lead.
   - **Frictions** make it fit worse.
+- **Reasoning strengths parts** (one per reasoning area) are named only when that area passes the BLUEPRINT §7 test against the person's own other areas (the same rule the profile's reasoning chapter uses). Otherwise they still move the fit, but aren't shown as a driver or friction. Wording: "Spatial: a relative strength of yours, and this work leans on it"; "Little call on memory, a relatively weaker area of yours"; frictions "Little use of spatial, a relative strength of yours" and "Leans on memory, a relatively weaker area of yours". Their ids (`reasoning.spatial`) link to the reasoning traits in the trait connections.
 - **Labels** depend on which side is high:
   - "Enterprising interests": both high;
   - "Little Realistic work, which suits you": both low;

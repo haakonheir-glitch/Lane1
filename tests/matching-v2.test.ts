@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { LANE_OFFSETS_V2, LANE_PROFILES_V2, V2_CONFIG, bestByDirection, computeFit, facetShares, matchAllV2, matchV2, rankV2, topFive, type LaneProfileV2 } from "@/lib/matching/v2";
 import { TEST_PROFILES, population, synthetic } from "@/lib/matching/v2/synthetic";
 import { toV1Matches } from "@/lib/matching/v2/adapter";
+import { personInputs } from "@/lib/workdesign/person";
+import { sampleProfile } from "@/lib/mock/profile";
 import { LANES, getLane } from "@/lib/taxonomy";
 
 const DRAWS = 120;
@@ -208,14 +210,37 @@ describe("matching v2: reasoning strengths", () => {
     .filter(([, l]) => l.abilities.find((a) => a.area === "spatial")?.demand != null)
     .sort((a, b) => b[1].abilities.find((x) => x.area === "spatial")!.demand! - a[1].abilities.find((x) => x.area === "spatial")!.demand!)[0]![0];
 
+  // A clear, well-measured spatial strength (area SEs of 8 points, as better-measured tasks would give).
+  const clearSpatial = () => {
+    const p = synthetic({ ...maker, areas: { spatial: 95, quantitative: 45, memory: 40, speed: 45, reasoning: 50 } });
+    for (const k of Object.keys(p.inputs)) if (/^reasoning\.(?!general)/.test(k)) p.inputs[k as keyof typeof p.inputs]!.se = 8;
+    return p;
+  };
+
   it("lifts career paths that lean on the person's own strongest reasoning area", () => {
-    const tilted = matchV2(synthetic(maker), { draws: DRAWS });
+    const tilted = matchV2(clearSpatial(), { draws: DRAWS });
     const flat = matchV2(synthetic({ ...maker, areas: undefined }), { draws: DRAWS });
     const f = (r: ReturnType<typeof matchV2>) => r.lanes.find((l) => l.laneId === spatialHeavy)!;
     expect(f(tilted).components.strengths!).toBeGreaterThan(0.6);
     expect(f(tilted).fulfilmentFit.mean).toBeGreaterThan(f(flat).fulfilmentFit.mean);
     const d = tilted.lanes.flatMap((l) => l.drivers).filter((x) => x.component === "strengths");
-    expect(d.some((x) => x.id === "reasoning.spatial" && /stronger reasoning areas/.test(x.label))).toBe(true);
+    expect(d.some((x) => x.id === "reasoning.spatial" && /relative strength of yours/.test(x.label))).toBe(true);
+  });
+
+  it("names an area only when it passes the relative-strength test, and treats wide errors and flat demands as neutral", () => {
+    // The sample profile's areas are within measurement error of each other: the fit may move a little, but nothing is named.
+    const s = matchV2({ inputs: personInputs(sampleProfile) }, { draws: 40 });
+    expect(s.lanes.flatMap((l) => [...l.drivers, ...l.frictions]).filter((d) => d.component === "strengths")).toEqual([]);
+    // The same tilt measured with real-world error (SE 17) counts for much less than when well measured.
+    const wide = synthetic({ ...maker, areas: { spatial: 95, quantitative: 45, memory: 40, speed: 45, reasoning: 50 } });
+    const c = (r: ReturnType<typeof matchV2>) => r.lanes.find((l) => l.laneId === spatialHeavy)!.components.strengths! - 0.5;
+    expect(c(matchV2(wide, { draws: 10 }))).toBeLessThan(c(matchV2(clearSpatial(), { draws: 10 })) / 2);
+    // A career whose ability demands are nearly flat stays close to neutral even for a strongly tilted person.
+    const flatDemand = Object.entries(LANE_PROFILES_V2).find(([, l]) => {
+      const d = l.abilities.map((a) => a.demand).filter((x): x is number => x !== null);
+      return d.length === 5 && Math.max(...d) - Math.min(...d) < 4;
+    })![0];
+    expect(Math.abs(matchV2(clearSpatial(), { draws: 10 }).lanes.find((l) => l.laneId === flatDemand)!.components.strengths! - 0.5)).toBeLessThan(0.15);
   });
 
   it("is neutral for an even reasoning profile and drops out without reasoning results", () => {

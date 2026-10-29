@@ -26,7 +26,7 @@
  * towards its domain score until no fit leans on it for more than V2_CONFIG.facetCap.
  */
 import { ENVIRONMENT, VALUE_MODES, type Dimension, type PersonConstructId } from "../../workdesign/model";
-import { overlappingModes } from "../../workdesign/person";
+import { overlappingModes, relativeOfDimensions, type Relative } from "../../workdesign/person";
 import { V2_CONFIG, type V2Config } from "./config";
 import {
   RIASEC,
@@ -144,7 +144,18 @@ function compile(d: Dimension, p: PersonProfile): Compiled {
 }
 const evalDim = (c: Compiled, v: Values) => (c ? c.parts.reduce((a, x) => a + x.w * (x.reverse ? 100 - v[x.key]! : v[x.key]!), 0) : null);
 
-type CompiledPerson = { modes: Compiled[]; env: Compiled[]; challenge: Compiled; hasInterests: boolean; hasValues: boolean; areas: (PersonConstructId | null)[] };
+type CompiledPerson = {
+  modes: Compiled[];
+  env: Compiled[];
+  challenge: Compiled;
+  hasInterests: boolean;
+  hasValues: boolean;
+  areas: (PersonConstructId | null)[];
+  /** Each reasoning area's standard error (null when not measured). */
+  areaSe: (number | null)[];
+  /** BLUEPRINT §7 at the estimates: an area is a relative strength or weakness only when the gap from the person's own mean beats 1.96 × its error. */
+  areaRelative: Relative[];
+};
 
 function compilePerson(p: PersonProfile): CompiledPerson {
   const has = (k: string) => !!p.inputs[k as PersonConstructId];
@@ -155,6 +166,15 @@ function compilePerson(p: PersonProfile): CompiledPerson {
     hasInterests: RIASEC.every((k) => has(`interests.${k}`)),
     hasValues: WORK_VALUES.every((k) => has(`values.${k}`)),
     areas: AREAS.map((a) => (has(`reasoning.${a}`) ? (`reasoning.${a}` as PersonConstructId) : null)),
+    areaSe: AREAS.map((a) => p.inputs[`reasoning.${a}` as PersonConstructId]?.se ?? null),
+    areaRelative: (() => {
+      const scores = AREAS.map((a) => {
+        const e = p.inputs[`reasoning.${a}` as PersonConstructId];
+        return { id: a, name: a, value: e ? e.value : null, se: e ? e.se : null, coverage: e ? 1 : 0, provenance: "provisional" as const, inputs: [] };
+      });
+      const rel = relativeOfDimensions(scores);
+      return AREAS.map((a) => rel[a] ?? "none");
+    })(),
   };
 }
 
@@ -237,16 +257,20 @@ function laneCtx(id: string, lane: LaneProfileV2, offsets?: Offsets): LaneCtx {
 }
 
 /**
- * The two sides of the reasoning-strengths correlation, over the areas both have: the person's
- * areas centred on their own average (regularised: a near-flat profile counts as neutral) and the
- * career's ability demands centred on its own average. Null with fewer than cfg.minAreas areas.
+ * The two sides of the reasoning-strengths correlation, over the areas both have, each centred on
+ * its own average and regularised: the person's by max(correlationFloor, strengthsSeFactor × RMS
+ * SE) per area (wide measurement error counts as flat), the career's by strengthsCareerFloor
+ * (near-flat demands count as neutral). Null with fewer than cfg.minAreas areas.
  */
-function strengthVectors(pt: PersonPoint, l: LaneCtx, cfg: V2Config): { idx: number[]; a: number[]; b: number[] } | null {
+function strengthVectors(pt: PersonPoint, l: LaneCtx, cp: CompiledPerson, cfg: V2Config): { idx: number[]; a: number[]; b: number[] } | null {
   const idx = AREAS.flatMap((_, i) => (pt.areas[i] != null && l.abilities[i] ? [i] : []));
   if (idx.length < cfg.minAreas) return null;
-  const b = unit(idx.map((i) => l.abilities[i]!.demand));
-  if (!b) return null;
-  return { idx, a: regularised(idx.map((i) => pt.areas[i]!), cfg.correlationFloor), b };
+  const se = Math.sqrt(mean(idx.map((i) => (cp.areaSe[i] ?? 0) ** 2)));
+  return {
+    idx,
+    a: regularised(idx.map((i) => pt.areas[i]!), Math.max(cfg.correlationFloor, cfg.strengthsSeFactor * se)),
+    b: regularised(idx.map((i) => l.abilities[i]!.demand), cfg.strengthsCareerFloor),
+  };
 }
 
 /** Value-mode correlation over the modes both sides have (regularised on the person's side). */
@@ -269,7 +293,7 @@ export const needWeight = (shape: Dimension["penalty"], p: number, floor: number
 
 type Raw = { comps: Components; values: Record<Key, number | null>; ability: number | null };
 
-function raw(pt: PersonPoint, l: LaneCtx, cfg: V2Config): Raw {
+function raw(pt: PersonPoint, l: LaneCtx, cfg: V2Config, cp: CompiledPerson): Raw {
   const r2c = (r: number | null) => (r === null ? null : (1 + Math.max(-1, Math.min(1, r))) / 2);
   const interests = pt.interestsReg && l.interestsUnit ? r2c(dot(pt.interestsReg, l.interestsUnit)) : null;
   const values = pt.valuesReg && l.valuesUnit ? r2c(dot(pt.valuesReg, l.valuesUnit)) : null;
@@ -282,7 +306,7 @@ function raw(pt: PersonPoint, l: LaneCtx, cfg: V2Config): Raw {
     return [{ id: d.id, person: p, career: c, fit: 1 - penaltyOf(penalty, p, c) / 100, weight: needWeight(penalty, p, cfg.environmentWeightFloor), penalty }];
   });
   const challenge = pt.challenge !== null && l.challenge !== null ? 1 - Math.max(0, pt.challenge - l.challenge) / 100 : null;
-  const sv = strengthVectors(pt, l, cfg);
+  const sv = strengthVectors(pt, l, cp, cfg);
   const strengths = sv ? r2c(dot(sv.a, sv.b)) : null;
   const ew = environment.reduce((a, e) => a + e.weight, 0);
   const envFit = ew ? environment.reduce((a, e) => a + e.weight * e.fit, 0) / ew : null;
@@ -353,8 +377,8 @@ function combine(r: Raw, scale: Scale, cfg: V2Config): Scored {
   return { ...r, comps: { ...r.comps, imputed }, fulfilment: clamp(50 + 10 * s), weights, scale };
 }
 
-function scoreAll(pt: PersonPoint, ctxs: LaneCtx[], cfg: V2Config): Scored[] {
-  const raws = ctxs.map((l) => raw(pt, l, cfg));
+function scoreAll(pt: PersonPoint, ctxs: LaneCtx[], cfg: V2Config, cp: CompiledPerson): Scored[] {
+  const raws = ctxs.map((l) => raw(pt, l, cfg, cp));
   const scale = scaleOf(raws, cfg);
   return raws.map((r) => combine(r, scale, cfg));
 }
@@ -383,7 +407,7 @@ function applyShrink(v: Values, shrink: Shrink): Values {
  * anything else's is 50) over the summed effects of all inputs.
  */
 function inputShares(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Config, only?: PersonConstructId[]) {
-  const base = scoreAll(personPoint(cp, v, cfg), ctxs, cfg).map((s) => s.fulfilment);
+  const base = scoreAll(personPoint(cp, v, cfg), ctxs, cfg, cp).map((s) => s.fulfilment);
   const keys = Object.keys(v) as PersonConstructId[];
   const effects = new Map<PersonConstructId, number[]>();
   for (const k of keys) {
@@ -392,7 +416,7 @@ function inputShares(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Conf
       effects.set(k, base.map(() => 0));
       continue;
     }
-    const s = scoreAll(personPoint(cp, { ...v, [k]: ref }, cfg), ctxs, cfg);
+    const s = scoreAll(personPoint(cp, { ...v, [k]: ref }, cfg), ctxs, cfg, cp);
     effects.set(
       k,
       s.map((x, j) => (x.fulfilment === null || base[j] === null ? 0 : Math.abs(x.fulfilment - base[j]!))),
@@ -466,15 +490,20 @@ function shapeLabels(name: string, kind: "interests" | "value" | "mode", pole: P
     : { label: what, friction: kind === "value" ? `Emphasis on ${name}, which matters less to you` : `${work} you're less drawn to` };
 }
 
-/** Reasoning-strength labels: "stronger" and "less strong" are relative to the person's own other areas. */
-function strengthLabels(area: AbilityArea, pole: Pole, personHigher: boolean): { label: string; friction: string } {
+/**
+ * Reasoning-strength labels for an area that passed the BLUEPRINT §7 test (a relative strength or
+ * weakness against the person's own other areas); other areas move the fit but are never named.
+ */
+function strengthLabels(area: AbilityArea, rel: "strength" | "weakness", careerHigh: boolean): { label: string; friction: string } {
   const name = AREA_NAME[area];
   const lower = name.toLowerCase();
-  if (pole === "high") return { label: `${name}: one of your stronger reasoning areas, and this work leans on it`, friction: `Leans less on ${lower}, one of your stronger areas, than most of your options` };
-  if (pole === "low") return { label: `Little call on ${lower}, one of your less strong areas`, friction: `Leans more on ${lower}, one of your less strong areas, than most of your options` };
-  return personHigher
-    ? { label: `${name}: one of your stronger reasoning areas`, friction: `Little use of ${lower}, one of your stronger reasoning areas` }
-    : { label: `${name} demands`, friction: `Leans on ${lower}, one of your less strong reasoning areas` };
+  return rel === "strength"
+    ? careerHigh
+      ? { label: `${name}: a relative strength of yours, and this work leans on it`, friction: `Leans less on ${lower}, a relative strength of yours, than most of your options` }
+      : { label: `${name}: a relative strength of yours`, friction: `Little use of ${lower}, a relative strength of yours` }
+    : careerHigh
+      ? { label: `${name} demands`, friction: `Leans on ${lower}, a relatively weaker area of yours` }
+      : { label: `Little call on ${lower}, a relatively weaker area of yours`, friction: `Leans more on ${lower}, a relatively weaker area of yours, than most of your options` };
 }
 
 /** Environment labels from the person's side and the career's. */
@@ -526,12 +555,15 @@ function parts(pt: PersonPoint, l: LaneCtx, s: Scored, cp: CompiledPerson, p: Pe
       out.push({ id: `env.${e.id}`, ...envLabels(e.id, e.person, e.career, e.fit), pole: "high", component: "environment", contribution: (k("environment") * e.weight * e.fit) / ew, sources: cp.env[i]?.sources ?? [] });
     }
   }
-  const sv = s.values.strengths !== null ? strengthVectors(pt, l, cfg) : null;
+  const sv = s.values.strengths !== null ? strengthVectors(pt, l, cp, cfg) : null;
   if (sv)
     sv.idx.forEach((i, j) => {
+      const rel = cp.areaRelative[i];
+      if (rel !== "strength" && rel !== "weakness") return;
       const area = AREAS[i]!;
       const [a, b] = [sv.a[j]!, sv.b[j]!];
-      out.push({ id: `reasoning.${area}`, ...strengthLabels(area, poleOf(a, b), a > b), pole: poleOf(a, b), component: "strengths", contribution: (k("strengths") * a * b) / 2, sources: [src(`reasoning.${area}`)] });
+      const pole: Pole = rel === "strength" ? (b >= 0 ? "high" : "mixed") : b < 0 ? "low" : "mixed";
+      out.push({ id: `reasoning.${area}`, ...strengthLabels(area, rel, b >= 0), pole, component: "strengths", contribution: (k("strengths") * a * b) / 2, sources: [src(`reasoning.${area}`)] });
     });
   if (s.values.challenge !== null)
     out.push({ id: "env.challenge", label: s.values.challenge! >= 0.95 ? `${CHALLENGE.name}: enough for your reasoning range` : `${CHALLENGE.name}: closer to your range than most of your options`, friction: `${CHALLENGE.name}: less than your reasoning range`, pole: "high", component: "challenge", contribution: k("challenge") * s.values.challenge!, sources: cp.challenge?.sources ?? [] });
@@ -603,7 +635,7 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
     for (const k of keys) v[k] = clamp(person.inputs[k]!.value + person.inputs[k]!.se * normal());
     const dp = personPoint(cp, applyShrink(v, shrink), cfg);
     drawModes.push(dp.modes);
-    const all = scoreAll(dp, ctxs, cfg);
+    const all = scoreAll(dp, ctxs, cfg, cp);
     for (let j = 0; j < n; j++) {
       F[d * n + j] = all[j]!.fulfilment ?? NaN;
       A[d * n + j] = all[j]!.ability ?? NaN;
@@ -625,7 +657,7 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
   }
 
   // Point-estimate parts, and their average over all career paths (the baseline for drivers).
-  const scored = scoreAll(pt, ctxs, cfg);
+  const scored = scoreAll(pt, ctxs, cfg, cp);
   const allParts = ctxs.map((l, j) => parts(pt, l, scored[j]!, cp, person, cfg));
   const baseline = new Map<string, number>();
   for (const ps of allParts) for (const p of ps) baseline.set(p.id, (baseline.get(p.id) ?? 0) + p.contribution / n);
@@ -716,7 +748,7 @@ export function componentSpreads(person: PersonProfile, lanes: Record<string, La
   const ctxs = Object.entries(lanes).map(([id, l]) => laneCtx(id, l));
   const cp = compilePerson(person);
   const v: Values = Object.fromEntries((Object.keys(person.inputs) as PersonConstructId[]).map((k) => [k, person.inputs[k]!.value]));
-  const raws = ctxs.map((l) => raw(personPoint(cp, v, cfg), l, cfg));
+  const raws = ctxs.map((l) => raw(personPoint(cp, v, cfg), l, cfg, cp));
   return Object.fromEntries(KEYS.map((k) => {
     const xs = raws.flatMap((r) => (r.values[k] === null ? [] : [r.values[k]!]));
     return [k, xs.length ? sd(xs) : null];
@@ -732,7 +764,7 @@ export function populationOffsets(people: PersonProfile[], lanes: Record<string,
     const v: Values = Object.fromEntries((Object.keys(p.inputs) as PersonConstructId[]).map((k) => [k, p.inputs[k]!.value]));
     const pt = personPoint(cp, v, cfg);
     ctxs.forEach((l, j) => {
-      const r = raw(pt, l, cfg);
+      const r = raw(pt, l, cfg, cp);
       if (r.values.environment !== null) {
         sums[j]!.environment += r.values.environment;
         sums[j]!.ne++;

@@ -17,6 +17,15 @@ export type V2Config = {
   componentRefSd: { interests: number; values: number; valueModes: number; environment: number; challenge: number; strengths: number };
   /** Reasoning strengths needs at least this many reasoning areas measured on both sides. */
   minAreas: number;
+  /**
+   * Reasoning strengths regularisation. Person side: the profile counts as partly flat below a spread
+   * of max(correlationFloor, strengthsSeFactor × the areas' RMS standard error) per area, so areas
+   * measured with wide error (real reasoning bands have SEs of 14–22 points) count for little.
+   * Career side: below `strengthsCareerFloor` percentile points per area, the career's demands count as
+   * partly flat, so near-flat demands don't become a full-strength "this work leans on X".
+   */
+  strengthsSeFactor: number;
+  strengthsCareerFloor: number;
   guardMinTotal: number;
 };
 
@@ -85,6 +94,8 @@ export const V2_CONFIG: V2Config = {
    */
   componentRefSd: { interests: 0.195, values: 0.19, valueModes: 0.14, environment: 0.065, challenge: 0.095, strengths: 0.17 },
   minAreas: 3,
+  strengthsSeFactor: 2.5,
+  strengthsCareerFloor: 8,
   /** The facet guard's floor on summed input effects, in fit points (one component SD ≈ 10). */
   guardMinTotal: 10,
 };
