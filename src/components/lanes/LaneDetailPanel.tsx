@@ -250,13 +250,14 @@ export function LaneDetailPanel({ detail, onClose, headingId }: { detail: LaneDe
           <p className="mt-3 text-small text-ink-2">{entryNoteText[detail.entryNote]}</p>
           {detail.topRoles.length ? (
             <ol className="mt-4 flex flex-col border-t border-rule">
-              {detail.topRoles.map(({ role, reason }) => (
+              {detail.topRoles.map(({ role, reason, note }) => (
                 <li key={role.id} className="border-b border-rule py-3">
                   <p className="flex flex-wrap items-baseline justify-between gap-x-3">
                     <span className="text-body text-ink">{role.title}</span>
                     <span className="label text-ink-3">{roleMeta(role)}</span>
                   </p>
                   <p className="mt-1 text-small text-ink-2">{reason}</p>
+                  {note ? <p className="mt-1 text-small text-caution">{note}</p> : null}
                 </li>
               ))}
             </ol>

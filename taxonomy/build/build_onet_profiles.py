@@ -292,6 +292,18 @@ def build(args) -> dict:
     occ_codes = uri_codes["occupations"]
 
     links: dict[str, dict[str, dict]] = defaultdict(dict)  # lane -> soc -> {weight, routes, esco}
+    # Roles with their own link: role -> soc -> weight, from the ESCO occupations mapped to the role
+    # (esco_mapping.csv's nearest role) through the official crosswalk or a reviewed override only.
+    # The ISCO fallbacks are a whole unit group, not the role's own occupation, so they don't count.
+    role_links: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+    role_esco: dict[str, list[str]] = defaultdict(list)
+
+    def link_role(role: str, socs: list[str], uri: str):
+        ok = sorted({s for s in socs if s in codes})
+        for soc in ok:
+            role_links[role][soc] += 1 / len(ok)
+        if ok:
+            role_esco[role].append(uri)
     esco_route: dict[str, str] = {}
     unknown_codes: set[str] = set()
     changed_since: list[dict] = []
@@ -329,11 +341,13 @@ def build(args) -> dict:
         if uri in overrides:
             esco_route[uri] = "override"
             link(lane, overrides[uri]["codes"], weights["override"], "override", uri)
+            link_role(r["role_id"], overrides[uri]["codes"], uri)
         elif code and code in xw_esco:
             esco_route[uri] = "crosswalk"
             if (cv.get("label") or "").strip().lower() != xw_titles[code].strip().lower():
                 label_differs.append({"uri": uri, "code": code, "esco_api": cv.get("label"), "crosswalk": xw_titles[code]})
             link(lane, xw_esco[code], weights["crosswalk"], "crosswalk", uri)
+            link_role(r["role_id"], xw_esco[code], uri)
         elif code and code.split(".")[0] in xw_isco:
             esco_route[uri] = "fallback_isco"
             link(lane, xw_isco[code.split(".")[0]], weights["fallback_isco"], "fallback_isco", uri)
@@ -423,8 +437,24 @@ def build(args) -> dict:
         else:
             rs = {r for o in p["occupations"] for r in o["route"]}
             lane_routes[next(r for r in ("crosswalk", "override", "fallback_isco", "fallback_lane_isco") if r in rs)] += 1
+    # Role profiles: only the descriptors the role ranking reads (interests, and the Work Design
+    # elements the value modes are built from), to keep the file small.
+    keep = {("Interests", None), ("Work Values", None)} | {(e["file"], e["element"]) for e in wd["elements"]}
+    role_profiles = {}
+    for role, ls in sorted(role_links.items()):
+        desc = weighted(onet, dict(ls))
+        desc = {f: {el: v for el, v in els.items() if (f, None) in keep or (f, el) in keep} for f, els in desc.items()}
+        total = sum(ls.values())
+        role_profiles[role] = {
+            "provenance": "onet",
+            "n_occupations": len(ls),
+            "esco": sorted(role_esco[role]),
+            "occupations": sorted(({"soc": c, "title": onet.titles[c], "weight": round(w / total, 4)} for c, w in ls.items()), key=lambda x: (-x["weight"], x["soc"])),
+            "descriptors": {f: els for f, els in desc.items() if els},
+        }
     rel = cfg["releases"]
     return {
+        "roles": role_profiles,
         "release": {"onet": rel["primary"]["release"], "work_values": rel["work_values"]["release"], "esco_crosswalk_version": uri_codes["crosswalk_version"]},
         "scale": "Each descriptor: 'raw' on O*NET's own scale; 'pct' = weighted mean of the linked occupations' percentiles (0-100) among all O*NET occupations that have the descriptor.",
         "content_model": {
@@ -459,9 +489,13 @@ def main(argv=None):
     ap.add_argument("--crosswalk", default=str(REF / "crosswalks" / "ESCO_to_ONET-SOC.xlsx"))
     ap.add_argument("--uri-codes", default=str(REF / "crosswalks" / "esco_uri_codes.json"))
     ap.add_argument("--out", default=str(ROOT / "derived" / "lane_onet_profiles.json"))
+    ap.add_argument("--roles-out", default=str(ROOT / "derived" / "role_onet_profiles.json"))
     args = ap.parse_args(argv)
     result = build(args)
+    roles = result.pop("roles")
     Path(args.out).write_text(json.dumps(result, indent=1) + "\n")
+    Path(args.roles_out).write_text(json.dumps({"release": result["release"], "scale": result["scale"], "roles": roles}) + "\n")
+    print(f"Wrote {args.roles_out}: {len(roles)} roles with their own O*NET link")
     c = result["coverage"]
     print(f"Wrote {args.out}")
     print(f"  career paths by provenance: {c['lanes_by_provenance']}; by best route: {c['lanes_by_best_route']}")

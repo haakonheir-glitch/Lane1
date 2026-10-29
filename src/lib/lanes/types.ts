@@ -57,7 +57,8 @@ export type LaneDetail = {
   ladderName: string;
   ladder: LadderRow[];
   entryNote: EntryNote;
-  topRoles: { role: RoleRef; reason: string }[];
+  /** note: set when the role's main O*NET interest is one of the person's two lowest. */
+  topRoles: { role: RoleRef; reason: string; note: string | null }[];
   isco: { code: string; label: string }[];
   /** O*NET's picture of the work (Work Activities and Work Context); null without an O*NET profile. */
   day: TypicalDay | null;
@@ -109,7 +110,7 @@ export type CareerPick = {
   row: LaneRowData;
   category: CareerCategory;
   /** The best-matching starting role in this career path, or null when it needs experience first. */
-  role: { title: string; levelLabel: string; reason: string } | null;
+  role: { title: string; levelLabel: string; reason: string; note: string | null } | null;
   /** Up to two other starting roles, best first. */
   alsoRoles: string[];
   entryNote: EntryNote;

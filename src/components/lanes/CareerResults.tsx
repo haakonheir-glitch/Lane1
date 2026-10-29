@@ -100,6 +100,7 @@ export function HeroCareer({ p }: { p: CareerPick }) {
       <div className="mt-10 grid gap-8 border-t border-rule pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-12">
         <div className="flex flex-col gap-4">
           {p.role ? <p className="text-body text-ink">{p.role.reason}</p> : null}
+          {p.role?.note ? <p className="text-small text-caution">{p.role.note}</p> : null}
           <Why items={p.why} />
           {p.alsoRoles.length ? (
             <p className="text-small text-ink-2">

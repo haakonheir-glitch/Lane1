@@ -73,6 +73,10 @@ export type FitV2 = {
   frictions: Driver[];
 };
 
+/** A role with its own O*NET link (taxonomy/derived/role_profiles_v2.json): its occupations, OI profile and value modes. */
+export type RoleProfileV2 = { occupations: string[]; interests: number[]; modes: Record<string, number | null> };
+export type RoleProfilesFile = { workDesign: string; release: Record<string, string>; roles: Record<string, RoleProfileV2> };
+
 export type BandV2 = "strong" | "possible" | "unlikely" | "insufficient";
 
 export type LaneMatchV2 = FitV2 & {

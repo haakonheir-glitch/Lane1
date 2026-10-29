@@ -8,8 +8,9 @@ import { cache } from "react";
 import { FAMILIES, LANES, LEVELS, getFamily, getLane, ladderOf, laneModes, taxonomy } from "../taxonomy";
 import type { Lane, LaneId, LevelId, Role } from "../taxonomy/generated";
 import { rankRoles, type Experience, type LaneMatch } from "../matching";
+import type { RoleData } from "../matching/roles";
 import type { ProfileScores } from "../scoring/profile";
-import { LANE_PROFILES_V2, LANE_PROFILES_V2_STAMP, V2_CONFIG, matchV2, penaltyOf, profileSeed, type Distribution, type LaneMatchV2, type MatchResultV2 } from "../matching/v2";
+import { LANE_PROFILES_V2, LANE_PROFILES_V2_STAMP, ROLE_PROFILES_V2, V2_CONFIG, matchV2, penaltyOf, profileSeed, type Distribution, type LaneMatchV2, type MatchResultV2 } from "../matching/v2";
 import { toV1Matches } from "../matching/v2/adapter";
 import { personInputs, personWorkDesign } from "../workdesign/person";
 import { ENVIRONMENT, VALUE_MODES } from "../workdesign/model";
@@ -49,6 +50,27 @@ function matchV2Memo(profile: ProfileScores): V2Memo {
 
 /** Matching v2's native result for the profile, once per request. */
 export const nativeFor = cache((profile: ProfileScores): V2Memo => matchV2Memo(profile));
+
+/**
+ * What starting-role ranking from data needs (matching/roles.ts): the person's interests and value
+ * modes as matching sees them. Undefined (rank by tags) when the config doesn't rank from data.
+ */
+const roleDataFor = cache((profile: ProfileScores): RoleData | undefined => {
+  if (!V2_CONFIG.rolesFromData) return undefined;
+  const inputs = personInputs(profile, V2_CONFIG.inputs);
+  const codes = ["R", "I", "A", "S", "E", "C"] as const;
+  const interests = codes.every((c) => inputs[`interests.${c}`]) ? codes.map((c) => inputs[`interests.${c}`]!.value) : null;
+  const wd = personWorkDesign(profile, undefined, V2_CONFIG.inputs);
+  const w = V2_CONFIG.weights;
+  return {
+    interests,
+    modes: VALUE_MODES.map((m) => wd.valueModes.find((x) => x.id === m.id)?.value ?? null),
+    modeIds: VALUE_MODES.map((m) => m.id),
+    roles: ROLE_PROFILES_V2,
+    interestShare: w.interests / (w.interests + w.valueModes),
+    floor: V2_CONFIG.correlationFloor,
+  };
+});
 
 /** The row-shaped matches (lists, picks, trait connections), by career path. */
 const matchesFor = cache((profile: ProfileScores) => new Map(nativeFor(profile).adapted.map((m) => [m.laneId, m])));
@@ -117,12 +139,12 @@ export function buildCareerPicks(profile: ProfileScores, exp: ExperienceAnswers)
     .sort((a, b) => bandOrder.indexOf(a.m.band) - bandOrder.indexOf(b.m.band) || (b.m.vsAverage ?? -Infinity) - (a.m.vsAverage ?? -Infinity) || a.lane.name.localeCompare(b.lane.name));
   const experience = toExperience(exp);
   const pick = ({ lane, m }: (typeof ordered)[number]): CareerPick => {
-    const ranked = rankRoles(lane, profile, taxonomy, experience, 3);
+    const ranked = rankRoles(lane, profile, taxonomy, experience, 3, roleDataFor(profile));
     const [first, ...rest] = ranked.top;
     return {
       row: toRow(lane, m, exp, native?.get(lane.id)),
       category: careerCategory(lane),
-      role: first ? { title: first.role.title, levelLabel: taxonomy.levels[first.role.level].label, reason: first.reason } : null,
+      role: first ? { title: first.role.title, levelLabel: taxonomy.levels[first.role.level].label, reason: first.reason, note: first.note } : null,
       alsoRoles: rest.map((r) => r.role.title),
       entryNote: ranked.entry.note,
       why: m.drivers.filter((d) => d.contribution > 0.01).slice(0, 3).map((d) => d.label),
@@ -159,7 +181,7 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
   if (!lane) return null;
   const m = matchesFor(profile).get(lane.id)!;
   const n = nativeFor(profile).byLane.get(lane.id)!;
-  const ranked = rankRoles(lane, profile, taxonomy, toExperience(exp));
+  const ranked = rankRoles(lane, profile, taxonomy, toExperience(exp), 3, roleDataFor(profile));
   return {
     row: toRow(lane, m, exp, n),
     description: lane.description,
@@ -169,7 +191,7 @@ export function buildLaneDetail(id: string, profile: ProfileScores, exp: Experie
     ladderName: ladderOf(lane).name,
     ladder: ladderRows(lane, ranked.entry.level, ranked.entry.current),
     entryNote: ranked.entry.note,
-    topRoles: ranked.top.map((t) => ({ role: roleRef(t.role), reason: t.reason })),
+    topRoles: ranked.top.map((t) => ({ role: roleRef(t.role), reason: t.reason, note: t.note })),
     isco: Object.entries(lane.isco_labels).map(([code, label]) => ({ code, label })),
     day: typicalDay(lane.id),
     v2: {

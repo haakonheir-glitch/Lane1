@@ -4,7 +4,8 @@ import type { ProfileScores } from "@/lib/scoring/profile";
 import type { ScaleScore } from "@/lib/scoring/types";
 import type { Family, Lane, Role, Taxonomy } from "@/lib/taxonomy/generated";
 import { entryPoint, rankRoles, resolveConstruct, sortMatches } from "@/lib/matching";
-import { matchV2 } from "@/lib/matching/v2";
+import { roleFromData, type RoleData } from "@/lib/matching/roles";
+import { ROLE_PROFILES_V2, matchV2 } from "@/lib/matching/v2";
 import { toV1Matches } from "@/lib/matching/v2/adapter";
 import { personInputs } from "@/lib/workdesign/person";
 import { LANES, taxonomy } from "@/lib/taxonomy";
@@ -215,6 +216,64 @@ describe("entry point and starting roles", () => {
     const { top } = rankRoles(l, profile({ interests: { E: 2, R: -1 }, facets: { E3: 1.5 } }), tiny([]));
     expect(top.map((r) => r.role.title)).toEqual(["seller", "builder"]);
     expect(top[0]!.reason).toMatch(/^Persuading people draws on your .+, one of your stronger scores\.$/);
+  });
+});
+
+/* ---------- starting roles from data (precision pass step 6) ---------- */
+
+describe("starting roles from O*NET data", () => {
+  const MODES = ["m1", "m2", "m3", "m4", "m5"];
+  const modes = (xs: number[]) => Object.fromEntries(MODES.map((m, i) => [m, xs[i]!]));
+  // OI profiles in R, I, A, S, E, C order (O*NET's 1–7 scale).
+  const roles: RoleData["roles"] = {
+    "mix.seller": { occupations: ["41-0000.00"], interests: [1.5, 2, 2, 3.5, 6.8, 4], modes: modes([80, 70, 30, 20, 10]) },
+    "mix.fixer": { occupations: ["49-0000.00"], interests: [6.9, 3, 1.5, 1.8, 2, 3], modes: modes([20, 30, 70, 80, 60]) },
+  };
+  // The person: Enterprising highest, Realistic and Conventional lowest (percentiles), modes like the seller's.
+  const data = (over: Partial<RoleData> = {}): RoleData => ({ interests: [10, 40, 50, 60, 90, 20], modes: [75, 65, 35, 25, 15], modeIds: MODES, roles, interestShare: 0.75, floor: 10, ...over });
+  const l = lane("mix", "E", [], {
+    roles: [role("mix", "seller", "entry", ["persuasion"]), role("mix", "fixer", "entry", ["physical"]), role("mix", "writer", "entry", ["writing"]), role("mix", "boss", "manager", ["leadership"])],
+  });
+  const p = profile({ interests: { E: 2, R: -1 } });
+
+  it("ranks linked roles by their O*NET interest and value-mode fit, ahead of tag-ranked ones", () => {
+    const { top } = rankRoles(l, p, tiny([]), {}, 3, data());
+    expect(top.map((r) => [r.role.title, r.basis])).toEqual([["seller", "onet"], ["fixer", "onet"], ["writer", "tags"]]);
+    expect(top[0]!.reason).toMatch(/mostly Enterprising, one of your two strongest interests/);
+    expect(top[0]!.note).toBeNull();
+    // Managers are never starting roles, from data or not.
+    expect(top.map((r) => r.role.title)).not.toContain("boss");
+  });
+
+  it("notes a role whose top O*NET interest is one of the person's two lowest", () => {
+    const { top } = rankRoles(l, p, tiny([]), {}, 3, data());
+    const fixer = top.find((r) => r.role.title === "fixer")!;
+    expect(fixer.note).toBe("Its main interest area, Realistic, is one of your two lowest interests.");
+    expect(roleFromData("mix.fixer", data({ interests: [90, 40, 50, 60, 10, 20] }))!.note).toBeNull();
+  });
+
+  it("weights interests against value modes as configured, and needs a usable profile", () => {
+    const onlyInterests = roleFromData("mix.seller", data({ interestShare: 1 }))!.score;
+    const onlyModes = roleFromData("mix.seller", data({ interestShare: 0 }))!.score;
+    expect(roleFromData("mix.seller", data())!.score).toBeCloseTo(0.75 * onlyInterests + 0.25 * onlyModes, 10);
+    expect(roleFromData("mix.writer", data())).toBeNull();
+    expect(roleFromData("mix.seller", data({ interests: null }))).toBeNull();
+  });
+
+  it("falls back to tags for every role without data (and for configs that don't rank from data)", () => {
+    const { top } = rankRoles(l, p, tiny([]));
+    expect(top.every((r) => r.basis === "tags" && r.note === null)).toBe(true);
+  });
+
+  it("has role profiles for real roles only, each with a full interest profile", () => {
+    const ids = new Set(LANES.flatMap((x) => x.roles.map((r) => r.id)));
+    const entries = Object.entries(ROLE_PROFILES_V2);
+    expect(entries.length).toBeGreaterThan(800);
+    for (const [id, r] of entries) {
+      expect(ids.has(id as Role["id"]), id).toBe(true);
+      expect(r.interests).toHaveLength(6);
+      expect(r.occupations.length).toBeGreaterThan(0);
+    }
   });
 });
 

@@ -3,13 +3,19 @@
  *
  * - The entry point is the level the person can reach today: trainee/entry, or their own level
  *   when they already work in the lane. Seniority is a path, never a recommendation.
- * - Starting roles are ranked by their tags through tag_to_constructs. Manager, director and
- *   exec roles are never starting roles; owner roles only on the founder ladder.
+ * - Starting roles are ranked from O*NET data where the role has its own ESCO→O*NET link
+ *   (taxonomy/derived/role_profiles_v2.json): the role's interest fit and value-mode fit, the same
+ *   regularised profile correlations matching v2 uses for career paths. Only roles without a link
+ *   fall back to their tags (through tag_to_constructs), and they come after the data-ranked ones:
+ *   the two scores are on different scales, and the data is the stronger evidence.
+ * - A data-ranked role whose top O*NET interest is one of the person's two lowest interests says so.
+ * - Manager, director and exec roles are never starting roles; owner roles only on the founder ladder.
  */
 import { BRAND } from "../brand";
 import type { Lane, LevelId, Role, TagId, Taxonomy } from "../taxonomy/generated";
 import type { ProfileScores } from "../scoring/profile";
 import { constructTable, type TaxonomyForMatching } from "./fit";
+import type { RoleProfileV2 } from "./v2/types";
 
 export type YearsBand = "0" | "lt2" | "2to5" | "5plus";
 /** What the person told us in onboarding: their current role (if any) and years in it. */
@@ -27,7 +33,70 @@ export type EntryNote =
 
 export type EntryPoint = { level: LevelId | null; current: LevelId | null; note: EntryNote };
 
-export type RoleRecommendation = { role: Role; score: number | null; reason: string };
+export type RoleRecommendation = {
+  role: Role;
+  score: number | null;
+  reason: string;
+  /** "onet": ranked from the role's own O*NET profile; "tags": from its demand tags (no O*NET link). */
+  basis: "onet" | "tags";
+  /** Set when the role's top O*NET interest is one of the person's two lowest interests. */
+  note: string | null;
+};
+
+/**
+ * What role ranking from data needs: the person's six interests (RIASEC order, 0–100: population
+ * percentiles where normed) and nine value modes (VALUE_MODES order, null where not measured), and
+ * the role profiles.
+ */
+export type RoleData = {
+  interests: number[] | null;
+  modes: (number | null)[];
+  modeIds: string[];
+  roles: Record<string, RoleProfileV2>;
+  /** Interests weight against value modes (matching v2's interests : valueModes). */
+  interestShare: number;
+  /** Below this spread per item a profile counts as partly flat (matching v2's correlationFloor). */
+  floor: number;
+};
+
+const RIASEC_ORDER = ["R", "I", "A", "S", "E", "C"] as const;
+const RIASEC_WORD: Record<string, string> = { R: "Realistic", I: "Investigative", A: "Artistic", S: "Social", E: "Enterprising", C: "Conventional" };
+
+const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
+/** Pearson r between the person's profile, regularised (see matching v2), and the role's. */
+function regR(person: number[], role: number[], floor: number): number | null {
+  const pm = mean(person);
+  const rm = mean(role);
+  const pc = person.map((x) => x - pm);
+  const rc = role.map((x) => x - rm);
+  const rn = Math.sqrt(rc.reduce((a, b) => a + b * b, 0));
+  if (rn < 1e-9) return null;
+  const pn = Math.max(Math.sqrt(pc.reduce((a, b) => a + b * b, 0)), floor * Math.sqrt(person.length));
+  return pc.reduce((a, x, i) => a + (x / pn) * (rc[i]! / rn), 0);
+}
+
+/** A data-ranked role's score (−1 to 1), and why, from its O*NET profile. Null without a usable profile. */
+export function roleFromData(roleId: string, d: RoleData): { score: number; reason: string; note: string | null } | null {
+  const rp = d.roles[roleId];
+  if (!rp || !d.interests) return null;
+  const ri = regR(d.interests, rp.interests, d.floor);
+  if (ri === null) return null;
+  const pairs = d.modes.flatMap((x, i) => (x !== null && rp.modes[d.modeIds[i]!] != null ? [[x, rp.modes[d.modeIds[i]!]!] as const] : []));
+  const rm = pairs.length >= 5 ? regR(pairs.map((p) => p[0]), pairs.map((p) => p[1]), d.floor) : null;
+  const score = rm === null ? ri : d.interestShare * ri + (1 - d.interestShare) * rm;
+  // The role's top interest, and the person's two lowest.
+  const top = RIASEC_ORDER[rp.interests.indexOf(Math.max(...rp.interests))]!;
+  const lowest = RIASEC_ORDER.map((c, i) => [c, d.interests![i]!] as const).sort((a, b) => a[1] - b[1]).slice(0, 2).map((x) => x[0]);
+  const ranked = RIASEC_ORDER.map((c, i) => [c, d.interests![i]!] as const).sort((a, b) => b[1] - a[1]);
+  const yourTop = ranked[0]![0];
+  const reason = lowest.includes(top)
+    ? `Its work is mostly ${RIASEC_WORD[top]}; it ranks here on the rest of its O*NET profile.`
+    : top === yourTop || top === ranked[1]![0]
+      ? `Its work is mostly ${RIASEC_WORD[top]}, one of your two strongest interests (O*NET profile).`
+      : `Its O*NET profile is the closest match to your interests and value modes in this career path.`;
+  const note = lowest.includes(top) ? `Its main interest area, ${RIASEC_WORD[top]}, is one of your two lowest interests.` : null;
+  return { score, reason, note };
+}
 
 type TaxonomyForRoles = TaxonomyForMatching & Pick<Taxonomy, "levels">;
 
@@ -105,7 +174,7 @@ function strength(d: number) {
   return "not a strength for you, but the closest match in this career path";
 }
 
-export function rankRoles(lane: Lane, profile: ProfileScores, taxonomy: TaxonomyForRoles, exp: Experience = {}, limit = 3) {
+export function rankRoles(lane: Lane, profile: ProfileScores, taxonomy: TaxonomyForRoles, exp: Experience = {}, limit = 3, data?: RoleData) {
   const ep = entryPoint(lane, taxonomy, exp);
   const t = constructTable(profile, taxonomy);
   const tagScore = (tag: TagId) => {
@@ -116,7 +185,17 @@ export function rankRoles(lane: Lane, profile: ProfileScores, taxonomy: Taxonomy
   };
   const levelPref = (l: LevelId) => ["entry", "trainee", "mid", "senior", "lead", "owner"].indexOf(l);
 
-  const ranked: RoleRecommendation[] = startingRoles(lane, taxonomy, ep)
+  const candidates = startingRoles(lane, taxonomy, ep);
+  const fromData: RoleRecommendation[] = [];
+  const rest: Role[] = [];
+  for (const role of candidates) {
+    const d = data ? roleFromData(role.id, data) : null;
+    if (d) fromData.push({ role, score: d.score, reason: d.reason, basis: "onet", note: d.note });
+    else rest.push(role);
+  }
+  fromData.sort((a, b) => b.score! - a.score! || levelPref(a.role.level) - levelPref(b.role.level) || a.role.title.localeCompare(b.role.title));
+
+  const byTags: RoleRecommendation[] = rest
     .map((role) => {
       const scored = role.tags.map((tag) => ({ tag, s: tagScore(tag) })).filter((x) => x.s !== null);
       const score = scored.length ? scored.reduce((a, x) => a + x.s!.score, 0) / scored.length : null;
@@ -128,9 +207,9 @@ export function rankRoles(lane: Lane, profile: ProfileScores, taxonomy: Taxonomy
       const reason = top
         ? `${TAG_NOUN[top.tag]} draws on your ${top.s!.best.label}, ${strength(top.s!.best.d)}.`
         : `Its demands draw on scales ${BRAND.name} is still validating, so it can't be ranked for you yet.`;
-      return { role, score, reason };
+      return { role, score, reason, basis: "tags" as const, note: null };
     })
     .sort((a, b) => (b.score ?? -Infinity) - (a.score ?? -Infinity) || levelPref(a.role.level) - levelPref(b.role.level) || a.role.title.localeCompare(b.role.title));
 
-  return { entry: ep, top: ranked.slice(0, limit) };
+  return { entry: ep, top: [...fromData, ...byTags].slice(0, limit) };
 }

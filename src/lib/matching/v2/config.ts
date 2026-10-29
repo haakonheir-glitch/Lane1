@@ -53,6 +53,8 @@ export type V2Config = {
    * flatEnvShare uses flat environment weighting. Bands then need to hold under both weightings.
    */
   ensemble: { concentration: number; flatEnvShare: number } | null;
+  /** Rank starting roles from their own O*NET profile where they have one (false: by tags, as before). */
+  rolesFromData: boolean;
 };
 
 export type ValidationStatus = "validated" | "derived" | "provisional";
@@ -133,6 +135,7 @@ const V2_0_4: V2Config = {
   validationStatus: { interests: "validated", values: "validated", valueModes: "derived", environment: "derived", challenge: "derived", strengths: "provisional" },
   validationMultiplier: { validated: 1, derived: 1, provisional: 1 },
   ensemble: null,
+  rolesFromData: false,
 };
 
 /** v2-0.3: v2-0.4 without the reasoning-strengths component (weight 0). Kept for comparison. */
@@ -151,7 +154,8 @@ const V2_0_3: V2Config = { ...V2_0_4, version: "v2-0.3", weights: { ...V2_0_4.we
  *    working conditions and challenge are Lane's own derived constructs, so they carry less.
  *    Reasoning strengths keeps its small 0.08 (renormalised when present, as since v2-0.4);
  * 5. a weight ensemble: Dirichlet weights (concentration 40) and, half the time, flat environment
- *    weighting, so a band can't hang on one exact choice of weights.
+ *    weighting, so a band can't hang on one exact choice of weights;
+ * 6. starting roles ranked from their own O*NET profile where they have one (matching/roles.ts).
  */
 const V2_0_5: V2Config = {
   ...V2_0_4,
@@ -160,6 +164,7 @@ const V2_0_5: V2Config = {
   inputs: { norms: true, values: "orderStats" },
   envCap: 0.15,
   ensemble: { concentration: 40, flatEnvShare: 0.5 },
+  rolesFromData: true,
 };
 
 /** Every selectable config, by version. */

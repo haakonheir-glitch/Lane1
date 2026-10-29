@@ -54,6 +54,15 @@ describe("career map under matching v2", () => {
   });
 });
 
+describe("starting roles under v2-0.5", () => {
+  it("are ranked from O*NET data where the role has its own link", () => {
+    const reasons = LANES.slice(0, 60).flatMap((l) => buildLaneDetail(l.id, sampleProfile, none)?.topRoles ?? []);
+    expect(reasons.some((r) => /O\*NET profile/.test(r.reason))).toBe(true);
+    expect(reasons.some((r) => /draws on your/.test(r.reason))).toBe(true);
+    for (const r of reasons) if (r.note) expect(r.note).toMatch(/one of your two lowest interests/);
+  });
+});
+
 describe("typical day", () => {
   it("exists for every career path, with O*NET names and descriptions", () => {
     for (const l of LANES) {

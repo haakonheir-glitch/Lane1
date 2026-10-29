@@ -3,7 +3,8 @@
  */
 import lanesFile from "../../../../taxonomy/derived/lane_profiles_v2.json";
 import offsetsFile from "../../../../taxonomy/derived/lane_offsets_v2.json";
-import type { FitV2, LaneProfileV2, LaneProfilesFile, PersonProfile } from "./types";
+import rolesFile from "../../../../taxonomy/derived/role_profiles_v2.json";
+import type { FitV2, LaneProfileV2, LaneProfilesFile, PersonProfile, RoleProfileV2, RoleProfilesFile } from "./types";
 import { computeFit as computeFitIn, matchAllV2, type MatchOptions, type Offsets } from "./fit";
 import { V2_CONFIG, type V2Config } from "./config";
 
@@ -15,7 +16,10 @@ export * from "./types";
 /** The bundled career profiles (taxonomy/derived/lane_profiles_v2.json). */
 export const LANE_PROFILES_V2 = (lanesFile as LaneProfilesFile).lanes as Record<string, LaneProfileV2>;
 /** Which O*NET build the bundled profiles come from (for cache keys). */
-export const LANE_PROFILES_V2_STAMP = `${(lanesFile as LaneProfilesFile).workDesign}:${Object.values((lanesFile as LaneProfilesFile).release).join("/")}:${offsetsFile.population.seed}`;
+export const LANE_PROFILES_V2_STAMP = `${(lanesFile as LaneProfilesFile).workDesign}:${Object.values((lanesFile as LaneProfilesFile).release).join("/")}:${offsetsFile.population.seed}:${Object.keys((rolesFile as RoleProfilesFile).roles).length}`;
+
+/** Roles with their own O*NET link (taxonomy/derived/role_profiles_v2.json), for ranking starting roles. */
+export const ROLE_PROFILES_V2 = (rolesFile as RoleProfilesFile).roles as Record<string, RoleProfileV2>;
 
 const OFFSETS = offsetsFile.configs as Record<string, Offsets>;
 /** The bundled career offsets for a config (taxonomy/derived/lane_offsets_v2.json, from a fixed reference population). */

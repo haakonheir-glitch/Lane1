@@ -155,5 +155,29 @@ class LinkOverrides(unittest.TestCase):
     def test_missing_file_is_empty(self):
         self.assertEqual(b.parse_link_overrides(Path(tempfile.mkdtemp()) / "none.csv"), {})
 
+class RoleProfiles(unittest.TestCase):
+    """The built role profiles (derived/role_onet_profiles.json) against their inputs."""
+
+    def test_roles_link_only_through_their_own_esco_occupations(self):
+        import csv
+
+        root = Path(__file__).resolve().parents[1]
+        built = json.loads((root / "derived" / "role_onet_profiles.json").read_text())["roles"]
+        with open(root / "esco_mapping.csv", encoding="utf-8", newline="") as f:
+            role_of = {r["esco_uri"]: r["role_id"] for r in csv.DictReader(f)}
+        codes = json.loads((root / "reference" / "crosswalks" / "esco_uri_codes.json").read_text())["occupations"]
+        self.assertGreater(len(built), 800)
+        for role, p in built.items():
+            self.assertTrue(p["esco"], role)
+            for uri in p["esco"]:
+                self.assertEqual(role_of[uri], role)
+                # A link through the crosswalk or a reviewed override: the URI has a crosswalk code or an override.
+                self.assertTrue((codes.get(uri) or {}).get("crosswalk_version", {}).get("code") or uri in b.parse_link_overrides(root / "reference" / "crosswalks" / "lane_link_overrides.csv"), uri)
+            self.assertAlmostEqual(sum(o["weight"] for o in p["occupations"]), 1.0, places=2)
+        # Some link only to O*NET occupations without ratings; the app ranks those by tags.
+        rated = sum(1 for p in built.values() if "Interests" in p["descriptors"])
+        self.assertGreater(rated / len(built), 0.9)
+
+
 if __name__ == "__main__":
     unittest.main()
