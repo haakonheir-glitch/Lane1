@@ -23,6 +23,8 @@ export function traitKeyOf(constructId: string): string | null {
   if (prefix === "neo") return DOMAIN_OF[key![0]!] ? `domain:${DOMAIN_OF[key![0]!]}` : null;
   if (prefix === "values") return VALUE_OF[key!] ? `value:${VALUE_OF[key!]}` : null;
   if (prefix === "cognitive") return AREA_OF[key!] ? `area:${AREA_OF[key!]}` : null;
+  // Matching v2's reasoning-strengths drivers carry the area id itself (reasoning.spatial).
+  if (prefix === "reasoning") return ["reasoning", "quantitative", "spatial", "memory", "speed"].includes(key!) ? `area:${key}` : null;
   return null;
 }
 

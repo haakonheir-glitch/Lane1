@@ -4,7 +4,7 @@
  */
 export type V2Config = {
   version: string;
-  weights: { interests: number; values: number; valueModes: number; environment: number; challenge: number };
+  weights: { interests: number; values: number; valueModes: number; environment: number; challenge: number; strengths: number };
   environmentWeightFloor: number;
   draws: number;
   bands: { topShare: number; bottomShare: number; strong: number; unlikely: number };
@@ -14,19 +14,26 @@ export type V2Config = {
   flat: { minStrong: number; interestsSd: number; modesSd: number };
   minPairs: number;
   correlationFloor: number;
-  componentRefSd: { interests: number; values: number; valueModes: number; environment: number; challenge: number };
+  componentRefSd: { interests: number; values: number; valueModes: number; environment: number; challenge: number; strengths: number };
+  /** Reasoning strengths needs at least this many reasoning areas measured on both sides. */
+  minAreas: number;
   guardMinTotal: number;
 };
 
 export const V2_CONFIG: V2Config = {
-  version: "v2-0.3",
+  version: "v2-0.4",
   /**
    * Fulfilment fit (needs–supplies) as a weighted combination of its components. Each component is
    * centred on the person's average career path and divided by a fixed reference spread
    * (componentRefSd), so the weights are comparable across components (as SD shares) while a
    * near-flat profile stays near-flat. Renormalised over the components the person has.
+   *
+   * strengths (v2-0.4, the owner's option 1): a small extra component that credits career paths
+   * leaning on the reasoning areas that are the person's own strongest, and doesn't hold it against
+   * them where they lean on the weaker ones less. Without reasoning results it drops out and the
+   * other weights renormalise back to exactly what they were.
    */
-  weights: { interests: 0.35, values: 0.15, valueModes: 0.2, environment: 0.2, challenge: 0.1 },
+  weights: { interests: 0.35, values: 0.15, valueModes: 0.2, environment: 0.2, challenge: 0.1, strengths: 0.08 },
   /**
    * Environment dimensions are weighted by how strong the person's need is: two-sided |p − 50| / 50;
    * deficit (only "too little" hurts) max(0, p − 50) / 50; excess (only "too much" hurts)
@@ -76,7 +83,8 @@ export const V2_CONFIG: V2Config = {
    * people (scripts/validate-matching-v2.mts population; componentSpreads in fit.ts). Fixed, so a
    * person whose component barely varies across careers gets a component that barely matters.
    */
-  componentRefSd: { interests: 0.195, values: 0.19, valueModes: 0.14, environment: 0.065, challenge: 0.095 },
+  componentRefSd: { interests: 0.195, values: 0.19, valueModes: 0.14, environment: 0.065, challenge: 0.095, strengths: 0.17 },
+  minAreas: 3,
   /** The facet guard's floor on summed input effects, in fit points (one component SD ≈ 10). */
   guardMinTotal: 10,
 };

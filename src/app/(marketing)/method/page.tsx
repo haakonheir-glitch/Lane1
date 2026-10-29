@@ -184,8 +184,8 @@ export default function MethodPage() {
             <p>
               Fit follows person–environment fit research, which has two parts. <strong className="font-medium text-ink">Fulfilment fit</strong> (needs–supplies:
               does the work give you what you need) is the headline: your interests against each career&apos;s O*NET interest profile, your work values against its
-              work values, your value modes against the kinds of work it involves, your working-condition needs against its work context, and whether it challenges
-              your reasoning enough. <strong className="font-medium text-ink">Ability fit</strong> (demands–abilities: can you meet what it demands) is secondary:
+              work values, your value modes against the kinds of work it involves, your working-condition needs against its work context, whether it challenges
+              your reasoning enough, and whether it leans on the reasoning areas that are your own strongest (a small part, up to about 8%). <strong className="font-medium text-ink">Ability fit</strong> (demands–abilities: can you meet what it demands) is secondary:
               your reasoning range against the abilities the work asks for. Every career path is described with empirical O*NET occupational data, not
               invented descriptions; a few career paths with no matching occupation have profiles estimated from similar ones, and are marked as estimated.
             </p>

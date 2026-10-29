@@ -201,3 +201,38 @@ describe("matching v2: small population", () => {
     expect(Math.max(...strong.values()) / people.length).toBeLessThanOrEqual(0.3);
   });
 });
+
+describe("matching v2: reasoning strengths", () => {
+  const maker = TEST_PROFILES.maker!.spec;
+  const spatialHeavy = Object.entries(LANE_PROFILES_V2)
+    .filter(([, l]) => l.abilities.find((a) => a.area === "spatial")?.demand != null)
+    .sort((a, b) => b[1].abilities.find((x) => x.area === "spatial")!.demand! - a[1].abilities.find((x) => x.area === "spatial")!.demand!)[0]![0];
+
+  it("lifts career paths that lean on the person's own strongest reasoning area", () => {
+    const tilted = matchV2(synthetic(maker), { draws: DRAWS });
+    const flat = matchV2(synthetic({ ...maker, areas: undefined }), { draws: DRAWS });
+    const f = (r: ReturnType<typeof matchV2>) => r.lanes.find((l) => l.laneId === spatialHeavy)!;
+    expect(f(tilted).components.strengths!).toBeGreaterThan(0.6);
+    expect(f(tilted).fulfilmentFit.mean).toBeGreaterThan(f(flat).fulfilmentFit.mean);
+    const d = tilted.lanes.flatMap((l) => l.drivers).filter((x) => x.component === "strengths");
+    expect(d.some((x) => x.id === "reasoning.spatial" && /stronger reasoning areas/.test(x.label))).toBe(true);
+  });
+
+  it("is neutral for an even reasoning profile and drops out without reasoning results", () => {
+    const even = matchV2(synthetic({ ...maker, areas: undefined }), { draws: 20 });
+    for (const l of even.lanes) if (l.components.strengths !== null) expect(Math.abs(l.components.strengths - 0.5)).toBeLessThan(0.02);
+    // Without reasoning areas the other weights renormalise to exactly the v2-0.3 weights.
+    const strip = (p: ReturnType<typeof synthetic>) => ({ inputs: Object.fromEntries(Object.entries(p.inputs).filter(([k]) => !k.startsWith("reasoning."))) });
+    const person = strip(synthetic(maker));
+    const a = matchV2(person, { draws: 30 });
+    const b = matchV2(person, { draws: 30, config: { ...V2_CONFIG, weights: { ...V2_CONFIG.weights, strengths: 0 } } });
+    expect(a.lanes.map((l) => l.fulfilmentFit.mean)).toEqual(b.lanes.map((l) => l.fulfilmentFit.mean));
+    expect(a.lanes.every((l) => l.components.strengths === null)).toBe(true);
+  });
+
+  it("needs at least three reasoning areas", () => {
+    const p = synthetic(maker);
+    const two = { inputs: Object.fromEntries(Object.entries(p.inputs).filter(([k]) => !/^reasoning\.(reasoning|quantitative|memory)$/.test(k))) };
+    expect(matchV2(two, { draws: 10 }).lanes.every((l) => l.components.strengths === null)).toBe(true);
+  });
+});

@@ -43,7 +43,7 @@ export type Distribution = { mean: number; sd: number; p10: number; p50: number;
 export type Driver = {
   id: string;
   label: string;
-  component: "interests" | "values" | "valueModes" | "environment" | "challenge";
+  component: "interests" | "values" | "valueModes" | "environment" | "challenge" | "strengths";
   contribution: number;
   /** The person's score ids this rests on (Work Design input sources). */
   sources: string[];
@@ -58,6 +58,8 @@ export type Components = {
   valueModes: number | null;
   environment: EnvironmentComponent[];
   challenge: number | null;
+  /** Reasoning strengths: how well the shape of the person's reasoning areas matches the abilities the career leans on. */
+  strengths: number | null;
   /** Components the career path has no data for, filled with the person's average for that component (neutral). */
   imputed: string[];
 };

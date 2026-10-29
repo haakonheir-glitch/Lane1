@@ -1,6 +1,6 @@
 # Matching v2
 
-Version `v2-0.3`.
+Version `v2-0.4` (v2-0.3 plus reasoning strengths, 2026-10-29).
 - **Code:** `src/lib/matching/v2/` (pure, deterministic, no LLM calls).
 - **Settings:** `src/lib/matching/v2/config.ts`.
 - **Career data:** `taxonomy/derived/lane_profiles_v2.json`, built by `taxonomy/build/build_v2_lane_profiles.mts` from the O\*NET profiles (`taxonomy/derived/REPORT.md`). Career offsets: `taxonomy/derived/lane_offsets_v2.json`, built by `taxonomy/build/build_v2_offsets.mts`.
@@ -33,6 +33,11 @@ A single fit still needs the whole field, for three reasons:
 | Value modes | .20 | The same, across the nine modes |
 | Environment | .20 | Per dimension, the model's penalty shape, 1 − penalty / 100, weighted by the strength of the need (below) |
 | Challenge | .10 | Under-challenge only: 1 − max(0, your reasoning − the career's challenge) / 100 |
+| Reasoning strengths | .08 | The regularised correlation of your reasoning areas (reasoning, quantitative, spatial, memory, speed; each against your own average) with the career's ability demands in the same areas (each an O\*NET Level percentile across occupations, centred on the career's own average). Needs at least 3 areas on both sides |
+
+The weights are renormalised over the components you have, so they sum to 1 (with reasoning strengths, the six nominal weights sum to 1.08). Without reasoning results, reasoning strengths drops out and the other five weigh exactly what they did in v2-0.3.
+
+**Reasoning strengths** (v2-0.4, at your request) answers "does this work lean on what I'm relatively best at?". It credits career paths whose ability demands peak where your own reasoning results peak, and (being a correlation) also those that make little call on your least strong area. It looks at the *shape* only: your general level still works through challenge (above) and ability fit (below), so a uniformly high result doesn't lift every demanding career twice. Measurement error is carried through the draws, and an even profile (areas within about 10 points of each other) counts as neutral.
 
 - **Regularised correlations.** r = Σ ĉᵢ(xᵢ − x̄) / max(‖x − x̄‖, 10·√n), with ĉ the career's centred unit profile.
   - It is Pearson r when your profile has spread. When your scores are within about 10 points of each other, it shrinks towards 0 (neutral).
@@ -45,7 +50,7 @@ A single fit still needs the whole field, for three reasons:
 
   This is how v2 reads the brief's "how far the person sits from the middle". A low need on a deficit dimension can never be let down, so it gets only the floor.
 - **Centred, scaled, then weighted.**
-  - Each component is centred on your average career path and divided by a **fixed reference spread**: its typical SD across career paths, the median over 400 simulated people. Interests .195, values .19, value modes .14, environment .065, challenge .095.
+  - Each component is centred on your average career path and divided by a **fixed reference spread**: its typical SD across career paths, the median over 400 simulated people. Interests .195, values .19, value modes .14, environment .065, challenge .095, reasoning strengths .17.
   - The fit is 50 + 10 × Σ weight × z.
   - **Weights are comparable SD shares.** On raw scales, interests dominated and environment and challenge (30% nominal) moved almost nothing. Measured over a population, environment now carries about its nominal share of the ranking variance. Challenge and values carry less than nominal in variance terms, because they correlate with the other components.
   - **A near-flat profile stays near-flat.** The reference spread is fixed rather than your own, so a 1-point change in one interest moves no fit by more than a point.
@@ -54,7 +59,7 @@ A single fit still needs the whole field, for three reasons:
   - Left alone, demanding, autonomous, calm careers suited nearly everyone. Electrical & electronics engineering was a strong fit for 31% of simulated people.
   - So each career's general advantage on these two components (its mean over a reference population of 1,000 simulated people, minus the mean over all careers) is subtracted. A career is credited only for fitting *you* better than it fits people in general.
   - The reference population uses a different seed from the validation population.
-  - Interests, values and modes are symmetric correlations and are not offset.
+  - Interests, values, modes and reasoning strengths are symmetric correlations and are not offset.
 - **Missing data.**
   - A component the career path lacks (5 have no O\*NET Work Values) counts as your average for it (z = 0): unknown is neutral. Dropping it instead made missing data a bonus.
   - A component you lack is left out, and the weights renormalise.

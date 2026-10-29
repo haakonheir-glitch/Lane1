@@ -143,12 +143,16 @@ export function population(n: number, seed = 1): PersonProfile[] {
     const ideas = z();
     const drive = z();
     const s = (load: number, sd = 15) => 50 + sd * (load + z() * 0.8);
+    // Reasoning areas share a general level and differ around it (spatial leans to things, quantitative to ideas).
+    const g = s(0.4 * ideas, 18);
+    const area = (load: number) => g + 10 * (load + z() * 0.9);
     out.push(
       synthetic({
         interests: { R: s(-0.7 * people), I: s(0.8 * ideas), A: s(0.5 * ideas + 0.2 * people), S: s(0.8 * people), E: s(0.7 * drive + 0.3 * people), C: s(-0.5 * ideas + 0.2 * drive) },
         domains: { Extraversion: s(0.5 * people + 0.4 * drive, 12), Openness: s(0.6 * ideas, 12), Agreeableness: s(0.5 * people - 0.2 * drive, 12), Conscientiousness: s(0.3 * drive, 12), Neuroticism: s(-0.2 * drive, 12) },
         values: { Achievement: s(0.5 * drive), Independence: s(0.4 * ideas), Recognition: s(0.6 * drive), Relationships: s(0.6 * people), Support: s(0.2 * people), "Working Conditions": s(-0.3 * drive) },
-        reasoning: s(0.4 * ideas, 18),
+        reasoning: g,
+        areas: { reasoning: area(0), quantitative: area(0.3 * ideas), spatial: area(-0.4 * people), memory: area(0), speed: area(0) },
         risk: s(0.4 * drive),
         patience: s(0.2 * ideas),
       }),

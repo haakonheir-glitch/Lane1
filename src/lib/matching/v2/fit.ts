@@ -8,7 +8,10 @@
  * - values: the same for ranked work values against the career's Work Values extents;
  * - value modes: the same across the nine modes;
  * - environment: per dimension, the model's penalty shape, weighted by the strength of the need;
- * - challenge: under-challenge only (Cognitive challenge, deficit penalty).
+ * - challenge: under-challenge only (Cognitive challenge, deficit penalty);
+ * - strengths: regularised correlation of the person's reasoning areas (each against their own
+ *   average) with the career's ability demands across the same areas (each a percentile across
+ *   occupations): careers that lean on the person's strongest reasoning areas score higher.
  * Each component is standardised across the person's career paths (so each weight is its real
  * share of the ranking), weighted (V2_CONFIG.weights) and put on a T-like scale: 50 = the person's
  * average career path.
@@ -49,7 +52,8 @@ const RIASEC_NAME: Record<string, string> = { R: "Realistic", I: "Investigative"
 const DOMAIN_OF: Record<string, string> = { N: "Neuroticism", E: "Extraversion", O: "Openness", A: "Agreeableness", C: "Conscientiousness" };
 
 type Key = keyof V2Config["weights"];
-const KEYS: Key[] = ["interests", "values", "valueModes", "environment", "challenge"];
+const KEYS: Key[] = ["interests", "values", "valueModes", "environment", "challenge", "strengths"];
+const AREA_NAME: Record<AbilityArea, string> = { reasoning: "Reasoning", quantitative: "Quantitative", spatial: "Spatial", memory: "Memory", speed: "Speed" };
 type Values = Partial<Record<PersonConstructId, number>>;
 
 /* ------------------------------------------------------------- statistics ---- */
@@ -232,6 +236,19 @@ function laneCtx(id: string, lane: LaneProfileV2, offsets?: Offsets): LaneCtx {
   };
 }
 
+/**
+ * The two sides of the reasoning-strengths correlation, over the areas both have: the person's
+ * areas centred on their own average (regularised: a near-flat profile counts as neutral) and the
+ * career's ability demands centred on its own average. Null with fewer than cfg.minAreas areas.
+ */
+function strengthVectors(pt: PersonPoint, l: LaneCtx, cfg: V2Config): { idx: number[]; a: number[]; b: number[] } | null {
+  const idx = AREAS.flatMap((_, i) => (pt.areas[i] != null && l.abilities[i] ? [i] : []));
+  if (idx.length < cfg.minAreas) return null;
+  const b = unit(idx.map((i) => l.abilities[i]!.demand));
+  if (!b) return null;
+  return { idx, a: regularised(idx.map((i) => pt.areas[i]!), cfg.correlationFloor), b };
+}
+
 /** Value-mode correlation over the modes both sides have (regularised on the person's side). */
 function modesR(pt: PersonPoint, l: LaneCtx, cfg: V2Config): number | null {
   if (l.modesUnit && pt.modesReg) return dot(pt.modesReg, l.modesUnit);
@@ -265,12 +282,14 @@ function raw(pt: PersonPoint, l: LaneCtx, cfg: V2Config): Raw {
     return [{ id: d.id, person: p, career: c, fit: 1 - penaltyOf(penalty, p, c) / 100, weight: needWeight(penalty, p, cfg.environmentWeightFloor), penalty }];
   });
   const challenge = pt.challenge !== null && l.challenge !== null ? 1 - Math.max(0, pt.challenge - l.challenge) / 100 : null;
+  const sv = strengthVectors(pt, l, cfg);
+  const strengths = sv ? r2c(dot(sv.a, sv.b)) : null;
   const ew = environment.reduce((a, e) => a + e.weight, 0);
   const envFit = ew ? environment.reduce((a, e) => a + e.weight * e.fit, 0) / ew : null;
   const o = l.offset;
   return {
-    comps: { interests, values, valueModes, environment, challenge, imputed: [] },
-    values: { interests, values, valueModes, environment: envFit === null ? null : envFit - (o?.environment ?? 0), challenge: challenge === null ? null : challenge - (o?.challenge ?? 0) },
+    comps: { interests, values, valueModes, environment, challenge, strengths, imputed: [] },
+    values: { interests, values, valueModes, environment: envFit === null ? null : envFit - (o?.environment ?? 0), challenge: challenge === null ? null : challenge - (o?.challenge ?? 0), strengths },
     ability: abilityOf(pt, l),
   };
 }
@@ -315,7 +334,7 @@ type Scored = Raw & { fulfilment: number | null; weights: Record<Key, number>; s
  * neither a bonus nor a penalty. A component the person lacks is left out and the weights renormalise.
  */
 function combine(r: Raw, scale: Scale, cfg: V2Config): Scored {
-  const weights = { interests: 0, values: 0, valueModes: 0, environment: 0, challenge: 0 };
+  const weights = { interests: 0, values: 0, valueModes: 0, environment: 0, challenge: 0, strengths: 0 };
   // Interests are required: without them a fit would lean on too few scores.
   if (r.values.interests === null) return { ...r, fulfilment: null, weights, scale };
   const total = KEYS.reduce((a, k) => a + (scale[k] ? cfg.weights[k] : 0), 0);
@@ -447,6 +466,17 @@ function shapeLabels(name: string, kind: "interests" | "value" | "mode", pole: P
     : { label: what, friction: kind === "value" ? `Emphasis on ${name}, which matters less to you` : `${work} you're less drawn to` };
 }
 
+/** Reasoning-strength labels: "stronger" and "less strong" are relative to the person's own other areas. */
+function strengthLabels(area: AbilityArea, pole: Pole, personHigher: boolean): { label: string; friction: string } {
+  const name = AREA_NAME[area];
+  const lower = name.toLowerCase();
+  if (pole === "high") return { label: `${name}: one of your stronger reasoning areas, and this work leans on it`, friction: `Leans less on ${lower}, one of your stronger areas, than most of your options` };
+  if (pole === "low") return { label: `Little call on ${lower}, one of your less strong areas`, friction: `Leans more on ${lower}, one of your less strong areas, than most of your options` };
+  return personHigher
+    ? { label: `${name}: one of your stronger reasoning areas`, friction: `Little use of ${lower}, one of your stronger reasoning areas` }
+    : { label: `${name} demands`, friction: `Leans on ${lower}, one of your less strong reasoning areas` };
+}
+
 /** Environment labels from the person's side and the career's. */
 function envLabels(id: string, person: number, career: number, fit: number): { label: string; friction: string } {
   const name = ENV_BY_ID.get(id)!.name;
@@ -469,7 +499,7 @@ function envLabels(id: string, person: number, career: number, fit: number): { l
 }
 
 /** Each component split into named parts, on the same standardised T-scale as the fit. */
-function parts(pt: PersonPoint, l: LaneCtx, s: Scored, cp: CompiledPerson, p: PersonProfile): Part[] {
+function parts(pt: PersonPoint, l: LaneCtx, s: Scored, cp: CompiledPerson, p: PersonProfile, cfg: V2Config): Part[] {
   const out: Part[] = [];
   const src = (k: string) => p.inputs[k as PersonConstructId]?.source ?? k;
   // A component's contribution in fit points per unit of its 0–1 score.
@@ -496,6 +526,13 @@ function parts(pt: PersonPoint, l: LaneCtx, s: Scored, cp: CompiledPerson, p: Pe
       out.push({ id: `env.${e.id}`, ...envLabels(e.id, e.person, e.career, e.fit), pole: "high", component: "environment", contribution: (k("environment") * e.weight * e.fit) / ew, sources: cp.env[i]?.sources ?? [] });
     }
   }
+  const sv = s.values.strengths !== null ? strengthVectors(pt, l, cfg) : null;
+  if (sv)
+    sv.idx.forEach((i, j) => {
+      const area = AREAS[i]!;
+      const [a, b] = [sv.a[j]!, sv.b[j]!];
+      out.push({ id: `reasoning.${area}`, ...strengthLabels(area, poleOf(a, b), a > b), pole: poleOf(a, b), component: "strengths", contribution: (k("strengths") * a * b) / 2, sources: [src(`reasoning.${area}`)] });
+    });
   if (s.values.challenge !== null)
     out.push({ id: "env.challenge", label: s.values.challenge! >= 0.95 ? `${CHALLENGE.name}: enough for your reasoning range` : `${CHALLENGE.name}: closer to your range than most of your options`, friction: `${CHALLENGE.name}: less than your reasoning range`, pole: "high", component: "challenge", contribution: k("challenge") * s.values.challenge!, sources: cp.challenge?.sources ?? [] });
   return out;
@@ -589,7 +626,7 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
 
   // Point-estimate parts, and their average over all career paths (the baseline for drivers).
   const scored = scoreAll(pt, ctxs, cfg);
-  const allParts = ctxs.map((l, j) => parts(pt, l, scored[j]!, cp, person));
+  const allParts = ctxs.map((l, j) => parts(pt, l, scored[j]!, cp, person, cfg));
   const baseline = new Map<string, number>();
   for (const ps of allParts) for (const p of ps) baseline.set(p.id, (baseline.get(p.id) ?? 0) + p.contribution / n);
 
