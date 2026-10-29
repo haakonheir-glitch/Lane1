@@ -83,6 +83,8 @@ export type LaneMatchV2 = FitV2 & {
   /** Share of draws in which this career path is in the person's top 10% / bottom 40%. */
   pTop: number;
   pBottom: number;
+  /** With the weight ensemble: the same shares under need-weighted and under flat environment weighting (bands need both). */
+  pBy?: { need: { top: number; bottom: number }; flat: { top: number; bottom: number } };
   /** The career path's own leading value mode (its "direction"). */
   direction: string | null;
 };
@@ -101,6 +103,9 @@ export type ArchetypeBlend = {
 /** The facet guard's action for one person: facets shrunk towards their domain score, and why. */
 export type FacetGuard = { facet: string; shrink: number; maxShareBefore: number; maxShareAfter: number };
 
+/** The environment guard for one person: every guarded dimension's largest share of any fit, before and after, and the multiplier on its need weight. */
+export type EnvGuard = { dimension: string; scale: number; maxShareBefore: number; maxShareAfter: number };
+
 export type MatchResultV2 = {
   version: string;
   draws: number;
@@ -108,6 +113,8 @@ export type MatchResultV2 = {
   bandCounts: Record<BandV2, number>;
   archetype: ArchetypeBlend | null;
   guard: FacetGuard[];
+  /** Empty when the config has no environment cap. */
+  envGuard: EnvGuard[];
   /** Plain-language notes about the result as a whole (e.g. a flat profile). */
   notes: { code: "flat_profile" | "few_strong" | "missing_interests" | "no_reasoning" | "facet_guard"; text: string }[];
 };

@@ -4,7 +4,9 @@
  * the same standard errors real profiles get (src/lib/workdesign/person.ts). Pure.
  */
 import type { PersonConstructId } from "../../workdesign/model";
-import { PLANNING_SD, type Estimate } from "../../workdesign/person";
+import { PLANNING_SD, fromScale, valueEstimates, type Estimate, type InputOptions } from "../../workdesign/person";
+import { normed } from "../../scoring/core";
+import { lookup } from "../../scoring/psychometrics";
 import { ASSUMED_RELIABILITY } from "../../scoring/self";
 import type { PersonProfile } from "./types";
 
@@ -36,25 +38,44 @@ export type SyntheticSpec = {
   learning?: number;
 };
 
-/** A complete profile: every input at 50 unless the spec says otherwise; facets default to their domain. */
-export function synthetic(spec: SyntheticSpec): PersonProfile {
+/** v2-0.4's input rules: everything anchored, work values min–max. */
+const ANCHORED: InputOptions = { norms: false, values: "minmax" };
+
+/**
+ * A complete profile: every input at 50 unless the spec says otherwise; facets default to their domain.
+ *
+ * Interest and personality numbers in a spec are positions on the questionnaire's own scale (the
+ * anchored 0–100: 50 = the scale midpoint), i.e. what the person answered. With `opts.norms` they
+ * are turned back into the raw score and normed against the published table where it has an entry
+ * (interests today), exactly as personInputs does for a real profile: same answers, other ruler.
+ * Work values are card-sort scores, mapped by `opts.values`.
+ */
+export function synthetic(spec: SyntheticSpec, opts: InputOptions = ANCHORED): PersonProfile {
   const inputs: Partial<Record<PersonConstructId, Estimate>> = {};
   const put = (id: string, value: number, se: number, provenance: Estimate["provenance"]) => {
     inputs[id as PersonConstructId] = { value: Math.min(100, Math.max(0, value)), se, provenance, source: `synthetic.${id}` };
   };
-  for (const k of ["R", "I", "A", "S", "E", "C"] as const) put(`interests.${k}`, spec.interests?.[k] ?? 50, SE.interests, "anchored");
+  /** An anchored position → the estimate personInputs would make of the same raw score. */
+  const scale = (id: string, key: string, anchored: number, range: [number, number], kind: "facet" | "scale", sd: number, se: number) => {
+    const a = Math.min(100, Math.max(0, anchored));
+    const p = opts.norms ? lookup(key) : null;
+    if (!p) return put(id, a, se, "anchored");
+    const raw = range[0] + (a / 100) * (range[1] - range[0]);
+    const e = fromScale({ id, label: id, raw, rawRange: range, answered: 1, items: 1, normed: normed(raw, p), visibility: "user" }, kind, sd, id)!;
+    put(id, e.value, e.se, e.provenance);
+  };
+  for (const k of ["R", "I", "A", "S", "E", "C"] as const) scale(`interests.${k}`, `onet.${k}`, spec.interests?.[k] ?? 50, [10, 50], "scale", PLANNING_SD.interests, SE.interests);
   DOMAINS.forEach((d, i) => {
     const v = spec.domains?.[d] ?? 50;
-    put(`neo.${d}`, v, SE.domain, "anchored");
+    scale(`neo.${d}`, `neo.${d}`, v, [1, 5], "scale", PLANNING_SD.personality, SE.domain);
     for (let f = 1; f <= 6; f++) {
       const id = `${LETTERS[i]}${f}` as keyof NonNullable<SyntheticSpec["facets"]>;
-      put(`neo.${id}`, spec.facets?.[id] ?? v, SE.facet, "anchored");
+      scale(`neo.${id}`, `neo.${id}`, spec.facets?.[id] ?? v, [1, 5], "facet", PLANNING_SD.personality, SE.facet);
     }
   });
-  // Work values are ipsative: lowest 0, highest 100, as personInputs produces them.
-  const raw = VALUES.map((v) => spec.values?.[v] ?? 50);
-  const [lo, hi] = [Math.min(...raw), Math.max(...raw)];
-  VALUES.forEach((v, i) => put(`values.${v}`, hi === lo ? 50 : ((raw[i]! - lo) / (hi - lo)) * 100, SE.values, "ipsative"));
+  // Work values are ipsative, mapped as personInputs maps them.
+  const est = valueEstimates(VALUES.map((v) => spec.values?.[v] ?? 50), opts.values);
+  VALUES.forEach((v, i) => put(`values.${v}`, est[i]!, SE.values, "ipsative"));
   const g = spec.reasoning ?? 50;
   put("reasoning.general", g, SE.reasoning, "normed");
   for (const a of AREAS) put(`reasoning.${a}`, spec.areas?.[a] ?? g, SE.area, "normed");
@@ -129,7 +150,7 @@ export const TEST_PROFILES: Record<string, { label: string; spec: SyntheticSpec;
  * A plausible population for the simulation: three latent factors (people–things, data–ideas,
  * drive) shape interests, personality and values, plus independent noise. Seeded, deterministic.
  */
-export function population(n: number, seed = 1): PersonProfile[] {
+export function population(n: number, seed = 1, opts: InputOptions = ANCHORED): PersonProfile[] {
   let a = seed >>> 0;
   const u = () => {
     a = (a + 0x6d2b79f5) >>> 0;
@@ -157,7 +178,7 @@ export function population(n: number, seed = 1): PersonProfile[] {
         areas: { reasoning: area(0), quantitative: area(0.3 * ideas), spatial: area(-0.4 * people), memory: area(0), speed: area(0) },
         risk: s(0.4 * drive),
         patience: s(0.2 * ideas),
-      }),
+      }, opts),
     );
   }
   return out;

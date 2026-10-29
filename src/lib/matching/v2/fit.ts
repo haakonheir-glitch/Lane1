@@ -22,8 +22,13 @@
  * Uncertainty: the person's inputs are drawn from their standard errors (V2_CONFIG.draws times),
  * every career path is rescored per draw, and bands come from rank stability.
  *
- * Guard: a personality facet's share of any fit is measured per person, and the facet is shrunk
- * towards its domain score until no fit leans on it for more than V2_CONFIG.facetCap.
+ * Guards: a personality facet's share of any fit is measured per person, and the facet is shrunk
+ * towards its domain score until no fit leans on it for more than V2_CONFIG.facetCap. Likewise
+ * (v2-0.5) no environment dimension may carry more than V2_CONFIG.envCap of any fit: its need weight
+ * is shrunk until it doesn't.
+ *
+ * Ensemble (v2-0.5): each draw also draws the component weights (Dirichlet around the configured
+ * weights) and, half the time, flat environment weighting; a band must hold under both weightings.
  */
 import { ENVIRONMENT, VALUE_MODES, type Dimension, type PersonConstructId } from "../../workdesign/model";
 import { overlappingModes, relativeOfDimensions, type Relative } from "../../workdesign/person";
@@ -37,6 +42,7 @@ import {
   type Components,
   type Distribution,
   type Driver,
+  type EnvGuard,
   type FacetGuard,
   type FitV2,
   type LaneMatchV2,
@@ -119,6 +125,53 @@ function rng(seed: number) {
   };
 }
 
+/** Deterministic uniform PRNG (mulberry32), for the ensemble's own draws. */
+function uniform(seed: number) {
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return Math.max(((t ^ (t >>> 14)) >>> 0) / 4294967296, 1e-12);
+  };
+}
+
+/** Gamma(shape, 1) by Marsaglia–Tsang (shape < 1 boosted by U^(1/shape)). */
+function gamma(shape: number, u: () => number, normal: () => number): number {
+  if (shape < 1) return gamma(shape + 1, u, normal) * u() ** (1 / shape);
+  const d = shape - 1 / 3;
+  const c = 1 / Math.sqrt(9 * d);
+  for (;;) {
+    let x: number;
+    let v: number;
+    do {
+      x = normal();
+      v = 1 + c * x;
+    } while (v <= 0);
+    v = v ** 3;
+    const w = u();
+    if (w < 1 - 0.0331 * x ** 4 || Math.log(w) < 0.5 * x * x + d * (1 - v + Math.log(v))) return d * v;
+  }
+}
+
+/** One Dirichlet draw centred on `w` (α = concentration × w, over the keys with w > 0). */
+function dirichlet(w: Record<Key, number>, concentration: number, u: () => number, normal: () => number): Record<Key, number> {
+  const g = KEYS.map((k) => (w[k] > 0 ? gamma(concentration * w[k], u, normal) : 0));
+  const t = g.reduce((a, b) => a + b, 0);
+  return Object.fromEntries(KEYS.map((k, i) => [k, g[i]! / t])) as Record<Key, number>;
+}
+
+/**
+ * The weights that apply: configured weight × its validation multiplier, renormalised over the
+ * components the person and career field have (`present`).
+ */
+export function effectiveWeights(cfg: V2Config, present: Key[] = KEYS): Record<Key, number> {
+  const raw = KEYS.map((k) => (present.includes(k) ? cfg.weights[k] * cfg.validationMultiplier[cfg.validationStatus[k]] : 0));
+  const t = raw.reduce((a, b) => a + b, 0);
+  return Object.fromEntries(KEYS.map((k, i) => [k, t ? raw[i]! / t : 0])) as Record<Key, number>;
+}
+
 /** FNV-1a over the profile's numbers: the same profile always gets the same draws. */
 export function profileSeed(p: PersonProfile): number {
   let h = 0x811c9dc5;
@@ -188,9 +241,15 @@ type PersonPoint = {
   env: (number | null)[];
   challenge: number | null;
   areas: (number | null)[];
+  /** The environment guard's multiplier per environment dimension, then challenge last (1 = untouched). */
+  envScale: number[];
 };
 
-function personPoint(cp: CompiledPerson, v: Values, cfg: V2Config): PersonPoint {
+/** Seven working conditions plus challenge: the dimensions the environment guard can shrink. */
+const GUARDED = [...ENV_DIMS.map((d) => d.id), CHALLENGE.id];
+const ONES = GUARDED.map(() => 1);
+
+function personPoint(cp: CompiledPerson, v: Values, cfg: V2Config, envScale: number[] = ONES): PersonPoint {
   const interests = cp.hasInterests ? RIASEC.map((k) => v[`interests.${k}` as PersonConstructId]!) : null;
   const values = cp.hasValues ? WORK_VALUES.map((k) => v[`values.${k}` as PersonConstructId]!) : null;
   const modes = cp.modes.map((c) => evalDim(c, v));
@@ -203,6 +262,7 @@ function personPoint(cp: CompiledPerson, v: Values, cfg: V2Config): PersonPoint 
     env: cp.env.map((c) => evalDim(c, v)),
     challenge: evalDim(cp.challenge, v),
     areas: cp.areas.map((k) => (k ? v[k]! : null)),
+    envScale,
   };
 }
 
@@ -231,7 +291,7 @@ type LaneCtx = {
  * everyone. Subtracting the offset credits a career only for fitting this person better than it fits
  * people in general. Built by taxonomy/build/build_v2_offsets.mts.
  */
-export type Offsets = Record<string, { environment: number; challenge: number }>;
+export type Offsets = Record<string, { environment: number; challenge: number; environmentFlat?: number }>;
 
 function laneCtx(id: string, lane: LaneProfileV2, offsets?: Offsets): LaneCtx {
   const modes = VALUE_MODES.map((m) => lane.modes[m.id] ?? null);
@@ -303,7 +363,8 @@ function raw(pt: PersonPoint, l: LaneCtx, cfg: V2Config, cp: CompiledPerson): Ra
     const c = l.env[i];
     if (p == null || c == null) return [];
     const penalty = d.penalty ?? "two_sided";
-    return [{ id: d.id, person: p, career: c, fit: 1 - penaltyOf(penalty, p, c) / 100, weight: needWeight(penalty, p, cfg.environmentWeightFloor), penalty }];
+    const need = cfg.envWeighting === "flat" ? 1 : needWeight(penalty, p, cfg.environmentWeightFloor);
+    return [{ id: d.id, person: p, career: c, fit: 1 - penaltyOf(penalty, p, c) / 100, weight: need * pt.envScale[i]!, penalty }];
   });
   const challenge = pt.challenge !== null && l.challenge !== null ? 1 - Math.max(0, pt.challenge - l.challenge) / 100 : null;
   const sv = strengthVectors(pt, l, cp, cfg);
@@ -311,9 +372,12 @@ function raw(pt: PersonPoint, l: LaneCtx, cfg: V2Config, cp: CompiledPerson): Ra
   const ew = environment.reduce((a, e) => a + e.weight, 0);
   const envFit = ew ? environment.reduce((a, e) => a + e.weight * e.fit, 0) / ew : null;
   const o = l.offset;
+  const envOffset = cfg.envWeighting === "flat" ? (o?.environmentFlat ?? o?.environment ?? 0) : (o?.environment ?? 0);
+  // The guard's challenge multiplier scales the component's deviation from the person's average exactly (it is linear).
+  const chScale = pt.envScale[GUARDED.length - 1]!;
   return {
     comps: { interests, values, valueModes, environment, challenge, strengths, imputed: [] },
-    values: { interests, values, valueModes, environment: envFit === null ? null : envFit - (o?.environment ?? 0), challenge: challenge === null ? null : challenge - (o?.challenge ?? 0), strengths },
+    values: { interests, values, valueModes, environment: envFit === null ? null : envFit - envOffset, challenge: challenge === null ? null : chScale * (challenge - (o?.challenge ?? 0)), strengths },
     ability: abilityOf(pt, l),
   };
 }
@@ -361,13 +425,13 @@ function combine(r: Raw, scale: Scale, cfg: V2Config): Scored {
   const weights = { interests: 0, values: 0, valueModes: 0, environment: 0, challenge: 0, strengths: 0 };
   // Interests are required: without them a fit would lean on too few scores.
   if (r.values.interests === null) return { ...r, fulfilment: null, weights, scale };
-  const total = KEYS.reduce((a, k) => a + (scale[k] ? cfg.weights[k] : 0), 0);
+  const w = effectiveWeights(cfg, KEYS.filter((k) => scale[k]));
   const imputed: string[] = [];
   let s = 0;
   for (const k of KEYS) {
     const sc = scale[k];
     if (!sc) continue;
-    weights[k] = cfg.weights[k] / total;
+    weights[k] = w[k];
     if (r.values[k] === null) {
       imputed.push(k);
       continue;
@@ -401,13 +465,9 @@ function applyShrink(v: Values, shrink: Shrink): Values {
   return out;
 }
 
-/**
- * Each input's share of each career path's fit, at the person's estimates: the input's effect
- * (|fit − fit with the input set to its reference|; a facet's reference is its domain score,
- * anything else's is 50) over the summed effects of all inputs.
- */
-function inputShares(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Config, only?: PersonConstructId[]) {
-  const base = scoreAll(personPoint(cp, v, cfg), ctxs, cfg, cp).map((s) => s.fulfilment);
+/** Every input's effect on every career path's fit (see inputShares), and the floored totals. */
+function inputEffects(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Config, envScale: number[] = ONES) {
+  const base = scoreAll(personPoint(cp, v, cfg, envScale), ctxs, cfg, cp).map((s) => s.fulfilment);
   const keys = Object.keys(v) as PersonConstructId[];
   const effects = new Map<PersonConstructId, number[]>();
   for (const k of keys) {
@@ -416,7 +476,7 @@ function inputShares(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Conf
       effects.set(k, base.map(() => 0));
       continue;
     }
-    const s = scoreAll(personPoint(cp, { ...v, [k]: ref }, cfg), ctxs, cfg, cp);
+    const s = scoreAll(personPoint(cp, { ...v, [k]: ref }, cfg, envScale), ctxs, cfg, cp);
     effects.set(
       k,
       s.map((x, j) => (x.fulfilment === null || base[j] === null ? 0 : Math.abs(x.fulfilment - base[j]!))),
@@ -424,6 +484,16 @@ function inputShares(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Conf
   }
   // The summed effects are floored, so a tiny effect on a near-flat profile isn't "100% of the fit".
   const totals = base.map((_, j) => Math.max(cfg.guardMinTotal, keys.reduce((a, k) => a + effects.get(k)![j]!, 0)));
+  return { base, keys, effects, totals };
+}
+
+/**
+ * Each input's share of each career path's fit, at the person's estimates: the input's effect
+ * (|fit − fit with the input set to its reference|; a facet's reference is its domain score,
+ * anything else's is 50) over the summed effects of all inputs.
+ */
+function inputShares(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Config, only?: PersonConstructId[], envScale: number[] = ONES) {
+  const { keys, effects, totals } = inputEffects(cp, v, ctxs, cfg, envScale);
   const share = (k: PersonConstructId) => Math.max(0, ...effects.get(k)!.map((e, j) => e / totals[j]!));
   return new Map((only ?? keys.filter(isFacet)).map((k) => [k, share(k)]));
 }
@@ -461,6 +531,64 @@ function facetGuard(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Confi
     maxShareAfter: Math.round(current.get(f)! * 1000) / 1000,
   }));
   return { shrink, guard };
+}
+
+/* ------------------------------------------------------ environment guard ---- */
+
+/**
+ * Each guarded dimension's largest share of any career path's fit: its effect (|fit − fit with the
+ * dimension left out|: its need weight, or for challenge its component, set to 0) over the summed
+ * effects of all inputs, floored at guardMinTotal (the facet guard's measure). `totals` can be
+ * passed in to hold them fixed while one dimension is searched.
+ */
+function envShares(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Config, envScale: number[], only?: number[], totals?: number[]): Map<number, number> {
+  const base = scoreAll(personPoint(cp, v, cfg, envScale), ctxs, cfg, cp).map((s) => s.fulfilment);
+  const tot = totals ?? inputEffects(cp, v, ctxs, cfg, envScale).totals;
+  const out = new Map<number, number>();
+  for (const d of only ?? GUARDED.map((_, i) => i)) {
+    if (envScale[d] === 0) {
+      out.set(d, 0);
+      continue;
+    }
+    const off = envScale.map((x, i) => (i === d ? 0 : x));
+    const s = scoreAll(personPoint(cp, v, cfg, off), ctxs, cfg, cp);
+    out.set(d, Math.max(0, ...s.map((x, j) => (x.fulfilment === null || base[j] === null ? 0 : Math.abs(x.fulfilment - base[j]!) / tot[j]!))));
+  }
+  return out;
+}
+
+/**
+ * Shrinks the need weight of any environment dimension (or the challenge component) whose share of
+ * some fit is above cfg.envCap, by bisection, repeating until none is over. Reports every
+ * dimension's share before and after.
+ */
+function envGuard(cp: CompiledPerson, v: Values, ctxs: LaneCtx[], cfg: V2Config): { envScale: number[]; guard: EnvGuard[] } {
+  const scale = [...ONES];
+  if (cfg.envCap === null) return { envScale: scale, guard: [] };
+  const cap = cfg.envCap;
+  const first = envShares(cp, v, ctxs, cfg, scale);
+  let current = first;
+  for (let pass = 0; pass < 6; pass++) {
+    const over = [...current].filter(([, x]) => x > cap).sort((a, b) => b[1] - a[1]);
+    if (!over.length) break;
+    const totals = inputEffects(cp, v, ctxs, cfg, scale).totals;
+    for (const [d] of over) {
+      const share = (lambda: number) => envShares(cp, v, ctxs, cfg, scale.map((x, i) => (i === d ? lambda : x)), [d], totals).get(d)!;
+      let lo = 0;
+      let hi = scale[d]!;
+      if (share(hi) <= cap) continue;
+      for (let it = 0; it < 10; it++) {
+        const mid = (lo + hi) / 2;
+        if (share(mid) <= cap) lo = mid;
+        else hi = mid;
+      }
+      scale[d] = lo;
+    }
+    current = envShares(cp, v, ctxs, cfg, scale);
+  }
+  const r3 = (x: number) => Math.round(x * 1000) / 1000;
+  const guard = GUARDED.map((id, i) => ({ dimension: id, scale: r3(scale[i]!), maxShareBefore: r3(first.get(i)!), maxShareAfter: r3(current.get(i)!) }));
+  return { envScale: scale, guard };
 }
 
 /** Every facet's largest share of any fit for this person, after the guard (for tests and reports). */
@@ -622,29 +750,52 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
 
   // Guard first, at the estimates; the same shrink applies to every draw.
   const { shrink, guard } = cp.hasInterests ? facetGuard(cp, est, ctxs, cfg) : { shrink: {}, guard: [] };
-  const pt = personPoint(cp, applyShrink(est, shrink), cfg);
+  const { envScale, guard: envGuardOut } = cp.hasInterests ? envGuard(cp, applyShrink(est, shrink), ctxs, cfg) : { envScale: ONES, guard: [] };
+  const pt = personPoint(cp, applyShrink(est, shrink), cfg, envScale);
 
-  // Monte Carlo: redraw every input from its standard error, rescore every career path.
+  // Monte Carlo: redraw every input from its standard error, rescore every career path. With the
+  // ensemble, each draw also gets its own weights and environment weighting, from a separate stream
+  // so the input draws are the same with and without it.
   const n = ctxs.length;
   const F = new Float64Array(draws * n);
   const A = new Float64Array(draws * n);
+  const flatDraw = new Uint8Array(draws);
   const drawModes: (number | null)[][] = [];
-  const normal = rng(opts.seed ?? profileSeed(person));
+  const seed = opts.seed ?? profileSeed(person);
+  const normal = rng(seed);
+  const ens = cfg.ensemble;
+  const eu = uniform(seed ^ 0x9e3779b9);
+  const en = rng(seed ^ 0x85ebca6b);
+  // The ensemble is centred on the weights over the components this person actually has.
+  const scored = scoreAll(pt, ctxs, cfg, cp);
+  const centre = effectiveWeights(cfg, KEYS.filter((k) => scored[0]?.scale[k]));
   for (let d = 0; d < draws; d++) {
     const v: Values = {};
     for (const k of keys) v[k] = clamp(person.inputs[k]!.value + person.inputs[k]!.se * normal());
-    const dp = personPoint(cp, applyShrink(v, shrink), cfg);
+    const dp = personPoint(cp, applyShrink(v, shrink), cfg, envScale);
     drawModes.push(dp.modes);
-    const all = scoreAll(dp, ctxs, cfg, cp);
+    let dcfg = cfg;
+    if (ens) {
+      const flat = eu() < ens.flatEnvShare;
+      flatDraw[d] = flat ? 1 : 0;
+      // Validation multipliers are already in `centre`, so the drawn weights are used as they are.
+      dcfg = { ...cfg, weights: dirichlet(centre, ens.concentration, eu, en), validationMultiplier: { validated: 1, derived: 1, provisional: 1 }, envWeighting: flat ? "flat" : cfg.envWeighting };
+    }
+    const all = scoreAll(dp, ctxs, dcfg, cp);
     for (let j = 0; j < n; j++) {
       F[d * n + j] = all[j]!.fulfilment ?? NaN;
       A[d * n + j] = all[j]!.ability ?? NaN;
     }
   }
 
-  // Rank stability: share of draws in the person's top 10% and bottom 40% (ranked among scored paths).
+  // Rank stability: share of draws in the person's top 10% and bottom 40% (ranked among scored paths),
+  // overall and, with the ensemble, separately for need-weighted and flat draws.
   const pTop = new Float64Array(n);
   const pBottom = new Float64Array(n);
+  const byTop = [new Float64Array(n), new Float64Array(n)];
+  const byBottom = [new Float64Array(n), new Float64Array(n)];
+  const nBy = [0, 0];
+  for (let d = 0; d < draws; d++) nBy[flatDraw[d]!]!++;
   for (let d = 0; d < draws; d++) {
     const idx: number[] = [];
     for (let j = 0; j < n; j++) if (!Number.isNaN(F[d * n + j]!)) idx.push(j);
@@ -652,12 +803,22 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
     idx.sort((a, b) => F[d * n + b]! - F[d * n + a]!);
     const top = Math.max(1, Math.ceil(cfg.bands.topShare * idx.length));
     const bottom = Math.max(1, Math.floor(cfg.bands.bottomShare * idx.length));
-    for (let r = 0; r < top; r++) pTop[idx[r]!]! += 1 / draws;
-    for (let r = idx.length - bottom; r < idx.length; r++) pBottom[idx[r]!]! += 1 / draws;
+    const g = flatDraw[d]!;
+    for (let r = 0; r < top; r++) {
+      pTop[idx[r]!]! += 1 / draws;
+      byTop[g]![idx[r]!]! += 1 / nBy[g]!;
+    }
+    for (let r = idx.length - bottom; r < idx.length; r++) {
+      pBottom[idx[r]!]! += 1 / draws;
+      byBottom[g]![idx[r]!]! += 1 / nBy[g]!;
+    }
   }
+  // A band must hold under both weightings: the smaller of the two shares decides.
+  const split = !!ens && nBy[0]! > 0 && nBy[1]! > 0;
+  const bandTop = (j: number) => (split ? Math.min(byTop[0]![j]!, byTop[1]![j]!) : pTop[j]!);
+  const bandBottom = (j: number) => (split ? Math.min(byBottom[0]![j]!, byBottom[1]![j]!) : pBottom[j]!);
 
   // Point-estimate parts, and their average over all career paths (the baseline for drivers).
-  const scored = scoreAll(pt, ctxs, cfg, cp);
   const allParts = ctxs.map((l, j) => parts(pt, l, scored[j]!, cp, person, cfg));
   const baseline = new Map<string, number>();
   for (const ps of allParts) for (const p of ps) baseline.set(p.id, (baseline.get(p.id) ?? 0) + p.contribution / n);
@@ -674,7 +835,8 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
     const f = col(F, j);
     const a = col(A, j);
     const insufficient = f.length === 0;
-    const band: BandV2 = insufficient ? "insufficient" : pTop[j]! >= cfg.bands.strong ? "strong" : pBottom[j]! >= cfg.bands.unlikely ? "unlikely" : "possible";
+    const band: BandV2 = insufficient ? "insufficient" : bandTop(j) >= cfg.bands.strong ? "strong" : bandBottom(j) >= cfg.bands.unlikely ? "unlikely" : "possible";
+    const r3 = (x: number) => Math.round(x * 1000) / 1000;
     const { drivers, frictions } = insufficient ? { drivers: [], frictions: [] } : driversFrictions(allParts[j]!, baseline);
     return {
       laneId: l.id,
@@ -683,6 +845,7 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
       band,
       pTop: Math.round(pTop[j]! * 1000) / 1000,
       pBottom: Math.round(pBottom[j]! * 1000) / 1000,
+      ...(split ? { pBy: { need: { top: r3(byTop[0]![j]!), bottom: r3(byBottom[0]![j]!) }, flat: { top: r3(byTop[1]![j]!), bottom: r3(byBottom[1]![j]!) } } } : {}),
       direction: l.direction,
       fulfilmentFit: insufficient ? EMPTY : distribution(f),
       abilityFit: a.length ? distribution(a) : null,
@@ -694,7 +857,7 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
 
   const bandCounts: Record<BandV2, number> = { strong: 0, possible: 0, unlikely: 0, insufficient: 0 };
   for (const r of results) bandCounts[r.band]++;
-  return { version: cfg.version, draws, lanes: results, bandCounts, archetype: archetypeBlend(pt, drawModes, cfg), guard, notes: notesFor(cp, pt, bandCounts, guard, cfg) };
+  return { version: cfg.version, draws, lanes: results, bandCounts, archetype: archetypeBlend(pt, drawModes, cfg), guard, envGuard: envGuardOut, notes: notesFor(cp, pt, bandCounts, guard, cfg) };
 }
 
 /** Plain-language notes about the result as a whole: why there are few strong fits, missing data, the guard. */
@@ -758,7 +921,8 @@ export function componentSpreads(person: PersonProfile, lanes: Record<string, La
 /** The career offsets (see Offsets) from a reference population, at each person's estimates. */
 export function populationOffsets(people: PersonProfile[], lanes: Record<string, LaneProfileV2>, cfg: V2Config = V2_CONFIG): Offsets {
   const ctxs = Object.entries(lanes).map(([id, l]) => laneCtx(id, l));
-  const sums = ctxs.map(() => ({ environment: 0, challenge: 0, ne: 0, nc: 0 }));
+  const sums = ctxs.map(() => ({ environment: 0, challenge: 0, flat: 0, ne: 0, nc: 0 }));
+  const flatCfg: V2Config = { ...cfg, envWeighting: "flat" };
   for (const p of people) {
     const cp = compilePerson(p);
     const v: Values = Object.fromEntries((Object.keys(p.inputs) as PersonConstructId[]).map((k) => [k, p.inputs[k]!.value]));
@@ -767,6 +931,7 @@ export function populationOffsets(people: PersonProfile[], lanes: Record<string,
       const r = raw(pt, l, cfg, cp);
       if (r.values.environment !== null) {
         sums[j]!.environment += r.values.environment;
+        sums[j]!.flat += raw(pt, l, flatCfg, cp).values.environment!;
         sums[j]!.ne++;
       }
       if (r.values.challenge !== null) {
@@ -775,9 +940,10 @@ export function populationOffsets(people: PersonProfile[], lanes: Record<string,
       }
     });
   }
-  const means = sums.map((s) => ({ environment: s.ne ? s.environment / s.ne : 0, challenge: s.nc ? s.challenge / s.nc : 0 }));
+  const means = sums.map((s) => ({ environment: s.ne ? s.environment / s.ne : 0, challenge: s.nc ? s.challenge / s.nc : 0, flat: s.ne ? s.flat / s.ne : 0 }));
   const avgE = mean(means.map((m) => m.environment));
   const avgC = mean(means.map((m) => m.challenge));
+  const avgF = mean(means.map((m) => m.flat));
   const r4 = (x: number) => Math.round(x * 10000) / 10000;
-  return Object.fromEntries(ctxs.map((l, j) => [l.id, { environment: r4(means[j]!.environment - avgE), challenge: r4(means[j]!.challenge - avgC) }]));
+  return Object.fromEntries(ctxs.map((l, j) => [l.id, { environment: r4(means[j]!.environment - avgE), challenge: r4(means[j]!.challenge - avgC), environmentFlat: r4(means[j]!.flat - avgF) }]));
 }

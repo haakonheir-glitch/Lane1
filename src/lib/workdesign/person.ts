@@ -4,16 +4,19 @@
  * scores only.
  *
  * The 0–100 scale (all provisional; see docs/WORK_DESIGN.md, "Person-side scale"):
- * - "normed": a population percentile where norms exist (reasoning: provisional norms);
- * - "anchored": interest and personality scores have no transcribed population norms, so the
- *   raw score is placed on the scale with the scale midpoint at 50; the error uses BLUEPRINT §7's
- *   SEM = SD × √(1 − r) with a planning SD and the planning reliabilities from scoring/self.ts;
- * - "ipsative": work values come from a forced card sort, so they are relative to the person;
+ * - "normed": a population percentile where norms exist (interests: the published O*NET Short-IP
+ *   norms; reasoning: provisional norms), with the error from the published reliability;
+ * - "anchored": a scale without transcribed population norms (personality, for now) is placed on
+ *   the scale with the scale midpoint at 50; the error uses BLUEPRINT §7's SEM = SD × √(1 − r) with
+ *   a planning SD and the planning reliabilities from scoring/self.ts;
+ * - "ipsative": work values come from a forced card sort, so they are relative to the person
+ *   (mapped by expected normal order statistics; see valueEstimates);
  * - "task": behaviour tasks, anchored to the task's own range (no norms yet).
  */
 import type { ProfileScores } from "../scoring/profile";
 import type { ScaleScore } from "../scoring/types";
 import { ASSUMED_RELIABILITY } from "../scoring/self";
+import { normalCdf } from "../scoring/core";
 import { ENVIRONMENT, VALUE_MODES, WORK_DESIGN_VERSION, type Dimension, type PersonConstructId } from "./model";
 
 export type Provenance = "normed" | "anchored" | "ipsative" | "task";
@@ -24,39 +27,107 @@ export const PLANNING_SD = { personality: 15, interests: 20, values: 20, task: 2
 const Z90 = 1.645;
 const clamp = (x: number, a = 0, b = 100) => Math.min(b, Math.max(a, x));
 
+/**
+ * How person inputs are built (part of each matching config, so older configs stay reproducible):
+ * - norms: use population norms where the scoring has them (false: every interest and personality
+ *   score anchored, as before the norms were transcribed);
+ * - values: "orderStats" (expected normal order statistics, shrunk) or "minmax" (lowest 0, highest 100).
+ */
+export type InputOptions = { norms: boolean; values: "orderStats" | "minmax" };
+export const DEFAULT_INPUT_OPTIONS: InputOptions = { norms: true, values: "orderStats" };
+
+/**
+ * Expected values of the normal order statistics for n = 6 (Harter 1961; Teichroew 1956), largest
+ * first. A rank in a forced sort is evidence about where a value sits in the person's own
+ * distribution, not that the top value is "100": this is the best estimate of the underlying
+ * standard-normal score of the value ranked i-th of 6.
+ */
+export const ORDER_STATS_6 = [1.267, 0.642, 0.202, -0.202, -0.642, -1.267] as const;
+/**
+ * Order-statistic z-scores are multiplied by this before becoming a percentile. A six-card sort
+ * separates adjacent values only roughly (test–retest of single ranks is far from perfect), so the
+ * estimate is pulled towards the middle: the top value becomes the 81st percentile, not the 90th.
+ * Provisional, like the other planning values.
+ */
+export const VALUES_SHRINKAGE = 0.7;
+
+/** Blom's approximation to the expected normal order statistic, for sorts that aren't of 6. */
+const blom = (i: number, n: number) => -probit((i - 0.375) / (n + 0.25));
+
+/**
+ * Work values (forced card sort scores, higher = more important) → 0–100 estimates.
+ * orderStats: each value's rank (ties take the average of the order statistics they span) → its
+ * expected normal order statistic × VALUES_SHRINKAGE → percentile. minmax: lowest 0, highest 100.
+ */
+export function valueEstimates(scores: number[], method: InputOptions["values"]): number[] {
+  if (method === "minmax") {
+    const min = Math.min(...scores);
+    const max = Math.max(...scores);
+    return scores.map((x) => (max === min ? 50 : ((x - min) / (max - min)) * 100));
+  }
+  const n = scores.length;
+  const stat = (i: number) => (n === 6 ? ORDER_STATS_6[i]! : blom(i + 1, n));
+  const order = scores.map((x, i) => [x, i] as const).sort((a, b) => b[0] - a[0]);
+  const z = new Array<number>(n);
+  for (let r = 0; r < n; ) {
+    let e = r;
+    while (e + 1 < n && order[e + 1]![0] === order[r]![0]) e++;
+    let sum = 0;
+    for (let k = r; k <= e; k++) sum += stat(k);
+    for (let k = r; k <= e; k++) z[order[k]![1]] = sum / (e - r + 1);
+    r = e + 1;
+  }
+  return z.map((x) => normalCdf(VALUES_SHRINKAGE * x) * 100);
+}
+
+/** Inverse normal CDF (Acklam's rational approximation, relative error < 1.2e-9). */
+function probit(p: number): number {
+  const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.357751867269, -30.66479806614716, 2.506628277459239];
+  const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155211572];
+  const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+  const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+  const q = Math.min(Math.max(p, 1e-12), 1 - 1e-12);
+  if (q < 0.02425) {
+    const u = Math.sqrt(-2 * Math.log(q));
+    return (((((c[0]! * u + c[1]!) * u + c[2]!) * u + c[3]!) * u + c[4]!) * u + c[5]!) / ((((d[0]! * u + d[1]!) * u + d[2]!) * u + d[3]!) * u + 1);
+  }
+  if (q > 1 - 0.02425) return -probit(1 - q);
+  const u = q - 0.5;
+  const r = u * u;
+  return ((((((a[0]! * r + a[1]!) * r + a[2]!) * r + a[3]!) * r + a[4]!) * r + a[5]!) * u) / (((((b[0]! * r + b[1]!) * r + b[2]!) * r + b[3]!) * r + b[4]!) * r + 1);
+}
+
 /** A percentile band (90%) → value and SE on 0–100. */
 const fromBand = ([lo, hi]: [number, number], source: string): Estimate => ({ value: (lo + hi) / 2, se: Math.max(1, (hi - lo) / (2 * Z90)), provenance: "normed", source });
 
-function fromScale(s: ScaleScore | undefined, kind: "facet" | "scale", sd: number, source: string): Estimate | null {
+export function fromScale(s: ScaleScore | undefined, kind: "facet" | "scale", sd: number, source: string, norms = true): Estimate | null {
   if (!s || s.raw === null) return null;
-  if (s.normed) return fromBand(s.normed.percentileBand, source);
+  if (s.normed && norms) return fromBand(s.normed.percentileBand, source);
   const [lo, hi] = s.rawRange;
   return { value: clamp(((s.raw - lo) / (hi - lo)) * 100), se: sd * Math.sqrt(1 - ASSUMED_RELIABILITY[kind]), provenance: "anchored", source };
 }
 
 /** Every person-side input the model can use, from the profile. Missing scores are absent. */
-export function personInputs(p: ProfileScores): Partial<Record<PersonConstructId, Estimate>> {
+export function personInputs(p: ProfileScores, opts: InputOptions = DEFAULT_INPUT_OPTIONS): Partial<Record<PersonConstructId, Estimate>> {
   const out: Partial<Record<PersonConstructId, Estimate>> = {};
   for (const s of p.interests?.scales ?? []) {
-    const e = fromScale(s, "scale", PLANNING_SD.interests, `interests.${s.code}`);
+    const e = fromScale(s, "scale", PLANNING_SD.interests, `interests.${s.code}`, opts.norms);
     if (e) out[`interests.${s.code}` as PersonConstructId] = e;
   }
   for (const s of p.personality?.domains ?? []) {
-    const e = fromScale(s, "scale", PLANNING_SD.personality, `personality.${s.id}`);
+    const e = fromScale(s, "scale", PLANNING_SD.personality, `personality.${s.id}`, opts.norms);
     if (e) out[`neo.${s.id}` as PersonConstructId] = e;
   }
   for (const s of p.personality?.facets ?? []) {
-    const e = fromScale(s, "facet", PLANNING_SD.personality, `personality.facet.${s.id}`);
+    const e = fromScale(s, "facet", PLANNING_SD.personality, `personality.facet.${s.id}`, opts.norms);
     if (e) out[`neo.${s.id}` as PersonConstructId] = e;
   }
   const values = p.values?.filter((v) => v.visibility === "user") ?? [];
   if (values.length >= 3) {
-    const xs = values.map((v) => v.score);
-    const min = Math.min(...xs);
-    const max = Math.max(...xs);
-    for (const v of values) {
-      out[`values.${v.id}` as PersonConstructId] = { value: max === min ? 50 : ((v.score - min) / (max - min)) * 100, se: PLANNING_SD.values * Math.sqrt(1 - ASSUMED_RELIABILITY.scale), provenance: "ipsative", source: `values.${v.id}` };
-    }
+    const est = valueEstimates(values.map((v) => v.score), opts.values);
+    values.forEach((v, i) => {
+      out[`values.${v.id}` as PersonConstructId] = { value: est[i]!, se: PLANNING_SD.values * Math.sqrt(1 - ASSUMED_RELIABILITY.scale), provenance: "ipsative", source: `values.${v.id}` };
+    });
   }
   const r = p.reasoning;
   if (r?.generalAbility) out["reasoning.general"] = fromBand(r.generalAbility.percentileBand, "reasoning.general");
@@ -156,8 +227,8 @@ export type WorkDesignProfile = {
   inputs: Partial<Record<PersonConstructId, Estimate>>;
 };
 
-export function personWorkDesign(p: ProfileScores, version = WORK_DESIGN_VERSION): WorkDesignProfile {
-  const inputs = personInputs(p);
+export function personWorkDesign(p: ProfileScores, version = WORK_DESIGN_VERSION, opts: InputOptions = DEFAULT_INPUT_OPTIONS): WorkDesignProfile {
+  const inputs = personInputs(p, opts);
   const modes = VALUE_MODES.map((d) => scoreDimension(d, inputs));
   const rel = relativeOfDimensions(modes);
   return {

@@ -35,7 +35,7 @@ type V2Memo = { result: MatchResultV2; byLane: Map<string, LaneMatchV2>; adapted
  */
 const v2Memo = new Map<string, V2Memo>();
 function matchV2Memo(profile: ProfileScores): V2Memo {
-  const person = { inputs: personInputs(profile) };
+  const person = { inputs: personInputs(profile, V2_CONFIG.inputs) };
   const key = `${V2_CONFIG.version}:${profileSeed(person)}`;
   let r = v2Memo.get(key);
   if (!r) {
@@ -192,7 +192,7 @@ const fitDriver = (d: { id: string; label: string; contribution: number }): FitD
  * detail panel says. For working conditions, `gap` is the mismatch on the side that can hurt.
  */
 function dimRows(laneId: string, profile: ProfileScores): DimRow[] {
-  const wd = personWorkDesign(profile);
+  const wd = personWorkDesign(profile, undefined, V2_CONFIG.inputs);
   const career = LANE_PROFILES_V2[laneId];
   const z = 1.645;
   const you = (v: number | null, se: number | null) =>
@@ -212,7 +212,7 @@ function dimRows(laneId: string, profile: ProfileScores): DimRow[] {
 }
 
 /** "How you work best" for the profile: archetype blend, value modes, working conditions and drains. */
-export const workBestFor = cache((profile: ProfileScores): WorkBest => workBest(personWorkDesign(profile), nativeFor(profile).result, LANE_PROFILES_V2));
+export const workBestFor = cache((profile: ProfileScores): WorkBest => workBest(personWorkDesign(profile, undefined, V2_CONFIG.inputs), nativeFor(profile).result, LANE_PROFILES_V2));
 
 export const laneName = (id: string) => getLane(id)?.name ?? id;
 

@@ -1,3 +1,5 @@
+import type { InputOptions } from "../../workdesign/person";
+
 /**
  * Matching v2 settings. Every number here is provisional: a reasoned starting point, to be fitted
  * to outcome data later (docs/MATCHING_V2.md).
@@ -27,9 +29,35 @@ export type V2Config = {
   strengthsSeFactor: number;
   strengthsCareerFloor: number;
   guardMinTotal: number;
+  /** How the person's inputs are built (norms on or off, how work values are mapped). */
+  inputs: InputOptions;
+  /**
+   * No single environment dimension may carry more than this share of any fit (null: no cap).
+   * Measured like the facet cap: a dimension's effect on the fit (the fit with it against the fit
+   * with it left out of the environment component) over the summed effects of all inputs, floored at
+   * guardMinTotal. Above the cap the dimension's need weight is shrunk until it isn't.
+   */
+  envCap: number | null;
+  /** "need": each environment dimension weighted by the person's need strength; "flat": all equal. */
+  envWeighting: "need" | "flat";
+  /**
+   * How well established each component's evidence is, and the multiplier that applies to its
+   * weight (effective weight = weight × multiplier, renormalised). A lever for when evidence changes;
+   * the weights above already reflect today's evidence, so the multipliers are all 1 for now.
+   */
+  validationStatus: Record<keyof V2Config["weights"], ValidationStatus>;
+  validationMultiplier: Record<ValidationStatus, number>;
+  /**
+   * Weight ensemble (null: off). Each Monte Carlo draw also draws the component weights from a
+   * Dirichlet centred on the effective weights (α = concentration × weight), and with probability
+   * flatEnvShare uses flat environment weighting. Bands then need to hold under both weightings.
+   */
+  ensemble: { concentration: number; flatEnvShare: number } | null;
 };
 
-export const V2_CONFIG: V2Config = {
+export type ValidationStatus = "validated" | "derived" | "provisional";
+
+const V2_0_4: V2Config = {
   version: "v2-0.4",
   /**
    * Fulfilment fit (needs–supplies) as a weighted combination of its components. Each component is
@@ -98,4 +126,55 @@ export const V2_CONFIG: V2Config = {
   strengthsCareerFloor: 8,
   /** The facet guard's floor on summed input effects, in fit points (one component SD ≈ 10). */
   guardMinTotal: 10,
+  /** v2-0.4 and earlier: no norms (every interest and personality score anchored), min–max work values. */
+  inputs: { norms: false, values: "minmax" },
+  envCap: null,
+  envWeighting: "need",
+  validationStatus: { interests: "validated", values: "validated", valueModes: "derived", environment: "derived", challenge: "derived", strengths: "provisional" },
+  validationMultiplier: { validated: 1, derived: 1, provisional: 1 },
+  ensemble: null,
 };
+
+/** v2-0.3: v2-0.4 without the reasoning-strengths component (weight 0). Kept for comparison. */
+const V2_0_3: V2Config = { ...V2_0_4, version: "v2-0.3", weights: { ...V2_0_4.weights, strengths: 0 } };
+
+/**
+ * v2-0.5, the precision pass (docs/MATCHING_V2.md, "Precision pass"):
+ * 1. norms: interests normed against the published O*NET Short-IP norms (personality stays
+ *    anchored until its norms are transcribed);
+ * 2. work values by expected normal order statistics × 0.7, not min–max;
+ * 3. no single environment dimension above 15% of any fit;
+ * 4. weights moved towards the validated instruments with the strongest evidence. Interests
+ *    (the O*NET Interest Profiler; interest–occupation congruence is the best-replicated predictor
+ *    of satisfaction and persistence among these) carry most, then work values (O*NET Work
+ *    Importance Locator, matched to O*NET's own occupational reinforcer profiles). Value modes,
+ *    working conditions and challenge are Lane's own derived constructs, so they carry less.
+ *    Reasoning strengths keeps its small 0.08 (renormalised when present, as since v2-0.4);
+ * 5. a weight ensemble: Dirichlet weights (concentration 40) and, half the time, flat environment
+ *    weighting, so a band can't hang on one exact choice of weights.
+ */
+const V2_0_5: V2Config = {
+  ...V2_0_4,
+  version: "v2-0.5",
+  weights: { interests: 0.45, values: 0.2, valueModes: 0.15, environment: 0.1, challenge: 0.1, strengths: 0.08 },
+  inputs: { norms: true, values: "orderStats" },
+  envCap: 0.15,
+  ensemble: { concentration: 40, flatEnvShare: 0.5 },
+};
+
+/** Every selectable config, by version. */
+export const V2_CONFIGS: Record<string, V2Config> = { "v2-0.3": V2_0_3, "v2-0.4": V2_0_4, "v2-0.5": V2_0_5 };
+export const DEFAULT_V2_VERSION = "v2-0.5";
+
+/**
+ * The config the app runs: MATCHING_CONFIG (a version above) if set, else the default. Read once at
+ * start-up; an unknown version fails loudly rather than silently matching with another one.
+ */
+export function selectConfig(version: string | undefined = process.env.MATCHING_CONFIG): V2Config {
+  const v = version?.trim() || DEFAULT_V2_VERSION;
+  const c = V2_CONFIGS[v];
+  if (!c) throw new Error(`MATCHING_CONFIG=${v} is not one of ${Object.keys(V2_CONFIGS).join(", ")}`);
+  return c;
+}
+
+export const V2_CONFIG: V2Config = selectConfig();

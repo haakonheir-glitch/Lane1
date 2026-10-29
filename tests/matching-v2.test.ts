@@ -47,7 +47,8 @@ describe("matching v2: data and config", () => {
 
   it("keeps a near-flat profile near-flat: a 1-point change moves no fit by more than a point", () => {
     const zero = (p: ReturnType<typeof synthetic>) => ({ inputs: Object.fromEntries(Object.entries(p.inputs).map(([k, v]) => [k, { ...v!, se: 0 }])) }) as ReturnType<typeof synthetic>;
-    const fits = (p: ReturnType<typeof synthetic>) => new Map(matchV2(zero(p), { draws: 1 }).lanes.map((l) => [l.laneId, l.fulfilmentFit.mean]));
+    // The same seed for both, so the weight ensemble draws the same weights for both.
+    const fits = (p: ReturnType<typeof synthetic>) => new Map(matchV2(zero(p), { draws: 1, seed: 7 }).lanes.map((l) => [l.laneId, l.fulfilmentFit.mean]));
     const a = fits(synthetic({ interests: { I: 51 } }));
     const b = fits(synthetic({ interests: { S: 51 } }));
     expect(Math.max(...[...a].map(([id, x]) => Math.abs(x - b.get(id)!)))).toBeLessThan(1);
