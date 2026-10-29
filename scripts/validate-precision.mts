@@ -347,25 +347,34 @@ function literature(): string[] {
   const sm = n("symbol_match");
   const dev = (ours: { mean: number }, pub: number, pubSd: number) => {
     const d = (ours.mean - pub) / pubSd;
-    return `${d >= 0 ? "+" : "−"}${Math.abs(Math.round(d * 100) / 100).toFixed(2)} SD${Math.abs(d) > 0.5 ? " **(over 0.5 SD: flagged)**" : ""}`;
+    const shown = Math.abs(d) > 0.5 && Math.abs(d) < 0.51 ? Math.abs(d).toFixed(3) : Math.abs(Math.round(d * 100) / 100).toFixed(2);
+    return `${d >= 0 ? "+" : "−"}${shown} SD${Math.abs(d) > 0.5 ? " **(over 0.5 SD: flagged)**" : ""}`;
   };
-  // Facchin et al. (2024), Table 2 caption: adjusted = raw + 0.7616·(ln age − 3.864) − 0.4229·(√education − 3.555).
-  // The expected raw score of a 25-year-old with 16 years of education is the sample mean minus that correction.
+  // Facchin et al. (2024), Table 2 caption: adjusted = raw + 0.7616·(ln age − 3.864) − 0.4229·(√education − 3.555), centred
+  // on the sample's means, so the mean adjusted score ≈ the raw mean 4.97. Expected raw = 4.97 − correction.
   const corr = (age: number, edu: number) => 0.7616 * (Math.log(age) - 3.864) - 0.4229 * (Math.sqrt(edu) - 3.555);
-  const young = (age: number) => Math.round((4.97 - corr(age, 16)) * 100) / 100;
+  const young = (age: number) => 4.97 - corr(age, 16);
+  const y2 = (age: number) => (Math.round(young(age) * 100) / 100).toFixed(2);
   return [
-    "Our span protocol starts at three, gives two trials per length, and stops when both trials at a length are wrong. It scores the longest length repeated correctly (`assessment/generators/generators.ts`, SPAN_PROTOCOL). That is Woods et al.'s \"two-error maximum length\" (TE-ML). Deviation = (our mean − published mean) / published SD.",
+    "Sources: open access only, read in full here. Anything that couldn't be reached open access is marked **not checked**.",
+    "",
+    "**Our metric.** Our span protocol (`assessment/generators/generators.ts`, SPAN_PROTOCOL; scored in `src/lib/scoring/cognitive/span.ts`):",
+    "- starts at 3, gives two trials per length, stops when both are wrong, and caps at 10 (Corsi at 9);",
+    "- scores the longest length with at least one of two correct.",
+    "",
+    "That is the pass rule of Woods et al.'s \"two-error maximum length\" (TE-ML). It is not their \"maximum length over all trials\" (ML).",
+    "",
+    "**Deviation** = (our mean − published mean) / published SD.",
     "",
     "| Task | Our table: mean, SD (confidence) | Published adult norm (open access) | Deviation | Comparable? |",
     "|---|---|---|---|---|",
-    `| Backward digit span | ${bd.mean}, ${bd.sd} (${bd.confidence}) | **Woods et al. (2011)**, *J. Clin. Exp. Neuropsychol.* 33(1), 101–111, doi:10.1080/13803395.2010.493149, open access as PMC2978794. Backward span, TE-ML. Experiment 1 (Table 2): 30 young adults aged 18–46, mean 26, averaged over three sessions: **5.80 (SD 1.42)**. Experiment 2 (Table 6): 763 community adults aged 18–65: **4.61 (SD 1.22)** | ${dev(bd, 5.8, 1.42)} against Experiment 1; ${dev(bd, 4.61, 1.22)} against Experiment 2 | Same scoring rule. Their digits are spoken and recalled aloud; ours are shown on screen and typed. Experiment 2 spans 18–65, and backward span falls a little with age (r = −.14, Table 8). Experiment 1 is small and practised over three sessions |`,
-    `| Corsi block span (forward) | ${co.mean}, ${co.sd} (${co.confidence}) | **Facchin et al. (2024)**, *Neurological Sciences* 45, 5707–, doi:10.1007/s10072-024-07756-6, open access as PMC11554723. Corsi span, 340 healthy Italian adults aged 21–89, mean age 51.6 (Table 1): **4.97 (SD 1.03)**. From their age and education correction (Table 2), the expected span of a 25-year-old with 16 years of education is **${young(25)}**, and of a 30-year-old **${young(30)}**. That is derived from their regression, not a published norm | ${dev(co, 4.97, 1.03)} against the whole sample; ${dev(co, young(25), 1.03)} against the derived age-25 value; ${dev(co, young(30), 1.03)} against age 30 | Partly: a physical wooden board with the examiner tapping, against our on-screen blocks. The sample is much older than our 18–35 norm group. Kessels et al. (2000), on which our table rests at weight 0.7, is not open access: **not checked** |`,
+    `| Backward digit span | ${bd.mean}, ${bd.sd} (${bd.confidence}) | **Woods et al. (2011)**, *J. Clin. Exp. Neuropsychol.* 33(1), 101–111, doi:10.1080/13803395.2010.493149, open access as PMC2978794. Backward span, TE-ML. Experiment 1 (Table 2): 31 adults recruited (aged 18–46, mean 26), 30 analysed, each averaged over three sessions: **5.80 (SD 1.42)**. Experiment 2 (Table 6): 763 community adults in Rotorua, New Zealand, aged 18–65, mean age 46.5: **4.61 (SD 1.22)** | ${dev(bd, 5.8, 1.42)} against Experiment 1; ${dev(bd, 4.61, 1.22)} against Experiment 2 | Same pass rule, with these differences: (1) they speak the digits through headphones and an examiner transcribes the spoken recall; ours are shown on screen and typed. (2) Their backward lists start at 2 (Experiment 1) and 4 (Experiment 2); ours start at 3. (3) They step up after one correct and continue to 14 or 10 trials, while we always give both trials at a length and cap at 10. (4) Experiment 2 is much older than our 18–35 group: backward TE-ML falls with age (r = −.14, Table 8). (5) Experiment 1 is small and practised over three sessions |`,
+    `| Corsi block span (forward) | ${co.mean}, ${co.sd} (${co.confidence}) | **Facchin et al. (2024)**, *Neurological Sciences* 45(12), 5707–5718, doi:10.1007/s10072-024-07756-6, open access as PMC11554723. 340 healthy Italian adults aged 21–89 (mean 51.6), Table 1: **4.97 (SD 1.03)**. From their age and education correction (Table 2 caption), the expected raw span with 16 years of education is **${y2(25)}** at age 25 and **${y2(30)}** at age 30. That is derived from their regression, not a published norm; the 16 years of education are our assumption (their sample mean is 13.1) | ${dev(co, 4.97, 1.03)} against the whole sample; ${dev(co, young(25), 1.03)} against the derived age-25 value; ${dev(co, young(30), 1.03)} against age 30 | Partly. (1) Their pass rule is stricter: three sequences per length, passed with two of three correct, against our one of two. That alone gives them lower spans. (2) A physical wooden board with the examiner tapping, against our on-screen blocks. (3) A much older sample. (4) The deviations from the derived values divide by the whole-sample SD (1.03), which includes the age and education spread (r = −.46 and .45, Table 1). The SD at a given age and education is smaller, so those deviations are conservative. Kessels et al. (2000), on which our table rests at weight 0.7, couldn't be read open access here: **not checked** |`,
     `| Symbol matching (90 s, same/different triplets, correct − incorrect) | ${sm.mean}, ${sm.sd} (${sm.confidence}) | **Not checked**: no open-access norm for a comparable task was found | — | A task of our own. WAIS Symbol Search and pattern-comparison tasks differ in stimuli, time limit and scoring |`,
     "",
     "**What this flags (report only; the table is unchanged):**",
-    "- **Backward digit span** is 0.65 SD above the 18–65 community sample. That is over the threshold, though partly expected, since our norm group is 18–35. It sits 0.28 SD below the small young-adult sample, so it falls between the two published groups.",
-    "- **Corsi span** is far above the 21–89 sample (+1.17 SD). Against the derived young-adult values it is +0.50 to +0.64 SD: at or over the threshold. The difference in apparatus (board against screen) also matters.",
-    "- **Symbol matching** is not checked. Its norm is still Claude's expert estimate alone (confidence low).",
-    "- These comparisons are with groups unlike ours (age, country, apparatus). They say where to look in the pilot data, not that the table is wrong.",
+    "- **Backward digit span** is 0.65 SD above the community sample. That is over the threshold, but the sample is far older than our 18–35 group (mean age 46.5). It sits 0.28 SD below the small young-adult sample, so it falls between the two published groups. The checkable sources don't suggest a problem, but the modality differs.",
+    "- **Corsi span** is far above the 21–89 sample (+1.17 SD). Against the derived young-adult values it is just over to clearly over the threshold (+0.505 to +0.64 SD, conservative). Their stricter pass rule and the board also push their spans down, so part of the gap is method, not norm. Kessels et al. (2000) is the comparable source, and it couldn't be checked here.",
+    "- **Symbol matching:** not checked. Its norm is still Claude's expert estimate alone (confidence low).",
   ];
 }

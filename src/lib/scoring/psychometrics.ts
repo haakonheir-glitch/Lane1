@@ -170,8 +170,9 @@ export const PSYCHOMETRICS: Record<string, SourcedPsychometric | null> = {
   ...Object.fromEntries([...NEO_FACETS, ...NEO_DOMAINS].map((k) => [`neo.${k}`, neoEntry(k)])),
 };
 
+/** Three decimals, halves up (the epsilon keeps 2.01 / 4 = 0.5025 from landing on 0.502 in floating point). */
 function round(x: number) {
-  return Math.round(x * 1000) / 1000;
+  return Math.round((x + Number.EPSILON) * 1000) / 1000;
 }
 
 /** A short fingerprint of which norms are loaded, for cache keys: a new transcription is a new key. */
