@@ -1,0 +1,2646 @@
+{
+ "config": "v2-0.3",
+ "draws": 100,
+ "reps": 3,
+ "topCut": 21,
+ "seconds": 196,
+ "clean": {
+  "inTop10": 0.951,
+  "median": 2,
+  "strong": 0.946
+ },
+ "noisy": {
+  "inTop10": 0.911,
+  "median": 4,
+  "p90": 20
+ },
+ "cannotRecover": [
+  {
+   "id": "field_sales",
+   "name": "Field & territory sales",
+   "provenance": "onet",
+   "clean": 40,
+   "noisy": [
+    39,
+    44,
+    70
+   ]
+  },
+  {
+   "id": "offshore_oil_gas",
+   "name": "Offshore & oil and gas",
+   "provenance": "onet",
+   "clean": 31,
+   "noisy": [
+    35,
+    28,
+    29
+   ]
+  },
+  {
+   "id": "strategy_games",
+   "name": "Professional strategy games",
+   "provenance": "estimated",
+   "clean": 31,
+   "noisy": [
+    169,
+    18,
+    61
+   ]
+  },
+  {
+   "id": "military",
+   "name": "Armed forces",
+   "provenance": "onet",
+   "clean": 27,
+   "noisy": [
+    30,
+    29,
+    30
+   ]
+  },
+  {
+   "id": "property_investment",
+   "name": "Property investment & development",
+   "provenance": "onet",
+   "clean": 26,
+   "noisy": [
+    40,
+    6,
+    40
+   ]
+  },
+  {
+   "id": "specialist_trades",
+   "name": "Specialist trades & services",
+   "provenance": "onet",
+   "clean": 25,
+   "noisy": [
+    19,
+    29,
+    16
+   ]
+  },
+  {
+   "id": "real_estate_agency",
+   "name": "Real estate brokerage",
+   "provenance": "onet",
+   "clean": 24,
+   "noisy": [
+    32,
+    25,
+    28
+   ]
+  },
+  {
+   "id": "forestry",
+   "name": "Forestry & hunting",
+   "provenance": "onet",
+   "clean": 24,
+   "noisy": [
+    20,
+    21,
+    28
+   ]
+  },
+  {
+   "id": "ecommerce",
+   "name": "E-commerce",
+   "provenance": "onet",
+   "clean": 24,
+   "noisy": [
+    21,
+    32,
+    29
+   ]
+  },
+  {
+   "id": "landscaping",
+   "name": "Landscaping & grounds",
+   "provenance": "onet",
+   "clean": 22,
+   "noisy": [
+    23,
+    25,
+    13
+   ]
+  },
+  {
+   "id": "asset_management",
+   "name": "Asset management & investment research",
+   "provenance": "onet",
+   "clean": 19,
+   "noisy": [
+    19,
+    38,
+    24
+   ]
+  },
+  {
+   "id": "nature_conservation",
+   "name": "Nature & conservation",
+   "provenance": "onet",
+   "clean": 19,
+   "noisy": [
+    25,
+    20,
+    48
+   ]
+  },
+  {
+   "id": "solutions_sales",
+   "name": "Technical & solutions sales",
+   "provenance": "onet",
+   "clean": 13,
+   "noisy": [
+    28,
+    22,
+    18
+   ]
+  },
+  {
+   "id": "sustainability",
+   "name": "Sustainability & ESG",
+   "provenance": "onet",
+   "clean": 13,
+   "noisy": [
+    17,
+    42,
+    33
+   ]
+  },
+  {
+   "id": "police",
+   "name": "Police & investigation",
+   "provenance": "onet",
+   "clean": 6,
+   "noisy": [
+    52,
+    48,
+    19
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "id": "b2b_sales",
+   "name": "B2B sales",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "solutions_sales",
+   "name": "Technical & solutions sales",
+   "provenance": "onet",
+   "clean": 13,
+   "cleanBand": "strong",
+   "noisy": [
+    28,
+    22,
+    18
+   ]
+  },
+  {
+   "id": "account_management",
+   "name": "Account management & customer success",
+   "provenance": "onet",
+   "clean": 15,
+   "cleanBand": "strong",
+   "noisy": [
+    9,
+    25,
+    5
+   ]
+  },
+  {
+   "id": "field_sales",
+   "name": "Field & territory sales",
+   "provenance": "onet",
+   "clean": 40,
+   "cleanBand": "possible",
+   "noisy": [
+    39,
+    44,
+    70
+   ]
+  },
+  {
+   "id": "consumer_sales",
+   "name": "Consumer & direct sales",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    7,
+    4,
+    5
+   ]
+  },
+  {
+   "id": "partnerships",
+   "name": "Partnerships, channel & business development",
+   "provenance": "estimated",
+   "clean": 5,
+   "cleanBand": "strong",
+   "noisy": [
+    8,
+    9,
+    2
+   ]
+  },
+  {
+   "id": "media_ad_sales",
+   "name": "Media, advertising & sponsorship sales",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    16,
+    4
+   ]
+  },
+  {
+   "id": "sales_ops",
+   "name": "Sales operations & enablement",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    20,
+    2
+   ]
+  },
+  {
+   "id": "trade_brokerage",
+   "name": "International trade & brokerage",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "brand_marketing",
+   "name": "Brand marketing",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "growth_marketing",
+   "name": "Performance & growth marketing",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    7,
+    3,
+    3
+   ]
+  },
+  {
+   "id": "lifecycle_marketing",
+   "name": "CRM, lifecycle & marketing operations",
+   "provenance": "estimated",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "product_marketing",
+   "name": "Product marketing",
+   "provenance": "estimated",
+   "clean": 5,
+   "cleanBand": "strong",
+   "noisy": [
+    13,
+    12,
+    16
+   ]
+  },
+  {
+   "id": "content_social",
+   "name": "Content, copy & social media",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    2,
+    1
+   ]
+  },
+  {
+   "id": "advertising_agency",
+   "name": "Advertising & creative agencies",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pr_comms",
+   "name": "PR & communications",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    7,
+    1
+   ]
+  },
+  {
+   "id": "market_research",
+   "name": "Market research & consumer insights",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    11,
+    4
+   ]
+  },
+  {
+   "id": "events",
+   "name": "Events & experiential",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    3,
+    3
+   ]
+  },
+  {
+   "id": "product_management",
+   "name": "Product management",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    16,
+    13,
+    6
+   ]
+  },
+  {
+   "id": "product_design",
+   "name": "Product & UX/UI design",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    37,
+    2
+   ]
+  },
+  {
+   "id": "ux_research",
+   "name": "UX research",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    2,
+    1
+   ]
+  },
+  {
+   "id": "graphic_design",
+   "name": "Graphic & brand design",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "industrial_design",
+   "name": "Industrial & product design",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    7,
+    3,
+    2
+   ]
+  },
+  {
+   "id": "software_engineering",
+   "name": "Software engineering",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "embedded_systems",
+   "name": "Embedded & hardware-near software",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    4,
+    1
+   ]
+  },
+  {
+   "id": "devops_cloud",
+   "name": "DevOps, cloud & site reliability",
+   "provenance": "onet",
+   "clean": 6,
+   "cleanBand": "strong",
+   "noisy": [
+    11,
+    10,
+    2
+   ]
+  },
+  {
+   "id": "cybersecurity",
+   "name": "Cybersecurity",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    21,
+    8,
+    11
+   ]
+  },
+  {
+   "id": "it_support",
+   "name": "IT support & infrastructure",
+   "provenance": "onet",
+   "clean": 8,
+   "cleanBand": "strong",
+   "noisy": [
+    29,
+    12,
+    7
+   ]
+  },
+  {
+   "id": "qa_testing",
+   "name": "Software testing & quality assurance",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    7,
+    3
+   ]
+  },
+  {
+   "id": "enterprise_systems",
+   "name": "Enterprise systems & IT consulting",
+   "provenance": "onet",
+   "clean": 6,
+   "cleanBand": "strong",
+   "noisy": [
+    11,
+    6,
+    3
+   ]
+  },
+  {
+   "id": "game_development",
+   "name": "Game development",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    8
+   ]
+  },
+  {
+   "id": "devrel_techwriting",
+   "name": "Developer relations & technical writing",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    10,
+    14,
+    23
+   ]
+  },
+  {
+   "id": "data_analysis",
+   "name": "Data analysis & business intelligence",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "data_science",
+   "name": "Data science & statistics",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "ml_ai_engineering",
+   "name": "Machine learning & AI engineering",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    8,
+    4
+   ]
+  },
+  {
+   "id": "data_engineering",
+   "name": "Data engineering & databases",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    5,
+    4
+   ]
+  },
+  {
+   "id": "gis_geodata",
+   "name": "GIS & geospatial analysis",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "accounting_audit",
+   "name": "Accounting & audit",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    7,
+    4,
+    5
+   ]
+  },
+  {
+   "id": "corporate_finance",
+   "name": "FP&A, controlling & corporate finance",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    7,
+    1,
+    4
+   ]
+  },
+  {
+   "id": "investment_banking",
+   "name": "Investment banking & M&A advisory",
+   "provenance": "onet",
+   "clean": 6,
+   "cleanBand": "strong",
+   "noisy": [
+    13,
+    12,
+    7
+   ]
+  },
+  {
+   "id": "private_capital",
+   "name": "Private equity, venture & principal investing",
+   "provenance": "onet",
+   "clean": 5,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    14,
+    6
+   ]
+  },
+  {
+   "id": "asset_management",
+   "name": "Asset management & investment research",
+   "provenance": "onet",
+   "clean": 19,
+   "cleanBand": "possible",
+   "noisy": [
+    19,
+    38,
+    24
+   ]
+  },
+  {
+   "id": "trading_markets",
+   "name": "Trading & markets",
+   "provenance": "onet",
+   "clean": 13,
+   "cleanBand": "strong",
+   "noisy": [
+    22,
+    3,
+    8
+   ]
+  },
+  {
+   "id": "quant_finance",
+   "name": "Quantitative finance",
+   "provenance": "estimated",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    3,
+    2
+   ]
+  },
+  {
+   "id": "banking_lending",
+   "name": "Banking, lending & credit",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    9,
+    10,
+    2
+   ]
+  },
+  {
+   "id": "wealth_advice",
+   "name": "Wealth management & financial advice",
+   "provenance": "onet",
+   "clean": 8,
+   "cleanBand": "strong",
+   "noisy": [
+    8,
+    18,
+    16
+   ]
+  },
+  {
+   "id": "insurance",
+   "name": "Insurance",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    8,
+    4,
+    10
+   ]
+  },
+  {
+   "id": "tax_advisory",
+   "name": "Tax advisory",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "risk_management",
+   "name": "Risk management",
+   "provenance": "estimated",
+   "clean": 9,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    13,
+    8
+   ]
+  },
+  {
+   "id": "fintech_payments",
+   "name": "Payments, fintech & crypto operations",
+   "provenance": "estimated",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    13
+   ]
+  },
+  {
+   "id": "management_consulting",
+   "name": "Management consulting",
+   "provenance": "estimated",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    4,
+    2
+   ]
+  },
+  {
+   "id": "independent_advisory",
+   "name": "Independent consulting & interim leadership",
+   "provenance": "estimated",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "strategy_bizops",
+   "name": "Strategy, business operations & corporate development",
+   "provenance": "onet",
+   "clean": 5,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    3,
+    15
+   ]
+  },
+  {
+   "id": "general_management",
+   "name": "General management & executive leadership",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    7,
+    4
+   ]
+  },
+  {
+   "id": "project_management",
+   "name": "Project & programme management",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    6,
+    4
+   ]
+  },
+  {
+   "id": "business_operations",
+   "name": "Operations & process improvement",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    1,
+    6
+   ]
+  },
+  {
+   "id": "sustainability",
+   "name": "Sustainability & ESG",
+   "provenance": "onet",
+   "clean": 13,
+   "cleanBand": "strong",
+   "noisy": [
+    17,
+    42,
+    33
+   ]
+  },
+  {
+   "id": "administration",
+   "name": "Administration & office support",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "recruiting",
+   "name": "Recruiting & talent acquisition",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    9,
+    4,
+    6
+   ]
+  },
+  {
+   "id": "hr",
+   "name": "HR & people partnering",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "learning_development",
+   "name": "Learning & development",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "workplace_psychology",
+   "name": "Organisational & work psychology",
+   "provenance": "estimated",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "id": "legal_practice",
+   "name": "Law firm practice",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "in_house_legal",
+   "name": "In-house legal",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "courts_prosecution",
+   "name": "Courts & prosecution",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    25,
+    3
+   ]
+  },
+  {
+   "id": "legal_support",
+   "name": "Paralegal & legal support",
+   "provenance": "onet",
+   "clean": 9,
+   "cleanBand": "strong",
+   "noisy": [
+    17,
+    37,
+    6
+   ]
+  },
+  {
+   "id": "compliance",
+   "name": "Compliance & regulatory affairs",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    9,
+    1,
+    16
+   ]
+  },
+  {
+   "id": "intellectual_property",
+   "name": "Intellectual property",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "supply_chain",
+   "name": "Supply chain & planning",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "procurement",
+   "name": "Purchasing & procurement",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    11,
+    15,
+    6
+   ]
+  },
+  {
+   "id": "warehouse_logistics",
+   "name": "Warehousing & logistics",
+   "provenance": "onet",
+   "clean": 6,
+   "cleanBand": "strong",
+   "noisy": [
+    24,
+    11,
+    12
+   ]
+  },
+  {
+   "id": "hse_quality",
+   "name": "HSE, quality & inspection",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "facilities",
+   "name": "Facilities, cleaning & property services",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "waste_recycling",
+   "name": "Waste, recycling & environmental services",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    4,
+    2
+   ]
+  },
+  {
+   "id": "road_transport",
+   "name": "Driving & road transport",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    18,
+    1,
+    23
+   ]
+  },
+  {
+   "id": "rail",
+   "name": "Rail",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    1,
+    8
+   ]
+  },
+  {
+   "id": "aviation",
+   "name": "Aviation",
+   "provenance": "onet",
+   "clean": 8,
+   "cleanBand": "strong",
+   "noisy": [
+    8,
+    25,
+    3
+   ]
+  },
+  {
+   "id": "real_estate_agency",
+   "name": "Real estate brokerage",
+   "provenance": "onet",
+   "clean": 24,
+   "cleanBand": "possible",
+   "noisy": [
+    32,
+    25,
+    28
+   ]
+  },
+  {
+   "id": "property_investment",
+   "name": "Property investment & development",
+   "provenance": "onet",
+   "clean": 26,
+   "cleanBand": "possible",
+   "noisy": [
+    40,
+    6,
+    40
+   ]
+  },
+  {
+   "id": "property_management",
+   "name": "Property management & valuation",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    4,
+    17
+   ]
+  },
+  {
+   "id": "mechanical_engineering",
+   "name": "Mechanical engineering",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    15,
+    5,
+    3
+   ]
+  },
+  {
+   "id": "electrical_engineering",
+   "name": "Electrical & electronics engineering",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    7,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "civil_engineering",
+   "name": "Civil & structural engineering",
+   "provenance": "onet",
+   "clean": 15,
+   "cleanBand": "strong",
+   "noisy": [
+    18,
+    12,
+    22
+   ]
+  },
+  {
+   "id": "process_engineering",
+   "name": "Chemical & process engineering",
+   "provenance": "onet",
+   "clean": 5,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    5,
+    3
+   ]
+  },
+  {
+   "id": "industrial_engineering",
+   "name": "Industrial & manufacturing engineering",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    5,
+    10
+   ]
+  },
+  {
+   "id": "environmental_engineering",
+   "name": "Environmental & energy engineering",
+   "provenance": "onet",
+   "clean": 5,
+   "cleanBand": "strong",
+   "noisy": [
+    18,
+    11,
+    17
+   ]
+  },
+  {
+   "id": "biomedical_engineering",
+   "name": "Biomedical engineering",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    8
+   ]
+  },
+  {
+   "id": "mining_geo",
+   "name": "Mining, quarrying & drilling",
+   "provenance": "onet",
+   "clean": 11,
+   "cleanBand": "strong",
+   "noisy": [
+    12,
+    11,
+    11
+   ]
+  },
+  {
+   "id": "architecture",
+   "name": "Architecture",
+   "provenance": "onet",
+   "clean": 7,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    21,
+    17
+   ]
+  },
+  {
+   "id": "interior_design",
+   "name": "Interior design",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    2,
+    10
+   ]
+  },
+  {
+   "id": "urban_planning",
+   "name": "Urban & transport planning",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    2,
+    1
+   ]
+  },
+  {
+   "id": "construction_management",
+   "name": "Construction management",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    11,
+    6,
+    4
+   ]
+  },
+  {
+   "id": "electrician",
+   "name": "Electrician",
+   "provenance": "onet",
+   "clean": 12,
+   "cleanBand": "strong",
+   "noisy": [
+    24,
+    12,
+    19
+   ]
+  },
+  {
+   "id": "plumbing_hvac",
+   "name": "Plumbing, heating & refrigeration",
+   "provenance": "onet",
+   "clean": 13,
+   "cleanBand": "strong",
+   "noisy": [
+    14,
+    13,
+    16
+   ]
+  },
+  {
+   "id": "carpentry",
+   "name": "Carpentry & building",
+   "provenance": "onet",
+   "clean": 17,
+   "cleanBand": "strong",
+   "noisy": [
+    11,
+    14,
+    28
+   ]
+  },
+  {
+   "id": "masonry_concrete",
+   "name": "Masonry, concrete & tiling",
+   "provenance": "onet",
+   "clean": 5,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    5,
+    5
+   ]
+  },
+  {
+   "id": "finishing_trades",
+   "name": "Painting, roofing & building finishes",
+   "provenance": "onet",
+   "clean": 14,
+   "cleanBand": "strong",
+   "noisy": [
+    12,
+    7,
+    13
+   ]
+  },
+  {
+   "id": "heavy_equipment",
+   "name": "Heavy equipment & civil works",
+   "provenance": "onet",
+   "clean": 9,
+   "cleanBand": "strong",
+   "noisy": [
+    12,
+    16,
+    5
+   ]
+  },
+  {
+   "id": "welding_metal",
+   "name": "Welding & metal fabrication",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "vehicle_mechanics",
+   "name": "Vehicle & machinery mechanics",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    3,
+    13
+   ]
+  },
+  {
+   "id": "industrial_maintenance",
+   "name": "Industrial maintenance & technical service",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "specialist_trades",
+   "name": "Specialist trades & services",
+   "provenance": "onet",
+   "clean": 25,
+   "cleanBand": "possible",
+   "noisy": [
+    19,
+    29,
+    16
+   ]
+  },
+  {
+   "id": "landscaping",
+   "name": "Landscaping & grounds",
+   "provenance": "onet",
+   "clean": 22,
+   "cleanBand": "strong",
+   "noisy": [
+    23,
+    25,
+    13
+   ]
+  },
+  {
+   "id": "machine_operation",
+   "name": "Machine operation & assembly",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    5,
+    4
+   ]
+  },
+  {
+   "id": "process_operation",
+   "name": "Process plant operation",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    4,
+    3
+   ]
+  },
+  {
+   "id": "food_production",
+   "name": "Food & seafood production",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    7,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "textile_print_production",
+   "name": "Textile, print & packaging production",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "seafaring",
+   "name": "Seafaring & ship operations",
+   "provenance": "onet",
+   "clean": 11,
+   "cleanBand": "strong",
+   "noisy": [
+    10,
+    14,
+    6
+   ]
+  },
+  {
+   "id": "offshore_oil_gas",
+   "name": "Offshore & oil and gas",
+   "provenance": "onet",
+   "clean": 31,
+   "cleanBand": "possible",
+   "noisy": [
+    35,
+    28,
+    29
+   ]
+  },
+  {
+   "id": "renewables",
+   "name": "Renewable energy",
+   "provenance": "onet",
+   "clean": 9,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    14,
+    5
+   ]
+  },
+  {
+   "id": "power_utilities",
+   "name": "Power grid & utilities",
+   "provenance": "onet",
+   "clean": 7,
+   "cleanBand": "strong",
+   "noisy": [
+    16,
+    10,
+    5
+   ]
+  },
+  {
+   "id": "shipping_business",
+   "name": "Shipping business & maritime services",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    36,
+    4
+   ]
+  },
+  {
+   "id": "farming",
+   "name": "Farming & horticulture",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    19,
+    1,
+    12
+   ]
+  },
+  {
+   "id": "fisheries_aquaculture",
+   "name": "Fisheries & aquaculture",
+   "provenance": "onet",
+   "clean": 7,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    5,
+    4
+   ]
+  },
+  {
+   "id": "forestry",
+   "name": "Forestry & hunting",
+   "provenance": "onet",
+   "clean": 24,
+   "cleanBand": "possible",
+   "noisy": [
+    20,
+    21,
+    28
+   ]
+  },
+  {
+   "id": "animal_care",
+   "name": "Animal care & training",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    7,
+    5
+   ]
+  },
+  {
+   "id": "nature_conservation",
+   "name": "Nature & conservation",
+   "provenance": "onet",
+   "clean": 19,
+   "cleanBand": "possible",
+   "noisy": [
+    25,
+    20,
+    48
+   ]
+  },
+  {
+   "id": "academic_research",
+   "name": "Academic research & university teaching",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    4,
+    6
+   ]
+  },
+  {
+   "id": "life_sciences",
+   "name": "Life sciences & biotech",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    8,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "pharma_clinical",
+   "name": "Pharmaceutical & clinical research",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    7,
+    5,
+    9
+   ]
+  },
+  {
+   "id": "physical_sciences",
+   "name": "Physics, chemistry & mathematics",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    9,
+    1,
+    7
+   ]
+  },
+  {
+   "id": "earth_sciences",
+   "name": "Earth, ocean & climate sciences",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "social_sciences",
+   "name": "Economics & social sciences",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "medicine",
+   "name": "Medicine (doctors)",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "nursing",
+   "name": "Nursing & midwifery",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "dentistry",
+   "name": "Dentistry",
+   "provenance": "onet",
+   "clean": 6,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    6,
+    5
+   ]
+  },
+  {
+   "id": "pharmacy",
+   "name": "Pharmacy",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "allied_health",
+   "name": "Rehabilitation & allied health",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    3,
+    2
+   ]
+  },
+  {
+   "id": "diagnostics",
+   "name": "Diagnostics & medical technology",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "mental_health",
+   "name": "Mental health & psychology",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    4,
+    3
+   ]
+  },
+  {
+   "id": "health_admin",
+   "name": "Health administration & informatics",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    2,
+    1
+   ]
+  },
+  {
+   "id": "veterinary",
+   "name": "Veterinary medicine",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "complementary_health",
+   "name": "Complementary therapies",
+   "provenance": "onet",
+   "clean": 5,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    4,
+    4
+   ]
+  },
+  {
+   "id": "care_work",
+   "name": "Elder & disability care",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "childcare",
+   "name": "Childcare",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "social_work",
+   "name": "Social work & welfare",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "nonprofit",
+   "name": "Nonprofits, NGOs & humanitarian work",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    2,
+    1
+   ]
+  },
+  {
+   "id": "faith",
+   "name": "Religious & spiritual work",
+   "provenance": "onet",
+   "clean": 6,
+   "cleanBand": "strong",
+   "noisy": [
+    8,
+    13,
+    32
+   ]
+  },
+  {
+   "id": "early_childhood",
+   "name": "Early childhood education",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "school_teaching",
+   "name": "School teaching",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    5,
+    7
+   ]
+  },
+  {
+   "id": "tutoring",
+   "name": "Tutoring & language teaching",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    4,
+    1
+   ]
+  },
+  {
+   "id": "coaching",
+   "name": "Coaching",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    3,
+    5
+   ]
+  },
+  {
+   "id": "vocational_instruction",
+   "name": "Vocational & specialist instruction",
+   "provenance": "estimated",
+   "clean": 7,
+   "cleanBand": "strong",
+   "noisy": [
+    13,
+    34,
+    10
+   ]
+  },
+  {
+   "id": "public_policy",
+   "name": "Public policy & analysis",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    12,
+    1,
+    14
+   ]
+  },
+  {
+   "id": "public_administration",
+   "name": "Public administration & casework",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    4,
+    4
+   ]
+  },
+  {
+   "id": "inspection_regulation",
+   "name": "Inspection & regulation",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    1,
+    14
+   ]
+  },
+  {
+   "id": "politics",
+   "name": "Politics & elected office",
+   "provenance": "estimated",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "diplomacy",
+   "name": "Diplomacy & international organisations",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    3,
+    3
+   ]
+  },
+  {
+   "id": "library_archives",
+   "name": "Libraries, archives & museums",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    11,
+    35,
+    20
+   ]
+  },
+  {
+   "id": "military",
+   "name": "Armed forces",
+   "provenance": "onet",
+   "clean": 27,
+   "cleanBand": "possible",
+   "noisy": [
+    30,
+    29,
+    30
+   ]
+  },
+  {
+   "id": "police",
+   "name": "Police & investigation",
+   "provenance": "onet",
+   "clean": 6,
+   "cleanBand": "strong",
+   "noisy": [
+    52,
+    48,
+    19
+   ]
+  },
+  {
+   "id": "fire_rescue",
+   "name": "Fire, rescue & emergency response",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    5,
+    4
+   ]
+  },
+  {
+   "id": "corrections",
+   "name": "Corrections",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "private_security",
+   "name": "Private security",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    8,
+    6,
+    1
+   ]
+  },
+  {
+   "id": "journalism",
+   "name": "Journalism",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    6,
+    3
+   ]
+  },
+  {
+   "id": "publishing",
+   "name": "Publishing & editorial",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    24,
+    9,
+    1
+   ]
+  },
+  {
+   "id": "authorship",
+   "name": "Writing & authorship",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "translation",
+   "name": "Translation & interpreting",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "film_tv",
+   "name": "Film & TV production",
+   "provenance": "onet",
+   "clean": 8,
+   "cleanBand": "strong",
+   "noisy": [
+    53,
+    3,
+    7
+   ]
+  },
+  {
+   "id": "animation_vfx",
+   "name": "Animation, VFX & 3D",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    5,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "photography",
+   "name": "Photography",
+   "provenance": "onet",
+   "clean": 7,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    9,
+    6
+   ]
+  },
+  {
+   "id": "visual_arts",
+   "name": "Fine art & illustration",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    3,
+    2
+   ]
+  },
+  {
+   "id": "fashion",
+   "name": "Fashion & styling",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "music_production",
+   "name": "Music production & industry",
+   "provenance": "onet",
+   "clean": 10,
+   "cleanBand": "strong",
+   "noisy": [
+    16,
+    9,
+    8
+   ]
+  },
+  {
+   "id": "stage_production",
+   "name": "Theatre & live production",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    10,
+    1,
+    46
+   ]
+  },
+  {
+   "id": "arts_admin",
+   "name": "Arts & culture management",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    10,
+    3,
+    10
+   ]
+  },
+  {
+   "id": "acting",
+   "name": "Acting",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    6,
+    5
+   ]
+  },
+  {
+   "id": "music_performance",
+   "name": "Music performance",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "id": "comedy",
+   "name": "Comedy",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    4,
+    4
+   ]
+  },
+  {
+   "id": "broadcasting",
+   "name": "Hosting & broadcasting",
+   "provenance": "onet",
+   "clean": 9,
+   "cleanBand": "strong",
+   "noisy": [
+    12,
+    8,
+    15
+   ]
+  },
+  {
+   "id": "dance",
+   "name": "Dance",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "modelling",
+   "name": "Modelling",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "variety",
+   "name": "Variety & live entertainment",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "id": "pro_sport",
+   "name": "Professional sport",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "esports",
+   "name": "Esports",
+   "provenance": "estimated",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    28,
+    10
+   ]
+  },
+  {
+   "id": "strategy_games",
+   "name": "Professional strategy games",
+   "provenance": "estimated",
+   "clean": 31,
+   "cleanBand": "possible",
+   "noisy": [
+    169,
+    18,
+    61
+   ]
+  },
+  {
+   "id": "sports_coaching",
+   "name": "Sports coaching & performance",
+   "provenance": "onet",
+   "clean": 12,
+   "cleanBand": "strong",
+   "noisy": [
+    14,
+    17,
+    7
+   ]
+  },
+  {
+   "id": "fitness",
+   "name": "Fitness & wellness coaching",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    17,
+    9
+   ]
+  },
+  {
+   "id": "outdoor_guiding",
+   "name": "Outdoor guiding & instruction",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    10,
+    2
+   ]
+  },
+  {
+   "id": "sports_business",
+   "name": "Sports business",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    11,
+    1
+   ]
+  },
+  {
+   "id": "content_creation",
+   "name": "Content creation",
+   "provenance": "estimated",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "written_creator",
+   "name": "Newsletters, blogs & niche publishing",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "course_creation",
+   "name": "Courses, digital products & communities",
+   "provenance": "estimated",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    19,
+    4,
+    3
+   ]
+  },
+  {
+   "id": "creator_services",
+   "name": "Creator services",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    2,
+    7
+   ]
+  },
+  {
+   "id": "startup_founder",
+   "name": "Startup founding",
+   "provenance": "estimated",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    7,
+    1
+   ]
+  },
+  {
+   "id": "small_business",
+   "name": "Small business ownership",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    5,
+    1
+   ]
+  },
+  {
+   "id": "ecommerce",
+   "name": "E-commerce",
+   "provenance": "onet",
+   "clean": 24,
+   "cleanBand": "possible",
+   "noisy": [
+    21,
+    32,
+    29
+   ]
+  },
+  {
+   "id": "agency_ownership",
+   "name": "Agency & studio ownership",
+   "provenance": "estimated",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "culinary",
+   "name": "Culinary",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    7,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "restaurant_service",
+   "name": "Restaurant, bar & café service",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "hotels",
+   "name": "Hotels & accommodation",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "tourism",
+   "name": "Tourism & travel",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    4,
+    2,
+    5
+   ]
+  },
+  {
+   "id": "store_retail",
+   "name": "Store retail",
+   "provenance": "onet",
+   "clean": 3,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    5,
+    1
+   ]
+  },
+  {
+   "id": "retail_buying",
+   "name": "Retail buying & merchandising",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "customer_service",
+   "name": "Customer service & support",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    3,
+    5,
+    5
+   ]
+  },
+  {
+   "id": "hair_beauty",
+   "name": "Hair, beauty & cosmetics",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "household_services",
+   "name": "Household & personal assistance",
+   "provenance": "onet",
+   "clean": 8,
+   "cleanBand": "strong",
+   "noisy": [
+    13,
+    7,
+    26
+   ]
+  },
+  {
+   "id": "funeral_services",
+   "name": "Funeral services",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    6,
+    4
+   ]
+  },
+  {
+   "id": "woodcraft",
+   "name": "Furniture & woodcraft",
+   "provenance": "onet",
+   "clean": 2,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "tattoo",
+   "name": "Tattoo & body art",
+   "provenance": "estimated",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "metal_jewellery",
+   "name": "Jewellery, metal & precision craft",
+   "provenance": "onet",
+   "clean": 5,
+   "cleanBand": "strong",
+   "noisy": [
+    16,
+    10,
+    14
+   ]
+  },
+  {
+   "id": "textile_leather",
+   "name": "Textiles, leather & upholstery",
+   "provenance": "onet",
+   "clean": 4,
+   "cleanBand": "strong",
+   "noisy": [
+    6,
+    5,
+    5
+   ]
+  },
+  {
+   "id": "ceramics_glass",
+   "name": "Ceramics, glass & instrument making",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "food_drink_craft",
+   "name": "Food & drink craft",
+   "provenance": "onet",
+   "clean": 13,
+   "cleanBand": "strong",
+   "noisy": [
+    18,
+    24,
+    19
+   ]
+  },
+  {
+   "id": "restoration_signs",
+   "name": "Restoration & decorative crafts",
+   "provenance": "onet",
+   "clean": 1,
+   "cleanBand": "strong",
+   "noisy": [
+    2,
+    1,
+    3
+   ]
+  }
+ ]
+}

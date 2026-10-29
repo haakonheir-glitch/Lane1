@@ -1,0 +1,5231 @@
+{
+ "config": "v2-0.5",
+ "n": 1000,
+ "from": 500,
+ "to": 1000,
+ "lanes": [
+  "b2b_sales",
+  "solutions_sales",
+  "account_management",
+  "field_sales",
+  "consumer_sales",
+  "partnerships",
+  "media_ad_sales",
+  "sales_ops",
+  "trade_brokerage",
+  "brand_marketing",
+  "growth_marketing",
+  "lifecycle_marketing",
+  "product_marketing",
+  "content_social",
+  "advertising_agency",
+  "pr_comms",
+  "market_research",
+  "events",
+  "product_management",
+  "product_design",
+  "ux_research",
+  "graphic_design",
+  "industrial_design",
+  "software_engineering",
+  "embedded_systems",
+  "devops_cloud",
+  "cybersecurity",
+  "it_support",
+  "qa_testing",
+  "enterprise_systems",
+  "game_development",
+  "devrel_techwriting",
+  "data_analysis",
+  "data_science",
+  "ml_ai_engineering",
+  "data_engineering",
+  "gis_geodata",
+  "accounting_audit",
+  "corporate_finance",
+  "investment_banking",
+  "private_capital",
+  "asset_management",
+  "trading_markets",
+  "quant_finance",
+  "banking_lending",
+  "wealth_advice",
+  "insurance",
+  "tax_advisory",
+  "risk_management",
+  "fintech_payments",
+  "management_consulting",
+  "independent_advisory",
+  "strategy_bizops",
+  "general_management",
+  "project_management",
+  "business_operations",
+  "sustainability",
+  "administration",
+  "recruiting",
+  "hr",
+  "learning_development",
+  "workplace_psychology",
+  "legal_practice",
+  "in_house_legal",
+  "courts_prosecution",
+  "legal_support",
+  "compliance",
+  "intellectual_property",
+  "supply_chain",
+  "procurement",
+  "warehouse_logistics",
+  "hse_quality",
+  "facilities",
+  "waste_recycling",
+  "road_transport",
+  "rail",
+  "aviation",
+  "real_estate_agency",
+  "property_investment",
+  "property_management",
+  "mechanical_engineering",
+  "electrical_engineering",
+  "civil_engineering",
+  "process_engineering",
+  "industrial_engineering",
+  "environmental_engineering",
+  "biomedical_engineering",
+  "mining_geo",
+  "architecture",
+  "interior_design",
+  "urban_planning",
+  "construction_management",
+  "electrician",
+  "plumbing_hvac",
+  "carpentry",
+  "masonry_concrete",
+  "finishing_trades",
+  "heavy_equipment",
+  "welding_metal",
+  "vehicle_mechanics",
+  "industrial_maintenance",
+  "specialist_trades",
+  "landscaping",
+  "machine_operation",
+  "process_operation",
+  "food_production",
+  "textile_print_production",
+  "seafaring",
+  "offshore_oil_gas",
+  "renewables",
+  "power_utilities",
+  "shipping_business",
+  "farming",
+  "fisheries_aquaculture",
+  "forestry",
+  "animal_care",
+  "nature_conservation",
+  "academic_research",
+  "life_sciences",
+  "pharma_clinical",
+  "physical_sciences",
+  "earth_sciences",
+  "social_sciences",
+  "medicine",
+  "nursing",
+  "dentistry",
+  "pharmacy",
+  "allied_health",
+  "diagnostics",
+  "mental_health",
+  "health_admin",
+  "veterinary",
+  "complementary_health",
+  "care_work",
+  "childcare",
+  "social_work",
+  "nonprofit",
+  "faith",
+  "early_childhood",
+  "school_teaching",
+  "tutoring",
+  "coaching",
+  "vocational_instruction",
+  "public_policy",
+  "public_administration",
+  "inspection_regulation",
+  "politics",
+  "diplomacy",
+  "library_archives",
+  "military",
+  "police",
+  "fire_rescue",
+  "corrections",
+  "private_security",
+  "journalism",
+  "publishing",
+  "authorship",
+  "translation",
+  "film_tv",
+  "animation_vfx",
+  "photography",
+  "visual_arts",
+  "fashion",
+  "music_production",
+  "stage_production",
+  "arts_admin",
+  "acting",
+  "music_performance",
+  "comedy",
+  "broadcasting",
+  "dance",
+  "modelling",
+  "variety",
+  "pro_sport",
+  "esports",
+  "strategy_games",
+  "sports_coaching",
+  "fitness",
+  "outdoor_guiding",
+  "sports_business",
+  "content_creation",
+  "written_creator",
+  "course_creation",
+  "creator_services",
+  "startup_founder",
+  "small_business",
+  "ecommerce",
+  "agency_ownership",
+  "culinary",
+  "restaurant_service",
+  "hotels",
+  "tourism",
+  "store_retail",
+  "retail_buying",
+  "customer_service",
+  "hair_beauty",
+  "household_services",
+  "funeral_services",
+  "woodcraft",
+  "tattoo",
+  "metal_jewellery",
+  "textile_leather",
+  "ceramics_glass",
+  "food_drink_craft",
+  "restoration_signs"
+ ],
+ "seconds": 573,
+ "people": [
+  {
+   "bands": "ppppupupppppppuppuppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppppppuuppppppppppppppppppppppppppppppppppspspspspppppppppppppppppppppppppppuuuuuuuuuuuuuuupupppppuppupuuupppppupppppuppppp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.147,
+   "envMaxAfter": 0.147,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppsppsppppsppsppuppuuuuuupppuuuuuppppppppppppppppppspppppppppppppppuuupuppppuuuuuuuuppupuuuuuuuuuuuuuuuuuuupuuuuupuuuupppppuuppuuppppppppppppupppupupppppppppppppspppsppppppppppsppssppsppppppppppupuuuuu",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.262,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "upppppuppuppppuupuppppppppppppppppppppppuppppupppppupupupppuupuupppupppppppppppppspppppppppppppppppssppppppppspppppppupppppupppppuppppuuuuuuuuuuppuuppppppuppppppppppupppuuppuupupuuppuuuppupppupppppppppppps",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.181,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuuupupuupuppppppppppppppppppspppuuupuuppupuuuuuuppuuuuuuuppuuppppppppuuussppppssppppsppsppssspppppppppppppppppppspppppppppppppppuupppppuupuuppppppuppppppppppupppupppuuupppuupuuuuuupppuuuupppsppppps",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.162,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppupppuppppppuppppupuuuuupppppppuppppppppuppppppppppppppppppppppppuppppppppupuuuupuppppppppppppppppppppuppppppppspppppppppppsppspsspssssssppppppuppppppppppppppppppppppppppssspppppppppppppppppppppupppp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.135,
+   "envMaxAfter": 0.135,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppupppppppppppppspppspppppppppppppppppppuppupppppppppuuupppupupppppppppppppppppspsppppspppppppppppppppppppppppppppppssppppuppppppuuuuuuppuppppppppppuppppupppppppppppupppuuuppuupupppupppuuuupupupppppppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "uppupuppppuuuuuuupupppspppppppppppppppuuuuupuupuupupppupppuuuuuuuuuupppppppppppppppppppppppppsssssspssssppsppppppppppuppppuuupuppuuppppuuuuuuuuuupuuppppppupppppppsppppppuppppppupuppuupupppppppppppppspsspps",
+   "strong": 17,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.114,
+   "envMaxAfter": 0.114,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppupupuuuupppuupppuppppuuppupppspuppupppusppppppppppppppppppppppupuuuuppuuupppppppppppppppppppppppppupupuuppspspppsppspspppppppppppppppppppppsuupuupppppppppppppppppupppppppppppppsppppuppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.152,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "sppppsppppspspppppppupppupppppppppppppspppppppppppppppppppppupppppppsspppppppppppppppppppppppppppppppppppppppppppppupuuuuuuuuuuuuupuuuuuppuuuuuppppppppppppupuppppppppppppupupppuuupppuppppppppppspppppppppup",
+   "strong": 8,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.175,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppupppppupppppppppupppppppppuuupppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppuuuppuppuppupppuppppppppuppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.171,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "challenge"
+   ]
+  },
+  {
+   "bands": "pppuppuppppppppppuppspppspppppsppsspsupppuppuppupppppppppuuuuppuuuppppupppuppppusspsspppspppppppppppppppppppppppppppppspssppupupppuppuuuuuuppuppupppppppuupppupppppppupppppppuppuuuupppppuppuuuuupuuupppppppp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.119,
+   "envMaxAfter": 0.119,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuuuppuuuupppppppppuppppuuppppppppuppppppppuuuuuuuppppppppupppppppppppppppppppuppppuuuuspsppspppsppsssspsspppppppsspppppppppppppppuppppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.109,
+   "envMaxAfter": 0.109,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppuuuupuupppppupupppppppppppppppppppppsssspppppppppuuuuuppppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuupuuupupupuuppsppppspppppssssspsppppppupppppppppupuuuuuppppppuppppppppppppppppupppppppppuuuuuuu",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppuppuupppppppppppppppppppppppupppppuppppppupuupppppppppuuuppuuuuppppuppppppppuppppppppppppppppppppppppppppppppsspppppppsppppupppuppupuupuppuppupppppppuupppupppppppupppppppppppppupppppupppuuuupupupppppspp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.14,
+   "envMaxAfter": 0.14,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppupuppupuuuuuuuuuuuuupuuuuuppppppuppppppppppppppppsppppppppppupuppppppuuuuuupuuuuppupppppuupuppppuupuppuupupupuuppsppspppppssspssspssppppppuppspuuupuuuuuupppppuppppppsssppupppppppsssppppppuuuuupu",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.236,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppuupuppuppppuupupppppssspssspppsspspppppppuppppppppppupuuuupppppppppppppppppppsssssspppuspppppppppppppppppppppppppppspsspppppppppppuuuuuuuuuupppppppppuppppupppppuuuuuuuuuuuuuuuuuuuuupupuuuuuuuuuuppuppppp",
+   "strong": 19,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.116,
+   "envMaxAfter": 0.116,
+   "envShrunk": []
+  },
+  {
+   "bands": "spppppppppppppppppppupupupppppppppppupppspppppppppppppspppspppsspppsppppupppppppuuppppupppupuuuuuuuuuuuuupupppupuuuuuuupuupuuupuuupuuppppppuupupppspupppppppppppuuuppppppppppppppuppppppppppppppppppppupuuuuu",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.226,
+   "envMaxAfter": 0.148,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "uuuuuuuuuuupupuupupsssspppppppspppspspupupupuupuppppuuuuuuuuppuuuuuuuuupppppuuuuppppppspppsppppppppppppppppppppupppppppppsppppppppppppppupppppppupupppuuuupppppspssppupppppppuuupppupppuuuuupuuuuuuuuppppppps",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.166,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppupuupuppppppppupppppppppppppppppppppppsppppppppppppuppppppuuuuuppuuuppuppuupuuupuuppuupuppuppppspppppsspsspsspsppspppspsspppppppppppppppuuuuuuupppppppppppppppppppppppppppppppppuuuuuuu",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.163,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppuppupppppppppuuupppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupuuuuupuuuuppuupuppppppppppuupppupppppppppppppppppppuuuppppppppppuuppupupppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.173,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuupppppupuppppspspppppppppppsupppuupuuuuupuuuupupuuuuuuuuupuuupppppppppusspppppppppppppsppppppppppppppppppppppppppppupuppuuppupuuuuupupuupuuppppupppppppsssppuppppppppppppuuppppuupupppuupupppsspssps",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.136,
+   "envMaxAfter": 0.136,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppuupuuuupupupupppppppppuppppppppppupppppppppppppppppuupppppppppppspppppppppppppppupppppppspppppspspppppppppppuppppuppppppupppppuuuuuuuupppuppppppsuuuppupppuupuuuuupupppppppuuuuppppppppppppppppppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.156,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "pppppppupppupuppuppuuupuuuuuuuuuuuuuupppppppppuppppppppppppppppppppppppuppppppppuuuuupppppupppppppppppppppppppppppppppupupppppppppppppppppppppppppppuupppppuuppppppppppppppppssppppppppppppppppppppsppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.151,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppppupppppppppppppppppppppppppppppppppppsppppppppppppppppupppppppppppppppppppppppppppppppppppppppppppppsppppspppppppppppppppppppppppppuppupupppppppppppppppppppppppppppppppppppppppppupp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.204,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "challenge"
+   ]
+  },
+  {
+   "bands": "ppuuupuppuppppuupupppppppppsspppppppspppuppppupppppupupupppuuppppppupppspppppuppsspppppppusppppppppssppppppppsppppppppppspppppppppppppupuuupuuupppuuppppppupuppupppupuuuuuuuuuuuppuuupuuuuuupupuuupupppuppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.17,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppuppppppppupuppppppsppppppupppppupppuppupuupppppppppuuuuupuuupppppppppppppusspsssppsppppppppppppppppppppsppppppppppssppupuupuuppuuuuuuuuuupupppppppuppppupppppppuppppppppppuuuuppupppppppuuupupppppppspp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.211,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "upuppppppuppppuupuppppppppppppppppppppppuppppupppppppuupppppupuppppupppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppuuuppupppupppppppuppppuppppppuuuuupuuuuupupupuuupuuppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppppspsspppppppspuuuupuppuupuppuuuuppppppppppppppppppspppppppppppppppupuppppppuuuuupuuppupuuuuuuuuuupuuuuuuuupuuupppupuuppppppupppppppppppppppppppppppppppppppppppppppppppppppppppppppsspsppppppppppupuuuuu",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.232,
+   "envMaxAfter": 0.149,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppssppppppppppppppppppppppppppppppppppppppppppuppppppupppuuuppppppppppppppuppppuppppppppupupppppppppsppppspppppppppppppppppppppppppppuuuupppppppppppppppppppuuupppupppppuppuuupupppuppppppup",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.094,
+   "envMaxAfter": 0.094,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuuppppuupupsspppppppppspppppspppupupuupppppuuuuupuuuupuupppupppppppppuupsspsppspppsppppppppsspppppppppppppppppppsspppppppppppuuuuuuupuupupuuppppuppppppppppppupppppppuuuuuuuppuuuuuupuuuuuuuppppsppps",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.163,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "pppppppppppuppppppupuppuuupuuuppupuuppppuppppppppuppppppupppppppppppppppppppppppuuuuuuppuppppppppppppppppppppuppppppppppuuppppppppppppspppspsssppppppupppppppppppppppppppppppppppsspppppppppppppppppppppppppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.136,
+   "envMaxAfter": 0.136,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppuupuppppupupuuuupuuuupuuuuuppuuppuppppppppppupupppspppppppppppppppppppuuuuuuppuuuupppppppppppppppppuppppppusupuuppsppspsspsssspssssssppppppupppppppsuuuuuuuppppppppppppssppppppppppppppppppppuppupp",
+   "strong": 19,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "puupppuppuupupuuuupppppppppppppppppppppuuuuppuppupuuuppuppuuuuppuppupppppspppppppppppppspppppppssssspppsppssppppppspppppppuppppppppppppuupuppupuupuuppppppupppppppppppppppppppppppppupuuuppuppppppppppspppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.222,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppppuppuppppuupupupupppppppppupppppupppuppuppupppupppppuuuuupppupppppppsppppppsspsspppppppppppppppppsppppppsppssspsuppppppupuppuuppuuuuuuuuuupuppuppppppuuuuppppppppuuuuuuupppppupuuuupppupppuppupppppppspp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.173,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "uppppppppppppppppppsssspppppppppppppppupppppuupupppppuuppuuuupuupppuppppppppupppppppppppspsppppppppppppppppppppppppppupppspuupuuuuupuuuupuuuuuupppuppppuuupppuppppsppppppppppuppuuuuppuppppppuuuupuuupppppspp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.101,
+   "envMaxAfter": 0.101,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppupppuuuuuuuupuuuuuuuuupuuuuuuuuppuuupuupuppuuuuupupuppppuuppppuppppspssppppuppuuuppuuppppppspppppppppppppppppppppupuuuppppppppppspppppppppuppuupupsppuuuppupppppppupupppppppsppuuuuuppusssppppsssppppppp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.093,
+   "envMaxAfter": 0.093,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppupppppppppuppppupppppupupuupupuuupuupppppuuupuppuuuppppppppppppuppppppppppppppppppppppppppppppppppppppppppupupppppuppppuuppppppuuppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.143,
+   "envMaxAfter": 0.143,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppuuupupuuppppuupuppppppspppppppppppsupppuppuuuuuppupupupuuuuppuuupppppppppppuuussssspppppsppppppppssppppppppsppppppppppsspppppppuuppuuuuuuupuppupuuppppuppppupppppppupppuppppppppuuppuuuuuupuuuuuupppspppsps",
+   "strong": 16,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.143,
+   "envMaxAfter": 0.143,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppsppppppspppppppppppppppppppppppppppppppppppppppppsppppppppppuuuuupppppppppppppppuuuuuuuuuuuuuuuuppupuuuppppppppppppppppppppppppppppppppppppupuppppppupppppppppppppupppppppppppppuupppppuuuupppuup",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.124,
+   "envMaxAfter": 0.124,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppuuppppppppppppppppppppppppuppppppupuuppppppuuuupuuppppppppppppppppppppppppppppppsppppspspppppppppsppppupuppuuuuuuuuuuuuuuuuuuuuuuuppupppppppppuppppppppuuupupuuppuuupppupppppppppppppppppppppp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.137,
+   "envMaxAfter": 0.137,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppuppppppuppupppppppppupuupppuuppppppppppppppppppppupsppppppppppppppppppppppppppppupppppuuuuuuuuuuuuupuuuuuupuppppppuuppppuppppppppppppppppppuuupppuppppppppuppupupppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.144,
+   "envMaxAfter": 0.144,
+   "envShrunk": []
+  },
+  {
+   "bands": "puppuppppuupppuppuppppupppppppppppppppppupppppppppppppppuppppppppppppppppppppuupppppppppuuppppppppppppppppppppppppppppppppppspsssssppspsppppppppppppppppppupusuuuuuuuuuupuupuuuuppppuppuppuupppppupppppuppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.163,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppppuppppppppppppppppppppppppppppppuppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.132,
+   "envMaxAfter": 0.132,
+   "envShrunk": []
+  },
+  {
+   "bands": "spppssppppsppppppppuuuupupppppupppupupppspppppppppppppsppppppppspppppppppppppppppuppppupppupuppuppupupppppppppuppppupuupuuuuuupuuupuuppppppuupupppppuppppppppupupuupppppppuuupsspuppppppppspppppppppppuuuuupu",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.225,
+   "envMaxAfter": 0.148,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppspppppspsppupupuupuupuppuupupppppppppppppppppppppsspppspppspppuuupuppppuuuuuuuuppupuuuuuuuuuuuuuuuuuuupuuuuupupuupppuppupppppppsppppppppuspupppppppppppuuuppppppppppppppppppppssppsppppppppppuuuuuuu",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.231,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppsppppppuppupuppppppppupppppppppppppppppppppppsssppppsppuuuuuuppppuuupuuuuupuuuuuuuuuuuuuuuuuuuuuuuuuuusppppsppppppspppppspssssssppuspuppupuppppupuuuuupppppppppppppppppspppppuppppppuuuupuuuuu",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.114,
+   "envMaxAfter": 0.114,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuuuuuuuppppppppupsssspspppppspppsppuppppupuuuupppppupupuuuuppuupupuuupppupuuuusppsppppsspppppppppppppppppppppuppppppppssppupupppuppuuuuuuupuupupppppuuuuppsppspssppuppppppppppuuuuppppuuupuuuuuuuuuupsppppp",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.225,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppuppppppppppppppupuupuupppppppupppppppppppppppppppppspsspppppppuuuuuuuupppuuuuupuuuppuuuuuuuuuuuuuuuuuuuupuuuuusppppspsppppspppppsppsssspppupsppuupuppppupuuupupppppppppppppppppspppppuupppppuuuupuuuuu",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppppuppppupuppppupuupuuppuuuuuppupppuppppuuppppppuppppppuupuppppppppppppppppppuppppppppppppppppppppppppppppppppuuuuuuuuuuuppupppppppppppppupppuupppppppppppssspspppsssppppppppppppppppppppppppppsppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.187,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppupuppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppsppppppppppppppppppppppppppppppppppppppppppppupppppppppppupppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.144,
+   "envMaxAfter": 0.144,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppuuuuuupppppppupppppppppppppppppppppppspppppppppuuuuuuupppuuuuuupuppuuuuuuuuuuuuuuuuuuuuuppuuppsppuupppppppsppppsspssssssppupppuppppppppppupppppppppspppppppspppspppppppppppppppupuppuu",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.087,
+   "envMaxAfter": 0.087,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppuppppppppuspuuupuuuuuuuupuuuuuppppppuppuppppppppppppppppppppppppuppppppppuuuuupuuppupuppppppuuppppppuppuppuppppuuuuupppupupuppppppppppppppupppupppppppppppppppsppppsppssppppppppspppsppppppppppppppppu",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.235,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "pupuupuuuppppppppuppspspspppppsppppppupppuupupuuuppupupupuuupppuuuupuuuppppppupuppppppppsppppppppppppppppppppppuppppppppppppppupppupppppupppppppupppppppuuppsppspspppupppppppppppppupppppupppuuuupupuppsppspp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.165,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "puuuuuupuupppppppuuppppppupppppppppppuuuuuupuupuuuuuuuuuupuuppuuupuuuppppppppuuupppppupppppppppppppppppppppppppupppppppuppppppppppppppppupppspsuupuupuuppppppppspsppppppsppssppuppppppppuuuuppppupppppsspspps",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.134,
+   "envMaxAfter": 0.134,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppuuupupuppppppppuppspspspppppspppspsuppppppuuuupppupupupuuuuuppuuupuuuppppppuuussssssppsppppppppppppppppppppspupppppuspssppupuupuupuuuuuuuuuuupupppppppuupppupppppppuppppppppppuuuuppuppupupuuuuuuuuuppppppp",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.299,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppupuppppppppppppppppppppppppppppppppppppppppppppppppuppppppuupuuupuuuppuuuuuuuuuuuuuuuuuuuppuppuppppupppppppppuppppppppppppppppppppppppppupuuuuuppppppuuuuuppppppppppppppppppppppuuuuuuu",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.132,
+   "envMaxAfter": 0.132,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppuuupuppupppppupuppppspssppppspppppspppppppuppupppupupupuuuuuppuupppppppppppuppssssspppspsppppppppppppppppppppppppppuppsspuupuupuupuuuuuuuuuuupuppuppppuupppupppppppuupupupuuuuuuuuppuupupupuuuupuuupppppspp",
+   "strong": 15,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.194,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppupppppppppppppppppppppppppppppppppppspppppppppuuuuuuppppuuuuupuuupppuuuuuuuuuuuuuuuuupupuuuuppppppppppppppppppppppppppppppppppppppppppppuppppppppppuppppppppppppppppupppppppppupuuuuu",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.127,
+   "envMaxAfter": 0.127,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppsspspppsppppppuuuuupppuupuuppupppuuuuuuuuuuuuuuuuuuuupuuuuuppppppppppppppppppppppppppppppppppupppppsppuupppppppppppuuuppppppppppppuppppppupuuuuuuuu",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.112,
+   "envMaxAfter": 0.112,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppuuuuuuuupuuuppupppppuupuuuupppuuppupuppuuuuupupppppuuuppppupppppspppppppppppppppppppppsssppspspppppppppppsppuppppuuppppppppppppuppppppuppuuppppppuuupppppppppuuuuppppppppppuuuuuppuppppppppppppppppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.113,
+   "envMaxAfter": 0.113,
+   "envShrunk": []
+  },
+  {
+   "bands": "uppuppuppuppppuupuppppppppppppppppppppuppppppupppppppuuupuuuppuupppuppppppppppppppppppspppsppppppppppppppppppppppppppppppppppppppppppppppuupppppppupppppuppppppppppppupppupppppppppupppuuupuppuuupupppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.205,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "uuupuuppuuppppuppuppppppppppppppppppppppupuppuppuppuuuuupppuupuuupuupppppppppuuupppppppspppppppspssppppsppspspppppppppppppppppppppppppuuuuuupuuuupuuppppuppppppppppppupppppppuppupuuppuuupuupppuppppppspsspps",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.162,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppuppupppppppuppppppppppspspppppsppppppppppppppppppuppuuupppppppppppppppppppppppppppppsppppppppppppppppppppppppppuppppppuppppupppuuuuuuupuupppppppppuppppppppppppuupupupuuuuuuuuppuupupupuuuupuuppppppppp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.191,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "uppppupppppppppppppspsppppppppspppppppppppupppppppppppppppuppppuppppppppppppupppppppppppsppppppppppppppppppppppppppppppppppppppppppppuuupupppuppppppppppuppppppspppppppppppsppppupppppppppppppuuppppppppppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.12,
+   "envMaxAfter": 0.12,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppuuuuupupuuuuuuuuuuuuupuuuuuppuuppupppppuupupppuspppuuppppuppspspssppppuuuuuuppuuuppppppppppppppppppppppppppuupuuuupppppppppsppppppuppuppuupppsssuuuppupuuuupuuuupppppppppsuuuppsppssssspsssppuppppp",
+   "strong": 19,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.206,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "upuuuuupuuupupuupuppppppsppppppppppppppppuupupppuppupupuppuuuupuuppuuppppppppppusspspppppppppppppppppppppppppsppppppppspsspppppppppppppuuupppuppupuuppppppuppppppppppuuuuupppppuppuuuuuupuuupppuuuppppppppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.14,
+   "envMaxAfter": 0.14,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuuuuupuuupuuuupuupppppppppppppppppppuuupuppuppppppuuuuppppupuppppupppspppppuupppppppsppuppppppppspppppppppppspppppppppppppppppspppppppuupppppuppuuppppppupupuupupuuuuuuuupuuuuppppuuuuupuupppppupppppuppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.138,
+   "envMaxAfter": 0.138,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppuppppspppppsssspppppppspppppppppppppuppupppppppppuppppppupppuuupuuuuuppuppppppupsspuppppuupppuppuuppppuupppuppppppppuuuuupupuuuuppuppuupuuppupuuuuspsupspsppppssssppppppuuuusspppuppuuuuupuuuupsppppp",
+   "strong": 19,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.152,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppuppppppppuppppppppsppppppuppppppppppppuppupppppppppuuuuupppuppppppppppppppsppsspppppppppppppppppppppppppppppppppppsppppppppuuppuuuuuuppuppuppppppppppppuppppppppppppppppppppupppuppppppppuppupppppppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.171,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition",
+    "challenge"
+   ]
+  },
+  {
+   "bands": "pppppppppppupuppupuuuuuuuuuuuuupuuuuuppupppupppppuppppppupppppppppppppppppppppppuuuuuuppuuuppppppppppppppppppuppppppupupuuuppppppppppspppppppppppppppuppspupuppupuuuupppppppppppppsspppppppppsssspsppppuppupp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.157,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppuppupppuuuuuupppupupppppppppppppppppppuppppppppupppppppuuuupupupuppppppppppppppppppppppppsspspppsspppppppppspppppppppppppppppppppppppuppppppuuppuppppppupupppppppppuuuuupupppppppuuuuppppppppppppppppppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.168,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppuuuupuuuppuuupppupuppppppupppppuppppppppppppppppppppppppppppppuuuuuuppupppppppppppppppppppppppppppppupuupppppppppppsspppsppspppppppupppppppppppppppppppppppppppsspppppppppppppppppppppppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.163,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "spppppppppppppppppppupppppppppppppppppspppppppppppppppsppppppppppppsppppppppppppppppppupppuppppppppppppppppppppppppuuuuupuuuuupuuupuupuppppuupupppppuppppppppuppuuppppppppppppppuuppppppppppppppppppppppppupu",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.324,
+   "envMaxAfter": 0.142,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppupupupuuuuuuuuupuuuuuppppppupppppuppppppupsssppppppppppupuppppppuuuuuuuuupuuuuuuppuuuuuuuppuuuupuuupupupuupppppppppppssspssppspppppppupppppppsuuuuupppppppppppppppssppppppppppssppspppupuuuuu",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.166,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "challenge"
+   ]
+  },
+  {
+   "bands": "pppppppppsppppsppspupppppppupppuppppupppspppppppppppppsspupppppppupppppuuppuppppppppppuuppppuppupuuuuppuuuupppuppppppuppppupupuuuuupuuuuppuuuuupppspuppppppppupppppppppppppppssspuppppppspssppppppppppupuuppu",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.355,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppspppppppppppppppppppppspppppppppppppsppppppppppppppppuupuuppppppppppupppppuupuuuuuuppuuuupppuppppupuppppppuuuuuuupuuuuppuuuuupppppuppppppppupppppppppppppppppsuuupspppppppupppppppuuupuuppu",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.266,
+   "envMaxAfter": 0.142,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppuppppppppupupppppppppppppppppppuppppppupuuuppupppupuuuuuppuupppppppppppppusspssspppppppppppppppppppppppsppssppsupppsppupuupuuppuuuuuuuuuupuppppppppppppupppppppuuppppuppppppuuppuppupppuuuupupppppppspp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.179,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppuupuupppppppppppppppppppppppppppupppppppppppppuupuuuupppuuuuuupupppuuuuuuuuuuuuuuupuuuuuuuupupppuupppppppspppppppsspsspppupppuuupuspppppppppppssspppppppppppspspppppppppppppppppuppup",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.093,
+   "envMaxAfter": 0.093,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppsppsspppppppppsppssppppppppspppppppppppppppppspuppppppupuuuuuppppppppppupppuppuuuuuppuuuuuuuupppuuuppsppppsppppppppppppppppppppppupppppuuupppppppppppppppppppuuuuppupppppuppuuuuupuuuuuppupup",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.114,
+   "envMaxAfter": 0.114,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuuupupuupuppppspspppppppppppppuppuupuuupupuuuuuuppuuuuuuupuuuupppppppuuusspppppspppppppsppsssppsppsppspupppppppppppppppppupppppuuuuupupuupuuppupuppppppppppppuppppppppppppuuppuuuuuupppuuuupppspspsps",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.198,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppupupuppppppppuppsppsspppppspsssspppppppsuppppppppppppuuupppuupppppupppuupuppsppsppppppppppppppppppppppppppppppppppspsssppppppppppuupuupppppppppppppuuupppppppppppupppppppuuuuuuupppppuppuuuuuuuuuuppppppp",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.26,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "variety"
+   ]
+  },
+  {
+   "bands": "pppppppppuppppupsuppppppppppppppppppppppupppppppppppppppppppppuppppuppppppppppppppppppppppspppppppppppppppppppppppppppppppppppppppppppuppuupppppppuppppppppppppppppppuuuuuuuuuuuupupppuupppppupupppuppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.166,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "uppupupuppppppppppppppspsppppppupppppuuppuupupuupppppppppuuuuupuuuuppppppppppppusppsppppsspppppppppppppppppppppppppppuppppppupuuuuupuuuuuuuuuuupupppppppuupppusssssspppppppppppppuuuppppppppppuuupupuppsppspp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppppupuppupuuuppuuuupuuuuuuuuuppuuppupppppuupupppuppppuuppppuppppppppppppupuuuuppupuppppppppppppppppppppppppppuuuuuuppppppppppppppppppppupppupuppppppuppppppppppppppppspppppspppppppppsppppppppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.118,
+   "envMaxAfter": 0.118,
+   "envShrunk": []
+  },
+  {
+   "bands": "sppppppppppppppppppuuuppppppppppppppuppppppppspppppppsspppppppppppppppppupppppppppppppupppupuuuuppuuuppuppupppuppppuppppppppuupuuupuupppppppupppppppppppppppppppppppppppppppppppppppppppspppppppppppppupuuppu",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace",
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppupuuuupuppppppppupppppppppppppppppppupppspppppppppppppppppppuuuuuuppuuuupupppppuupuppppupuupuuppupppuuppspsppssppsssppsssssppppppppppppppsupuuuuupppppppppppppsppppppppppppppppppppupuupu",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.136,
+   "envMaxAfter": 0.136,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppuppppppppssppppppppppppppppppupppppppppppppuuuuppppppppppppppppppsppsssppppppppppppppppppppppppppppppppppssppuppppupppuuuuuuuuuuppppppppppppppuppppppppppupupupppuuuuppupppppppuuupupppppppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.197,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppuppuuuupuupppuupuppppppuppppppppppppppspppppppppppppppppppppuuuuuuupupuppppppppppppppppppppppuuuupuuuuuupupppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.078,
+   "envMaxAfter": 0.078,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppsppspppppppsppupupuuuuupupppupupppppppppppppppppppppsssppppppppppuuuuuupppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuupuuuuupupuupppuppupppppppsssppspppuspuppuppppppppuuupupppppppppppppppppssppppuppppppppuupuuuuu",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.193,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace",
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppuupuppupppppupuppppppsspsspppppppsppppppppppppppupppuppuuuuppppppppppppppppppssppspppppspppppppppppppppppppppppppppppspppuppppupppuuuuuuupuupppuppppppppppppppppppuuuupuuuuuuuuuuppuupupupuuuupuuppppppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.121,
+   "envMaxAfter": 0.121,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppuupppuppppppppupppppppppppppppppppppppppppppppppppppppppppppppppuppppppppppppppppppppppuupppppppppppsppppppppppppppppppppppppppppppppppppsppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.166,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "puupuupppuuuuuuuuuuppppppppppupppppppppuuuuupuppuuuuupuuupuuuuuuuppupppppppppuppppppppppppppssssssspsppsssspppppppppppppppuuppppppppppppuppppppuupuuppppppupppppppppppppppppppppppppppuuupuuppppppppppspsspps",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.171,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "spppppppppppppppppppppupuupuppppppppupppppppppppppppppppppppsspppppsppuuuuuuppppuuuuuuuuuupuuuuuuuuuuuuuuuuuuuuppuuppsppuusppppppspppppspsssssspppspupppppppppupuuuuuppppppuppppppspppspppppuppppppuppupuuuuu",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.146,
+   "envMaxAfter": 0.146,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppspppppppppppppuppppppppppppppppppppppppppppppppppppppppppuuuuuuupppuuuuupuupppuuuuuuuuuuuuuuuuuuuupuuuuupppuppppupuuppuupppsppppppppupsppuupusspppppppppppppspppppppuppppppppppuupppppuuuupuuuuu",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.129,
+   "envMaxAfter": 0.129,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuupuuppuuupupuuuuuppppppppppuppppppppuuupuupuppuuuuuuuuupppuuuppppuppppspppppuppppppppppppppppsspsppppssssppppppppppuppppuuppppppppppppuupppppuppuuppppppupppppppppppppppppppppppppupuuupuuppppppppppspsspss",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.112,
+   "envMaxAfter": 0.112,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppuppppppuppppuuuuppuppppppppppuppuppppppppppppupppppppppppppppppppppppupuuuuppuppppppppppppppppppppppppppppppppppppppppsppsssspssssssppppppuppppppppppppppppppppppppppssspppppppppppppppppppppppppp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.171,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "puuppupuuuuuuuppupuppppupuupuuppuppupuuuuuuupuupuuuuuuuuupppppupppuuuupppppppuuuppppuupppppppppppppppppppppppppuppppppppppppppppppppsssppppsspsuppuupuppppppppppppppppppppspsppppsspppppupuuppppppppppppppppp",
+   "strong": 10,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.181,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppsppsppuppppppppppppppppppppppppppppppppppppppsppppppppppuupupppppppppppuuuppuuuuuupppuupppupuuppuuupupppppspppsppspppppsppppppppppppppppppppppupuuuuuppppppuuuuuppppppppppppuupppppupuuupuuuu",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.104,
+   "envMaxAfter": 0.104,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppuppppppppppppppppppppuppppppppuppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.15,
+   "envMaxAfter": 0.15,
+   "envShrunk": []
+  },
+  {
+   "bands": "uppuppuppuppppuupuppppspsspsppppppppspppppppuupppppppupppuuuuuuupppuppppppppppppssssssppppsppppppppppppppppppspppppppuppssppupuppuupuuuuuuuuuuuuupuuppppupuppupppppppuuuuuupuuupuuuuuuuuuupupuuuupupppppppspp",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.178,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppppppspspppppsppupppppppppppppppppppppppppppppppppppppppppppppppuuuuppppuupupuuuppppupuuuuuuuppuuuuupuupupuuppupuupuuuuuuppuuupppppppppppppppppuppsspppppppppppppsppppppuuppssppppppuppppspuuppppppup",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.152,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppspppppppppppppppsppppppspppppppppppppppppppppppppupppppupppppppppppppppppppppupppppppppppuppuuuupuuuuuupppppppppppppuupupuuuupuuupuuuppppuuppuupppppppppppppppuuuuupu",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.129,
+   "envMaxAfter": 0.129,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppuppppusupuppuuuuuuuupuuuuuppppppuppupppppppppppppppppppuppppupuppppppuuuuuuuuppuuuppppppuupuppppupuupuuupupuuuupppppppppuppsppssppppppuppuupppppppppppppppsspppssppppppspppsspppspppsppppppppppuup",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppupppupppppppppppuuuuuuuuuuuuuuuupppppppupppppppppppppsppppuuppppupuppupppuuuuuppuppuuuupppppuupppuppupuuppppppsppupppppppppppspsppsssspsppuppuupppppuppppppppppppppsppsppssspppspppppppppppppppppupppu",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.146,
+   "envMaxAfter": 0.146,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppuuppuuuppuupupppppppppppppppppppppppppppppppppppppppppppppupppppppsppppppppppppppppppppppppppppupupppppupupuppppppppppppppppppupppppppppppppsppppppppppppppppspppppppppppppppppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.14,
+   "envMaxAfter": 0.14,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppupupppppppppppppsppppppppppppppupppuppuppuuppupppupuuupppuuuupppuppppppppupppppppppspppppppppppppppppppppppppppppupppuupupppuupuppupppppppuppuppppuuppsppspssppppppppppppppppupppppupppuuuupupuppsppspp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.115,
+   "envMaxAfter": 0.115,
+   "envShrunk": []
+  },
+  {
+   "bands": "puuuuuupuuupuppupuupppspppppppppppppppuuuuuuuupuuuuuuuuuupuupuuuuuuuuppppppppuuupppppppppppppppsppppsppppppppppupppppppuppppppupppppppppuppppppuupuupuuppppppppspssppppppppppuuupppuppppuuuuppppupupppsssssps",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.218,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuupppppupuppppspspppppppppppsuuppuupuuuuuppupupupuuuuupuuuupuuuppppppupusspspppppppppppppppppppppppppppuppppppppssppppppppuppupuuuuppuppuppuppppuupppupppspppupppppppppppppuppppuupupuuuuuuppppsppspp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.136,
+   "envMaxAfter": 0.136,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppppppuupppppsppppppppupppppuuppuupuuuuupuupppupuuuuuuuuuuupppppppppppusppppppppppppppspppppppppppppsppppppppppppupupuupuuppupuuuuupupuupuupppppppppupppsppppppppppppppppppppuppppppppuppupppssppspp",
+   "strong": 8,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.178,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppsspsppppuuuuuuupppppupupppppppppppppppppppppppspppppppppuuuuuuupppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuupuuuuupupuuppppppuppppppssssppspppuppuuuupuspppppppppppssssppppppppppspssppppuppppppppuupuuuuu",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.135,
+   "envMaxAfter": 0.135,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppuuppppppppppppppppppppppppppppppppppppppppppupppuupppuuuupppuppppuppupuuppppuuppuuuppupupppppupppppppupppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.136,
+   "envMaxAfter": 0.136,
+   "envShrunk": []
+  },
+  {
+   "bands": "puuuuuupuuupuuuupuppppppppppppppppppppppuuupuuppupuuuuuuppuuuuupuupupppppppppuuppspppppsppppsspsppsssppsspppppsppppppppppppppppppppppppuuuuppupuupuuppppppuppppppppppuuuuupppppppppuuuuuuuuupppupuppppspsppps",
+   "strong": 14,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.146,
+   "envMaxAfter": 0.146,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppuppppusupuppuuuuuuuuuuuuuuppupppupppppuppppppupppppppppppppppppppppppuuuuuuppupuppppppppppppppppppuppppppuuuuuuuupppppppupppppppppppupppppupppppppppppppppspppppppppppppspppppspppsssspppppppppupp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.123,
+   "envMaxAfter": 0.123,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppupuuppuuuppppppppuuppupppppppppppppppppppppppppuupppppppppppspppppppppppppppupppppppppppppppppppspppppppuppppuppppupuppupuupuuuuuupppppppppppuuuupuppuuupuuuuupupppppupuuuupppppppppppppppupppsp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.156,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "pppppppuppppppppppppppsppppppppppppppupppuppupuupppppppppuuuuppuuuuppuuuppuuuppuppppppppsspppppppppppppppppppppppppppppppppuupuuuuupuuuuppuupuupuuppppuuuupppusssssssppsspppspppuupusppppppppuuuupupuppsppspp",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.126,
+   "envMaxAfter": 0.126,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppppppppppppppppppppppuuppuppppppppppppppppppppppppuupppupppppppppppppppppppppppppppppppppppppppppppppppppppuppppupupuuuuupuuuupuuuuuuppppppppppppppuppppppppppppppppspppupppppppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.179,
+   "envMaxAfter": 0.149,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppuupuupupuuuuuuuuupuuupuuuuuppuuppuppppuuupppppuppppuuppppuppspspssppppupuuuuppuuuppppppppppppppppppppppppppuuuuuuupppppppppsppppppuppuppuupppsssuuupuupuuuupuuuuupuppppppsuuuupsppssssspsssppuppppp",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.129,
+   "envMaxAfter": 0.129,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppppppppppppppppppuupppppppupppppppppppppppppppppppsppppppppppupuuuupppuuuuuppupppuuuuuuuuuuuuuuuuuuuupuuuppsppppsssppspsppsppspssssssppuppppppppppppupupppppppppppppppppspppspppppppppppppppupuuuuu",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.138,
+   "envMaxAfter": 0.138,
+   "envShrunk": []
+  },
+  {
+   "bands": "uppppupupppppppuppppppppsppppppuppppppupppppuuuppppppuppppupuuppppuppupppppppppupppppspppppppppppppppppppppppspppppppppppspppppppuppppuuuuuuuuppupupppppuppupuppppppppppppppppppppupppuppppppppupuppppppppppp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.093,
+   "envMaxAfter": 0.093,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppppupppppppppppppppppppppppppppppppppsspppppppppppppppppppppppppppppppppppppppppppppppppuppppuuupupuppupuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.119,
+   "envMaxAfter": 0.119,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppuppuuppppppppppppupppppppppuppppppupppppppppuupppppppppppppppppppppppppppppppppppppppppppppppppppppupuuupuuuuupupupuupuupuuuuuuupppuppppppuppppuppppppuuupupupppuuupupuppppppppppppppppuppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.188,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "upuuuuuppuupupuupuppppspspppppppppppppupupupuupppppppuupppuuupuuupuuppppppppppppssppppppspspppppppppsppppppppppppppppppppsppppuppppppppuuuuupuppupuuppupupppppppppsppupppupppuuuupuuppuuuuuupppuuuupppppppsps",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.13,
+   "envMaxAfter": 0.13,
+   "envShrunk": []
+  },
+  {
+   "bands": "puupuuppupppppppppuspspppupupuppppppppupppppppppppppuuupupppppupppupppppppppuuupppupuupppppupppppppppppppppupupuuuupuppppppppppppspppppsppsssppppupppuuppppppspsppppppssspssspppppppppspppupppppppppppppppppp",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.133,
+   "envMaxAfter": 0.133,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuuupupuuuuupppppppppppppppppppuuuuupuuppupuuuuuuupuuuuuuupuuppppsppppuuupppppppsppppppsssssppppssssppppupppppupppppppppppppppppuuuuupupuupuupppppppppppppppppupppppsppppppupppuuupuupppppuppppspsspps",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.174,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "uppppupppuuuuuuuppuupuupppppppupppppppuuuppppppppupppuuppsppppuppppuppppsppsppppppppppppuuppppppppppppppppppppppppppppppppppsppsspsppsspppppppppppupsuppppupusuupupuppuuuuupupuupsppuuuuupuupppppuppsspuppppp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.232,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppuppuppppppppupppppppppppppppppppppupppuppupuupppupppupuuupuppuuppuupppppppppupppppppppppppppppppppppppppppsppppppppppppppppppppupppppupppppppuppupppppppppppppspppppppppppppppppupppppupppppuupupppppppspp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.177,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "puuuuuupuuupuuuupupupuupppppspppppppppppppuppppppppupppuppuupupppppppppsppppsupppspppppppuppppppppppppppppppppppppppppppspppppspppppppppuuppppppppuuppppppupupuupuuuuuuuuuuuupppppupuuuupuuupppupupppppuppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.137,
+   "envMaxAfter": 0.137,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppsppppppppupuupppppppppppppuuuppuuuuuuuppuuuuuuuuppppupppsppppsppppppspppppsppppppppppppppppppppppupuuuuupuppupuuuuuppppppppppppuupppppuppuuuuuuu",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.133,
+   "envMaxAfter": 0.133,
+   "envShrunk": []
+  },
+  {
+   "bands": "uppppupupppppppppppspsspppppppppppppppupppupuppuppppppuppuuuppuuuuupppupppppuppppppppppppsppppppppppppppppppppppppppppppppppppppppupppppppppppppuupppuupuupppppspsssspspsppspppppppuppppppppppppupuppppsppppp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.179,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppsppppupuuuuuuuuuppuuuupppppppppppppppppppppsssppspppppppuuupuppppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuupuuupupupuupppppppppppppssssppsppppppupppppppppupupupupppppppppppppspppspppppppppppppppupuuuuu",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.158,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "pppuppuupppppppupuppppspsppppppppppppupppuppupuuuppupupppuuuuupuuuuppppppppppppussssssppsspppppppppppppppppppspppppppuppssppupuuuuupuuuuuuuuuuupupppppppuupppupppssppuppppppppppuuuuppuppupppuuuupupuppsppspp",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.237,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppupupuppppppppuppsppsspppppspssssspppppppuppppppppupppuppuppuppppppupppuppppusspssspppppppppppppppppppppppppppppuppspssppuppupuppuuuuuuuuuuuppppppppuuupppppppppppuppppuppuuuuuuuppuppuppuuuuuuuuuuppppppp",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.168,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppspspppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppuuuuuuppupppppppppppppupppppupppppppsppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 3,
+   "tentative": false,
+   "flatNote": true,
+   "envMaxBefore": 0.123,
+   "envMaxAfter": 0.123,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppupuupuppppppppupppppppppppppppppppppppspppppppuupppuupupppuuuuuupuuuuuuuuuuuuuuuuuuuuuuuuuuuupuspppupsspsspssppsssppsssssppppppppppppppsupuuupupppppppppppppppppsppppppppppuppppupuuupu",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "uuuuuuuuuuuuuuuupuupppppppppppppppppppuuupupuupppuuuuuuuupuupuuupppuuuppsppppuuuppppppsppppppppppppppppppppppppppppspppppppppspssppsspppuppppppuppuuppppppupupuppppppupupupppppppsppuuuuupuupppppupppppppppss",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.113,
+   "envMaxAfter": 0.113,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppupupuupuuuppuppuppppppppppppppppppuuuuuupuuuuuupuuuuuuuuuppuuuuuuuuppppppuuuupppppppppppppppppppppppppppppppppppppsppppppppupppppspppupppspsuuppppuupuppppppspsppppppppspsppppspuppppupupppppupuppppsppspp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.127,
+   "envMaxAfter": 0.127,
+   "envShrunk": []
+  },
+  {
+   "bands": "puuuupupuupppppppuppppppppppppppppppppppuuppupppupuupppuppuuppppuppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppuuppupppppppppppppppppppppppppuuupppupppppuupppppuppppppppppps",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.208,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppuppuppuuuuupppppuupuuuppppuuppuppppupuppppppppppppppppppppppppppppppppppuppuupppppppppppppppppppppppppppppppupppppppppppppppppppppupppuppppspuuuppupppppppuppppppppppppuuppppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.172,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppsppsppupppupuuupppppppuppppppppppppppppppppppppppppppppppuuuuuppppuuuuuuuuppuuuuuuuuuuuuuuuuuuuuupuuuuupupuupppupuuppupppppppppppppusppppuppsppppppppppppppsppppppppppspssppppupppppppppupuuuuu",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.252,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace",
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppppppupppppppppppppuppupuppuppppuppppppppuuppppupppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.127,
+   "envMaxAfter": 0.127,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppupppuuuuupuupuuuuppppppppuuuppppppuuuuuppppupuuppppppuuuuuuuuuuppppspsspppppppppppppppppppsspsppppsssspppppppppppppppuppppppuppppppuppppppuupuupuppppupupppppppppppppppppppppppuuupppppspppppppppppppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.135,
+   "envMaxAfter": 0.135,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppupppupuuuuuuuupuppuppuupuppupppuppppppppppppusppppppppppppppppppppppuuuuuuppuuuuppppppppppuppppppupppuppupupuuppspsppssppsssppsspsspppppppppsppppsuuuuuuuppppppppppppssppppppppppppsppsppppupuupu",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.099,
+   "envMaxAfter": 0.099,
+   "envShrunk": []
+  },
+  {
+   "bands": "puppupupuupppppppuppsppsppppspsppsppspppppppuppupppppppupuuuppppppppppuppppppupppppsppppppppppppppppppppppppppppppppppspspspppppppppppppupppppppppppppppppppppuppppuuupppppppuuupppupppppuuuuuuuupuuupppppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.127,
+   "envMaxAfter": 0.127,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuuuuuppuupupuusuppspppspspppppppppsppppppppppppppppuppppuppppppppuppppppppppppppppppspppspppppppppppppppppppppppppppsssspppppppppsppuppuppppppppupppppuppppppppppppuuuuuupuuuuupuupuuupuuupuuuuuuuppppppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.187,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuuuuuuuupuupppppppppppppppppppuuuuupuuppuuuuuuuuupuuuuuuuuuuppppsppppuuuppppppsppppppspsppspsppsppspppppppppppppppppppppppppppppuppppppuupuupuupuppppppppssppupppppspuuupppupppuuuuuppppupupppspsssps",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.163,
+   "envMaxAfter": 0.149,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppupppppuuuupupppppuppuupuppppppppppppppppspppppppppsppspppppppppspssupppppppuupspppppppppppppppppppppppppuupuuuppppupuppupupppuuupupppppppspssuuuupuuuuuupuuuuuuupppppppuuuuppppppppppppppuuuuupu",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.159,
+   "envMaxAfter": 0.149,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppuppppppppppppppspppsppppsssppppppppspsppppssppppppppppppppppppppppuupppppppppppppppppppppppppppuppppppppppppppppppppppupupspppppppppppppuupuupppppppupuppppppppppppppppppppppppppuppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.114,
+   "envMaxAfter": 0.114,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppuuuupuupppppppupppppppppppppppppppupppsspppppppppupuppupppuuuuuupuuppuuuuuuuuuuuuuuuuuuuupuuupupupuupppppppsppppssppsssspppppppupppppppsppppppppppppppppupppspppspppppppppppppppupupuuu",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.1,
+   "envMaxAfter": 0.1,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppupppppsppppppppppppppupppuppupuuuppupppppupuppppuuupppuppppppppupppppppppppppppppppppppppppppppppppppppuppppppppppupppppppppppppuuppuppppupppppspppppppspppsspppppppppppppppppppppuppppsppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.271,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppuppppspspppupssspsppppppspssssspppppppuppppppppppupuppppppppppppupupuuppppppppppppppppppupuupppuuppupppppppppuppppppppuuuuupuuuuuupuuppuuppppppppuuusssppspppppupppppppuupuuuupspppuppuuuuupuuuuppppppp",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.181,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "upuuupupuuppppuupuuppppppppppppppppppppuuuupuuppupuuuuuuppuuuuuuuppupppppppppppppspppppppppppspsppsssppsppsppppppppppuppppuppppppupppppuuuuppupuupuupppppppppppppppppupppupppppppppuppuuuupupppuppppppspsssps",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.126,
+   "envMaxAfter": 0.126,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppupppppppuppppppppppppspppppspppppppppppppppppppppuuuupppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppuuuuuuuuuuuuuuuuuuuuppppppppuuppsppppspppppppppupuuupuuuuppuppppppuuuppuuupppppppp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.126,
+   "envMaxAfter": 0.126,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuuupupuupuppppppppppppppppppppuuuuupuuppupuuuuuuppuuupuuppuupppppppppuupppppppsspppppspsppsssppsspspppsppppppppppppppppppppppppuuuuppupuupuupppppppppppppppppupppupppupuppuuppuuuuuupppuupppppspsppps",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.168,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppupupuppupppppupuppppppppppppppppppspppuuppuuppupuupupuppuuuuppuppuppppppppppppssppppppppppppppppsppppppppppppppppppuppppuuupuupuppuuuuuuuuuuuuupuupppppppppppppppppupppppppuuuuuuuppuuuupupppuupupppspspsps",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.227,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppuppuppuppppuupupppppppppppppupppppppppuppuupuupuupppupuuuuuuuuupupppppsppppppsspppppsppppsspsppssspsppppspsspsssppuppppuuupuupuupuuuuuuuuuuuuupuuppppppuppupppppppuuuuuupupppupuuuuuuuupupppuppupppsppppps",
+   "strong": 19,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.172,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppppspspppppspppppppppppppppppppppppppppppppppppppppppsppppppppupuuuuuppppppppppuppppuuuuuuuuuuuuuuuuuuuppuppppppppsppppppppupppppppppppppppppppuppppppppuppppppppppppuuuupppppppppppuupppppuuupppppup",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.133,
+   "envMaxAfter": 0.133,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppspppppppppppppppppppppppppppppupppppppppppppuupuuuuppppppppuppppppppppppppppuuuuppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.192,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "pppppppppppuppppupupuppuuuuuuuupuuuuuppupppupppppuppppppupppppppppuppppupuppppppuuuuuupuupuuuppppppuppuppppuuupuuuupupuuuupppppppspppssspssspspppupppuuppppppsppppppppsppppsppppppspppspppppppppppppppppppupp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.104,
+   "envMaxAfter": 0.104,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppppspppppsppppppppppppppppppppppppppuupppppppppppupppuuppppppppppppppppppppppppppppppppppppppppppppppppupuuupupuuuupupppupppppppppuuupppppppppppppppppppuppuuuupppppuppuuuuupuuupppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.134,
+   "envMaxAfter": 0.134,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.116,
+   "envMaxAfter": 0.116,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppupppppppppppsppppppppppppupppppuppsppppppupppppppppupppppppppspppppppppupupppspsppppppppppppppppppppppppppppppppppsspppppppppppuupppppppppupppuppppppupuupuppuuupppppppppppuuupppppuppuuuupupuuuppppppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.146,
+   "envMaxAfter": 0.146,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppuppupppupppuupuppppppspppppppppppppppppppupppppppppppppuuuppuppppppppppppppppsspspsppppspppppppppppppppppppppppppspspssppppppppppppuuuuuppuppppppppppupuppppppppppuuuuuupuuuuppuuuuuupupppppuuuupppppppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.101,
+   "envMaxAfter": 0.101,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppuppupuppppppppppppppppppppppppppppupppssppppppppuppuppppppuuuuuupuuppuuuuuuuuuuuuuuppuuuppuuupusppppspsppspspppppsppsssssppppppupppppppsupuuupppppppppppuuppspppspppppppppppppppupuuuup",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.106,
+   "envMaxAfter": 0.106,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppspppppppppppppupuuuppuupuuuuuuupppppppspppppppppppppppppppppppppppppppppppuuuuppppupuppppppppppppppppppupppppppuupuuuupppppppppppppppuuppppppppppppppuuppupuuppppppppppppppppspppppsppppppsppppppuppupu",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.152,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppsppppupupuupuupupppupupppppppppppppppppppppsssppspppspppuuuuuppppuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuupuuuuupupuupppppppppppppssssppspppuspupppppppppupuuuuupppppppppppppppppspppppuppppppppuuuuuuuu",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.153,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppupppuppppppuppppuuuuuuuuppuuuuppppppppppppuppppppupppsppppppppppupuppupppuuuuuupuupuuuupppppuuppppppuuuppuuppppupuupppppppspppssspssssssppppppuuppppppspppppppppppppppppppsspppppppppppppppppppppupppp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.129,
+   "envMaxAfter": 0.129,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppuuupupuuppppuppuppppppppppppppppppppppppppuuppuppupuuupuuuuppuuppppppppppppuuupspppppspppppppppppsspppppppppppppppppppppppppppppppppppupupppppupuupppppppppppppppppupppuppppppppuupppuuuuuppuuupupppspppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.132,
+   "envMaxAfter": 0.132,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppuuuppupppppppppppppppppppppppppppppppppppppppppppppupuppppppppsppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppspppppppppuppppppppppppppppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.169,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppspppppupuppuppppppppppppppppppppppppppppppppssppppppppuuuuuuupppuuuuupuupppuuuuuuuuuuuuuuuuuuuupuuupusppppsspppppspppppsppsssssspupspppupuppppupuuupuppppppupuuuppppppspppppuuupuppuuuupuuuuu",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.122,
+   "envMaxAfter": 0.122,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppupppuuuuuuuuppppppupppppppppppppppppppupppsspppppppppppuppuuupuuuuuupuupuuuuppuppuuuuppppuuuupuuupusuuuuppsppppspppssspssssssppupppuppppppppupupppppppspppppppppspppspppppppppppppppppppuup",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.099,
+   "envMaxAfter": 0.099,
+   "envShrunk": []
+  },
+  {
+   "bands": "uppupppppppppppupuppppspppppppppppppppuppuppuuuppppppupppuuuupuuupuupppppppppppussppppppsppppppppppppppppppppspppppppupppppuupuppuuppuuuuuuupuupupuuppupuupppppppsspsppppppsppppupuuppupupppppuuupuppppsspspp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.105,
+   "envMaxAfter": 0.105,
+   "envShrunk": []
+  },
+  {
+   "bands": "puuuuuupuuupupuupupppppppppppppppppppuppuuupuupuupuuupuupuuupuuuuupupppppppppuuupsppppppppppsppspppsspppppppppppspspppppspppppppppppppppuppppppuupuupppppppppppppppppupppupppppppppuuppuuuuuppppupupppspppsps",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "pppppppupppppppppppppppuuuuuuppppppuuuppppppppppppppppppppppsppppppppppupupuupppuuuuuuuuppuuuuuuuuuuuuuuuuuuuuupuuuppsupuuppppppusppppsppssssssppupppuppppppppppppppppppspspppppppspppssppppppppppppppupuupuu",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.153,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "upuuppppuupppppupuppppspppppppppppppppupuuupuupuuppuuuuuppuuppuuuuuupppppppppuuuppppppppppppppppppppppppppppppppppppppppppppppupppppppppupppppppupuuppppuppppppspssppupppppppuuupppuppppuuuppppuupuppppspssps",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.093,
+   "envMaxAfter": 0.093,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppuupupppppppppppupppppppppppsppppppppppspppsspppppppuupuppppuupuppuuupppuuuuuuuuuuuuuuuuupupupupppppupppppppppppppppsppppppppppppppppppppppuuuupuppppppuppppppppppppppppppppppppppuuuuupu",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.254,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppuppppppppppppsppppppppppppppppppppppppppppppppupppupppppppppppuupuuuuupppppppppppppppppppppppppppuuppppppppppppppppppppppppppppppppppppppppppppupuupppppppppppppppppppppppppupppppuppuuuuupupupppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.144,
+   "envMaxAfter": 0.144,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppspsppppsppppspppppupppppupupppppppuppppppppppppppppppppppppppppppppppuuupuppsppupuppuuppupuuuuuuuuuupuuuuuupuppuuuppuuuuuuuuuuuuuuuppppppppppppppppppuppppppsppppppppppppppppppppppppsppssppppppppppupuupuu",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.137,
+   "envMaxAfter": 0.137,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppupupppppuuuuuuuuuuuupuuuuuppppppupppppupppppppppppppppppppppuppppppppuuuuuupuuuupupppppuuuppppppuuuupppppupupuupppppppppppssspssppspppppppuppppppuppupuuppppppppppppppssspupppspppsssspspppuuupupu",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.105,
+   "envMaxAfter": 0.105,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppuppupuppppppppppuppuppppppuuupupupuuuuuupuuupuuppuuupuuppppppppppppppppppppppppppsssspppppppppppppppppppppuppupppppppppppppuppppppuupuupuppppupppppppppppppppppppppppppppppupppppppppppppsppspps",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.106,
+   "envMaxAfter": 0.106,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppupuupuppppppppupppppppsppspppppppppssspspppspppppppuppppppuuuuuupuupppuuuuuuuuuuuuuuuuuuupuuuuupupuupppupppppupppsppsppsppsppppppupppppsppuupppppppppppuuuppppppppppppppppppppppupuuuuu",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.126,
+   "envMaxAfter": 0.126,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppuspppppppppupppppppppspppppppppppppppppppppppupppupppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupupppppuppppupppppppppppppppppupppppppppppuuuuuuuuuuppppupuupupuppppppppppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppupppppppppppppppppupuupppppppuppppppppppppppppppppppppppppppppppupuuuuppppuppupuppppuuppppppuupppuppupuupuuuppppppppppppppppppppppppppppppuppupuppppppppppppsppssspssspppppppssppppppppppppppppppppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.102,
+   "envMaxAfter": 0.102,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppsppssppppppppppppppppppppppppppppppppupppppppppupppppppppsppuuuuuuupppppppppuupppuuuuuuuuuuuuuuuuuuuupuuuuppppppppuuuuupuuuupppppppppppusppppuuuspsppspppppppppspppppppuppsppsppppuuupupuuuuupuupuu",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.14,
+   "envMaxAfter": 0.14,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppupppppppppppppppppppppppppppppppppppppppppppppppppupuuppppuupppppupuppppuuuuupupuuuuuppupppppppppppppspppppsppppppppppppppppppppppppppppupuuuuupppppppppppppppppppppppupppppppppuuuuupu",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.095,
+   "envMaxAfter": 0.095,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuuupupuupppppupuppppspspppppppppppsupppuupuuuuuppupupupuuuuuuuuuuupppppppppppusspsppppspppppppppppppppppppppppppppppppssppupuppuuppuuuuuuupuupupuuppppuupppupppssppupppppppuppuuuuppupuupupuuuupupupssppsps",
+   "strong": 15,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.177,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy",
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppuupppupuppuuuuuuuuuuuupppuppppppuuuuppppppppuuuuupupppupupupuupppppppppppppppuppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.218,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "puuuupppupppppppppuppppppppppppppppppppuupuppuppupuuupuuupuuppuuupuupppppppppuuppppppupppppppppppppppppppppppppppppppppuppppppppppppppppuppppppuuppupupppppppppspppppppppppppppuppppppppupppppppppppppspsspps",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.121,
+   "envMaxAfter": 0.121,
+   "envShrunk": []
+  },
+  {
+   "bands": "uppppppppuuuuuuupppuuuupppppppupppuppspuuppusppspppppppppspppupppspuppppppppppppppppppppuupppppppppppppppppppppppppppuppppupppspspspppppppppuppupsuppppppsupupuupuuuupuuuuuuupupppppuuuupppuppppppppsppuppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.169,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppuuppppuuuuuupppppuppuupuspppppusppspppppppppssspppspsppppspppppppppuupuppppuuuppppppppppppppppppppppppppuupuuuupppppuppuppppppuupupppppppppssupupuupuuuupuuuuupuppppppsuuuupspppsspspspsppuppupp",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.221,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppupuuuupuppupppupupppppppppppppppppppupppsppppppppppppuppppppuuuuuupuuuuupppppppupuupppppuuppuuupupupuuppspsspssppsssppsspspppppppppppppppsuuuuuuupppppppppupppspppppppppppppppsppppuuuupu",
+   "strong": 15,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.157,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "conflict"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuupppppupuppppspspppppppppppsppppuupuupppppupupupuuuuuppupppuupppppppppusspspppppppppppppppppppppppppsppppppppppssppupuupuupuuuuuuuupuppupupppppupppppppsspppuppppppppppuuuuppuupupupuuuuuupppppppspp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.172,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppupppppppppppppppppupuupppppppppppppppppppppppppppppppssppppppppuuuuuuupppuuuuupuupppuuuuuuuuuuuuuuuuuuuupuuupuspppppppppppsppppppppsssspppuppppuuuupppppppppppppsspppppppppppppspppppuuppppppuuupuuuuu",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.12,
+   "envMaxAfter": 0.12,
+   "envShrunk": []
+  },
+  {
+   "bands": "puppupupuupppuuuuppuuuppppupppuupppppupupuuuupupuuuuuppupppupuppppppuupppppppuuuppppppppuupppppppppppppppppspppuppppppppppppppppppppssppupppppsuuppuuppsppuuuuuupppuuppppppppsppssppupppupuupppppppppppppppsp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.152,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "puppppppupppppppppppppppppppppppppppppppppupppppppppppppppppppppppppupupppuuuppppppppppppppuppupupppppuppppupupppppppsppppsspppspsppsppppppsspspppppppppupppppuppppppppppppppuuupppupppppuppuppppuppppppppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.115,
+   "envMaxAfter": 0.115,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppuppppppppppppppppppppuppupppupuppppppupuupppppppppuuupppppupppppupppppppppppppppppsppppppppppppppppppppppppppppppppppupupuuuppupuppppppppuuppuppppppppupppppppppppppppsspppppppppppppppppppupppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.126,
+   "envMaxAfter": 0.126,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuuppppuupuppppppspppppppppppsppppuupuupupppupuuupuuuuuupuuppuppppppppuuusssssppsppppppppppsssppppppppsppppppppspsspppppppuuppuuuuuuuuuupupuuppppuppppupppppppuppppppppppppuuppuuuuuupuuuuuupppspsppps",
+   "strong": 18,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.15,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuuppppuupuppppppspppppppppppsppppuupuppupppupppupuuuuupuuupppppppppppuppssssssppppspsppppppssppppppppsppppppppspsspppppppuuppuuuuuuuuuupupuuppppuppppupppppppuuuuuupuuppuuuupuuupupupuuuuuupppppppppp",
+   "strong": 16,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.174,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy",
+    "social"
+   ]
+  },
+  {
+   "bands": "puuuupupuuppppuusuppppppppppsppppsppsppppppppppppppppupuppuppppppppppppppppppuppppppppsppuspppppppppppppppppppppppppppspssppppppppppppupuuupppppppppppppppppppuppuuuuuuuuuuuuuuuppuuuuuupuuupuuuuupupppuppppp",
+   "strong": 9,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.128,
+   "envMaxAfter": 0.128,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppuuuupuuuppppppupppppppppppppppppppupppssppppppppppppppppppuuuuuuppuppuppppppppppuppppppupppppppsppuuppsppspsppsssspsssssspppppppppppppppupupppppppppppppppppspppppppppppppppppppppppupp",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.108,
+   "envMaxAfter": 0.108,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppspppppspsppppppppspppppppppppppppppppppppppppppupppuppppppppppppppppppppppppppppppppppppppppppppppppppupupppppuuuuuuupuuupupuuupuuppppppppuppppsppppppppppppppppuuuuuuppspppppppuuupppuuuppppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.132,
+   "envMaxAfter": 0.132,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppupppppuuuuuuupuuuupuuuuuppppppuppppppppppppupppspppppppppppppppppppuuuuuuppuuuppppppppppppppppppuppppppupupuuppspsspsspssssppsspsspppppppppppuuupuuuuuuuppupupppppppsspuupppppppppsppsppppuupupu",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.168,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppuuuupuupuuuupupuupuuuuuuuupppuuupuppppuuuuuppppppppupppppuppppspssppppppppppppupuppppssssppppssssppppppppppuuupuuupppppuppppppppppuppuppuupuppspuuuppupppppppuppppppppppppuuupppppsssppppsppppppppp",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.115,
+   "envMaxAfter": 0.115,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppppppppppppppuuuuuupppppppuuppppppppupppppppppppppspppppppuuuuuuuuuppuuuuuuuuuppuuuuuuuuuuuuuuuuuuuuuuuuupusppuupppppppsppppsspssssssppuppupuppuppppppppppppssspspspppppspppspppppppppppppppupuuuuu",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.126,
+   "envMaxAfter": 0.126,
+   "envShrunk": []
+  },
+  {
+   "bands": "upupuupppuuuuuuuuuupuppupppppuupuuuupppuuuuupuppuuuuupuuuppuuuuppppuppppssssppppppppppppppppppsssssppsssssspppsppppppuuuppuupppppuppppppuupuuupuppuupuppppupuppppppppppuuuppppppppppuuuuupuuspppppppppspsspps",
+   "strong": 21,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.146,
+   "envMaxAfter": 0.146,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuupuupppuupupuupuppppppppppppppppppppppupuppupppppppuupppppupuupppupppppppppuupppppppppppppppppppspppppppppppppppppppppppppppppppppppppuuppppppppuppppppppppppppppppupppupppuuuppppppuuupuuppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.103,
+   "envMaxAfter": 0.103,
+   "envShrunk": []
+  },
+  {
+   "bands": "puppppppupppppppppppppupppppppppppppppppupppppppppppupuuuppppppppppppppppppppuuppppppuppuppppppppppppppppppppupppppppsppppppsppspsppsspsppssssspppppppppppppppupppupupppppppppppppspppppppppppppppppppppppppp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.097,
+   "envMaxAfter": 0.097,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppupppuuppuuupuppupuuupuuuppppupupuppppuuuuppppppppuuppppppppppppssppppppppppppupupppppppppppppppsppppppppppuuupuuuuupupupuuppupppuuppupppuppppppupuppuppppppppppppppssppppppuppsppsspppppsppppppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.17,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppsppppppspppppppspupuupuppuppppppppupppsppppspppppsspspppppppsppppspppuuuuuppppuuuuupuuuuuuuuuuuuuuuuuuuuuuuuupuuuuupppuupppupuupppppppsppppppsppssuppupppppppuuuuuuppppppupppppuppppppsppsuppppppppuuuuuuuu",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.206,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppsppppppuupuppppppppppppppppppppppppppppppppppppppppppuppppppupppppspppppppppppppppupppppppppppppppppppppppppppuppppuuuupupupuuppupuuuuuupppuuppppppupuppupppuppuuuuuuuuupupupupuupppppppppppppppuppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.16,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "uppppppppuuuuuuupuppppppppppppppppppppupuppppupppupppuupppppupuppppuppppsspsppppppppppppppppppppsspppppspssppppppppppuppppuppppppupppppppuuuuuuuppuuppppppupuppuppppppuuuuupupppppupuuuuupuuppppppppppppppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.176,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppppspppppppppppppupuuuupuuupppuuuupppppppspppppppppppuppppppppppppppppuppppppuuuuuupuupupupppppuuupuppppupuppuuupupupuupupppppppupppppppppppppppppupppppppsppppppppppppppppppppppppppppppppppppppppppppuuu",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.146,
+   "envMaxAfter": 0.146,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppuppppupupuppuuuuuuuupuuuuuppupppupppppuppppppuppppppppppuppppppppppppuuuuuuppupuppppppppppppppppppuppupppupupuuuupppppppppppppppppppupppppupppppppspppppsppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.17,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuuupupuuupuuupuupppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.13,
+   "envMaxAfter": 0.13,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppupuppuppuuupuupuuuuuuuuuuuppupppupppppuupppppppppuuppppppppspppsppppppupuppppppuppppppppppppppppppppppppppuuuuuuuuppupuupuppuppuuuuuupppuupppspuuuupupppppppppppppssspppsppuppsppssspsppsppppppppp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.327,
+   "envMaxAfter": 0.138,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppuuuuuuupuppupppupupppppppppppppppppppppppsppspppppppuuuppppppuuuuupuuuuupuuuuuuuuuuuuuuuuuuuppuppppppuuppsppppspppspssspppsppppppuppppppuupuuuuuuupuppppupsppspspppppppppppppppppppuuuuupu",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.134,
+   "envMaxAfter": 0.134,
+   "envShrunk": []
+  },
+  {
+   "bands": "puuuuuupuuppuppupuppppspppppppppppppppppuuupuupuupuuupuupuuuuuuuuuuupppppppppupupppppppppppppppsppspppppppppppppppppppppppppupuppuuppppuuuuppupuupuuppppppppppppsssppupppppppppppppuppppuupupppuupupppsssssps",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.121,
+   "envMaxAfter": 0.121,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppspsspppppppspppppppppppppuupppppppupppuppuppuupppppppppppupppppppppppsspppppppppppppppppppppppppppupppppuuuuupuupuuuupuuupuupppppppuuuupppppssssssppppppppuppuuuupsppuupppuuuupupuuppppppp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.115,
+   "envMaxAfter": 0.115,
+   "envShrunk": []
+  },
+  {
+   "bands": "spppppsppsspppsspsppupuuupuuupuppuuuupppppppppppppppppppppsppppspppspppuuupuppppuuuuuuuuupupuuuuuuuuuuuuuuuuuuupuuuuupupuupppupuupppppppspppppppppspupppppppppppuuupuppppppppssspppspppsppppppppppppppupuuuuu",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.342,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppupuupppuupuuuupupppppppppppppppppppppuupuppuppupuuuuuupppuupuupppupppppppppuuppppppppspppppssspssssppsspppspppppppppppppppppppppppppppuuuupupuppuuppppppuuuppppppppupuuuppppppppppuuuuupuuppppppppppspsppps",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.11,
+   "envMaxAfter": 0.11,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuuuuuppuuuupuupuppppspsppppppppppppuuppuupuuuupppppuuppuuuuuuuuuuuppppppppppppsspsppppppsppppppppssppppppppsppsssppupppsppupuppuuppuuuuuuuuuupupuuppppuppppupppppppupppuppppppupuupuuupupuppuuuuupppppppsps",
+   "strong": 15,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.168,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "pppppppupppuppppupupuppuuuuuuuupupuuupppppppppuppuppppppupppspppppppuupupuppppppuuuuuupuupuuuupppppuuuuppppuuuuuuuupusppuupppppppspppssspssssssppupppuppppppppppppppppppppspppppssspppspppppppppppppppppupppp",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.213,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppuppppspppppuppppuppppppppppppppppppppppppppppppppuppppppppppppppppuppppupppppppppppuppppppppppppppppppppppppppppppppppppppppppppuppppppppppppppppppppppuuuuuuuuuuuuuuuupupppppuppupupuuuuuuppupppuppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.11,
+   "envMaxAfter": 0.11,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppupuppppppppuppppppppppppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppspppppppppppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.145,
+   "envMaxAfter": 0.145,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppuuppuppupppppupuppppppppppppppppppppppuuppuuppupuuuuuuppuuuuuuuppupppppppppppppspppppsppppsppsppsssppppppppppppppppuppppuupppppupppppuuuuupuuuupuupppppppppppppppppuppppppppppppupppuuuupupppuppupppspsspps",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.234,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppspsppppppppppppppuppppppupuupppppppppuuupppupuppppupppppuppppppppppppppppppppppppppppppppppppppppppppsppppupppuppuuuppppppppupppppppuupppupppppppppppppppppppppupppppupppuuuupupupppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.126,
+   "envMaxAfter": 0.126,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuupppuuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.152,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "precision"
+   ]
+  },
+  {
+   "bands": "spsppsppppspspppppsppppppppppppppppppppssppppppuppppppspsupppppppppsppppupuuppppppppppuuppppuuuuuuupuupuuuupppuppppupuppppppuuuuuuupuuuuppuuuuupppspuppupppppuppppppppuppppuuppppuupppppspspuuuppppuuuupuupuu",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.266,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy",
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppspppppppppupppuppuuuuuuuppuuuuuppppppupppppupppppppppppppppppppppupuppupppuuuuuuuuppupuppppppuupppuppppuupppppupuuuuuupuupuppupppppspppppppupppuppppppppppppppppssspspsspppppppspspppppppppsppppppppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.162,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppspsppppppppsppupppupppupuppuuuupppppppsppppppppppspppppppppppppppppppppsppuupuppuppppppppuppupuppppppppppppppupuupuuuuuupuuuppuuuuppuuuuupppppppppppppppppppppppppppppppppuuupppuppsppppppspppppuuppupu",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.192,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "upuuuuupuuupupuupuppppppspppppppppppppupuuupuupppppupuuuppuuppuupppuuupppppppuuupsppppsppppppppppppppppppppppsppppppppspsspppppsppppppppupppppppppuppppppppppppppppppupppuppppuupppuuupuuuuupppuuuupppppppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.297,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuuppppuupuppppppspppspppppspsppppuupuupppppupupuppuuuuppupppuppppppppuupsssssppsppppppppppppppppppppppppppppppspsspppppppppppuuuuuuupuupupuuppppuppppppppppppuppppuppuuuuuuuppuupuuupuuuuuuuppppppppp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.171,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppuuupupuupppppupuppppspsppppppuppppsppppuupuupuuppupupupuuuuuppuupppppppppppupusssssppsspppppppppsspppppppppspppppppuppsppuuppupuupuuuuuuuuuuuuupuuppppuppppupppppppuppppppppppuuuuppuupupupuuuupupppspspppp",
+   "strong": 16,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.289,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppsppppuppppupupuppuuuuuuuupuuuuuppupppupppppuppppppuppppppppppppppuppppppppuuuuuuupupuppppppppuuppppppppuppuuppupuuuuuupppppppuppsppppppppppupppuppppppppppppppppsppppsppppppsspppppspppssspppsppppppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.119,
+   "envMaxAfter": 0.119,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuppuppppuuuupuppuppppppppppuppppppppuuupuppupppuppuuupupppuuuuppuuppppspppppppppppppppppppppppppppppppppsppppppppppppppppupppppppppppppppppppuppuupuuppppppsppspsppppppppsppppppppppppupupppppppppppppppppp",
+   "strong": 6,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.2,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuupppppupuppppspsppppppupppppuuppuupuuuuupuupupupuuuuuuuuuuppppppppppuuusspspppsppppppppppsppppppppppspuppppppppsppppppppppppppuuuuppupuupuupppppppppppppppppupppppspppppppuppppuuupppuuupupppspspppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.174,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppspppppupuppppppspppppsppppppppsspppppppppspppspppsppppppppppppppuupuuppuuuppuuuuuuuuuuuupppuuuppuuupupppppppppppppsuppppppppppppsppppppupppppsuppupppppppuupuuuuupppppppppppuppppppuppuuuuuup",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.119,
+   "envMaxAfter": 0.119,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppppupppppppppppppppppppppppppppppppppsppppppppppppppppppppppppppuuppppppppppppppppppppppupppppuuuuuuupupupupppuuppppppuppuppppppppupppppppppppppppppppppuuuuuppppppppppppppppppppppppupp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.178,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "upupuuppuuppppupppupppupppppppppppppppppuppppppppppppuupupppppuppppuppppppppppppppppppppuuppppppppppppppppppppppppppppppppppsppsssspppppppppppppppupppppppppppuppupppppupuupuuuuppppuppuupuupppppppppppuppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.111,
+   "envMaxAfter": 0.111,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppuuuuuuuuuuuupuuuuupppppppppppppppppppppppsppppppppppupuppppppuuuuuupuuuuuuupuppuuuuuuupuuuuupuuupupupuupppppppppppssspssspssppupppupppppuppuuuuupppppppppppppsssppppppppppppsppppppupuuuuu",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.124,
+   "envMaxAfter": 0.124,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppuppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppsppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuuuupuuppuupuuupuuupupppppuupuppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.186,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppuuuppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppuuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppspupupuupupuupuuuuuuupppppppuppupppppppppppppppuppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppupuppppppupppupppppppppuppppppppuuupppppuppppppppppppppppppppppppppppuppppupppppppppppppppppppppppppupuupupuppppppppppppppppppppppppppppppppppppppppppsppppspppppppppsppppppppppppppppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.223,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppspuuuppuppuupuupuuuuppppppppppppppppspppppppppppppppppupupuppppuuuuupuuppupuuuuuuuuuppuuuuupuupppppppppuuppppppupppppppppppppppppppuppppppppppppppppppppppppsspppppppppsppsppppppppppupuuuuu",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.268,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy",
+    "competition"
+   ]
+  },
+  {
+   "bands": "upuupupppuuuuuuupuppppppppppppppppppppupupuppuppppppuuuuppuuppuupppuppppppppppppppppppspppppppppppppppppppppppppppppppppppppppppppppppppuuppppppppuupppppppppppppppppupppuppppuupppuppuuupuupppppuppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.104,
+   "envMaxAfter": 0.104,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppupppppupupuppppppppppppppppppppppppppppppppppppppuuuupppppppppppsppppppppppsppppppppppppppppppppppspppppppppuppppuuuupupuppuuuuuuuuuuupuppuppppppuppupuppppppuuupupupppuuupuuuuppppppppppppppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.157,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppppupppuuppuuuppppuppuupuuuppppupupuppppuuuuppppppppuuppppppppppspssppppppppppppppppppppspppppppppsppspppppppuuuppuuuuuupuuuuppupppuuuuupppuppppppupppppppppppppppppppppppppppupppppppppppppppppppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.184,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppsupppuppppuspuuupuuuuuuuuuuuuuuppppppuppuppupppppppppppupppppppppuppppppppuuuuuuuuppupuppppppuuppppppppuupppppuuuuuuuupppuuuuppppppppppppppuppuupppppupppppppppsppppspsssspppspppppspppssssppsppppppppp",
+   "strong": 15,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.22,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition",
+    "challenge"
+   ]
+  },
+  {
+   "bands": "puuuuuupuuupuuuuuuuppppppppppppppppppppuuuuuuuppuuuuuuuuupuuuuupuupupppppppppuuupppppppsppppsppsppsssppsspssppppppppppppppppppppppppppppuppppppuupuuppppppuppppppppppupppppppppppppppppuuuuuppppppppppsppspps",
+   "strong": 13,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.156,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "upuppupppuuuuuuuupupuppupupppuupuuuuppuuupuupuppuuuuupupuppppuuupppuppppsppspppppppppupppppppppppppppppppsspppppppppppupppuppppppppppssppppppppuppuupuppppupuppppppppppppuppppppppppuupuupuuspppppppppppppppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.166,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppupppppppppppppppppppppppppuppppppppppppppppuuuuppupppppppppppppppppppsppppppppppppppppppppppppspppppppuppppuuuuuuuuuuuuuuuuuuuuupuppppppupppppppppppppppuupupupppuuuppuupppppppppppppppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.289,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "pace"
+   ]
+  },
+  {
+   "bands": "spppppppppppppsppppupuppppuuppppppppuppppppppppppppppppppppppppppppppppuuuuuppppuuupupuuppupuuuuuuuuuuuuuuuuupuppuupppppppppppppuppppppppspppppppuspuppppppppppppppppppppppuppppppppppppppppppppppppppupuupuu",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.113,
+   "envMaxAfter": 0.113,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppupppppppppppppppppppppppppppppppppppppppsppppuupuppppppppppppppppuuppuppuupppuuuppuupupppupppppppppppppppppppppppppppppspuppppppppppppppppppppppppppppppppppppppppppppppppppppuppu",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.159,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "ppppspsupppupuppuspuuuuuuuuuuuuuuuuuuppppppupppppupppppppppppppppppppppuppppppppuuuuupppupuppppppppppppppppppppppppppuupuuuppppppppppppppppppppppppppuppppuuuupupupppspppppppssspppspupppspppssssppspppuupppu",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.233,
+   "envMaxAfter": 0.146,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppuuupuuppupupppppppppuuppppupppuppuppuupuppppppuuuuupuuuupppppppppppppppppppppppppppppppppppspppppppppspspppppppupppppppuppppuuppppppuuppuppppppuupupppppppppppppppppppppppuppppppppppppppppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.145,
+   "envMaxAfter": 0.145,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppuppppppppuppuuupuuuuuuuuuuuuuuupppppuppuppppppppppppppppppupppppupuppppppuuuuuuuuppuuuuppppuuuppuuppupuuppuppppupuuppppppupppppsppsspppsppuppupppppppppppppppppppppsppsssspspppsspppppppsppppppppupppu",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.125,
+   "envMaxAfter": 0.125,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppuppupppppppppsppsspppppppppsppssppppppppspppppppppppppupppspuppppppupuuuuupppppppppppppppppuuuuuppuuupuuuupppupuppssppssppppppppppppppppppppppppppppuuupppppppppppupppppppuuupppupppppuppuuuuuuuuuuuppupup",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.15,
+   "envMaxAfter": 0.15,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppsppppupupuupuppppppupupppppppppppppppppppppsssspsppppppppuuppppppuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuupuuuuupupuupppppppppppppssssppsppppppppppppppppupuuupupppppppppppppppppppppppppppppppppuuuuuuu",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.09,
+   "envMaxAfter": 0.09,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppupuppppppsppppppspppspppppppppppppppppppppppppppppupppppppuppuppuuupppuuuuuuuuuuuupuuuuppppuuuppuppupppupppppuppppppppppppppppppppppppppppuupppppppppuupupppppppppppppppppppppppupuuuuu",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.151,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppuppuupppppuppppppppppppppuppppppuppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppuupppppppppppupppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.104,
+   "envMaxAfter": 0.104,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppspppsppppppppppppppppppppppppppppppppppspppppppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppupppppppupupupppuupuppupuppuppppppppuppppppppppppppppppuuuuuuuuupppppppppuuuppppuppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.119,
+   "envMaxAfter": 0.119,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppsppppppupuppuppppppppupppppppsppsppppppppppsspppspspsppppuuppppppuuuuuuuuuuupuuuuuuuuuuuuuuuuuuupuuuuupupuupppupppppuupppspppupppppppuppppppppppuuuuuupppppuuuppppuppppppppppuppppppupuuuuuuuu",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.237,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppuuuuppuupupuupuppppppsppppppupppppppppuupuppupppuppppppuuuupuuuppppppppppppppsspssppsppppsppppppssppppppppspppppppuppspppuppppupppuuuuuuuuuuuupuuppppppuppupppppppuuuuuupupppppuuuuuupupupppuuuupppppppppp",
+   "strong": 11,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.204,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppupuuuuuupuupppupppppuppupupuppppupppppppupppppppppppppppppppppppupuuuuppuuuupppppppppppppppppppupuppuppppuppsppppppppsssppsspssppppppppppppuppuuppuuupppppppppppssspupppppppppppppppppppppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.107,
+   "envMaxAfter": 0.107,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppuppppppppupuuuupuupppppupupppppppppppppppppppppppsppppppppppppuppppppuuuuuupuupupupuupuuuupuupppuuuppuuupupupuupppppppsppppssppsssssppppppupppppppspppuppppppppppppuuppppppppppppppppppppppuuuuuuu",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.197,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppupupuupuppppppppupppppppppppppppppppupsspppspppppppppuppppppuuuuuuuuupuuuuuuuupuuuupuppuuuupuuuuupupuupppupppppupppsppsppspppppppppppppppspppuuppppppppppppppppppppppppppppppppppppppuuuu",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.099,
+   "envMaxAfter": 0.099,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuuppppuupuppppppppppppppppppspppupuppuppppuuuuuuppuuupuppppupppspppppuupsspppppsppppppppppsssppppppsppppppppppppsppppppppppppppuuuuupupuppuupppppppppppppppppuuppuuppuuuppuuupuuuuuuppuuuuupppsppppps",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.224,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppupuppppspppppuppppusppppspppssssspppppppppppppppppppppppppppppppppupupuppuuppppppppppuppppupupppppupppppppppppppppppspspppppppppppuppupppppppppppsppppppppupuuuuuuuuuuuuuuuuuuuupppupupuuuuuuupuuupupuppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.127,
+   "envMaxAfter": 0.127,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppupuppuppppppppupppppppppppppppppppppppspppppppppuuuuuuupppuuuuupuuppuuuuuuuuuuuuuuuuuuuuupuuupupppupppppppuppppppppppppspppupspppupuppppppppupppppppppppppppppppspppppuppppppppuupuuuuu",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.208,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace",
+    "challenge"
+   ]
+  },
+  {
+   "bands": "pppppppsppppppuupppuuuppppppppppppppppppuupuppppppppppppppppuuppppppppppppsspppppppppppppupppppppppppppppppppppppppppuppppuupppppupuupppupppuppupppuppppppuppppupppuppuuuuupuuuuppppuuuuppppppppppppppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.192,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "pppuupupuppppppppuppspspspppppspppppsupppuppuppuuppupppupuuuuppuuuupppuppppppupusspsspppspppppppppppppppppppppppppppppppssppupuppuuppuuuuuuupuupupppppppuupppupspssppupppppppupuuuuupppppupppuuuupuuupppppspp",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.183,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppupppppppppppppppppppppppppppppppppppppsppppppppppppuppppppppppppppuupuppuuuppppuuppppuuuppuuupusppppssspsspsspsspsppsspsspppppppppppppppupuuuuupppppppppppppppppppppuppppppuppppuupuupu",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.166,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "variety"
+   ]
+  },
+  {
+   "bands": "pppuppuppupppppuppppppspssppppppppppsppppppppppppppuppppppuuuupppppuppppppppppppssppsppppppppppppppppppppppppppppppupuppppuuuuuuuuupuuuuuuuuuuupupupppppuppspuspspppppppupupuuppuuuuppuppupppuuuupuuupppppspp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.21,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppupppppppppppppppppppuppuppppppuupppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppppupppppppppppupppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.128,
+   "envMaxAfter": 0.128,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppppppppppspppppupuupppppppppupppppppupppppppppuppppppuppupuuuupuuuuppppuupuppupppuuuupuuuuuuuuuuuuuuupuuuppsppppsppppppspppppppppsspsppupppuuuuuppsppsppppppssspspspppppppppspppppppppppppuppppppup",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.105,
+   "envMaxAfter": 0.105,
+   "envShrunk": []
+  },
+  {
+   "bands": "upupppppppppppuppuppppppppppppppppppppppuppppppppppppuppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppuppppppppuppppuppppuppppppppppppppspppppppppppupppuuuupupppuuppupppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.119,
+   "envMaxAfter": 0.119,
+   "envShrunk": []
+  },
+  {
+   "bands": "uppppppuppppppppupppppsppppppppuppppppupppppppupppppppppppppuuppppupppppppppppppppppppppsspppppppppppppppppppppppppppuppppuuupuuuuupuuuupuuuuuupppppppupupppppspsssssppppppsppppupupppppppppppppppppppppppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.109,
+   "envMaxAfter": 0.109,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppsspsppppppppppppppppppppppppsppppppppppspppppppppppppppppsppppupuuppppppppppupppppppuuuuuppupupuuppppppppuppppppppuupuuupuuuuuppuuuuuppppppppupppppuppppppppppppuuuuupuuupppppppppuuuupppuuuuppupuu",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.114,
+   "envMaxAfter": 0.114,
+   "envShrunk": []
+  },
+  {
+   "bands": "sppppppppspppppppppupuupuuuuppuuppppuupppppppspppppppspppppppspppppspppupuppppppuuppppupppupuuppppuuuupuuuuupuuppppppppuupppppppuppppppppppppppppuspuppppppupuupuuuuupppppppppppppppppppspppppppppppppupuuuuu",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.257,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppupspppppsppppppupuupuupppppppupppppppppppppppppppppssssppppppppuuuuuuupppuuuuuuuuppuuuuuuuuuuuuuuuuuuuuupuuuuupppuupppppppspppppsspsppspppussupuupuppppppuuupppppppppppppppppppssppppupppppppuuupuuuuu",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.133,
+   "envMaxAfter": 0.133,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppupppppsppupuuuupuuuupuuuuupppppppppppppppppppppppsppppppppppupuppppppuuuuuupuupupuupupuuuupuuuppuuuupuuupupupuuppppppppppppsspssppspppppppupppppppppppppppsppppppppppppspppppppppppppppppppupuuupu",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.206,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppuppppppupppppupuppppppsppppppppppppppppppppppppppppuppppppuuppppppppppppppppppssppsppppppppppppppppppppppppspppppupuppppuuuupupuppuuuuuuuuuuupppuppppppppppppppppppuppupuppuppuuupppuuppppppuuppupppppspppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.3,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "puppppppppppppppppuppppppppppupppppppppuuppupuppuuuuuuuuuppppppppppupppppppppuuppppppppppppppppppppppppppppppppppppppppppppppppppppppssppppppppuppuupppppppppspppppppppppppppppuppppppppupuuppppppppppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.246,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppppppppuuuuuuppuuupppppppppppppppppppuppuppppppuppppppppppppppppuppppppssppppppppppppuuppppppppppppppppppppppppppppupppuupppppppupppppppppppuppuuppppppupuppuppppppuuuuuuupuuppppuuuuppppppppppppppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.113,
+   "envMaxAfter": 0.113,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuuuuupuuppppuupuppspppspppppppppppspppppppuupppppppupppuuuupuupppupupppppppuuusspspsppppsppppppppppppppppppsppppppppspsspppppppppppuuuuuuuuuupupupppppuppppppppppppupppuuppuppuuuuppuuuuuupuuuuuupppppppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.164,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition",
+    "challenge"
+   ]
+  },
+  {
+   "bands": "pppuupuppppppppppuppsppssspsspspspsssppppppppppppppppppppppuupppppppppppppppppppsssssppppppppppppppppppppppppppppppupuppssppuupupuppuuuuuuuuuuuppppppppuuupppppppppppuppupupuuuuuuuuppuupuppuuuuuuuuuuppppppp",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.221,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppupppppppppppupppppppppppppppppupppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.136,
+   "envMaxAfter": 0.136,
+   "envShrunk": []
+  },
+  {
+   "bands": "upppppppppuupuuupppupppppppppppppppppppppppppupppppppuppppppuuuupppupppppspppppppppppppsppppssspsspssspsppppsspppspppuppppuuuppppuppuuuuuuuuuuuuppuuppppppuuuppuppppppuuuuupupppupupuuuupppppppuppppppppppppp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.091,
+   "envMaxAfter": 0.091,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppuupupuuppppuupupppppppppppppupppppupppuppuppuuppupppupuuupppuuupppppppppppupupspsppppppppsppppppsspppppppppppssspppppspppppppppppppupupuppuppuppupppppppupupppppupuuuuuuppppppppuppuupupupppuupupppppppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "pppppppspppsppppppspppupppppppppppppppspppppppspppppppppppppupppppspppppuppppppppppppppppupsppppppppppppppuppppppppupupppppuuupupupuuuuupuuuuuupppppppppppupuupuuuuuuuuuuuuuuuuuuuupupuuppppuuuupppupuuupuupu",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.253,
+   "envMaxAfter": 0.149,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuuupupuupuppppppspppppppppppspppuuupuuppupuuuuuuppuuupuuuppuuppppppppuuussppppspppppppppppspspppppppppppppppppspssppppppppppppppuupppppuupuuppppppuppppppppppuuupupppuuupppuupuuuuuuppuuuuuppppppppps",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.192,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.157,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppuppppuuuppuuppuppuppuuuppupupppuupupupupppppuuppuuppppppppupppppuuuuppppppppppppppppppppppppppppppppuuuupppppppppppppppppppppuppuppupppppppppppppppppppppsspppppppppppupppppppppppppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.136,
+   "envMaxAfter": 0.136,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppupuppppppppppppppppsppppppsppsppppppsspspsssppppppuuuuppppuupppppuuuppuuuuuuuuuuuuuuuuuuupuuuuppppppppspspppsppppsppppppppspppppppppppupuuuuuuupuuupuuupppppppppppppppuppppppupuuuuuuuu",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.146,
+   "envMaxAfter": 0.146,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuuuuupuppuuppppppupppuppppppppuuupuppupppuuuuuuuupppppuupppuuppppppppuupppupuupppppupppppppppppppppppupupppppsppppppsppsssppssssppsssssuppuupupppppppspppppppppppppppuuuppspppppupuuppppppppppppppppp",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.186,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppuupupppppppppppppsppppppppppppppppppppppspppupppppppppuuppspuppppppupppuppppppppppppppppppppppppppppppppppppppppppssppssspspspsppspppppppppppppppppppupppppuppppppupppupppuuupppupppppuppuuuuuuuuupppppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.133,
+   "envMaxAfter": 0.133,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppuuuupppppuuuuuuupuuuupuuuuuppppppupppppppppppppsppppppppppppppppppppppuuuuuupuuuuppppppppupppppppppuppppppppupuuuppppppppppspppppppppppppppuppssuuuppuuuuppppupppppppppppsuupppspppsssspssspuuupupu",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.17,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "pppuppuppupppppupuppspspspppppspppppsupppuppupuupppupppupuuuuupuuuppppuppppppppusspsppppspppppppppppppppppppppppppppppppssppupuuuuupuuuuuuuupuupuppppppuuupppupppssppupppppppuppuuuupppppupppuuuupuuuppsppspp",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.145,
+   "envMaxAfter": 0.145,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppuppppppppppppsppppppppppppppppuppppppupuupppppppppupppppupuppuuuuuuuuuppupppppppupppupuuuuuuppupuuuuuupuppppppsppppspppupupuppppppppppppppuppppuuuuspsppspppppppssppppppppppuppsppuppuuupupuuuupppppup",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.114,
+   "envMaxAfter": 0.114,
+   "envShrunk": []
+  },
+  {
+   "bands": "upupupupuuppppuupuppppppsspppppuppppsppppuupuupppppupupupuuuuuppuupppppppppppppusssssspsppppppppppsspppppppspspppppppuppssppuppupuupuuuuuuuuuuupupuuppppuppppupppppppuuuupupupppuuuuupuupupupuuuuuupppppppppp",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.225,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "puppppupuuppupuupuppppppppppppppppppppppppupuppppppuppuuppuuppppppppuupppppppppppppppppppppppppppppppppppppppppppppppppppppspppsppppspppppppppspppppppppppppppupppppppuupppuppppppppuppupupupppppuppppppppppp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.106,
+   "envMaxAfter": 0.106,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppuppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppuppuuuppppppppppuppppuppppuuuuppuuupuppupppppppppppppppupuppppppppppppppppuppppuppuppppppppppppssppppspppppppspppppppppppppppppppppppp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.134,
+   "envMaxAfter": 0.134,
+   "envShrunk": []
+  },
+  {
+   "bands": "sppppspppppppppppppupuupppppppppppppppsppppppspppppppsspppppppsppppsppppppppppppppppppuppupppuppppuupppuppupppppppppppppppppuppuuupuuppppppuupuppppppppppppppupuuuuuupuuupuuuppppupppuppspppppppppppppuuuuuuu",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.113,
+   "envMaxAfter": 0.113,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppppppppppupupppppppppppppppuppppppppuupppppppppuppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppupppu",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.125,
+   "envMaxAfter": 0.125,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppupppuppuuuuuuuupuuuuuppupppupppppuppppppppppppppppppppppppppppppuuuuuuupupuppppppppppppppppppuppppppuuuuuuuupupppppuppppppppppppppppppppsppppppppppppppppppppppppppspppppspppsssspspppppppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.124,
+   "envMaxAfter": 0.124,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppuupsuuupppsppppuupppppppppuppppppppppppspspppuupppppppppppsppspppppppsspppupspppppppppppppppspspppppupuppppuuuupuuuupuuuuuuuuuuupupppupppppuuuupuppuuupuuupuuupppuuupuuuupppppppupppppppuppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.208,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppupuppuppuuuuuuuuuuuupuuuuuppppppupppppppppppppsppppppppppppppppppppppuuuuuupuuuupuppppppuuppppppppuppuuppupupuuppppsppppppsssppsppsppppppppppspuuupuuuuuuuppuppppppppppssuupppppppsssspspppuuuuupu",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.149,
+   "envMaxAfter": 0.149,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppuppppppppppuuuuppuupppppppppppppppppppppppspppppppppppppppppppppppppupuppppuuuuuuuuuuuuuuuuuuuuupuppppppuupppppssssspsppppppppuppuuuppppppppppppuppupuppsppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.132,
+   "envMaxAfter": 0.132,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppuppuuupppppppppppppsppppppppppppppupppuppupuuuppupppupuuupppuuuupuuuppppppppuppppppppssppppppppppppppppppppppppppppppppppupupppuppupuuppppuppupppppppuupppupspssppppppppppppppppupppppuppppuuupupuppsppspp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.149,
+   "envMaxAfter": 0.149,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppspppppupppppuupuppuuuupppppppppppppppppppppppppupppupppppupppppppppppppuuppspppppppppppppppppppppppppuppuuuuuuuuuuupuuuppppppppppppppppuppppspppsspppssppppsppppppppppsppsppppppppppppppppppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.147,
+   "envMaxAfter": 0.147,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuupppppupuppspspspppppspppspspuppuupupuupppppupupuuuuppuuuupuuuppppppupusspsppppspspppppppppppppppppppppppppppspssppupupppuppuuuuuuupuppupppppppuupppupspssppupppppppuuuuuuupppppuuppuuuuuuuupppppspp",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.138,
+   "envMaxAfter": 0.138,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppuuuuppupuuuuuupuuppuuuuuuupppuuupuppppupupppppuppppuppppppppppspssppppppuppuppuuupppppppppppppppppppppppppppuupuuppppppppppssppppppppupppupuppspuuuppupuppppppppppppppppppuuppppppssspppppppppppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.118,
+   "envMaxAfter": 0.118,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppuppuuuppppppppuupuuppppppupuppppupppppppppppuuppppppppppppppppppppppppupppppppppppppppppppppsppppppppuuuppuuuupuuuuuuuuupuuuuuuupppuupppppuuuupuppppppppupppppssppupppupppppppppppppppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.143,
+   "envMaxAfter": 0.143,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppuppupuppppppppppppppppppppppppppppppppppppppuuppppppppppppppppppppppppuppppppppppppppppppppppspppppupupuppuuuuuuuuuuuuuupuuuuuuppppppppppppppppuppppppppupupppppuuupppupppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.2,
+   "envMaxAfter": 0.149,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "uppppuppppuuuuuuupuuuupupuupuuupuuuuppuuuupupuppuuuuuuupuppppuuuppuuppppsppspppppppuupppupppppppppppppppppspppppppppppppppuppppppppppsspppppppsuppuupuppppuuuppupppppppppupppppppsppuuppupuusspppppsppppppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.139,
+   "envMaxAfter": 0.139,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppuppppuuupuuuppuuuuuppppppppppppuppppppupppppppppppppppppppupppuuuuuupppppupppppppppppppppppuppppppppupuuppppppppppppsppppppppppppppuppppppppppppppppppppppppppppspppppppppppppppppppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.222,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "pace",
+    "challenge"
+   ]
+  },
+  {
+   "bands": "upuuuuuppuuuuuuupuuppppppppppppppppppppuuuuppuppppuuuuuuppuuuuuupppuppppppppppppppppppsppupppspsppssspppspppppspspspppppppppppppppppppppuupppppuppuuppppppuuuppupppppuuuuuupuuuuppppuuuuupuupppppppppppppppps",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.084,
+   "envMaxAfter": 0.084,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppuupppppppppppppppppppppppppppppupppuppupuupppppppupuuupppppuppuuuppppppppupppppppppppppppppppppppppppppppppppppssppppsppppppppspppppppppspuppppppppppppupppppppppppppppppppppupppppuppppppuuupppppppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.145,
+   "envMaxAfter": 0.145,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppuppppupupuppuuuuuuuupuuuuupuppppupppppuppppppupppppuppppupppuppppupppuuuuuuppppuppppppppppppppppppuppppppppupuuppppupppppppsppspppppppupppuupppppppppppppppppspspspppppsppppppppppppppppsppppppppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.104,
+   "envMaxAfter": 0.104,
+   "envShrunk": []
+  },
+  {
+   "bands": "puppppppppppupppppupupupuuppppppppuppppuupppppppppppupppupppppppppppppppppppppppuppuuuppuupppppppppppppppppppupppppppppppupppppppppppsppppppppppppppppppppppppppppupppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.119,
+   "envMaxAfter": 0.119,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppuuuupppppppupppppupppppppppppppppppppppppsppppppppppppuppppppuuuuuppuuuuuuuuuuuuuuuuuupuuupupuuupuppppuppspsppssppsssppsspspppppppppppppppsuuuuuuuppppppppppppppppppppppppppppuppppuuuuupu",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.11,
+   "envMaxAfter": 0.11,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppuppuuuuuuuupuuupuuuuuppppppupppppuppppppppppppppppppppppppppppppuuuuuuppupupppppppppppppppppppppppppppuuuuupppppppppppppppppppppppppppppspuuuppupppppppppppppspppppspppppppppsssspppppppppppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.094,
+   "envMaxAfter": 0.094,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppuupppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppupppppppupppppupppppppupppupppupuuuppupppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.189,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "psppppppsppuppppuspuuuppppppupuuuuuuupppppppppppppppppsspppppupppppppppppppppsspppppppupppupppppppuppppppppppppppppppuppppuppppppuppuppppppuupupppppppppppuuuupupuppppupuppuussspppppuupppppppppppppppuuuuppu",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.271,
+   "envMaxAfter": 0.143,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppppppppppuupuupupuuupupppuuppppppppppppppppppppppppppppppppppppppppuupuuppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.103,
+   "envMaxAfter": 0.103,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppuuuppuppuuupuppuppuuuuuuupppuuupuppppuuuuupppppuuuuupuupuppppssssppppppppppppppppppsssssppssspssppppppppppuuuppuuuppupuuuuppuupuuuuuuupuupuppppuupupppppppppppppppppppppppuupppppspppppppppspppppp",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.21,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "pace"
+   ]
+  },
+  {
+   "bands": "puupuuupuupppppupupppppppppppppppppppupppuupupupuppupupuppuupuppupupuuuppppppuuupppppppppppupppppppppppppppppppuppppppppppppppppppppppppupppppppuppppppppppppppppspppupppppppppppppuppppuuuuppppuupppppsppspp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.12,
+   "envMaxAfter": 0.12,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppspppppppsspspppppuuuuuuuppuuuuuppppppppppppupppppppppppppppppppppupuuuupppuuuuuuuupsuuuupuuuuuuuuuuupuuuupuuuuupuuuupupupuuppupppppppppppppuppuuuupusppppppppsppssssssspppppppsssspppppppppppppppppppup",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.295,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppspppsppppppppppppppppppppppppppppppppupppupppsppppppuuupupuuupppppppppppppppppppppppppppppuppppppppppppppssspppppppsppupppppppppppppppppuupppuuppppppupppppupppppppupppppuppuuuuuuuuuuppppppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.1,
+   "envMaxAfter": 0.1,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppspppppppppuppuuupuuuppuuuppuupuppppppupppppppppppppsppppppppppppppppppppppuupuupppupupppppppppppppppppppppppppppupuuuupppppppuppppppppppppppppppppppupuppupppppppppppppppppppppppppsppppspppppppppppppp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.193,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppppppppppppppupppppupppppppppppppppppppupuppuppupppppppppppppppppppppppppppppppppppppspppppppppppppsppppppppppppppppppppppppppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.101,
+   "envMaxAfter": 0.101,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppppppppppppppppppuppppppppppppppppppppppppppppppppspppppppppuupuuupppppppppppuppppupuuuuuuuppuuuuuuppppppppspppppppppppppppppppppppppppuppppppppppppppupppppppppppppppppppppppppppppppppppppupuupuu",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.235,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppspppppppppppppppppppppppppppppppppppppppppppppppppppppppuuuuuuupppppppppuuppppuuuuuuuuuuuuuuuuupupuuuuppppppppuuuuupupuupppppppppppupppppuuupppppppppppppppppppppppuppppppppppuuupppuuuuupuupup",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.128,
+   "envMaxAfter": 0.128,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppuppppppppppppsppppppppppppppppppppppsuppupppppppppuuppppupuppppupppuuuppppppppppppppppppppppppppppuuppppppppppppppsspppuppppppuupppppppppppppppppuupppupppppppppppppppppupppupppppuppuuuuupuuupppppppp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.206,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuupppppupuppspspspppppspppspsupppuupuupuuppupuuupuuuuupuuuupupuppppppupusspsspppspppppppppppppppppppppppppppppspssppuppppuuppuuuuuuupuppupuuppppuupppppppspppupppppppuuuuuuupppupupupuuuuuuuupppppsps",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.131,
+   "envMaxAfter": 0.131,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppuppppupppuppuuuuuuuupuuuuuppppppupppppupppppppppppppppppppppuppppppppuuuuuuppppuppppppppppppppppppuppppppppuuuuppppppppppppsppsspspsppppppupppppupppppppppppppppppppppsspppppppppppppppppppppppppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppupppppupupupppppppppppppppuppppppspppppppppspppppppspppppppppppppppppupuppuuppppppppppppppppppppppppppppuppuppppppppsppppppppppppppppppppppppppsuuppuppppuppupppppppppupppuppppppppppppppuppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.191,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "puuuupupuuppppuupuppppppppppppppppppppppuuupuuppuppuuupuppuuppppppppuppppppppuuuppppppppppppppppppppppppppppppppppppppppspppppppppppppppupppppppupuuppppppppppupppppuuuppppppppppppuuppuuuuupppuuuppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.077,
+   "envMaxAfter": 0.077,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppuuuuuuupppuuuupppppppuuuuuppppppppuppppuuuuppppppuuuuuppppupppppspppppppppppppppupspppppppppssppppsppppsssppuppppuppppppupppppuupuuuupuppuupppsppuuuupupppuppuuuuuuupppppppuuuupppuppppppppppppppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.15,
+   "envMaxAfter": 0.15,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppupupuupuppupppupupppppppppppppppppppppppppppppppppppppppppppuuuuuuppuuuppppppppppppppppppuppupppupppuuppppspppsppspsppsppsppppppppppppppupuuuuuuupppppppppppppppppppppppppppppsppppuppupp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.139,
+   "envMaxAfter": 0.139,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppuppuppuuupuuuupuuuuuuuuuppupppuppppuuuppppppppppuuppppupppppppppppppppuupppppupppppppppppppppppppppppppppuuuuuppppppppppppppppppppupppuppppppuuuppppppppppppppppssspppspppppsppsspppppsppppppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.174,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "pppuppuppppppppuppppppsppppppppppppppppppuppuppuuppupppppuuuuupuuuppppppppppppppppppppppppppppppppppsppppppppppppppppupppppuupuupuupuuuuuuuupuuuuppupppppppppuspppppppppppppppppupuuppuppupppppuppupppppppspp",
+   "strong": 4,
+   "tentative": false,
+   "flatNote": true,
+   "envMaxBefore": 0.213,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy",
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppsppppsppppppppppppppppppppppppppppppppppppppppppppppppppppppppuuuuuuppppuppppuuppppuuuuuuuuuupuuuuuuuupupuuppupuppuuuuuupupuuppppppppuppupppppuuupppppppppspppppppppppppuppsppspppsupppppppupupuppup",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.135,
+   "envMaxAfter": 0.135,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppuppuupuuupuppuupuuuuuppppppupppppupppppppppppppsppppppppppppppppuuuupuupupupppppppppppppppppppppppppupuuuuuupupppppuppppppppppppppppupppsppppppppppppppppppppppppppsppppppppppppppppppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.098,
+   "envMaxAfter": 0.098,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppspppppppppppppppppupppupppppppupppppppppppppppppppppppppppppppppppppppppppuupuupuuppppuupppppuupppppppppuppuupppupuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppsppppppppppppppppppu",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.201,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppppppppuuupppppupppupuupuppppppppupppppppppppppppppppusppsppppppppppppuppppppuuuuuupuuuuuuuuuuuuuuuuupppuuuppuuupusppuuppspsspsspssssppsssssppppppupppppppsuuuuuppppppppppuuupssppuppppppppppppppppuuuuuuu",
+   "strong": 20,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.109,
+   "envMaxAfter": 0.109,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppupupppppupppppuppppppppppsppppppppppssppppsppppppppuppppppuuuuupuuuuupuuuuuuuuuuuuupuuuuupuuupupupuuppppppppppppppppppppppsppppppppppppppuuuupppppppppppppppppppppppppppppppppppuuuuupu",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.156,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppuuppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppupppppuppppppppuupppppppuppppppppppppppppppppppppppppppppppppupppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.102,
+   "envMaxAfter": 0.102,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuuuuuppppppppppuuppppuuuuuuuuuupuuuupupuppppppppppppppppuuppppupppppppppppppppppppppppupppppppppppppuppppppppppppppppupppppppppupuuppu",
+   "strong": 0,
+   "tentative": false,
+   "flatNote": true,
+   "envMaxBefore": 0.273,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "uuuuuuuppuupupuuppppppppppppppppppppppppupppppppppppppupppupppppppppppppppppppppppppppsppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuuupppupupupuuppppppuppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.166,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppsppppppppppppppppppppppupppppppuppppppppppppupppppppppuppppppppppppppppppppppppppppppppppppppppppupppuppupppppppppppppppppppppppuppppppppppsssppsssppssppppppppspppppppppppppppppsppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.116,
+   "envMaxAfter": 0.116,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuupupuupppppupupssppsspppspspssssspppppppuppppppppuuupuuupppuupppupuppppppuupsspsppppppspppppppppppppppppppppppppppspssppppppppppppppuupppppppppppppuuupppppppppppupppppppuuuuuuupppupuuuuuuuuuuuupppppppp",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.172,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppuppppuuuuuuuupuuuuupuppppupppppuppupupupppppupppppppppppppppppuuuuuuppupuppppppppppppppppppuppppppppupuupppppppsppsssspssssssppppppuppppppppupppppppppppppppppssspppppppppppppppppppppppppp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.135,
+   "envMaxAfter": 0.135,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuuupupuuuuupppppppppppppppppppuuuuupuuupuuuuuuuuupuuuuupupuuuupppppppuuupppppppspppppppsppsssppspssppppuppppppppppppppppppppppppuppppppuupuupppppppppppppppppupppppppppppppppppuuuuupppppuppppspsspss",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.159,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppupppupppppppuuuuuuuuuuuupuuuuupppppppppppppppppppppppsppppppppppupuppupppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuupuuupusupuupppppppspppssspssssssppupppuppppppppppupppppppppppppppssspppsppppppppsppppppupuuuuu",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.148,
+   "envMaxAfter": 0.148,
+   "envShrunk": []
+  },
+  {
+   "bands": "upupuuuppuuuuuuupupppppppppppppppppppppuuppppuppppuuuuupppupuuuppppupppspspspppppppppppspuppsspppsssssssssssppsppspppuppppuupppppuppupuuuuuuuuuuppuuppppppuuuppupupuppuuuuuuuuupupupuuuuupuupppppppppppuppppp",
+   "strong": 19,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.175,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "competition"
+   ]
+  },
+  {
+   "bands": "uppuppuuuppppppupuppspspspppppsppsspsuppppppupuupppppupupuuuuppuuuppuuupppuppppusspspsppspsppppppppppppppppppsppppppppspssppupuppuuppuuuuuuupuppupppppppuupppupppppppupppppppppppuuuppuppupupuuuuuuuupppppspp",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.135,
+   "envMaxAfter": 0.135,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppuppuuuuuuuuppuuuupppppppppppppppppppppppsppppppppppupupuupppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuupuuupppupuuppppppppppppsspssspssppuppppppppppppppppppppppppppppppppspppspppppppppppppppupuupuu",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.127,
+   "envMaxAfter": 0.127,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppupupppppppppppppppppppppupppupppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppupppuppuuppppppppppppppppppppppppupuppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.107,
+   "envMaxAfter": 0.107,
+   "envShrunk": []
+  },
+  {
+   "bands": "puppppppuppspspppppspsppppppppsppppppppppppppppppppppppuppppppppppppupupuuuupuuppppppppppppuuuuuuupppuuupuppuuuuuuuuuppppppppupppppppppppppppppppppppppupusssppppppppupppspppuuppupppspppuppuuuuuppuuuppppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.132,
+   "envMaxAfter": 0.132,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppsppupupuppuppppppppuppppppppppppppspppsppppppppppppppppuuppppppuuuuupuuppupuuuuuuuuuuuuuuuupuupuuuuupupuupppppppppuppppppppppppppppppppppppppppuuppppppppppppppppppppppsppsppppppppppuuuuuuu",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.216,
+   "envMaxAfter": 0.149,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "upuupupppupppuuupuppppppppppppppppppppuppuppuuppuppupuupppuuuuuuppuupppppppppppppppppppsppppppsssssppppsppsppspppppppuppppupppuppupppppuuuuuuuuuupuuppppppuppppppppppppppuppppppppuuppuuupuupppuppppppspsssps",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.19,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "puppupupuppppppppuppppppppppppppppppppppppppppppppppppppppuuppppppppppuppppppupppppppppppppppppppppppppppppppppppppppsppppsspppspspppppppppsppppppppppppppppppupuppupupppppppuuupppupppppuppppppuupuppppppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.129,
+   "envMaxAfter": 0.129,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppupppppppppppppppuupupuppppppppppppppppppppppppupuppppspuupuppppuppppuuupupuuuupppppupppppppppppppppupupuppppuspupppppppppsppppspppsssssppupppuupppppppppppppppssspssspppppspppspppuppppppppppppppppup",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.083,
+   "envMaxAfter": 0.083,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuupupuupppppppupsssspspppppsppsspsuppppupupuupppupupupuuuuppuuuppuuupppuupuuusspsppppsppppppppppppppppppppppuppppppspssppupupppuppuuuuuuppuppupppppuuuuppsupspspppupppppppuuuuuuupppppupuuuuuuuuuuupsppspp",
+   "strong": 21,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.134,
+   "envMaxAfter": 0.134,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppssspppppsppppppppppppppppppppppppppppupppppppppuppppppppppppupupuupppppppssppppppppppppppppppppppppppppppuppppppppuupupuupuuuuppuuuuupppppppppuupppupppppppuppppuuppppuuuupppppuppuuuuupuuuuppppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.166,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "challenge"
+   ]
+  },
+  {
+   "bands": "pppppppuppppppppppppppupuuuuupppppppupppppppppppppppppppppppsspppppppuuuuuuuupppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuuuuuupusppuupppppppspppppssssssssppuppupuppuppppupupupupspspspppppppspppspppppuppppppppuupuuuuu",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.143,
+   "envMaxAfter": 0.143,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppuuuuupuuuuuuuupupupupppppppppppppppppuuuuppuppupuuuuuuppuuuuuupppupppppspspupppppppppspuppsppspssssppsssspppspspspppppppppppppppppppppuupppppuupuuppppppuuupuupppupuuuuuupupppppppuuuuupuupppppuppppppppppp",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.142,
+   "envMaxAfter": 0.142,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppuppupupppppppppppppsppppppppppppppupppuupupuuuppupppupuuuuupuuuuppppppppppppuppppppppsspppppppppppppppppppppppppppupppppuuuuuuuupuuuuuuuupuuuuppuppupuuppsusssssssppppspsppppuuuupppppuppppuuupupuppsppspp",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.176,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppsppppppupuppuppppppppppppppppppppppppppppppppsspsppppppuuuuuuppppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuupuuuuupppuupppupppspupppspssspsppppspuppupuspppppuuupuppppspuppuppppppsspppppuupppppuuuupuuuuu",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.092,
+   "envMaxAfter": 0.092,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppuuuupppppppuppppppppppppppppppppppppppspppppsppppppppppppppppppppppppuupppppppppppppppppppppppppppuppppupppsppupppppppppuupupppppppppppuuupuuuuuuupuuuuupupppppppupuuppppppppppsppppuppupp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.136,
+   "envMaxAfter": 0.136,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppspppppuppppppppppppppppppppsppppspsspppppppppsppppppppupuuuuupppuupppppuppppuuuuuuuuuuuuuuuuuuupupupppppppsppppppppppppppppppppspppspppuupppppupuuuuupppppppppppppppppppppppuupppppuuuuuuuuuu",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.13,
+   "envMaxAfter": 0.13,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuuuuppppppppuppspspsppppppppppppuupppupuuuupppppupupuuuupppuuppuuuppppppuuusspsppppsppppppppppppppppppppppuppppppppssppppppppuspuuuuuuppuppupppupupuupppupppppppupppppppppppuuuppppuuuppuuuuuuuuuppppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.138,
+   "envMaxAfter": 0.138,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuppupppuuuuuuupupuuuppppppppuppppppppupppppupppppupuppppppuupppppupppspssspppppppppppppupppppppppppppssssppspppppppuppppuppppppuppuppuuuuuuuuupsuuppppppupuppuppppppuuuuuuupppppupuuuuuppupppppupppppupppsp",
+   "strong": 11,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.173,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "upuuuuuppuupupuupuppppppppppppppppppppupppuppuppppppuuuuppppupuppppupuppppppppuppppppppppppppppppppppppppppppppppppppppsppppppppppppppppuuppppppppupppppuppppppppppppuppppppppppppuuppuuupuupppuuuppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.11,
+   "envMaxAfter": 0.11,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppupuuuupuupupppupupppppppppppppppppppppsspppspppppppupuppppppuuuuuuuuupupuuuuuuuuuuuuuuuuuuupuuupupupuupppppppppppppssssppsppppppppppppppppuuuuupuppppppuppppppppppppppppppppppppppuuuuupu",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "puupppupuupppppppuppppppsppppppppppppppppuupuppuuppupupupuuuuuppuupppppppppppppusppsppppspppppppppppppppppppppppppppppppppppuppupuuppuuuuuuupuppuppuppppuppppppppspppuppppppppppppuppppppuppppuuppupppppppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.141,
+   "envMaxAfter": 0.141,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppupuupupppppupppppupppppppppppppppppspppspppsppppppppuuuppppppuuuuupuuupupuuuuuuuuuuuuuuuuupupuuuuppppuupppppppppppppppppppppppppppppppppppppuuuupuppppppuppppppppppppppppppppppppppuuuuuuu",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.138,
+   "envMaxAfter": 0.138,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppuppppppppppupppppsppppppsppsppppppppppppppppppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppuuupppppppppppupppppppuuuuupupppppuppuuuuupuuuuppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.131,
+   "envMaxAfter": 0.131,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppuppppppppppuppppuuuuuuuppppppupppppppppuppuppppppupppspppppppuupupuuuupppuuuuuuuuppuuuuuuuuuuuuuuuuuuuuuuuuupupupuupppppppsppppsspssssssppupppuupppppppppppppppssspspspppppspppspppppppppppppppppppppu",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.206,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppspspsspppppppsppupuuuppuupuppuuuupppppppsppppppppppsppppppppppppsppppppppppsuuuuuuuuupupuppuppuuuppuuuuupuuppppppuupuuuupppuuppuupppppppupppppppppppppppppppuupppppppppppppppppppppppspsppppssppppuuuuuuu",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.148,
+   "envMaxAfter": 0.148,
+   "envShrunk": []
+  },
+  {
+   "bands": "puupppupuupppppppuppsppsppppspsppsspsppppppppppppppppupupupuupppuppppppppppppuppsspsspppppppppppppppppppppppppppppppppppsppppppppppppuuuuuuupuupupppppppuppppppppppppupppppppuupuuuupppupupuuuuuupuuuuppppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.173,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppuppuppupppuuupupupuppppppppppppppppppuupupuppupuuuupuppuuuuuppppupppppspppppppspppppsppppsspppppsspssppsspsppsspppuppppuppppppupppppuuuuuuupuppuuppppppupuupupppppuuuuuuuupppppupuuuuuppupppppppppppppppsp",
+   "strong": 15,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.132,
+   "envMaxAfter": 0.132,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppuppuppuppppuupuppppppssppppppppppspppppppuupppppupupupuuuuupuuppuppppppppppppssssspppppsppppppppppppppppppppppppppuppssppupuppupppuuuuuuuuuupupuuppppuppppupppppppuuuupupuuuuuuuuppuuuupupuuuupuuppppppspp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.14,
+   "envMaxAfter": 0.14,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppuppppppupuuppppppuuuupuuppppppppppppppppppppppspppppppsppsssppppppppppppppppupuppuuuppppupppppuuuuuuuuuupuuppppppppppppppppppppppppppppppupppuuppppppppppppppspspppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.204,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "puupuupppuuuuuuupuupuppppppppupppppppppuupuupuppuuuuuuuuuppppuuppppuppppspsspppppppppuppupppppppppsppppsssspppspppppppupppuupppppppuppppuppppppuppuuppppppuppspppppppppuuupppuuuppppuppuupuupppppppppppppppps",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.148,
+   "envMaxAfter": 0.148,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppuppppsppppppppspppppppppppsspspppppppppppppppppppppppppsppppppppupupuuppppppppppppppppppuuuupppupppuupppppppppppppppppppppppppppuppppppppppppppppuuuppppupuupuuuuppuuuuuuuuuuupppppuppuuuuuppuuupuppppp",
+   "strong": 6,
+   "tentative": false,
+   "flatNote": true,
+   "envMaxBefore": 0.117,
+   "envMaxAfter": 0.117,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppuuuuuuuupuuuupuppuppuupuuuupppuuupupuppuuuuupuuuppppuuppppuppppspssppppppppppppppppppsssspppppsppsppppppppppppppuuppppppppppppppppppppuppuupppsppupupppppppppppppppppppppppupuuuppuspppppppppspppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.133,
+   "envMaxAfter": 0.133,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppuppuppppppppsuppuppppuppppppppuppppppppppspppppppppppppppppppppppppppppppppppsppupuuuuupuuuupuuuuuupppppppppuppppuppppppppppppppppppuuuuppppppppuuuuupuuupppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.12,
+   "envMaxAfter": 0.12,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppupuupuupppppppupppppppppppppppppppppppssppppppppppuuppppppuuuuuupuupppuuuuuuuuuuuuuuuuuuupupupupupuupppppppppupppppppppppppppppuppppppppppuuppppppppppppppppppppppppppppppppppppupuuuuu",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.115,
+   "envMaxAfter": 0.115,
+   "envShrunk": []
+  },
+  {
+   "bands": "uppppppupppppppppppspssppppppppppppppppppppppppppppppppppppppppppppppuupppuuuppppppppppppspupppppppppppppppuupppupuppppppppppppppppppppppppppppppuppppuuuusppppsppssspsssppsspppppppsppppppppuupupupupppppppp",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.126,
+   "envMaxAfter": 0.126,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppspppppppppppuppppppppuppppppppppppppppppppppppppppppsppuuuuuuppppuuppppuuppppuuuuuuuuuuuuuuuuuuupuuupppppppppppppuppppppppppppppppuspuppupuspppppppppppppppppppppppppppspppppupppppppuuupuuuuu",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.171,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppssppppppppppppppppppppppppppppppppupuppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppuppuuuppuuuupuuuuuuppppppppuupppppppppppppuuupupuuuuuuuupuuppppppuuuupupupppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.166,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuuupupuppuuppppppppppuppppppppuuuuuupuppuuuuuuuuupppppuppppuuupppppppuuppppppuppppppppppppppppppppsppppupppppppppppppppppppppssppppppppuppuupppppppppsppppppppppppppppppppppppppupuuppppppppppsppppps",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.23,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppuppuuuuuuuupuuuuupppppppppppppppppppppppsppppppppppupuuuupppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuupuuupupuuuuppppppppppppsspssssssppuppuuppppppppppupppppssspspspppppspppssppppppppppppppupuuuuu",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.143,
+   "envMaxAfter": 0.143,
+   "envShrunk": []
+  },
+  {
+   "bands": "sppppppsppppppppppppppupupppppppppppppspppppppppppppppppppspppssppppppppuuppppppuppupuuuuuupuuuuuuuuuuuuupupuuupuuuuuppppupppupppppupppppppppppppppppppppppppppuuuuuuppppppuupppppppppppppppupppppppppuuuuupu",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.078,
+   "envMaxAfter": 0.078,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuuupupuuppppuupuppppppppppppppppppsppppuupuupuupuuuuuupuuuuuuuuupupppppppppuppsspsppppppppsspsppssspspppppppppsssppuppppppupuppuuppuuuuuuuuuuuupuupppppppppupppppppuupppppppppppuuppuuuupuppuuupupppspsssps",
+   "strong": 19,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.165,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy",
+    "social"
+   ]
+  },
+  {
+   "bands": "upuppupppppppppppppspssppppppppppppppppppppppupppppppuppppppupppppppppppppppppppppppppppsppppppppppppppppppppppppppppupppppuuppupuppuuuupuuuuuupppppppuuupppppppppsppppppppspuppuuupppupppppppuuppppppppspppp",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.132,
+   "envMaxAfter": 0.132,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppuppuuupuppuppuuppuuppppupupuppppuuuupppppppppuppppppppppppppppppppppppppppuppppppppppppppppppppppppppppppuuppppppppppppppppppppupppuppppppuupppuppppppppppppppppppppppppppppssppppppppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.141,
+   "envMaxAfter": 0.141,
+   "envShrunk": []
+  },
+  {
+   "bands": "pupuupupuppppppppupsssssspppspspppspspppppppuppupppppppupuuuuppuupppppupppuppuppsspsppppsppppppppppppppppppppppppppuppppsppuuuuupuuuuuuuuuuupuupuppppppuuuppsppspppppupppppppuuuuuuupppppuppuuuuupuuuuppppppp",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.163,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppuppuppppuupuppppppsspspppppppppppppuppupppppppppppppuuuuppppppppppppppppppsssssspspppppppppppppppppppppspppppppuppssppuppupuupuuuuuuuuuuupupppppppppuppupppppppuuuuuupupppuuuuuuuupupuppuuppupppppppppp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.244,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "uuuuuuupuuupupuupuppspppspppppspppspspupupupuuppppppuuuupuuuupuuuupuuppppppppuupspppppspppppppppppppppppppppppppppppppspssppppppppppppppuuuppuppupupppppuppppppppppppupppppppuuupppupppuuuuupuuuuuupppppppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.132,
+   "envMaxAfter": 0.132,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppupupuuuuuuuuupuuuuuppppppupppppuppppppupppsppppppppppupuppppppuuuuuupuupuuuupppppuupuppppuuuupuuupupupuuppsppppspppssspssspssppppppuppppppppppppppppppppppppppppsppppppppppppsppppppppupupp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.195,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "challenge"
+   ]
+  },
+  {
+   "bands": "ppupupuppuppppuupuppppppppppppppppppppppuuppppppupuuuppuppuuuuppuppupppppppppppppppppppspppppppsppsssppppppppppppppppppppppppppppppppppuuuuppupuupuuppppppuppppppppppuuuuuppppppppppupuuuppuppppppppppspppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.107,
+   "envMaxAfter": 0.107,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuupupuppuuuppuppuspsspppppppppppppppupupupuuuuppppuuuppuuuupuuuuuuppppppppuppuppppppppssppppppppppppppppppppppppppppppppppupupppuppupuuupppupuupuppuupuupppppssssssppppppsppppuppuppppupppppuuupuppppsppspp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.159,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppuppppspppppspspppupppppppppppupppppppppupppppppppppppsppupupupuuuuuuuuuuppppppuppppuuuupuupuuuuuuupupuuuuuuuuspupppppupppppuppppppppsppppuppupuuuuspsppsppppppssspsssppppppppssppuppuuupuppuuupppppup",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.083,
+   "envMaxAfter": 0.083,
+   "envShrunk": []
+  },
+  {
+   "bands": "puppppupuppppppppppppppppppppppppppppupppuppupuuuppppppupuuuppppuuupupupppuupupupppppppppppupppppppppppppppppppupppppspuppppppppppupppppppppspppuuppupppuuspsppspspppppsssspppppppppspsppuppppupupupuupsppppp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.137,
+   "envMaxAfter": 0.137,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuuuuuuuupuupppppppppppppppppppuuuuupuuppppuuuuuuupuuppuuppuuppppsppppuupppppppsppppppppsppspppppppppppppppppppppppppppppppppppppuppppppuppuupupppppppppppppppupppuppppuupppupupuupuupppppupppppppppps",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.238,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppspsppppppsppsppppppspsssspppppppspppppppppppppuppppppppppppupupuuppppppppppppppppppupuupppppppuuppppppppupppppsppuppuupppuuuupuuppuuppppppppuuupppppppppppupppppppuupuuuupppppuppuuuuupuuuuppppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.189,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppsppppsppppppppppupuupppppppupppppppppppppppppppppppppppppppppuupuuuupppuuuuupuuppuuuuuuuuuuuuuuuuuuuuupuuuuuppuupppppppuppppppppppppppppupppuuupuppppppppppppssspppspppppppspsspppsppppppppppupuppuu",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "upupuuuppuupupuupuppppppppppppppppppppupppuppppppppppuppppppppppppppuupppppppppppppppppppuppppppppppppppppppppppppppppsppppspppppppsppppppppppppppupppppppppupuupppppuppppppppppppppuuuuppuupppppuppppppppppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.084,
+   "envMaxAfter": 0.084,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuppupppuuuuuuupppupuppppppppuppppppppupppppuppppppppppppppuupppppupppppppppppppppppppppppppppppppppppssssppppppppppuppppupppppppppppppuuppuppuppuuppppppupuppupppppppuupppppppppupuuuuuppupppppupppppppppsp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.119,
+   "envMaxAfter": 0.119,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppppppppppppppupupuuupupppuuuupppppppuupppppppppppppppuppuppppuppppuppuuuupuppppppuppppppppppppppppppuppppppppppppppsppppppsppppppppppppuppupuppppuppppppppppppspspsssppsppppppppppppppppppppppppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.095,
+   "envMaxAfter": 0.095,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppuppuppuuuupppppppupppuppppppppuppppppppppppppppppppppppppppppppppppppppppppuuuppppppppppppppppppppppppppppppppppppppppppsppppppppppppppppppspuuupuuuuuuupuuuupuppppspppuupppppppppppppppppuupppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.121,
+   "envMaxAfter": 0.121,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppsppppppppupppppupppuupupuuupuupppupuuuuupuuuupuupppppppppuspppppppsspppppppppppppppppppppppppppppppppuupuupuupuuuuuuuupupuuppuppppuppppusssssssppppppsppppppupppppppppppuuupupppssppspp",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.16,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "puuuuuupuupppppppuuppppppppppppppppppppuuuupuuppupuuuuuuupuuppuuuupupppppppppuuppppppppppppppppsppspspppppppppppppppppppppppppppppppppppuppppppuupuupppppppppppppppppupppppppppupppuppppuuuuppppupppppspsspps",
+   "strong": 7,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.123,
+   "envMaxAfter": 0.123,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppspppppsppppupuuupppppuppuupuppppppupppppppppppsppspppppppppssppppppppppuuuupuupupuppppppppuuppppppppppppppuuuuuuuuupupupppuupppppppupupppppppppspppppppuupppppppppppppppppppppppppspppppsppppuupuuuu",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.188,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppupuppuppuuupuppppuuupuuuuuppppppupppppupppppppppppupppppppppppppppppppppuppppppuppppppppppppppppppppppppppuupuuuupppppuppupppppppuppupppppppppppppppupppppppppppppssspppppppppsppppppppppppppppppp",
+   "strong": 4,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.163,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppuupppppppppppppsppppppppppppppupppuppupuuuppppupupuuupppuuuupuuuuppuuuuuupppppppppspupppppppppppppppppppuppppppppppppppupppupppppppppspppuuppppupuupppupspsspppssspspsppppppupppppupppuuuupupuppsppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.147,
+   "envMaxAfter": 0.147,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppuuupupuuppppuupuppspppsspspppppsspspppppppuppupppupupupuuuuppppuppppuppppppupussssssppppsppppppppppppppppppsppppppppspsspppppppppppuuuuuuupuupupppppppuppppupppppppuuuuuuuuuuupuuuupuupupupuuuuuuuupppppppp",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.152,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "psspspsusspppppppspppppuuppuuppuuuuuuppppppppppupppppppppppppppppppppppupupuppppuuuuupuuppppuppppuuuuppuuuuupuupppppppupuuppupuuupuppppppppppppppupppppppppppupppppppspppppppspppppppppspppspppppsppppupuppup",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.31,
+   "envMaxAfter": 0.148,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppsppppspppspppppppppspsssppppppppspppppppppppppupppspppppppuupupuuupppppppppppppppppuuuuuppppuuuupppppppppppppppsppppppppppuuppppppppppppppppuuupppupppppppupppppupppppupupppppuppuuuuupuuuuppppppp",
+   "strong": 10,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.101,
+   "envMaxAfter": 0.101,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppupuuppppuupupppppuupppppppspppppppppppppppppppppppppupuppppppuupppppupuupuuuuupuuuppuuuuuppuppppppspppppsppppppppppppppppppppppppuppppppuppuuuuuuuppppupppppppppppuppppppppppppppppupuuuuu",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.136,
+   "envMaxAfter": 0.136,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppspuuuuuuupuupuppuuuupppppppspppppppppppppsssppppppppppuuuuuppppuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuupuuupupupuuppspsppssppppssssspsppspppppppppppupuuuuuuuppppppuupppppssppppppppuppsppppppuuuuuuu",
+   "strong": 19,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.214,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppsupppppppsppppppuuuuuuuupppuuuupppppppppppppppppppppppsspppppppppuuuuuupppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuupuuupupupuupppppppppppppssssppspppuppupppppppppupppupppssspspspppppsppsspppppppppppppppupuuuuu",
+   "strong": 17,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppuppppppppppppsppppppppppppppppuppppppupuupppppupppupppppuppupuuupppupupuupppppppppppupppppppppppppppppppupppppspppssspspspspssppppppsspppppppppupuuppppuppppppupppupppppppppupppppuppppupuuupppppppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.13,
+   "envMaxAfter": 0.13,
+   "envShrunk": []
+  },
+  {
+   "bands": "spppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppuupppppupuupppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.195,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppuppppppppuspuuppuuuuuuuupuuuuuppppppppppppupppppppppppppppppppppuppppppppuuuuupuuppupppppppuuupppupppppupppppppupuupppppppppppppppppppppppppppppppppppppppppppspppppppssspppppppsppppppppppppppppupppu",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.175,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "uuupuupuupppppppppuppppppupppuppppppppuuupuppupppuppuuupupppppupppuppuppppppuuuupppppppppppupppppppppppppppppppupppppppppppppppppsppspppppppsppppppppuupppppppupppppppspspssspppppppppppupupppppppppppppppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.12,
+   "envMaxAfter": 0.12,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppupuppupuuuuuuuuuuuuupuuuuuppppppupppppuppppppppppppppppppppppppppppppuuuuuupuupuppppppppuppppppppppppppppppuuuuuupppppppupssppppppppppppppuppspupuppupupppspppppppppppppspppppspppssssppsppppupppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.144,
+   "envMaxAfter": 0.144,
+   "envShrunk": []
+  },
+  {
+   "bands": "puppppuppuppupuupuppppppppppppppppppppppuppppppppppupppupppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppupppppppppppppppppppuuuppuupuuppppupuupppupppppuppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.095,
+   "envMaxAfter": 0.095,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppuppuuppuuupupupupppppsppppppppppppuppppppppppupppppppuuupppppupppspssspppppppppppppupppppppppppppppppppsspsppppuppppuppppppuppppppuuuuuuuupsuuppppppupuppupppupuuuuuuuuuuuppuuuuuupppupppppppppppuppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.114,
+   "envMaxAfter": 0.114,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppspsppspppppppsppupppupppuppppuupupppppppppppppppppppppsppppppppppppupuppppppuuuuupuuppupuuuuuuuuuupuuuuuupupuuuuppupuuuupupuuupuuppppppppppppppppppppppppppppppppppppppppppppppppppppsppppppppppppupuuppu",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.175,
+   "envMaxAfter": 0.148,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "spspsspppsspppssuspuuuppupuuuppppuupupppppppppppppppppsppppppppppppppppuuuppppppuupuppuuppupuuuuuuuuuupuuuupppuppuuupuuuuuuuuuuuuuuuupppppppupppppspuppppppppupppppppppppspppssspppppppsppssppppppppppupuuppu",
+   "strong": 18,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.404,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace",
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppsssspppppppspppppppppppppuppupppppppppupppppuppppppupupuuupppppppppppsspppppppppppppppppppppppppuppppppppupuuuuupuuuupuuupuupppppppuuuupppupsppsppupppppppuupuuuupspppuppuuuuupuuuuppppppp",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.224,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppsppppppsppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppppppppppppuupppupppppppppppppuuppppppppppppppppppppuuuuupuppppppppuuuuuppuuupppppup",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.113,
+   "envMaxAfter": 0.113,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppuuuuuupppppupuuuppppppppuppppppppppppppppppppppppppppppppppppuppupuppupppppppppppppppppppppppppppppupuuppppppppppppppppppppppppppppppsppppppuppuppppppppuupppppppppppppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.164,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppppupuppppppppppppppppppppppppppppppppssppppppppuuuuuuupppuuupuppupppuuuuuuuuuuuuuuuuuuuupuuupusppppsppppppsppppppppsspppppupppppppuppppppppppppppspppppppppppppspppppuppppppppuupuuuuu",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.086,
+   "envMaxAfter": 0.086,
+   "envShrunk": []
+  },
+  {
+   "bands": "puppupupuuppppuppuppppuppppppppppppppppppppppppppppppppupppppppppppppppppppppuuppppppppppuppppppppppppppppppppppppppppspspssspssspppsppppppppppppppppppppppupuuuuuuuuuuuuuuuupppppppuppupuuupppppupupppuppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.104,
+   "envMaxAfter": 0.104,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppupuppppupuuuuuuuuuuupuuuuupuuuppupppppuppppppupppsppppppppppupuppupppuuuuuupuupuuuupppppuupuppppuuuuppupppsupuuppsppspsppsssspssssssppppppuppppppppupppppppppppppppppssspppppppppppppppppppppupppp",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.201,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppsppppppssppspppppsppppppppppppsppppsppupuuuuppppppppppuupppuuuuuuuuuuuuuuuuuupupuuuuppppppsppppppppppupppppppppsppsspppuuuppppppuppppppppppppuupuuuupppppuppuuuuupuuuuupuuuuu",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.167,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppuuuuuupppupuupppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppppppppppspppppspppppsppuppuppupppppppppppppuuuuuupuuuupuuuuuuupppppupuuuupppppppppuppppuuupppp",
+   "strong": 3,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.129,
+   "envMaxAfter": 0.129,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppppppppppppppupupuuupppppppppppppppppppuppppppppppppppppppppppppppppppppupupppppppppppppppppppppppppppppupppppppppppppppppppppppppppppppppppupppppppppppppppppppppspppppppppppppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.18,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppppsppppppspspppppppspppsppppppppppppppppppppppuppppppppppppupupuuuppuppppppupsppppppppppppuppuupppppppppuppppppppuuuuuuupuuuupuuuuuuppuppppuuuupppuppppppppppppppppppuuuupppppuppuuuuupuuuuppppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.112,
+   "envMaxAfter": 0.112,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppupppppppppppuuuuuuuuuupuppuuuupppppppppppppppppppppppsppppppppppupuppppppuuuuupuuupuuuuuuppuuuuuuupuuupupuuupppppuuppppppppppppsppssspssppppppppppppppppppppppppppppppsppspspppppppppppppppppppupuuupu",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.114,
+   "envMaxAfter": 0.114,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppuppuuuuuuuuuuuuuuuuuuppppppupppppppppppppppppppsppppppppppppppppuuuuuuupuuuppppppppppppppppppuppppppupupuuuppppppppppsspppppppppppppppppspppuppupuupuppppppppsssspsspppppppppsssspsppppuppupu",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.145,
+   "envMaxAfter": 0.145,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppsppppppppppppuuuuuuuuuuuuppuuuupppppppppppppppppppppsssppspppppppuuupuppppuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuupuuupupupuupppppppppppssssssspsppppppupppppppppuuuuupupppppppppppppsspppppppppppsppppppuuuuuuu",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.184,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace",
+    "competition",
+    "challenge"
+   ]
+  },
+  {
+   "bands": "uuuuuuuppuupupuupuppppppppppppppppppppppppuppupppppuuupuppuuuuuppppupppppspppppppsppppppppppssppppsssspsppppppsppssppuppppppuppppupppuuuuuuuuuuuupuupppppppppupppppppuuuupupupppupuuppuuuupupppuppupppsppppps",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppupupuppuppppppupuppppsppspppsppsppppppsspppsspsppppuuuuupppsuuuuuuuuuuupuuuuuuuuuuuuuuuuuuupuuuuupupuupppppppppupppsspppppppsppppppppppppppuuuupupppppuuupppppppppppppppupppppppppuuuuuuu",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.109,
+   "envMaxAfter": 0.109,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppsppppppppppspuuppppppuupuppuupuppppppppppppppspppspppppppppppppppupppppsspuuuuupuuppupuupuppuuuupppppuuuppuuuuppupuupupppuuppuuppppppppppppppppppppppppppppppppspppppppppppppppuppsspsppppppppppupuuuuu",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.117,
+   "envMaxAfter": 0.117,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppuuuuuuupuuuupuuuuupppppppspppppppppppppssppppppppppppppppppppuuuuuuuuuuupuupuppuuupupppuppuupuuppupupuupppppppppppppspppppsppppppupppsppuupuuuuuuuppppppppppppppspppppsppppssspspppuuuuuuu",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.12,
+   "envMaxAfter": 0.12,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppuuuupppppppuppppppppppppppppspppppppppppppppsppppppppppppppppppppppppuuupppppppppppppppppppppppppuppppuppppspppppppppppppppppppppppppsppppppupuuuupuuupuuuppppppppppppppppppppppppppupuupu",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.132,
+   "envMaxAfter": 0.132,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppspppppppppppppppppppppppppppppppppppppppppppppppppppppuppppuupupupuppuppppppuupupppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.146,
+   "envMaxAfter": 0.146,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppuuuuppupuuuuuuuuppuuupuuuuuppuuppupppppuupppppuspppppppppuppppppssppppupuuuuppuuppppppppppppppppppppppppppppuuuuuupppppppupssppppppppupppppuppspupuppupupppppuuuppupppppppuupppppppsssppspsppuppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.107,
+   "envMaxAfter": 0.107,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppupppppppppppppsppppppppppppssppppppppsuppupppppppppuuupppuppppupupppuuuppppppppppppppuppppupppppppppuppppppppppssppssspppppsppsppppppsspspppppppppuupppppppppppupppppppuuupppupppppuppuuuuuuuuuppppppup",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.119,
+   "envMaxAfter": 0.119,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppspsppupuppuppuuupuupppuuuuuuuuuppupppupppppuppppppppppuupppppuppsppppppsppuuuuupppupuppppppppppppppppppppppppppuupuuuuuupupuppuppuppuuuuuuppuppuppppupuppupppppsppupppppssppusppuppsppssspsppsppppppppp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppuppuupppppppuppppppspsppppppppppppupppuppupuuuppppppppuuuuppuuuuppppppppppppuspppppppsppppppppppppppppppppppppppppppppsppupuppuuppupuupuppuppupppppppuupppupppssppppppppppppppppupppppupppppuupuppppsppspp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.17,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy"
+   ]
+  },
+  {
+   "bands": "pppppppupppupuppupppuppuppppuuupuuuuupuppppupppppupppppppppppppppppppppppppppppppppuupppppppppppppppppppppppppppppppppupupuppppppppppppppppppppppppppupppppppppppppppppppppppppppppppppppppppppppppsppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.124,
+   "envMaxAfter": 0.124,
+   "envShrunk": []
+  },
+  {
+   "bands": "uppuuupupuuuuuuupupupuupppppppupppppppuppppppppppppppuupppppppuupppuppppppppppupppppppsppupppppppppppppppppppppppppspppppppssspsssssssppppppppppppupppppppuuupuuuuuuuuuuuupppppppsppuuuuupuupppppupppppuppppp",
+   "strong": 13,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.12,
+   "envMaxAfter": 0.12,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppuppuupppppuppppupupppppppupuppppupuupppppppuuuppupuppppppppppppppppppppppppppppsspppppppppsppppppppupuuuppuuuuuuuuuuuupuuuuuuuuuuppuppppppppppspppppppppppppppppupupppupppppppppppppppspspppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.192,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppsppppppppppppppuppppppuppuuppppppppupuuppuuppppppppppppppppppppppppspppppppppppppppppppppppppppupppppuupuuuuupuupuppuupuupupppppppuppppppppssppppppppppppppppppppppppppppuppuppppsppspp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.137,
+   "envMaxAfter": 0.137,
+   "envShrunk": []
+  },
+  {
+   "bands": "uuuuuuupuuupppuupuuppppppppppppppppppppuuuuupuppupuuuuuuuppuuuuuupuupppppppppuuppppppppppppppsssspsssppsssspppppppppppppppupppppppppppppuupppppuppuupppppppppppppppppupppppppuuupppuppuuuuuuppppppppppspsspps",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.126,
+   "envMaxAfter": 0.126,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuupuuppuppupuupuppppspspppppppppppspupppupuupppppppuuupuuuuuuupppuppppppppppppsspsppppspsppppppppppppppppppppppppppuppssppupuupuupuuuuuuuuuuupupuuppppuppppuppsspppupppppppuppuuuuppuuuupupuuuuuupppppppsps",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.167,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppupuuupuuuuuuuuupuuuuuppupppupppppupppppppppppppsppppppppppppppppuuuuuuupupuppppppppppppppppppuppppppuuupuuuuppppppppppppppppppppppppppppsppppppupppppppppppppppppppspppppspppsssspspppppppupp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.197,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppppupupppppppppppppppppppppppppppppppppsspspppsppppppuuppppppuupuupppuuppuuuuuupuuuuuppuupuppuuupupppppppspsppssppppspppppsppppppppppppppppuuuuuuupppppuuppupppppppppppppuppppppuppuuuuupu",
+   "strong": 10,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.087,
+   "envMaxAfter": 0.087,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppsppppppppppupuupppppppupppppppppppppppppppppppppppppppppppspppppuppppppppppppppuuupppppuppuppppuppupppppppppppppppppppppppppppupppppupupppppppppppuuuupuuuuuupuuuuuuupppppppuuupppppppppppppppuuuuupu",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.165,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "challenge"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppuppuuuupppppppupppupppppppppppppppppppppppppuupsppppppspppppppppppppppppuupppppppppppppppppppppppppupuuppuuuuupupupuupuupuuuuuupppppppppppupuppupuuuupuuupuuupppppupupuupppppppppppppppuppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppppppuupuuuuppppppppppppppuuuupuupupuuuuuuuppupuuupppppppppppppuppppppppppppppppuppppuuuuppppppppppppspspppppppppppppppppppuuppppppuupppppup",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.181,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.178,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppuuuuuuuupupupppppppppppuupppppuuppupuppupuuupupppuuuuuppppupppppsspppppppppppppppppsssssppsssssspspppsppppppuppppuupppppupppppuuuuuuuuuppuuppppppupupppppppppuuuuupupppppupuuuuuppuppppppppppppppppp",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.125,
+   "envMaxAfter": 0.125,
+   "envShrunk": []
+  },
+  {
+   "bands": "upuuuuupuuupppuupuppppppppppppppppppppupupuppuppppppuuuuppppupuupppupppppppppuupppppppsppppppsppppssspppppppppppppppppppppppppppppppppppuupppppuppuupppppppppppppppppupppuppppppppppppuuuuuupppupuppppppppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.121,
+   "envMaxAfter": 0.121,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppupuppuuuuppupuuuppuuuuuuuuuuuuuupuuupuupuupuuupupupupppppupppuuppppspppppppuuuuuuppppuppppppppppppppppppuppppppppupuupppppppppppsspppppppsupppupupppppupppppppppppppppspppppsspppppppppsssppppsppppppppp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.149,
+   "envMaxAfter": 0.149,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppsppppppupuupuppppppppupppppppppppppppppppppsssspppspppppuuuuuupppuuuuuupuuppuuuuuuuuuuuuuuuuuuuupuuuuupupuupppppppppupppssppppsppsppppppupppppsppuuppppppppppppupppppppppppppuppppppupuupuuuuu",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.137,
+   "envMaxAfter": 0.137,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppuppppuuuuuuuppuuuuuppppppppppppppppppppppppppppppppppuppppppppuuuuuupppppppppppppppppppppppuppppppppupuupppppppppppppppppppppppppppuppppppppppppppppppppppppppppspppppppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.213,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "autonomy",
+    "precision"
+   ]
+  },
+  {
+   "bands": "uppupuuppupuuppupuppppspsppppppppppppupppuupuuuuupuuuppupuuuuuuuuuuupppppppppppusspppppppppppppsppppspppppppppppppppppppppppupuupuuppupuuuuupupuupuuppppupppppspssspspppppppppppppuupppppupppppuupupppssppsps",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.138,
+   "envMaxAfter": 0.138,
+   "envShrunk": []
+  },
+  {
+   "bands": "puppuppuuppppppppppppppppppppppppppppuppppupupuupppppppupuppppppuuupuuupppuuuuuupppppppppppupppppppppppppppppppupppppsppppppppppppppppppppppspppuuppupupuuspsppsppppppssssspsppppppppppppuppppupupupuupsppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.095,
+   "envMaxAfter": 0.095,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppuppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 0,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.194,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "ppppspppppppppppuspuuupuupuuuuuuuuuuuppppppupppupuuppppppppppupppupppppuppppppppuupupuupppuppppppppppppppppppppppppppuuuuuuuuuuuuuuuuppppppuupppppppuupppppppupppppppspppppppsssppppppppppsppppppsppppppppppp",
+   "strong": 8,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.358,
+   "envMaxAfter": 0.149,
+   "envShrunk": [
+    "autonomy",
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppuuuppupuuuupuuuuuuuuuuuuuuppuuuuuppppuuuuupppuppppuppppupppppppppppppuuuuuuppupupppppppppppppppppppppppppupuuuuuppppppppppssppppppppupppupupssppppppppppppppppppppsspsssspppppppppssspppsppppppppp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.213,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "puppupuspuppppuppuppppuppppppppsppppppppuppppppppppppppppspppppppsppppppppppppppppppppppuuppppppppppppppppppppppppppppppppppspppppsupspspppppppppsppspppppuppsuuuuuuuuuuuuuuuuuuppppuupuppuupppppupppppuppupp",
+   "strong": 11,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.176,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppppppspsppppppppppppppppsppppppppppppppppppppppppppuppppppppppppupupuuppppppppppupppppppupuupppppuuuuppppppppuppppppppuuuuuuupuuuupuuupuuppppppppuuuspspppppppppppppppppppuuuuppppppppuuuuupuuuuppppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.113,
+   "envMaxAfter": 0.113,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppspppppspppppppppppppppppppppppuppuppppppppppuppppppppppppppppppppppppppppppppppp",
+   "strong": 2,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.167,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "pppuupuppuppppuupuppppppspppppppppppsppppuppuppupppupppppuuuuupuuuppppppppppppppsssssppppppppppppppssppppppppsppsspppuppssppuppppuuppuuuuuuuuuupupuuppppupuppupppppppuuuuuupuuuuuuuuuuuupupuppuuupupppppppppp",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.138,
+   "envMaxAfter": 0.138,
+   "envShrunk": []
+  },
+  {
+   "bands": "puupupupuupspppppupsppuppppppppspspppppppppppppppppppupupppppsppppppupupuuuupuupppppppppuupuuuuuuupppuuuuuupuupuuuupusppppspsppspssppppspppsssppppppppppppppppupupuuuupppppupuuupppppppppuuuuuupuupupupppuppp",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.18,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "pppppppupppppppppppppppppppuupppppppuuppppppppuupppppppppupppppppupppuuuuuuuuppuuuupupuuppuuuuuuuuuuuuuuuuuuuuupppppppppppppppppppuppppppppppppppuppupupuusppuppppppppssspspspppppppspssppppppppppppuuupuppuu",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.096,
+   "envMaxAfter": 0.096,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppssppppppppuuuuuuupppuuuuuppupppuuuuuuuuuuuuuuuuuuuupuuuuusppppsppppppsppppppppsssspppuppppuuuusppsppuppppppppppppuuuppppppspppppuuppuppuuuupuuuuu",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.075,
+   "envMaxAfter": 0.075,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppuppppppppppppppsppppppppppppppuppppppupuupppppppppuuupppuuupppuupppuuuppuppppppppssppppppppppppppppppppppppppppppppppupuuuuuppupupppppuppuuppppuuuupppusspssssppspppppppppppusppppppppuuuupupuppsppppp",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.146,
+   "envMaxAfter": 0.146,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppuppppppspppppssspsspppppsppsspspppppppuppppppppppppuuuupppupppppupupuupppppppppppppppppppppppppppppppppppppppupppppppuuuuuuuuuuuuuuuuupuuppppppppuuusssppspppppupppppppuuuuuuupppppuppuuuuupuuuupppppup",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.162,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "challenge"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppupupuppuuuuuuuupuuuuuppuuppupuppuuuuupppupppppuppppuppppppppppppuuuuuuppupuppppppppppppppppppuppppppupuuuuuupppppppuppsppppppppupppupuppppppppppppppppppppspsppppppsppppupppppppppppppppppppp",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.155,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social",
+    "pace"
+   ]
+  },
+  {
+   "bands": "pppppppppppppspppppppppsppppppsppppppppspppspppppsppppppppppppsppppsppupuuuuppppppppppuuppppuuuuuuuuuuuuuuuuupupuuuuppppppppuupuuppuuuupppppppppppsspppuuuspsppppppppppppppppuuuuuuupppppuppuuuuupuuuuupuupuu",
+   "strong": 12,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.143,
+   "envMaxAfter": 0.143,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppuuupuppuuuuuuupupupppppppppppupppppppuuuupuupuupuuuppuppuuuuupuupupppppspppuppppppppppppppsspsppsssppppppsppspssspppppppppppppppppppppuppppppuupuuppppppuuuuppppppppuuuuppupppppppuuuuuppuppppppppppppppppp",
+   "strong": 12,
+   "tentative": false,
+   "flatNote": false,
+   "envMaxBefore": 0.154,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "competition"
+   ]
+  },
+  {
+   "bands": "upuppupppuuuuuuuupuppppupppppuppupppppuuuuuupuppuuuuuuuuupuuuuuuupuuppppspppppppppppppppppppppsssssppppspssppppppppppppuppupppppppppppppuppppppuupuupuppppuppppppppppppppuppppppppppppppupupspppppppppspsspps",
+   "strong": 14,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.174,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "pace"
+   ]
+  },
+  {
+   "bands": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppppuppuuppuppppppppppppppppppppppppppppppppppppppppsppppppppppppppppppppppppppppppppppppppppppppupp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.146,
+   "envMaxAfter": 0.146,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppuuuuuppppuuuupppppppupppuppppppppppppppppppppppspppuppppppppspppssppppppppppppuupppppppppppppppspppppppppppuppppupppppppppppppppppuppupppppppppsupuppupuuuupuuuuupupppppppuuuupppppppppppppppuppppp",
+   "strong": 6,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.096,
+   "envMaxAfter": 0.096,
+   "envShrunk": []
+  },
+  {
+   "bands": "pppppppppppupupuuppupuppppppppuupppppppppupupuppupuppppppppuuuuupppupppppsppppppppppppppppppppspssppppssppsppsppsppppupuppuuupuupuupuuuuuuuuuuuuupuuppppppuuuupuppppppuuuuupppppppupuuuuppppppppppppppppppppp",
+   "strong": 9,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.14,
+   "envMaxAfter": 0.14,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppppppppppppppppppppupuupuppppppppppppppppppppppppppppppppssppppppppupuuuuppppuuupuppuuupuuuuuuuuuuuuuuuuuuuupupuppsppppsssppspsppsppspssssssppppppppppppuppupuuuuuppppppuppupppspppspppppuppppppuppuuuuuuu",
+   "strong": 18,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.137,
+   "envMaxAfter": 0.137,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppupupuppuppppuupuppsppssppsspppppspsppppppppppppppppupppppuuppppppppppppppppuppsssssspppppppppppppppppppppppsppppppppppsspppppppuppuuuuuuuuuuupupppppppuppppppppppppuppuuupuuuuuuuuppuupuuupuuuuuuuuuppppppp",
+   "strong": 16,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.234,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "social"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppppppspppppppppspppspppppppppuppupppppppppupupppuupppppppppppppppppppppppspppppppppppppppppppppppppppppppppppupuuupupuuuupuuppupppppppppuupppsppppppppupppppppupuuuuupppppupppuuuupupupppppppp",
+   "strong": 5,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.157,
+   "envMaxAfter": 0.15,
+   "envShrunk": [
+    "challenge"
+   ]
+  },
+  {
+   "bands": "ppppppppppppppppuspuuuuuuuuuuuupuuuuuppppppuppppppppppppppppsppppppppppupuppppppuuuuuuuuupuuuuuuuuuuuuuuuuuuuuupuuuuupupuuppppppppppppsspssspssppuppuuppppppppppuuuppsppppppppppppssppsspppppppsppppppupuuuuu",
+   "strong": 15,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.136,
+   "envMaxAfter": 0.136,
+   "envShrunk": []
+  },
+  {
+   "bands": "uppppppuppuppppppppppppppppppppuppppppuppppppppuppppppupppupppuupuppppppppppppppppppppppspppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppupppppppppppppppppppppppppppppppppppppppppppppppppppp",
+   "strong": 1,
+   "tentative": true,
+   "flatNote": true,
+   "envMaxBefore": 0.087,
+   "envMaxAfter": 0.087,
+   "envShrunk": []
+  },
+  {
+   "bands": "ppppspppspppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppuppupsspuuppppuuppppuuuuuuuuuppuuuuuupupppuppuppppppupuuuuppuupppppuupuppppppppppppppppppppppppppppupppppuppppppppppppppppppppupuuppu",
+   "strong": 4,
+   "tentative": true,
+   "flatNote": false,
+   "envMaxBefore": 0.113,
+   "envMaxAfter": 0.113,
+   "envShrunk": []
+  }
+ ]
+}
