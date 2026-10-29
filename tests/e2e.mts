@@ -385,8 +385,10 @@ if (only.includes("S1") || only.includes("S2")) {
     await p.getByText("Provisional norms ·").first().waitFor();
     // The persona answers accuracy items within ~0.2 s: all rapid guesses, which are scored as
     // missing, so only Memory and Speed (span and speed norms) can have a band.
-    const bands = await p.getByText(/^P\d+–\d+$/).count();
-    const empty = await p.getByText("not enough data").count();
+    // Counted in the reasoning chapter only: interests and personality have percentile bands too since their norms (v2-0.5).
+    const reasoning = p.locator("#reasoning");
+    const bands = await reasoning.getByText(/^P\d+–\d+$/).count();
+    const empty = await reasoning.getByText("not enough data").count();
     if (bands !== 2 || empty !== 3) throw new Error(`profile: expected bands for memory and speed only (rapid guesses), saw ${bands} bands and ${empty} empty areas`);
     log("profile: reasoning scored with provisional norms (memory and speed banded; rapid guesses left out)");
   }
