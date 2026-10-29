@@ -85,7 +85,7 @@ for (const s of subjects) {
     const ro = ranks(lanes.map((l) => l.ours));
     const rc = ranks(C);
     const div = lanes.map((l, i) => ({ name: getLane(l.id)?.name ?? l.id, code: l.code, ours: ro[i]!, c: rc[i]! })).filter((x) => Math.abs(x.ours - x.c) > 50);
-    L.push(`**Interest-only ranking against congruence** (your code ${code}): Spearman ρ with the C index ${r1(spearman(lanes.map((l) => l.ours), C) * 100) / 100}, with Iachan's M ${r1(spearman(lanes.map((l) => l.ours), M) * 100) / 100}. ${div.length} career paths are more than 50 ranks apart: ${div.slice(0, 15).map((d) => `${d.name} [${d.code}] ours ${d.ours}, C ${d.c}`).join(" · ")}`, "");
+    L.push(`**Interest-only ranking against congruence** (your code ${code}): Spearman ρ with the C index ${spearman(lanes.map((l) => l.ours), C).toFixed(2)}, with Iachan's M ${spearman(lanes.map((l) => l.ours), M).toFixed(2)}. ${div.length} career paths are more than 50 ranks apart: ${div.slice(0, 15).map((d) => `${d.name} [${d.code}] ours ${d.ours}, C ${d.c}`).join(" · ")}`, "");
   }
 }
 
