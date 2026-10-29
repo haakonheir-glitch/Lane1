@@ -438,6 +438,8 @@ log("removed pages: /sprints, /evidence and plans redirect to /lanes");
 // Pages render
 for (const path of ["/profile", "/lanes", "/settings", "/method", "/system"]) {
   const r = await p.goto(base + path);
+  // /system (the design specimen) is dev-only by design: a production build answers 404.
+  if (path === "/system" && r?.status() === 404) continue;
   if (!r || r.status() >= 400) throw new Error(`${path} → ${r?.status()}`);
 }
 log("app pages render");
