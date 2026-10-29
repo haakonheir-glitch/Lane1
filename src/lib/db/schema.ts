@@ -33,6 +33,13 @@ export const profiles = pgTable("profiles", {
   currentYears: text("current_years"),
   /** Lanes the person is considering (up to 3), from the same search. */
   considering: jsonb("considering").$type<{ laneId: string; roleId: string | null; title: string }[]>(),
+  /**
+   * Ground truth for validating matching (stored only, never used in matching): "How satisfied are
+   * you in this work?", 1 (not at all) – 7 (completely), for the current job, and up to two previous
+   * jobs with the same question.
+   */
+  currentSatisfaction: integer("current_satisfaction"),
+  previousJobs: jsonb("previous_jobs").$type<{ laneId: string; roleId: string | null; title: string; satisfaction: number }[]>(),
   onboardedAt: timestamp("onboarded_at", { withTimezone: true }),
 });
 
@@ -154,6 +161,26 @@ export const outcomeCheckIns = pgTable(
     answeredAt: timestamp("answered_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => [primaryKey({ columns: [t.userId, t.wave] })],
+);
+
+/**
+ * "Does this resonate?" on a top-five career path card, with the matching version that put it there
+ * (ground truth, stored only). The latest answer per person, career path and version.
+ */
+export const careerResonance = pgTable(
+  "career_resonance",
+  {
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    laneId: text("lane_id").notNull(),
+    matchingVersion: text("matching_version").notNull(),
+    /** Its place in the top five (1–5) when answered. */
+    rank: integer("rank").notNull(),
+    response: text("response", { enum: ["yes", "not_really", "no"] }).notNull(),
+    answeredAt: timestamp("answered_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.laneId, t.matchingVersion] })],
 );
 
 export const sprints = pgTable("sprints", {

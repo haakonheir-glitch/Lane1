@@ -9,12 +9,17 @@ import { getLane, getRole } from "@/lib/taxonomy";
 
 const picked = z.object({ laneId: z.string().max(80), roleId: z.string().max(160).nullable(), title: z.string().min(1).max(120) });
 
+/** "How satisfied are you in this work?", 1 (not at all) – 7 (completely). Ground truth only; never used in matching. */
+const satisfaction = z.number().int().min(1).max(7);
+
 const onboardingSchema = z.object({
   ageRange: z.string().max(40),
   situation: z.string().max(80),
   clarityGoal: z.string().max(120),
-  current: picked.extend({ years: z.enum(["0", "lt2", "2to5", "5plus"]).nullable() }).nullable(),
+  current: picked.extend({ years: z.enum(["0", "lt2", "2to5", "5plus"]).nullable(), satisfaction: satisfaction.nullable().optional() }).nullable(),
   considering: z.array(picked).max(3),
+  /** Up to two previous jobs, each with the same satisfaction question. Optional. */
+  previous: z.array(picked.extend({ satisfaction })).max(2).optional(),
 });
 
 /** A picked title must point at a real lane, and its role (if any) must belong to that lane. */
@@ -28,6 +33,7 @@ export async function saveOnboarding(input: z.input<typeof onboardingSchema>) {
   const data = onboardingSchema.parse(input);
   if (data.current) checkPick(data.current);
   data.considering.forEach(checkPick);
+  (data.previous ?? []).forEach(checkPick);
   const row = {
     ageRange: data.ageRange,
     situation: data.situation,
@@ -37,6 +43,8 @@ export async function saveOnboarding(input: z.input<typeof onboardingSchema>) {
     currentTitle: data.current?.title ?? null,
     currentYears: data.current?.years ?? null,
     considering: data.considering,
+    currentSatisfaction: data.current?.satisfaction ?? null,
+    previousJobs: data.previous ?? [],
     onboardedAt: new Date(),
   };
   const db = await getDb();

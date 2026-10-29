@@ -23,12 +23,18 @@ export type OnboardingState = OnboardingAnswers & {
   /** True once the person has answered the current-job step, including "not working right now". */
   currentAnswered: boolean;
   considering: PickedTitle[];
+  /** "How satisfied are you in this work?" (1–7) for the current job; ground truth only, never used in matching. */
+  satisfaction: number | null;
+  /** Up to two previous jobs, each with the same question. Optional. */
+  previous: (PickedTitle & { satisfaction: number | null })[];
 };
 
 type ChoiceId = keyof OnboardingAnswers;
 type Step =
   | { kind: "choice"; id: ChoiceId; prompt: string; hint: string; options: string[] }
   | { kind: "current"; prompt: string; hint: string }
+  | { kind: "satisfaction"; prompt: string; hint: string }
+  | { kind: "previous"; prompt: string; hint: string }
   | { kind: "considering"; prompt: string; hint: string };
 
 const YEARS: { value: YearsBand; label: string }[] = [
@@ -38,6 +44,8 @@ const YEARS: { value: YearsBand; label: string }[] = [
   { value: "5plus", label: "More than 5 years" },
 ];
 const MAX_CONSIDERING = 3;
+const MAX_PREVIOUS = 2;
+const SATISFACTION = [1, 2, 3, 4, 5, 6, 7] as const;
 
 const steps: Step[] = [
   { kind: "choice", id: "ageRange", prompt: "Which age range are you in?", hint: "Used only to compare you with people at a similar stage.", options: ["18–24", "25–34", "35–44", "45–54", "55 or over"] },
@@ -49,6 +57,12 @@ const steps: Step[] = [
     options: ["Studying", "Employed, fairly settled", "Employed, considering a change", "Between jobs", "Self-employed"],
   },
   { kind: "current", prompt: "What do you do now?", hint: "Your current or most recent job. It sets where you'd realistically start in that career." },
+  { kind: "satisfaction", prompt: "How satisfied are you in this work?", hint: "1 is not at all, 7 is completely. Kept to check how well our matching works; it doesn't change your results." },
+  {
+    kind: "previous",
+    prompt: "Any previous jobs?",
+    hint: `Optional. Up to ${MAX_PREVIOUS}, each with the same question: how satisfied were you in that work?`,
+  },
   { kind: "considering", prompt: "What are you considering?", hint: `Up to ${MAX_CONSIDERING} jobs or directions. We'll mark them on your Career map.` },
   {
     kind: "choice",
@@ -83,10 +97,30 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
   const step = steps[n - 1];
 
   const go = useCallback((s: number | "done") => router.replace(`${pathname}?step=${s}`, { scroll: false }), [router, pathname]);
-  const advance = useCallback(() => go(n >= steps.length ? "done" : n + 1), [go, n]);
+  // The satisfaction question only applies to someone with a current job.
+  const hasCurrent = !!answers.current;
+  const applies = useCallback((i: number) => steps[i - 1]?.kind !== "satisfaction" || hasCurrent, [hasCurrent]);
+  const advance = useCallback(() => {
+    let k = n + 1;
+    while (k <= steps.length && !applies(k)) k++;
+    go(k > steps.length ? "done" : k);
+  }, [go, n, applies]);
+  const back = () => {
+    let k = n - 1;
+    while (k > 1 && !applies(k)) k--;
+    go(Math.max(1, k));
+  };
 
   const answered = (s: Step) =>
-    s.kind === "choice" ? !!answers[s.id] : s.kind === "current" ? answers.currentAnswered && (answers.current === null || answers.years !== null) : true;
+    s.kind === "choice"
+      ? !!answers[s.id]
+      : s.kind === "current"
+        ? answers.currentAnswered && (answers.current === null || answers.years !== null)
+        : s.kind === "satisfaction"
+          ? !answers.current || answers.satisfaction !== null
+          : s.kind === "previous"
+            ? answers.previous.every((p) => p.satisfaction !== null)
+            : true;
 
   const choose = useCallback(
     (id: ChoiceId, value: string) => {
@@ -108,8 +142,9 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
           ageRange: answers.ageRange ?? "",
           situation: answers.situation ?? "",
           clarityGoal: answers.clarityGoal ?? "",
-          current: answers.current ? { laneId: answers.current.laneId, roleId: answers.current.roleId, title: answers.current.title, years: answers.years } : null,
+          current: answers.current ? { laneId: answers.current.laneId, roleId: answers.current.roleId, title: answers.current.title, years: answers.years, satisfaction: answers.satisfaction } : null,
           considering: answers.considering.map(({ laneId, roleId, title }) => ({ laneId, roleId, title })),
+          previous: answers.previous.flatMap(({ laneId, roleId, title, satisfaction }) => (satisfaction === null ? [] : [{ laneId, roleId, title, satisfaction }])),
         });
       } catch (e) {
         if (isNavigationError(e)) throw e;
@@ -215,7 +250,7 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
                               <p className="text-body text-ink">{answers.current.title}</p>
                               <p className="mt-0.5 label text-ink-3">Career path: {answers.current.laneName}</p>
                             </div>
-                            <Button variant="ghost" size="sm" onClick={() => setAnswers((a) => ({ ...a, current: null, years: null, currentAnswered: false }))}>
+                            <Button variant="ghost" size="sm" onClick={() => setAnswers((a) => ({ ...a, current: null, years: null, satisfaction: null, currentAnswered: false }))}>
                               Change
                             </Button>
                           </div>
@@ -242,12 +277,12 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
                           <JobTitleSearch
                             label="Search for your job title"
                             autoFocus
-                            onSelect={(h) => setAnswers((a) => ({ ...a, current: pickFrom(h), years: null, currentAnswered: true }))}
+                            onSelect={(h) => setAnswers((a) => ({ ...a, current: pickFrom(h), years: null, satisfaction: null, currentAnswered: true }))}
                           />
                           <button
                             type="button"
                             onClick={() => {
-                              setAnswers((a) => ({ ...a, current: null, years: null, currentAnswered: true }));
+                              setAnswers((a) => ({ ...a, current: null, years: null, satisfaction: null, currentAnswered: true }));
                               advance();
                             }}
                             className="mt-4 label text-ink-3 transition-quiet hover:text-ink"
@@ -256,6 +291,62 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
                           </button>
                         </>
                       )}
+                    </div>
+                  ) : step.kind === "satisfaction" ? (
+                    <div className="mt-10">
+                      {answers.current ? <p className="label text-ink-3">{answers.current.title}</p> : null}
+                      <SatisfactionScale
+                        name="satisfaction"
+                        legend={step.prompt}
+                        value={answers.satisfaction}
+                        onChange={(v) => {
+                          setAnswers((a) => ({ ...a, satisfaction: v }));
+                          window.setTimeout(advance, 180);
+                        }}
+                      />
+                    </div>
+                  ) : step.kind === "previous" ? (
+                    <div className="mt-10">
+                      {answers.previous.length < MAX_PREVIOUS ? (
+                        <JobTitleSearch
+                          label="Search for a previous job"
+                          onSelect={(h) =>
+                            setAnswers((a) =>
+                              a.previous.some((c) => c.laneId === h.laneId && c.title === h.matched) ? a : { ...a, previous: [...a.previous, { ...pickFrom(h), satisfaction: null }].slice(0, MAX_PREVIOUS) },
+                            )
+                          }
+                        />
+                      ) : (
+                        <p className="text-small text-ink-3">That&apos;s two. Remove one to add another.</p>
+                      )}
+                      {answers.previous.length ? (
+                        <ul className="mt-6 flex flex-col border-t border-rule" aria-label="Previous jobs">
+                          {answers.previous.map((c, i) => (
+                            <li key={`${c.laneId}|${c.title}`} className="border-b border-rule py-4">
+                              <div className="flex items-center justify-between gap-4">
+                                <span>
+                                  <span className="block text-body text-ink">{c.title}</span>
+                                  <span className="block label text-ink-3">Career path: {c.laneName}</span>
+                                </span>
+                                <button
+                                  type="button"
+                                  aria-label={`Remove ${c.title}`}
+                                  onClick={() => setAnswers((a) => ({ ...a, previous: a.previous.filter((x) => x !== c) }))}
+                                  className="flex size-8 items-center justify-center rounded-xs text-ink-3 transition-quiet hover:bg-rule/60 hover:text-ink"
+                                >
+                                  <X aria-hidden strokeWidth={1.5} className="size-4" />
+                                </button>
+                              </div>
+                              <SatisfactionScale
+                                name={`previous-${i}`}
+                                legend={`How satisfied were you as ${c.title}?`}
+                                value={c.satisfaction}
+                                onChange={(v) => setAnswers((a) => ({ ...a, previous: a.previous.map((x) => (x === c ? { ...x, satisfaction: v } : x)) }))}
+                              />
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
                     </div>
                   ) : (
                     <div className="mt-10">
@@ -296,7 +387,7 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
                   )}
 
                   <div className="mt-10 flex items-center justify-between gap-4">
-                    <Button variant="ghost" size="sm" onClick={() => go(n - 1)} disabled={n <= 1}>
+                    <Button variant="ghost" size="sm" onClick={back} disabled={n <= 1}>
                       <ArrowLeft aria-hidden strokeWidth={1.5} className="size-4" /> Back
                     </Button>
                     <div className="flex items-center gap-4">
@@ -304,7 +395,7 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
                         <Kbd>↵</Kbd> continue
                       </span>
                       <Button onClick={next} disabled={!stepDone}>
-                        {step.kind === "considering" && !answers.considering.length ? "Skip" : "Continue"}
+                        {(step.kind === "considering" && !answers.considering.length) || (step.kind === "previous" && !answers.previous.length) ? "Skip" : "Continue"}
                       </Button>
                     </div>
                   </div>
@@ -315,5 +406,32 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
         </div>
       </div>
     </div>
+  );
+}
+
+/** A 1–7 satisfaction scale: 1 = not at all, 7 = completely. */
+function SatisfactionScale({ name, legend, value, onChange }: { name: string; legend: string; value: number | null; onChange: (v: number) => void }) {
+  return (
+    <fieldset className="mt-4">
+      <legend className="sr-only">{legend}</legend>
+      <div className="grid grid-cols-7 gap-1.5">
+        {SATISFACTION.map((v) => (
+          <label
+            key={v}
+            className={cn(
+              "flex h-12 cursor-pointer items-center justify-center rounded-xs border font-mono text-small tabular transition-quiet has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent",
+              value === v ? "border-ink bg-ink text-bg" : "border-rule text-ink hover:bg-surface",
+            )}
+          >
+            <input type="radio" name={name} value={v} checked={value === v} onChange={() => onChange(v)} className="sr-only" aria-label={v === 1 ? "1, not at all" : v === 7 ? "7, completely" : String(v)} />
+            {v}
+          </label>
+        ))}
+      </div>
+      <div className="mt-2 flex justify-between label text-ink-3" aria-hidden>
+        <span>Not at all</span>
+        <span>Completely</span>
+      </div>
+    </fieldset>
   );
 }

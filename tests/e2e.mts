@@ -106,8 +106,18 @@ await p.getByRole("option").first().waitFor();
 await p.keyboard.press("Enter");
 await p.getByText("1–2 years").click();
 await p.getByRole("button", { name: "Continue" }).click();
-// What are you considering: two picks, one resolved through an alias
+// How satisfied are you in this work: 1–7, advances on its own
 await p.waitForURL(/step=4/);
+await p.getByText("5", { exact: true }).click();
+// Any previous jobs: one, with its own satisfaction
+await p.waitForURL(/step=5/);
+await p.getByRole("combobox").fill("lærer");
+await p.getByRole("option").first().waitFor();
+await p.getByRole("option").first().click();
+await p.getByRole("group", { name: /How satisfied were you/ }).getByText("3", { exact: true }).click();
+await p.getByRole("button", { name: "Continue" }).click();
+// What are you considering: two picks, one resolved through an alias
+await p.waitForURL(/step=6/);
 for (const q of ["YouTuber", "rørlegger"]) {
   await p.getByRole("combobox").fill(q);
   await p.getByRole("option").first().waitFor();
@@ -116,13 +126,13 @@ for (const q of ["YouTuber", "rørlegger"]) {
 }
 await p.getByRole("button", { name: "Continue" }).click();
 // Clarity goal
-await p.waitForURL(/step=5/);
+await p.waitForURL(/step=7/);
 await p.waitForTimeout(300);
 await p.keyboard.press("2");
 await p.waitForURL(/step=done/);
 await p.getByRole("button", { name: "Go to assessment" }).click();
 await waitPath("/assess");
-log(`signed up and onboarded as ${email} (current job, years, two considered lanes)`);
+log(`signed up and onboarded as ${email} (current job, years, satisfaction, a previous job, two considered lanes)`);
 
 /** The persona's answer for a questionnaire step (same logic as scripts/seed.mts). */
 function persona(sessionId: SessionId, position: number) {
@@ -380,6 +390,12 @@ if (await p.getByRole("radio", { name: "Fit map" }).count()) {
   await p.locator("svg[aria-label^='Career paths by fulfilment fit']").waitFor();
   log("lanes: fit map is the default view");
 }
+// "Does this resonate?" on a top card (own results only), stored with the matching version.
+if (ownResults) {
+  await p.getByRole("group", { name: /^Does .+ resonate with you\?$/ }).first().getByText("Not really", { exact: true }).click();
+  await p.getByText("Saved. It doesn't change your results.").first().waitFor();
+  log("lanes: 'Does this resonate?' saved on the best fit");
+}
 await p.goto(base + "/lanes?view=family");
 await p.getByText("Your current career").first().waitFor();
 // Count in the map's own lists (the summary at the top repeats named lanes).
@@ -427,6 +443,8 @@ const sum = (f: (x: ExportSession) => number) => xs.reduce((n, x) => n + f(x), 0
 const scored = xs.filter((x) => x.scores).length;
 if (scored !== only.length) throw new Error(`export: expected ${only.length} scored sessions, found ${scored}`);
 if (data.onboarding?.currentLaneId !== "b2b_sales" || data.onboarding?.considering?.length !== 2) throw new Error("export: onboarding answers missing");
+if (ownResults && data.careerResonance?.[0]?.response !== "not_really") throw new Error("export: resonance answer missing");
+if (data.onboarding?.currentSatisfaction !== 5 || data.onboarding?.previousJobs?.[0]?.satisfaction !== 3) throw new Error("export: satisfaction answers missing");
 log(`export: ${xs.length} sessions (${scored} scored), ${sum((x) => x.responses.length)} responses, ${sum((x) => x.trials.length)} trials, onboarding answers included`);
 
 await b.close();

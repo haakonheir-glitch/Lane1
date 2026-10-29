@@ -29,6 +29,8 @@ export default async function StartPage() {
               // A returning person who saved onboarding without a job has answered this step.
               currentAnswered: !!exp.current || onboarding.done,
               considering: exp.considering.map(withLane),
+              satisfaction: exp.current?.satisfaction ?? null,
+              previous: (exp.previous ?? []).map(withLane),
             }}
           />
         </Suspense>

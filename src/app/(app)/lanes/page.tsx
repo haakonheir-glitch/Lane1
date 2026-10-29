@@ -10,7 +10,8 @@ import {
   RankedCareer,
 } from "@/components/lanes/CareerResults";
 import { Skeleton } from "@/components/ui/Misc";
-import { getLaneMap, getProfileView, getUser } from "@/lib/data";
+import { getLaneMap, getProfileView, getResonance, getUser } from "@/lib/data";
+import { Resonance } from "@/components/lanes/Resonance";
 import { TraitConnections } from "@/components/lanes/TraitConnections";
 import { connections } from "@/lib/view/connections";
 import { LOCKED_TEXT, reportTier } from "@/lib/tier";
@@ -32,6 +33,10 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
   // The free tier shows the top three career paths; the full tier the whole map.
   const full = reportTier() === "full";
   const [best, ...next] = picks.overall.slice(0, full ? 5 : 3);
+  // "Does this resonate?" on the top cards: own results only, never on the sample.
+  const resonance = source === "own" ? await getResonance() : null;
+  const ask = (laneId: string, rank: number, name: string) =>
+    resonance ? <Resonance laneId={laneId} rank={rank} name={name} initial={resonance[laneId] ?? null} className="mt-3" /> : null;
   const links = connections(profile, picks.overall);
   return (
     <AppPage
@@ -68,9 +73,13 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
               lead="The specific roles that suit you best, across every kind of career. Open one to see the full path, from first role up."
             >
               <HeroCareer p={best} />
+              {ask(best.row.id, 1, best.row.name)}
               <div className="mt-3 grid gap-3 md:grid-cols-2">
                 {next.map((p, i) => (
-                  <RankedCareer key={p.row.id} p={p} rank={i + 2} />
+                  <div key={p.row.id} className="flex flex-col">
+                    <RankedCareer p={p} rank={i + 2} />
+                    {ask(p.row.id, i + 2, p.row.name)}
+                  </div>
                 ))}
               </div>
             </CareerSection>

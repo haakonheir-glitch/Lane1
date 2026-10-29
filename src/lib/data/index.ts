@@ -20,6 +20,7 @@ import { buildProfile, SCORING_VERSION, type ProfileScores, type SessionScores }
 import { addSelfScores } from "../scoring/self";
 import type { SessionId } from "../bank/types";
 import type { YearsBand } from "../matching";
+import { V2_CONFIG } from "../matching/v2";
 import type { OnboardingAnswers, User } from "../types";
 import { buildCareerPicks, buildLaneDetail, buildLaneMap, laneName, matchingCacheKey, reportLanes, workBestFor } from "./lanes";
 import { buildReportFacts, type ReportFacts } from "../report/facts";
@@ -71,8 +72,10 @@ export async function getOnboarding(): Promise<OnboardingAnswers & { done: boole
 
 /** What the person told us about their work, for lane entry points and the Lane Map. */
 export type ExperienceAnswers = {
-  current: { roleId: string | null; laneId: string; title: string; years: YearsBand | null } | null;
+  current: { roleId: string | null; laneId: string; title: string; years: YearsBand | null; satisfaction?: number | null } | null;
   considering: { laneId: string; roleId: string | null; title: string }[];
+  /** Up to two previous jobs with their satisfaction (ground truth; not used in matching). */
+  previous?: { laneId: string; roleId: string | null; title: string; satisfaction: number }[];
 };
 
 export const getExperience = cache(async (): Promise<ExperienceAnswers> => {
@@ -81,9 +84,10 @@ export const getExperience = cache(async (): Promise<ExperienceAnswers> => {
   const [p] = await db.select().from(schema.profiles).where(eq(schema.profiles.userId, u.id)).limit(1);
   return {
     current: p?.currentLaneId
-      ? { roleId: p.currentRoleId, laneId: p.currentLaneId, title: p.currentTitle ?? "", years: (p.currentYears as YearsBand | null) ?? null }
+      ? { roleId: p.currentRoleId, laneId: p.currentLaneId, title: p.currentTitle ?? "", years: (p.currentYears as YearsBand | null) ?? null, satisfaction: p.currentSatisfaction ?? null }
       : null,
     considering: p?.considering ?? [],
+    previous: p?.previousJobs ?? [],
   };
 });
 
@@ -279,6 +283,17 @@ export const getOutcome = cache(async (): Promise<{ consentedAt: Date | null; du
 
 /* -------------------------------------------------------------- export ---- */
 
+/** The person's "Does this resonate?" answers for the running matching version, by career path. */
+export const getResonance = cache(async (): Promise<Record<string, "yes" | "not_really" | "no">> => {
+  const u = await requireUser();
+  const db = await getDb();
+  const rows = await db
+    .select({ laneId: schema.careerResonance.laneId, response: schema.careerResonance.response })
+    .from(schema.careerResonance)
+    .where(and(eq(schema.careerResonance.userId, u.id), eq(schema.careerResonance.matchingVersion, V2_CONFIG.version)));
+  return Object.fromEntries(rows.map((r) => [r.laneId, r.response]));
+});
+
 export async function getExport() {
   const u = await requireUser();
   const db = await getDb();
@@ -303,5 +318,6 @@ export async function getExport() {
     writtenReports: await db.select().from(schema.profileReports).where(eq(schema.profileReports.userId, u.id)),
     outcomeConsent: (await db.select().from(schema.outcomeConsents).where(eq(schema.outcomeConsents.userId, u.id)))[0] ?? null,
     outcomeCheckIns: await db.select().from(schema.outcomeCheckIns).where(eq(schema.outcomeCheckIns.userId, u.id)),
+    careerResonance: await db.select().from(schema.careerResonance).where(eq(schema.careerResonance.userId, u.id)),
   };
 }
