@@ -3,6 +3,7 @@
  * the one-sentence finding that leads each section. They only read computed scores; nothing
  * here scores, ranks or norms anything new. Pure.
  */
+import { normBasis } from "@/lib/scoring/norms";
 import type { ProfileScores } from "@/lib/scoring/profile";
 import type { ScaleScore } from "@/lib/scoring/types";
 import { fmtBand, fmtPct, listWords as list, relativeOf } from "./profile";
@@ -80,8 +81,15 @@ export function keyFigures(p: ProfileScores): KeyFigure[] {
 
 /** What each part of the profile is compared with, in one line. */
 export function basisLine(p: ProfileScores): string {
-  const selfOnly = !(p.personality?.domains.some((d) => d.normed) || p.interests?.scales.some((s) => s.normed));
-  const parts = [selfOnly ? "Interests, values and personality: compared with yourself" : "Interests and personality: compared with published norms"];
+  const b = normBasis(p);
+  const parts =
+    b.interests === "self" && b.personality === "self"
+      ? ["Interests, values and personality: compared with yourself"]
+      : b.interests === "population" && b.personality === "population"
+        ? ["Interests and personality: compared with published norms", "values: compared with yourself"]
+        : b.interests === "population"
+          ? ["Interests: compared with published norms", "values and personality: compared with yourself"]
+          : ["Personality: compared with published norms", "interests and values: compared with yourself"];
   if (p.reasoning) parts.push("reasoning: compared with adults 18–35, provisional norms");
   return parts.join(" · ");
 }

@@ -6,6 +6,7 @@ import { and, eq } from "drizzle-orm";
 import { getDb, schema } from "../src/lib/db";
 import { buildProfile, type SessionScores } from "../src/lib/scoring/profile";
 import { addSelfScores } from "../src/lib/scoring/self";
+import { applyNorms } from "../src/lib/scoring/norms";
 import type { SessionId } from "../src/lib/bank/types";
 
 export async function loadAccountProfile(reportId: string) {
@@ -34,5 +35,5 @@ export async function loadAccountProfile(reportId: string) {
     .where(and(eq(schema.assessmentSessions.userId, u.id), eq(schema.assessmentSessions.status, "completed")));
   const scored: Parameters<typeof buildProfile>[0] = {};
   for (const { s, scores } of rows.sort((a, b) => a.s.attempt - b.s.attempt)) scored[s.sessionId as SessionId] = { scores: scores as SessionScores, completedAt: (s.completedAt ?? s.startedAt).toISOString() };
-  return { profile: addSelfScores(buildProfile(scored, "pending")), sessions: Object.keys(scored).sort() };
+  return { profile: addSelfScores(applyNorms(buildProfile(scored, "pending"))), sessions: Object.keys(scored).sort() };
 }

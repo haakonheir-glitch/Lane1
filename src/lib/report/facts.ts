@@ -2,6 +2,7 @@
  * The facts a written report may use: computed scores only, rounded, with no name, email or
  * individual answers. Claude writes from these and nothing else (PLAN D49). Pure.
  */
+import { normBasis, type Basis } from "../scoring/norms";
 import type { ProfileScores } from "../scoring/profile";
 import type { ScaleScore } from "../scoring/types";
 import { pctBand, relativeOf } from "../view/profile";
@@ -31,7 +32,9 @@ export type ReportFacts = ReturnType<typeof buildReportFacts>;
 
 const r1 = (n: number) => Math.round(n * 10) / 10;
 /** The comparable score for a scale: population-normed if available, else relative to the person. */
-const vs = (s: ScaleScore) => (s.normed ? r1(s.normed.z) : s.self ? r1(s.self.z) : null);
+const vsWith = (basis: Basis) => (s: ScaleScore) => (basis === "population" ? (s.normed ? r1(s.normed.z) : null) : s.self ? r1(s.self.z) : null);
+/** The score under the key that says what it is compared with. */
+const scoreKey = (basis: Basis) => (basis === "population" ? "vsPopulation" : "vsOwnAverage");
 
 const TAG = { strength: "relative strength", weakness: "relative weakness", none: null } as const;
 
@@ -40,34 +43,41 @@ const TAG = { strength: "relative strength", weakness: "relative weakness", none
  * the best workday is written from it alone (src/lib/report/workday.ts).
  */
 export function buildReportFacts(p: ProfileScores, careerPaths: ReportCareerPath[], situation: { current: string | null; considering: string[] }, workDesign: WorkBest | null = null) {
-  const basis = p.norms.status === "provisional" ? "population" : "self";
+  const bases = normBasis(p);
+  const basis = bases.interests === "population" && bases.personality === "population" ? "population" : bases.interests === "self" && bases.personality === "self" ? "self" : "mixed";
+  const vsI = vsWith(bases.interests);
+  const vsP = vsWith(bases.personality);
+  const kI = scoreKey(bases.interests);
+  const kP = scoreKey(bases.personality);
   const interestTags = p.interests ? relativeOf(p.interests.scales) : {};
   const domainTags = p.personality ? relativeOf(p.personality.domains) : {};
   const areaTags = p.reasoning ? relativeOf(p.reasoning.areas) : {};
-  const facets = (p.personality?.facets ?? []).filter((f) => vs(f) !== null).sort((a, b) => vs(b)! - vs(a)!);
+  const facets = (p.personality?.facets ?? []).filter((f) => vsP(f) !== null).sort((a, b) => vsP(b)! - vsP(a)!);
 
   return {
     basis,
     basisExplained:
       basis === "self"
         ? "Scores are compared with this person's own other scores on the same test (0 = their own average, in units of their own spread). There is no comparison with other people."
-        : "Scores are compared with published population norms (provisional).",
+        : basis === "population"
+          ? "Scores are compared with published population norms (provisional): vsPopulation is a z-score, 0 = the norm group's average."
+          : `${bases.interests === "population" ? "Interests" : "Personality"} are compared with published population norms (provisional; vsPopulation is a z-score, 0 = the norm group's average). ${bases.interests === "population" ? "Personality is" : "Interests are"} compared with this person's own other scores (vsOwnAverage, 0 = their own average). Never compare the two kinds of number.`,
     interests: p.interests
       ? {
           hollandCode: p.interests.hollandCode,
           lowDifferentiation: p.interests.lowDifferentiation,
           areas: [...p.interests.scales]
             .sort((a, b) => (b.raw ?? 0) - (a.raw ?? 0))
-            .map((s) => ({ area: s.label, rawOutOf50: s.raw, vsOwnAverage: vs(s), tag: TAG[interestTags[s.id] ?? "none"] })),
+            .map((s) => ({ area: s.label, rawOutOf50: s.raw, [kI]: vsI(s), tag: TAG[interestTags[s.id] ?? "none"] })),
         }
       : null,
     workValues: p.values?.filter((v) => v.visibility === "user").map((v) => ({ value: v.label, rank: v.rank })) ?? null,
     personality: p.personality
       ? {
-          domains: p.personality.domains.map((d) => ({ domain: d.label, vsOwnAverage: vs(d), tag: TAG[domainTags[d.id] ?? "none"] })),
+          domains: p.personality.domains.map((d) => ({ domain: d.label, [kP]: vsP(d), tag: TAG[domainTags[d.id] ?? "none"] })),
           // Facets have four items each: wide intervals, hints only.
-          highestFacets: facets.slice(0, 3).map((f) => ({ facet: f.label, vsOwnAverage: vs(f) })),
-          lowestFacets: facets.slice(-3).reverse().map((f) => ({ facet: f.label, vsOwnAverage: vs(f) })),
+          highestFacets: facets.slice(0, 3).map((f) => ({ facet: f.label, [kP]: vsP(f) })),
+          lowestFacets: facets.slice(-3).reverse().map((f) => ({ facet: f.label, [kP]: vsP(f) })),
         }
       : null,
     reasoning: p.reasoning

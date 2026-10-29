@@ -78,7 +78,9 @@ describe("own results without norms", () => {
   it("relative-strength tags work on self scores", () => {
     const rel = relativeOf(p.interests!.scales);
     expect(rel.E).toBe("strength");
-    // R (lowest) is clearly below only E and I, not more than half of the other five: no tag.
-    expect(rel.R).toBe("none");
+    // Interests use the published Short-IP alphas (.85–.90) once transcribed, so the 90% ranges are
+    // narrower than with the planning .75: R (lowest) now clears more than half of the other five.
+    expect(p.interests!.scales.find((s) => s.id === "R")!.self).toMatchObject({ reliability: 0.88, assumedReliability: false });
+    expect(rel.R).toBe("weakness");
   });
 });

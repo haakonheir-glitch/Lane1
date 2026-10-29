@@ -14,6 +14,8 @@ import { requireUser } from "../auth";
 import * as mock from "../mock";
 import { hubStatus, rescoreIfStale, stepsFor } from "../assess/service";
 import { allSessions, sessionPlan } from "../bank/bank";
+import { applyNorms } from "../scoring/norms";
+import { NORMS_STAMP } from "../scoring/psychometrics";
 import { buildProfile, SCORING_VERSION, type ProfileScores, type SessionScores } from "../scoring/profile";
 import { addSelfScores } from "../scoring/self";
 import type { SessionId } from "../bank/types";
@@ -142,7 +144,7 @@ async function buildMyProfile(userId: string): Promise<ProfileScores | null> {
     scored[s.sessionId as SessionId] = { scores: current, completedAt: (s.completedAt ?? s.startedAt).toISOString() };
   }
   if (!scored.S1 && !scored.S2) return null;
-  const profile = addSelfScores(buildProfile(scored, "pending"));
+  const profile = addSelfScores(applyNorms(buildProfile(scored, "pending")));
   // Research scales in shadow mode: logged next to the Work Design dimensions, never shown.
   logShadow(shadowRecord(Object.values(scored).map((x) => x!.scores), personWorkDesign(profile)), userId);
   return profile;
@@ -157,7 +159,7 @@ export const getMyProfile = cache(async (): Promise<ProfileScores | null> => {
   const u = await requireUser();
   const fp = await profileFingerprint(u.id);
   if (!fp) return null;
-  return unstable_cache(() => buildMyProfile(u.id), ["profile", u.id, fp, SCORING_VERSION], { tags: [`profile:${u.id}`], revalidate: 60 * 60 * 24 })();
+  return unstable_cache(() => buildMyProfile(u.id), ["profile", u.id, fp, SCORING_VERSION, NORMS_STAMP], { tags: [`profile:${u.id}`], revalidate: 60 * 60 * 24 })();
 });
 
 /** The profile pages show: the person's own once they have one, otherwise the labelled sample. */
@@ -179,7 +181,7 @@ const getMatching = cache(async () => {
   if (source === "sample") return { source, profile, exp, ...(await compute()) };
   const u = await requireUser();
   const fp = await profileFingerprint(u.id);
-  const data = await unstable_cache(compute, ["matching", u.id, fp, SCORING_VERSION, matchingCacheKey(), JSON.stringify(exp)], { tags: [`profile:${u.id}`], revalidate: 60 * 60 * 24 })();
+  const data = await unstable_cache(compute, ["matching", u.id, fp, SCORING_VERSION, NORMS_STAMP, matchingCacheKey(), JSON.stringify(exp)], { tags: [`profile:${u.id}`], revalidate: 60 * 60 * 24 })();
   return { source, profile, exp, ...data };
 });
 

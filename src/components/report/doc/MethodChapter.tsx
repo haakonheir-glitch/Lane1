@@ -1,3 +1,4 @@
+import { normBasis } from "@/lib/scoring/norms";
 import type { ProfileScores } from "@/lib/scoring/profile";
 import type { ScaleScore } from "@/lib/scoring/types";
 import { BRAND } from "@/lib/brand";
@@ -14,16 +15,16 @@ const rels = (xs: ScaleScore[]): { reliability: number }[] => xs.flatMap((s) => 
 /** Method and limits: the instruments, how much each rests on, its reliability and norms, and every caveat, once. */
 export function MethodChapter({ n, profile }: { n: string; profile: ProfileScores }) {
   const p = profile;
-  const selfBasis = !(p.personality?.domains.some((d) => d.normed) || p.interests?.scales.some((s) => s.normed));
+  const basis = normBasis(p);
   const rows = [
-    p.interests && { instrument: "O*NET® Interest Profiler, short form", measures: "Six interest areas (RIASEC)", items: `${answered(p.interests.scales)} items`, reliability: meanRel(rels(p.interests.scales)), norms: selfBasis ? "Compared with your own average" : "Published norms" },
+    p.interests && { instrument: "O*NET® Interest Profiler, short form", measures: "Six interest areas (RIASEC)", items: `${answered(p.interests.scales)} items`, reliability: meanRel(rels(p.interests.scales)), norms: basis.interests === "self" ? "Compared with your own average" : "Published norms (US adults, provisional)" },
     p.values && { instrument: "O*NET® Work Importance Locator", measures: "Six work values", items: "Card sort", reliability: "Ranking, within you", norms: "Within-person ranking" },
     p.personality && {
       instrument: "IPIP-NEO-120 + Honesty-Humility",
       measures: "Five domains, 30 facets",
       items: `${answered(p.personality.facets) + (p.personality.honestyHumility?.answered ?? 0)} items`,
       reliability: meanRel(rels(p.personality.domains)),
-      norms: selfBasis ? "Compared with your own average" : "Published norms",
+      norms: basis.personality === "self" ? "Compared with your own average" : "Published norms (provisional)",
     },
     p.reasoning && {
       instrument: "Generated reasoning tasks",
