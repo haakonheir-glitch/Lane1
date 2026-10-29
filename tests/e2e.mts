@@ -370,7 +370,11 @@ if (only.length === 5) {
 // Own results replace the sample once S1 or S2 is done
 await p.goto(base + "/profile");
 // Only a person's own report has the written-analysis chapter; the sample has a banner instead.
-const ownResults = await p.locator("#analysis").isVisible().catch(() => false);
+// The report streams in: on a first, uncached load the profile and matching are computed first.
+const ownResults =
+  only.includes("S1") || only.includes("S2")
+    ? await p.locator("#analysis").waitFor({ timeout: 60_000 }).then(() => true, () => false)
+    : await p.locator("#analysis").isVisible().catch(() => false);
 if (only.includes("S1") || only.includes("S2")) {
   if (!ownResults) throw new Error("profile: expected the person's own results after S1/S2");
   await p.locator("#cover").getByText(/Built from \d+ sessions? · [\d,]+ answers/).waitFor();
