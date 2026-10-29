@@ -1,6 +1,6 @@
 # Matching v2
 
-Version `v2-0.4` (v2-0.3 plus reasoning strengths, 2026-10-29).
+Version `v2-0.5` (the precision pass, 2026-10-29; on branch `precision-pass` until reviewed). v2-0.3 and v2-0.4 stay selectable: set `MATCHING_CONFIG=v2-0.3` (or `v2-0.4`) to run the app on them, or pass the config to `matchAllV2` (`V2_CONFIGS` in `config.ts`). The precision pass is described in its own section at the end.
 - **Code:** `src/lib/matching/v2/` (pure, deterministic, no LLM calls).
 - **Settings:** `src/lib/matching/v2/config.ts`.
 - **Career data:** `taxonomy/derived/lane_profiles_v2.json`, built by `taxonomy/build/build_v2_lane_profiles.mts` from the O\*NET profiles (`taxonomy/derived/REPORT.md`). Career offsets: `taxonomy/derived/lane_offsets_v2.json`, built by `taxonomy/build/build_v2_offsets.mts`.
@@ -139,3 +139,34 @@ The thresholds are tuned on 1,000 simulated people (`MATCHING_V2_REPORT.md`).
 - **Career map:** the default view is the fit map, fulfilment fit (vertical) × ability fit (horizontal), split at 50 (your average career path) and at ability fit 80 (`ABILITY_SPLIT` in `src/components/lanes/FitQuadrant.tsx`, provisional), dots styled by band. It is the default only when most career paths have ability fit; otherwise the Family list is. The detail shows both fits as the range 80% of the draws fall in, "Why it fits" (drivers), "Where it rubs" (frictions), and you against the career on the value modes and working conditions.
 - **Report:** chapter 02, "Where this work exists", lists the closest career paths with both fits. The facts for the written report carry both fits and the frictions.
 - **The adapter** (`adapter.ts`) still feeds the v1-shaped parts (bands in the lists, picks, trait connections); the native result is memoised next to it (`src/lib/data/lanes.ts`, `nativeFor`).
+
+## Precision pass (v2-0.5)
+
+Each change below is behind the config, so v2-0.3 and v2-0.4 reproduce exactly when selected. The step-by-step effect on the six test profiles is in `taxonomy/derived/PRECISION_STEPS.md`. The validation is in `taxonomy/derived/PRECISION_REPORT.md`.
+
+1. **Published norms** (`src/lib/scoring/psychometrics.ts`, `src/lib/scoring/norms.ts`). Interests are normed against the O\*NET Interest Profiler Short Form norms:
+   - Source: Rounds et al. (2016), Mini-IP report. Means and SDs from Table 8 (p. 36), Short-IP total, N = 575. Alphas from Table 9 (p. 37).
+   - Responses are coded 1–5, and the item mean ×10 gives our 10–50 sum.
+   - Norms are applied when a profile is read, so stored scores switch from `anchored` to `normed` without a rescore.
+   - The IPIP-NEO-120 norms (Kajonius & Johnson, 2019) and Honesty-Humility stay `null`: their source hosts are blocked from this build environment, and Honesty-Humility has no citable source here. Personality stays `anchored` until they are transcribed, then switches automatically.
+   - Config: `inputs.norms`.
+2. **Work values by expected normal order statistics.** The six card-sort ranks map to ±1.267, ±0.642 and ±0.202 (n = 6; ties average the statistics they span). These are multiplied by a shrinkage of 0.7, then converted to a percentile, so the top value is the 81st percentile, not 100. Config: `inputs.values`.
+3. **Environment cap** (`envCap` 0.15). No working condition, and not challenge, may carry more than 15% of any fit. It is measured like the facet cap: the dimension's effect on the fit (the fit against the fit without it) over the summed effects of all inputs, floored at `guardMinTotal`. It is enforced by shrinking that dimension's need weight by bisection. Every dimension's largest share before and after is in the result (`envGuard`).
+4. **Weights:** interests .45, values .20, value modes .15, environment .10, challenge .10, with reasoning strengths .08 renormalised as before.
+   - Why: the validated instruments with the strongest evidence carry most. Interest congruence (the O\*NET Interest Profiler against O\*NET occupational interest profiles) is the best-replicated of these predictors of satisfaction and persistence. Work values come next (the O\*NET Work Importance Locator against O\*NET's occupational reinforcer profiles).
+   - Value modes, working conditions and challenge are Lane's own derived constructs, so they carry less.
+   - Each component has a `validationStatus` (validated, derived or provisional) and a multiplier per status (`validationMultiplier`). The effective weight is weight × multiplier, renormalised. The multipliers are all 1 today, because the weights above already reflect the evidence. They are the lever for when it changes.
+5. **Weight ensemble** (`ensemble`). Each Monte Carlo draw also draws the component weights from a Dirichlet centred on the effective weights (α = 40 × weight), and in half the draws it uses flat environment weighting instead of need-weighting.
+   - The ensemble draws come from their own random stream, so the input noise is identical with and without it.
+   - A band must hold under both weightings: strong needs P(top 10%) ≥ .5 among the need-weighted draws and among the flat ones.
+   - Flat weighting has its own career offsets (`environmentFlat`).
+6. **Starting roles from data** (`rolesFromData`, `src/lib/matching/roles.ts`).
+   - 906 roles have their own ESCO→O\*NET link: the ESCO occupations mapped to the role in `esco_mapping.csv`, through the official crosswalk or a reviewed override (`taxonomy/derived/role_profiles_v2.json`).
+   - These roles are ranked by interest fit (.75) and value-mode fit (.25), the same .45 : .15 ratio as above.
+   - Roles without a link are ranked by their tags, after the data-ranked ones.
+   - A role whose top O\*NET interest is one of the person's two lowest interests carries a note.
+
+**Ground truth** (stored, never used in matching):
+- onboarding asks "How satisfied are you in this work?" (1–7) for the current job and up to two previous jobs;
+- the top five Career map cards ask "Does this resonate?", stored with the matching version (migration 0005).
+

@@ -28,11 +28,17 @@ export async function loadAccountProfile(reportId: string) {
     console.error(`No account with report ID ${reportId} in this database (${users.length} accounts).`);
     process.exit(2);
   }
+  return profileOf(u.id);
+}
+
+/** One user's scored profile from their latest completed attempts (read-only). */
+export async function profileOf(userId: string) {
+  const db = await getDb();
   const rows = await db
     .select({ s: schema.assessmentSessions, scores: schema.sessionScores.scores })
     .from(schema.assessmentSessions)
     .innerJoin(schema.sessionScores, eq(schema.sessionScores.sessionRowId, schema.assessmentSessions.id))
-    .where(and(eq(schema.assessmentSessions.userId, u.id), eq(schema.assessmentSessions.status, "completed")));
+    .where(and(eq(schema.assessmentSessions.userId, userId), eq(schema.assessmentSessions.status, "completed")));
   const scored: Parameters<typeof buildProfile>[0] = {};
   for (const { s, scores } of rows.sort((a, b) => a.s.attempt - b.s.attempt)) scored[s.sessionId as SessionId] = { scores: scores as SessionScores, completedAt: (s.completedAt ?? s.startedAt).toISOString() };
   return { profile: addSelfScores(applyNorms(buildProfile(scored, "pending"))), sessions: Object.keys(scored).sort() };

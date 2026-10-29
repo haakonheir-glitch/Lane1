@@ -1,0 +1,3887 @@
+{
+ "config": "v2-0.5",
+ "profiles": [
+  {
+   "id": "analyst",
+   "label": "Investigative / conventional analyst",
+   "code": "ICR",
+   "rhoC": 0.115,
+   "rhoM": 0.885,
+   "divergent": [
+    {
+     "id": "data_engineering",
+     "name": "Data engineering & databases",
+     "careerCode": "CIE",
+     "ours": 3,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -174.5
+    },
+    {
+     "id": "enterprise_systems",
+     "name": "Enterprise systems & IT consulting",
+     "careerCode": "CIE",
+     "ours": 6,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -171.5
+    },
+    {
+     "id": "data_analysis",
+     "name": "Data analysis & business intelligence",
+     "careerCode": "CIE",
+     "ours": 7,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -170.5
+    },
+    {
+     "id": "pharmacy",
+     "name": "Pharmacy",
+     "careerCode": "CIS",
+     "ours": 26,
+     "cIndexRank": 195.5,
+     "c": 5,
+     "gap": -169.5
+    },
+    {
+     "id": "market_research",
+     "name": "Market research & consumer insights",
+     "careerCode": "CIE",
+     "ours": 11,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -166.5
+    },
+    {
+     "id": "military",
+     "name": "Armed forces",
+     "careerCode": "CIE",
+     "ours": 13,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -164.5
+    },
+    {
+     "id": "devrel_techwriting",
+     "name": "Developer relations & technical writing",
+     "careerCode": "CIS",
+     "ours": 36,
+     "cIndexRank": 195.5,
+     "c": 5,
+     "gap": -159.5
+    },
+    {
+     "id": "fintech_payments",
+     "name": "Payments, fintech & crypto operations",
+     "careerCode": "CIE",
+     "ours": 18,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -159.5
+    },
+    {
+     "id": "product_management",
+     "name": "Product management",
+     "careerCode": "EIC",
+     "ours": 42,
+     "cIndexRank": 201,
+     "c": 4,
+     "gap": -159
+    },
+    {
+     "id": "authorship",
+     "name": "Writing & authorship",
+     "careerCode": "ACI",
+     "ours": 176,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 149.5
+    },
+    {
+     "id": "management_consulting",
+     "name": "Management consulting",
+     "careerCode": "CIE",
+     "ours": 29,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -148.5
+    },
+    {
+     "id": "public_policy",
+     "name": "Public policy & analysis",
+     "careerCode": "EIC",
+     "ours": 56,
+     "cIndexRank": 201,
+     "c": 4,
+     "gap": -145
+    },
+    {
+     "id": "content_creation",
+     "name": "Content creation",
+     "careerCode": "AEC",
+     "ours": 194,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 133
+    },
+    {
+     "id": "software_engineering",
+     "name": "Software engineering",
+     "careerCode": "CIR",
+     "ours": 1,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -132
+    },
+    {
+     "id": "cybersecurity",
+     "name": "Cybersecurity",
+     "careerCode": "CIR",
+     "ours": 2,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -131
+    },
+    {
+     "id": "modelling",
+     "name": "Modelling",
+     "careerCode": "ARE",
+     "ours": 201,
+     "cIndexRank": 70,
+     "c": 11,
+     "gap": 131
+    },
+    {
+     "id": "music_production",
+     "name": "Music production & industry",
+     "careerCode": "ARC",
+     "ours": 190,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 129
+    },
+    {
+     "id": "qa_testing",
+     "name": "Software testing & quality assurance",
+     "careerCode": "CIR",
+     "ours": 5,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -128
+    },
+    {
+     "id": "animation_vfx",
+     "name": "Animation, VFX & 3D",
+     "careerCode": "ARC",
+     "ours": 189,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 128
+    },
+    {
+     "id": "tattoo",
+     "name": "Tattoo & body art",
+     "careerCode": "ARE",
+     "ours": 198,
+     "cIndexRank": 70,
+     "c": 11,
+     "gap": 128
+    },
+    {
+     "id": "childcare",
+     "name": "Childcare",
+     "careerCode": "SCR",
+     "ours": 187,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 126
+    },
+    {
+     "id": "pharma_clinical",
+     "name": "Pharmaceutical & clinical research",
+     "careerCode": "CIR",
+     "ours": 8,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -125
+    },
+    {
+     "id": "visual_arts",
+     "name": "Fine art & illustration",
+     "careerCode": "ARC",
+     "ours": 186,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 125
+    },
+    {
+     "id": "devops_cloud",
+     "name": "DevOps, cloud & site reliability",
+     "careerCode": "CIR",
+     "ours": 9,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -124
+    },
+    {
+     "id": "variety",
+     "name": "Variety & live entertainment",
+     "careerCode": "ARS",
+     "ours": 205,
+     "cIndexRank": 82,
+     "c": 10,
+     "gap": 123
+    },
+    {
+     "id": "written_creator",
+     "name": "Newsletters, blogs & niche publishing",
+     "careerCode": "AEC",
+     "ours": 184,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 123
+    },
+    {
+     "id": "health_admin",
+     "name": "Health administration & informatics",
+     "careerCode": "CSI",
+     "ours": 32,
+     "cIndexRank": 154,
+     "c": 7,
+     "gap": -122
+    },
+    {
+     "id": "stage_production",
+     "name": "Theatre & live production",
+     "careerCode": "ARC",
+     "ours": 183,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 122
+    },
+    {
+     "id": "dance",
+     "name": "Dance",
+     "careerCode": "ARS",
+     "ours": 204,
+     "cIndexRank": 82,
+     "c": 10,
+     "gap": 122
+    },
+    {
+     "id": "interior_design",
+     "name": "Interior design",
+     "careerCode": "ARE",
+     "ours": 191,
+     "cIndexRank": 70,
+     "c": 11,
+     "gap": 121
+    },
+    {
+     "id": "acting",
+     "name": "Acting",
+     "careerCode": "AES",
+     "ours": 203,
+     "cIndexRank": 82,
+     "c": 10,
+     "gap": 121
+    },
+    {
+     "id": "fashion",
+     "name": "Fashion & styling",
+     "careerCode": "ARC",
+     "ours": 180,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 119
+    },
+    {
+     "id": "music_performance",
+     "name": "Music performance",
+     "careerCode": "AES",
+     "ours": 200,
+     "cIndexRank": 82,
+     "c": 10,
+     "gap": 118
+    },
+    {
+     "id": "broadcasting",
+     "name": "Hosting & broadcasting",
+     "careerCode": "AES",
+     "ours": 199,
+     "cIndexRank": 82,
+     "c": 10,
+     "gap": 117
+    },
+    {
+     "id": "hair_beauty",
+     "name": "Hair, beauty & cosmetics",
+     "careerCode": "RCS",
+     "ours": 177,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 116
+    },
+    {
+     "id": "journalism",
+     "name": "Journalism",
+     "careerCode": "AEC",
+     "ours": 174,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 113
+    },
+    {
+     "id": "industrial_design",
+     "name": "Industrial & product design",
+     "careerCode": "ARC",
+     "ours": 173,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 112
+    },
+    {
+     "id": "culinary",
+     "name": "Culinary",
+     "careerCode": "RCE",
+     "ours": 158,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 111.5
+    },
+    {
+     "id": "gis_geodata",
+     "name": "GIS & geospatial analysis",
+     "careerCode": "CIR",
+     "ours": 23,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -110
+    },
+    {
+     "id": "textile_leather",
+     "name": "Textiles, leather & upholstery",
+     "careerCode": "RCA",
+     "ours": 154,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 107.5
+    },
+    {
+     "id": "carpentry",
+     "name": "Carpentry & building",
+     "careerCode": "RCI",
+     "ours": 131,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 104.5
+    },
+    {
+     "id": "ceramics_glass",
+     "name": "Ceramics, glass & instrument making",
+     "careerCode": "RCA",
+     "ours": 151,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 104.5
+    },
+    {
+     "id": "woodcraft",
+     "name": "Furniture & woodcraft",
+     "careerCode": "RCA",
+     "ours": 149,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 102.5
+    },
+    {
+     "id": "graphic_design",
+     "name": "Graphic & brand design",
+     "careerCode": "ACI",
+     "ours": 128,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 101.5
+    },
+    {
+     "id": "photography",
+     "name": "Photography",
+     "careerCode": "RCA",
+     "ours": 148,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 101.5
+    },
+    {
+     "id": "tax_advisory",
+     "name": "Tax advisory",
+     "careerCode": "CES",
+     "ours": 53,
+     "cIndexRank": 154,
+     "c": 7,
+     "gap": -101
+    },
+    {
+     "id": "masonry_concrete",
+     "name": "Masonry, concrete & tiling",
+     "careerCode": "RCA",
+     "ours": 144,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 97.5
+    },
+    {
+     "id": "early_childhood",
+     "name": "Early childhood education",
+     "careerCode": "SCE",
+     "ours": 179,
+     "cIndexRank": 82,
+     "c": 10,
+     "gap": 97
+    },
+    {
+     "id": "care_work",
+     "name": "Elder & disability care",
+     "careerCode": "SCR",
+     "ours": 157,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 96
+    },
+    {
+     "id": "comedy",
+     "name": "Comedy",
+     "careerCode": "ASE",
+     "ours": 202,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": 95.5
+    },
+    {
+     "id": "courts_prosecution",
+     "name": "Courts & prosecution",
+     "careerCode": "CES",
+     "ours": 60,
+     "cIndexRank": 154,
+     "c": 7,
+     "gap": -94
+    },
+    {
+     "id": "heavy_equipment",
+     "name": "Heavy equipment & civil works",
+     "careerCode": "RCI",
+     "ours": 120,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 93.5
+    },
+    {
+     "id": "it_support",
+     "name": "IT support & infrastructure",
+     "careerCode": "CRI",
+     "ours": 14,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -92.5
+    },
+    {
+     "id": "urban_planning",
+     "name": "Urban & transport planning",
+     "careerCode": "CRI",
+     "ours": 16,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -90.5
+    },
+    {
+     "id": "outdoor_guiding",
+     "name": "Outdoor guiding & instruction",
+     "careerCode": "SEC",
+     "ours": 197,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": 90.5
+    },
+    {
+     "id": "restoration_signs",
+     "name": "Restoration & decorative crafts",
+     "careerCode": "RCA",
+     "ours": 136,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 89.5
+    },
+    {
+     "id": "administration",
+     "name": "Administration & office support",
+     "careerCode": "CES",
+     "ours": 66,
+     "cIndexRank": 154,
+     "c": 7,
+     "gap": -88
+    },
+    {
+     "id": "industrial_engineering",
+     "name": "Industrial & manufacturing engineering",
+     "careerCode": "CRI",
+     "ours": 19,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -87.5
+    },
+    {
+     "id": "finishing_trades",
+     "name": "Painting, roofing & building finishes",
+     "careerCode": "RCE",
+     "ours": 134,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 87.5
+    },
+    {
+     "id": "coaching",
+     "name": "Coaching",
+     "careerCode": "SCE",
+     "ours": 169,
+     "cIndexRank": 82,
+     "c": 10,
+     "gap": 87
+    },
+    {
+     "id": "faith",
+     "name": "Religious & spiritual work",
+     "careerCode": "SEC",
+     "ours": 192,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": 85.5
+    },
+    {
+     "id": "property_management",
+     "name": "Property management & valuation",
+     "careerCode": "CES",
+     "ours": 70,
+     "cIndexRank": 154,
+     "c": 7,
+     "gap": -84
+    },
+    {
+     "id": "hse_quality",
+     "name": "HSE, quality & inspection",
+     "careerCode": "CRI",
+     "ours": 24,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -82.5
+    },
+    {
+     "id": "in_house_legal",
+     "name": "In-house legal",
+     "careerCode": "CES",
+     "ours": 72,
+     "cIndexRank": 154,
+     "c": 7,
+     "gap": -82
+    },
+    {
+     "id": "welding_metal",
+     "name": "Welding & metal fabrication",
+     "careerCode": "RCI",
+     "ours": 107,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 80.5
+    },
+    {
+     "id": "metal_jewellery",
+     "name": "Jewellery, metal & precision craft",
+     "careerCode": "RCA",
+     "ours": 127,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 80.5
+    },
+    {
+     "id": "public_administration",
+     "name": "Public administration & casework",
+     "careerCode": "CES",
+     "ours": 75,
+     "cIndexRank": 154,
+     "c": 7,
+     "gap": -79
+    },
+    {
+     "id": "machine_operation",
+     "name": "Machine operation & assembly",
+     "careerCode": "RCI",
+     "ours": 105,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 78.5
+    },
+    {
+     "id": "inspection_regulation",
+     "name": "Inspection & regulation",
+     "careerCode": "CRI",
+     "ours": 28,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -78.5
+    },
+    {
+     "id": "banking_lending",
+     "name": "Banking, lending & credit",
+     "careerCode": "CES",
+     "ours": 76,
+     "cIndexRank": 154,
+     "c": 7,
+     "gap": -78
+    },
+    {
+     "id": "social_work",
+     "name": "Social work & welfare",
+     "careerCode": "SCE",
+     "ours": 159,
+     "cIndexRank": 82,
+     "c": 10,
+     "gap": 77
+    },
+    {
+     "id": "sustainability",
+     "name": "Sustainability & ESG",
+     "careerCode": "CEI",
+     "ours": 30,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -76.5
+    },
+    {
+     "id": "workplace_psychology",
+     "name": "Organisational & work psychology",
+     "careerCode": "IEC",
+     "ours": 86,
+     "cIndexRank": 10,
+     "c": 15,
+     "gap": 76
+    },
+    {
+     "id": "specialist_trades",
+     "name": "Specialist trades & services",
+     "careerCode": "RCI",
+     "ours": 102,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 75.5
+    },
+    {
+     "id": "landscaping",
+     "name": "Landscaping & grounds",
+     "careerCode": "RCE",
+     "ours": 122,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 75.5
+    },
+    {
+     "id": "textile_print_production",
+     "name": "Textile, print & packaging production",
+     "careerCode": "RCA",
+     "ours": 121,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 74.5
+    },
+    {
+     "id": "facilities",
+     "name": "Facilities, cleaning & property services",
+     "careerCode": "RCS",
+     "ours": 135,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 74
+    },
+    {
+     "id": "insurance",
+     "name": "Insurance",
+     "careerCode": "CEI",
+     "ours": 33,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -73.5
+    },
+    {
+     "id": "forestry",
+     "name": "Forestry & hunting",
+     "careerCode": "RCI",
+     "ours": 100,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 73.5
+    },
+    {
+     "id": "risk_management",
+     "name": "Risk management",
+     "careerCode": "CEI",
+     "ours": 34,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -72.5
+    },
+    {
+     "id": "food_production",
+     "name": "Food & seafood production",
+     "careerCode": "RCI",
+     "ours": 99,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 72.5
+    },
+    {
+     "id": "strategy_bizops",
+     "name": "Strategy, business operations & corporate development",
+     "careerCode": "ECI",
+     "ours": 61,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -72
+    },
+    {
+     "id": "library_archives",
+     "name": "Libraries, archives & museums",
+     "careerCode": "CRI",
+     "ours": 35,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -71.5
+    },
+    {
+     "id": "publishing",
+     "name": "Publishing & editorial",
+     "careerCode": "CAI",
+     "ours": 124,
+     "cIndexRank": 195.5,
+     "c": 5,
+     "gap": -71.5
+    },
+    {
+     "id": "translation",
+     "name": "Translation & interpreting",
+     "careerCode": "CSA",
+     "ours": 106,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -71.5
+    },
+    {
+     "id": "diplomacy",
+     "name": "Diplomacy & international organisations",
+     "careerCode": "ECI",
+     "ours": 62,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -71
+    },
+    {
+     "id": "dentistry",
+     "name": "Dentistry",
+     "careerCode": "RIS",
+     "ours": 63,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -70
+    },
+    {
+     "id": "investment_banking",
+     "name": "Investment banking & M&A advisory",
+     "careerCode": "CEI",
+     "ours": 37,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -69.5
+    },
+    {
+     "id": "hr",
+     "name": "HR & people partnering",
+     "careerCode": "ECS",
+     "ours": 108,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -69.5
+    },
+    {
+     "id": "funeral_services",
+     "name": "Funeral services",
+     "careerCode": "RCS",
+     "ours": 130,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 69
+    },
+    {
+     "id": "compliance",
+     "name": "Compliance & regulatory affairs",
+     "careerCode": "CEI",
+     "ours": 38,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -68.5
+    },
+    {
+     "id": "plumbing_hvac",
+     "name": "Plumbing, heating & refrigeration",
+     "careerCode": "RCI",
+     "ours": 95,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 68.5
+    },
+    {
+     "id": "partnerships",
+     "name": "Partnerships, channel & business development",
+     "careerCode": "ECS",
+     "ours": 112,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -65.5
+    },
+    {
+     "id": "private_security",
+     "name": "Private security",
+     "careerCode": "CRE",
+     "ours": 68,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -65
+    },
+    {
+     "id": "trading_markets",
+     "name": "Trading & markets",
+     "careerCode": "ECS",
+     "ours": 113,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -64.5
+    },
+    {
+     "id": "accounting_audit",
+     "name": "Accounting & audit",
+     "careerCode": "CEI",
+     "ours": 43,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -63.5
+    },
+    {
+     "id": "recruiting",
+     "name": "Recruiting & talent acquisition",
+     "careerCode": "ECS",
+     "ours": 114,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -63.5
+    },
+    {
+     "id": "road_transport",
+     "name": "Driving & road transport",
+     "careerCode": "RCE",
+     "ours": 110,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 63.5
+    },
+    {
+     "id": "fitness",
+     "name": "Fitness & wellness coaching",
+     "careerCode": "SRC",
+     "ours": 170,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": 63.5
+    },
+    {
+     "id": "sales_ops",
+     "name": "Sales operations & enablement",
+     "careerCode": "CEI",
+     "ours": 44,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -62.5
+    },
+    {
+     "id": "business_operations",
+     "name": "Operations & process improvement",
+     "careerCode": "ECS",
+     "ours": 116,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -61.5
+    },
+    {
+     "id": "waste_recycling",
+     "name": "Waste, recycling & environmental services",
+     "careerCode": "RCI",
+     "ours": 88,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 61.5
+    },
+    {
+     "id": "wealth_advice",
+     "name": "Wealth management & financial advice",
+     "careerCode": "ECS",
+     "ours": 117,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -60.5
+    },
+    {
+     "id": "electrician",
+     "name": "Electrician",
+     "careerCode": "RCI",
+     "ours": 87,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 60.5
+    },
+    {
+     "id": "legal_support",
+     "name": "Paralegal & legal support",
+     "careerCode": "CEI",
+     "ours": 47,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -59.5
+    },
+    {
+     "id": "aviation",
+     "name": "Aviation",
+     "careerCode": "CRE",
+     "ours": 74,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -59
+    },
+    {
+     "id": "process_operation",
+     "name": "Process plant operation",
+     "careerCode": "RCI",
+     "ours": 85,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 58.5
+    },
+    {
+     "id": "retail_buying",
+     "name": "Retail buying & merchandising",
+     "careerCode": "ECR",
+     "ours": 165,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": 58.5
+    },
+    {
+     "id": "farming",
+     "name": "Farming & horticulture",
+     "careerCode": "RCI",
+     "ours": 84,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 57.5
+    },
+    {
+     "id": "fire_rescue",
+     "name": "Fire, rescue & emergency response",
+     "careerCode": "RCS",
+     "ours": 118,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 57
+    },
+    {
+     "id": "asset_management",
+     "name": "Asset management & investment research",
+     "careerCode": "CEI",
+     "ours": 50,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -56.5
+    },
+    {
+     "id": "learning_development",
+     "name": "Learning & development",
+     "careerCode": "SEC",
+     "ours": 163,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": 56.5
+    },
+    {
+     "id": "food_drink_craft",
+     "name": "Food & drink craft",
+     "careerCode": "RCI",
+     "ours": 83,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 56.5
+    },
+    {
+     "id": "warehouse_logistics",
+     "name": "Warehousing & logistics",
+     "careerCode": "CRE",
+     "ours": 78,
+     "cIndexRank": 133,
+     "c": 8,
+     "gap": -55
+    },
+    {
+     "id": "fisheries_aquaculture",
+     "name": "Fisheries & aquaculture",
+     "careerCode": "RCI",
+     "ours": 81,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 54.5
+    },
+    {
+     "id": "offshore_oil_gas",
+     "name": "Offshore & oil and gas",
+     "careerCode": "RCI",
+     "ours": 80,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 53.5
+    },
+    {
+     "id": "independent_advisory",
+     "name": "Independent consulting & interim leadership",
+     "careerCode": "CEI",
+     "ours": 54,
+     "cIndexRank": 106.5,
+     "c": 9,
+     "gap": -52.5
+    },
+    {
+     "id": "mining_geo",
+     "name": "Mining, quarrying & drilling",
+     "careerCode": "RCI",
+     "ours": 79,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 52.5
+    },
+    {
+     "id": "property_investment",
+     "name": "Property investment & development",
+     "careerCode": "ECS",
+     "ours": 126,
+     "cIndexRank": 177.5,
+     "c": 6,
+     "gap": -51.5
+    },
+    {
+     "id": "process_engineering",
+     "name": "Chemical & process engineering",
+     "careerCode": "RIC",
+     "ours": 31,
+     "cIndexRank": 82,
+     "c": 10,
+     "gap": -51
+    },
+    {
+     "id": "rail",
+     "name": "Rail",
+     "careerCode": "RCE",
+     "ours": 97,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 50.5
+    },
+    {
+     "id": "vehicle_mechanics",
+     "name": "Vehicle & machinery mechanics",
+     "careerCode": "RCI",
+     "ours": 77,
+     "cIndexRank": 26.5,
+     "c": 14,
+     "gap": 50.5
+    }
+   ],
+   "interests": [
+    42.5,
+    89,
+    13.5,
+    23,
+    36,
+    88
+   ]
+  },
+  {
+   "id": "carer",
+   "label": "Social / artistic carer",
+   "code": "SAE",
+   "rhoC": 0.69,
+   "rhoM": 0.917,
+   "divergent": [
+    {
+     "id": "military",
+     "name": "Armed forces",
+     "careerCode": "CIE",
+     "ours": 185,
+     "cIndexRank": 42,
+     "c": 10,
+     "gap": 143
+    },
+    {
+     "id": "enterprise_systems",
+     "name": "Enterprise systems & IT consulting",
+     "careerCode": "CIE",
+     "ours": 166,
+     "cIndexRank": 42,
+     "c": 10,
+     "gap": 124
+    },
+    {
+     "id": "devops_cloud",
+     "name": "DevOps, cloud & site reliability",
+     "careerCode": "CIR",
+     "ours": 193,
+     "cIndexRank": 74.5,
+     "c": 8,
+     "gap": 118.5
+    },
+    {
+     "id": "qa_testing",
+     "name": "Software testing & quality assurance",
+     "careerCode": "CIR",
+     "ours": 190,
+     "cIndexRank": 74.5,
+     "c": 8,
+     "gap": 115.5
+    },
+    {
+     "id": "product_management",
+     "name": "Product management",
+     "careerCode": "EIC",
+     "ours": 134,
+     "cIndexRank": 20,
+     "c": 12,
+     "gap": 114
+    },
+    {
+     "id": "data_engineering",
+     "name": "Data engineering & databases",
+     "careerCode": "CIE",
+     "ours": 155,
+     "cIndexRank": 42,
+     "c": 10,
+     "gap": 113
+    },
+    {
+     "id": "gis_geodata",
+     "name": "GIS & geospatial analysis",
+     "careerCode": "CIR",
+     "ours": 187,
+     "cIndexRank": 74.5,
+     "c": 8,
+     "gap": 112.5
+    },
+    {
+     "id": "hair_beauty",
+     "name": "Hair, beauty & cosmetics",
+     "careerCode": "RCS",
+     "ours": 66,
+     "cIndexRank": 172.5,
+     "c": 2,
+     "gap": -106.5
+    },
+    {
+     "id": "data_analysis",
+     "name": "Data analysis & business intelligence",
+     "careerCode": "CIE",
+     "ours": 148,
+     "cIndexRank": 42,
+     "c": 10,
+     "gap": 106
+    },
+    {
+     "id": "cybersecurity",
+     "name": "Cybersecurity",
+     "careerCode": "CIR",
+     "ours": 180,
+     "cIndexRank": 74.5,
+     "c": 8,
+     "gap": 105.5
+    },
+    {
+     "id": "authorship",
+     "name": "Writing & authorship",
+     "careerCode": "ACI",
+     "ours": 25,
+     "cIndexRank": 127.5,
+     "c": 6,
+     "gap": -102.5
+    },
+    {
+     "id": "social_sciences",
+     "name": "Economics & social sciences",
+     "careerCode": "ICS",
+     "ours": 50,
+     "cIndexRank": 151,
+     "c": 5,
+     "gap": -101
+    },
+    {
+     "id": "environmental_engineering",
+     "name": "Environmental & energy engineering",
+     "careerCode": "IRC",
+     "ours": 202,
+     "cIndexRank": 102.5,
+     "c": 7,
+     "gap": 99.5
+    },
+    {
+     "id": "software_engineering",
+     "name": "Software engineering",
+     "careerCode": "CIR",
+     "ours": 173,
+     "cIndexRank": 74.5,
+     "c": 8,
+     "gap": 98.5
+    },
+    {
+     "id": "embedded_systems",
+     "name": "Embedded & hardware-near software",
+     "careerCode": "IRC",
+     "ours": 197,
+     "cIndexRank": 102.5,
+     "c": 7,
+     "gap": 94.5
+    },
+    {
+     "id": "pharma_clinical",
+     "name": "Pharmaceutical & clinical research",
+     "careerCode": "CIR",
+     "ours": 167,
+     "cIndexRank": 74.5,
+     "c": 8,
+     "gap": 92.5
+    },
+    {
+     "id": "fintech_payments",
+     "name": "Payments, fintech & crypto operations",
+     "careerCode": "CIE",
+     "ours": 133,
+     "cIndexRank": 42,
+     "c": 10,
+     "gap": 91
+    },
+    {
+     "id": "earth_sciences",
+     "name": "Earth, ocean & climate sciences",
+     "careerCode": "IRC",
+     "ours": 192,
+     "cIndexRank": 102.5,
+     "c": 7,
+     "gap": 89.5
+    },
+    {
+     "id": "physical_sciences",
+     "name": "Physics, chemistry & mathematics",
+     "careerCode": "IRC",
+     "ours": 191,
+     "cIndexRank": 102.5,
+     "c": 7,
+     "gap": 88.5
+    },
+    {
+     "id": "market_research",
+     "name": "Market research & consumer insights",
+     "careerCode": "CIE",
+     "ours": 129,
+     "cIndexRank": 42,
+     "c": 10,
+     "gap": 87
+    },
+    {
+     "id": "politics",
+     "name": "Politics & elected office",
+     "careerCode": "ECI",
+     "ours": 46,
+     "cIndexRank": 127.5,
+     "c": 6,
+     "gap": -81.5
+    },
+    {
+     "id": "management_consulting",
+     "name": "Management consulting",
+     "careerCode": "CIE",
+     "ours": 119,
+     "cIndexRank": 42,
+     "c": 10,
+     "gap": 77
+    },
+    {
+     "id": "process_engineering",
+     "name": "Chemical & process engineering",
+     "careerCode": "RIC",
+     "ours": 203,
+     "cIndexRank": 127.5,
+     "c": 6,
+     "gap": 75.5
+    },
+    {
+     "id": "life_sciences",
+     "name": "Life sciences & biotech",
+     "careerCode": "IRC",
+     "ours": 178,
+     "cIndexRank": 102.5,
+     "c": 7,
+     "gap": 75.5
+    },
+    {
+     "id": "product_design",
+     "name": "Product & UX/UI design",
+     "careerCode": "AIC",
+     "ours": 95,
+     "cIndexRank": 20,
+     "c": 12,
+     "gap": 75
+    },
+    {
+     "id": "legal_practice",
+     "name": "Law firm practice",
+     "careerCode": "CEI",
+     "ours": 76,
+     "cIndexRank": 151,
+     "c": 5,
+     "gap": -75
+    },
+    {
+     "id": "warehouse_logistics",
+     "name": "Warehousing & logistics",
+     "careerCode": "CRE",
+     "ours": 149,
+     "cIndexRank": 74.5,
+     "c": 8,
+     "gap": 74.5
+    },
+    {
+     "id": "mechanical_engineering",
+     "name": "Mechanical engineering",
+     "careerCode": "RIC",
+     "ours": 201,
+     "cIndexRank": 127.5,
+     "c": 6,
+     "gap": 73.5
+    },
+    {
+     "id": "intellectual_property",
+     "name": "Intellectual property",
+     "careerCode": "ECI",
+     "ours": 57,
+     "cIndexRank": 127.5,
+     "c": 6,
+     "gap": -70.5
+    },
+    {
+     "id": "content_social",
+     "name": "Content, copy & social media",
+     "careerCode": "CEA",
+     "ours": 58,
+     "cIndexRank": 127.5,
+     "c": 6,
+     "gap": -69.5
+    },
+    {
+     "id": "aviation",
+     "name": "Aviation",
+     "careerCode": "CRE",
+     "ours": 144,
+     "cIndexRank": 74.5,
+     "c": 8,
+     "gap": 69.5
+    },
+    {
+     "id": "private_security",
+     "name": "Private security",
+     "careerCode": "CRE",
+     "ours": 143,
+     "cIndexRank": 74.5,
+     "c": 8,
+     "gap": 68.5
+    },
+    {
+     "id": "industrial_design",
+     "name": "Industrial & product design",
+     "careerCode": "ARC",
+     "ours": 109,
+     "cIndexRank": 42,
+     "c": 10,
+     "gap": 67
+    },
+    {
+     "id": "legal_support",
+     "name": "Paralegal & legal support",
+     "careerCode": "CEI",
+     "ours": 85,
+     "cIndexRank": 151,
+     "c": 5,
+     "gap": -66
+    },
+    {
+     "id": "public_policy",
+     "name": "Public policy & analysis",
+     "careerCode": "EIC",
+     "ours": 86,
+     "cIndexRank": 20,
+     "c": 12,
+     "gap": 66
+    },
+    {
+     "id": "funeral_services",
+     "name": "Funeral services",
+     "careerCode": "RCS",
+     "ours": 111,
+     "cIndexRank": 172.5,
+     "c": 2,
+     "gap": -61.5
+    },
+    {
+     "id": "growth_marketing",
+     "name": "Performance & growth marketing",
+     "careerCode": "ECI",
+     "ours": 67,
+     "cIndexRank": 127.5,
+     "c": 6,
+     "gap": -60.5
+    },
+    {
+     "id": "nature_conservation",
+     "name": "Nature & conservation",
+     "careerCode": "RIC",
+     "ours": 188,
+     "cIndexRank": 127.5,
+     "c": 6,
+     "gap": 60.5
+    },
+    {
+     "id": "photography",
+     "name": "Photography",
+     "careerCode": "RCA",
+     "ours": 118,
+     "cIndexRank": 178.5,
+     "c": 1,
+     "gap": -60.5
+    },
+    {
+     "id": "agency_ownership",
+     "name": "Agency & studio ownership",
+     "careerCode": "ECA",
+     "ours": 42,
+     "cIndexRank": 102.5,
+     "c": 7,
+     "gap": -60.5
+    },
+    {
+     "id": "workplace_psychology",
+     "name": "Organisational & work psychology",
+     "careerCode": "IEC",
+     "ours": 43,
+     "cIndexRank": 102.5,
+     "c": 7,
+     "gap": -59.5
+    },
+    {
+     "id": "product_marketing",
+     "name": "Product marketing",
+     "careerCode": "ECI",
+     "ours": 72,
+     "cIndexRank": 127.5,
+     "c": 6,
+     "gap": -55.5
+    },
+    {
+     "id": "film_tv",
+     "name": "Film & TV production",
+     "careerCode": "CAR",
+     "ours": 97,
+     "cIndexRank": 42,
+     "c": 10,
+     "gap": 55
+    },
+    {
+     "id": "culinary",
+     "name": "Culinary",
+     "careerCode": "RCE",
+     "ours": 113,
+     "cIndexRank": 167.5,
+     "c": 3,
+     "gap": -54.5
+    },
+    {
+     "id": "industrial_engineering",
+     "name": "Industrial & manufacturing engineering",
+     "careerCode": "CRI",
+     "ours": 205,
+     "cIndexRank": 151,
+     "c": 5,
+     "gap": 54
+    },
+    {
+     "id": "fashion",
+     "name": "Fashion & styling",
+     "careerCode": "ARC",
+     "ours": 94,
+     "cIndexRank": 42,
+     "c": 10,
+     "gap": 52
+    },
+    {
+     "id": "corporate_finance",
+     "name": "FP&A, controlling & corporate finance",
+     "careerCode": "CEI",
+     "ours": 100,
+     "cIndexRank": 151,
+     "c": 5,
+     "gap": -51
+    },
+    {
+     "id": "textile_leather",
+     "name": "Textiles, leather & upholstery",
+     "careerCode": "RCA",
+     "ours": 128,
+     "cIndexRank": 178.5,
+     "c": 1,
+     "gap": -50.5
+    }
+   ],
+   "interests": [
+    21.5,
+    25,
+    71.5,
+    95,
+    43.5,
+    30
+   ]
+  },
+  {
+   "id": "maker",
+   "label": "Realistic maker",
+   "code": "RIC",
+   "rhoC": 0.755,
+   "rhoM": 0.905,
+   "divergent": [
+    {
+     "id": "management_consulting",
+     "name": "Management consulting",
+     "careerCode": "CIE",
+     "ours": 138,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 122.5
+    },
+    {
+     "id": "devrel_techwriting",
+     "name": "Developer relations & technical writing",
+     "careerCode": "CIS",
+     "ours": 151,
+     "cIndexRank": 29,
+     "c": 13,
+     "gap": 122
+    },
+    {
+     "id": "public_policy",
+     "name": "Public policy & analysis",
+     "careerCode": "EIC",
+     "ours": 169,
+     "cIndexRank": 53.5,
+     "c": 12,
+     "gap": 115.5
+    },
+    {
+     "id": "complementary_health",
+     "name": "Complementary therapies",
+     "careerCode": "SRI",
+     "ours": 86,
+     "cIndexRank": 193,
+     "c": 5,
+     "gap": -107
+    },
+    {
+     "id": "fintech_payments",
+     "name": "Payments, fintech & crypto operations",
+     "careerCode": "CIE",
+     "ours": 121,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 105.5
+    },
+    {
+     "id": "market_research",
+     "name": "Market research & consumer insights",
+     "careerCode": "CIE",
+     "ours": 117,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 101.5
+    },
+    {
+     "id": "advertising_agency",
+     "name": "Advertising & creative agencies",
+     "careerCode": "EAC",
+     "ours": 194,
+     "cIndexRank": 93,
+     "c": 10,
+     "gap": 101
+    },
+    {
+     "id": "workplace_psychology",
+     "name": "Organisational & work psychology",
+     "careerCode": "IEC",
+     "ours": 195,
+     "cIndexRank": 105,
+     "c": 9,
+     "gap": 90
+    },
+    {
+     "id": "product_design",
+     "name": "Product & UX/UI design",
+     "careerCode": "AIC",
+     "ours": 140,
+     "cIndexRank": 53.5,
+     "c": 12,
+     "gap": 86.5
+    },
+    {
+     "id": "data_analysis",
+     "name": "Data analysis & business intelligence",
+     "careerCode": "CIE",
+     "ours": 102,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 86.5
+    },
+    {
+     "id": "creator_services",
+     "name": "Creator services",
+     "careerCode": "EAS",
+     "ours": 203,
+     "cIndexRank": 117,
+     "c": 8,
+     "gap": 86
+    },
+    {
+     "id": "publishing",
+     "name": "Publishing & editorial",
+     "careerCode": "CAI",
+     "ours": 161,
+     "cIndexRank": 79,
+     "c": 11,
+     "gap": 82
+    },
+    {
+     "id": "school_teaching",
+     "name": "School teaching",
+     "careerCode": "SIC",
+     "ours": 184,
+     "cIndexRank": 105,
+     "c": 9,
+     "gap": 79
+    },
+    {
+     "id": "enterprise_systems",
+     "name": "Enterprise systems & IT consulting",
+     "careerCode": "CIE",
+     "ours": 92,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 76.5
+    },
+    {
+     "id": "care_work",
+     "name": "Elder & disability care",
+     "careerCode": "SCR",
+     "ours": 125,
+     "cIndexRank": 198.5,
+     "c": 4,
+     "gap": -73.5
+    },
+    {
+     "id": "lifecycle_marketing",
+     "name": "CRM, lifecycle & marketing operations",
+     "careerCode": "ICE",
+     "ours": 166,
+     "cIndexRank": 93,
+     "c": 10,
+     "gap": 73
+    },
+    {
+     "id": "data_engineering",
+     "name": "Data engineering & databases",
+     "careerCode": "CIE",
+     "ours": 88,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 72.5
+    },
+    {
+     "id": "sports_coaching",
+     "name": "Sports coaching & performance",
+     "careerCode": "SRE",
+     "ours": 100,
+     "cIndexRank": 172.5,
+     "c": 6,
+     "gap": -72.5
+    },
+    {
+     "id": "mental_health",
+     "name": "Mental health & psychology",
+     "careerCode": "SIC",
+     "ours": 176,
+     "cIndexRank": 105,
+     "c": 9,
+     "gap": 71
+    },
+    {
+     "id": "pharmacy",
+     "name": "Pharmacy",
+     "careerCode": "CIS",
+     "ours": 99,
+     "cIndexRank": 29,
+     "c": 13,
+     "gap": 70
+    },
+    {
+     "id": "software_engineering",
+     "name": "Software engineering",
+     "careerCode": "CIR",
+     "ours": 83,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 67.5
+    },
+    {
+     "id": "product_management",
+     "name": "Product management",
+     "careerCode": "EIC",
+     "ours": 120,
+     "cIndexRank": 53.5,
+     "c": 12,
+     "gap": 66.5
+    },
+    {
+     "id": "masonry_concrete",
+     "name": "Masonry, concrete & tiling",
+     "careerCode": "RCA",
+     "ours": 14,
+     "cIndexRank": 79,
+     "c": 11,
+     "gap": -65
+    },
+    {
+     "id": "academic_research",
+     "name": "Academic research & university teaching",
+     "careerCode": "SIC",
+     "ours": 170,
+     "cIndexRank": 105,
+     "c": 9,
+     "gap": 65
+    },
+    {
+     "id": "vocational_instruction",
+     "name": "Vocational & specialist instruction",
+     "careerCode": "SIC",
+     "ours": 167,
+     "cIndexRank": 105,
+     "c": 9,
+     "gap": 62
+    },
+    {
+     "id": "cybersecurity",
+     "name": "Cybersecurity",
+     "careerCode": "CIR",
+     "ours": 76,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 60.5
+    },
+    {
+     "id": "restoration_signs",
+     "name": "Restoration & decorative crafts",
+     "careerCode": "RCA",
+     "ours": 21,
+     "cIndexRank": 79,
+     "c": 11,
+     "gap": -58
+    },
+    {
+     "id": "fitness",
+     "name": "Fitness & wellness coaching",
+     "careerCode": "SRC",
+     "ours": 81,
+     "cIndexRank": 138.5,
+     "c": 7,
+     "gap": -57.5
+    },
+    {
+     "id": "metal_jewellery",
+     "name": "Jewellery, metal & precision craft",
+     "careerCode": "RCA",
+     "ours": 22,
+     "cIndexRank": 79,
+     "c": 11,
+     "gap": -57
+    },
+    {
+     "id": "military",
+     "name": "Armed forces",
+     "careerCode": "CIE",
+     "ours": 72,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 56.5
+    },
+    {
+     "id": "woodcraft",
+     "name": "Furniture & woodcraft",
+     "careerCode": "RCA",
+     "ours": 23,
+     "cIndexRank": 79,
+     "c": 11,
+     "gap": -56
+    },
+    {
+     "id": "diagnostics",
+     "name": "Diagnostics & medical technology",
+     "careerCode": "RIC",
+     "ours": 59,
+     "cIndexRank": 4,
+     "c": 18,
+     "gap": 55
+    },
+    {
+     "id": "devops_cloud",
+     "name": "DevOps, cloud & site reliability",
+     "careerCode": "CIR",
+     "ours": 70,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 54.5
+    },
+    {
+     "id": "mining_geo",
+     "name": "Mining, quarrying & drilling",
+     "careerCode": "RCI",
+     "ours": 1,
+     "cIndexRank": 53.5,
+     "c": 12,
+     "gap": -52.5
+    },
+    {
+     "id": "textile_leather",
+     "name": "Textiles, leather & upholstery",
+     "careerCode": "RCA",
+     "ours": 27,
+     "cIndexRank": 79,
+     "c": 11,
+     "gap": -52
+    },
+    {
+     "id": "forestry",
+     "name": "Forestry & hunting",
+     "careerCode": "RCI",
+     "ours": 2,
+     "cIndexRank": 53.5,
+     "c": 12,
+     "gap": -51.5
+    },
+    {
+     "id": "pharma_clinical",
+     "name": "Pharmaceutical & clinical research",
+     "careerCode": "CIR",
+     "ours": 67,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 51.5
+    },
+    {
+     "id": "social_sciences",
+     "name": "Economics & social sciences",
+     "careerCode": "ICS",
+     "ours": 156,
+     "cIndexRank": 105,
+     "c": 9,
+     "gap": 51
+    },
+    {
+     "id": "qa_testing",
+     "name": "Software testing & quality assurance",
+     "careerCode": "CIR",
+     "ours": 66,
+     "cIndexRank": 15.5,
+     "c": 14,
+     "gap": 50.5
+    },
+    {
+     "id": "welding_metal",
+     "name": "Welding & metal fabrication",
+     "careerCode": "RCI",
+     "ours": 3,
+     "cIndexRank": 53.5,
+     "c": 12,
+     "gap": -50.5
+    }
+   ],
+   "interests": [
+    97.5,
+    46.5,
+    23,
+    17.5,
+    28.5,
+    45
+   ]
+  },
+  {
+   "id": "hunter",
+   "label": "Enterprising hunter",
+   "code": "ESC",
+   "rhoC": 0.828,
+   "rhoM": 0.94,
+   "divergent": [
+    {
+     "id": "translation",
+     "name": "Translation & interpreting",
+     "careerCode": "CSA",
+     "ours": 143,
+     "cIndexRank": 34.5,
+     "c": 12,
+     "gap": 108.5
+    },
+    {
+     "id": "lifecycle_marketing",
+     "name": "CRM, lifecycle & marketing operations",
+     "careerCode": "ICE",
+     "ours": 89,
+     "cIndexRank": 195,
+     "c": 4,
+     "gap": -106
+    },
+    {
+     "id": "gis_geodata",
+     "name": "GIS & geospatial analysis",
+     "careerCode": "CIR",
+     "ours": 202,
+     "cIndexRank": 96.5,
+     "c": 10,
+     "gap": 105.5
+    },
+    {
+     "id": "health_admin",
+     "name": "Health administration & informatics",
+     "careerCode": "CSI",
+     "ours": 98,
+     "cIndexRank": 11.5,
+     "c": 13,
+     "gap": 86.5
+    },
+    {
+     "id": "publishing",
+     "name": "Publishing & editorial",
+     "careerCode": "CAI",
+     "ours": 155,
+     "cIndexRank": 69,
+     "c": 11,
+     "gap": 86
+    },
+    {
+     "id": "architecture",
+     "name": "Architecture",
+     "careerCode": "RAI",
+     "ours": 205,
+     "cIndexRank": 121,
+     "c": 8,
+     "gap": 84
+    },
+    {
+     "id": "hair_beauty",
+     "name": "Hair, beauty & cosmetics",
+     "careerCode": "RCS",
+     "ours": 82,
+     "cIndexRank": 162.5,
+     "c": 6,
+     "gap": -80.5
+    },
+    {
+     "id": "qa_testing",
+     "name": "Software testing & quality assurance",
+     "careerCode": "CIR",
+     "ours": 171,
+     "cIndexRank": 96.5,
+     "c": 10,
+     "gap": 74.5
+    },
+    {
+     "id": "variety",
+     "name": "Variety & live entertainment",
+     "careerCode": "ARS",
+     "ours": 122,
+     "cIndexRank": 195,
+     "c": 4,
+     "gap": -73
+    },
+    {
+     "id": "funeral_services",
+     "name": "Funeral services",
+     "careerCode": "RCS",
+     "ours": 90,
+     "cIndexRank": 162.5,
+     "c": 6,
+     "gap": -72.5
+    },
+    {
+     "id": "quant_finance",
+     "name": "Quantitative finance",
+     "careerCode": "ICE",
+     "ours": 123,
+     "cIndexRank": 195,
+     "c": 4,
+     "gap": -72
+    },
+    {
+     "id": "film_tv",
+     "name": "Film & TV production",
+     "careerCode": "CAR",
+     "ours": 106,
+     "cIndexRank": 34.5,
+     "c": 12,
+     "gap": 71.5
+    },
+    {
+     "id": "tutoring",
+     "name": "Tutoring & language teaching",
+     "careerCode": "SAI",
+     "ours": 140,
+     "cIndexRank": 69,
+     "c": 11,
+     "gap": 71
+    },
+    {
+     "id": "mechanical_engineering",
+     "name": "Mechanical engineering",
+     "careerCode": "RIC",
+     "ours": 191,
+     "cIndexRank": 121,
+     "c": 8,
+     "gap": 70
+    },
+    {
+     "id": "restaurant_service",
+     "name": "Restaurant, bar & café service",
+     "careerCode": "CRE",
+     "ours": 51,
+     "cIndexRank": 121,
+     "c": 8,
+     "gap": -70
+    },
+    {
+     "id": "product_design",
+     "name": "Product & UX/UI design",
+     "careerCode": "AIC",
+     "ours": 189,
+     "cIndexRank": 121,
+     "c": 8,
+     "gap": 68
+    },
+    {
+     "id": "biomedical_engineering",
+     "name": "Biomedical engineering",
+     "careerCode": "RIC",
+     "ours": 187,
+     "cIndexRank": 121,
+     "c": 8,
+     "gap": 66
+    },
+    {
+     "id": "dance",
+     "name": "Dance",
+     "careerCode": "ARS",
+     "ours": 131,
+     "cIndexRank": 195,
+     "c": 4,
+     "gap": -64
+    },
+    {
+     "id": "fire_rescue",
+     "name": "Fire, rescue & emergency response",
+     "careerCode": "RCS",
+     "ours": 99,
+     "cIndexRank": 162.5,
+     "c": 6,
+     "gap": -63.5
+    },
+    {
+     "id": "process_engineering",
+     "name": "Chemical & process engineering",
+     "careerCode": "RIC",
+     "ours": 184,
+     "cIndexRank": 121,
+     "c": 8,
+     "gap": 63
+    },
+    {
+     "id": "product_management",
+     "name": "Product management",
+     "careerCode": "EIC",
+     "ours": 68,
+     "cIndexRank": 6,
+     "c": 14,
+     "gap": 62
+    },
+    {
+     "id": "veterinary",
+     "name": "Veterinary medicine",
+     "careerCode": "RIC",
+     "ours": 182,
+     "cIndexRank": 121,
+     "c": 8,
+     "gap": 61
+    },
+    {
+     "id": "esports",
+     "name": "Esports",
+     "careerCode": "ERS",
+     "ours": 38,
+     "cIndexRank": 96.5,
+     "c": 10,
+     "gap": -58.5
+    },
+    {
+     "id": "public_policy",
+     "name": "Public policy & analysis",
+     "careerCode": "EIC",
+     "ours": 64,
+     "cIndexRank": 6,
+     "c": 14,
+     "gap": 58
+    },
+    {
+     "id": "sports_coaching",
+     "name": "Sports coaching & performance",
+     "careerCode": "SRE",
+     "ours": 66,
+     "cIndexRank": 121,
+     "c": 8,
+     "gap": -55
+    },
+    {
+     "id": "agency_ownership",
+     "name": "Agency & studio ownership",
+     "careerCode": "ECA",
+     "ours": 14,
+     "cIndexRank": 69,
+     "c": 11,
+     "gap": -55
+    },
+    {
+     "id": "software_engineering",
+     "name": "Software engineering",
+     "careerCode": "CIR",
+     "ours": 151,
+     "cIndexRank": 96.5,
+     "c": 10,
+     "gap": 54.5
+    },
+    {
+     "id": "workplace_psychology",
+     "name": "Organisational & work psychology",
+     "careerCode": "IEC",
+     "ours": 86,
+     "cIndexRank": 137.5,
+     "c": 7,
+     "gap": -51.5
+    }
+   ],
+   "interests": [
+    27.5,
+    18.5,
+    18,
+    66.5,
+    98,
+    45
+   ]
+  },
+  {
+   "id": "storyteller",
+   "label": "Artistic storyteller",
+   "code": "AES",
+   "rhoC": 0.608,
+   "rhoM": 0.878,
+   "divergent": [
+    {
+     "id": "film_tv",
+     "name": "Film & TV production",
+     "careerCode": "CAR",
+     "ours": 43,
+     "cIndexRank": 195.5,
+     "c": 2,
+     "gap": -152.5
+    },
+    {
+     "id": "advertising_agency",
+     "name": "Advertising & creative agencies",
+     "careerCode": "EAC",
+     "ours": 17,
+     "cIndexRank": 162.5,
+     "c": 6,
+     "gap": -145.5
+    },
+    {
+     "id": "publishing",
+     "name": "Publishing & editorial",
+     "careerCode": "CAI",
+     "ours": 42,
+     "cIndexRank": 187,
+     "c": 3,
+     "gap": -145
+    },
+    {
+     "id": "vocational_instruction",
+     "name": "Vocational & specialist instruction",
+     "careerCode": "SIC",
+     "ours": 27,
+     "cIndexRank": 146,
+     "c": 7,
+     "gap": -119
+    },
+    {
+     "id": "environmental_engineering",
+     "name": "Environmental & energy engineering",
+     "careerCode": "IRC",
+     "ours": 200,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": 118
+    },
+    {
+     "id": "school_teaching",
+     "name": "School teaching",
+     "careerCode": "SIC",
+     "ours": 34,
+     "cIndexRank": 146,
+     "c": 7,
+     "gap": -112
+    },
+    {
+     "id": "fire_rescue",
+     "name": "Fire, rescue & emergency response",
+     "careerCode": "RCS",
+     "ours": 156,
+     "cIndexRank": 48.5,
+     "c": 10,
+     "gap": 107.5
+    },
+    {
+     "id": "embedded_systems",
+     "name": "Embedded & hardware-near software",
+     "careerCode": "IRC",
+     "ours": 188,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": 106
+    },
+    {
+     "id": "construction_management",
+     "name": "Construction management",
+     "careerCode": "RCE",
+     "ours": 187,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": 105
+    },
+    {
+     "id": "academic_research",
+     "name": "Academic research & university teaching",
+     "careerCode": "SIC",
+     "ours": 41,
+     "cIndexRank": 146,
+     "c": 7,
+     "gap": -105
+    },
+    {
+     "id": "physical_sciences",
+     "name": "Physics, chemistry & mathematics",
+     "careerCode": "IRC",
+     "ours": 186,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": 104
+    },
+    {
+     "id": "translation",
+     "name": "Translation & interpreting",
+     "careerCode": "CSA",
+     "ours": 59,
+     "cIndexRank": 162.5,
+     "c": 6,
+     "gap": -103.5
+    },
+    {
+     "id": "creator_services",
+     "name": "Creator services",
+     "careerCode": "EAS",
+     "ours": 14,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": -102.5
+    },
+    {
+     "id": "life_sciences",
+     "name": "Life sciences & biotech",
+     "careerCode": "IRC",
+     "ours": 184,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": 102
+    },
+    {
+     "id": "quant_finance",
+     "name": "Quantitative finance",
+     "careerCode": "ICE",
+     "ours": 127,
+     "cIndexRank": 25.5,
+     "c": 12,
+     "gap": 101.5
+    },
+    {
+     "id": "earth_sciences",
+     "name": "Earth, ocean & climate sciences",
+     "careerCode": "IRC",
+     "ours": 181,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": 99
+    },
+    {
+     "id": "retail_buying",
+     "name": "Retail buying & merchandising",
+     "careerCode": "ECR",
+     "ours": 47,
+     "cIndexRank": 146,
+     "c": 7,
+     "gap": -99
+    },
+    {
+     "id": "data_science",
+     "name": "Data science & statistics",
+     "careerCode": "ICR",
+     "ours": 147,
+     "cIndexRank": 48.5,
+     "c": 10,
+     "gap": 98.5
+    },
+    {
+     "id": "public_policy",
+     "name": "Public policy & analysis",
+     "careerCode": "EIC",
+     "ours": 78,
+     "cIndexRank": 175.5,
+     "c": 4,
+     "gap": -97.5
+    },
+    {
+     "id": "mental_health",
+     "name": "Mental health & psychology",
+     "careerCode": "SIC",
+     "ours": 51,
+     "cIndexRank": 146,
+     "c": 7,
+     "gap": -95
+    },
+    {
+     "id": "pro_sport",
+     "name": "Professional sport",
+     "careerCode": "ESR",
+     "ours": 52,
+     "cIndexRank": 146,
+     "c": 7,
+     "gap": -94
+    },
+    {
+     "id": "funeral_services",
+     "name": "Funeral services",
+     "careerCode": "RCS",
+     "ours": 142,
+     "cIndexRank": 48.5,
+     "c": 10,
+     "gap": 93.5
+    },
+    {
+     "id": "strategy_games",
+     "name": "Professional strategy games",
+     "careerCode": "ESR",
+     "ours": 54,
+     "cIndexRank": 146,
+     "c": 7,
+     "gap": -92
+    },
+    {
+     "id": "ml_ai_engineering",
+     "name": "Machine learning & AI engineering",
+     "careerCode": "ICR",
+     "ours": 140,
+     "cIndexRank": 48.5,
+     "c": 10,
+     "gap": 91.5
+    },
+    {
+     "id": "architecture",
+     "name": "Architecture",
+     "careerCode": "RAI",
+     "ours": 76,
+     "cIndexRank": 162.5,
+     "c": 6,
+     "gap": -86.5
+    },
+    {
+     "id": "restaurant_service",
+     "name": "Restaurant, bar & café service",
+     "careerCode": "CRE",
+     "ours": 89,
+     "cIndexRank": 175.5,
+     "c": 4,
+     "gap": -86.5
+    },
+    {
+     "id": "rail",
+     "name": "Rail",
+     "careerCode": "RCE",
+     "ours": 168,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": 86
+    },
+    {
+     "id": "facilities",
+     "name": "Facilities, cleaning & property services",
+     "careerCode": "RCS",
+     "ours": 134,
+     "cIndexRank": 48.5,
+     "c": 10,
+     "gap": 85.5
+    },
+    {
+     "id": "content_social",
+     "name": "Content, copy & social media",
+     "careerCode": "CEA",
+     "ours": 32,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": -84.5
+    },
+    {
+     "id": "devrel_techwriting",
+     "name": "Developer relations & technical writing",
+     "careerCode": "CIS",
+     "ours": 103,
+     "cIndexRank": 187,
+     "c": 3,
+     "gap": -84
+    },
+    {
+     "id": "management_consulting",
+     "name": "Management consulting",
+     "careerCode": "CIE",
+     "ours": 114,
+     "cIndexRank": 195.5,
+     "c": 2,
+     "gap": -81.5
+    },
+    {
+     "id": "civil_engineering",
+     "name": "Civil & structural engineering",
+     "careerCode": "RCI",
+     "ours": 194,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": 77.5
+    },
+    {
+     "id": "esports",
+     "name": "Esports",
+     "careerCode": "ERS",
+     "ours": 39,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": -77.5
+    },
+    {
+     "id": "politics",
+     "name": "Politics & elected office",
+     "careerCode": "ECI",
+     "ours": 40,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": -76.5
+    },
+    {
+     "id": "renewables",
+     "name": "Renewable energy",
+     "careerCode": "RCI",
+     "ours": 192,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": 75.5
+    },
+    {
+     "id": "medicine",
+     "name": "Medicine (doctors)",
+     "careerCode": "ISR",
+     "ours": 123,
+     "cIndexRank": 48.5,
+     "c": 10,
+     "gap": 74.5
+    },
+    {
+     "id": "electrical_engineering",
+     "name": "Electrical & electronics engineering",
+     "careerCode": "RCI",
+     "ours": 189,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": 72.5
+    },
+    {
+     "id": "road_transport",
+     "name": "Driving & road transport",
+     "careerCode": "RCE",
+     "ours": 152,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": 70
+    },
+    {
+     "id": "small_business",
+     "name": "Small business ownership",
+     "careerCode": "ECR",
+     "ours": 77,
+     "cIndexRank": 146,
+     "c": 7,
+     "gap": -69
+    },
+    {
+     "id": "product_management",
+     "name": "Product management",
+     "careerCode": "EIC",
+     "ours": 107,
+     "cIndexRank": 175.5,
+     "c": 4,
+     "gap": -68.5
+    },
+    {
+     "id": "fintech_payments",
+     "name": "Payments, fintech & crypto operations",
+     "careerCode": "CIE",
+     "ours": 128,
+     "cIndexRank": 195.5,
+     "c": 2,
+     "gap": -67.5
+    },
+    {
+     "id": "growth_marketing",
+     "name": "Performance & growth marketing",
+     "careerCode": "ECI",
+     "ours": 50,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": -66.5
+    },
+    {
+     "id": "power_utilities",
+     "name": "Power grid & utilities",
+     "careerCode": "RCI",
+     "ours": 183,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": 66.5
+    },
+    {
+     "id": "legal_practice",
+     "name": "Law firm practice",
+     "careerCode": "CEI",
+     "ours": 82,
+     "cIndexRank": 146,
+     "c": 7,
+     "gap": -64
+    },
+    {
+     "id": "product_marketing",
+     "name": "Product marketing",
+     "careerCode": "ECI",
+     "ours": 53,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": -63.5
+    },
+    {
+     "id": "market_research",
+     "name": "Market research & consumer insights",
+     "careerCode": "CIE",
+     "ours": 132,
+     "cIndexRank": 195.5,
+     "c": 2,
+     "gap": -63.5
+    },
+    {
+     "id": "ux_research",
+     "name": "UX research",
+     "careerCode": "ICR",
+     "ours": 112,
+     "cIndexRank": 48.5,
+     "c": 10,
+     "gap": 63.5
+    },
+    {
+     "id": "social_sciences",
+     "name": "Economics & social sciences",
+     "careerCode": "ICS",
+     "ours": 79,
+     "cIndexRank": 15.5,
+     "c": 13,
+     "gap": 63.5
+    },
+    {
+     "id": "tutoring",
+     "name": "Tutoring & language teaching",
+     "careerCode": "SAI",
+     "ours": 20,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": -62
+    },
+    {
+     "id": "intellectual_property",
+     "name": "Intellectual property",
+     "careerCode": "ECI",
+     "ours": 55,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": -61.5
+    },
+    {
+     "id": "tourism",
+     "name": "Tourism & travel",
+     "careerCode": "ESC",
+     "ours": 56,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": -60.5
+    },
+    {
+     "id": "industrial_maintenance",
+     "name": "Industrial maintenance & technical service",
+     "careerCode": "RCI",
+     "ours": 176,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": 59.5
+    },
+    {
+     "id": "store_retail",
+     "name": "Store retail",
+     "careerCode": "ECR",
+     "ours": 87,
+     "cIndexRank": 146,
+     "c": 7,
+     "gap": -59
+    },
+    {
+     "id": "fisheries_aquaculture",
+     "name": "Fisheries & aquaculture",
+     "careerCode": "RCI",
+     "ours": 174,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": 57.5
+    },
+    {
+     "id": "landscaping",
+     "name": "Landscaping & grounds",
+     "careerCode": "RCE",
+     "ours": 139,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": 57
+    },
+    {
+     "id": "agency_ownership",
+     "name": "Agency & studio ownership",
+     "careerCode": "ECA",
+     "ours": 26,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": -56
+    },
+    {
+     "id": "game_development",
+     "name": "Game development",
+     "careerCode": "ICA",
+     "ours": 81,
+     "cIndexRank": 25.5,
+     "c": 12,
+     "gap": 55.5
+    },
+    {
+     "id": "trade_brokerage",
+     "name": "International trade & brokerage",
+     "careerCode": "CER",
+     "ours": 108,
+     "cIndexRank": 162.5,
+     "c": 6,
+     "gap": -54.5
+    },
+    {
+     "id": "seafaring",
+     "name": "Seafaring & ship operations",
+     "careerCode": "RCI",
+     "ours": 171,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": 54.5
+    },
+    {
+     "id": "vehicle_mechanics",
+     "name": "Vehicle & machinery mechanics",
+     "careerCode": "RCI",
+     "ours": 170,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": 53.5
+    },
+    {
+     "id": "textile_print_production",
+     "name": "Textile, print & packaging production",
+     "careerCode": "RCA",
+     "ours": 135,
+     "cIndexRank": 82,
+     "c": 9,
+     "gap": 53
+    },
+    {
+     "id": "farming",
+     "name": "Farming & horticulture",
+     "careerCode": "RCI",
+     "ours": 169,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": 52.5
+    },
+    {
+     "id": "data_analysis",
+     "name": "Data analysis & business intelligence",
+     "careerCode": "CIE",
+     "ours": 144,
+     "cIndexRank": 195.5,
+     "c": 2,
+     "gap": -51.5
+    },
+    {
+     "id": "private_capital",
+     "name": "Private equity, venture & principal investing",
+     "careerCode": "ECI",
+     "ours": 65,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": -51.5
+    },
+    {
+     "id": "offshore_oil_gas",
+     "name": "Offshore & oil and gas",
+     "careerCode": "RCI",
+     "ours": 167,
+     "cIndexRank": 116.5,
+     "c": 8,
+     "gap": 50.5
+    }
+   ],
+   "interests": [
+    27.5,
+    31.5,
+    90.5,
+    59,
+    59.5,
+    14.5
+   ]
+  },
+  {
+   "id": "flat",
+   "label": "Flat profile",
+   "code": "ERC",
+   "rhoC": 0.263,
+   "rhoM": 0.702,
+   "divergent": [
+    {
+     "id": "hair_beauty",
+     "name": "Hair, beauty & cosmetics",
+     "careerCode": "RCS",
+     "ours": 7,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -157.5
+    },
+    {
+     "id": "funeral_services",
+     "name": "Funeral services",
+     "careerCode": "RCS",
+     "ours": 10,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -154.5
+    },
+    {
+     "id": "fire_rescue",
+     "name": "Fire, rescue & emergency response",
+     "careerCode": "RCS",
+     "ours": 16,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -148.5
+    },
+    {
+     "id": "public_policy",
+     "name": "Public policy & analysis",
+     "careerCode": "EIC",
+     "ours": 149,
+     "cIndexRank": 2,
+     "c": 16,
+     "gap": 147
+    },
+    {
+     "id": "academic_research",
+     "name": "Academic research & university teaching",
+     "careerCode": "SIC",
+     "ours": 188,
+     "cIndexRank": 52,
+     "c": 13,
+     "gap": 136
+    },
+    {
+     "id": "mental_health",
+     "name": "Mental health & psychology",
+     "careerCode": "SIC",
+     "ours": 180,
+     "cIndexRank": 52,
+     "c": 13,
+     "gap": 128
+    },
+    {
+     "id": "corrections",
+     "name": "Corrections",
+     "careerCode": "CES",
+     "ours": 3,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -127
+    },
+    {
+     "id": "animation_vfx",
+     "name": "Animation, VFX & 3D",
+     "careerCode": "ARC",
+     "ours": 199,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 127
+    },
+    {
+     "id": "hotels",
+     "name": "Hotels & accommodation",
+     "careerCode": "CES",
+     "ours": 4,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -126
+    },
+    {
+     "id": "facilities",
+     "name": "Facilities, cleaning & property services",
+     "careerCode": "RCS",
+     "ours": 43,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -121.5
+    },
+    {
+     "id": "intellectual_property",
+     "name": "Intellectual property",
+     "careerCode": "ECI",
+     "ours": 147,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 120
+    },
+    {
+     "id": "pr_comms",
+     "name": "PR & communications",
+     "careerCode": "ECS",
+     "ours": 146,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 119
+    },
+    {
+     "id": "school_teaching",
+     "name": "School teaching",
+     "careerCode": "SIC",
+     "ours": 170,
+     "cIndexRank": 52,
+     "c": 13,
+     "gap": 118
+    },
+    {
+     "id": "fisheries_aquaculture",
+     "name": "Fisheries & aquaculture",
+     "careerCode": "RCI",
+     "ours": 48,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -116.5
+    },
+    {
+     "id": "road_transport",
+     "name": "Driving & road transport",
+     "careerCode": "RCE",
+     "ours": 15,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -115
+    },
+    {
+     "id": "seafaring",
+     "name": "Seafaring & ship operations",
+     "careerCode": "RCI",
+     "ours": 50,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -114.5
+    },
+    {
+     "id": "product_management",
+     "name": "Product management",
+     "careerCode": "EIC",
+     "ours": 116,
+     "cIndexRank": 2,
+     "c": 16,
+     "gap": 114
+    },
+    {
+     "id": "food_production",
+     "name": "Food & seafood production",
+     "careerCode": "RCI",
+     "ours": 52,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -112.5
+    },
+    {
+     "id": "farming",
+     "name": "Farming & horticulture",
+     "careerCode": "RCI",
+     "ours": 53,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -111.5
+    },
+    {
+     "id": "advertising_agency",
+     "name": "Advertising & creative agencies",
+     "careerCode": "EAC",
+     "ours": 138,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 111
+    },
+    {
+     "id": "textile_print_production",
+     "name": "Textile, print & packaging production",
+     "careerCode": "RCA",
+     "ours": 75,
+     "cIndexRank": 186,
+     "c": 7,
+     "gap": -111
+    },
+    {
+     "id": "culinary",
+     "name": "Culinary",
+     "careerCode": "RCE",
+     "ours": 19,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -111
+    },
+    {
+     "id": "vocational_instruction",
+     "name": "Vocational & specialist instruction",
+     "careerCode": "SIC",
+     "ours": 162,
+     "cIndexRank": 52,
+     "c": 13,
+     "gap": 110
+    },
+    {
+     "id": "forestry",
+     "name": "Forestry & hunting",
+     "careerCode": "RCI",
+     "ours": 55,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -109.5
+    },
+    {
+     "id": "rail",
+     "name": "Rail",
+     "careerCode": "RCE",
+     "ours": 22,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -108
+    },
+    {
+     "id": "diplomacy",
+     "name": "Diplomacy & international organisations",
+     "careerCode": "ECI",
+     "ours": 135,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 108
+    },
+    {
+     "id": "visual_arts",
+     "name": "Fine art & illustration",
+     "careerCode": "ARC",
+     "ours": 179,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 107
+    },
+    {
+     "id": "waste_recycling",
+     "name": "Waste, recycling & environmental services",
+     "careerCode": "RCI",
+     "ours": 58,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -106.5
+    },
+    {
+     "id": "specialist_trades",
+     "name": "Specialist trades & services",
+     "careerCode": "RCI",
+     "ours": 60,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -104.5
+    },
+    {
+     "id": "industrial_design",
+     "name": "Industrial & product design",
+     "careerCode": "ARC",
+     "ours": 176,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 104
+    },
+    {
+     "id": "heavy_equipment",
+     "name": "Heavy equipment & civil works",
+     "careerCode": "RCI",
+     "ours": 61,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -103.5
+    },
+    {
+     "id": "carpentry",
+     "name": "Carpentry & building",
+     "careerCode": "RCI",
+     "ours": 62,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -102.5
+    },
+    {
+     "id": "customer_service",
+     "name": "Customer service & support",
+     "careerCode": "CES",
+     "ours": 28,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -102
+    },
+    {
+     "id": "process_operation",
+     "name": "Process plant operation",
+     "careerCode": "RCI",
+     "ours": 63,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -101.5
+    },
+    {
+     "id": "product_design",
+     "name": "Product & UX/UI design",
+     "careerCode": "AIC",
+     "ours": 204,
+     "cIndexRank": 104,
+     "c": 10,
+     "gap": 100
+    },
+    {
+     "id": "music_production",
+     "name": "Music production & industry",
+     "careerCode": "ARC",
+     "ours": 172,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 100
+    },
+    {
+     "id": "urban_planning",
+     "name": "Urban & transport planning",
+     "careerCode": "CRI",
+     "ours": 150,
+     "cIndexRank": 52,
+     "c": 13,
+     "gap": 98
+    },
+    {
+     "id": "construction_management",
+     "name": "Construction management",
+     "careerCode": "RCE",
+     "ours": 32,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -98
+    },
+    {
+     "id": "offshore_oil_gas",
+     "name": "Offshore & oil and gas",
+     "careerCode": "RCI",
+     "ours": 67,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -97.5
+    },
+    {
+     "id": "power_utilities",
+     "name": "Power grid & utilities",
+     "careerCode": "RCI",
+     "ours": 68,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -96.5
+    },
+    {
+     "id": "growth_marketing",
+     "name": "Performance & growth marketing",
+     "careerCode": "ECI",
+     "ours": 123,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 96
+    },
+    {
+     "id": "market_research",
+     "name": "Market research & consumer insights",
+     "careerCode": "CIE",
+     "ours": 168,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 96
+    },
+    {
+     "id": "machine_operation",
+     "name": "Machine operation & assembly",
+     "careerCode": "RCI",
+     "ours": 69,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -95.5
+    },
+    {
+     "id": "product_marketing",
+     "name": "Product marketing",
+     "careerCode": "ECI",
+     "ours": 122,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 95
+    },
+    {
+     "id": "data_analysis",
+     "name": "Data analysis & business intelligence",
+     "careerCode": "CIE",
+     "ours": 167,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 95
+    },
+    {
+     "id": "renewables",
+     "name": "Renewable energy",
+     "careerCode": "RCI",
+     "ours": 70,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -94.5
+    },
+    {
+     "id": "gis_geodata",
+     "name": "GIS & geospatial analysis",
+     "careerCode": "CIR",
+     "ours": 165,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 93
+    },
+    {
+     "id": "politics",
+     "name": "Politics & elected office",
+     "careerCode": "ECI",
+     "ours": 120,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 93
+    },
+    {
+     "id": "tattoo",
+     "name": "Tattoo & body art",
+     "careerCode": "ARE",
+     "ours": 183,
+     "cIndexRank": 90.5,
+     "c": 11,
+     "gap": 92.5
+    },
+    {
+     "id": "software_engineering",
+     "name": "Software engineering",
+     "careerCode": "CIR",
+     "ours": 164,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 92
+    },
+    {
+     "id": "property_management",
+     "name": "Property management & valuation",
+     "careerCode": "CES",
+     "ours": 39,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -91
+    },
+    {
+     "id": "plumbing_hvac",
+     "name": "Plumbing, heating & refrigeration",
+     "careerCode": "RCI",
+     "ours": 74,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -90.5
+    },
+    {
+     "id": "masonry_concrete",
+     "name": "Masonry, concrete & tiling",
+     "careerCode": "RCA",
+     "ours": 97,
+     "cIndexRank": 186,
+     "c": 7,
+     "gap": -89
+    },
+    {
+     "id": "strategy_games",
+     "name": "Professional strategy games",
+     "careerCode": "ESR",
+     "ours": 2,
+     "cIndexRank": 90.5,
+     "c": 11,
+     "gap": -88.5
+    },
+    {
+     "id": "landscaping",
+     "name": "Landscaping & grounds",
+     "careerCode": "RCE",
+     "ours": 42,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -88
+    },
+    {
+     "id": "food_drink_craft",
+     "name": "Food & drink craft",
+     "careerCode": "RCI",
+     "ours": 77,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -87.5
+    },
+    {
+     "id": "police",
+     "name": "Police & investigation",
+     "careerCode": "CER",
+     "ours": 17,
+     "cIndexRank": 104,
+     "c": 10,
+     "gap": -87
+    },
+    {
+     "id": "fashion",
+     "name": "Fashion & styling",
+     "careerCode": "ARC",
+     "ours": 159,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 87
+    },
+    {
+     "id": "interior_design",
+     "name": "Interior design",
+     "careerCode": "ARE",
+     "ours": 177,
+     "cIndexRank": 90.5,
+     "c": 11,
+     "gap": 86.5
+    },
+    {
+     "id": "data_engineering",
+     "name": "Data engineering & databases",
+     "careerCode": "CIE",
+     "ours": 158,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 86
+    },
+    {
+     "id": "courts_prosecution",
+     "name": "Courts & prosecution",
+     "careerCode": "CES",
+     "ours": 44,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -86
+    },
+    {
+     "id": "dance",
+     "name": "Dance",
+     "careerCode": "ARS",
+     "ours": 190,
+     "cIndexRank": 104,
+     "c": 10,
+     "gap": 86
+    },
+    {
+     "id": "pro_sport",
+     "name": "Professional sport",
+     "careerCode": "ESR",
+     "ours": 5,
+     "cIndexRank": 90.5,
+     "c": 11,
+     "gap": -85.5
+    },
+    {
+     "id": "complementary_health",
+     "name": "Complementary therapies",
+     "careerCode": "SRI",
+     "ours": 137,
+     "cIndexRank": 52,
+     "c": 13,
+     "gap": 85
+    },
+    {
+     "id": "devrel_techwriting",
+     "name": "Developer relations & technical writing",
+     "careerCode": "CIS",
+     "ours": 175,
+     "cIndexRank": 90.5,
+     "c": 11,
+     "gap": 84.5
+    },
+    {
+     "id": "electrician",
+     "name": "Electrician",
+     "careerCode": "RCI",
+     "ours": 80,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -84.5
+    },
+    {
+     "id": "supply_chain",
+     "name": "Supply chain & planning",
+     "careerCode": "CER",
+     "ours": 20,
+     "cIndexRank": 104,
+     "c": 10,
+     "gap": -84
+    },
+    {
+     "id": "industrial_maintenance",
+     "name": "Industrial maintenance & technical service",
+     "careerCode": "RCI",
+     "ours": 81,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -83.5
+    },
+    {
+     "id": "qa_testing",
+     "name": "Software testing & quality assurance",
+     "careerCode": "CIR",
+     "ours": 155,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 83
+    },
+    {
+     "id": "stage_production",
+     "name": "Theatre & live production",
+     "careerCode": "ARC",
+     "ours": 154,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 82
+    },
+    {
+     "id": "in_house_legal",
+     "name": "In-house legal",
+     "careerCode": "CES",
+     "ours": 49,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -81
+    },
+    {
+     "id": "early_childhood",
+     "name": "Early childhood education",
+     "careerCode": "SCE",
+     "ours": 153,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 81
+    },
+    {
+     "id": "variety",
+     "name": "Variety & live entertainment",
+     "careerCode": "ARS",
+     "ours": 185,
+     "cIndexRank": 104,
+     "c": 10,
+     "gap": 81
+    },
+    {
+     "id": "modelling",
+     "name": "Modelling",
+     "careerCode": "ARE",
+     "ours": 171,
+     "cIndexRank": 90.5,
+     "c": 11,
+     "gap": 80.5
+    },
+    {
+     "id": "enterprise_systems",
+     "name": "Enterprise systems & IT consulting",
+     "careerCode": "CIE",
+     "ours": 152,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 80
+    },
+    {
+     "id": "course_creation",
+     "name": "Courses, digital products & communities",
+     "careerCode": "SAE",
+     "ours": 184,
+     "cIndexRank": 104,
+     "c": 10,
+     "gap": 80
+    },
+    {
+     "id": "nursing",
+     "name": "Nursing & midwifery",
+     "careerCode": "SIC",
+     "ours": 131,
+     "cIndexRank": 52,
+     "c": 13,
+     "gap": 79
+    },
+    {
+     "id": "textile_leather",
+     "name": "Textiles, leather & upholstery",
+     "careerCode": "RCA",
+     "ours": 107,
+     "cIndexRank": 186,
+     "c": 7,
+     "gap": -79
+    },
+    {
+     "id": "vehicle_mechanics",
+     "name": "Vehicle & machinery mechanics",
+     "careerCode": "RCI",
+     "ours": 86,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -78.5
+    },
+    {
+     "id": "procurement",
+     "name": "Purchasing & procurement",
+     "careerCode": "CER",
+     "ours": 26,
+     "cIndexRank": 104,
+     "c": 10,
+     "gap": -78
+    },
+    {
+     "id": "trade_brokerage",
+     "name": "International trade & brokerage",
+     "careerCode": "CER",
+     "ours": 29,
+     "cIndexRank": 104,
+     "c": 10,
+     "gap": -75
+    },
+    {
+     "id": "shipping_business",
+     "name": "Shipping business & maritime services",
+     "careerCode": "CER",
+     "ours": 30,
+     "cIndexRank": 104,
+     "c": 10,
+     "gap": -74
+    },
+    {
+     "id": "finishing_trades",
+     "name": "Painting, roofing & building finishes",
+     "careerCode": "RCE",
+     "ours": 57,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -73
+    },
+    {
+     "id": "health_admin",
+     "name": "Health administration & informatics",
+     "careerCode": "CSI",
+     "ours": 113,
+     "cIndexRank": 186,
+     "c": 7,
+     "gap": -73
+    },
+    {
+     "id": "allied_health",
+     "name": "Rehabilitation & allied health",
+     "careerCode": "SIR",
+     "ours": 144,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 72
+    },
+    {
+     "id": "restoration_signs",
+     "name": "Restoration & decorative crafts",
+     "careerCode": "RCA",
+     "ours": 115,
+     "cIndexRank": 186,
+     "c": 7,
+     "gap": -71
+    },
+    {
+     "id": "coaching",
+     "name": "Coaching",
+     "careerCode": "SCE",
+     "ours": 142,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 70
+    },
+    {
+     "id": "social_work",
+     "name": "Social work & welfare",
+     "careerCode": "SCE",
+     "ours": 141,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 69
+    },
+    {
+     "id": "woodcraft",
+     "name": "Furniture & woodcraft",
+     "careerCode": "RCA",
+     "ours": 117,
+     "cIndexRank": 186,
+     "c": 7,
+     "gap": -69
+    },
+    {
+     "id": "welding_metal",
+     "name": "Welding & metal fabrication",
+     "careerCode": "RCI",
+     "ours": 96,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -68.5
+    },
+    {
+     "id": "brand_marketing",
+     "name": "Brand marketing",
+     "careerCode": "ECS",
+     "ours": 95,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 68
+    },
+    {
+     "id": "creator_services",
+     "name": "Creator services",
+     "careerCode": "EAS",
+     "ours": 140,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 68
+    },
+    {
+     "id": "mining_geo",
+     "name": "Mining, quarrying & drilling",
+     "careerCode": "RCI",
+     "ours": 98,
+     "cIndexRank": 164.5,
+     "c": 8,
+     "gap": -66.5
+    },
+    {
+     "id": "banking_lending",
+     "name": "Banking, lending & credit",
+     "careerCode": "CES",
+     "ours": 64,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -66
+    },
+    {
+     "id": "administration",
+     "name": "Administration & office support",
+     "careerCode": "CES",
+     "ours": 65,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -65
+    },
+    {
+     "id": "tutoring",
+     "name": "Tutoring & language teaching",
+     "careerCode": "SAI",
+     "ours": 195,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": 65
+    },
+    {
+     "id": "private_capital",
+     "name": "Private equity, venture & principal investing",
+     "careerCode": "ECI",
+     "ours": 91,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 64
+    },
+    {
+     "id": "fintech_payments",
+     "name": "Payments, fintech & crypto operations",
+     "careerCode": "CIE",
+     "ours": 136,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 64
+    },
+    {
+     "id": "compliance",
+     "name": "Compliance & regulatory affairs",
+     "careerCode": "CEI",
+     "ours": 66,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -64
+    },
+    {
+     "id": "publishing",
+     "name": "Publishing & editorial",
+     "careerCode": "CAI",
+     "ours": 193,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": 63
+    },
+    {
+     "id": "cybersecurity",
+     "name": "Cybersecurity",
+     "careerCode": "CIR",
+     "ours": 134,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 62
+    },
+    {
+     "id": "recruiting",
+     "name": "Recruiting & talent acquisition",
+     "careerCode": "ECS",
+     "ours": 89,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 62
+    },
+    {
+     "id": "management_consulting",
+     "name": "Management consulting",
+     "careerCode": "CIE",
+     "ours": 133,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 61
+    },
+    {
+     "id": "strategy_bizops",
+     "name": "Strategy, business operations & corporate development",
+     "careerCode": "ECI",
+     "ours": 88,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 61
+    },
+    {
+     "id": "learning_development",
+     "name": "Learning & development",
+     "careerCode": "SEC",
+     "ours": 151,
+     "cIndexRank": 90.5,
+     "c": 11,
+     "gap": 60.5
+    },
+    {
+     "id": "sustainability",
+     "name": "Sustainability & ESG",
+     "careerCode": "CEI",
+     "ours": 71,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -59
+    },
+    {
+     "id": "metal_jewellery",
+     "name": "Jewellery, metal & precision craft",
+     "careerCode": "RCA",
+     "ours": 127,
+     "cIndexRank": 186,
+     "c": 7,
+     "gap": -59
+    },
+    {
+     "id": "sales_ops",
+     "name": "Sales operations & enablement",
+     "careerCode": "CEI",
+     "ours": 72,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -58
+    },
+    {
+     "id": "public_administration",
+     "name": "Public administration & casework",
+     "careerCode": "CES",
+     "ours": 73,
+     "cIndexRank": 130,
+     "c": 9,
+     "gap": -57
+    },
+    {
+     "id": "nonprofit",
+     "name": "Nonprofits, NGOs & humanitarian work",
+     "careerCode": "ECS",
+     "ours": 82,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 55
+    },
+    {
+     "id": "pharma_clinical",
+     "name": "Pharmaceutical & clinical research",
+     "careerCode": "CIR",
+     "ours": 126,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": 54
+    },
+    {
+     "id": "library_archives",
+     "name": "Libraries, archives & museums",
+     "careerCode": "CRI",
+     "ours": 106,
+     "cIndexRank": 52,
+     "c": 13,
+     "gap": 54
+    },
+    {
+     "id": "tourism",
+     "name": "Tourism & travel",
+     "careerCode": "ESC",
+     "ours": 18,
+     "cIndexRank": 72,
+     "c": 12,
+     "gap": -54
+    },
+    {
+     "id": "industrial_engineering",
+     "name": "Industrial & manufacturing engineering",
+     "careerCode": "CRI",
+     "ours": 105,
+     "cIndexRank": 52,
+     "c": 13,
+     "gap": 53
+    },
+    {
+     "id": "wealth_advice",
+     "name": "Wealth management & financial advice",
+     "careerCode": "ECS",
+     "ours": 79,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 52
+    },
+    {
+     "id": "hse_quality",
+     "name": "HSE, quality & inspection",
+     "careerCode": "CRI",
+     "ours": 104,
+     "cIndexRank": 52,
+     "c": 13,
+     "gap": 52
+    },
+    {
+     "id": "project_management",
+     "name": "Project & programme management",
+     "careerCode": "ECI",
+     "ours": 78,
+     "cIndexRank": 27,
+     "c": 14,
+     "gap": 51
+    }
+   ],
+   "interests": [
+    58,
+    39,
+    35.5,
+    51.5,
+    59.5,
+    53
+   ]
+  }
+ ]
+}
