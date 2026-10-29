@@ -59,7 +59,7 @@ export const REQUIRED_KEYS: string[] = [
  * table's item mean and SD are multiplied by 10.
  */
 const ONET_IP_SOURCE = "Rounds et al. (2016), Mini-IP report, Table 8 (p. 36) Short-IP total, N = 575; alpha Table 9 (p. 37); item mean ×10 to our 10–50 sum";
-const ONET_IP: Record<(typeof RIASEC)[number], { itemMean: number; itemSd: number; alpha: number }> = {
+export const ONET_IP: Record<(typeof RIASEC)[number], { itemMean: number; itemSd: number; alpha: number }> = {
   R: { itemMean: 2.79, itemSd: 0.85, alpha: 0.88 },
   I: { itemMean: 3.29, itemSd: 0.88, alpha: 0.9 },
   A: { itemMean: 3.39, itemSd: 0.94, alpha: 0.9 },
@@ -92,7 +92,7 @@ const ITEMS_PER_IP_SCALE = 10;
  * There is no published alpha for O1–O5, so it keeps the planning value (.75; scoring/self.ts).
  */
 const NEO_SOURCE = (page: number) => `Kajonius & Johnson (2019), Eur. J. Psychol. 15(2), Appendix Table A1 (p. ${page}), N = 320,128; facet-sum metric ÷ 4 to our item mean`;
-const NEO_TABLE_A1: Record<string, { m: number; sd: number; alpha: number; page: number }> = {
+export const NEO_TABLE_A1: Record<string, { m: number; sd: number; alpha: number; page: number }> = {
   Neuroticism: { m: 11.1, sd: 2.66, alpha: 0.9, page: 274 },
   N1: { m: 12.07, sd: 3.77, alpha: 0.79, page: 274 },
   N2: { m: 11.51, sd: 4.11, alpha: 0.87, page: 274 },

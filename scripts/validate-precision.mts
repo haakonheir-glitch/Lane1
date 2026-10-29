@@ -24,6 +24,7 @@ import { LANE_PROFILES_V2, V2_CONFIGS, matchAllV2, type MatchResultV2, type V2Co
 import { synthetic, population, TEST_PROFILES } from "../src/lib/matching/v2/synthetic";
 import type { PersonProfile } from "../src/lib/matching/v2/types";
 import { getLane } from "../src/lib/taxonomy";
+import { NEO_TABLE_A1, ONET_IP, OPENNESS_WITH_O6, PSYCHOMETRICS, opennessWithoutO6 } from "../src/lib/scoring/psychometrics";
 import { code3, cIndex, iachan, incumbent, normals, offsetsForConfig, ranks, spearman, V5, WORK_STYLE_MAP } from "./lib-precision";
 
 const DIR = "taxonomy/derived/precision";
@@ -181,6 +182,7 @@ function report() {
   const L: string[] = [];
   const read = <T,>(f: string): T | null => (existsSync(`${DIR}/${f}.json`) ? (JSON.parse(readFileSync(`${DIR}/${f}.json`, "utf8")) as T) : null);
 
+  L.push(...normsSection(), "");
   L.push("## (a) Round-trip recovery", "");
   L.push(
     "Each career path's synthetic typical incumbent is matched against all 205. Interests come from O*NET OI, work values from EX, reasoning areas from the career's ability demands, and personality from O*NET Work Styles. The mapping below is an approximation: Work Styles rate how important a style is for the job, not the incumbents' traits. The incumbent goes in once as built and three times with measurement error added (every input redrawn once from its own standard error). Chance of landing in one's own top 10% is 10%.",
@@ -214,7 +216,7 @@ function report() {
   }
 
   L.push("## (c) Literature check of the reasoning-task norms (report only; the table is unchanged)", "");
-  L.push(...LITERATURE, "");
+  L.push(...literature(), "");
 
   L.push("## (d) Population, the six profiles and popularity bias", "");
   const pops = ["v2-0.3", "v2-0.4", "v2-0.5"].map(loadPop).filter((x): x is Pop => !!x);
@@ -279,30 +281,91 @@ function report() {
   console.log(`wrote ${file}`);
 }
 
+/** Step 1: every transcribed value next to what the scoring uses, so it can be checked against the source. */
+function normsSection(): string[] {
+  const f = (x: number, d = 2) => x.toFixed(d);
+  const L: string[] = ["## Step 1: published norms as transcribed", ""];
+  L.push(
+    "Each row shows the source's own value, with its table and page, beside the value in `src/lib/scoring/psychometrics.ts` on our metric. Combined-gender columns only.",
+    "",
+    "### O*NET Interest Profiler Short Form (interests)",
+    "",
+    "Rounds, Ming, Cao, Song & Lewis (2016), *Development of an O\\*NET Mini Interest Profiler (Mini-IP) for mobile devices*, National Center for O\\*NET Development, https://www.onetcenter.org/dl_files/Mini-IP.pdf. Validation sample N = 575 US adults aged 18–65.",
+    "- Means and SDs: **Table 8 (p. 36)**, \"60-Item Interest Profiler Short Form\" rows, Total column.",
+    "- Alphas: **Table 9 (p. 37)**, 60-item Short-IP.",
+    "- Coding: the table is item means with responses coded 1–5 (p. 11: \"1-(Strongly Dislike) to 3-(Unsure)\"; the Mini-IPIP means in the same table are on 1–5). Our raw score is the sum of 10 items, so the item mean and SD are ×10. p. 13 describes a 0–4 coding for the online tool's own scoring, which is not the metric of Table 8.",
+    "",
+    "| Scale | Table 8 item mean | Table 8 item SD | Table 9 alpha | Ours: mean (10–50) | Ours: SD |",
+    "|---|---|---|---|---|---|",
+  );
+  for (const [k, v] of Object.entries(ONET_IP)) {
+    const p = PSYCHOMETRICS[`onet.${k}`]!;
+    L.push(`| ${k} | ${f(v.itemMean)} | ${f(v.itemSd)} | ${f(v.alpha)} | ${f(p.mean, 1)} | ${f(p.sd, 1)} |`);
+  }
+  const o = opennessWithoutO6();
+  L.push(
+    "",
+    "### IPIP-NEO-120 (personality)",
+    "",
+    "Kajonius & Johnson (2019), *Europe's Journal of Psychology* 15(2), 260–275, doi:10.5964/ejop.v15i2.1671.",
+    "- **Appendix Table A1**, \"Sample Descriptive Statistics of 5 Trait Domains and 30 Facets\": Neuroticism and Extraversion on **p. 274**; Openness, Agreeableness and Conscientiousness on **p. 275**.",
+    "- Read from the PMC copy (PMC7871748) and checked against the journal's PDF.",
+    "- N = 320,128, combined gender (127,695 men, 192,433 women), mean age 28.13 (SD 10.14).",
+    "- The table is on the facet-sum metric (4–20): a domain is the mean of its six facet sums (checked: the mean of N1–N6 is 11.105, against 11.10). Ours are item means (1–5), so mean and SD are ÷4. Reliability is the table's alpha.",
+    "- **Not 18–35 norms.** The raw data that would allow them (doi:10.23668/psycharchives.2448, 170 MB) is served from pada.psycharchives.org, which this environment can't reach (psycharchives.org itself can be reached).",
+    `- **Openness** without O6 (Liberalism, not administered): the mean of the O1–O5 facet means is exact. The SD is derived from the table's six-facet SD (${f(OPENNESS_WITH_O6.sd)}), assuming equal inter-facet correlations (r̄ = ${f(o.rbar, 3)}), which gives ${f(o.sd, 3)} on the facet-sum metric. O6 is the facet that correlates least with the others, so this SD is probably a little low. There is no published alpha for O1–O5, so it keeps the planning .75.`,
+    "",
+    "| Scale | Table A1 M | Table A1 SD | Table A1 α | Page | Ours: mean (1–5) | Ours: SD | Ours: reliability |",
+    "|---|---|---|---|---|---|---|---|",
+  );
+  const order = ["Neuroticism", "N1", "N2", "N3", "N4", "N5", "N6", "Extraversion", "E1", "E2", "E3", "E4", "E5", "E6", "Openness", "O1", "O2", "O3", "O4", "O5", "Agreeableness", "A1", "A2", "A3", "A4", "A5", "A6", "Conscientiousness", "C1", "C2", "C3", "C4", "C5", "C6"];
+  for (const k of order) {
+    const p = PSYCHOMETRICS[`neo.${k}`]!;
+    const t = NEO_TABLE_A1[k];
+    const src = t ? `${f(t.m)} | ${f(t.sd)} | ${f(t.alpha)} | ${t.page}` : `${f(OPENNESS_WITH_O6.m)} (with O6) | ${f(OPENNESS_WITH_O6.sd)} (with O6) | ${f(OPENNESS_WITH_O6.alpha)} (with O6) | 275`;
+    L.push(`| ${k.length > 2 ? `**${k}**` : k} | ${src} | ${f(p.mean, 3)} | ${f(p.sd, 3)} | ${f(p.reliability)}${t ? "" : " (planning)"} |`);
+  }
+  L.push(
+    "",
+    "### Mini-IPIP6 Honesty-Humility: left null",
+    "",
+    "The open-access source for its norms is Sibley et al. (*New Zealand Journal of Psychology*, 2011 validation and 2012 norms papers, on psychology.org.nz). That host can't be reached from this environment, so nothing is transcribed. Honesty-Humility stays without a population comparison: it is shown relative to the person's own scores only, and isn't used in matching.",
+  );
+  return L;
+}
+
 /**
  * (c) Published adult norms for the three tasks, against assessment/calibration/output/
- * difficulty_table.json. The primary sources' hosts are blocked from this environment: figures
- * marked "secondary" are as quoted by the source named, not checked against the paper's table.
+ * difficulty_table.json. Open-access sources only (read in full here); anything not reachable or
+ * not open access is reported as "not checked".
  */
-const LITERATURE: string[] = (() => {
+function literature(): string[] {
   const t = JSON.parse(readFileSync("assessment/calibration/output/difficulty_table.json", "utf8")) as { norms: { task: string; mean: number; sd: number; confidence: string }[] };
   const n = (task: string) => t.norms.find((x) => x.task === task)!;
   const bd = n("backward_digits");
   const co = n("corsi");
   const sm = n("symbol_match");
-  const dev = (ours: { mean: number; sd: number }, pub: number, pubSd: number) => {
+  const dev = (ours: { mean: number }, pub: number, pubSd: number) => {
     const d = (ours.mean - pub) / pubSd;
     return `${d >= 0 ? "+" : "−"}${Math.abs(Math.round(d * 100) / 100).toFixed(2)} SD${Math.abs(d) > 0.5 ? " **(over 0.5 SD: flagged)**" : ""}`;
   };
+  // Facchin et al. (2024), Table 2 caption: adjusted = raw + 0.7616·(ln age − 3.864) − 0.4229·(√education − 3.555).
+  // The expected raw score of a 25-year-old with 16 years of education is the sample mean minus that correction.
+  const corr = (age: number, edu: number) => 0.7616 * (Math.log(age) - 3.864) - 0.4229 * (Math.sqrt(edu) - 3.555);
+  const young = (age: number) => Math.round((4.97 - corr(age, 16)) * 100) / 100;
   return [
-    "Our metric for both span tasks is the longest sequence repeated correctly (adaptive, 6–14 trials). Deviations below are (our mean − published mean) / published SD.",
+    "Our span protocol starts at three, gives two trials per length, and stops when both trials at a length are wrong. It scores the longest length repeated correctly (`assessment/generators/generators.ts`, SPAN_PROTOCOL). That is Woods et al.'s \"two-error maximum length\" (TE-ML). Deviation = (our mean − published mean) / published SD.",
     "",
-    "| Task | Our table (mean, SD, confidence) | Published adult norm | Deviation | Comparable? |",
+    "| Task | Our table: mean, SD (confidence) | Published adult norm (open access) | Deviation | Comparable? |",
     "|---|---|---|---|---|",
-    `| Corsi forward span | ${co.mean}, ${co.sd}, ${co.confidence} | 6.2 (SD 1.3), healthy adults: Kessels, van Zandvoort, Postma, Kappelle & de Haan (2000), *Applied Neuropsychology* 7(4), 252–258, doi:10.1207/s15324826an0704_8. **Secondary**: the figure as quoted by PsyToolkit's Corsi page; the paper itself could not be opened here | ${dev(co, 6.2, 1.3)} | Yes: the same task and metric. Our table already weights this source at 0.7 |`,
-    `| Backward digit span | ${bd.mean}, ${bd.sd}, ${bd.confidence} | Young adults 6.00 (computerised, auditory; "mean span" metric). Community adults 18–65 (n = 763): 4.91. Woods et al. (2011), *J. Clin. Exp. Neuropsychology* 33(1), 101–111, doi:10.1080/13803395.2010.493149. **Secondary**: the figures as quoted by a commercial site; SDs not obtained, so ours (1.3) is used | ${dev(bd, 6.0, bd.sd)} against young adults; ${dev(bd, 4.91, bd.sd)} against 18–65 | Partly: their mean-span metric is not the longest span, and their digits are auditory where ours are visual. Monaco et al. (2013), *Neurological Sciences* 34(5), 749–754, has Italian adult norms for both span tasks, but the values could not be read here |`,
-    `| Symbol matching (90 s, same/different triplets, correct − incorrect) | ${sm.mean}, ${sm.sd}, ${sm.confidence} | None found for this task | — | No: a task of our own. WAIS Symbol Search and Salthouse's pattern comparison differ in stimuli, time limit and scoring, so their norms don't transfer |`,
+    `| Backward digit span | ${bd.mean}, ${bd.sd} (${bd.confidence}) | **Woods et al. (2011)**, *J. Clin. Exp. Neuropsychol.* 33(1), 101–111, doi:10.1080/13803395.2010.493149, open access as PMC2978794. Backward span, TE-ML. Experiment 1 (Table 2): 30 young adults aged 18–46, mean 26, averaged over three sessions: **5.80 (SD 1.42)**. Experiment 2 (Table 6): 763 community adults aged 18–65: **4.61 (SD 1.22)** | ${dev(bd, 5.8, 1.42)} against Experiment 1; ${dev(bd, 4.61, 1.22)} against Experiment 2 | Same scoring rule. Their digits are spoken and recalled aloud; ours are shown on screen and typed. Experiment 2 spans 18–65, and backward span falls a little with age (r = −.14, Table 8). Experiment 1 is small and practised over three sessions |`,
+    `| Corsi block span (forward) | ${co.mean}, ${co.sd} (${co.confidence}) | **Facchin et al. (2024)**, *Neurological Sciences* 45, 5707–, doi:10.1007/s10072-024-07756-6, open access as PMC11554723. Corsi span, 340 healthy Italian adults aged 21–89, mean age 51.6 (Table 1): **4.97 (SD 1.03)**. From their age and education correction (Table 2), the expected span of a 25-year-old with 16 years of education is **${young(25)}**, and of a 30-year-old **${young(30)}**. That is derived from their regression, not a published norm | ${dev(co, 4.97, 1.03)} against the whole sample; ${dev(co, young(25), 1.03)} against the derived age-25 value; ${dev(co, young(30), 1.03)} against age 30 | Partly: a physical wooden board with the examiner tapping, against our on-screen blocks. The sample is much older than our 18–35 norm group. Kessels et al. (2000), on which our table rests at weight 0.7, is not open access: **not checked** |`,
+    `| Symbol matching (90 s, same/different triplets, correct − incorrect) | ${sm.mean}, ${sm.sd} (${sm.confidence}) | **Not checked**: no open-access norm for a comparable task was found | — | A task of our own. WAIS Symbol Search and pattern-comparison tasks differ in stimuli, time limit and scoring |`,
     "",
-    "Nothing is flagged at the 0.5 SD threshold on what could be checked. Backward digit span sits 0.46 SD below the young-adult figure, close to the line, and that comparison is uncertain on two counts: the metric differs, and the source is secondary. Before the table is relied on, the primary papers should be checked (pmc.ncbi.nlm.nih.gov, link.springer.com and tandfonline.com are blocked here).",
+    "**What this flags (report only; the table is unchanged):**",
+    "- **Backward digit span** is 0.65 SD above the 18–65 community sample. That is over the threshold, though partly expected, since our norm group is 18–35. It sits 0.28 SD below the small young-adult sample, so it falls between the two published groups.",
+    "- **Corsi span** is far above the 21–89 sample (+1.17 SD). Against the derived young-adult values it is +0.50 to +0.64 SD: at or over the threshold. The difference in apparatus (board against screen) also matters.",
+    "- **Symbol matching** is not checked. Its norm is still Claude's expert estimate alone (confidence low).",
+    "- These comparisons are with groups unlike ours (age, country, apparatus). They say where to look in the pilot data, not that the table is wrong.",
   ];
-})();
+}

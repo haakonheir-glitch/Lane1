@@ -148,12 +148,13 @@ Each change below is behind the config, so v2-0.3 and v2-0.4 reproduce when sele
   - v2-0.3 has identical fits, bands, drivers and frictions. It runs on the offsets it was released with, kept frozen in `taxonomy/derived/lane_offsets_v2-0.3.json`. The only differences are the strengths fields added in v2-0.4 (null) and the archetype sentence, which the Phase 3 copy reworded.
 - **Norms follow the config.** When the app runs v2-0.4 or earlier, stored scores are read without norms, so the profile, its starting roles and the report are exactly as before. The step-by-step effect on the six test profiles is in `taxonomy/derived/PRECISION_STEPS.md`. The validation is in `taxonomy/derived/PRECISION_REPORT.md`.
 
-1. **Published norms** (`src/lib/scoring/psychometrics.ts`, `src/lib/scoring/norms.ts`). Interests are normed against the O\*NET Interest Profiler Short Form norms:
-   - Source: Rounds et al. (2016), Mini-IP report. Means and SDs from Table 8 (p. 36), Short-IP total, N = 575. Alphas from Table 9 (p. 37).
-   - Responses are coded 1–5, and the item mean ×10 gives our 10–50 sum.
-   - Norms are applied when a profile is read, so stored scores switch from `anchored` to `normed` without a rescore.
-   - The IPIP-NEO-120 norms (Kajonius & Johnson, 2019) and Honesty-Humility stay `null`: their source hosts are blocked from this build environment, and Honesty-Humility has no citable source here. Personality stays `anchored` until they are transcribed, then switches automatically.
-   - Config: `inputs.norms`.
+1. **Published norms** (`src/lib/scoring/psychometrics.ts`, `src/lib/scoring/norms.ts`). Every transcribed value is listed with its table and page in `taxonomy/derived/PRECISION_REPORT.md`.
+   - **Interests**, O\*NET Interest Profiler Short Form: Rounds et al. (2016), Mini-IP report. Means and SDs from Table 8 (p. 36), Short-IP total, N = 575. Alphas from Table 9 (p. 37). Responses are coded 1–5, and the item mean ×10 gives our 10–50 sum.
+   - **Personality**, IPIP-NEO-120: Kajonius & Johnson (2019), Appendix Table A1 (pp. 274–275), N = 320,128, combined gender. Facet-sum metric ÷4 gives our item means.
+     - Openness without O6 is derived: an exact mean, and an SD that assumes equal inter-facet correlations, with the planning reliability.
+     - These are whole-sample norms, not 18–35: the raw data's host (pada.psycharchives.org) can't be reached.
+   - **Honesty-Humility** stays `null`: its open-access source (Sibley et al., psychology.org.nz) can't be reached.
+   - Norms are applied when a profile is read, and only when the running config reads them (`inputs.norms`). So stored scores switch from `anchored` to `normed` without a rescore, and v2-0.4 and earlier see exactly what they saw before.
 2. **Work values by expected normal order statistics.** The six card-sort ranks map to ±1.267, ±0.642 and ±0.202 (n = 6; ties average the statistics they span). These are multiplied by a shrinkage of 0.7, then converted to a percentile, so the top value is the 81st percentile, not 100. Config: `inputs.values`.
 3. **Environment cap** (`envCap` 0.15). The ensemble's flat-weighted draws get their own cap: the guard is run again under flat weighting. The Dirichlet-drawn weights vary around the capped estimate. No working condition, and not challenge, may carry more than 15% of any fit. It is measured like the facet cap: the dimension's effect on the fit (the fit against the fit without it) over the summed effects of all inputs, floored at `guardMinTotal`. It is enforced by shrinking that dimension's need weight by bisection. Every dimension's largest share before and after is in the result (`envGuard`).
 4. **Weights:** interests .45, values .20, value modes .15, environment .10, challenge .10, with reasoning strengths .08 renormalised as before.
