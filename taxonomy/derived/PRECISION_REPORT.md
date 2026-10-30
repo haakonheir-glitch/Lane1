@@ -1,6 +1,6 @@
 # Precision pass report: matching v2-0.5
 
-Status, 2026-10-29: **steps 1–9 done on branch `precision-pass`, waiting for your review.** Nothing is deployed: Vercel deploys `functional-backend`, and this branch is not merged.
+Status, 2026-10-30: **steps 1–9 and the owner's decisions of 2026-10-30 done on branch `precision-pass`, waiting for your review.** Nothing is deployed: Vercel deploys `functional-backend`, and this branch is not merged.
 
 ## Summary
 
@@ -10,7 +10,7 @@ Status, 2026-10-29: **steps 1–9 done on branch `precision-pass`, waiting for y
 | 2 | Work values: expected normal order statistics × 0.7, not min–max (top value 81st percentile, not 100) | `workdesign/person.ts` |
 | 3 | No working condition (or challenge) above 15% of any fit; shares before and after are reported | `matching/v2/fit.ts` (envGuard) |
 | 4 | Weights: interests .45, values .20, modes .15, environment .10, challenge .10 (strengths .08); validation status and multiplier per component | `matching/v2/config.ts` |
-| 5 | Ensemble: Dirichlet weights (concentration 40) and flat environment weighting in half the draws; bands must hold under both | `fit.ts` (matchAllV2) |
+| 5 | Ensemble: Dirichlet weights (concentration 40) and flat environment weighting in half the draws; bands must hold under both. Strong-fit threshold .45, from the population sweep | `fit.ts` (matchAllV2), `config.ts` |
 | 6 | Starting roles ranked from their own O\*NET profile (906 roles); tags only where a role has no link; note when the role's top interest is one of your two lowest | `matching/roles.ts`, `role_profiles_v2.json` |
 | 7 | This report: round trip, congruence, literature check, population | `scripts/validate-precision.mts` |
 | 8 | Ground truth: satisfaction in onboarding (current job and up to two previous ones), "Does this resonate?" on the top five. Stored only | migration `0005` (additive) |
@@ -20,24 +20,37 @@ Status, 2026-10-29: **steps 1–9 done on branch `precision-pass`, waiting for y
 - v2-0.4 is byte-identical.
 - v2-0.3 has identical fits, bands and drivers. It runs on its frozen release offsets.
 
-**What the numbers say** (details below):
-- **Precision: better.** A synthetic typical incumbent now lands in its own career path's top 10% in 97.1% of runs with measurement error, against 91.7% under v2-0.4 (chance 10%). Median rank 2 against 4, and 4 career paths that can't recover themselves against 12.
-- **Popularity bias: gone.** No career path is strong for more than 30% of people (v2-0.4: 3), and only 2 are never strong (v2-0.4: 19).
-- **Fewer strong fits.**
-  - Mean 8.9 per person against 11.7 (median 9 against 12). Only 58% of people get 8–20, against 76%, and a tenth get one or none.
-  - The ensemble causes this: a strong fit now has to hold under both ways of weighting working conditions.
-  - About half of v2-0.3's strong fits stay strong. The other half become possible, none unlikely, and 3.1 new ones appear per person.
-  - **The strong threshold (.5) may want retuning for v2-0.5; that is your call.** The "few strong fits" note explains a short list to the person.
-- **The environment cap does real work.** Before the cap, the largest single working condition carried a median 15% and a 90th percentile 22% of some fit; competition and social were shrunk for about a fifth of people each. Under v2-0.4's weights, social carried 39% and 35% of some fits for the analyst and the carer, and competition 47% for the hunter (`PRECISION_STEPS.md`, step 3).
-- **The interest ranking agrees with Iachan's M** (ρ .84–.94 for the five shaped profiles). It agrees less with the C index (ρ .12–.83). The C index scores letters by position, so an ICR person and a CIE career score low although they share all three letters. The correlation over all six scores sees what they share.
+**Owner's decisions of 2026-10-30, applied:**
+1. **Norms are for matching only.**
+   - Age-banded norms (18–24, 25–34) couldn't be built: the raw data's host (pada.psycharchives.org) is still blocked from this environment.
+   - The all-ages norms are used for matching only. The profile and report stay relative to the person.
+   - The method section names both norm groups in plain words.
+2. **Personality wording.** No "compared with people your age" lines are shown, because there are no age-banded norms. The wording table is a draft for your review: `docs/PERSONALITY_WORDING.md` (not used by the app).
+3. **Holland code.** It shows only letters clearly above the person's own average (a 90% interval on the raw scale, from published SEMs). A weak third letter is shown as "(R, weak)" or dropped (`src/lib/view/holland.ts`).
+4. **Talent-selected career paths are capped at "possible fit"**, with the note "Fits your interests and working style; success depends on talent Lane can't measure." They are professional sport, esports, professional strategy games and the performing careers: acting, music, dance, modelling, hosting & broadcasting, comedy, variety.
+5. **Strong-fit threshold: .45** (was .50), chosen from the population sweep below, not from any account. It gives a median of 11 strong fits per person (the target was 10–15), with the most people at exactly 10–15. A threshold of .40 would give a median of 14.
+6. **Field & territory sales.**
+   - **Cause:** only two ESCO occupations landed in it (electricity and renewable-energy sales representatives, both weak model matches). That gave a utility/solar retail profile with no Work Values, and its own typical incumbent ranked it 36th.
+   - **Fix:** it is now estimated from the O\*NET occupations that cover field and territory sales (41-4012.00, 41-4011.00, 11-2022.00, 41-3091.00; `estimated_profiles.csv`). Its incumbent now ranks it 3rd, and no other career path's profile changed.
+
+**What the numbers say** (final config; details below):
+- **Precision.** A synthetic typical incumbent lands in its own career path's top 10% in 97.2% of runs with measurement error (v2-0.4: 91.9%; chance: 10%). Median rank is 2 (v2-0.4: 4). Only 3 career paths can't recover themselves (v2-0.4: 12). Every career path except the 10 talent-capped ones is a strong fit for its own typical incumbent.
+- **Strong fits.** Mean 10.5 per person, median 11 (v2-0.4: 11.7 and 12), with 66% of people in 8–20 (v2-0.4: 75%).
+  - About half of v2-0.3's strong fits stay strong; the rest become possible, none unlikely.
+  - There are 4.3 new strong fits per person.
+- **Popularity bias is gone.** No career path is strong for more than 30% of people (v2-0.4: 3). The 10 never-strong career paths are exactly the talent-capped ones (v2-0.4: 18 never strong).
+- **The environment cap does real work.** Before the cap, the largest single working condition carries a median 15% and a 90th percentile 22% of some fit. Competition and social are shrunk for about a fifth of people each.
+- **The interest ranking agrees with Iachan's M.** ρ is .84–.94 for the shaped profiles. It agrees less with the C index, which compares letters by position.
 - **The literature check flags two norms** (report only): backward digit span against an older community sample, and Corsi against derived young-adult values. Symbol matching couldn't be checked.
-- **Speed.** One person's match takes roughly 1.1–1.6 s under v2-0.5, against about 0.8 s under v2-0.4, mostly the two environment guards. The result is cached per person.
+- **Speed.** One person's match takes roughly 1.1–1.6 s under v2-0.5 (v2-0.4: about 0.8 s), mostly the two environment guards. The result is cached per person.
 
 **Your account (LN-20261023-H2C).** It is in the production database, which this environment doesn't have. Run this from the repository with your DATABASE_URL set:
 
 ```
 npx tsx --conditions=react-server scripts/precision-steps.mts --account LN-20261023-H2C --force
 ```
+
+Add `--final` for only the final config: the top 15, the band counts and the archetype.
 
 It prints, for each step, the top 15, the band counts, the archetype blend, your inputs anchored against normed, and the interest-ranking congruence check. It also saves them to `.data/precision-steps-LN-20261023-H2C.md`, which is git-ignored. `scripts/validate-precision.mts satisfaction --force` gives the satisfaction agreement once people have answered.
 
@@ -131,13 +144,13 @@ Each career path's synthetic typical incumbent is matched against all 205. Inter
 
 | Config | Own top 10%, as built | Median rank, as built | Own top 10%, with error | Median rank, with error | 90th percentile rank, with error | Strong fit for itself | Can't recover itself |
 |---|---|---|---|---|---|---|---|
-| v2-0.3 | 95.1% | 2 | 91.1% | 4 | 20 | 94.6% | 15 |
-| v2-0.4 | 97.6% | 2 | 91.7% | 4 | 19 | 95.6% | 12 |
-| v2-0.5 | 98.5% | 1 | 97.1% | 2 | 11 | 99% | 4 |
+| v2-0.3 | 95.6% | 2 | 91.4% | 4 | 19 | 95.1% | 14 |
+| v2-0.4 | 98% | 2 | 91.9% | 4 | 19 | 95.6% | 12 |
+| v2-0.5 | 99% | 1 | 97.2% | 2 | 11 | 95.1% | 3 |
 
 **Career paths that can't recover themselves under v2-0.5** (outside their own top 21 as built, or in most replicates with error). Ranks are shown as built, then with error:
 
-Field & territory sales: 36, 39/35/44 · Offshore & oil and gas: 23, 29/22/24 · Forestry & hunting: 22, 20/17/22 · Police & investigation: 4, 24/41/6
+Offshore & oil and gas: 23, 29/22/23 · Forestry & hunting: 22, 20/17/22 · Police & investigation: 4, 25/41/6
 
 Work Styles → IPIP-NEO facets used for the incumbents: C1 ← Self-Confidence; C2 ← Attention to Detail; C3 ← Dependability; C4 ← Achievement Orientation; C5 ← Perseverance; C6 ← Cautiousness; E1 ← Social Orientation; E2 ← Social Orientation; E3 ← Leadership Orientation; E4 ← Initiative; E6 ← Optimism; O1 ← Innovation; O4 ← Tolerance for Ambiguity; O5 ← Intellectual Curiosity; A2 ← Sincerity; A4 ← Cooperation; A5 ← Humility; A6 ← Empathy; N2 ← reverse of Self-Control; N5 ← reverse of Self-Control; N6 ← reverse of Stress Tolerance. Domains are the mean of their mapped facets.
 
@@ -147,22 +160,22 @@ Under v2-0.5, each career path is ranked by the interests component alone: the r
 
 | Profile | Code | Spearman ρ with the C-index ranking | ρ with the M-index ranking | Career paths more than 50 ranks apart |
 |---|---|---|---|---|
-| Investigative / conventional analyst | ICR | 0.122 | 0.89 | 122 |
-| Social / artistic carer | SAE | 0.718 | 0.903 | 45 |
-| Realistic maker | RIC | 0.765 | 0.914 | 38 |
+| Investigative / conventional analyst | ICR | 0.121 | 0.89 | 122 |
+| Social / artistic carer | SAE | 0.717 | 0.902 | 45 |
+| Realistic maker | RIC | 0.764 | 0.913 | 39 |
 | Enterprising hunter | ESC | 0.829 | 0.938 | 30 |
-| Artistic storyteller | ASE | 0.643 | 0.836 | 57 |
+| Artistic storyteller | ASE | 0.643 | 0.835 | 57 |
 | Flat profile | RIA | null | null | 92 |
 
 **Investigative / conventional analyst** (ICR): Data analysis & business intelligence [CIE] ours 3, C 177.5 · Data engineering & databases [CIE] ours 6, C 177.5 · Market research & consumer insights [CIE] ours 8, C 177.5 · Enterprise systems & IT consulting [CIE] ours 9, C 177.5 · Developer relations & technical writing [CIS] ours 28, C 195.5 · Pharmacy [CIS] ours 29, C 195.5 · Armed forces [CIE] ours 15, C 177.5 · Product management [EIC] ours 42, C 201 · Payments, fintech & crypto operations [CIE] ours 20, C 177.5 · Public policy & analysis [EIC] ours 45, C 201 · Management consulting [CIE] ours 27, C 177.5 · Modelling [ARE] ours 202, C 70 · and 110 more
 
-**Social / artistic carer** (SAE): Armed forces [CIE] ours 186, C 42 · DevOps, cloud & site reliability [CIR] ours 193, C 74.5 · Economics & social sciences [ICS] ours 36, C 151 · Product management [EIC] ours 134, C 20 · Enterprise systems & IT consulting [CIE] ours 150, C 42 · Writing & authorship [ACI] ours 22, C 127.5 · Data engineering & databases [CIE] ours 143, C 42 · Software testing & quality assurance [CIR] ours 173, C 74.5 · Warehousing & logistics [CRE] ours 172, C 74.5 · Environmental & energy engineering [IRC] ours 200, C 102.5 · Hair, beauty & cosmetics [RCS] ours 80, C 172.5 · Aviation [CRE] ours 166, C 74.5 · and 33 more
+**Social / artistic carer** (SAE): Armed forces [CIE] ours 186, C 42 · DevOps, cloud & site reliability [CIR] ours 193, C 74.5 · Economics & social sciences [ICS] ours 36, C 151 · Product management [EIC] ours 134, C 20 · Enterprise systems & IT consulting [CIE] ours 150, C 42 · Writing & authorship [ACI] ours 22, C 127.5 · Data engineering & databases [CIE] ours 143, C 42 · Software testing & quality assurance [CIR] ours 173, C 74.5 · Warehousing & logistics [CRE] ours 172, C 74.5 · Environmental & energy engineering [IRC] ours 200, C 102.5 · Hair, beauty & cosmetics [RCS] ours 79, C 172.5 · Aviation [CRE] ours 166, C 74.5 · and 33 more
 
-**Realistic maker** (RIC): Management consulting [CIE] ours 137, C 15.5 · Public policy & analysis [EIC] ours 174, C 53.5 · Developer relations & technical writing [CIS] ours 138, C 29 · Complementary therapies [SRI] ours 87, C 193 · Payments, fintech & crypto operations [CIE] ours 120, C 15.5 · Advertising & creative agencies [EAC] ours 196, C 93 · Market research & consumer insights [CIE] ours 113, C 15.5 · Organisational & work psychology [IEC] ours 194, C 105 · Creator services [EAS] ours 202, C 117 · Data analysis & business intelligence [CIE] ours 96, C 15.5 · Jewellery, metal & precision craft [RCA] ours 1, C 79 · Enterprise systems & IT consulting [CIE] ours 93, C 15.5 · and 26 more
+**Realistic maker** (RIC): Management consulting [CIE] ours 137, C 15.5 · Public policy & analysis [EIC] ours 175, C 53.5 · Developer relations & technical writing [CIS] ours 138, C 29 · Complementary therapies [SRI] ours 87, C 193 · Payments, fintech & crypto operations [CIE] ours 120, C 15.5 · Advertising & creative agencies [EAC] ours 196, C 93 · Market research & consumer insights [CIE] ours 113, C 15.5 · Organisational & work psychology [IEC] ours 194, C 105 · Creator services [EAS] ours 202, C 117 · Data analysis & business intelligence [CIE] ours 96, C 15.5 · Jewellery, metal & precision craft [RCA] ours 1, C 79 · Enterprise systems & IT consulting [CIE] ours 93, C 15.5 · and 27 more
 
 **Enterprising hunter** (ESC): CRM, lifecycle & marketing operations [ICE] ours 73, C 195 · GIS & geospatial analysis [CIR] ours 205, C 96.5 · Translation & interpreting [CSA] ours 142, C 34.5 · Health administration & informatics [CSI] ours 104, C 11.5 · Variety & live entertainment [ARS] ours 112, C 195 · Quantitative finance [ICE] ours 114, C 195 · Architecture [RAI] ours 201, C 121 · Biomedical engineering [RIC] ours 198, C 121 · Mechanical engineering [RIC] ours 196, C 121 · Dance [ARS] ours 121, C 195 · Organisational & work psychology [IEC] ours 67, C 137.5 · Hair, beauty & cosmetics [RCS] ours 92, C 162.5 · and 18 more
 
-**Artistic storyteller** (ASE): Publishing & editorial [CAI] ours 27, C 181 · Construction management [RCE] ours 200, C 58.5 · Rail [RCE] ours 195, C 58.5 · Driving & road transport [RCE] ours 192, C 58.5 · Environmental & energy engineering [IRC] ours 185, C 58.5 · Content, copy & social media [CEA] ours 25, C 150 · Developer relations & technical writing [CIS] ours 65, C 181 · Fire, rescue & emergency response [RCS] ours 197, C 83 · Nature & conservation [RIC] ours 193, C 83 · Film & TV production [CAR] ours 40, C 150 · Law firm practice [CEI] ours 75, C 181 · Politics & elected office [ECI] ours 44, C 150 · and 45 more
+**Artistic storyteller** (ASE): Publishing & editorial [CAI] ours 27, C 181 · Construction management [RCE] ours 200, C 58.5 · Rail [RCE] ours 195, C 58.5 · Driving & road transport [RCE] ours 192, C 58.5 · Environmental & energy engineering [IRC] ours 185, C 58.5 · Content, copy & social media [CEA] ours 25, C 150 · Developer relations & technical writing [CIS] ours 65, C 181 · Fire, rescue & emergency response [RCS] ours 197, C 83 · Nature & conservation [RIC] ours 193, C 83 · Film & TV production [CAR] ours 40, C 150 · Law firm practice [CEI] ours 74, C 181 · Politics & elected office [ECI] ours 44, C 150 · and 45 more
 
 **Flat profile** (RIA): Dentistry [RIS] ours 103, C 1 · Learning & development [SEC] ours 103, C 204 · Religious & spiritual work [SEC] ours 103, C 204 · Outdoor guiding & instruction [SEC] ours 103, C 204 · Mechanical engineering [RIC] ours 103, C 5.5 · Chemical & process engineering [RIC] ours 103, C 5.5 · Biomedical engineering [RIC] ours 103, C 5.5 · Architecture [RAI] ours 103, C 5.5 · Animal care & training [RIC] ours 103, C 5.5 · Nature & conservation [RIC] ours 103, C 5.5 · Diagnostics & medical technology [RIC] ours 103, C 5.5 · Veterinary medicine [RIC] ours 103, C 5.5 · and 80 more
 
@@ -193,15 +206,29 @@ That is the pass rule of Woods et al.'s "two-error maximum length" (TE-ML). It i
 
 ## (d) Population, the six profiles and popularity bias
 
+### Strong-fit threshold sweep (v2-0.5)
+
+Strong fit = P(top 10%) at least the threshold, under both environment weightings, never for talent-capped career paths. The same 1000 simulated people at each threshold; the unlikely rule (P(bottom 40%) ≥ 0.7) is unchanged. The target is a median of 10–15 strong fits.
+
+| Threshold | Mean | p10 | Median | p90 | Share with 8–20 | Share with 10–15 | Most often strong | Never strong |
+|---|---|---|---|---|---|---|---|---|
+| 0.30 | 19.7 | 13 | 21 | 26 | 45.6% | 13.6% | Early childhood education 26.1% | 10 |
+| 0.35 | 15.9 | 8 | 17 | 22 | 68.6% | 26.2% | Early childhood education 23.3% | 10 |
+| 0.40 | 12.9 | 4 | 14 | 20 | 73.9% | 31.5% | Early childhood education 20.5% | 10 |
+| 0.45 **(chosen)** | 10.5 | 2 | 11 | 18 | 65.8% | 35.8% | Early childhood education 17.4% | 10 |
+| 0.50 | 8.4 | 1 | 8 | 16 | 54.7% | 32.4% | Early childhood education 15.5% | 11 |
+| 0.55 | 6.7 | 0 | 6 | 14 | 43.8% | 26.9% | Early childhood education 13.8% | 12 |
+| 0.60 | 5.3 | 0 | 4 | 12 | 32.5% | 20.1% | Early childhood education 11.4% | 12 |
+
 | Config | People | Strong fits: mean | p10 / median / p90 | Share with 8–20 | Most often strong | Career paths strong for over 30% | Never strong | Tentative archetypes | Flat-profile notes |
 |---|---|---|---|---|---|---|---|---|---|
-| v2-0.3 | 1000 | 11.8 | 4 / 12 / 18 | 76.4% | Mental health & psychology 35.3% | 3 | 18 | 901 | 211 |
-| v2-0.4 | 1000 | 11.7 | 4 / 12 / 18 | 75.5% | Mental health & psychology 35.4% | 3 | 19 | 909 | 221 |
-| v2-0.5 | 1000 | 8.9 | 1 / 9 / 16 | 58% | Early childhood education 15.5% | 0 | 2 | 942 | 311 |
+| v2-0.3 | 1000 | 11.8 | 4 / 12 / 18 | 75.7% | Mental health & psychology 35.6% | 3 | 18 | 909 | 219 |
+| v2-0.4 | 1000 | 11.7 | 4 / 12 / 18 | 75.4% | Mental health & psychology 35.4% | 3 | 18 | 909 | 222 |
+| v2-0.5 | 1000 | 10.5 | 2 / 11 / 18 | 65.8% | Early childhood education 17.4% | 0 | 10 | 942 | 325 |
 
-**Strong-fit survival, v2-0.3 → v2-0.5** (the same 1000 people. The population's answers are the same, read through each config's own input rules): 49.1% of v2-0.3's strong fits are still strong under v2-0.5, 50.9% became possible and 0% unlikely. v2-0.5 has 3111 strong fits that v2-0.3 didn't (3.1 per person).
+**Strong-fit survival, v2-0.3 → v2-0.5** (the same 1000 people. The population's answers are the same, read through each config's own input rules): 52.5% of v2-0.3's strong fits are still strong under v2-0.5, 47.5% became possible and 0% unlikely. v2-0.5 has 4262 strong fits that v2-0.3 didn't (4.3 per person).
 
-**Environment cap under v2-0.5:** before the cap, the largest single-dimension share of any fit had median 14.9% and 90th percentile 21.7%. After it, the maximum is 15.1%. 48.8% of people had at least one dimension shrunk. By dimension: competition 19.9%, social 19%, pace 7.1%, autonomy 6.7%, challenge 2.9%, variety 0.9%, conflict 0.3%, precision 0.3%.
+**Environment cap under v2-0.5:** before the cap, the largest single-dimension share of any fit had median 14.2% and 90th percentile 20.5%. After it, the maximum is 15.1%. 41.9% of people had at least one dimension shrunk. By dimension: competition 19.5%, social 11.1%, autonomy 6.8%, pace 6.5%, challenge 2.9%, variety 0.9%, conflict 0.3%, precision 0.3%.
 
 ## Satisfaction against the current job's band
 

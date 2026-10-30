@@ -174,6 +174,14 @@ Each change below is behind the config, so v2-0.3 and v2-0.4 reproduce when sele
 
 **Synthetic people for validation.** v2-0.4 was validated on people whose interest and personality numbers are positions on the questionnaire's scale (50 = the scale midpoint). With norms, the midpoint is not the population average: Conscientiousness 3.0 is near the 10th percentile. So the precision validation specifies its people as population percentiles (`synthetic(spec, inputs, "percentile")`). These are turned into the raw scores a person at that percentile gives, and each config then reads them by its own rule. v2-0.5's career offsets come from that population; v2-0.3 and v2-0.4 keep theirs.
 
+**Owner's decisions, 2026-10-30:**
+- **Norms are applied for matching only** (`matchingProfile` in `src/lib/data/lanes.ts`). The person's profile and report stay relative to themselves, and the method section names the norm groups.
+- **Holland code.** It shows only letters clearly above the person's own average (`src/lib/view/holland.ts`).
+- **Talent-selected career paths** (`talentCapped`) are never above "possible fit", with the note "Fits your interests and working style; success depends on talent Lane can't measure."
+- **Strong-fit threshold: .45**, from the population sweep (`PRECISION_REPORT.md`).
+- **Field & territory sales** is estimated from its proper O\*NET occupations.
+- **Older configs and the data fix.** These configs reproduce on the data they're given, and the field sales fix is a data fix, so v2-0.3 and v2-0.4 also see the corrected profile. v2-0.3 keeps its frozen offsets.
+
 **Ground truth** (stored, never used in matching):
 - onboarding asks "How satisfied are you in this work?" (1–7) for the current job and up to two previous jobs;
 - the top five Career map cards ask "Does this resonate?", stored with the matching version (migration 0005).

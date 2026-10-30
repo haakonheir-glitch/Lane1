@@ -173,6 +173,13 @@ const V2_0_5: V2Config = {
   inputs: { norms: true, values: "orderStats" },
   envCap: 0.15,
   ensemble: { concentration: 40, flatEnvShare: 0.5 },
+  /**
+   * Strong fit at P(top 10%) ≥ .45 under both environment weightings (owner's decision, 2026-10-30:
+   * tuned on the simulated population, not on any account). The sweep in
+   * taxonomy/derived/PRECISION_REPORT.md: .45 gives a median of 11 strong fits, with the largest
+   * share of people at 10–15 (.40 gives a median of 14; .50 gives 8).
+   */
+  bands: { ...V2_0_4.bands, strong: 0.45 },
   rolesFromData: true,
   /** The owner's list (2026-10-30): professional sport, esports, professional strategy games and the performing careers. */
   talentCapped: ["pro_sport", "esports", "strategy_games", "acting", "music_performance", "dance", "modelling", "broadcasting", "comedy", "variety"],

@@ -561,4 +561,11 @@ Unit tests (Vitest) use hand-built profiles:
   - **Ground truth:** stored only (migration 0005).
   - **Selectable configs:** v2-0.3 and v2-0.4 stay selectable (`MATCHING_CONFIG`).
   - **Where:** method in `docs/MATCHING_V2.md`; validation in `taxonomy/derived/PRECISION_REPORT.md`; step by step in `taxonomy/derived/PRECISION_STEPS.md`.
+- **D60: Owner's decisions on the precision pass** (2026-10-30).
+  - **Norms:** for matching only. Age-banded norms couldn't be built (the raw data host is unreachable).
+  - **Report:** relative to self, with no "compared with people your age" lines. The wording table is a draft for review (`docs/PERSONALITY_WORDING.md`).
+  - **Holland code:** clear letters only.
+  - **Talent cap:** talent-selected career paths are capped at "possible".
+  - **Strong-fit threshold:** .45, from the population sweep.
+  - **Field & territory sales:** estimated profile.
 

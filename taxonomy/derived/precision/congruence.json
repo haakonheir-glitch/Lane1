@@ -5,7 +5,7 @@
    "id": "analyst",
    "label": "Investigative / conventional analyst",
    "code": "ICR",
-   "rhoC": 0.122,
+   "rhoC": 0.121,
    "rhoM": 0.89,
    "divergent": [
     {
@@ -363,10 +363,10 @@
      "id": "carpentry",
      "name": "Carpentry & building",
      "careerCode": "RCI",
-     "ours": 134,
+     "ours": 135,
      "cIndexRank": 26.5,
      "c": 14,
-     "gap": 107.5
+     "gap": 108.5
     },
     {
      "id": "translation",
@@ -408,10 +408,10 @@
      "id": "masonry_concrete",
      "name": "Masonry, concrete & tiling",
      "careerCode": "RCA",
-     "ours": 143,
+     "ours": 144,
      "cIndexRank": 46.5,
      "c": 13,
-     "gap": 96.5
+     "gap": 97.5
     },
     {
      "id": "heavy_equipment",
@@ -441,6 +441,15 @@
      "gap": -94
     },
     {
+     "id": "photography",
+     "name": "Photography",
+     "careerCode": "RCA",
+     "ours": 140,
+     "cIndexRank": 46.5,
+     "c": 13,
+     "gap": 93.5
+    },
+    {
      "id": "comedy",
      "name": "Comedy",
      "careerCode": "ASE",
@@ -457,15 +466,6 @@
      "cIndexRank": 61,
      "c": 12,
      "gap": 93
-    },
-    {
-     "id": "photography",
-     "name": "Photography",
-     "careerCode": "RCA",
-     "ours": 139,
-     "cIndexRank": 46.5,
-     "c": 13,
-     "gap": 92.5
     },
     {
      "id": "outdoor_guiding",
@@ -489,10 +489,10 @@
      "id": "finishing_trades",
      "name": "Painting, roofing & building finishes",
      "careerCode": "RCE",
-     "ours": 137,
+     "ours": 138,
      "cIndexRank": 46.5,
      "c": 13,
-     "gap": 90.5
+     "gap": 91.5
     },
     {
      "id": "courts_prosecution",
@@ -525,10 +525,10 @@
      "id": "restoration_signs",
      "name": "Restoration & decorative crafts",
      "careerCode": "RCA",
-     "ours": 131,
+     "ours": 132,
      "cIndexRank": 46.5,
      "c": 13,
-     "gap": 84.5
+     "gap": 85.5
     },
     {
      "id": "it_support",
@@ -585,6 +585,15 @@
      "gap": -81
     },
     {
+     "id": "funeral_services",
+     "name": "Funeral services",
+     "careerCode": "RCS",
+     "ours": 142,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 81
+    },
+    {
      "id": "industrial_engineering",
      "name": "Industrial & manufacturing engineering",
      "careerCode": "CRI",
@@ -603,6 +612,15 @@
      "gap": 80.5
     },
     {
+     "id": "facilities",
+     "name": "Facilities, cleaning & property services",
+     "careerCode": "RCS",
+     "ours": 141,
+     "cIndexRank": 61,
+     "c": 12,
+     "gap": 80
+    },
+    {
      "id": "public_administration",
      "name": "Public administration & casework",
      "careerCode": "CES",
@@ -610,15 +628,6 @@
      "cIndexRank": 154,
      "c": 7,
      "gap": -80
-    },
-    {
-     "id": "funeral_services",
-     "name": "Funeral services",
-     "careerCode": "RCS",
-     "ours": 141,
-     "cIndexRank": 61,
-     "c": 12,
-     "gap": 80
     },
     {
      "id": "road_transport",
@@ -637,15 +646,6 @@
      "cIndexRank": 26.5,
      "c": 14,
      "gap": 79.5
-    },
-    {
-     "id": "facilities",
-     "name": "Facilities, cleaning & property services",
-     "careerCode": "RCS",
-     "ours": 140,
-     "cIndexRank": 61,
-     "c": 12,
-     "gap": 79
     },
     {
      "id": "forestry",
@@ -1120,8 +1120,8 @@
    "id": "carer",
    "label": "Social / artistic carer",
    "code": "SAE",
-   "rhoC": 0.718,
-   "rhoM": 0.903,
+   "rhoC": 0.717,
+   "rhoM": 0.902,
    "divergent": [
     {
      "id": "military",
@@ -1217,10 +1217,10 @@
      "id": "hair_beauty",
      "name": "Hair, beauty & cosmetics",
      "careerCode": "RCS",
-     "ours": 80,
+     "ours": 79,
      "cIndexRank": 172.5,
      "c": 2,
-     "gap": -92.5
+     "gap": -93.5
     },
     {
      "id": "aviation",
@@ -1262,10 +1262,10 @@
      "id": "legal_practice",
      "name": "Law firm practice",
      "careerCode": "CEI",
-     "ours": 64,
+     "ours": 63,
      "cIndexRank": 151,
      "c": 5,
-     "gap": -87
+     "gap": -88
     },
     {
      "id": "private_security",
@@ -1322,6 +1322,15 @@
      "gap": 77.5
     },
     {
+     "id": "legal_support",
+     "name": "Paralegal & legal support",
+     "careerCode": "CEI",
+     "ours": 74,
+     "cIndexRank": 151,
+     "c": 5,
+     "gap": -77
+    },
+    {
      "id": "pharma_clinical",
      "name": "Pharmaceutical & clinical research",
      "careerCode": "CIR",
@@ -1329,15 +1338,6 @@
      "cIndexRank": 74.5,
      "c": 8,
      "gap": 76.5
-    },
-    {
-     "id": "legal_support",
-     "name": "Paralegal & legal support",
-     "careerCode": "CEI",
-     "ours": 75,
-     "cIndexRank": 151,
-     "c": 5,
-     "gap": -76
     },
     {
      "id": "intellectual_property",
@@ -1415,10 +1415,10 @@
      "id": "growth_marketing",
      "name": "Performance & growth marketing",
      "careerCode": "ECI",
-     "ours": 63,
+     "ours": 62,
      "cIndexRank": 127.5,
      "c": 6,
-     "gap": -64.5
+     "gap": -65.5
     },
     {
      "id": "physical_sciences",
@@ -1439,6 +1439,15 @@
      "gap": 64
     },
     {
+     "id": "graphic_design",
+     "name": "Graphic & brand design",
+     "careerCode": "ACI",
+     "ours": 64,
+     "cIndexRank": 127.5,
+     "c": 6,
+     "gap": -63.5
+    },
+    {
      "id": "photography",
      "name": "Photography",
      "careerCode": "RCA",
@@ -1446,15 +1455,6 @@
      "cIndexRank": 178.5,
      "c": 1,
      "gap": -63.5
-    },
-    {
-     "id": "graphic_design",
-     "name": "Graphic & brand design",
-     "careerCode": "ACI",
-     "ours": 65,
-     "cIndexRank": 127.5,
-     "c": 6,
-     "gap": -62.5
     },
     {
      "id": "nature_conservation",
@@ -1469,19 +1469,19 @@
      "id": "diplomacy",
      "name": "Diplomacy & international organisations",
      "careerCode": "ECI",
-     "ours": 66,
+     "ours": 65,
      "cIndexRank": 127.5,
      "c": 6,
-     "gap": -61.5
+     "gap": -62.5
     },
     {
      "id": "product_marketing",
      "name": "Product marketing",
      "careerCode": "ECI",
-     "ours": 69,
+     "ours": 68,
      "cIndexRank": 127.5,
      "c": 6,
-     "gap": -58.5
+     "gap": -59.5
     },
     {
      "id": "industrial_engineering",
@@ -1542,8 +1542,8 @@
    "id": "maker",
    "label": "Realistic maker",
    "code": "RIC",
-   "rhoC": 0.765,
-   "rhoM": 0.914,
+   "rhoC": 0.764,
+   "rhoM": 0.913,
    "divergent": [
     {
      "id": "management_consulting",
@@ -1558,10 +1558,10 @@
      "id": "public_policy",
      "name": "Public policy & analysis",
      "careerCode": "EIC",
-     "ours": 174,
+     "ours": 175,
      "cIndexRank": 53.5,
      "c": 12,
-     "gap": 120.5
+     "gap": 121.5
     },
     {
      "id": "devrel_techwriting",
@@ -1690,6 +1690,15 @@
      "gap": -73.5
     },
     {
+     "id": "lifecycle_marketing",
+     "name": "CRM, lifecycle & marketing operations",
+     "careerCode": "ICE",
+     "ours": 166,
+     "cIndexRank": 93,
+     "c": 10,
+     "gap": 73
+    },
+    {
      "id": "masonry_concrete",
      "name": "Masonry, concrete & tiling",
      "careerCode": "RCA",
@@ -1697,15 +1706,6 @@
      "cIndexRank": 79,
      "c": 11,
      "gap": -73
-    },
-    {
-     "id": "lifecycle_marketing",
-     "name": "CRM, lifecycle & marketing operations",
-     "careerCode": "ICE",
-     "ours": 165,
-     "cIndexRank": 93,
-     "c": 10,
-     "gap": 72
     },
     {
      "id": "ceramics_glass",
@@ -1798,6 +1798,15 @@
      "gap": 61.5
     },
     {
+     "id": "mental_health",
+     "name": "Mental health & psychology",
+     "careerCode": "SIC",
+     "ours": 165,
+     "cIndexRank": 105,
+     "c": 9,
+     "gap": 60
+    },
+    {
      "id": "acting",
      "name": "Acting",
      "careerCode": "AES",
@@ -1805,15 +1814,6 @@
      "cIndexRank": 198.5,
      "c": 4,
      "gap": -59.5
-    },
-    {
-     "id": "mental_health",
-     "name": "Mental health & psychology",
-     "careerCode": "SIC",
-     "ours": 164,
-     "cIndexRank": 105,
-     "c": 9,
-     "gap": 59
     },
     {
      "id": "devops_cloud",
@@ -1886,6 +1886,15 @@
      "cIndexRank": 53.5,
      "c": 12,
      "gap": -51.5
+    },
+    {
+     "id": "tourism",
+     "name": "Tourism & travel",
+     "careerCode": "ESC",
+     "ours": 168,
+     "cIndexRank": 117,
+     "c": 8,
+     "gap": 51
     }
    ],
    "interests": [
@@ -2052,10 +2061,10 @@
      "id": "agency_ownership",
      "name": "Agency & studio ownership",
      "careerCode": "ECA",
-     "ours": 5,
+     "ours": 4,
      "cIndexRank": 69,
      "c": 11,
-     "gap": -64
+     "gap": -65
     },
     {
      "id": "qa_testing",
@@ -2189,7 +2198,7 @@
    "label": "Artistic storyteller",
    "code": "ASE",
    "rhoC": 0.643,
-   "rhoM": 0.836,
+   "rhoM": 0.835,
    "divergent": [
     {
      "id": "publishing",
@@ -2285,10 +2294,10 @@
      "id": "legal_practice",
      "name": "Law firm practice",
      "careerCode": "CEI",
-     "ours": 75,
+     "ours": 74,
      "cIndexRank": 181,
      "c": 4,
-     "gap": -106
+     "gap": -107
     },
     {
      "id": "politics",
@@ -2489,21 +2498,21 @@
      "gap": 72.5
     },
     {
+     "id": "project_management",
+     "name": "Project & programme management",
+     "careerCode": "ECI",
+     "ours": 78,
+     "cIndexRank": 150,
+     "c": 5,
+     "gap": -72
+    },
+    {
      "id": "gis_geodata",
      "name": "GIS & geospatial analysis",
      "careerCode": "CIR",
      "ours": 123,
      "cIndexRank": 194,
      "c": 3,
-     "gap": -71
-    },
-    {
-     "id": "project_management",
-     "name": "Project & programme management",
-     "careerCode": "ECI",
-     "ours": 79,
-     "cIndexRank": 150,
-     "c": 5,
      "gap": -71
     },
     {
@@ -2534,15 +2543,6 @@
      "gap": 67.5
     },
     {
-     "id": "quant_finance",
-     "name": "Quantitative finance",
-     "careerCode": "ICE",
-     "ours": 92,
-     "cIndexRank": 25.5,
-     "c": 11,
-     "gap": 66.5
-    },
-    {
      "id": "process_engineering",
      "name": "Chemical & process engineering",
      "careerCode": "RIC",
@@ -2550,6 +2550,15 @@
      "cIndexRank": 83,
      "c": 7,
      "gap": 66
+    },
+    {
+     "id": "quant_finance",
+     "name": "Quantitative finance",
+     "careerCode": "ICE",
+     "ours": 91,
+     "cIndexRank": 25.5,
+     "c": 11,
+     "gap": 65.5
     },
     {
      "id": "photography",
@@ -2624,6 +2633,15 @@
      "gap": 61.5
     },
     {
+     "id": "startup_founder",
+     "name": "Startup founding",
+     "careerCode": "ECI",
+     "ours": 89,
+     "cIndexRank": 150,
+     "c": 5,
+     "gap": -61
+    },
+    {
      "id": "culinary",
      "name": "Culinary",
      "careerCode": "RCE",
@@ -2631,15 +2649,6 @@
      "cIndexRank": 58.5,
      "c": 8,
      "gap": 60.5
-    },
-    {
-     "id": "startup_founder",
-     "name": "Startup founding",
-     "careerCode": "ECI",
-     "ours": 90,
-     "cIndexRank": 150,
-     "c": 5,
-     "gap": -60
     },
     {
      "id": "risk_management",

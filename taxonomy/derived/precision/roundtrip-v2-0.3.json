@@ -3,29 +3,18 @@
  "draws": 100,
  "reps": 3,
  "topCut": 21,
- "seconds": 196,
+ "seconds": 271,
  "clean": {
-  "inTop10": 0.951,
+  "inTop10": 0.956,
   "median": 2,
-  "strong": 0.946
+  "strong": 0.951
  },
  "noisy": {
-  "inTop10": 0.911,
+  "inTop10": 0.914,
   "median": 4,
-  "p90": 20
+  "p90": 19
  },
  "cannotRecover": [
-  {
-   "id": "field_sales",
-   "name": "Field & territory sales",
-   "provenance": "onet",
-   "clean": 40,
-   "noisy": [
-    39,
-    44,
-    70
-   ]
-  },
   {
    "id": "offshore_oil_gas",
    "name": "Offshore & oil and gas",
@@ -67,29 +56,29 @@
    "noisy": [
     40,
     6,
-    40
-   ]
-  },
-  {
-   "id": "specialist_trades",
-   "name": "Specialist trades & services",
-   "provenance": "onet",
-   "clean": 25,
-   "noisy": [
-    19,
-    29,
-    16
+    42
    ]
   },
   {
    "id": "real_estate_agency",
    "name": "Real estate brokerage",
    "provenance": "onet",
-   "clean": 24,
+   "clean": 25,
    "noisy": [
+    33,
+    26,
+    27
+   ]
+  },
+  {
+   "id": "ecommerce",
+   "name": "E-commerce",
+   "provenance": "onet",
+   "clean": 25,
+   "noisy": [
+    22,
     32,
-    25,
-    28
+    30
    ]
   },
   {
@@ -104,14 +93,14 @@
    ]
   },
   {
-   "id": "ecommerce",
-   "name": "E-commerce",
+   "id": "specialist_trades",
+   "name": "Specialist trades & services",
    "provenance": "onet",
-   "clean": 24,
+   "clean": 22,
    "noisy": [
-    21,
-    32,
-    29
+    19,
+    29,
+    16
    ]
   },
   {
@@ -132,7 +121,7 @@
    "clean": 19,
    "noisy": [
     19,
-    38,
+    39,
     24
    ]
   },
@@ -151,10 +140,10 @@
    "id": "solutions_sales",
    "name": "Technical & solutions sales",
    "provenance": "onet",
-   "clean": 13,
+   "clean": 14,
    "noisy": [
-    28,
-    22,
+    29,
+    23,
     18
    ]
   },
@@ -175,7 +164,7 @@
    "provenance": "onet",
    "clean": 6,
    "noisy": [
-    52,
+    53,
     48,
     19
    ]
@@ -188,8 +177,9 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
-    3,
+    2,
     1,
     1
    ]
@@ -198,11 +188,12 @@
    "id": "solutions_sales",
    "name": "Technical & solutions sales",
    "provenance": "onet",
-   "clean": 13,
+   "clean": 14,
    "cleanBand": "strong",
+   "cleanTop": 0.68,
    "noisy": [
-    28,
-    22,
+    29,
+    23,
     18
    ]
   },
@@ -210,35 +201,38 @@
    "id": "account_management",
    "name": "Account management & customer success",
    "provenance": "onet",
-   "clean": 15,
+   "clean": 16,
    "cleanBand": "strong",
+   "cleanTop": 0.77,
    "noisy": [
-    9,
-    25,
-    5
+    10,
+    27,
+    6
    ]
   },
   {
    "id": "field_sales",
    "name": "Field & territory sales",
-   "provenance": "onet",
-   "clean": 40,
-   "cleanBand": "possible",
+   "provenance": "estimated",
+   "clean": 4,
+   "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
-    39,
-    44,
-    70
+    3,
+    4,
+    8
    ]
   },
   {
    "id": "consumer_sales",
    "name": "Consumer & direct sales",
    "provenance": "onet",
-   "clean": 2,
+   "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 0.95,
    "noisy": [
-    7,
-    4,
+    8,
+    5,
     5
    ]
   },
@@ -248,10 +242,11 @@
    "provenance": "estimated",
    "clean": 5,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     8,
     9,
-    2
+    3
    ]
   },
   {
@@ -260,9 +255,10 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
-    16,
+    17,
     4
    ]
   },
@@ -272,9 +268,10 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     4,
-    20,
+    19,
     2
    ]
   },
@@ -284,8 +281,9 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
-    2,
+    4,
     1,
     1
    ]
@@ -294,8 +292,9 @@
    "id": "brand_marketing",
    "name": "Brand marketing",
    "provenance": "onet",
-   "clean": 2,
+   "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     1,
@@ -308,6 +307,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     7,
     3,
@@ -320,6 +320,7 @@
    "provenance": "estimated",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -332,9 +333,10 @@
    "provenance": "estimated",
    "clean": 5,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     13,
-    12,
+    11,
     16
    ]
   },
@@ -344,6 +346,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     2,
@@ -356,6 +359,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -368,6 +372,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     4,
     7,
@@ -380,6 +385,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     1,
     11,
@@ -392,6 +398,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     3,
@@ -404,10 +411,11 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 0.94,
    "noisy": [
-    16,
-    13,
-    6
+    17,
+    12,
+    7
    ]
   },
   {
@@ -416,6 +424,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     1,
     37,
@@ -428,6 +437,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     1,
     2,
@@ -440,6 +450,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     4,
     2,
@@ -452,6 +463,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     7,
     3,
@@ -464,6 +476,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     6,
     3,
@@ -476,6 +489,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     4,
@@ -488,6 +502,7 @@
    "provenance": "onet",
    "clean": 6,
    "cleanBand": "strong",
+   "cleanTop": 0.87,
    "noisy": [
     11,
     10,
@@ -500,9 +515,10 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 0.82,
    "noisy": [
     21,
-    8,
+    9,
     11
    ]
   },
@@ -512,6 +528,7 @@
    "provenance": "onet",
    "clean": 8,
    "cleanBand": "strong",
+   "cleanTop": 0.72,
    "noisy": [
     29,
     12,
@@ -524,6 +541,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     4,
     7,
@@ -536,6 +554,7 @@
    "provenance": "onet",
    "clean": 6,
    "cleanBand": "strong",
+   "cleanTop": 0.95,
    "noisy": [
     11,
     6,
@@ -548,6 +567,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -560,6 +580,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.87,
    "noisy": [
     10,
     14,
@@ -572,6 +593,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     2,
@@ -584,6 +606,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -596,6 +619,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     5,
     8,
@@ -608,6 +632,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     3,
     5,
@@ -620,6 +645,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -632,9 +658,10 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     7,
-    4,
+    3,
     5
    ]
   },
@@ -644,6 +671,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     7,
     1,
@@ -656,6 +684,7 @@
    "provenance": "onet",
    "clean": 6,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     13,
     12,
@@ -668,6 +697,7 @@
    "provenance": "onet",
    "clean": 5,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     6,
     14,
@@ -680,9 +710,10 @@
    "provenance": "onet",
    "clean": 19,
    "cleanBand": "possible",
+   "cleanTop": 0.46,
    "noisy": [
     19,
-    38,
+    39,
     24
    ]
   },
@@ -692,8 +723,9 @@
    "provenance": "onet",
    "clean": 13,
    "cleanBand": "strong",
+   "cleanTop": 0.92,
    "noisy": [
-    22,
+    23,
     3,
     8
    ]
@@ -704,6 +736,7 @@
    "provenance": "estimated",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     4,
     3,
@@ -716,6 +749,7 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     9,
     10,
@@ -728,9 +762,10 @@
    "provenance": "onet",
    "clean": 8,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     8,
-    18,
+    19,
     16
    ]
   },
@@ -740,6 +775,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     8,
     4,
@@ -752,6 +788,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     1,
@@ -764,6 +801,7 @@
    "provenance": "estimated",
    "clean": 9,
    "cleanBand": "strong",
+   "cleanTop": 0.9,
    "noisy": [
     6,
     13,
@@ -776,6 +814,7 @@
    "provenance": "estimated",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -788,6 +827,7 @@
    "provenance": "estimated",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     1,
     4,
@@ -800,6 +840,7 @@
    "provenance": "estimated",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     3,
@@ -810,12 +851,13 @@
    "id": "strategy_bizops",
    "name": "Strategy, business operations & corporate development",
    "provenance": "onet",
-   "clean": 5,
+   "clean": 6,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     6,
     3,
-    15
+    17
    ]
   },
   {
@@ -824,9 +866,10 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 0.9,
    "noisy": [
     2,
-    7,
+    6,
     4
    ]
   },
@@ -836,6 +879,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     4,
     6,
@@ -848,10 +892,11 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     1,
-    6
+    7
    ]
   },
   {
@@ -860,6 +905,7 @@
    "provenance": "onet",
    "clean": 13,
    "cleanBand": "strong",
+   "cleanTop": 0.51,
    "noisy": [
     17,
     42,
@@ -872,6 +918,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -884,6 +931,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     9,
     4,
@@ -896,6 +944,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     1,
@@ -908,6 +957,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     3,
     1,
@@ -920,6 +970,7 @@
    "provenance": "estimated",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     3,
@@ -932,6 +983,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -944,6 +996,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     1,
     1,
@@ -956,9 +1009,10 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.91,
    "noisy": [
     2,
-    25,
+    26,
     3
    ]
   },
@@ -968,6 +1022,7 @@
    "provenance": "onet",
    "clean": 9,
    "cleanBand": "strong",
+   "cleanTop": 0.77,
    "noisy": [
     17,
     37,
@@ -980,10 +1035,11 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     9,
     1,
-    16
+    17
    ]
   },
   {
@@ -992,6 +1048,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1004,10 +1061,11 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
-    3
+    4
    ]
   },
   {
@@ -1016,6 +1074,7 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
     11,
     15,
@@ -1028,10 +1087,11 @@
    "provenance": "onet",
    "clean": 6,
    "cleanBand": "strong",
+   "cleanTop": 0.75,
    "noisy": [
     24,
-    11,
-    12
+    10,
+    11
    ]
   },
   {
@@ -1040,6 +1100,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1052,6 +1113,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1064,6 +1126,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     6,
     4,
@@ -1076,6 +1139,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     18,
     1,
@@ -1088,6 +1152,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     2,
     1,
@@ -1100,22 +1165,24 @@
    "provenance": "onet",
    "clean": 8,
    "cleanBand": "strong",
+   "cleanTop": 0.5,
    "noisy": [
     8,
     25,
-    3
+    4
    ]
   },
   {
    "id": "real_estate_agency",
    "name": "Real estate brokerage",
    "provenance": "onet",
-   "clean": 24,
+   "clean": 25,
    "cleanBand": "possible",
+   "cleanTop": 0.32,
    "noisy": [
-    32,
-    25,
-    28
+    33,
+    26,
+    27
    ]
   },
   {
@@ -1124,10 +1191,11 @@
    "provenance": "onet",
    "clean": 26,
    "cleanBand": "possible",
+   "cleanTop": 0.23,
    "noisy": [
     40,
     6,
-    40
+    42
    ]
   },
   {
@@ -1136,10 +1204,11 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 0.84,
    "noisy": [
     3,
     4,
-    17
+    18
    ]
   },
   {
@@ -1148,6 +1217,7 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     15,
     5,
@@ -1160,6 +1230,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     7,
     3,
@@ -1172,6 +1243,7 @@
    "provenance": "onet",
    "clean": 15,
    "cleanBand": "strong",
+   "cleanTop": 0.79,
    "noisy": [
     18,
     12,
@@ -1184,6 +1256,7 @@
    "provenance": "onet",
    "clean": 5,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     5,
     5,
@@ -1196,6 +1269,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 0.96,
    "noisy": [
     4,
     5,
@@ -1208,9 +1282,10 @@
    "provenance": "onet",
    "clean": 5,
    "cleanBand": "strong",
+   "cleanTop": 0.96,
    "noisy": [
     18,
-    11,
+    12,
     17
    ]
   },
@@ -1220,6 +1295,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1232,6 +1308,7 @@
    "provenance": "onet",
    "clean": 11,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     12,
     11,
@@ -1244,6 +1321,7 @@
    "provenance": "onet",
    "clean": 7,
    "cleanBand": "strong",
+   "cleanTop": 0.7,
    "noisy": [
     5,
     21,
@@ -1256,9 +1334,10 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 0.96,
    "noisy": [
     5,
-    2,
+    3,
     10
    ]
   },
@@ -1268,6 +1347,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     2,
     2,
@@ -1280,6 +1360,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.83,
    "noisy": [
     11,
     6,
@@ -1292,6 +1373,7 @@
    "provenance": "onet",
    "clean": 12,
    "cleanBand": "strong",
+   "cleanTop": 0.94,
    "noisy": [
     24,
     12,
@@ -1304,6 +1386,7 @@
    "provenance": "onet",
    "clean": 13,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     14,
     13,
@@ -1316,6 +1399,7 @@
    "provenance": "onet",
    "clean": 17,
    "cleanBand": "strong",
+   "cleanTop": 0.66,
    "noisy": [
     11,
     14,
@@ -1328,9 +1412,10 @@
    "provenance": "onet",
    "clean": 5,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     4,
-    5,
+    4,
     5
    ]
   },
@@ -1340,9 +1425,10 @@
    "provenance": "onet",
    "clean": 14,
    "cleanBand": "strong",
+   "cleanTop": 0.83,
    "noisy": [
     12,
-    7,
+    8,
     13
    ]
   },
@@ -1352,10 +1438,11 @@
    "provenance": "onet",
    "clean": 9,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     12,
     16,
-    5
+    4
    ]
   },
   {
@@ -1364,6 +1451,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     2,
@@ -1376,10 +1464,11 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     3,
-    13
+    14
    ]
   },
   {
@@ -1388,6 +1477,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1398,8 +1488,9 @@
    "id": "specialist_trades",
    "name": "Specialist trades & services",
    "provenance": "onet",
-   "clean": 25,
+   "clean": 22,
    "cleanBand": "possible",
+   "cleanTop": 0.4,
    "noisy": [
     19,
     29,
@@ -1412,6 +1503,7 @@
    "provenance": "onet",
    "clean": 22,
    "cleanBand": "strong",
+   "cleanTop": 0.54,
    "noisy": [
     23,
     25,
@@ -1424,6 +1516,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     5,
     5,
@@ -1436,6 +1529,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     4,
     4,
@@ -1448,9 +1542,10 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
     7,
-    2,
+    3,
     2
    ]
   },
@@ -1460,6 +1555,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1472,6 +1568,7 @@
    "provenance": "onet",
    "clean": 11,
    "cleanBand": "strong",
+   "cleanTop": 0.93,
    "noisy": [
     10,
     14,
@@ -1484,6 +1581,7 @@
    "provenance": "onet",
    "clean": 31,
    "cleanBand": "possible",
+   "cleanTop": 0.12,
    "noisy": [
     35,
     28,
@@ -1496,10 +1594,11 @@
    "provenance": "onet",
    "clean": 9,
    "cleanBand": "strong",
+   "cleanTop": 0.88,
    "noisy": [
     4,
     14,
-    5
+    6
    ]
   },
   {
@@ -1508,6 +1607,7 @@
    "provenance": "onet",
    "clean": 7,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     16,
     10,
@@ -1520,9 +1620,10 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 0.85,
    "noisy": [
     5,
-    36,
+    35,
     4
    ]
   },
@@ -1532,6 +1633,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.94,
    "noisy": [
     19,
     1,
@@ -1544,10 +1646,11 @@
    "provenance": "onet",
    "clean": 7,
    "cleanBand": "strong",
+   "cleanTop": 0.89,
    "noisy": [
     4,
     5,
-    4
+    3
    ]
   },
   {
@@ -1556,6 +1659,7 @@
    "provenance": "onet",
    "clean": 24,
    "cleanBand": "possible",
+   "cleanTop": 0.33,
    "noisy": [
     20,
     21,
@@ -1568,6 +1672,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.92,
    "noisy": [
     5,
     7,
@@ -1580,6 +1685,7 @@
    "provenance": "onet",
    "clean": 19,
    "cleanBand": "possible",
+   "cleanTop": 0.34,
    "noisy": [
     25,
     20,
@@ -1592,6 +1698,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     6,
     4,
@@ -1604,6 +1711,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     8,
     2,
@@ -1616,6 +1724,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.64,
    "noisy": [
     7,
     5,
@@ -1628,6 +1737,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     9,
     1,
@@ -1640,6 +1750,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     3,
@@ -1652,6 +1763,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     1,
     1,
@@ -1664,6 +1776,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1676,6 +1789,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1688,10 +1802,11 @@
    "provenance": "onet",
    "clean": 6,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     5,
     6,
-    5
+    6
    ]
   },
   {
@@ -1700,6 +1815,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1712,6 +1828,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     4,
     3,
@@ -1724,6 +1841,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1736,6 +1854,7 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     4,
@@ -1748,6 +1867,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     2,
@@ -1760,6 +1880,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     2,
@@ -1772,6 +1893,7 @@
    "provenance": "onet",
    "clean": 5,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     6,
     4,
@@ -1784,6 +1906,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     3,
@@ -1796,6 +1919,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
     3,
     2,
@@ -1808,6 +1932,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     1,
@@ -1820,6 +1945,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     6,
     2,
@@ -1832,8 +1958,9 @@
    "provenance": "onet",
    "clean": 6,
    "cleanBand": "strong",
+   "cleanTop": 0.93,
    "noisy": [
-    8,
+    7,
     13,
     32
    ]
@@ -1844,6 +1971,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1856,6 +1984,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     6,
     5,
@@ -1868,6 +1997,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     3,
     4,
@@ -1880,6 +2010,7 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     5,
     3,
@@ -1892,9 +2023,10 @@
    "provenance": "estimated",
    "clean": 7,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     13,
-    34,
+    35,
     10
    ]
   },
@@ -1904,10 +2036,11 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     12,
     1,
-    14
+    15
    ]
   },
   {
@@ -1916,6 +2049,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.96,
    "noisy": [
     4,
     4,
@@ -1928,6 +2062,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
     2,
     1,
@@ -1940,6 +2075,7 @@
    "provenance": "estimated",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -1952,6 +2088,7 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     5,
     3,
@@ -1964,6 +2101,7 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 0.71,
    "noisy": [
     11,
     35,
@@ -1976,6 +2114,7 @@
    "provenance": "onet",
    "clean": 27,
    "cleanBand": "possible",
+   "cleanTop": 0.26,
    "noisy": [
     30,
     29,
@@ -1988,8 +2127,9 @@
    "provenance": "onet",
    "clean": 6,
    "cleanBand": "strong",
+   "cleanTop": 0.68,
    "noisy": [
-    52,
+    53,
     48,
     19
    ]
@@ -2000,6 +2140,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
     4,
     5,
@@ -2012,6 +2153,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.98,
    "noisy": [
     1,
     1,
@@ -2024,6 +2166,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.94,
    "noisy": [
     8,
     6,
@@ -2036,6 +2179,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
     2,
     6,
@@ -2048,6 +2192,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.85,
    "noisy": [
     24,
     9,
@@ -2060,6 +2205,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     2,
@@ -2072,6 +2218,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -2084,8 +2231,9 @@
    "provenance": "onet",
    "clean": 8,
    "cleanBand": "strong",
+   "cleanTop": 0.63,
    "noisy": [
-    53,
+    52,
     3,
     7
    ]
@@ -2096,6 +2244,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     5,
     1,
@@ -2108,8 +2257,9 @@
    "provenance": "onet",
    "clean": 7,
    "cleanBand": "strong",
+   "cleanTop": 0.95,
    "noisy": [
-    6,
+    7,
     9,
     6
    ]
@@ -2120,6 +2270,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     4,
     3,
@@ -2132,6 +2283,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     6,
     1,
@@ -2144,8 +2296,9 @@
    "provenance": "onet",
    "clean": 10,
    "cleanBand": "strong",
+   "cleanTop": 0.84,
    "noisy": [
-    16,
+    17,
     9,
     8
    ]
@@ -2156,8 +2309,9 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.95,
    "noisy": [
-    10,
+    11,
     1,
     46
    ]
@@ -2168,8 +2322,9 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.91,
    "noisy": [
-    10,
+    11,
     3,
     10
    ]
@@ -2180,6 +2335,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     4,
     6,
@@ -2192,6 +2348,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     3,
     3,
@@ -2204,6 +2361,7 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     4,
@@ -2216,6 +2374,7 @@
    "provenance": "onet",
    "clean": 9,
    "cleanBand": "strong",
+   "cleanTop": 0.89,
    "noisy": [
     12,
     8,
@@ -2228,6 +2387,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -2240,6 +2400,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -2252,6 +2413,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     3,
@@ -2264,6 +2426,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.93,
    "noisy": [
     3,
     2,
@@ -2276,6 +2439,7 @@
    "provenance": "estimated",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 0.82,
    "noisy": [
     1,
     28,
@@ -2288,6 +2452,7 @@
    "provenance": "estimated",
    "clean": 31,
    "cleanBand": "possible",
+   "cleanTop": 0.19,
    "noisy": [
     169,
     18,
@@ -2300,8 +2465,9 @@
    "provenance": "onet",
    "clean": 12,
    "cleanBand": "strong",
+   "cleanTop": 0.8,
    "noisy": [
-    14,
+    15,
     17,
     7
    ]
@@ -2312,6 +2478,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
     4,
     17,
@@ -2324,6 +2491,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     4,
     10,
@@ -2336,6 +2504,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
     2,
     11,
@@ -2348,6 +2517,7 @@
    "provenance": "estimated",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     6,
     2,
@@ -2360,6 +2530,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -2372,6 +2543,7 @@
    "provenance": "estimated",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     19,
     4,
@@ -2384,6 +2556,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     3,
     2,
@@ -2396,6 +2569,7 @@
    "provenance": "estimated",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     7,
@@ -2408,6 +2582,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     6,
     5,
@@ -2418,12 +2593,13 @@
    "id": "ecommerce",
    "name": "E-commerce",
    "provenance": "onet",
-   "clean": 24,
+   "clean": 25,
    "cleanBand": "possible",
+   "cleanTop": 0.32,
    "noisy": [
-    21,
+    22,
     32,
-    29
+    30
    ]
   },
   {
@@ -2432,6 +2608,7 @@
    "provenance": "estimated",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -2444,6 +2621,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.91,
    "noisy": [
     7,
     2,
@@ -2456,6 +2634,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -2468,6 +2647,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     3,
     2,
@@ -2480,6 +2660,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 0.96,
    "noisy": [
     4,
     2,
@@ -2492,8 +2673,9 @@
    "provenance": "onet",
    "clean": 3,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
-    1,
+    2,
     5,
     1
    ]
@@ -2504,6 +2686,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.95,
    "noisy": [
     1,
     1,
@@ -2516,6 +2699,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     3,
     5,
@@ -2528,6 +2712,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.99,
    "noisy": [
     1,
     1,
@@ -2540,6 +2725,7 @@
    "provenance": "onet",
    "clean": 8,
    "cleanBand": "strong",
+   "cleanTop": 0.77,
    "noisy": [
     13,
     7,
@@ -2552,9 +2738,10 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 0.97,
    "noisy": [
-    2,
-    6,
+    3,
+    8,
     4
    ]
   },
@@ -2564,6 +2751,7 @@
    "provenance": "onet",
    "clean": 2,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -2576,6 +2764,7 @@
    "provenance": "estimated",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     1,
@@ -2588,6 +2777,7 @@
    "provenance": "onet",
    "clean": 5,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     16,
     10,
@@ -2600,6 +2790,7 @@
    "provenance": "onet",
    "clean": 4,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     6,
     5,
@@ -2612,6 +2803,7 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     1,
     1,
@@ -2624,9 +2816,10 @@
    "provenance": "onet",
    "clean": 13,
    "cleanBand": "strong",
+   "cleanTop": 0.72,
    "noisy": [
     18,
-    24,
+    25,
     19
    ]
   },
@@ -2636,10 +2829,11 @@
    "provenance": "onet",
    "clean": 1,
    "cleanBand": "strong",
+   "cleanTop": 1,
    "noisy": [
     2,
     1,
-    3
+    2
    ]
   }
  ]
