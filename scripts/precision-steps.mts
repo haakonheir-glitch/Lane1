@@ -6,6 +6,7 @@
  *
  *   npx tsx --conditions=react-server scripts/precision-steps.mts                 → taxonomy/derived/PRECISION_STEPS.md
  *   npx tsx --conditions=react-server scripts/precision-steps.mts --account LN-20261023-H2C --force
+ *   add --final for only the final config: the top 15 and band counts
  *                                                                                  → .data/precision-steps-<id>.md (not committed)
  */
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -42,6 +43,28 @@ L.push(
   `Generated ${new Date().toISOString().slice(0, 10)}.${account ? "" : " The test profiles are read as population percentiles (synthetic.ts, specAs \"percentile\"): the same people under each step's rules."} Each step is added on top of the previous one, starting from v2-0.4: ${STEPS.map((s) => s.label).join(" → ")}. ${V5.draws} draws each. Bands in the lists: S strong, P possible, U unlikely. Fit is the expected fulfilment fit (50 = the person's average career path).`,
   "",
 );
+
+// --final: only the final config (v2-0.5 as configured now): the top 15 and the band counts.
+if (process.argv.includes("--final")) {
+  const F: string[] = [`# Final config (${V5.version}, strong fit at P(top 10%) ≥ ${V5.bands.strong} under both weightings)`, ""];
+  for (const s of subjects) {
+    const r = matchAllV2(s.person(V5), LANE_PROFILES_V2, { config: V5, offsets: offsetsForConfig(V5) });
+    const a = r.archetype ? `${r.archetype.top2.map((x) => `${x.archetype} ${x.share}%`).join(", ")}${r.archetype.tentative ? " (tentative)" : ""}` : "—";
+    F.push(`## ${s.label}`, "", `**Bands:** ${r.bandCounts.strong} strong · ${r.bandCounts.possible} possible · ${r.bandCounts.unlikely} unlikely. **Archetype:** ${a}`, "", "| # | Career path | Band | Fulfilment fit (p10–p90) | Note |", "|---|---|---|---|---|");
+    rankV2(r.lanes)
+      .slice(0, 15)
+      .forEach((l, i) => F.push(`| ${i + 1} | ${l.name} | ${l.band}${l.cappedFrom ? " (capped)" : ""} | ${r1(l.fulfilmentFit.mean)} (${r1(l.fulfilmentFit.p10)}–${r1(l.fulfilmentFit.p90)}) | ${l.capNote ?? ""} |`));
+    F.push("");
+  }
+  const text = F.join("\n") + "\n";
+  console.log(text);
+  if (account) {
+    mkdirSync(".data", { recursive: true });
+    writeFileSync(`.data/precision-final-${account}.md`, text);
+    console.error(`wrote .data/precision-final-${account}.md (not committed: .data is git-ignored)`);
+  }
+  process.exit(0);
+}
 
 for (const s of subjects) {
   L.push(`## ${s.label}`, "");
