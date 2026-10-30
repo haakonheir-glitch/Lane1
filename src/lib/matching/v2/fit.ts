@@ -32,7 +32,7 @@
  */
 import { ENVIRONMENT, VALUE_MODES, type Dimension, type PersonConstructId } from "../../workdesign/model";
 import { overlappingModes, relativeOfDimensions, type Relative } from "../../workdesign/person";
-import { V2_CONFIG, type V2Config } from "./config";
+import { TALENT_NOTE, V2_CONFIG, type V2Config } from "./config";
 import {
   RIASEC,
   WORK_VALUES,
@@ -849,7 +849,10 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
     const f = col(F, j);
     const a = col(A, j);
     const insufficient = f.length === 0;
-    const band: BandV2 = insufficient ? "insufficient" : bandTop(j) >= cfg.bands.strong ? "strong" : bandBottom(j) >= cfg.bands.unlikely ? "unlikely" : "possible";
+    const earned: BandV2 = insufficient ? "insufficient" : bandTop(j) >= cfg.bands.strong ? "strong" : bandBottom(j) >= cfg.bands.unlikely ? "unlikely" : "possible";
+    // Talent-selected career paths never go above "possible": the fit can't see the talent they select on.
+    const capped = earned === "strong" && cfg.talentCapped.includes(l.id);
+    const band: BandV2 = capped ? "possible" : earned;
     const r3 = (x: number) => Math.round(x * 1000) / 1000;
     const { drivers, frictions } = insufficient ? { drivers: [], frictions: [] } : driversFrictions(allParts[j]!, baseline);
     return {
@@ -861,6 +864,7 @@ export function matchAllV2(person: PersonProfile, lanes: Record<string, LaneProf
       pBottom: Math.round(pBottom[j]! * 1000) / 1000,
       ...(split ? { pBy: { need: { top: r3(byTop[0]![j]!), bottom: r3(byBottom[0]![j]!) }, flat: { top: r3(byTop[1]![j]!), bottom: r3(byBottom[1]![j]!) } }, pTopBand: r3(bandTop(j)) } : {}),
       direction: l.direction,
+      ...(cfg.talentCapped.includes(l.id) ? { capNote: TALENT_NOTE, cappedFrom: capped ? ("strong" as const) : undefined } : {}),
       fulfilmentFit: insufficient ? EMPTY : distribution(f),
       abilityFit: a.length ? distribution(a) : null,
       components: scored[j]!.comps,

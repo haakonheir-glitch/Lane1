@@ -13,6 +13,7 @@ import type { ProfileScores } from "../scoring/profile";
 import { LANE_PROFILES_V2, LANE_PROFILES_V2_STAMP, ROLE_PROFILES_V2, V2_CONFIG, matchV2, penaltyOf, profileSeed, type Distribution, type LaneMatchV2, type MatchResultV2 } from "../matching/v2";
 import { toV1Matches } from "../matching/v2/adapter";
 import { personInputs, personWorkDesign } from "../workdesign/person";
+import { applyNorms } from "../scoring/norms";
 import { ENVIRONMENT, VALUE_MODES } from "../workdesign/model";
 import { workBest, type WorkBest } from "../workdesign/best";
 import { CAREER_DAYS_STAMP, typicalDay } from "../workdesign/day";
@@ -22,6 +23,13 @@ import type { ExperienceAnswers } from ".";
 import type { ReportCareerPath } from "../report/facts";
 
 const roleRef = (r: Role): RoleRef => ({ id: r.id, title: r.title, level: r.level, mode: r.mode, aka: r.aka });
+
+/**
+ * The profile as matching reads it. The person's own profile and report stay relative to themselves
+ * (owner's decision, 2026-10-30): published norms are applied here, for matching only, when the
+ * running config reads them. Pure; cached per profile.
+ */
+export const matchingProfile = cache((profile: ProfileScores): ProfileScores => (V2_CONFIG.inputs.norms ? applyNorms(profile) : profile));
 
 /** Which matching produced cached results: part of the cache key, so retuning v2 or rebuilding its data recomputes. */
 export const matchingCacheKey = () => `v2:${V2_CONFIG.version}:${LANE_PROFILES_V2_STAMP}:${CAREER_DAYS_STAMP}`;
@@ -36,7 +44,7 @@ type V2Memo = { result: MatchResultV2; byLane: Map<string, LaneMatchV2>; adapted
  */
 const v2Memo = new Map<string, V2Memo>();
 function matchV2Memo(profile: ProfileScores): V2Memo {
-  const person = { inputs: personInputs(profile, V2_CONFIG.inputs) };
+  const person = { inputs: personInputs(matchingProfile(profile), V2_CONFIG.inputs) };
   const key = `${V2_CONFIG.version}:${profileSeed(person)}`;
   let r = v2Memo.get(key);
   if (!r) {
@@ -57,10 +65,10 @@ export const nativeFor = cache((profile: ProfileScores): V2Memo => matchV2Memo(p
  */
 const roleDataFor = cache((profile: ProfileScores): RoleData | undefined => {
   if (!V2_CONFIG.rolesFromData) return undefined;
-  const inputs = personInputs(profile, V2_CONFIG.inputs);
+  const inputs = personInputs(matchingProfile(profile), V2_CONFIG.inputs);
   const codes = ["R", "I", "A", "S", "E", "C"] as const;
   const interests = codes.every((c) => inputs[`interests.${c}`]) ? codes.map((c) => inputs[`interests.${c}`]!.value) : null;
-  const wd = personWorkDesign(profile, undefined, V2_CONFIG.inputs);
+  const wd = personWorkDesign(matchingProfile(profile), undefined, V2_CONFIG.inputs);
   const w = V2_CONFIG.weights;
   return {
     interests,
@@ -95,6 +103,7 @@ function toRow(lane: Lane, m: LaneMatch, exp: ExperienceAnswers, n?: LaneMatchV2
     fulfilment: n ? range(n.fulfilmentFit) : null,
     ability: n ? range(n.abilityFit) : null,
     provenance: n?.provenance ?? null,
+    capNote: n?.capNote ?? null,
   };
 }
 
@@ -216,7 +225,7 @@ const fitDriver = (d: { id: string; label: string; contribution: number }): FitD
  * detail panel says. For working conditions, `gap` is the mismatch on the side that can hurt.
  */
 function dimRows(laneId: string, profile: ProfileScores): DimRow[] {
-  const wd = personWorkDesign(profile, undefined, V2_CONFIG.inputs);
+  const wd = personWorkDesign(matchingProfile(profile), undefined, V2_CONFIG.inputs);
   const career = LANE_PROFILES_V2[laneId];
   const z = 1.645;
   const you = (v: number | null, se: number | null) =>
@@ -236,7 +245,7 @@ function dimRows(laneId: string, profile: ProfileScores): DimRow[] {
 }
 
 /** "How you work best" for the profile: archetype blend, value modes, working conditions and drains. */
-export const workBestFor = cache((profile: ProfileScores): WorkBest => workBest(personWorkDesign(profile, undefined, V2_CONFIG.inputs), nativeFor(profile).result, LANE_PROFILES_V2));
+export const workBestFor = cache((profile: ProfileScores): WorkBest => workBest(personWorkDesign(matchingProfile(profile), undefined, V2_CONFIG.inputs), nativeFor(profile).result, LANE_PROFILES_V2));
 
 export const laneName = (id: string) => getLane(id)?.name ?? id;
 
@@ -268,6 +277,7 @@ export function reportLanes(profile: ProfileScores, exp: ExperienceAnswers): Rep
         fulfilmentFit: n ? range(n.fulfilmentFit) : null,
         abilityFit: n ? range(n.abilityFit) : null,
         estimatedProfile: n?.provenance === "estimated",
+        talentNote: n?.capNote ?? null,
         drivers: n ? n.drivers.map((d) => d.label) : m.drivers.filter((d) => d.contribution > 0).map((d) => d.label),
         frictions: n ? n.frictions.map((d) => d.label) : m.drivers.filter((d) => d.contribution < 0).map((d) => d.label),
         entry: taxonomy.entry[lane.entry],

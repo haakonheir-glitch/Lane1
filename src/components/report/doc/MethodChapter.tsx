@@ -4,9 +4,13 @@ import type { ScaleScore } from "@/lib/scoring/types";
 import { BRAND } from "@/lib/brand";
 import { LIMITATIONS } from "@/lib/view/profile";
 import { basisLine } from "@/lib/view/findings";
+import { V2_CONFIG } from "@/lib/matching/v2/config";
 import { OnetAttribution } from "@/components/report/OnetAttribution";
 import { OnetDbAttribution } from "@/components/report/OnetDbAttribution";
 import { Chapter } from "./Chapter";
+
+/** The running matching config reads published norms (v2-0.5 on). */
+const MATCHING_NORMS = V2_CONFIG.inputs.norms;
 
 const answered = (xs: { answered: number }[]) => xs.reduce((n, x) => n + x.answered, 0);
 const meanRel = (xs: { reliability: number }[]) => (xs.length ? (xs.reduce((n, x) => n + x.reliability, 0) / xs.length).toFixed(2) : "—");
@@ -87,6 +91,14 @@ export function MethodChapter({ n, profile }: { n: string; profile: ProfileScore
       <h3 className="mt-12 text-h3 font-medium text-ink">Notes on the measures</h3>
       <ul className="mt-4 flex max-w-[760px] list-disc flex-col gap-3 pl-5 text-body text-ink-2">
         <li>{basisLine(p)}. A difference is called a strength or weakness only when it is larger than the measurement error of that difference.</li>
+        {MATCHING_NORMS && (p.interests || p.personality) ? (
+          <li>
+            For matching only, your interest and personality scores are also compared with published groups, and those comparisons are not shown in this
+            report. Interests: about 575 US adults aged 18 to 65 who took the O*NET Interest Profiler in a study for its developers (Rounds and colleagues,
+            2016). Personality: a large online sample of mostly US adults of all ages, average age 28, who took the same personality questionnaire (320,128
+            people; Kajonius and Johnson, 2019). Neither group is Norwegian or limited to your age.
+          </li>
+        ) : null}
         {p.personality ? <li>Facets have four items each, so their ranges are wide: read them as hints, never decide anything from a single facet. Openness is scored from five facets (the political-attitudes facet is not used).</li> : null}
         {p.reasoning?.norms?.provisional ? (
           <li>

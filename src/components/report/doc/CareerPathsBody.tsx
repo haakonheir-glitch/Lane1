@@ -37,6 +37,7 @@ export function CareerPathsBody({ picks, connections, print }: { picks: CareerPi
                 </div>
                 <p className="mt-1 text-small text-ink-3">{p.row.familyName}</p>
                 {p.why.length ? <p className="mt-2 text-small text-ink-2">Why it fits: {p.why.join(" · ")}</p> : null}
+                {p.row.capNote ? <p className="mt-1 text-small text-ink-3">{p.row.capNote}</p> : null}
               </div>
               {v2 ? (
                 <dl className="grid gap-3">

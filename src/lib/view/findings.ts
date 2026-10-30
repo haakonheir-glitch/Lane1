@@ -7,6 +7,7 @@ import { normBasis } from "@/lib/scoring/norms";
 import type { ProfileScores } from "@/lib/scoring/profile";
 import type { ScaleScore } from "@/lib/scoring/types";
 import { fmtBand, fmtPct, listWords as list, relativeOf } from "./profile";
+import { hollandDisplay } from "./holland";
 
 export type KeyFigure = {
   id: "interests" | "values" | "personality" | "reasoning";
@@ -47,8 +48,8 @@ export function keyFigures(p: ProfileScores): KeyFigure[] {
     {
       id: "interests",
       label: "Interests",
-      value: i ? (i.hollandCode ?? (i.lowDifferentiation ? "Even" : "—")) : null,
-      detail: i ? (i.hollandCode ? `Holland code · ${ranked[0]!.label} first` : "No single area leads") : "Session S1",
+      value: i ? (hollandDisplay(i).text ?? (i.lowDifferentiation ? "Even" : "—")) : null,
+      detail: i ? (hollandDisplay(i).text ? `Holland code · ${ranked[0]!.label} first` : "No single area clearly leads") : "Session S1",
       source: i ? `Interest Profiler · ${answered(i.scales)} items` : "Not done yet",
     },
     {

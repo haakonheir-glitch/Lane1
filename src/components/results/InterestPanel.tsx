@@ -1,6 +1,7 @@
 import { RadarProfile } from "@/components/data/RadarProfile";
 import type { InterestScores } from "@/lib/scoring/interests";
 import { radarDims, relativeOf } from "@/lib/view/profile";
+import { hollandDisplay } from "@/lib/view/holland";
 import { NormedFigure } from "./NormedBar";
 import { RelativeTag } from "./RelativeTag";
 
@@ -44,14 +45,16 @@ export function InterestPanel({ interests }: { interests: InterestScores }) {
           </tbody>
         </table>
         <p className="mt-4 text-small text-ink-3">
-          {interests.hollandCode ? (
+          {hollandDisplay(interests).text ? (
             <>
-              Holland code <span className="font-mono text-ink">{interests.hollandCode}</span> (your three highest areas). Spread between highest and
+              Holland code <span className="font-mono text-ink">{hollandDisplay(interests).text}</span> (only the areas clearly above your own average). Spread between highest and
               lowest: <span className="font-mono text-ink">{interests.differentiation}</span> points; overall level{" "}
               <span className="font-mono text-ink">{interests.elevation?.toFixed(1)}</span>.
             </>
           ) : interests.lowDifferentiation ? (
             "Your six interest areas are close together, so no Holland code is assigned. That usually means interests are still forming."
+          ) : interests.hollandCode ? (
+            "No area is clearly above your own average once measurement error is allowed for, so no Holland code is shown."
           ) : (
             "Holland code appears when all six areas are complete."
           )}

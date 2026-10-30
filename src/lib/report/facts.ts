@@ -6,6 +6,7 @@ import { normBasis, type Basis } from "../scoring/norms";
 import type { ProfileScores } from "../scoring/profile";
 import type { ScaleScore } from "../scoring/types";
 import { pctBand, relativeOf } from "../view/profile";
+import { hollandDisplay } from "../view/holland";
 import type { WorkBest } from "../workdesign/best";
 
 type Range = { mean: number; p10: number; p90: number };
@@ -19,6 +20,8 @@ export type ReportCareerPath = {
   abilityFit: Range | null;
   /** True when the career's O*NET profile is estimated from analog occupations, not linked. */
   estimatedProfile: boolean;
+  /** Talent-selected career paths: capped at "possible", with this note (to be said as it is). */
+  talentNote: string | null;
   drivers: string[];
   frictions: string[];
   entry: string;
@@ -64,7 +67,8 @@ export function buildReportFacts(p: ProfileScores, careerPaths: ReportCareerPath
           : `${bases.interests === "population" ? "Interests" : "Personality"} are compared with published population norms (provisional; vsPopulation is a z-score, 0 = the norm group's average). ${bases.interests === "population" ? "Personality is" : "Interests are"} compared with this person's own other scores (vsOwnAverage, 0 = their own average). Never compare the two kinds of number.`,
     interests: p.interests
       ? {
-          hollandCode: p.interests.hollandCode,
+          // Only letters clearly above the person's own average; a weak third is marked "(R, weak)".
+          hollandCode: hollandDisplay(p.interests).text,
           lowDifferentiation: p.interests.lowDifferentiation,
           areas: [...p.interests.scales]
             .sort((a, b) => (b.raw ?? 0) - (a.raw ?? 0))

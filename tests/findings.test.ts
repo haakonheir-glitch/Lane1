@@ -2,12 +2,14 @@ import { describe, expect, it } from "vitest";
 import { sampleProfile } from "@/lib/mock/profile";
 import { basisLine, findings, keyFigures, standoutDomain } from "@/lib/view/findings";
 import type { ProfileScores } from "@/lib/scoring/profile";
+import { hollandDisplay } from "@/lib/view/holland";
 
 describe("report cover and findings", () => {
   it("reads the four headline figures from computed scores", () => {
     const f = keyFigures(sampleProfile);
     expect(f.map((x) => x.id)).toEqual(["interests", "values", "personality", "reasoning"]);
-    expect(f[0]!.value).toBe(sampleProfile.interests!.hollandCode);
+    // Only letters clearly above the comparison point (tests/holland.test.ts).
+    expect(f[0]!.value).toBe(hollandDisplay(sampleProfile.interests).text);
     expect(f[1]!.value).toBe(sampleProfile.values!.find((v) => v.rank === 1)!.label);
     expect(f[2]!.value).toBe(standoutDomain(sampleProfile)!.label);
     const [lo, hi] = sampleProfile.reasoning!.generalAbility!.percentileBand;

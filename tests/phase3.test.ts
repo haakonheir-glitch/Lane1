@@ -4,7 +4,8 @@
  */
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { sampleProfile } from "@/lib/mock/profile";
-import { buildLaneDetail, buildLaneMap, reportLanes, workBestFor } from "@/lib/data/lanes";
+import { buildLaneDetail, buildLaneMap, matchingProfile, reportLanes, workBestFor } from "@/lib/data/lanes";
+import { applyNorms } from "@/lib/scoring/norms";
 import { typicalDay } from "@/lib/workdesign/day";
 import { workBest, DRAIN_GAP } from "@/lib/workdesign/best";
 import { personWorkDesign } from "@/lib/workdesign/person";
@@ -51,6 +52,17 @@ describe("career map under matching v2", () => {
     expect(cps.length).toBeGreaterThan(0);
     expect(cps.every((c) => c.fulfilmentFit && ["strong", "possible", "unlikely", "insufficient"].includes(c.band))).toBe(true);
     expect(JSON.stringify(cps)).not.toMatch(/\blanes?\b/i);
+  });
+});
+
+describe("norms reach matching only (owner's decision, 2026-10-30)", () => {
+  it("leaves the shown profile as it is and norms the copy matching reads", () => {
+    const shown = applyNorms(sampleProfile, {});
+    expect(shown.interests!.scales.every((s) => s.normed === null)).toBe(true);
+    const m = matchingProfile(shown);
+    expect(m.interests!.scales.every((s) => s.normed)).toBe(true);
+    expect(m.personality!.domains.every((s) => s.normed)).toBe(true);
+    expect(shown.interests!.scales.every((s) => s.normed === null)).toBe(true);
   });
 });
 

@@ -22,6 +22,7 @@ export function LaneRow({ lane, active, onSelect, showFamily }: { lane: LaneRowD
           {showFamily ? `${lane.familyName} · ` : ""}
           <span title={`Entry: ${entryTerm[lane.entry]}`}>{entryLabel[lane.entry]}</span>
         </span>
+        {lane.capNote ? <span className="text-small text-ink-3">{lane.capNote}</span> : null}
       </span>
       <span className="col-start-1 row-start-2 flex items-center gap-3 md:col-start-auto md:row-start-auto">
         <BandTag band={lane.band} />

@@ -93,6 +93,9 @@ export type LaneMatchV2 = FitV2 & {
   pTopBand?: number;
   /** The career path's own leading value mode (its "direction"). */
   direction: string | null;
+  /** Talent-selected career paths (config talentCapped): the note shown with them, and "strong" when the cap lowered the band. */
+  capNote?: string;
+  cappedFrom?: "strong";
 };
 
 export type ArchetypeBlend = {

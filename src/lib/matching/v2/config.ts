@@ -55,7 +55,14 @@ export type V2Config = {
   ensemble: { concentration: number; flatEnvShare: number } | null;
   /** Rank starting roles from their own O*NET profile where they have one (false: by tags, as before). */
   rolesFromData: boolean;
+  /**
+   * Career paths where success depends on talent Lane can't measure (sport, esports, competitive
+   * games, performing): never above "possible fit", with TALENT_NOTE. Empty: no cap.
+   */
+  talentCapped: string[];
 };
+
+export const TALENT_NOTE = "Fits your interests and working style; success depends on talent Lane can't measure.";
 
 export type ValidationStatus = "validated" | "derived" | "provisional";
 
@@ -136,6 +143,7 @@ const V2_0_4: V2Config = {
   validationMultiplier: { validated: 1, derived: 1, provisional: 1 },
   ensemble: null,
   rolesFromData: false,
+  talentCapped: [],
 };
 
 /** v2-0.3: v2-0.4 without the reasoning-strengths component (weight 0). Kept for comparison. */
@@ -155,7 +163,8 @@ const V2_0_3: V2Config = { ...V2_0_4, version: "v2-0.3", weights: { ...V2_0_4.we
  *    Reasoning strengths keeps its small 0.08 (renormalised when present, as since v2-0.4);
  * 5. a weight ensemble: Dirichlet weights (concentration 40) and, half the time, flat environment
  *    weighting, so a band can't hang on one exact choice of weights;
- * 6. starting roles ranked from their own O*NET profile where they have one (matching/roles.ts).
+ * 6. starting roles ranked from their own O*NET profile where they have one (matching/roles.ts);
+ * 7. talent-selected career paths capped at "possible fit" (talentCapped).
  */
 const V2_0_5: V2Config = {
   ...V2_0_4,
@@ -165,6 +174,8 @@ const V2_0_5: V2Config = {
   envCap: 0.15,
   ensemble: { concentration: 40, flatEnvShare: 0.5 },
   rolesFromData: true,
+  /** The owner's list (2026-10-30): professional sport, esports, professional strategy games and the performing careers. */
+  talentCapped: ["pro_sport", "esports", "strategy_games", "acting", "music_performance", "dance", "modelling", "broadcasting", "comedy", "variety"],
 };
 
 /** Every selectable config, by version. */

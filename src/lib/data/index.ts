@@ -22,7 +22,7 @@ import type { SessionId } from "../bank/types";
 import type { YearsBand } from "../matching";
 import { V2_CONFIG } from "../matching/v2";
 import type { OnboardingAnswers, User } from "../types";
-import { buildCareerPicks, buildLaneDetail, buildLaneMap, laneName, matchingCacheKey, reportLanes, workBestFor } from "./lanes";
+import { buildCareerPicks, buildLaneDetail, buildLaneMap, laneName, matchingCacheKey, matchingProfile, reportLanes, workBestFor } from "./lanes";
 import { buildReportFacts, type ReportFacts } from "../report/facts";
 import { factsHash, latestReport } from "../report/service";
 import { BRAND } from "../brand";
@@ -148,11 +148,11 @@ async function buildMyProfile(userId: string): Promise<ProfileScores | null> {
     scored[s.sessionId as SessionId] = { scores: current, completedAt: (s.completedAt ?? s.startedAt).toISOString() };
   }
   if (!scored.S1 && !scored.S2) return null;
-  // Norms apply only when the running matching config reads them, so v2-0.4 and earlier reproduce exactly.
-  const built = buildProfile(scored, "pending");
-  const profile = addSelfScores(V2_CONFIG.inputs.norms ? applyNorms(built) : applyNorms(built, {}));
+  // The profile the person sees is relative to themselves: stored norms are cleared here, and
+  // published norms are applied for matching only (lanes.ts, matchingProfile).
+  const profile = addSelfScores(applyNorms(buildProfile(scored, "pending"), {}));
   // Research scales in shadow mode: logged next to the Work Design dimensions, never shown.
-  logShadow(shadowRecord(Object.values(scored).map((x) => x!.scores), personWorkDesign(profile, undefined, V2_CONFIG.inputs)), userId);
+  logShadow(shadowRecord(Object.values(scored).map((x) => x!.scores), personWorkDesign(matchingProfile(profile), undefined, V2_CONFIG.inputs)), userId);
   return profile;
 }
 

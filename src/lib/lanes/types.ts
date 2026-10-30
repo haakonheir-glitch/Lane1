@@ -33,6 +33,8 @@ export type LaneRowData = {
   ability: FitRange | null;
   /** Where the career's O*NET profile comes from ("estimated" profiles are marked in the UI). */
   provenance: "onet" | "estimated" | "unlinked" | null;
+  /** Talent-selected career paths: never above "possible fit", with this note. */
+  capNote?: string | null;
 };
 
 export type RoleRef = { id: string; title: string; level: LevelId; mode: ModeId; aka: string[] };

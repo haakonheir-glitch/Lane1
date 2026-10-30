@@ -4,6 +4,7 @@
  * that keeps v2-0.3 and v2-0.4 selectable.
  */
 import { describe, expect, it } from "vitest";
+import { TALENT_NOTE } from "@/lib/matching/v2/config";
 import { DEFAULT_V2_VERSION, LANE_PROFILES_V2, V2_CONFIGS, effectiveWeights, envGuardFor, matchV2, offsetsFor, selectConfig, type V2Config } from "@/lib/matching/v2";
 import { synthetic, TEST_PROFILES } from "@/lib/matching/v2/synthetic";
 import { ORDER_STATS_6, VALUES_SHRINKAGE, personInputs, valueEstimates } from "@/lib/workdesign/person";
@@ -158,5 +159,27 @@ describe("weight ensemble (step 5)", () => {
     const a = matchV2(p, { config: still, draws: 60 }).lanes.map((l) => l.fulfilmentFit.mean);
     const b = matchV2(p, { config: off, draws: 60 }).lanes.map((l) => l.fulfilmentFit.mean);
     a.forEach((x, i) => expect(Math.abs(x - b[i]!)).toBeLessThan(0.15));
+  });
+});
+
+describe("talent-selected career paths (owner's decision, 2026-10-30)", () => {
+  it("are never above possible fit, and carry the note", () => {
+    const p = synthetic(TEST_PROFILES.analyst!.spec, V5.inputs);
+    const free = matchV2(p, { config: { ...V5, talentCapped: [] }, draws: 60 });
+    const top = free.lanes.find((l) => l.band === "strong")!;
+    const capped = matchV2(p, { config: { ...V5, talentCapped: [top.laneId] }, draws: 60 }).lanes.find((l) => l.laneId === top.laneId)!;
+    expect(capped.band).toBe("possible");
+    expect(capped.cappedFrom).toBe("strong");
+    expect(capped.capNote).toBe(TALENT_NOTE);
+    // Everything else is untouched.
+    expect(capped.fulfilmentFit).toEqual(top.fulfilmentFit);
+  });
+
+  it("covers the owner's list, every id a real career path, and nothing under v2-0.4", () => {
+    const ids = new Set(Object.keys(LANE_PROFILES_V2));
+    expect(V5.talentCapped).toEqual(expect.arrayContaining(["pro_sport", "esports", "strategy_games", "acting", "music_performance"]));
+    for (const id of V5.talentCapped) expect(ids.has(id), id).toBe(true);
+    expect(V4.talentCapped).toEqual([]);
+    expect(TALENT_NOTE).toBe("Fits your interests and working style; success depends on talent Lane can't measure.");
   });
 });

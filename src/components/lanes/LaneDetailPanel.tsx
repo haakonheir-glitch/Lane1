@@ -53,6 +53,7 @@ function FitV2({ v2, row, headingId }: { v2: LaneDetailV2; row: LaneDetail["row"
           In your top 10% in {Math.round(v2.pTop * 100)}% of draws{v2.bothWeightings ? ", under either way of weighting working conditions" : ""}
         </span>
       </div>
+      {row.capNote ? <p className="mt-2 text-small text-ink-2">{row.capNote}</p> : null}
       <dl className="mt-4 grid gap-4">
         <div>
           <dt className="flex justify-between gap-3 text-small text-ink">

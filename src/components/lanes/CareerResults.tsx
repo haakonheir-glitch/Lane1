@@ -102,6 +102,7 @@ export function HeroCareer({ p }: { p: CareerPick }) {
           {p.role ? <p className="text-body text-ink">{p.role.reason}</p> : null}
           {p.role?.note ? <p className="text-small text-caution">{p.role.note}</p> : null}
           <Why items={p.why} />
+          {p.row.capNote ? <p className="text-small text-ink-3">{p.row.capNote}</p> : null}
           {p.alsoRoles.length ? (
             <p className="text-small text-ink-2">
               <span className="label text-ink-3">Also in this career</span>
@@ -149,6 +150,7 @@ export function RankedCareer({ p, rank }: { p: CareerPick; rank: number }) {
       </p>
       <FitIndicator vsAverage={p.row.vsAverage} se={p.row.se} className="mt-6" />
       <Why items={p.why.slice(0, 2)} className="mt-5" />
+      {p.row.capNote ? <p className="mt-2 text-small text-ink-3">{p.row.capNote}</p> : null}
       <Meta p={p} className="mt-auto pt-5" />
     </Link>
   );

@@ -32,6 +32,7 @@ const lane: ReportCareerPath = {
   fulfilmentFit: { mean: 65.2, p10: 62.1, p90: 68 },
   abilityFit: null,
   estimatedProfile: false,
+  talentNote: null,
   drivers: ["Enterprising interests"],
   frictions: ["Autonomy: less than you need"],
   entry: "Open",
