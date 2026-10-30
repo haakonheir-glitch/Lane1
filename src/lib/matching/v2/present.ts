@@ -87,8 +87,10 @@ export function directionsOf(r: MatchResultV2, familyOf: (laneId: string) => str
       if (!used.has(mode)) chosen.push({ mode, family: null, lanes: ls });
     }
   }
+  // Two passes: every direction first claims its own career paths, then a direction of one is
+  // filled, so a fill never takes a career path that belongs to a later direction.
   const taken = new Set<string>();
-  return chosen.map((g) => {
+  const filled = chosen.map((g) => {
     const out: LaneMatchV2[] = [];
     const perFamily = new Map<string, number>();
     const add = (l: LaneMatchV2) => {
@@ -99,6 +101,9 @@ export function directionsOf(r: MatchResultV2, familyOf: (laneId: string) => str
       perFamily.set(f, (perFamily.get(f) ?? 0) + 1);
     };
     for (const l of g.lanes) if (out.length < per) add(l);
+    return { g, out, add };
+  });
+  return filled.map(({ g, out, add }) => {
     // A direction of one: the next best career path that leads with the same mode.
     for (const l of visible) if (out.length < 2 && l.direction === g.mode && (g.family === null || familyOf(l.laneId) === g.family)) add(l);
     return { mode: g.mode, family: g.family, laneIds: out.map((l) => l.laneId) };

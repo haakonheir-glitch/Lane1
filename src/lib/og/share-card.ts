@@ -9,7 +9,8 @@ export type ShareCard = {
   firstName: string;
   hollandCode: string | null;
   topValue: string | null;
-  paths: { name: string; band: Band }[];
+  /** One career path from each of the first three directions; `estimated` carries the estimated-career-data marker. */
+  paths: { name: string; band: Band; estimated: boolean }[];
   mark: MarkInput;
   /** Present only when the person turns them on. */
   personality?: string | null;
@@ -27,7 +28,7 @@ export function shareCardFrom(profile: ProfileScores, firstName: string, picks: 
     firstName,
     hollandCode: f.interests ?? null,
     topValue: f.values ?? null,
-    paths: groupDirections(picks).slice(0, 3).map((d) => d.picks[0]!).map((p) => ({ name: p.row.name, band: p.row.band })),
+    paths: groupDirections(picks).slice(0, 3).map((d) => d.picks[0]!).map((p) => ({ name: p.row.name, band: p.row.band, estimated: p.row.provenance === "estimated" })),
     mark: { ...m, reasoning: opts.reasoning ? m.reasoning : null, domains: opts.personality ? m.domains : m.domains.map(() => null) },
     ...(opts.personality ? { personality: f.personality ?? null } : {}),
     ...(opts.reasoning ? { reasoning: f.reasoning ?? null } : {}),

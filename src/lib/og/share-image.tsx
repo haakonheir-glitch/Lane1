@@ -68,7 +68,10 @@ export async function renderShareCard(card: ShareCard) {
             <div style={{ ...label, fontSize: 11, color: PANEL_INK_2 }}>Your directions</div>
             {card.paths.map((p, i) => (
               <div key={p.name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderTop: i ? `1px solid ${PANEL_RULE}` : "none", marginTop: i ? 0 : 4 }}>
-                <div style={{ display: "flex", fontSize: 20, marginRight: 12 }}>{p.name}</div>
+                <div style={{ display: "flex", flexDirection: "column", marginRight: 12 }}>
+                  <div style={{ display: "flex", fontSize: 20 }}>{p.name}</div>
+                  {p.estimated ? <div style={{ ...label, fontSize: 10, color: PANEL_INK_2, marginTop: 2 }}>Estimated career data</div> : null}
+                </div>
                 <div style={{ ...label, fontSize: 10, color: PANEL_INK, border: `1px solid ${PANEL_INK_2}`, padding: "2px 6px", flexShrink: 0 }}>{bandLabel[p.band]}</div>
               </div>
             ))}

@@ -116,6 +116,18 @@ describe("directions", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
+  it("never fills a direction with a career path that belongs to a later direction", () => {
+    // One mode, five strong fits: two in A, two in B and the best one alone in C. The C leftover
+    // sorts first; its fill must not take A's or B's own career paths.
+    const f: Record<string, string> = { c: "C", a1: "A", a2: "A", b1: "B", b2: "B", p: "A" };
+    const r = result([lane("c", "influence", "strong", 70), lane("a1", "influence", "strong", 69), lane("a2", "influence", "strong", 68), lane("b1", "influence", "strong", 67), lane("b2", "influence", "strong", 66), lane("p", "influence", "possible", 60)]);
+    const d = directionsOf(r, (id) => f[id]!);
+    const of = (family: string | null) => d.find((x) => x.family === family)!.laneIds;
+    expect(of("A")).toEqual(["a1", "a2"]);
+    expect(of("B")).toEqual(["b1", "b2"]);
+    expect(of(null)).toEqual(["c", "p"]);
+  });
+
   it("fills to three directions from possible fits, never with hidden ones", () => {
     const r = result([
       lane("b1", "build", "strong", 70),

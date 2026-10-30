@@ -299,8 +299,10 @@ export const isKnownLane = (id: string): id is LaneId => !!getLane(id);
 export function reportLanes(profile: ProfileScores, exp: ExperienceAnswers): ReportCareerPath[] {
   const matches = matchesFor(profile, exp);
   const native = viewFor(profile, exp).byLane;
-  const inDirection = new Map(buildCareerPicks(profile, exp).overall.map((p) => [p.row.id as string, p.direction?.name ?? null]));
-  const picked = new Map<string, ReportCareerPath["listedBecause"]>([...inDirection.keys()].map((id) => [id, "strong_fit"]));
+  const overall = buildCareerPicks(profile, exp).overall;
+  const inDirection = new Map(overall.map((p) => [p.row.id as string, p.direction?.name ?? null]));
+  // Directions are completed with possible fits when there are too few strong ones: say which is which.
+  const picked = new Map<string, ReportCareerPath["listedBecause"]>(overall.map((p) => [p.row.id, p.row.band === "strong" ? "strong_fit" : "direction"]));
   for (const c of exp.considering) picked.set(c.laneId, "considering");
   if (exp.current) picked.set(exp.current.laneId, "current_job");
   return [...picked].flatMap(([id, why]) => {

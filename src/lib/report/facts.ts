@@ -27,8 +27,8 @@ export type ReportCareerPath = {
   entry: string;
   /** What the work involves day to day: the career's top O*NET work activities (or, without them, its demand tags). */
   dayToDay: string[];
-  /** Why this career path is in the facts: a strong fit, or one the person said they're considering / work in now. */
-  listedBecause: "strong_fit" | "considering" | "current_job";
+  /** Why this career path is in the facts: a strong fit in a direction, a possible fit that completes a direction (when there are too few strong fits), or one the person said they're considering / work in now. */
+  listedBecause: "strong_fit" | "direction" | "considering" | "current_job";
   /** The direction it belongs to (strong fits grouped by value mode and family), or null. The directions' career paths fit about equally well: not a ranking. */
   direction: string | null;
 };
