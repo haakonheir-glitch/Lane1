@@ -72,7 +72,7 @@ if (part === "roundtrip") {
     const clean = match(person, cfg, DRAWS);
     const noisy = Array.from({ length: REPS }, (_, k) => rankOf(match(withError(person, 7919 * (i + 1) + k), cfg, DRAWS), id));
     if ((i + 1) % 25 === 0) console.error(`${cfg.version} ${i + 1}/${ids.length} (${Math.round((Date.now() - t0) / 1000)}s)`);
-    return { id, name: nameOf(id), provenance: LANE_PROFILES_V2[id]!.provenance, clean: rankOf(clean, id), cleanBand: clean.lanes.find((l) => l.laneId === id)!.band, noisy };
+    return { id, name: nameOf(id), provenance: LANE_PROFILES_V2[id]!.provenance, clean: rankOf(clean, id), cleanBand: clean.lanes.find((l) => l.laneId === id)!.band, cleanTop: (({ pTopBand, pTop }) => pTopBand ?? pTop)(clean.lanes.find((l) => l.laneId === id)!), noisy };
   });
   const allNoisy = rows.flatMap((r) => r.noisy);
   save(`roundtrip-${cfg.version}`, {
@@ -120,6 +120,9 @@ if (part === "roundtrip") {
     if ((i + 1) % 50 === 0) console.error(`${cfg.version} ${from + i + 1}/${to} (${Math.round((Date.now() - t0) / 1000)}s)`);
     return {
       bands: r.lanes.map((l) => l.band[0]).join(""),
+      // The shares the bands rest on (per mille), so any strong threshold can be evaluated from this run.
+      top: r.lanes.map((l) => Math.round((l.pTopBand ?? l.pTop) * 1000)),
+      bottom: r.lanes.map((l) => Math.round(Math.min(l.pBy?.need.bottom ?? l.pBottom, l.pBy?.flat.bottom ?? l.pBottom) * 1000)),
       strong: r.bandCounts.strong,
       tentative: !!r.archetype?.tentative,
       flatNote: r.notes.some((n) => n.code === "flat_profile"),
@@ -169,8 +172,21 @@ if (part === "roundtrip") {
 
 /* ------------------------------------------------------------------ report ---- */
 
-type RT = { config: string; draws: number; reps: number; topCut: number; clean: { inTop10: number; median: number; strong: number }; noisy: { inTop10: number; median: number; p90: number }; cannotRecover: { id: string; name: string; provenance: string; clean: number; noisy: number[] }[] };
-type Pop = { config: string; n: number; lanes: string[]; people: { bands: string; strong: number; tentative: boolean; flatNote: boolean; envMaxBefore: number | null; envMaxAfter: number | null; envShrunk: string[] }[] };
+type RT = { config: string; draws: number; reps: number; topCut: number; clean: { inTop10: number; median: number; strong: number }; noisy: { inTop10: number; median: number; p90: number }; cannotRecover: { id: string; name: string; provenance: string; clean: number; noisy: number[] }[]; rows?: { id: string; cleanTop?: number }[] };
+type Pop = { config: string; n: number; lanes: string[]; people: { bands: string; strong: number; top?: number[]; bottom?: number[]; tentative: boolean; flatNote: boolean; envMaxBefore: number | null; envMaxAfter: number | null; envShrunk: string[] }[] };
+
+/** Bands at a strong threshold, from the saved shares (talent-capped career paths never strong). */
+function rebanded(p: Pop, cfg: V2Config, strong: number): Pop {
+  const capped = new Set(cfg.talentCapped);
+  return {
+    ...p,
+    people: p.people.map((x) => {
+      if (!x.top || !x.bottom) return x;
+      const bands = p.lanes.map((id, j) => (x.bands[j] === "i" ? "i" : x.top![j]! >= strong * 1000 && !capped.has(id) ? "s" : x.bottom![j]! >= cfg.bands.unlikely * 1000 ? "u" : "p")).join("");
+      return { ...x, bands, strong: [...bands].filter((b) => b === "s").length };
+    }),
+  };
+}
 
 function loadPop(version: string): Pop | null {
   const files = readdirSync(DIR).filter((f) => f.startsWith(`population-${version}-`)).sort((a, b) => Number(a.split("-").at(-2)) - Number(b.split("-").at(-2)));
@@ -192,7 +208,12 @@ function report() {
   );
   L.push("| Config | Own top 10%, as built | Median rank, as built | Own top 10%, with error | Median rank, with error | 90th percentile rank, with error | Strong fit for itself | Can't recover itself |", "|---|---|---|---|---|---|---|---|");
   const rts = ["v2-0.3", "v2-0.4", "v2-0.5"].map((v) => read<RT>(`roundtrip-${v}`)).filter((x): x is RT => !!x);
-  for (const r of rts) L.push(`| ${r.config} | ${pct(r.clean.inTop10)} | ${r.clean.median} | ${pct(r.noisy.inTop10)} | ${r.noisy.median} | ${r.noisy.p90} | ${pct(r.clean.strong)} | ${r.cannotRecover.length} |`);
+  // v2-0.5's "strong for itself" at the configured threshold, from the saved shares (talent-capped career paths can't be strong).
+  const strongFor = (r: RT) =>
+    r.config === "v2-0.5" && r.rows?.every((x) => x.cleanTop !== undefined)
+      ? r.rows.filter((x) => x.cleanTop! >= V5.bands.strong && !V5.talentCapped.includes(x.id)).length / r.rows.length
+      : r.clean.strong;
+  for (const r of rts) L.push(`| ${r.config} | ${pct(r.clean.inTop10)} | ${r.clean.median} | ${pct(r.noisy.inTop10)} | ${r.noisy.median} | ${r.noisy.p90} | ${pct(strongFor(r))} | ${r.cannotRecover.length} |`);
   L.push("");
   const last = rts.at(-1);
   if (last) {
@@ -221,7 +242,25 @@ function report() {
   L.push(...literature(), "");
 
   L.push("## (d) Population, the six profiles and popularity bias", "");
-  const pops = ["v2-0.3", "v2-0.4", "v2-0.5"].map(loadPop).filter((x): x is Pop => !!x);
+  const raw5 = loadPop("v2-0.5");
+  // v2-0.5 at its configured threshold (the run saved the shares, so a retuned threshold needs no rerun).
+  const pops = ["v2-0.3", "v2-0.4", "v2-0.5"].map((v) => (v === "v2-0.5" && raw5 ? rebanded(raw5, V5, V5.bands.strong) : loadPop(v))).filter((x): x is Pop => !!x);
+  if (raw5?.people[0]?.top) {
+    L.push("### Strong-fit threshold sweep (v2-0.5)", "");
+    L.push(
+      `Strong fit = P(top 10%) at least the threshold, under both environment weightings, never for talent-capped career paths. The same ${raw5.people.length} simulated people at each threshold; the unlikely rule (P(bottom 40%) ≥ ${V5.bands.unlikely}) is unchanged. The target is a median of 10–15 strong fits.`,
+      "",
+      "| Threshold | Mean | p10 | Median | p90 | Share with 8–20 | Share with 10–15 | Most often strong | Never strong |",
+      "|---|---|---|---|---|---|---|---|---|",
+    );
+    for (const t of [0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6]) {
+      const b = rebanded(raw5, V5, t);
+      const c = b.people.map((x) => x.strong);
+      const share = b.lanes.map((id, j) => ({ id, share: b.people.filter((x) => x.bands[j] === "s").length / b.people.length })).sort((x, y) => y.share - x.share);
+      L.push(`| ${t.toFixed(2)}${t === V5.bands.strong ? " **(chosen)**" : ""} | ${r1(mean(c))} | ${q(c, 0.1)} | ${q(c, 0.5)} | ${q(c, 0.9)} | ${pct(c.filter((x) => x >= 8 && x <= 20).length / c.length)} | ${pct(c.filter((x) => x >= 10 && x <= 15).length / c.length)} | ${nameOf(share[0]!.id)} ${pct(share[0]!.share)} | ${share.filter((x) => x.share === 0).length} |`);
+    }
+    L.push("");
+  }
   if (pops.length) {
     L.push("| Config | People | Strong fits: mean | p10 / median / p90 | Share with 8–20 | Most often strong | Career paths strong for over 30% | Never strong | Tentative archetypes | Flat-profile notes |", "|---|---|---|---|---|---|---|---|---|---|");
     for (const p of pops) {
