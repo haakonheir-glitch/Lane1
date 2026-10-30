@@ -8,7 +8,7 @@ import type { CareerPick } from "../lanes/types";
 import { relativeOf } from "./profile";
 
 export type Trait = { key: string; label: string; kind: string; basis: "strength" | "ranked first" };
-export type Connections = { traits: Trait[]; paths: { id: string; name: string; band: CareerPick["row"]["band"]; keys: string[] }[] };
+export type Connections = { traits: Trait[]; paths: { id: string; name: string; band: CareerPick["row"]["band"]; estimated: boolean; keys: string[] }[] };
 
 const DOMAIN_OF: Record<string, string> = { N: "Neuroticism", E: "Extraversion", O: "Openness", A: "Agreeableness", C: "Conscientiousness" };
 const AREA_OF: Record<string, string> = { matrix: "reasoning", series: "reasoning", number_series: "reasoning", quant: "quantitative", rotation: "spatial", symbol_match: "speed" };
@@ -52,6 +52,6 @@ export function connections(p: ProfileScores, picks: CareerPick[], max = 4): Con
   const keys = new Set(shown.map((t) => t.key));
   return {
     traits: shown,
-    paths: picks.map((c) => ({ id: c.row.id, name: c.row.name, band: c.row.band, keys: [...new Set(c.driverIds.map(traitKeyOf).filter((k): k is string => !!k && keys.has(k)))] })),
+    paths: picks.map((c) => ({ id: c.row.id, name: c.row.name, band: c.row.band, estimated: c.row.provenance === "estimated", keys: [...new Set(c.driverIds.map(traitKeyOf).filter((k): k is string => !!k && keys.has(k)))] })),
   };
 }

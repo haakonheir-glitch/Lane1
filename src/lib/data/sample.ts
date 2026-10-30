@@ -12,7 +12,7 @@ const NO_EXPERIENCE: ExperienceAnswers = { current: null, considering: [] };
 
 export const getSampleProfile = () => Promise.resolve(mock.sampleProfile);
 export const getSampleLaneMap = () => Promise.resolve(buildLaneMap(mock.sampleProfile, NO_EXPERIENCE));
-/** The sample person's best-fitting career paths (the Career map's top five). */
+/** The sample person's directions' career paths (as the Career map shows them). */
 export const getSamplePicks = () => Promise.resolve(buildCareerPicks(mock.sampleProfile, NO_EXPERIENCE).overall);
 export const getSampleUser = () => Promise.resolve(mock.user);
 /** The sample person's "How you work best" data. */

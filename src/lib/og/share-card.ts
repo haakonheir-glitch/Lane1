@@ -1,7 +1,7 @@
 /** What goes on a share card. Pure, so the opt-in rules can be tested. */
 import type { Band } from "../matching/fit";
 import type { ProfileScores } from "../scoring/profile";
-import type { CareerPick } from "../lanes/types";
+import { groupDirections, type CareerPick } from "../lanes/types";
 import { keyFigures } from "../view/findings";
 import { markInput, type MarkInput } from "../view/mark";
 
@@ -27,7 +27,7 @@ export function shareCardFrom(profile: ProfileScores, firstName: string, picks: 
     firstName,
     hollandCode: f.interests ?? null,
     topValue: f.values ?? null,
-    paths: picks.slice(0, 3).map((p) => ({ name: p.row.name, band: p.row.band })),
+    paths: groupDirections(picks).slice(0, 3).map((d) => d.picks[0]!).map((p) => ({ name: p.row.name, band: p.row.band })),
     mark: { ...m, reasoning: opts.reasoning ? m.reasoning : null, domains: opts.personality ? m.domains : m.domains.map(() => null) },
     ...(opts.personality ? { personality: f.personality ?? null } : {}),
     ...(opts.reasoning ? { reasoning: f.reasoning ?? null } : {}),

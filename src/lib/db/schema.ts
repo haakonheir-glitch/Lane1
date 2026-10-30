@@ -40,6 +40,11 @@ export const profiles = pgTable("profiles", {
    */
   currentSatisfaction: integer("current_satisfaction"),
   previousJobs: jsonb("previous_jobs").$type<{ laneId: string; roleId: string | null; title: string; satisfaction: number }[]>(),
+  /**
+   * "Open to faith-based work" (optional, onboarding and settings). Career paths that require a
+   * personal faith (matching v2 config beliefGated) are suggested only when this is true.
+   */
+  openToFaith: boolean("open_to_faith").notNull().default(false),
   onboardedAt: timestamp("onboarded_at", { withTimezone: true }),
 });
 
@@ -175,7 +180,7 @@ export const careerResonance = pgTable(
       .references(() => users.id, { onDelete: "cascade" }),
     laneId: text("lane_id").notNull(),
     matchingVersion: text("matching_version").notNull(),
-    /** Its place in the top five (1–5) when answered. */
+    /** Its place among the directions' career paths when answered (1–5 before the directions, up to 12 after; never shown). */
     rank: integer("rank").notNull(),
     response: text("response", { enum: ["yes", "not_really", "no"] }).notNull(),
     answeredAt: timestamp("answered_at", { withTimezone: true }).notNull().defaultNow(),

@@ -1,6 +1,6 @@
 /**
  * The 1200×630 share card: the Profile Mark, a first name, Holland code, top work value and the
- * three closest career paths, with the wordmark. One component for a person's own card (opt-in,
+ * one career path from each of the first three directions (unnumbered), with the wordmark. One component for a person's own card (opt-in,
  * /api/share) and the site's Open Graph image (the sample profile). Rendered by next/og; Satori
  * supports flex layout only, so every element with several children sets display: flex.
  */
@@ -14,7 +14,7 @@ import { BRAND } from "../brand";
 import { markDataUri } from "./mark-svg";
 
 export const SHARE_SIZE = { width: 1200, height: 630 };
-export const SHARE_ALT = `${BRAND.name}: a sample Career Profile with its Profile Mark, Holland code, top work value and three closest career paths.`;
+export const SHARE_ALT = `${BRAND.name}: a sample Career Profile with its Profile Mark, Holland code, top work value and career paths from three directions.`;
 
 const INK = "#111111";
 const INK_2 = "#47494e";
@@ -65,10 +65,10 @@ export async function renderShareCard(card: ShareCard) {
             ))}
           </div>
           <div style={{ display: "flex", flexDirection: "column", marginTop: "auto", background: INK, color: PANEL_INK, padding: "16px 20px" }}>
-            <div style={{ ...label, fontSize: 11, color: PANEL_INK_2 }}>Closest career paths</div>
+            <div style={{ ...label, fontSize: 11, color: PANEL_INK_2 }}>Your directions</div>
             {card.paths.map((p, i) => (
               <div key={p.name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderTop: i ? `1px solid ${PANEL_RULE}` : "none", marginTop: i ? 0 : 4 }}>
-                <div style={{ display: "flex", fontSize: 20, marginRight: 12 }}>{`${String(i + 1).padStart(2, "0")}   ${p.name}`}</div>
+                <div style={{ display: "flex", fontSize: 20, marginRight: 12 }}>{p.name}</div>
                 <div style={{ ...label, fontSize: 10, color: PANEL_INK, border: `1px solid ${PANEL_INK_2}`, padding: "2px 6px", flexShrink: 0 }}>{bandLabel[p.band]}</div>
               </div>
             ))}

@@ -38,6 +38,7 @@ const lane: ReportCareerPath = {
   entry: "Open",
   dayToDay: ["Selling or Influencing Others"],
   listedBecause: "strong_fit",
+  direction: "Influence (Hunter)",
 };
 const facts = buildReportFacts(unnormed, [lane], { current: "salgssjef", considering: ["YouTuber"] });
 const wb = workBest(personWorkDesign(unnormed), matchV2({ inputs: personInputs(unnormed) }, { draws: 60 }), LANE_PROFILES_V2);

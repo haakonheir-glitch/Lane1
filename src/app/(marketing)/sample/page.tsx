@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ui/Button";
 import { ReportDocument } from "@/components/report/doc/ReportDocument";
-import { SampleCareerRow } from "@/components/marketing/SampleCareerRow";
+import { Directions } from "@/components/lanes/Directions";
+import { groupDirections } from "@/lib/lanes/types";
 import { getSampleReport } from "@/lib/data/sample-report";
 import { BRAND } from "@/lib/brand";
 
@@ -35,16 +36,10 @@ export default async function SamplePage() {
       <section aria-labelledby="map-h" className="mt-8 border border-paper-edge bg-paper p-8 sm:p-12">
         <p className="text-small text-ink-3">Career map · excerpt</p>
         <h2 id="map-h" className="mt-3 text-h2 font-medium text-ink">
-          The sample&apos;s five best fits
+          The sample&apos;s directions
         </h2>
         <p className="mt-2 max-w-reading text-body text-ink-2">In your own Career map, each opens to its day-to-day work, how people get in and where you&apos;d start.</p>
-        <ul className="mt-6 divide-y divide-rule border-y border-rule">
-          {picks.slice(0, 5).map((p) => (
-            <li key={p.row.id}>
-              <SampleCareerRow lane={p.row} />
-            </li>
-          ))}
-        </ul>
+        <Directions directions={groupDirections(picks)} linked={false} className="mt-6" />
       </section>
       <div className="mt-12 flex flex-wrap items-center gap-4">
         <ButtonLink href="/signup">Start your profile</ButtonLink>

@@ -43,6 +43,13 @@
       "when": 1793274770805,
       "tag": "0005_ground_truth",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1793354929052,
+      "tag": "0006_faith_opt_in",
+      "breakpoints": true
     }
   ]
 }

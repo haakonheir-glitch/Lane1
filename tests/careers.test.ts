@@ -8,19 +8,28 @@ const noExperience = { current: null, considering: [] } as never;
 describe("Career map picks", () => {
   const picks = buildCareerPicks(sampleProfile, noExperience);
 
-  it("gives five best fits overall, then five more corporate and five more non-corporate, no repeats", () => {
+  it("gives 3–4 directions of 2–3 career paths, then five more corporate and five more non-corporate, no repeats", () => {
+    expect(picks.directions.length).toBeGreaterThanOrEqual(3);
+    expect(picks.directions.length).toBeLessThanOrEqual(4);
+    for (const d of picks.directions) {
+      expect(d.picks.length, d.name).toBeGreaterThanOrEqual(2);
+      expect(d.picks.length, d.name).toBeLessThanOrEqual(3);
+      expect(d.picks.every((p) => p.direction?.id === d.id)).toBe(true);
+    }
+    expect(picks.overall.map((p) => p.row.id)).toEqual(picks.directions.flatMap((d) => d.picks.map((p) => p.row.id)));
     const ids = [...picks.overall, ...picks.corporate, ...picks.ownPath].map((p) => p.row.id);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(picks.overall).toHaveLength(5);
     expect(picks.corporate).toHaveLength(5);
     expect(picks.ownPath).toHaveLength(5);
     expect(picks.corporate.every((p) => p.category === "corporate")).toBe(true);
     expect(picks.ownPath.every((p) => p.category === "own_path")).toBe(true);
   });
 
-  it("keeps the map's order: band first, then fit", () => {
+  it("orders each direction by fulfilment fit, and the other lists by band, then fit", () => {
+    for (const d of picks.directions)
+      for (let i = 1; i < d.picks.length; i++) expect(d.picks[i - 1]!.row.fulfilment!.mean).toBeGreaterThanOrEqual(d.picks[i]!.row.fulfilment!.mean);
     const order = ["strong", "testing", "unlikely"];
-    for (const list of [picks.overall, picks.corporate, picks.ownPath])
+    for (const list of [picks.corporate, picks.ownPath])
       for (let i = 1; i < list.length; i++) {
         const [a, b] = [list[i - 1]!.row, list[i]!.row];
         expect(order.indexOf(a.band) < order.indexOf(b.band) || (a.band === b.band && (a.vsAverage ?? 0) >= (b.vsAverage ?? 0))).toBe(true);

@@ -31,6 +31,7 @@ export default async function StartPage() {
               considering: exp.considering.map(withLane),
               satisfaction: exp.current?.satisfaction ?? null,
               previous: (exp.previous ?? []).map(withLane),
+              openToFaith: !!exp.openToFaith,
             }}
           />
         </Suspense>

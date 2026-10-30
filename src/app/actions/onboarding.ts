@@ -20,6 +20,8 @@ const onboardingSchema = z.object({
   considering: z.array(picked).max(3),
   /** Up to two previous jobs, each with the same satisfaction question. Optional. */
   previous: z.array(picked.extend({ satisfaction })).max(2).optional(),
+  /** "Open to faith-based work" (optional): belief-gated career paths are suggested only when true. */
+  openToFaith: z.boolean().optional(),
 });
 
 /** A picked title must point at a real lane, and its role (if any) must belong to that lane. */
@@ -45,6 +47,7 @@ export async function saveOnboarding(input: z.input<typeof onboardingSchema>) {
     considering: data.considering,
     currentSatisfaction: data.current?.satisfaction ?? null,
     previousJobs: data.previous ?? [],
+    openToFaith: data.openToFaith ?? false,
     onboardedAt: new Date(),
   };
   const db = await getDb();

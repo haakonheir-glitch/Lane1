@@ -96,6 +96,8 @@ export type LaneMatchV2 = FitV2 & {
   /** Talent-selected career paths (config talentCapped): the note shown with them, and "strong" when the cap lowered the band. */
   capNote?: string;
   cappedFrom?: "strong";
+  /** Belief-gated and the person hasn't opted in: kept in the full map, left out of top lists, directions and the report. */
+  hidden?: boolean;
 };
 
 export type ArchetypeBlend = {

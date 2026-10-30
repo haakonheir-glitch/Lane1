@@ -1,16 +1,16 @@
 import Link from "next/link";
 import type { ProfileScores } from "@/lib/scoring/profile";
-import type { CareerPick } from "@/lib/lanes/types";
+import { groupDirections, type CareerPick } from "@/lib/lanes/types";
 import { ProfileMark } from "@/components/brand/ProfileMark";
-import { bandLabel } from "@/lib/matching/fit";
 import { keyFigures } from "@/lib/view/findings";
 import { pad2 } from "@/lib/format";
 import { cn } from "@/lib/cn";
+import { EQUAL_FIT_LINE } from "@/components/lanes/Directions";
 import { Paper } from "./Paper";
 
 /**
- * The one-page summary: the mark and four headline figures, the top three career paths in the
- * screen's one inverted panel, and three brief lines. Works on its own as a printout.
+ * The one-page summary: the mark and four headline figures, the directions (career paths unnumbered,
+ * owner's decision 2026-10-30) in the screen's one inverted panel, and three brief lines. Works on its own as a printout.
  */
 export function SummarySheet({ profile, name, paths, brief, reportId }: { profile: ProfileScores; name: string; paths: CareerPick[]; brief: string[]; reportId: string }) {
   const figures = keyFigures(profile);
@@ -41,25 +41,30 @@ export function SummarySheet({ profile, name, paths, brief, reportId }: { profil
       {paths.length ? (
         <section aria-labelledby="sum-paths" className="doc-panel mt-10 bg-panel p-6 text-panel-ink sm:p-8">
           <div className="flex items-baseline justify-between gap-4">
-            <h3 id="sum-paths" className="text-body font-medium">Your closest career paths</h3>
+            <h3 id="sum-paths" className="text-body font-medium">Your directions</h3>
             <Link href="/lanes" className="text-small text-panel-ink-2 underline decoration-panel-rule underline-offset-4 hover:text-panel-ink">
               Open your Career map
             </Link>
           </div>
-          <ol className="mt-4">
-            {paths.slice(0, 3).map((p, i) => (
-              <li key={p.row.id} className={cn("grid grid-cols-[40px_minmax(0,1fr)_auto] items-baseline gap-x-3 py-4", i > 0 && "border-t border-panel-rule")}>
-                <span className="font-mono text-small text-panel-ink-2 tabular">{pad2(i + 1)}</span>
-                <span className="min-w-0">
-                  <Link href={`/lanes?lane=${p.row.id}`} className="text-[20px] leading-[28px] font-medium hover:underline hover:underline-offset-4">
-                    {p.row.name}
-                  </Link>
-                  {p.role ? <span className="mt-0.5 block text-small text-panel-ink-2">Start as {p.role.title}</span> : null}
-                </span>
-                <span className="rounded-xs border border-panel-ink-2 px-2 py-0.5 text-label whitespace-nowrap">{bandLabel[p.row.band]}</span>
+          <ul className="mt-4">
+            {groupDirections(paths).map((d, i) => (
+              <li key={d.id} className={cn("py-4", i > 0 && "border-t border-panel-rule")}>
+                <p className="text-small text-panel-ink-2">{d.name}</p>
+                <p className="mt-1 text-[20px] leading-[28px] font-medium">
+                  {d.picks.map((p, j) => (
+                    <span key={p.row.id}>
+                      {j > 0 ? <span className="text-panel-ink-2"> · </span> : null}
+                      <Link href={`/lanes?lane=${p.row.id}`} className="hover:underline hover:underline-offset-4">
+                        {p.row.name}
+                      </Link>
+                      {p.row.provenance === "estimated" ? <span className="label ml-2 align-middle text-panel-ink-2">Estimated career data</span> : null}
+                    </span>
+                  ))}
+                </p>
               </li>
             ))}
-          </ol>
+          </ul>
+          <p className="mt-2 text-small text-panel-ink-2">{EQUAL_FIT_LINE}</p>
         </section>
       ) : null}
 

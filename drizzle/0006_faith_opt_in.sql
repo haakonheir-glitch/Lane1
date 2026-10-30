@@ -1,0 +1,1 @@
+ALTER TABLE "profiles" ADD COLUMN "open_to_faith" boolean DEFAULT false NOT NULL;

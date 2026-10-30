@@ -35,7 +35,7 @@ export function FitQuadrant({ rows, selected, onSelect }: { rows: LaneRowData[];
   const Y = { lo: minF, hi: maxF };
   const x = (v: number) => M.l + ((Math.min(X.hi, Math.max(X.lo, v)) - X.lo) / (X.hi - X.lo)) * (W - M.l - M.r);
   const y = (v: number) => M.t + (1 - (Math.min(Y.hi, Math.max(Y.lo, v)) - Y.lo) / (Y.hi - Y.lo)) * (H - M.t - M.b);
-  const top = [...plotted].sort((a, b) => b.fulfilment!.mean - a.fulfilment!.mean).slice(0, LABELS);
+  const top = plotted.filter((r) => !r.gated).sort((a, b) => b.fulfilment!.mean - a.fulfilment!.mean).slice(0, LABELS);
   const labelled = new Set(top.map((r) => r.id));
   // Labels to the right of their dot, nudged apart vertically so they never overlap.
   const placed: { r: LaneRowData; ly: number }[] = [];

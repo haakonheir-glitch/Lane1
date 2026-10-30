@@ -401,11 +401,15 @@ if (await p.getByRole("radio", { name: "Fit map" }).count()) {
   await p.locator("svg[aria-label^='Career paths by fulfilment fit']").waitFor();
   log("lanes: fit map is the default view");
 }
-// "Does this resonate?" on a top card (own results only), stored with the matching version.
+// Strong fits as directions, without rank numbers; "Does this resonate?" on a direction's career
+// path (own results only), stored with the matching version.
 if (ownResults) {
+  await p.getByText("These fit about equally well; the measurement can't separate them further.").first().waitFor();
+  if (await p.getByText("Your best fit").count()) throw new Error("lanes: the numbered best fit is still shown");
+  log("lanes: strong fits shown as directions, not ranked");
   await p.getByRole("group", { name: /^Does .+ resonate with you\?$/ }).first().getByText("Not really", { exact: true }).click();
   await p.getByText("Saved. It doesn't change your results.").first().waitFor();
-  log("lanes: 'Does this resonate?' saved on the best fit");
+  log("lanes: 'Does this resonate?' saved on a direction's career path");
 }
 await p.goto(base + "/lanes?view=family");
 await p.getByText("Your current career").first().waitFor();
@@ -450,8 +454,18 @@ for (const path of ["/profile", "/lanes", "/settings", "/method", "/system"]) {
 log("app pages render");
 
 // Export contains responses and trials
-const dl = p.waitForEvent("download");
 await p.goto(base + "/settings");
+// "Open to faith-based work": off by default (not ticked in onboarding), saved when changed.
+const faith = p.getByRole("checkbox", { name: /open to faith-based work/ });
+if (await faith.isChecked()) throw new Error("settings: open to faith-based work should be off by default");
+await faith.check();
+await p.getByText("Saved.").first().waitFor();
+await p.reload();
+if (!(await p.getByRole("checkbox", { name: /open to faith-based work/ }).isChecked())) throw new Error("settings: open to faith-based work wasn't saved");
+await p.getByRole("checkbox", { name: /open to faith-based work/ }).uncheck();
+await p.getByText("Saved.").first().waitFor();
+log("settings: open to faith-based work is off by default and saves");
+const dl = p.waitForEvent("download");
 await p.getByRole("link", { name: /Export data/ }).click();
 const file = await (await dl).path();
 const data = JSON.parse(await (await import("node:fs/promises")).readFile(file!, "utf8"));

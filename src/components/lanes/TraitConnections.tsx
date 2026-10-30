@@ -44,7 +44,7 @@ export function TraitConnections({ data, className }: { data: Connections; class
             <line key={p.id} x1={99.99} y1={yOf(j, paths.length)} x2={100} y2={yOf(j, paths.length)} strokeWidth={7} strokeLinecap="round" vectorEffect="non-scaling-stroke" className={p.keys.length ? "stroke-ink" : "stroke-ink-4"} />
           ))}
         </svg>
-        <ol aria-label="Your best career paths" className="relative">
+        <ol aria-label="Your directions' career paths" className="relative">
           {paths.map((p, j) => (
             <li key={p.id} className="absolute inset-x-0 flex -translate-y-1/2 flex-col pl-3" style={{ top: yOf(j, paths.length) }}>
               <Link href={`/lanes?lane=${p.id}`} className="truncate text-body font-medium text-ink hover:underline hover:underline-offset-4">
@@ -52,6 +52,7 @@ export function TraitConnections({ data, className }: { data: Connections; class
               </Link>
               <span className="truncate text-small text-ink-3">
                 {bandLabel[p.band]}
+                {p.estimated ? <span className="text-caution"> · estimated career data</span> : null}
                 {p.keys.length ? null : " · driven by other parts of your profile"}
               </span>
               <span className="sr-only">{p.keys.length ? `Driven by ${p.keys.map((k) => traits.find((t) => t.key === k)!.label).join(", ")}.` : ""}</span>

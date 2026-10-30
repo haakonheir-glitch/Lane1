@@ -133,7 +133,7 @@ export function ReportDocument({ profile, person, picks, workBest, effort, writt
       </Chapter>
 
       <Chapter id="careers" n={n("careers")} kicker="Career paths · O*NET® occupational data" title="Where this work exists" words={words("careers")} locked={lock("careers")}>
-        {picks.length ? <CareerPathsBody picks={picks} connections={connections(profile, picks.slice(0, 5))} print={print} /> : <EmptyState title="Not done yet." body="Sessions S1 and S2 unlock your career paths." />}
+        {picks.length ? <CareerPathsBody picks={picks} connections={connections(profile, picks)} print={print} /> : <EmptyState title="Not done yet." body="Sessions S1 and S2 unlock your career paths." />}
       </Chapter>
 
       <Chapter id="interests" n={n("interests")} kicker="Interests · O*NET® Interest Profiler" title={titles.interests} words={words("interests")} locked={lock("interests")}>

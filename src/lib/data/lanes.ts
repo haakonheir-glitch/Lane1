@@ -10,7 +10,7 @@ import type { Lane, LaneId, LevelId, Role } from "../taxonomy/generated";
 import { rankRoles, type Experience, type LaneMatch } from "../matching";
 import type { RoleData } from "../matching/roles";
 import type { ProfileScores } from "../scoring/profile";
-import { LANE_PROFILES_V2, LANE_PROFILES_V2_STAMP, ROLE_PROFILES_V2, V2_CONFIG, matchV2, penaltyOf, profileSeed, type Distribution, type LaneMatchV2, type MatchResultV2 } from "../matching/v2";
+import { LANE_PROFILES_V2, LANE_PROFILES_V2_STAMP, ROLE_PROFILES_V2, V2_CONFIG, applyGates, directionsOf, matchV2, penaltyOf, profileSeed, type Distribution, type LaneMatchV2, type MatchResultV2 } from "../matching/v2";
 import { toV1Matches } from "../matching/v2/adapter";
 import { personInputs, personWorkDesign } from "../workdesign/person";
 import { applyNorms } from "../scoring/norms";
@@ -18,7 +18,7 @@ import { ENVIRONMENT, VALUE_MODES } from "../workdesign/model";
 import { workBest, type WorkBest } from "../workdesign/best";
 import { CAREER_DAYS_STAMP, typicalDay } from "../workdesign/day";
 import { TAG_NOUN } from "../matching/roles";
-import type { CareerCategory, CareerPick, CareerPicks, DimRow, FitDriver, FitRange, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, RoleRef } from "../lanes/types";
+import type { CareerCategory, CareerDirection, CareerPick, CareerPicks, DimRow, FitDriver, FitRange, LadderRow, LaneDetail, LaneFilterVocab, LaneRowData, RoleRef } from "../lanes/types";
 import type { ExperienceAnswers } from ".";
 import type { ReportCareerPath } from "../report/facts";
 
@@ -80,8 +80,21 @@ const roleDataFor = cache((profile: ProfileScores): RoleData | undefined => {
   };
 });
 
-/** The row-shaped matches (lists, picks, trait connections), by career path. */
-const matchesFor = cache((profile: ProfileScores) => new Map(nativeFor(profile).adapted.map((m) => [m.laneId, m])));
+/**
+ * The result as the person is shown it: the opt-in gates applied (matching/v2/gates.ts). A
+ * belief-gated career path without the person's opt-in is capped at "possible", carries its note and
+ * is left out of top lists, directions and the report; it stays in the full map. The fit itself is
+ * unchanged, so the native result stays the source for "How you work best".
+ */
+const gatedFor = cache((profile: ProfileScores, faith: boolean): V2Memo => {
+  const base = matchV2Memo(profile);
+  const result = applyGates(base.result, V2_CONFIG, { faith });
+  return result === base.result ? base : { result, byLane: new Map(result.lanes.map((l) => [l.laneId, l])), adapted: toV1Matches(result) };
+});
+const viewFor = (profile: ProfileScores, exp: ExperienceAnswers) => gatedFor(profile, !!exp.openToFaith);
+
+/** The row-shaped matches (lists, picks, trait connections), by career path, as shown. */
+const matchesFor = (profile: ProfileScores, exp: ExperienceAnswers) => new Map(viewFor(profile, exp).adapted.map((m) => [m.laneId, m]));
 
 const r1 = (x: number) => Math.round(x * 10) / 10;
 /** A distribution as a JSON-safe range (results pass through unstable_cache, which turns NaN into null). */
@@ -104,12 +117,13 @@ function toRow(lane: Lane, m: LaneMatch, exp: ExperienceAnswers, n?: LaneMatchV2
     ability: n ? range(n.abilityFit) : null,
     provenance: n?.provenance ?? null,
     capNote: n?.capNote ?? null,
+    gated: !!n?.hidden,
   };
 }
 
 export function buildLaneMap(profile: ProfileScores, exp: ExperienceAnswers): { rows: LaneRowData[]; vocab: LaneFilterVocab } {
-  const matches = matchesFor(profile);
-  const native = nativeFor(profile).byLane;
+  const matches = matchesFor(profile, exp);
+  const native = viewFor(profile, exp).byLane;
   return {
     rows: LANES.map((l) => toRow(l, matches.get(l.id)!, exp, native?.get(l.id))),
     vocab: { families: FAMILIES.map((f) => ({ id: f.id, name: f.name })) },
@@ -133,18 +147,36 @@ export const careerCategory = (lane: Pick<Lane, "id" | "family" | "ladder" | "mo
 
 const PICKS = 5;
 
+/** A direction's title and subtitle, from its value mode (and family, when the mode was split by family). */
+function directionText(mode: string, family: string | null): { name: string; subtitle: string } {
+  const m = VALUE_MODES.find((x) => x.id === mode)!;
+  return { name: family ? `${m.name}: ${getFamily(family as Lane["family"])?.name ?? family}` : `${m.name} (${m.archetype})`, subtitle: m.poles[1] };
+}
+
+/** The reasons a direction's career paths share: the two drivers most of them name. */
+function sharedWhy(picks: CareerPick[]): string | null {
+  const count = new Map<string, number>();
+  for (const p of picks) for (const w of p.why.slice(0, 3)) count.set(w, (count.get(w) ?? 0) + 1);
+  const top = [...count].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 2).map(([w]) => w);
+  return top.length ? `Where they meet you: ${top.join(" and ")}.` : null;
+}
+
 /**
- * The Career map's result lists: the five best-fitting career paths overall, then the next five
- * corporate and the next five non-corporate ones (not repeating the top five), each led by the specific starting role
- * that fits the person best inside it (matching/roles.ts). Order is the map's own default
- * (band, then fit relative to the person); nothing is scored here.
+ * The Career map's result lists. First the strong fits as 3–4 named directions (owner's decision,
+ * 2026-10-30; matching/v2/present.ts directionsOf), each with 2–3 career paths in fit order, shown
+ * without rank numbers. Then the next five corporate and the next five non-corporate career paths
+ * (not repeating the directions). Each is led by the specific starting role that fits the person
+ * best inside it (matching/roles.ts). `overall` is the directions' career paths in order, for the
+ * summary sheet, share card and trait connections. Belief-gated career paths without the person's
+ * opt-in never appear here (they stay in the full map).
  */
 export function buildCareerPicks(profile: ProfileScores, exp: ExperienceAnswers): CareerPicks {
-  const matches = matchesFor(profile);
-  const native = nativeFor(profile).byLane;
+  const matches = matchesFor(profile, exp);
+  const view = viewFor(profile, exp);
+  const native = view.byLane;
   const bandOrder = ["strong", "testing", "unlikely", "insufficient"];
   const ordered = LANES.map((lane) => ({ lane, m: matches.get(lane.id)! }))
-    .filter((x) => x.m.band !== "insufficient")
+    .filter((x) => x.m.band !== "insufficient" && !native.get(x.lane.id)?.hidden)
     .sort((a, b) => bandOrder.indexOf(a.m.band) - bandOrder.indexOf(b.m.band) || (b.m.vsAverage ?? -Infinity) - (a.m.vsAverage ?? -Infinity) || a.lane.name.localeCompare(b.lane.name));
   const experience = toExperience(exp);
   const pick = ({ lane, m }: (typeof ordered)[number]): CareerPick => {
@@ -161,10 +193,17 @@ export function buildCareerPicks(profile: ProfileScores, exp: ExperienceAnswers)
       ladder: ladderRows(lane, ranked.entry.level, ranked.entry.current).map((r) => ({ label: r.step ?? r.levelLabel, marker: r.marker })),
     };
   };
-  const top = ordered.slice(0, PICKS);
-  const rest = ordered.slice(PICKS);
+  const byId = new Map(ordered.map((x) => [x.lane.id as string, x]));
+  const directions: CareerDirection[] = directionsOf(view.result, (id) => getLane(id)?.family ?? "").map((g) => {
+    const picks = g.laneIds.flatMap((id) => (byId.has(id) ? [pick(byId.get(id)!)] : []));
+    const info = { id: g.family ? `${g.mode}:${g.family}` : g.mode, ...directionText(g.mode, g.family), why: sharedWhy(picks) };
+    return { ...info, picks: picks.map((p) => ({ ...p, direction: info })) };
+  });
+  const shown = new Set(directions.flatMap((d) => d.picks.map((p) => p.row.id as string)));
+  const rest = ordered.filter((x) => !shown.has(x.lane.id));
   return {
-    overall: top.map(pick),
+    directions,
+    overall: directions.flatMap((d) => d.picks),
     corporate: rest.filter((x) => careerCategory(x.lane) === "corporate").slice(0, PICKS).map(pick),
     ownPath: rest.filter((x) => careerCategory(x.lane) === "own_path").slice(0, PICKS).map(pick),
   };
@@ -188,8 +227,8 @@ function ladderRows(lane: Lane, start: LevelId | null, current: LevelId | null):
 export function buildLaneDetail(id: string, profile: ProfileScores, exp: ExperienceAnswers): LaneDetail | null {
   const lane = getLane(id);
   if (!lane) return null;
-  const m = matchesFor(profile).get(lane.id)!;
-  const n = nativeFor(profile).byLane.get(lane.id)!;
+  const m = matchesFor(profile, exp).get(lane.id)!;
+  const n = viewFor(profile, exp).byLane.get(lane.id)!;
   const ranked = rankRoles(lane, profile, taxonomy, toExperience(exp), 3, roleDataFor(profile));
   return {
     row: toRow(lane, m, exp, n),
@@ -252,15 +291,16 @@ export const laneName = (id: string) => getLane(id)?.name ?? id;
 export const isKnownLane = (id: string): id is LaneId => !!getLane(id);
 
 /**
- * Career paths for the written report: the strongest fits (up to six), plus the ones the person is
- * considering or works in now, whatever their band. Under matching v2 each carries both fits and
- * its frictions; "what the work involves" is the career's top O*NET work activities when it has them.
+ * Career paths for the written report: the directions' career paths, each with its direction (no
+ * ranking: owner's decision, 2026-10-30), plus the ones the person is considering or works in now,
+ * whatever their band. Under matching v2 each carries both fits and its frictions; "what the work
+ * involves" is the career's top O*NET work activities when it has them.
  */
 export function reportLanes(profile: ProfileScores, exp: ExperienceAnswers): ReportCareerPath[] {
-  const matches = matchesFor(profile);
-  const native = nativeFor(profile).byLane;
-  const strong = [...matches.values()].filter((m) => m.band === "strong").sort((a, b) => (b.vsAverage ?? 0) - (a.vsAverage ?? 0)).slice(0, 6);
-  const picked = new Map<string, ReportCareerPath["listedBecause"]>(strong.map((m) => [m.laneId, "strong_fit"]));
+  const matches = matchesFor(profile, exp);
+  const native = viewFor(profile, exp).byLane;
+  const inDirection = new Map(buildCareerPicks(profile, exp).overall.map((p) => [p.row.id as string, p.direction?.name ?? null]));
+  const picked = new Map<string, ReportCareerPath["listedBecause"]>([...inDirection.keys()].map((id) => [id, "strong_fit"]));
   for (const c of exp.considering) picked.set(c.laneId, "considering");
   if (exp.current) picked.set(exp.current.laneId, "current_job");
   return [...picked].flatMap(([id, why]) => {
@@ -283,6 +323,7 @@ export function reportLanes(profile: ProfileScores, exp: ExperienceAnswers): Rep
         entry: taxonomy.entry[lane.entry],
         dayToDay: day?.activities.length ? day.activities.map((a) => a.name) : lane.tags.map((t) => TAG_NOUN[t]),
         listedBecause: why,
+        direction: inDirection.get(id) ?? null,
       },
     ];
   });

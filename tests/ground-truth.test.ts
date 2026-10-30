@@ -1,6 +1,6 @@
 /**
  * Precision pass step 8: ground truth, stored only. Satisfaction with the current job (and up to two
- * previous jobs) from onboarding, and "Does this resonate?" on the top five cards, stored with the
+ * previous jobs) from onboarding, and "Does this resonate?" on the directions' career paths, stored with the
  * matching version (migration 0005). Neither is read by matching.
  */
 import { readFileSync } from "node:fs";
@@ -10,8 +10,8 @@ vi.stubEnv("PGLITE_DATA", "memory");
 const me = vi.hoisted(() => ({ id: "", email: "truth@example.com", name: "T", createdAt: new Date() }));
 vi.mock("@/lib/auth", () => ({ requireUser: async () => me }));
 vi.mock("next/cache", () => ({ revalidatePath: () => {} }));
-// The server's own top five: b2b_sales is second. The client's rank is never stored.
-vi.mock("@/lib/data", () => ({ ownTopFiveRank: async (id: string) => (id === "b2b_sales" ? 2 : null) }));
+// The server's own directions: b2b_sales is second. The client's rank is never stored.
+vi.mock("@/lib/data", () => ({ ownDirectionRank: async (id: string) => (id === "b2b_sales" ? 2 : null) }));
 vi.mock("next/navigation", () => ({
   redirect: () => {
     throw new Error("NEXT_REDIRECT");
@@ -51,9 +51,9 @@ describe("ground truth", () => {
     expect(await saveResonance({ laneId: "b2b_sales", rank: 1, response: "yes" })).toEqual({ ok: true });
     expect(await saveResonance({ laneId: "b2b_sales", rank: 4, response: "not_really" })).toEqual({ ok: true });
     expect(await saveResonance({ laneId: "nope", rank: 1, response: "yes" })).toMatchObject({ ok: false });
-    // A real career path that isn't in the person's top five is refused.
-    expect(await saveResonance({ laneId: "software_engineering", rank: 3, response: "yes" })).toMatchObject({ ok: false, error: expect.stringMatching(/top five/) });
-    expect(await saveResonance({ laneId: "b2b_sales", rank: 6, response: "yes" })).toMatchObject({ ok: false });
+    // A real career path that isn't in the person's directions is refused.
+    expect(await saveResonance({ laneId: "software_engineering", rank: 3, response: "yes" })).toMatchObject({ ok: false, error: expect.stringMatching(/directions/) });
+    expect(await saveResonance({ laneId: "b2b_sales", rank: 13, response: "yes" })).toMatchObject({ ok: false });
     expect(await saveResonance({ laneId: "b2b_sales", rank: 1, response: "maybe" as never })).toMatchObject({ ok: false });
     const rows = await db.select().from(schema.careerResonance).where(eq(schema.careerResonance.userId, me.id));
     expect(rows).toHaveLength(1);

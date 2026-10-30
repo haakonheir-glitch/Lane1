@@ -74,6 +74,8 @@ export async function getOnboarding(): Promise<OnboardingAnswers & { done: boole
 export type ExperienceAnswers = {
   current: { roleId: string | null; laneId: string; title: string; years: YearsBand | null; satisfaction?: number | null } | null;
   considering: { laneId: string; roleId: string | null; title: string }[];
+  /** "Open to faith-based work": belief-gated career paths are suggested only when true. */
+  openToFaith?: boolean;
   /** Up to two previous jobs with their satisfaction (ground truth; not used in matching). */
   previous?: { laneId: string; roleId: string | null; title: string; satisfaction: number }[];
 };
@@ -88,6 +90,7 @@ export const getExperience = cache(async (): Promise<ExperienceAnswers> => {
       : null,
     considering: p?.considering ?? [],
     previous: p?.previousJobs ?? [],
+    openToFaith: p?.openToFaith ?? false,
   };
 });
 
@@ -192,13 +195,14 @@ const getMatching = cache(async () => {
 });
 
 /**
- * Where a career path sits in the person's own top five (1–5), or null when it isn't there or the
- * Career map shows the sample. The resonance answer is stored against this, never the client's rank.
+ * Where a career path sits among the person's own directions (1–12: direction by direction, as
+ * the Career map lists them; never shown), or null when it isn't in them or the Career map shows the sample. The resonance answer is
+ * stored against this, never the client's rank.
  */
-export async function ownTopFiveRank(laneId: string): Promise<number | null> {
+export async function ownDirectionRank(laneId: string): Promise<number | null> {
   const { source, picks } = await getMatching();
   if (source !== "own") return null;
-  const i = picks.overall.slice(0, 5).findIndex((p) => p.row.id === laneId);
+  const i = picks.overall.findIndex((p) => p.row.id === laneId);
   return i < 0 ? null : i + 1;
 }
 
@@ -210,7 +214,7 @@ export async function getLaneMap(selected?: string | null) {
 /** "How you work best" for the profile the pages show (own, or the labelled sample). */
 export const getWorkBest = cache(async () => workBestFor((await getProfileView()).profile));
 
-/** The best-fitting career paths overall (the Career map's top five), for the report. */
+/** The directions' career paths in order (the Career map's directions), for the report. */
 export const getTopCareerPaths = cache(async (): Promise<CareerPick[]> => (await getMatching()).picks.overall);
 
 /* -------------------------------------------------------------- effort ---- */

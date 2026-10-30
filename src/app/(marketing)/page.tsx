@@ -5,7 +5,8 @@ import { Accordion } from "@/components/ui/Accordion";
 import { SectionHeader } from "@/components/report/SectionHeader";
 import { JobFinder } from "@/components/marketing/JobFinder";
 import { Scaled } from "@/components/marketing/Scaled";
-import { HeroCareer, RankedCareer } from "@/components/lanes/CareerResults";
+import { Directions } from "@/components/lanes/Directions";
+import { groupDirections } from "@/lib/lanes/types";
 import { Cover } from "@/components/report/doc/Cover";
 import { SummarySheet } from "@/components/report/doc/SummarySheet";
 import { Chapter } from "@/components/report/doc/Chapter";
@@ -108,18 +109,13 @@ export default async function LandingPage() {
         <ul className="grid gap-10 md:grid-cols-3">
           {[
             { title: "The cover", body: "Your name, your report ID and your Profile Mark: every line of it is one of your scores.", node: cover, h: 640 },
-            { title: "The summary sheet", body: "Your headline results and three closest career paths on one page you can print.", node: summary, h: 1180 },
+            { title: "The summary sheet", body: "Your headline results and the directions your strongest fits point in, on one page you can print.", node: summary, h: 1180 },
             {
               title: "The Career map",
               body: "All 205 career paths in fit bands, each with the role you could realistically start in.",
               node: (
                 <div className="flex flex-col gap-3 bg-bg p-6">
-                  <HeroCareer p={picks[0]!} />
-                  <div className="grid grid-cols-2 gap-3">
-                    {picks.slice(1, 3).map((p, i) => (
-                      <RankedCareer key={p.row.id} p={p} rank={i + 2} />
-                    ))}
-                  </div>
+                  <Directions directions={groupDirections(picks).slice(0, 2)} linked={false} note={false} />
                 </div>
               ),
               h: 1180,

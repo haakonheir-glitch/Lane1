@@ -29,6 +29,8 @@ export type ReportCareerPath = {
   dayToDay: string[];
   /** Why this career path is in the facts: a strong fit, or one the person said they're considering / work in now. */
   listedBecause: "strong_fit" | "considering" | "current_job";
+  /** The direction it belongs to (strong fits grouped by value mode and family), or null. The directions' career paths fit about equally well: not a ranking. */
+  direction: string | null;
 };
 
 export type ReportFacts = ReturnType<typeof buildReportFacts>;

@@ -60,7 +60,15 @@ export type V2Config = {
    * games, performing): never above "possible fit", with TALENT_NOTE. Empty: no cap.
    */
   talentCapped: string[];
+  /**
+   * Career paths that require a personal faith: shown in top lists, directions and the report only
+   * when the person has said they're open to faith-based work (onboarding or settings). Otherwise
+   * capped at "possible fit" and kept in the full map with BELIEF_NOTE (gates.ts). Empty: no gate.
+   */
+  beliefGated: string[];
 };
+
+export const BELIEF_NOTE = "Requires a personal faith. Shown only if you say you're open to it.";
 
 export const TALENT_NOTE = "Fits your interests and working style; success depends on talent Lane can't measure.";
 
@@ -144,6 +152,7 @@ const V2_0_4: V2Config = {
   ensemble: null,
   rolesFromData: false,
   talentCapped: [],
+  beliefGated: [],
 };
 
 /** v2-0.3: v2-0.4 without the reasoning-strengths component (weight 0). Kept for comparison. */
@@ -164,7 +173,8 @@ const V2_0_3: V2Config = { ...V2_0_4, version: "v2-0.3", weights: { ...V2_0_4.we
  * 5. a weight ensemble: Dirichlet weights (concentration 40) and, half the time, flat environment
  *    weighting, so a band can't hang on one exact choice of weights;
  * 6. starting roles ranked from their own O*NET profile where they have one (matching/roles.ts);
- * 7. talent-selected career paths capped at "possible fit" (talentCapped).
+ * 7. talent-selected career paths capped at "possible fit" (talentCapped);
+ * 8. belief-gated career paths shown only with the person's opt-in (beliefGated, gates.ts).
  */
 const V2_0_5: V2Config = {
   ...V2_0_4,
@@ -183,6 +193,8 @@ const V2_0_5: V2Config = {
   rolesFromData: true,
   /** The owner's list (2026-10-30): professional sport, esports, professional strategy games and the performing careers. */
   talentCapped: ["pro_sport", "esports", "strategy_games", "acting", "music_performance", "dance", "modelling", "broadcasting", "comedy", "variety"],
+  /** The owner's decision (2026-10-30): religious and spiritual work only with the person's opt-in. */
+  beliefGated: ["faith"],
 };
 
 /** Every selectable config, by version. */

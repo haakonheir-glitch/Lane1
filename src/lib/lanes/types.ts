@@ -35,6 +35,8 @@ export type LaneRowData = {
   provenance: "onet" | "estimated" | "unlinked" | null;
   /** Talent-selected career paths: never above "possible fit", with this note. */
   capNote?: string | null;
+  /** Belief-gated without the person's opt-in: in the full map only, never in a top list. */
+  gated?: boolean;
 };
 
 export type RoleRef = { id: string; title: string; level: LevelId; mode: ModeId; aka: string[] };
@@ -128,6 +130,44 @@ export type CareerPick = {
   driverIds: string[];
   /** The path's ladder, entry level first, with the realistic starting step marked. */
   ladder: { label: string; marker: LadderRow["marker"] }[];
+  /** For the directions' career paths: the direction it belongs to (CareerPicks.directions). */
+  direction?: DirectionInfo;
 };
 
-export type CareerPicks = { overall: CareerPick[]; corporate: CareerPick[]; ownPath: CareerPick[] };
+export type DirectionInfo = { id: string; name: string; subtitle: string; why: string | null };
+
+/** The picks' directions, in order of first appearance, each with its picks (picks without one are left out). */
+export function groupDirections(picks: CareerPick[]): CareerDirection[] {
+  const out: CareerDirection[] = [];
+  for (const p of picks) {
+    if (!p.direction) continue;
+    const d = out.find((x) => x.id === p.direction!.id);
+    if (d) d.picks.push(p);
+    else out.push({ ...p.direction, picks: [p] });
+  }
+  return out;
+}
+
+/**
+ * A direction: strong fits that lead with the same value mode (and family, when a large group was
+ * split), shown together without rank numbers (owner's decision, 2026-10-30).
+ */
+export type CareerDirection = {
+  id: string;
+  /** "Influence (Hunter)", or "Influence: Marketing" when split by family. */
+  name: string;
+  /** The value mode's high pole, in plain words. */
+  subtitle: string;
+  /** The reasons its career paths share, or null. */
+  why: string | null;
+  /** 2–3 career paths, in fit order. */
+  picks: CareerPick[];
+};
+
+export type CareerPicks = {
+  directions: CareerDirection[];
+  /** The directions' career paths in order (summary sheet, share card, trait connections). */
+  overall: CareerPick[];
+  corporate: CareerPick[];
+  ownPath: CareerPick[];
+};

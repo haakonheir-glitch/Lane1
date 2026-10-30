@@ -13,9 +13,9 @@ import { writeReport } from "./generate";
 /**
  * Bump when the report's instructions or shape change, so stored reports are written again.
  * 4 (Phase 3): "How you work best" and "Where this work exists" chapters, the best workday,
- * v2 fits in the facts, and the claims check.
+ * v2 fits in the facts, and the claims check. 5: strong fits as directions, not a ranking.
  */
-export const REPORT_FORMAT = 4;
+export const REPORT_FORMAT = 5;
 
 export const factsHash = (facts: ReportFacts) => createHash("sha256").update(`${REPORT_FORMAT}:${JSON.stringify(facts)}`).digest("hex");
 

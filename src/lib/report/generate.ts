@@ -79,7 +79,7 @@ async function ask(c: ParseClient, facts: ReportFacts, correction?: string) {
 const quotable = (facts: ReportFacts) => [
   ...(facts.situation.current ? [facts.situation.current] : []),
   ...facts.situation.considering,
-  ...facts.careerPaths.flatMap((c) => [c.name, c.family, c.entry, ...c.drivers, ...c.frictions, ...c.dayToDay]),
+  ...facts.careerPaths.flatMap((c) => [c.name, c.family, c.entry, ...(c.direction ? [c.direction] : []), ...c.drivers, ...c.frictions, ...c.dayToDay]),
 ];
 
 const reportProblems = (report: WrittenReport, facts: ReportFacts) => {

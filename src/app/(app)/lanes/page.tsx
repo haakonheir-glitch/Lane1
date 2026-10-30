@@ -6,12 +6,11 @@ import { LaneSummary } from "@/components/lanes/LaneSummary";
 import {
   CareerRow,
   CareerSection,
-  HeroCareer,
-  RankedCareer,
 } from "@/components/lanes/CareerResults";
 import { Skeleton } from "@/components/ui/Misc";
 import { getLaneMap, getProfileView, getResonance, getUser } from "@/lib/data";
 import { Resonance } from "@/components/lanes/Resonance";
+import { Directions } from "@/components/lanes/Directions";
 import { TraitConnections } from "@/components/lanes/TraitConnections";
 import { connections } from "@/lib/view/connections";
 import { LOCKED_TEXT, reportTier } from "@/lib/tier";
@@ -30,13 +29,14 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
       getUser(),
       getProfileView(),
     ]);
-  // The free tier shows the top three career paths; the full tier the whole map.
+  // The free tier shows the first direction; the full tier every direction and the whole map.
   const full = reportTier() === "full";
-  const [best, ...next] = picks.overall.slice(0, full ? 5 : 3);
-  // "Does this resonate?" on the top cards: own results only, never on the sample.
+  const directions = full ? picks.directions : picks.directions.slice(0, 1);
+  const shown = directions.flatMap((d) => d.picks);
+  // "Does this resonate?" on the directions' career paths: own results only, never on the sample.
   const resonance = source === "own" ? await getResonance() : null;
   const ask = (laneId: string, rank: number, name: string) =>
-    resonance ? <Resonance laneId={laneId} rank={rank} name={name} initial={resonance[laneId] ?? null} className="mt-3" /> : null;
+    resonance ? <Resonance laneId={laneId} rank={rank} name={name} initial={resonance[laneId] ?? null} /> : null;
   const links = connections(profile, picks.overall);
   return (
     <AppPage
@@ -64,24 +64,15 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
         </p>
 
         <div className="mt-20">
-          {best ? (
+          {directions.length ? (
             <CareerSection
               index="01"
-              label={full ? "Top five" : "Top three"}
+              label="Directions"
               id="best-h"
-              title={full ? "Your five best fits" : "Your three best fits"}
-              lead="The specific roles that suit you best, across every kind of career. Open one to see the full path, from first role up."
+              title={directions.length === 1 ? "The direction that fits you best" : `${directions.length} directions that fit you`}
+              lead="Your strong fits, grouped by the kind of value the work asks you to add. Within a direction they're in order of fulfilment fit. Open one to see the full path, from first role up."
             >
-              <HeroCareer p={best} />
-              {ask(best.row.id, 1, best.row.name)}
-              <div className="mt-3 grid gap-3 md:grid-cols-2">
-                {next.map((p, i) => (
-                  <div key={p.row.id} className="flex flex-col">
-                    <RankedCareer p={p} rank={i + 2} />
-                    {ask(p.row.id, i + 2, p.row.name)}
-                  </div>
-                ))}
-              </div>
+              <Directions directions={directions} after={(p) => ask(p.row.id, shown.findIndex((x) => x.row.id === p.row.id) + 1, p.row.name)} />
             </CareerSection>
           ) : null}
 
@@ -100,9 +91,9 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
           ) : null}
 
           {!full ? (
-            <CareerSection index="02" label="Detail" id="detail-h" title="Your three career paths in detail" lead="Open any of the three for its day-to-day work, how people get in and where you'd start.">
+            <CareerSection index="02" label="Detail" id="detail-h" title="These career paths in detail" lead="Open any of them for its day-to-day work, how people get in and where you'd start.">
               <Suspense fallback={<Skeleton lines={4} />}>
-                <LaneMap rows={rows.filter((r) => picks.overall.slice(0, 3).some((p) => p.row.id === r.id))} vocab={vocab} detail={detail} />
+                <LaneMap rows={rows.filter((r) => shown.some((p) => p.row.id === r.id))} vocab={vocab} detail={detail} />
               </Suspense>
             </CareerSection>
           ) : null}
@@ -124,11 +115,11 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
               label="Corporate"
               id="corporate-h"
               title="Corporate careers"
-              lead="Your next five best fits inside companies and professional firms, after your top five."
+              lead="Your next five best fits inside companies and professional firms, after your directions."
             >
               <ol className="flex flex-col gap-2">
                 {picks.corporate.map((p, i) => (
-                  <CareerRow key={p.row.id} p={p} rank={i + 1} index={i} />
+                  <CareerRow key={p.row.id} p={p} index={i} />
                 ))}
               </ol>
             </CareerSection>
@@ -140,11 +131,11 @@ export default async function LanesPage({ searchParams }: PageProps<"/lanes">) {
               label="Non-corporate"
               id="own-path-h"
               title="Non-corporate careers"
-              lead="Your next five best fits on your own terms: independent, creative, performing, competing and founding careers, after your top five."
+              lead="Your next five best fits on your own terms: independent, creative, performing, competing and founding careers, after your directions."
             >
               <ol className="flex flex-col gap-2">
                 {picks.ownPath.map((p, i) => (
-                  <CareerRow key={p.row.id} p={p} rank={i + 1} index={i} />
+                  <CareerRow key={p.row.id} p={p} index={i} />
                 ))}
               </ol>
             </CareerSection>

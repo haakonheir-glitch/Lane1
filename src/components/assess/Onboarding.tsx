@@ -27,6 +27,8 @@ export type OnboardingState = OnboardingAnswers & {
   satisfaction: number | null;
   /** Up to two previous jobs, each with the same question. Optional. */
   previous: (PickedTitle & { satisfaction: number | null })[];
+  /** "Open to faith-based work" (optional): faith-based career paths are suggested only when checked. */
+  openToFaith: boolean;
 };
 
 type ChoiceId = keyof OnboardingAnswers;
@@ -145,6 +147,7 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
           current: answers.current ? { laneId: answers.current.laneId, roleId: answers.current.roleId, title: answers.current.title, years: answers.years, satisfaction: answers.satisfaction } : null,
           considering: answers.considering.map(({ laneId, roleId, title }) => ({ laneId, roleId, title })),
           previous: answers.previous.flatMap(({ laneId, roleId, title, satisfaction }) => (satisfaction === null ? [] : [{ laneId, roleId, title, satisfaction }])),
+          openToFaith: answers.openToFaith,
         });
       } catch (e) {
         if (isNavigationError(e)) throw e;
@@ -363,6 +366,15 @@ export function Onboarding({ name, initial }: { name: string; initial: Onboardin
                       ) : (
                         <p className="text-small text-ink-3">That&apos;s three. Remove one to add another.</p>
                       )}
+                      <label className="mt-6 flex cursor-pointer items-start gap-3 text-small text-ink-2">
+                        <input
+                          type="checkbox"
+                          checked={answers.openToFaith}
+                          onChange={(e) => setAnswers((a) => ({ ...a, openToFaith: e.target.checked }))}
+                          className="mt-0.5 size-4 accent-[var(--color-accent)]"
+                        />
+                        <span>Optional: I&apos;m open to faith-based work. Career paths that require a personal faith are suggested only if you tick this. You can change it in Settings.</span>
+                      </label>
                       {answers.considering.length ? (
                         <ul className="mt-6 flex flex-col border-t border-rule" aria-label="Jobs you're considering">
                           {answers.considering.map((c) => (

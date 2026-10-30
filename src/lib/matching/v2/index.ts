@@ -9,8 +9,9 @@ import { computeFit as computeFitIn, matchAllV2, type MatchOptions, type Offsets
 import { V2_CONFIG, type V2Config } from "./config";
 
 export { matchAllV2, facetShares, envGuardFor, profileSeed, populationOffsets, penaltyOf, needWeight, effectiveWeights, type Offsets } from "./fit";
-export { topFive, bestByDirection, rankV2, type TopPick } from "./present";
-export { V2_CONFIG, V2_CONFIGS, DEFAULT_V2_VERSION, selectConfig, type V2Config } from "./config";
+export { topFive, bestByDirection, rankV2, directionsOf, type TopPick, type DirectionGroup } from "./present";
+export { applyGates, type OptIns } from "./gates";
+export { V2_CONFIG, V2_CONFIGS, DEFAULT_V2_VERSION, selectConfig, TALENT_NOTE, BELIEF_NOTE, type V2Config } from "./config";
 export * from "./types";
 
 /** The bundled career profiles (taxonomy/derived/lane_profiles_v2.json). */

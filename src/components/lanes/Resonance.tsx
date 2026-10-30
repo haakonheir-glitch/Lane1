@@ -12,7 +12,7 @@ const OPTIONS: { value: Response; label: string }[] = [
 ];
 
 /**
- * "Does this resonate?" under one of the five top career path cards. The answer is stored with the
+ * "Does this resonate?" under a career path in one of the directions. The answer is stored with the
  * matching version that ranked it, to check the matching against; it never changes the results.
  */
 export function Resonance({ laneId, rank, name, initial, className }: { laneId: string; rank: number; name: string; initial: Response | null; className?: string }) {
