@@ -2,8 +2,8 @@
 
 /* ---------------------------------------------------------------------------
    Tokens
-   Light is the default. Dark applies via prefers-color-scheme unless the user
-   forced light, or via [data-theme="dark"] (manual toggle).
+   Light is the default, whatever the system setting. Dark applies only via
+   [data-theme="dark"], set by the theme toggle (stored under THEME_KEY).
    --------------------------------------------------------------------------- */
 
 :root {
@@ -36,6 +36,14 @@
   --you-3: #8d9cf3;
   --you-4: #4a60ee;
   --you-5: #2340e8;
+  /* The assessment brain (components/brain): dim and lit dots, their highlights and blooms. */
+  --brain-dim: #bec4c9;
+  --brain-dim-hi: #8a9197;
+  --brain-lit: #2340e8;
+  --brain-lit-hi: #4a60ee;
+  --brain-glow: #4a60ee;
+  --brain-glow-wide: #8d9cf3;
+  --brain-under: #c9d0fa;
 
   --dur-1: 150ms;
   --dur-2: 200ms;
@@ -61,38 +69,6 @@
     --lh-h1: 50px;
     --fs-h2: 30px;
     --lh-h2: 36px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0e0f10;
-    --surface: #16171a;
-    --ink: #ededea;
-    --ink-2: #b3b5ba;
-    --ink-3: #9a9ca2;
-    --ink-4: #6e7076;
-    --rule: #26282c;
-    --rule-strong: #3a3c41;
-    --data-band: #474a52;
-    --data-ref: #7a7c82;
-    --accent: #6b80ff;
-    --accent-ink: #0e0f10;
-    --accent-wash: #1a1f3d;
-    --positive: #4cb884;
-    --caution: #d9a441;
-    --paper: #16171a;
-    --paper-edge: #3a3c41;
-    --panel: #ededea;
-    --panel-ink: #111111;
-    --panel-ink-2: #47494e;
-    --panel-rule: #c9c9c4;
-    --you-1: #1a1f3d;
-    --you-2: #27306b;
-    --you-3: #3e4fb0;
-    --you-4: #5468e6;
-    --you-5: #6b80ff;
-    color-scheme: dark;
   }
 }
 
@@ -123,6 +99,13 @@
   --you-3: #3e4fb0;
   --you-4: #5468e6;
   --you-5: #6b80ff;
+  --brain-dim: #3a434c;
+  --brain-dim-hi: #6a7782;
+  --brain-lit: #a2b6ff;
+  --brain-lit-hi: #e0e7ff;
+  --brain-glow: #4a6bff;
+  --brain-glow-wide: #4a6bff;
+  --brain-under: #3355ff;
   color-scheme: dark;
 }
 
@@ -205,6 +188,13 @@
   --color-you-3: var(--you-3);
   --color-you-4: var(--you-4);
   --color-you-5: var(--you-5);
+  --color-brain-dim: var(--brain-dim);
+  --color-brain-dim-hi: var(--brain-dim-hi);
+  --color-brain-lit: var(--brain-lit);
+  --color-brain-lit-hi: var(--brain-lit-hi);
+  --color-brain-glow: var(--brain-glow);
+  --color-brain-glow-wide: var(--brain-glow-wide);
+  --color-brain-under: var(--brain-under);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
@@ -386,8 +376,7 @@
 
 @media print {
   :root,
-  :root[data-theme="dark"],
-  :root:not([data-theme="light"]) {
+  :root[data-theme="dark"] {
     --bg: #ffffff;
     --surface: #ffffff;
     --paper: #ffffff;
